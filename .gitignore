@@ -14,3 +14,4 @@ Thumbs.db
 
 # Yönetim aracı yerel yedekleri (ileride otomatik oluşturulacak)
 data/_backups/
+manager/server.log
