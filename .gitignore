@@ -14,4 +14,7 @@ Thumbs.db
 
 # Yönetim aracı yerel yedekleri (ileride otomatik oluşturulacak)
 data/_backups/
+
+# Yönetim aracı yerel ayarları (SFTP bilgileri burada — repo'ya girmez)
+manager/config.json
 manager/server.log

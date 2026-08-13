@@ -1,0 +1,91 @@
+{
+  "label": "Ortak Bileşen Kayıt Defteri",
+  "components": {
+    "heading": {
+      "label": "Başlık",
+      "fields": [
+        { "key": "title", "label": "Başlık", "type": "lang", "required": true },
+        { "key": "icon", "label": "İkon", "type": "icon" },
+        { "key": "id", "label": "ID", "type": "text" }
+      ]
+    },
+    "icon-list": {
+      "label": "İkon Listesi",
+      "fields": [
+        {
+          "key": "items",
+          "label": "Öğeler",
+          "type": "array",
+          "itemLabel": "Öğe",
+          "itemFields": [
+            { "key": "icon", "label": "İkon", "type": "icon" },
+            { "key": "text", "label": "Metin", "type": "lang", "required": true }
+          ]
+        }
+      ]
+    },
+    "info-box": {
+      "label": "Bilgi Kutusu",
+      "fields": [
+        { "key": "title", "label": "Başlık", "type": "lang" },
+        { "key": "titleIcon", "label": "Başlık İkonu", "type": "icon" },
+        { "key": "content", "label": "İçerik", "type": "lang", "required": true }
+      ]
+    },
+    "map-embed": {
+      "label": "Harita",
+      "fields": [
+        { "key": "embedUrl", "label": "Harita Bağlantısı", "type": "url", "required": true },
+        { "key": "width", "label": "Genişlik", "type": "text" },
+        { "key": "height", "label": "Yükseklik", "type": "text" },
+        { "key": "borderRadius", "label": "Köşe Yuvarlaklığı", "type": "text" },
+        { "key": "allowFullscreen", "label": "Tam Ekran İzni", "type": "boolean" },
+        { "key": "loading", "label": "Yükleme", "type": "select", "options": ["lazy", "eager"] }
+      ]
+    },
+    "alert": {
+      "label": "Uyarı Kutusu",
+      "fields": [
+        { "key": "icon", "label": "İkon", "type": "icon" },
+        { "key": "content", "label": "İçerik", "type": "lang", "required": true }
+      ]
+    },
+    "table": {
+      "label": "Tablo",
+      "fields": [
+        {
+          "key": "headers",
+          "label": "Sütun Başlıkları",
+          "type": "array",
+          "itemLabel": "Sütun",
+          "itemFields": [
+            { "key": "tr", "label": "TR", "type": "text", "required": true },
+            { "key": "en", "label": "EN", "type": "text", "required": true }
+          ]
+        },
+        {
+          "key": "rows",
+          "label": "Satırlar",
+          "type": "array",
+          "itemLabel": "Satır",
+          "itemFields": [
+            { "key": "icon", "label": "İkon", "type": "icon" },
+            {
+              "key": "cells",
+              "label": "Hücreler (JSON)",
+              "type": "raw",
+              "hint": "Örn: [{\"tr\":\"Birim\",\"en\":\"Unit\"}, \"1728\"]"
+            },
+            {
+              "key": "highlightColumns",
+              "label": "Vurgulanacak Sütunlar",
+              "type": "array",
+              "itemType": "number",
+              "itemLabel": "Sütun No"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

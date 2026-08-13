@@ -61,8 +61,8 @@ def validate_schema(node, schema, errors, loc):
                     for i, item in enumerate(value):
                         validate_component(item, f["components"], errors, "%s[%d]" % (child, i))
         elif ftype == "lang":
-            if not isinstance(value, dict):
-                errors.append("%s: çoklu dil alanı (TR/EN) olmalı." % child)
+            if not isinstance(value, (dict, str)):
+                errors.append("%s: çoklu dil alanı (TR/EN) veya metin olmalı." % child)
         elif ftype == "number":
             if not isinstance(value, (int, float)) or isinstance(value, bool):
                 errors.append("%s: sayı olmalı." % child)

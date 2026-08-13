@@ -9,6 +9,7 @@ const state = {
   dirty: false,
 };
 
+const SID = (document.cookie.match(/(?:^|; )preview_session=([^;]+)/) || [])[1] || "anon";
 const $ = (id) => document.getElementById(id);
 
 async function api(url, opts) {
@@ -31,8 +32,8 @@ function showBanner(msg, kind) {
 function markDirty() {
   if (!state.path) return;
   state.dirty = true;
-  const t = $("editorTitle");
-  if (!t.textContent.endsWith(" •")) t.textContent += " •";
+  $("previewBadge").classList.remove("hidden");
+  pushPreview();
 }
 
 function renderGit(g) {
@@ -46,6 +47,22 @@ function renderGit(g) {
   el.className = "git-status" + (g.dirty ? " dirty" : "");
   el.title = "Son commit: " + g.lastCommit;
 }
+
+/* ---------- Modal ---------- */
+
+function openModal(html) {
+  $("modalBox").innerHTML = html;
+  $("modalOverlay").classList.remove("hidden");
+}
+function closeModal() {
+  $("modalOverlay").classList.add("hidden");
+}
+$("modalOverlay").addEventListener("click", (e) => {
+  if (e.target === $("modalOverlay")) closeModal();
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeModal();
+});
 
 /* ---------- Dosya listesi ---------- */
 
@@ -66,12 +83,25 @@ function renderTree() {
   for (const cat of state.files) {
     const sec = document.createElement("div");
     sec.className = "tree-cat";
-    const head = document.createElement("div");
+    const head = document.createElement("button");
     head.className = "tree-cat-head";
-    head.textContent = cat.label;
-    sec.appendChild(head);
+    const chev = document.createElement("span");
+    chev.className = "chev";
+    const lbl = document.createElement("span");
+    lbl.textContent = cat.label;
+    head.appendChild(chev);
+    head.appendChild(lbl);
     const list = document.createElement("div");
     list.className = "tree-cat-files";
+    const saved = localStorage.getItem("mgr_cat_" + cat.key);
+    const open = saved === null ? cat.key === "pages" : saved === "1";
+    list.hidden = !open;
+    head.classList.toggle("open", open);
+    head.addEventListener("click", () => {
+      list.hidden = !list.hidden;
+      head.classList.toggle("open", !list.hidden);
+      localStorage.setItem("mgr_cat_" + cat.key, list.hidden ? "0" : "1");
+    });
     for (const f of cat.files) {
       const item = document.createElement("button");
       item.className = "tree-file" + (f.path === state.path ? " active" : "");
@@ -82,6 +112,7 @@ function renderTree() {
       item.addEventListener("click", () => selectFile(f.path));
       list.appendChild(item);
     }
+    sec.appendChild(head);
     sec.appendChild(list);
     tree.appendChild(sec);
   }
@@ -89,9 +120,28 @@ function renderTree() {
 
 function onSearch(e) {
   const q = e.target.value.trim().toLowerCase();
-  document.querySelectorAll(".tree-file").forEach((el) => {
-    el.style.display = el.dataset.name.toLowerCase().includes(q) ? "" : "none";
+  if (!q) {
+    renderTree();
+    return;
+  }
+  document.querySelectorAll(".tree-cat").forEach((sec) => {
+    const list = sec.querySelector(".tree-cat-files");
+    const head = sec.querySelector(".tree-cat-head");
+    list.hidden = false;
+    head.classList.add("open");
+    let any = false;
+    list.querySelectorAll(".tree-file").forEach((el) => {
+      const hit = el.dataset.name.toLowerCase().includes(q);
+      el.style.display = hit ? "" : "none";
+      if (hit) any = true;
+    });
+    sec.style.display = any ? "" : "none";
   });
+}
+
+function setSidebar(hidden) {
+  document.body.classList.toggle("sidebar-hidden", hidden);
+  localStorage.setItem("mgr_sidebar", hidden ? "1" : "0");
 }
 
 /* ---------- Dosya seçme / editör ---------- */
@@ -113,7 +163,8 @@ async function selectFile(path) {
     renderEditor();
     renderTree();
     renderGit(res.git);
-    updatePreview();
+    reloadPreview();
+    setSidebar(true);
   } catch (e) {
     showBanner("Dosya yüklenemedi: " + (e.error || ""));
   }
@@ -122,17 +173,20 @@ async function selectFile(path) {
 function renderEditor() {
   showBanner("", "success");
   $("errorBanner").classList.add("hidden");
+  $("previewBadge").classList.add("hidden");
   const title = $("editorTitle");
   const desc = $("editorDesc");
   const meta = $("editorMeta");
   const formArea = $("formArea");
   const rawArea = $("rawArea");
+  const tocBar = $("tocBar");
 
   if (!state.path) {
     title.textContent = "Dosya seçin";
     desc.textContent = "Soldaki listeden bir JSON dosyası seçin.";
     formArea.innerHTML = "";
     rawArea.classList.add("hidden");
+    tocBar.classList.add("hidden");
     meta.innerHTML = "";
     $("saveBtn").disabled = true;
     $("validateBtn").disabled = true;
@@ -140,36 +194,121 @@ function renderEditor() {
   }
 
   title.textContent = state.schema ? state.schema.label : state.path.split("/").pop();
-  desc.textContent = state.path + (state.schema ? " — şema tabanlı düzenleme" : " — ham JSON düzenleme (şema henüz tanımlı değil)");
+  let mode = "— ham JSON düzenleme";
+  if (state.schema) mode = state.schema.dynamic ? "— otomatik şema (elle şema yazılınca iyileşir)" : "— şema tabanlı düzenleme";
+  desc.textContent = state.path + " " + mode;
   $("saveBtn").disabled = false;
   $("validateBtn").disabled = false;
 
   const page = previewHtmlFor(state.path);
-  meta.innerHTML = page
-    ? '<a href="/' + page + '" target="_blank" rel="noopener" class="btn small">Sayfayı Aç ↗</a>'
-    : "";
+  meta.innerHTML = [
+    '<button id="rawToggleBtn" class="btn small" title="Form / ham JSON görünümü arasında geçiş">' + (state.rawMode ? "Form Görünümü" : "Ham JSON") + "</button>",
+    '<button id="historyBtn" class="btn small" title="Bu dosyanın sürüm geçmişi">Geçmiş</button>',
+    page ? '<a href="/' + page + '" target="_blank" rel="noopener" class="btn small">Sayfayı Aç ↗</a>' : "",
+  ].join("");
 
-  if (state.schema) {
+  if (state.schema && !state.rawMode) {
     rawArea.classList.add("hidden");
     formArea.classList.remove("hidden");
     formArea.innerHTML = "";
-    renderFields(formArea, state.schema.fields, state.data);
+    const fields = state.schema.fields || [];
+    const startCollapsed = defaultSectionsCollapsed(fields.length);
+    const secs = fields.map((f) => renderSection(f, state.data, startCollapsed));
+    secs.forEach((s) => formArea.appendChild(s));
+    renderToc(secs, fields);
   } else {
     formArea.classList.add("hidden");
     rawArea.classList.remove("hidden");
+    tocBar.classList.add("hidden");
     rawArea.value = JSON.stringify(state.data, null, 2);
   }
 }
 
-function updatePreview() {
-  const page = previewHtmlFor(state.path) || "index.html";
-  $("previewFrame").src = "/" + page + "?t=" + Date.now();
-  $("openSiteLink").href = "/" + page;
+/* ---------- Form bölümleri (akordeon) + TOC ---------- */
+
+function defaultSectionsCollapsed(fieldCount) {
+  if (fieldCount <= 1) return false;
+  return localStorage.getItem("mgr_sections") !== "open";
 }
 
-function togglePreview() {
-  document.body.classList.toggle("preview-hidden");
-  $("previewToggle").textContent = document.body.classList.contains("preview-hidden") ? "Göster" : "Gizle";
+function sectionCount(f, obj) {
+  const v = obj[f.key];
+  if (f.type === "array" || f.type === "components") return Array.isArray(v) ? v.length : 0;
+  if (f.type === "object") return (f.fields || []).length;
+  return 1;
+}
+
+function renderSection(f, obj, startCollapsed) {
+  const sec = document.createElement("div");
+  sec.className = "form-section" + (startCollapsed ? " collapsed" : "");
+  const head = document.createElement("button");
+  head.className = "form-section-head" + (startCollapsed ? "" : " open");
+  const chev = document.createElement("span");
+  chev.className = "chev";
+  const label = document.createElement("span");
+  label.className = "form-section-label";
+  label.textContent = f.label || f.key;
+  if (f.required) {
+    const star = document.createElement("span");
+    star.className = "req";
+    star.textContent = " *";
+    label.appendChild(star);
+  }
+  const count = document.createElement("span");
+  count.className = "form-section-count";
+  count.textContent = sectionCount(f, obj);
+  head.appendChild(chev);
+  head.appendChild(label);
+  head.appendChild(count);
+  const body = document.createElement("div");
+  body.className = "form-section-body";
+  body.appendChild(renderField(f, obj));
+  sec.appendChild(head);
+  sec.appendChild(body);
+  head.addEventListener("click", () => {
+    sec.classList.toggle("collapsed");
+    head.classList.toggle("open", !sec.classList.contains("collapsed"));
+  });
+  return sec;
+}
+
+function renderToc(secs, fields) {
+  const tocBar = $("tocBar");
+  tocBar.innerHTML = "";
+  if (fields.length <= 1) {
+    tocBar.classList.add("hidden");
+    return;
+  }
+  tocBar.classList.remove("hidden");
+  const wrap = document.createElement("div");
+  wrap.className = "toc-chips";
+  const anyCollapsed = secs.some((s) => s.classList.contains("collapsed"));
+  const toggleAll = document.createElement("button");
+  toggleAll.className = "btn small";
+  toggleAll.textContent = anyCollapsed ? "Tümünü Aç" : "Tümünü Kapat";
+  toggleAll.addEventListener("click", () => {
+    const open = anyCollapsed;
+    secs.forEach((s) => {
+      s.classList.toggle("collapsed", !open);
+      s.querySelector(".form-section-head").classList.toggle("open", open);
+    });
+    localStorage.setItem("mgr_sections", open ? "open" : "collapsed");
+    renderToc(secs, fields);
+  });
+  wrap.appendChild(toggleAll);
+  secs.forEach((s, i) => {
+    const chip = document.createElement("button");
+    chip.className = "toc-chip";
+    const f = fields[i];
+    chip.textContent = (f.label || f.key) + " (" + sectionCount(f, state.data) + ")";
+    chip.addEventListener("click", () => {
+      s.classList.remove("collapsed");
+      s.querySelector(".form-section-head").classList.add("open");
+      s.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    wrap.appendChild(chip);
+  });
+  tocBar.appendChild(wrap);
 }
 
 /* ---------- Şema tabanlı form ---------- */
@@ -206,9 +345,12 @@ function componentDefaults(comp) {
 }
 
 function ensureDefaults(fields, obj) {
-  if (!fields || typeof obj !== "object") return;
+  if (!fields || typeof obj !== "object" || obj === null) return;
   for (const f of fields) {
-    if (!(f.key in obj)) obj[f.key] = defaultFor(f);
+    if (f.key in obj) continue;
+    if (f.type === "object" || f.type === "array" || f.type === "components" || f.type === "lang") {
+      obj[f.key] = defaultFor(f);
+    }
   }
 }
 
@@ -233,6 +375,7 @@ function renderField(f, obj) {
 
   switch (f.type) {
     case "object": {
+      if (typeof obj[f.key] !== "object" || obj[f.key] === null) obj[f.key] = {};
       const box = document.createElement("div");
       box.className = "object-box";
       if (f.description) box.title = f.description;
@@ -241,10 +384,11 @@ function renderField(f, obj) {
       break;
     }
     case "lang":
-      wrap.appendChild(renderLang(f, obj[f.key]));
+      wrap.appendChild(renderLang(f, obj));
       break;
     case "array":
     case "components":
+      if (!Array.isArray(obj[f.key])) obj[f.key] = [];
       wrap.appendChild(renderArray(f, obj[f.key]));
       break;
     case "raw":
@@ -270,10 +414,18 @@ function renderField(f, obj) {
     default:
       wrap.appendChild(renderScalar(f, obj[f.key], (v) => { obj[f.key] = v; markDirty(); }));
   }
+
+  wrap.addEventListener("focusin", () => {
+    const v = obj[f.key];
+    if (f.type === "lang" && v && typeof v === "object") findInPreview([v.tr, v.en]);
+    else if (typeof v === "string" && v.trim()) findInPreview([v]);
+    else if (typeof v === "number") findInPreview([String(v)]);
+  });
   return wrap;
 }
 
 function renderScalar(f, value, onchange) {
+  if (f.type === "icon") return renderIconField(f, value, onchange);
   const holder = document.createElement("div");
   holder.className = "control";
   let ctl;
@@ -344,8 +496,20 @@ function renderScalar(f, value, onchange) {
   return holder;
 }
 
-function renderLang(f, value) {
-  if (!value || typeof value !== "object") value = { tr: "", en: "" };
+function renderLang(f, obj) {
+  let value = obj[f.key];
+  if (typeof value === "string") {
+    const holder = document.createElement("div");
+    holder.className = "control";
+    const inp = document.createElement("input");
+    inp.type = "text";
+    inp.value = value;
+    inp.placeholder = f.placeholder || "";
+    inp.addEventListener("input", () => { obj[f.key] = inp.value; markDirty(); });
+    holder.appendChild(inp);
+    return holder;
+  }
+  if (!value || typeof value !== "object") value = obj[f.key] = { tr: "", en: "" };
   const holder = document.createElement("div");
   holder.className = "lang-pair";
   for (const lang of ["tr", "en"]) {
@@ -371,6 +535,84 @@ function renderLang(f, value) {
     holder.appendChild(cell);
   }
   return holder;
+}
+
+/* ---------- İkon alanı + galeri ---------- */
+
+function iconCls(v) {
+  return v && v.startsWith("bi-") ? "bi " + v : v;
+}
+
+let ICONS = null;
+
+function renderIconField(f, value, onchange) {
+  const holder = document.createElement("div");
+  holder.className = "control icon-control";
+  const preview = document.createElement("span");
+  preview.className = "icon-preview";
+  preview.innerHTML = '<i class="' + iconCls(value || "") + '"></i>';
+  const inp = document.createElement("input");
+  inp.type = "text";
+  inp.value = value ?? "";
+  inp.placeholder = f.placeholder || "fas fa-…";
+  inp.addEventListener("input", () => {
+    onchange(inp.value);
+    preview.innerHTML = '<i class="' + iconCls(inp.value) + '"></i>';
+  });
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "btn small";
+  btn.textContent = "Galeri";
+  btn.addEventListener("click", () => openIconGallery((icon) => {
+    onchange(icon);
+    inp.value = icon;
+    preview.innerHTML = '<i class="' + iconCls(icon) + '"></i>';
+  }));
+  holder.appendChild(preview);
+  holder.appendChild(inp);
+  holder.appendChild(btn);
+  return holder;
+}
+
+async function openIconGallery(onPick) {
+  if (!ICONS) {
+    try {
+      ICONS = (await api("/api/icons")).icons || [];
+    } catch {
+      ICONS = [];
+    }
+  }
+  const grid = document.createElement("div");
+  grid.className = "icon-grid";
+  const render = (q) => {
+    grid.innerHTML = "";
+    const list = ICONS.filter((i) => !q || i.includes(q));
+    if (!list.length) {
+      const empty = document.createElement("div");
+      empty.className = "hint";
+      empty.textContent = "Sonuç yok — serbest yazma alanını kullanın.";
+      grid.appendChild(empty);
+      return;
+    }
+    for (const icon of list) {
+      const b = document.createElement("button");
+      b.className = "icon-cell";
+      const label = icon.replace(/^fa[srb]? /, "");
+      b.innerHTML = '<i class="' + iconCls(icon) + '"></i><span>' + label + "</span>";
+      b.addEventListener("click", () => { onPick(icon); closeModal(); });
+      grid.appendChild(b);
+    }
+  };
+  openModal(
+    '<div class="modal-head"><h3>İkon Seç</h3><button id="iconClose" class="icon-btn">✕</button></div>' +
+    '<input id="iconSearch" type="text" class="commit-msg modal-search" placeholder="İkon ara… (örn: envelope, phone)">' +
+    '<div class="icon-grid-wrap"></div>'
+  );
+  const wrap = $("modalBox").querySelector(".icon-grid-wrap");
+  wrap.appendChild(grid);
+  render("");
+  $("iconClose").addEventListener("click", closeModal);
+  $("iconSearch").addEventListener("input", (e) => render(e.target.value.trim().toLowerCase()));
 }
 
 /* ---------- Diziler ---------- */
@@ -427,6 +669,7 @@ function renderArray(f, arr) {
 function renderArrayItem(f, arr, i, rerender) {
   const card = document.createElement("div");
   card.className = "array-card";
+  card.draggable = true;
 
   const head = document.createElement("div");
   head.className = "card-head";
@@ -445,6 +688,31 @@ function renderArrayItem(f, arr, i, rerender) {
   head.appendChild(title);
   head.appendChild(actions);
   card.appendChild(head);
+
+  card.addEventListener("dragstart", (e) => {
+    e.dataTransfer.setData("text/plain", String(i));
+    e.dataTransfer.effectAllowed = "move";
+    card.classList.add("dragging");
+  });
+  card.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = "move";
+    card.classList.add("drop-target");
+  });
+  card.addEventListener("dragleave", () => card.classList.remove("drop-target"));
+  card.addEventListener("drop", (e) => {
+    e.preventDefault();
+    const from = Number(e.dataTransfer.getData("text/plain"));
+    card.classList.remove("drop-target");
+    if (!Number.isFinite(from) || from === i) return;
+    const [item] = arr.splice(from, 1);
+    arr.splice(i, 0, item);
+    rerender();
+    markDirty();
+  });
+  card.addEventListener("dragend", () => {
+    document.querySelectorAll(".array-card").forEach((c) => c.classList.remove("dragging", "drop-target"));
+  });
 
   const body = document.createElement("div");
   body.className = "card-body";
@@ -521,6 +789,168 @@ function renderRaw(f, obj) {
   return holder;
 }
 
+/* ---------- Canlı önizleme ---------- */
+
+let pushTimer = null;
+
+function pushPreview() {
+  if (!state.path) return;
+  clearTimeout(pushTimer);
+  pushTimer = setTimeout(async () => {
+    let content;
+    try {
+      content = currentContent();
+    } catch {
+      return;
+    }
+    try {
+      await api("/api/preview/set", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ session: SID, path: state.path, content }),
+      });
+      if (!document.body.classList.contains("preview-hidden")) reloadPreview();
+    } catch (e) {
+      /* sessiz */
+    }
+  }, 300);
+}
+
+function reloadPreview() {
+  const frame = $("previewFrame");
+  let y = 0;
+  try {
+    y = frame.contentWindow.scrollY || 0;
+  } catch (e) { /* yoksay */ }
+  const page = previewHtmlFor(state.path) || "index.html";
+  const onLoad = () => {
+    setTimeout(() => {
+      try {
+        frame.contentWindow.scrollTo(0, y);
+      } catch (e) { /* yoksay */ }
+    }, 60);
+    ensurePreviewInjection();
+  };
+  frame.removeEventListener("load", onLoad);
+  frame.addEventListener("load", onLoad);
+  frame.src = "/" + page + "?t=" + Date.now();
+}
+
+let editMode = false;
+
+function setEditMode(v) {
+  editMode = v;
+  $("editModeBtn").classList.toggle("active", v);
+  $("editModeBtn").textContent = v ? "Düzenleme: Açık" : "Düzenleme: Kapalı";
+  ensurePreviewInjection();
+}
+
+function ensurePreviewInjection() {
+  const frame = $("previewFrame");
+  let doc;
+  try {
+    doc = frame.contentDocument;
+  } catch (e) {
+    return;
+  }
+  if (!doc || !doc.head) return;
+  if (!doc.getElementById("mgr-base-style")) {
+    const st = doc.createElement("style");
+    st.id = "mgr-base-style";
+    st.textContent = ".mgr-highlight{outline:3px solid #ff9800 !important;outline-offset:2px;background:rgba(255,152,0,.18) !important;transition:outline .15s;}";
+    doc.head.appendChild(st);
+  }
+  if (editMode && !doc.getElementById("mgr-pick-css")) {
+    const st = doc.createElement("style");
+    st.id = "mgr-pick-css";
+    st.textContent = "body.mgr-editmode *{cursor:crosshair !important;} body.mgr-editmode :hover{outline:2px dashed #1a5fb4 !important;outline-offset:1px;}";
+    doc.head.appendChild(st);
+    doc.documentElement.classList.add("mgr-editmode");
+    doc.addEventListener("click", (ev) => {
+      const t = ev.target;
+      const el = t && t.closest ? t.closest("h1,h2,h3,h4,h5,h6,p,li,td,strong,a,span,button,div") : null;
+      if (!el) return;
+      const txt = (el.textContent || "").replace(/\s+/g, " ").trim();
+      if (txt && txt.length > 1) locateFormField(txt);
+    });
+  } else if (!editMode) {
+    const st = doc.getElementById("mgr-pick-css");
+    if (st) st.remove();
+    if (doc.documentElement) doc.documentElement.classList.remove("mgr-editmode");
+  }
+}
+
+function findInPreview(texts) {
+  const frame = $("previewFrame");
+  let doc;
+  try {
+    doc = frame.contentDocument;
+  } catch (e) {
+    return;
+  }
+  if (!doc || !doc.body) return;
+  const norm = (s) => (s || "").replace(/\s+/g, " ").trim();
+  const targets = texts.map(norm).filter(Boolean);
+  if (!targets.length) return;
+  let best = null;
+  let bestScore = -1;
+  const els = doc.body.querySelectorAll("*");
+  for (const el of els) {
+    const t = norm(el.textContent);
+    for (const target of targets) {
+      if (t === target && t.length > 0) {
+        best = el;
+        bestScore = 1e9;
+        break;
+      }
+    }
+    if (bestScore >= 1e9) break;
+    if (t.length > 4) {
+      for (const target of targets) {
+        const idx = t.indexOf(target);
+        if (idx >= 0 && target.length > bestScore) {
+          best = el;
+          bestScore = target.length;
+        }
+      }
+    }
+  }
+  if (best) {
+    ensurePreviewInjection();
+    best.scrollIntoView({ behavior: "smooth", block: "center" });
+    best.classList.add("mgr-highlight");
+    setTimeout(() => best.classList.remove("mgr-highlight"), 2000);
+  }
+}
+
+function locateFormField(text) {
+  const norm = (s) => (s || "").replace(/\s+/g, " ").trim();
+  const t = norm(text);
+  if (!t) return;
+  const inputs = document.querySelectorAll("#formArea input, #formArea textarea");
+  let found = null;
+  for (const inp of inputs) {
+    if (norm(inp.value) === t) {
+      found = inp;
+      break;
+    }
+  }
+  if (!found) {
+    for (const inp of inputs) {
+      if (norm(inp.value).includes(t) && t.length >= 5) {
+        found = inp;
+        break;
+      }
+    }
+  }
+  if (found) {
+    found.scrollIntoView({ behavior: "smooth", block: "center" });
+    found.focus();
+    found.classList.add("mgr-flash");
+    setTimeout(() => found.classList.remove("mgr-flash"), 1500);
+  }
+}
+
 /* ---------- Kaydet / Doğrula ---------- */
 
 function currentContent() {
@@ -567,16 +997,73 @@ async function save() {
     const res = await api("/api/file", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ path: state.path, content, message }),
+      body: JSON.stringify({ path: state.path, content, message, session: SID }),
     });
     state.dirty = false;
     $("commitMessage").value = "";
+    $("previewBadge").classList.add("hidden");
     renderGit(res.git);
     showBanner(res.message || "Kaydedildi ✓", "success");
-    updatePreview();
+    reloadPreview();
   } catch (e) {
     const list = (e.errors || []).join("\n");
     showBanner("Kaydedilemedi" + (list ? ":\n" + list : ": " + (e.error || "hata")));
+  }
+}
+
+/* ---------- Senkronize / Yayımla / Geçmiş ---------- */
+
+async function doSync() {
+  try {
+    const res = await api("/api/git/sync", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: "{}",
+    });
+    if (res.ok) showBanner(res.message || "Senkronize edildi ✓", "success");
+    else showBanner(res.message || res.error || "Senkronizasyon yapılamadı.");
+    if (res.git) renderGit(res.git);
+  } catch (e) {
+    showBanner("Senkronizasyon hatası: " + (e.error || ""));
+  }
+}
+
+async function openPublishModal() {
+  try {
+    const res = await api("/api/publish/info");
+    openModal(
+      '<div class="modal-head"><h3>Yayımla</h3><button id="pubClose" class="icon-btn">✕</button></div>' +
+      '<div class="modal-body" id="pubBody"><p class="muted">Yükleniyor…</p></div>'
+    );
+    $("pubClose").addEventListener("click", closeModal);
+    const body = $("pubBody");
+    const list = res.files.map((f) =>
+      '<label class="pub-row"><input type="checkbox" value="' + f.path + '" checked>' +
+      '<span>' + f.path + '</span>' + (f.dirty ? ' <em class="pub-dirty">değişti</em>' : "") + "</label>"
+    ).join("");
+    body.innerHTML =
+      '<p class="muted">Yayımlanacak dosyaları seçin. SFTP tanımlı değilse ZIP indirerek FTP akışını koruyabilirsiniz.</p>' +
+      '<div class="pub-list">' + list + "</div>" +
+      '<div class="modal-actions">' +
+      '<button id="pubZip" class="btn">ZIP İndir</button>' +
+      '<button id="pubSftp" class="btn primary"' + (res.sftpConfigured ? "" : " disabled title='manager/config.json içinde SFTP tanımlayın'") + '>SFTP ile Yayımla</button>' +
+      "</div>";
+    $("pubZip").addEventListener("click", () => {
+      window.location.href = "/api/export";
+    });
+    if (res.sftpConfigured) {
+      $("pubSftp").addEventListener("click", async () => {
+        const paths = Array.from(body.querySelectorAll(".pub-row input:checked")).map((c) => c.value);
+        const r = await api("/api/publish", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ paths }),
+        });
+        showBanner(r.message || (r.ok ? "Yayımlandı ✓" : "Yayımlanamadı"), r.ok ? "success" : "");
+      });
+    }
+  } catch (e) {
+    showBanner("Yayımlama bilgisi alınamadı: " + (e.error || ""));
   }
 }
 
@@ -584,13 +1071,26 @@ async function save() {
 
 document.addEventListener("DOMContentLoaded", () => {
   loadFiles();
+  if (localStorage.getItem("mgr_sidebar") === "1") document.body.classList.add("sidebar-hidden");
+
   $("saveBtn").addEventListener("click", save);
   $("validateBtn").addEventListener("click", validate);
-  $("previewToggle").addEventListener("click", togglePreview);
+  $("sidebarToggle").addEventListener("click", () => {
+    setSidebar(!document.body.classList.contains("sidebar-hidden"));
+  });
+  $("previewToggle").addEventListener("click", () => {
+    const isHidden = document.body.classList.toggle("preview-hidden");
+    $("previewToggle").textContent = isHidden ? "Önizleme: Göster" : "Önizleme: Gizle";
+    if (!isHidden) reloadPreview();
+  });
   $("fileSearch").addEventListener("input", onSearch);
+  $("rawArea").addEventListener("input", markDirty);
   $("commitMessage").addEventListener("keydown", (e) => {
     if (e.key === "Enter") save();
   });
+  $("syncBtn").addEventListener("click", doSync);
+  $("publishBtn").addEventListener("click", openPublishModal);
+  $("editModeBtn").addEventListener("click", () => setEditMode(!editMode));
   document.addEventListener("keydown", (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s") {
       e.preventDefault();
@@ -600,4 +1100,96 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("beforeunload", (e) => {
     if (state.dirty) e.preventDefault();
   });
+
+  // Editor başlığındaki dinamik butonlar
+  document.addEventListener("click", (e) => {
+    if (e.target && e.target.id === "historyBtn") openHistoryModal();
+    if (e.target && e.target.id === "rawToggleBtn") {
+      state.rawMode = !state.rawMode;
+      renderEditor();
+    }
+  });
 });
+
+/* ---------- Geçmiş modalı ---------- */
+
+function escapeHtml(s) {
+  return String(s ?? "").replace(/[&<>"']/g, (c) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+  }[c]));
+}
+
+async function openHistoryModal() {
+  if (!state.path) return;
+  try {
+    const res = await api("/api/history?path=" + encodeURIComponent(state.path));
+    const commits = res.commits || [];
+    if (!commits.length) {
+      openModal('<div class="modal-head"><h3>Geçmiş</h3><button id="histClose" class="icon-btn">✕</button></div><div class="modal-body"><p class="muted">Henüz commit yok.</p></div>');
+      const c = document.getElementById("histClose");
+      if (c) c.addEventListener("click", closeModal);
+      return;
+    }
+    const list = commits.map((c, i) =>
+      '<div class="history-item' + (i === 0 ? " current" : "") + '">' +
+      '<span class="h-date">' + c.date + "</span>" +
+      '<span class="h-msg">' + escapeHtml(c.message) + "</span>" +
+      '<span class="h-hash">' + c.short + "</span>" +
+      '<button class="btn small" data-hash="' + c.hash + '">Fark</button>' +
+      "</div>"
+    ).join("");
+    openModal(
+      '<div class="modal-head"><h3>Geçmiş — ' + escapeHtml(state.path) + '</h3><button id="histClose" class="icon-btn">✕</button></div>' +
+      '<div class="modal-body">' +
+      '<div class="history-list">' + list + "</div>" +
+      '<pre id="histDiff" class="history-diff hidden"></pre>' +
+      '<div class="modal-actions"><button id="histRestore" class="btn primary" disabled>Bu Sürüme Dön</button></div>' +
+      "</div>"
+    );
+    const c = document.getElementById("histClose");
+    if (c) c.addEventListener("click", closeModal);
+    const diffEl = document.getElementById("histDiff");
+    const restoreBtn = document.getElementById("histRestore");
+    let selected = null;
+    document.querySelectorAll(".history-item button").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        selected = btn.dataset.hash;
+        restoreBtn.disabled = false;
+        try {
+          const r = await api("/api/history/diff", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ path: state.path, from: selected, to: "HEAD" }),
+          });
+          diffEl.classList.remove("hidden");
+          diffEl.textContent = r.diff || "(bu sürümle HEAD arasında fark yok)";
+        } catch (e) {
+          diffEl.classList.remove("hidden");
+          diffEl.textContent = "Fark alınamadı: " + (e.error || "");
+        }
+      });
+    });
+    restoreBtn.addEventListener("click", async () => {
+      if (!selected) return;
+      if (!confirm("Bu sürüme geri dönülecek ve yeni bir commit atılacak. Devam edilsin mi?")) return;
+      try {
+        const r = await api("/api/history/restore", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ path: state.path, commit: selected }),
+        });
+        if (r.ok) {
+          showBanner("Sürüm geri alındı: " + r.message, "success");
+          closeModal();
+          await selectFile(state.path);
+        } else {
+          showBanner("Geri alınamadı:\n" + (r.errors || []).join("\n"));
+        }
+      } catch (e) {
+        showBanner("Geri alınamadı: " + (e.error || ""));
+      }
+    });
+  } catch (e) {
+    showBanner("Geçmiş alınamadı: " + (e.error || ""));
+  }
+}

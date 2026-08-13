@@ -54,9 +54,6 @@ Alan tipleri: `text`, `textarea`, `lang` (TR/EN), `object`, `array`,
 - Sunucu yalnızca `127.0.0.1` üzerinde dinler.
 - **Bu araç uzak sunucuya yüklenmemelidir** — lokal yönetim içindir.
 
-## Sıradaki adımlar (yol haritası)
+## Sıradaki adımlar
 
-1. Tüm dosyalar için şema tanımları (yapıldıkça yeşil nokta artacak).
-2. Sürüm geçmişi görünümü: dosya bazında geçmiş + fark + geri alma.
-3. 3 kullanıcı için merkez repo senkronizasyonu ("Senkronize Et").
-4. SFTP ile "Yayımla" (yedekli yükleme + doğrulama + geri alma).
+Detaylı, öncelik sıralı plan: **[ROADMAP.md](ROADMAP.md)**
