@@ -1,0 +1,51 @@
+{
+  "app": {
+    "name": "Anadolu Üniversitesi Kütüphane",
+    "version": "2.0.0",
+    "debug": false
+  },
+  "theme": {
+    "default": "light",
+    "persistence": true
+  },
+  "language": {
+    "default": "tr",
+    "persistence": true
+  },
+  "layout": {
+    "header": {
+      "sticky": true,
+      "height": 80
+    },
+    "footer": {
+      "enabled": true,
+      "helpSection": true
+    }
+  },
+  "features": {
+    "modal": {
+      "enabled": true,
+      "autoShow": true,
+      "showOnce": true,
+      "delay": 2000
+    },
+    "tooltips": {
+      "enabled": true,
+      "delay": 1000,
+      "duration": 3000
+    },
+    "animations": {
+      "enabled": true,
+      "duration": 300
+    }
+  },
+  "content": {
+    "maxItems": {
+      "news": 4,
+      "announcements": 3,
+      "services": 8,
+      "arrivals": 5
+    }
+  },
+  "lastModified": "2024-01-20T10:00:00Z"
+}

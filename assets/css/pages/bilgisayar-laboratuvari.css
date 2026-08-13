@@ -1,0 +1,83 @@
+/* ===========================================
+   Bilgisayar Laboratuvarı Page Styles
+   ============================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Info Cards */
+.info-card {
+  background: var(--bg-card);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-color);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.info-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.info-card .card-header {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  color: white;
+  padding: 1.25rem 1.5rem;
+  font-weight: 600;
+  font-size: 1.2rem; /* Başlık fontunu biraz büyüttüm */
+  border-bottom: none;
+}
+
+.info-card .card-body {
+  padding: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.info-card .card-body p {
+  margin-bottom: 0;
+}
+
+.info-card .card-body ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.info-card .card-body ul li {
+  position: relative;
+  padding-left: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.info-card .card-body ul li::before {
+  content: '\F28A'; /* Bootstrap Icons check-circle */
+  font-family: 'bootstrap-icons';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+/*
+  Kartların yan yana gelmesi için bu bölümü kullanabilirsiniz.
+  @media (min-width: 992px) {
+    #lab-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+  }
+*/

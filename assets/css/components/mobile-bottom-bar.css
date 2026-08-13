@@ -1,0 +1,414 @@
+/*===================================================
+  MOBILE BOTTOM BAR - 4 Button Navigation
+=====================================================*/
+
+/* Sticky Bottom Bar - Sadece mobilde görünür */
+.mobile-bottom-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--bg-card);
+  border-top: 1px solid rgba(31, 76, 138, 0.15);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1050; /* Quick actions (1100) ve accessibility'nin altında */
+  padding: 8px 0;
+}
+
+/* Bottom Bar Grid - 4 eşit buton */
+.bottom-bar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 4px;
+}
+
+/* Bottom Bar Button */
+.bottom-bar-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 4px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  min-height: 60px;
+  position: relative;
+}
+
+.bottom-bar-btn:hover,
+.bottom-bar-btn.active {
+  background-color: rgba(31, 76, 138, 0.08);
+  color: var(--primary-color);
+}
+
+.bottom-bar-btn i {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.bottom-bar-btn:hover i {
+  transform: scale(1.1);
+}
+
+.bottom-bar-btn span {
+  text-align: center;
+  line-height: 1.2;
+  display: block;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+/* Active state indicator */
+.bottom-bar-btn.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 3px;
+  background-color: var(--primary-color);
+  border-radius: 0 0 3px 3px;
+}
+
+/* Panel Overlay */
+.bottom-bar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1199;
+}
+
+.bottom-bar-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Panel Container */
+.bottom-bar-panel {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  max-height: 70vh;
+  background-color: var(--bg-card);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+  transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1200;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px 20px 0 0;
+}
+
+.bottom-bar-panel.active {
+  bottom: 68px; /* Bottom bar yüksekliği + biraz boşluk */
+}
+
+/* Panel Header */
+.bottom-bar-panel-header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(31, 76, 138, 0.1);
+  background-color: var(--bg-card);
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.bottom-bar-panel-title {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bottom-bar-panel-title i {
+  font-size: 1.2rem;
+  color: var(--accent-color);
+}
+
+.bottom-bar-panel-close {
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+}
+
+.bottom-bar-panel-close:hover {
+  background-color: rgba(31, 76, 138, 0.1);
+  transform: rotate(90deg);
+}
+
+/* Panel Content */
+.bottom-bar-panel-content {
+  padding: 16px 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+}
+
+/* Panel Links - Sitemap, Quick Actions etc. */
+.panel-link-group {
+  margin-bottom: 24px;
+}
+
+.panel-link-group:last-child {
+  margin-bottom: 0;
+}
+
+.panel-link-group-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent-color);
+  display: inline-block;
+}
+
+.panel-link-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.panel-link-list li {
+  margin-bottom: 8px;
+}
+
+.panel-link-list a {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 0.95rem;
+  background: rgba(31, 76, 138, 0.05);
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.panel-link-list a i {
+  margin-right: 10px;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  transition: transform 0.3s ease;
+}
+
+.panel-link-list a:hover {
+  background: rgba(31, 76, 138, 0.1);
+  border-color: var(--primary-color);
+  transform: translateX(4px);
+}
+
+.panel-link-list a:hover i {
+  transform: translateX(4px);
+}
+
+/* Contact & Social Media Panel */
+.contact-social-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-section,
+.social-section {
+  background: rgba(31, 76, 138, 0.05);
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.contact-section h4,
+.social-section h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-section h4 i,
+.social-section h4 i {
+  color: var(--accent-color);
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-list li {
+  margin-bottom: 10px;
+}
+
+.contact-list li:last-child {
+  margin-bottom: 0;
+}
+
+.contact-list a {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  background: var(--white);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.contact-list a i {
+  margin-right: 10px;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+}
+
+.contact-list a:hover {
+  background: rgba(31, 76, 138, 0.1);
+  transform: translateX(4px);
+}
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1;
+  background: var(--white);
+  border-radius: 12px;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.social-link:hover {
+  background: var(--primary-color);
+  color: var(--white);
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(31, 76, 138, 0.3);
+}
+
+/* Dark Theme */
+html[data-theme="dark"] .mobile-bottom-bar {
+  background-color: var(--bg-card);
+  border-top-color: rgba(54, 103, 166, 0.2);
+}
+
+html[data-theme="dark"] .bottom-bar-btn:hover,
+html[data-theme="dark"] .bottom-bar-btn.active {
+  background-color: rgba(54, 103, 166, 0.2);
+  color: var(--primary-light);
+}
+
+html[data-theme="dark"] .bottom-bar-panel {
+  background-color: var(--bg-card);
+}
+
+html[data-theme="dark"] .bottom-bar-panel-header {
+  background-color: var(--bg-card);
+  border-bottom-color: rgba(54, 103, 166, 0.2);
+}
+
+html[data-theme="dark"] .panel-link-list a {
+  background: rgba(54, 103, 166, 0.1);
+  color: var(--text-light);
+}
+
+html[data-theme="dark"] .panel-link-list a:hover {
+  background: rgba(54, 103, 166, 0.2);
+}
+
+html[data-theme="dark"] .contact-section,
+html[data-theme="dark"] .social-section {
+  background: rgba(54, 103, 166, 0.1);
+}
+
+html[data-theme="dark"] .contact-list a,
+html[data-theme="dark"] .social-link {
+  background: rgba(54, 103, 166, 0.15);
+  color: var(--text-light);
+}
+
+html[data-theme="dark"] .contact-list a:hover {
+  background: rgba(54, 103, 166, 0.25);
+}
+
+html[data-theme="dark"] .social-link:hover {
+  background: var(--primary-color);
+  color: var(--white);
+}
+
+/* Sadece mobilde göster */
+@media (max-width: 767px) {
+  .mobile-bottom-bar {
+    display: block;
+  }
+
+  /* Yukarı Çık butonu için alan bırak ve konumlandır */
+  body {
+    padding-bottom: 76px; /* Bottom bar yüksekliği */
+  }
+
+  /* Back to top button - Bottom barın üstünde, footer-bottom'dan uzak */
+  .btn-back-to-top {
+    bottom: 95px !important; /* Bottom bar yüksekliği (76px) + daha fazla boşluk */
+    right: 15px !important;
+    z-index: 1090 !important; /* Bottom bar altında ama diğer içeriğin üstünde */
+  }
+
+  /* Mobilde float butonları gizle (bottom bar'da olacaklar) */
+  .quick-actions-btn,
+  .accessibility-trigger {
+    display: none !important;
+  }
+
+  /* Accessibility widget açıkken bile trigger buton gizli kalsın */
+  .accessibility-widget .accessibility-trigger {
+    display: none !important;
+  }
+}

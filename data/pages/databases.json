@@ -1,0 +1,1104 @@
+{
+  "databases": [
+    {
+      "id": "abi-inform",
+      "title": "ABI/INFORM",
+      "categories": [
+        {"tr": "Genel", "en": "General"},
+        {"tr": "Ekonomi", "en": "Economics"}
+      ],
+      "logo": "assets/images/databases/logos/Proquest.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://search.proquest.com/abicomplete",
+      "description": {
+        "tr": "ABI/INFORM Global veritabanı, finans, iş, ekonomi, stratejik yönetim, iş trendleri, muhasebe ve daha birçok konuda makale, tez, endüstri odaklı raporlar içermektedir. The Economist, Wall Street Journal gibi dergilere erişim sağlar.",
+        "en": "ABI/INFORM Global database contains articles, theses, and industry-focused reports on finance, business, economics, strategic management, business trends, accounting, and many other topics. Provides access to journals such as The Economist and Wall Street Journal."
+      },
+      "accessType": "remote",
+      "apcSupport": true,
+      "userGuide": "https://www.proquest.com/support/user-guides",
+      "videoTutorials": "https://www.proquest.com/support/training-videos",
+      "contentList": "https://www.proquest.com/products-services/abi_inform_global.html"
+    },
+    {
+      "id": "academic-search-ultimate",
+      "title": "Academic Search Ultimate",
+      "categories": [
+        {"tr": "Genel", "en": "General"}
+      ],
+      "logo": "assets/images/databases/logos/ASC.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://search.ebscohost.com/login.aspx?authtype=ip,uid&profile=ehost&defaultdb=asn",
+      "description": {
+        "tr": "Sosyal bilimler, eğitim, bilgisayar bilimleri, mühendislik, dil bilim, sanat ve edebiyat gibi tüm akademik disiplinlerden 5.300'den fazla dergiyi tam metin erişim imkânı sunmaktadır.",
+        "en": "Provides full-text access to over 5,300 journals from all academic disciplines including social sciences, education, computer science, engineering, linguistics, arts and literature."
+      },
+      "accessType": "remote",
+      "apcSupport": true,
+      "userGuide": "https://support.ebsco.com/help/?int=ehost&lang=en&feature_id=Academic-Search",
+      "videoTutorials": "https://www.ebsco.com/products/research-databases/academic-search-ultimate",
+      "journalList": "https://www.ebscohost.com/titleLists/asn-journals.htm"
+    },
+    {
+      "id": "access-pharmacy",
+      "title": "Access Pharmacy",
+      "categories": [
+        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+      ],
+      "logo": "assets/images/databases/logos/AccessPharmacy.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://accesspharmacy.mhmedical.com",
+      "description": {
+        "tr": "Eczacılık eğitiminin değişen taleplerini karşılamak üzere tasarlanmış çevrimiçi kaynak. Görsel vakalar ve vaka çalışmaları ile öğrencilerin karar verme yeteneklerini geliştirir.",
+        "en": "An online resource designed to meet the evolving demands of pharmacy education. Enhances students' decision-making skills with visual cases and case studies."
+      },
+      "accessType": "remote",
+      "apcSupport": true,
+      "userGuide": "https://accesspharmacy.mhmedical.com/ss/help.aspx",
+      "videoTutorials": "https://accesspharmacy.mhmedical.com/multimedia.aspx",
+      "bookList": "https://accesspharmacy.mhmedical.com/books.aspx"
+    },
+    {
+      "id": "acs-journals",
+      "title": "American Chemical Society Journals",
+      "categories": [
+        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+      ],
+      "logo": "assets/images/databases/logos/acs.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://pubs.acs.org",
+      "description": {
+        "tr": "Kimya alanı ve ilgili disiplinlerde American Chemical Society tarafından yayınlanan dergilere tam metin erişim. APC ödemeden yayınlama imkanı.",
+        "en": "Full-text access to journals published by the American Chemical Society in the field of chemistry and related disciplines. Opportunity to publish without APC payment."
+      },
+      "apcSupport": true,
+      "accessType": "remote"
+    },
+    {
+      "id": "aiaa",
+      "title": "American Institute of Aeronautics and Astronautics",
+      "categories": [
+        {"tr": "Genel", "en": "General"}
+      ],
+      "logo": "assets/images/databases/logos/aiaa.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://arc.aiaa.org/action/showPublications?pubType=journal",
+      "description": {
+        "tr": "Havacılık, uzay ve savunma mühendisliği alanında 8 adet derginin 2019 yılına kadar yayınladığı sayılarına erişim.",
+        "en": "Access to issues published up to 2019 of 8 journals in the field of aerospace and defense engineering."
+      },
+      "note": {
+        "tr": "2019 yılı itibariyle aboneliğimiz sonlandığından bu tarihten sonra yayınlanan sayılara erişimimiz yoktur.",
+        "en": "As our subscription ended as of 2019, we do not have access to issues published after this date."
+      },
+      "accessType": "campus"
+    },
+    {
+      "id": "annual-reviews",
+      "title": "Annual Reviews",
+      "categories": [
+        {"tr": "Genel", "en": "General"}
+      ],
+      "logo": "assets/images/databases/logos/AnnualReviews.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.annualreviews.org/",
+      "description": {
+        "tr": "Çeşitli disiplinlerde yayınlanmış makale analizleri veren dergi koleksiyonu. Biyomedikal, fizik ve sosyal bilimler alanındaki dergilere tam metin erişim.",
+        "en": "A collection of journals providing article analyses published in various disciplines. Full-text access to journals in biomedical, physical, and social sciences."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "apa-psycarticles",
+      "title": "APA PsycArticles",
+      "categories": [
+        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"},
+        {"tr": "Sosyal Bilimler", "en": "Social Sciences"}
+      ],
+      "logo": "assets/images/databases/logos/apa.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://search.ebscohost.com/login.aspx?authtype=ip,uid&profile=ehost&defaultdb=pdh",
+      "description": {
+        "tr": "American Psychological Association, Canadian Psychological Association ve Hogrefe Publishing Group yayınevleri tarafından yayınlanan 110'un üzerinde tam metin, hakemli dergi.",
+        "en": "Over 110 full-text, peer-reviewed journals published by the American Psychological Association, Canadian Psychological Association, and Hogrefe Publishing Group."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "beck-online",
+      "title": "Beck Online",
+      "categories": [
+        {"tr": "Hukuk", "en": "Law"}
+      ],
+      "logo": "assets/images/databases/logos/beck.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://beck-online.beck.de",
+      "description": {
+        "tr": "Alman Hukukunda yer alan yasalara, şerhlere, hukuksal yorumlara, mahkeme kararlarına, makalelere ve kitaplara tam metin erişim sağlayan Almanca veritabanı.",
+        "en": "A German-language database providing full-text access to laws, commentaries, legal interpretations, court decisions, articles, and books in German Law."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "bentham-science",
+      "title": "Bentham Science",
+      "categories": [
+        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+      ],
+      "logo": "assets/images/databases/logos/bentham.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.eurekaselect.com/",
+      "description": {
+        "tr": "Eczacılık ve Biyomedikal alanında etki değeri yüksek yayınlara sahip 130'dan fazla dergi ve 1000'den fazla kitaba erişim. APC ödemeden yayınlama imkanı.",
+        "en": "Access to over 130 journals and more than 1,000 books with high impact factor publications in Pharmacy and Biomedical fields. Opportunity to publish without APC payment."
+      },
+      "apcSupport": true,
+      "accessType": "remote"
+    },
+    {
+      "id": "brill-journals",
+      "title": "Brill Journals",
+      "categories": [
+        {"tr": "Genel", "en": "General"},
+        {"tr": "Sosyal Bilimler", "en": "Social Sciences"}
+      ],
+      "logo": "assets/images/databases/logos/Brill.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://brill.com",
+      "description": {
+        "tr": "BRILL yayınevine ait Sosyal ve Beşeri Bilimler alanında yayınlanan 314 derginin 2021 ve 2022 yıllarına ait tüm sayılarına erişim.",
+        "en": "Access to all issues from 2021 and 2022 of 314 journals published in the Social Sciences and Humanities by BRILL publishing house."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "business-source-complete",
+      "title": "Business Source Complete",
+      "categories": [
+        {"tr": "Ekonomi", "en": "Economics"}
+      ],
+      "logo": "assets/images/databases/logos/BSC.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://search.ebscohost.com/login.aspx?authtype=ip,uid&profile=ehost&defaultdb=bth",
+      "description": {
+        "tr": "İşletme alanındaki 10.000'den fazla bilimsel dergi ve yayına erişim sağlayan tam metin veritabanı. Pazarlama, yönetim, muhasebe, finans ve ekonomi alanlarını kapsar.",
+        "en": "A full-text database providing access to over 10,000 scientific journals and publications in the field of Business. Covers marketing, management, accounting, finance, and economics."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "cambridge-core",
+      "title": "Cambridge Core",
+      "categories": [
+        {"tr": "Genel", "en": "General"}
+      ],
+      "logo": "assets/images/databases/logos/Chicago.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.cambridge.org/core",
+      "description": {
+        "tr": "Cambridge University Press yayınlarına erişim. Akademik dergi, kitap ve konferans bildirilerine tam metin erişim.",
+        "en": "Access to Cambridge University Press publications. Full-text access to academic journals, books, and conference proceedings."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "central-eastern-european",
+      "title": "Central & Eastern European Academic Source",
+      "categories": [
+        {"tr": "Genel", "en": "General"}
+      ],
+      "logo": "assets/images/databases/logos/CentralEastern.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://search.ebscohost.com/login.aspx?authtype=ip,uid&profile=ehost&defaultdb=e5h",
+      "description": {
+        "tr": "Orta ve Doğu Avrupa ülkelerinde yayınlanan tam metin bilimsel dergilere erişim sağlayan araştırma veritabanı. Tarih, işletme, hukuk gibi alanları kapsar.",
+        "en": "A research database providing access to full-text scientific journals published in Central and Eastern European countries. Covers fields such as history, business, and law."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "communication-source",
+      "title": "Communication Source",
+      "categories": [
+        {"tr": "Genel", "en": "General"},
+        {"tr": "Sosyal Bilimler", "en": "Social Sciences"}
+      ],
+      "logo": "assets/images/databases/logos/CommunicationSource.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://search.ebscohost.com/login.aspx?authtype=ip,uid&profile=ehost&defaultdb=cms",
+      "description": {
+        "tr": "Kitle iletişim araçları ve iletişimin farklı alanlarında yayın yapan 630+ aktif, tam metin dergiyi barındırır.",
+        "en": "Hosts over 630 active, full-text journals publishing in mass media and various fields of communication."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "dalloz",
+      "title": "Dalloz",
+      "categories": [
+        {"tr": "Hukuk", "en": "Law"}
+      ],
+      "logo": "assets/images/databases/logos/Dalloz.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.dalloz.fr",
+      "description": {
+        "tr": "Fransız hukuku alanında kapsamlı bilgi sağlayan veritabanı. Mahkeme kararları, yasalar, doktrin ve makalelere erişim.",
+        "en": "A database providing comprehensive information in the field of French law. Access to court decisions, laws, doctrine, and articles."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "de-gruyter",
+      "title": "De Gruyter",
+      "categories": [
+        {"tr": "Genel", "en": "General"}
+      ],
+      "logo": "assets/images/databases/logos/degruyter.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.degruyter.com",
+      "description": {
+        "tr": "Beşeri ve sosyal bilimler, hukuk, matematik, fizik alanlarında De Gruyter yayınevine ait dergi ve kitaplara tam metin erişim.",
+        "en": "Full-text access to journals and books from De Gruyter publishing house in the humanities, social sciences, law, mathematics, and physics."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "dergipark",
+      "title": "DergiPark",
+      "categories": [
+        {"tr": "Genel", "en": "General"},
+        {"tr": "Referans", "en": "Reference"}
+      ],
+      "logo": "assets/images/databases/logos/dergipark.png",
+      "url": "https://dergipark.org.tr/",
+      "description": {
+        "tr": "Türkiye'de yayınlanan bilimsel dergilerin açık erişim platformu. Binlerce hakemli dergiye ücretsiz tam metin erişim.",
+        "en": "An open access platform for scientific journals published in Turkey. Free full-text access to thousands of peer-reviewed journals."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "ebsco-ebook",
+      "title": "EBSCO eBook Collection",
+      "categories": [
+        {"tr": "e-Kitap", "en": "e-Book"}
+      ],
+      "logo": "assets/images/databases/logos/ebsco.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://search.ebscohost.com/login.aspx?authtype=ip,uid&profile=ehost&defaultdb=e000xww",
+      "description": {
+        "tr": "Çeşitli yayınevlerine ait 200.000+ e-kitaba tam metin erişim. Tüm akademik disiplinleri kapsar.",
+        "en": "Full-text access to over 200,000 e-books from various publishers. Covers all academic disciplines."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "ebook-central",
+      "title": "ProQuest Ebook Central",
+      "categories": [
+        {"tr": "e-Kitap", "en": "e-Book"}
+      ],
+      "logo": "assets/images/databases/logos/EbookCentral.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://ebookcentral.proquest.com",
+      "description": {
+        "tr": "ProQuest'in kapsamlı e-kitap platformu. Çeşitli yayınevlerinden milyonlarca akademik e-kitaba erişim.",
+        "en": "ProQuest's comprehensive e-book platform. Access to millions of academic e-books from various publishers."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "elsevier",
+      "title": "Elsevier (ScienceDirect)",
+      "categories": [
+        {"tr": "Genel", "en": "General"}
+      ],
+      "logo": "assets/images/databases/logos/elsevier.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.sciencedirect.com",
+      "description": {
+        "tr": "Elsevier yayınevine ait fen bilimleri, tıp, teknoloji ve sosyal bilimlerde 2500+ dergiye tam metin erişim. Milyonlarca makale ve kitap bölümü.",
+        "en": "Full-text access to over 2,500 Elsevier journals in science, medicine, technology, and social sciences. Millions of articles and book chapters."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "emerald",
+      "title": "Emerald Insight",
+      "categories": [
+        {"tr": "Ekonomi", "en": "Economics"}
+      ],
+      "logo": "assets/images/databases/logos/emerald.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.emerald.com/insight",
+      "description": {
+        "tr": "İşletme, yönetim, eğitim ve mühendislik alanlarında Emerald yayınevine ait 300+ dergiye tam metin erişim.",
+        "en": "Full-text access to over 300 Emerald journals in business, management, education, and engineering."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "e-osmanlica",
+      "title": "e-Osmanlıca",
+      "categories": [
+        {"tr": "Referans", "en": "Reference"},
+        {"tr": "İnsani Bilimler", "en": "Humanities"}
+      ],
+      "logo": "assets/images/databases/logos/eosmanlica.png",
+      "url": "https://eosmanlica.ayk.gov.tr/",
+      "description": {
+        "tr": "Osmanlıca metinleri okumak ve anlamak için kapsamlı sözlük ve referans kaynağı. Atatürk Kültür, Dil ve Tarih Yüksek Kurumu tarafından sağlanmaktadır.",
+        "en": "A comprehensive dictionary and reference source for reading and understanding Ottoman texts. Provided by the Atatürk Culture, Language, and History High Institution."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "heinonline",
+      "title": "HeinOnline",
+      "categories": [
+        {"tr": "Hukuk", "en": "Law"}
+      ],
+      "logo": "assets/images/databases/logos/heinonline.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://heinonline.org",
+      "description": {
+        "tr": "Hukuk konulu 650'den fazla derginin ilk sayısından itibaren içerik sağlayan Academic Core koleksiyonu. American Association of Law Libraries tarafından desteklenir.",
+        "en": "The Academic Core collection providing content from the first issue of over 650 law-related journals. Supported by the American Association of Law Libraries."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "hiperkitap",
+      "title": "Hiperkitap",
+      "categories": [
+        {"tr": "e-Kitap", "en": "e-Book"}
+      ],
+      "logo": "assets/images/databases/logos/hiperkitap.png",
+      "url": "https://www.hiperkitap.com/",
+      "description": {
+        "tr": "Türkçe akademik ve popüler e-kitaplara erişim sağlayan platform. Yerli yayınevlerinden binlerce kitap.",
+        "en": "A platform providing access to Turkish academic and popular e-books. Thousands of books from local publishers."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "ieee-xplore",
+      "title": "IEEE Xplore",
+      "categories": [
+        {"tr": "Genel", "en": "General"}
+      ],
+      "logo": "assets/images/databases/logos/ieee.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://ieeexplore.ieee.org",
+      "description": {
+        "tr": "Elektrik mühendisliği, bilgisayar bilimleri ve elektronik alanlarında IEEE tarafından yayınlanan dergi, konferans bildirisi ve standartlara tam metin erişim.",
+        "en": "Full-text access to journals, conference proceedings, and standards published by IEEE in electrical engineering, computer science, and electronics."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "igi-global",
+      "title": "IGI Global",
+      "categories": [
+        {"tr": "Genel", "en": "General"}
+      ],
+      "logo": "assets/images/databases/logos/igiglobal.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.igi-global.com",
+      "description": {
+        "tr": "Bilgi teknolojileri, mühendislik, sosyal bilimler alanlarında IGI Global yayınevine ait dergi ve kitaplara erişim.",
+        "en": "Access to journals and books from IGI Global publishing house in information technologies, engineering, and social sciences."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "imf-elibrary",
+      "title": "IMF eLibrary",
+      "categories": [
+        {"tr": "Ekonomi", "en": "Economics"}
+      ],
+      "logo": "assets/images/databases/logos/imf.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.elibrary.imf.org",
+      "description": {
+        "tr": "Uluslararası Para Fonu (IMF) tarafından yayınlanan kitap, rapor, çalışma belgeleri ve periyodiklere tam metin erişim.",
+        "en": "Full-text access to books, reports, working papers, and periodicals published by the International Monetary Fund (IMF)."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "intihal-net",
+      "title": "intihal.net",
+      "categories": [
+        {"tr": "Referans", "en": "Reference"}
+      ],
+      "logo": "assets/images/databases/logos/intihal.png",
+      "url": "https://intihal.net/",
+      "description": {
+        "tr": "Akademik metinlerde intihal tespiti için Türkçe ve İngilizce çalışan profesyonel intihal kontrol sistemi.",
+        "en": "A professional plagiarism detection system working in Turkish and English for identifying plagiarism in academic texts."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "iop-science",
+      "title": "IOP Science",
+      "categories": [
+        {"tr": "Genel", "en": "General"}
+      ],
+      "logo": "assets/images/databases/logos/iop.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://iopscience.iop.org",
+      "description": {
+        "tr": "Institute of Physics tarafından yayınlanan fizik ve ilgili alanlarda dergilere tam metin erişim.",
+        "en": "Full-text access to journals published by the Institute of Physics in physics and related fields."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "jcr-journal-citation-reports",
+      "title": "Journal Citation Reports (JCR)",
+      "categories": [
+        {"tr": "Atıf/Bilimsel Literatür", "en": "Citation/Scientific Literature"}
+      ],
+      "logo": "assets/images/databases/logos/jcr.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://jcr.clarivate.com",
+      "description": {
+        "tr": "Bilimsel dergilerin etki faktörü ve atıf istatistiklerini içeren kapsamlı dergi değerlendirme aracı.",
+        "en": "A comprehensive journal evaluation tool containing impact factor and citation statistics of scientific journals."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "jstor",
+      "title": "JSTOR",
+      "categories": [
+        {"tr": "Genel", "en": "General"}
+      ],
+      "logo": "assets/images/databases/logos/jstor.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.jstor.org",
+      "description": {
+        "tr": "Sosyal bilimler, beşeri bilimler ve fen bilimleri alanlarında 2000'den fazla derginin arşiv koleksiyonu. İlk sayıdan itibaren tam metin erişim.",
+        "en": "An archive collection of over 2,000 journals in social sciences, humanities, and sciences. Full-text access from the first issue."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "jurix",
+      "title": "Jurix",
+      "categories": [
+        {"tr": "Hukuk", "en": "Law"}
+      ],
+      "logo": "assets/images/databases/logos/Jurix.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.jurix.com.tr",
+      "description": {
+        "tr": "Türk hukuku alanında kapsamlı bilgi sağlayan veritabanı. Mevzuat, içtihat, doktrin ve hukuki makalelere erişim.",
+        "en": "A database providing comprehensive information in Turkish law. Access to legislation, case law, doctrine, and legal articles."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "kelime-kilavuzu",
+      "title": "Kelime Kılavuzu",
+      "categories": [
+        {"tr": "Referans", "en": "Reference"}
+      ],
+      "logo": "assets/images/databases/logos/kelime.png",
+      "url": "https://kelimekilavuzu.ayk.gov.tr/",
+      "description": {
+        "tr": "Türkçe dilbilgisi, yazım ve sözcük anlamları için kapsamlı referans kaynağı. Atatürk Kültür, Dil ve Tarih Yüksek Kurumu tarafından sağlanmaktadır.",
+        "en": "A comprehensive reference source for Turkish grammar, spelling, and word meanings. Provided by the Atatürk Culture, Language, and History High Institution."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "legal-periodicals",
+      "title": "Legal Periodicals & Books",
+      "categories": [
+        {"tr": "Hukuk", "en": "Law"}
+      ],
+      "logo": "assets/images/databases/logos/Legal.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://search.ebscohost.com/login.aspx?authtype=ip,uid&profile=ehost&defaultdb=lgs",
+      "description": {
+        "tr": "Hukuk alanında 1.500+ dergi ve kitaptan tam metin içerik sağlayan kapsamlı veritabanı.",
+        "en": "A comprehensive database providing full-text content from over 1,500 journals and books in the field of law."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "lexidrug",
+      "title": "Lexidrug",
+      "categories": [
+        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+      ],
+      "logo": "assets/images/databases/logos/Lexidrug.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://online.lexi.com",
+      "description": {
+        "tr": "İlaç bilgisi, etkileşimler ve dozaj rehberi sağlayan kapsamlı eczacılık referans kaynağı.",
+        "en": "A comprehensive pharmacy reference source providing drug information, interactions, and dosage guides."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "lexpera",
+      "title": "Lexpera",
+      "categories": [
+        {"tr": "Hukuk", "en": "Law"}
+      ],
+      "logo": "assets/images/databases/logos/lexpera.png",
+      "url": "https://www.lexpera.com.tr/",
+      "description": {
+        "tr": "Türk hukuku için kapsamlı hukuki araştırma platformu. Mevzuat, içtihat ve doktrin bilgilerine erişim.",
+        "en": "A comprehensive legal research platform for Turkish law. Access to legislation, case law, and doctrine information."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "lseg-datastream",
+      "title": "LSEG Datastream",
+      "categories": [
+        {"tr": "Ekonomi", "en": "Economics"}
+      ],
+      "logo": "assets/images/databases/logos/Lseg.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.refinitiv.com/en/products/datastream-macroeconomic-analysis",
+      "description": {
+        "tr": "Küresel finansal piyasalar, ekonomik göstergeler ve şirket verileri için kapsamlı veri platformu.",
+        "en": "A comprehensive data platform for global financial markets, economic indicators, and company data."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "medici-tv",
+      "title": "Medici.tv",
+      "categories": [
+        {"tr": "Müzik", "en": "Music"}
+      ],
+      "logo": "assets/images/databases/logos/Medici.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.medici.tv",
+      "description": {
+        "tr": "Klasik müzik konserleri, operalar ve belgesellere video akışı ile erişim sağlayan platform.",
+        "en": "A platform providing video streaming access to classical music concerts, operas, and documentaries."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "medicines-complete",
+      "title": "Medicines Complete",
+      "categories": [
+        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+      ],
+      "logo": "assets/images/databases/logos/medicinescomplete.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.medicinescomplete.com",
+      "description": {
+        "tr": "İlaç bilgisi, farmakopeler ve klinik rehberler içeren kapsamlı eczacılık referans kaynağı.",
+        "en": "A comprehensive pharmacy reference source containing drug information, pharmacopoeias, and clinical guides."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "mendeley",
+      "title": "Mendeley",
+      "categories": [
+        {"tr": "Referans", "en": "Reference"}
+      ],
+      "logo": "assets/images/databases/logos/mendeley.png",
+      "url": "https://www.mendeley.com/",
+      "description": {
+        "tr": "Akademik makaleleri organize etmek, paylaşmak ve atıf yapmak için kullanılan ücretsiz referans yönetim aracı.",
+        "en": "A free reference management tool used to organize, share, and cite academic articles."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "merck-index",
+      "title": "Merck Index",
+      "categories": [
+        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+      ],
+      "logo": "assets/images/databases/logos/merck.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.rsc.org/merck-index",
+      "description": {
+        "tr": "Kimyasallar, ilaçlar ve biyolojik maddeler için kapsamlı referans kaynağı.",
+        "en": "A comprehensive reference source for chemicals, drugs, and biological substances."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "micromedex",
+      "title": "Micromedex",
+      "categories": [
+        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+      ],
+      "logo": "assets/images/databases/logos/Micromedex.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.micromedexsolutions.com",
+      "description": {
+        "tr": "Klinik karar desteği, ilaç bilgisi ve toksikoloji bilgileri sağlayan kapsamlı tıbbi veritabanı.",
+        "en": "A comprehensive medical database providing clinical decision support, drug information, and toxicology data."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "mildata",
+      "title": "MİLDATA",
+      "categories": [
+        {"tr": "Referans", "en": "Reference"}
+      ],
+      "logo": "assets/images/databases/logos/Mildata.png",
+      "url": "https://mildata.ayk.gov.tr/",
+      "description": {
+        "tr": "Milli kütüphane ve arşiv kaynaklarına dijital erişim platformu. Atatürk Kültür, Dil ve Tarih Yüksek Kurumu tarafından sağlanmaktadır.",
+        "en": "A digital access platform for national library and archive resources. Provided by the Atatürk Culture, Language, and History High Institution."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "muteferriqa",
+      "title": "Müteferrika",
+      "categories": [
+        {"tr": "e-Kitap", "en": "e-Book"},
+        {"tr": "İnsani Bilimler", "en": "Humanities"}
+      ],
+      "logo": "assets/images/databases/logos/Muteferriqa.png",
+      "url": "https://muteferrika.ayk.gov.tr/",
+      "description": {
+        "tr": "Tarih, edebiyat ve kültür alanında Türkçe e-kitaplara erişim platformu.",
+        "en": "An access platform for Turkish e-books in the fields of history, literature, and culture."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "natural-medicines",
+      "title": "Natural Medicines",
+      "categories": [
+        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+      ],
+      "logo": "assets/images/databases/logos/NaturalMedicines.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://naturalmedicines.therapeuticresearch.com",
+      "description": {
+        "tr": "Doğal ilaçlar, takviyeler ve alternatif tıp uygulamaları hakkında kanıta dayalı bilgi kaynağı.",
+        "en": "An evidence-based information source on natural medicines, supplements, and alternative medical practices."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "nature",
+      "title": "Nature",
+      "categories": [
+        {"tr": "Genel", "en": "General"}
+      ],
+      "logo": "assets/images/databases/logos/Nature.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.nature.com",
+      "description": {
+        "tr": "Dünyanın en prestijli bilimsel dergisi Nature ve Nature portföyündeki dergilere tam metin erişim.",
+        "en": "Full-text access to Nature, the world's most prestigious scientific journal, and journals in the Nature portfolio."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "naxos-music-library",
+      "title": "Naxos Music Library",
+      "categories": [
+        {"tr": "Müzik", "en": "Music"}
+      ],
+      "logo": "assets/images/databases/logos/naxos.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.naxosmusiclibrary.com",
+      "description": {
+        "tr": "Klasik müzik, caz, dünya müziği ve pop/rock'tan 2 milyondan fazla parçaya çevrimiçi erişim. Müzik eğitimi için ideal kaynak.",
+        "en": "Online access to over 2 million tracks from classical, jazz, world music, and pop/rock. An ideal resource for music education."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "ovid",
+      "title": "Ovid",
+      "categories": [
+        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+      ],
+      "logo": "assets/images/databases/logos/Ovid.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://ovidsp.ovid.com",
+      "description": {
+        "tr": "Tıp ve sağlık bilimleri alanında dergi, kitap ve veritabanlarına erişim sağlayan kapsamlı platform.",
+        "en": "A comprehensive platform providing access to journals, books, and databases in medicine and health sciences."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "oxford-academic",
+      "title": "Oxford Academic",
+      "categories": [
+        {"tr": "Genel", "en": "General"}
+      ],
+      "logo": "assets/images/databases/logos/oxford.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://academic.oup.com",
+      "description": {
+        "tr": "Oxford University Press tarafından yayınlanan dergilere erişim. Tıp, fen, sosyal bilimler ve beşeri bilimler alanlarında 300+ dergi.",
+        "en": "Access to journals published by Oxford University Press. Over 300 journals in medicine, science, social sciences, and humanities."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "oxford-music-online",
+      "title": "Oxford Music Online",
+      "categories": [
+        {"tr": "Müzik", "en": "Music"}
+      ],
+      "logo": "assets/images/databases/logos/OxfordMusicOnline.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.oxfordmusiconline.com",
+      "description": {
+        "tr": "Grove Music Online dahil müzik ansiklopedileri ve referans kaynaklarına kapsamlı erişim.",
+        "en": "Comprehensive access to music encyclopedias and reference sources, including Grove Music Online."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "palgrave-macmillan",
+      "title": "Palgrave Macmillan",
+      "categories": [
+        {"tr": "Genel", "en": "General"}
+      ],
+      "logo": "assets/images/databases/logos/Palgrave.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://link.springer.com",
+      "description": {
+        "tr": "Palgrave Macmillan yayınevine ait sosyal bilimler ve beşeri bilimler alanında dergi ve kitaplara erişim.",
+        "en": "Access to journals and books from Palgrave Macmillan publishing house in social sciences and humanities."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "rsc-royal-society-chemistry",
+      "title": "Royal Society of Chemistry (RSC)",
+      "categories": [
+        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+      ],
+      "logo": "assets/images/databases/logos/rsc.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://pubs.rsc.org",
+      "description": {
+        "tr": "Kimya alanında Royal Society of Chemistry tarafından yayınlanan dergilere tam metin erişim.",
+        "en": "Full-text access to journals published by the Royal Society of Chemistry in the field of chemistry."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "sage-journals",
+      "title": "SAGE Journals",
+      "categories": [
+        {"tr": "Genel", "en": "General"}
+      ],
+      "logo": "assets/images/databases/logos/Sage.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://journals.sagepub.com",
+      "description": {
+        "tr": "SAGE yayınevine ait sosyal bilimler, beşeri bilimler, tıp ve teknik alanlarda 1000+ dergiye tam metin erişim.",
+        "en": "Full-text access to over 1,000 SAGE journals in social sciences, humanities, medicine, and technical fields."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "scifinder",
+      "title": "SciFinder",
+      "categories": [
+        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+      ],
+      "logo": "assets/images/databases/logos/Scifinder.png",
+      "url": "https://scifinder.cas.org",
+      "description": {
+        "tr": "Kimya ve ilgili alanlarda en kapsamlı bilimsel literatür ve madde veritabanı. Chemical Abstracts Service tarafından sağlanır.",
+        "en": "The most comprehensive scientific literature and substance database in chemistry and related fields. Provided by Chemical Abstracts Service."
+      },
+      "accessType": "remote",
+      "note": {
+        "tr": "Kullanım için kayıt gerektirir.",
+        "en": "Registration is required for use."
+      }
+    },
+    {
+      "id": "sciencedirect",
+      "title": "ScienceDirect",
+      "categories": [
+        {"tr": "Genel", "en": "General"}
+      ],
+      "logo": "assets/images/databases/logos/sciencedirect.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.sciencedirect.com",
+      "description": {
+        "tr": "Elsevier yayınevine ait fen bilimleri, tıp, teknoloji ve sosyal bilimlerde 2500+ dergiye tam metin erişim. Milyonlarca makale ve kitap bölümü.",
+        "en": "Full-text access to over 2,500 Elsevier journals in science, medicine, technology, and social sciences. Millions of articles and book chapters."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "scopus",
+      "title": "Scopus",
+      "categories": [
+        {"tr": "Atıf/Bilimsel Literatür", "en": "Citation/Scientific Literature"}
+      ],
+      "logo": "assets/images/databases/logos/scopus.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.scopus.com",
+      "description": {
+        "tr": "Elsevier tarafından sunulan kapsamlı atıf veritabanı. 18.000'den fazla hakemli dergiden özet ve atıf bilgilerine erişim. Araştırma performansı analizi için güçlü araçlar.",
+        "en": "A comprehensive citation database provided by Elsevier. Access to abstracts and citation information from over 18,000 peer-reviewed journals. Powerful tools for research performance analysis."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "springer-nature",
+      "title": "Springer Nature",
+      "categories": [
+        {"tr": "Genel", "en": "General"}
+      ],
+      "logo": "assets/images/databases/logos/springernature.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://link.springer.com",
+      "description": {
+        "tr": "Springer yayınevine ait tüm alanlarda 2000+ dergiye tam metin erişim. Fen, mühendislik, tıp, sosyal bilimler ve beşeri bilimler alanlarını kapsar.",
+        "en": "Full-text access to over 2,000 Springer journals in all fields. Covers science, engineering, medicine, social sciences, and humanities."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "swisslex",
+      "title": "Swisslex",
+      "categories": [
+        {"tr": "Hukuk", "en": "Law"}
+      ],
+      "logo": "assets/images/databases/logos/swisslex.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.swisslex.ch",
+      "description": {
+        "tr": "İsviçre hukuku alanında kapsamlı bilgi sağlayan veritabanı. Mevzuat, içtihat ve doktrin bilgilerine erişim.",
+        "en": "A database providing comprehensive information in Swiss law. Access to legislation, case law, and doctrine information."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "taylor-francis",
+      "title": "Taylor & Francis Online",
+      "categories": [
+        {"tr": "Genel", "en": "General"}
+      ],
+      "logo": "assets/images/databases/logos/TaylorFrancis.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.tandfonline.com",
+      "description": {
+        "tr": "Taylor & Francis yayınevine ait multidisipliner dergi koleksiyonu. 2500+ dergiye tam metin erişim.",
+        "en": "A multidisciplinary journal collection from Taylor & Francis publishing house. Full-text access to over 2,500 journals."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "thieme",
+      "title": "Thieme",
+      "categories": [
+        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+      ],
+      "logo": "assets/images/databases/logos/Thieme.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.thieme-connect.com",
+      "description": {
+        "tr": "Tıp ve sağlık bilimleri alanında Thieme yayınevine ait dergi ve kitaplara tam metin erişim.",
+        "en": "Full-text access to journals and books from Thieme publishing house in medicine and health sciences."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "turcademy",
+      "title": "TürkAkademi",
+      "categories": [
+        {"tr": "Genel", "en": "General"},
+        {"tr": "Referans", "en": "Reference"}
+      ],
+      "logo": "assets/images/databases/logos/Turcademy.png",
+      "url": "https://www.turcademy.com/",
+      "description": {
+        "tr": "Türkiye'de yayınlanan bilimsel dergileri ve araştırmaları kapsayan akademik arama platformu.",
+        "en": "An academic search platform covering scientific journals and research published in Turkey."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "web-of-science",
+      "title": "Web of Science",
+      "categories": [
+        {"tr": "Atıf/Bilimsel Literatür", "en": "Citation/Scientific Literature"}
+      ],
+      "logo": "assets/images/databases/logos/Clarivate.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.webofscience.com",
+      "description": {
+        "tr": "Clarivate Analytics tarafından sunulan kapsamlı atıf dizini. Tüm bilim dallarında 20.000+ dergiden atıf ve özet bilgilerine erişim. Etki faktörü ve araştırma metriklerine ulaşım.",
+        "en": "A comprehensive citation index provided by Clarivate Analytics. Access to citation and abstract information from over 20,000 journals across all scientific disciplines. Access to impact factor and research metrics."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "wikilala",
+      "title": "Wikilala",
+      "categories": [
+        {"tr": "Referans", "en": "Reference"}
+      ],
+      "logo": "assets/images/databases/logos/wikilala.png",
+      "url": "https://wikilala.com/",
+      "description": {
+        "tr": "Türkçe ansiklopedik bilgi kaynağı. Çeşitli konularda güvenilir bilgiye erişim.",
+        "en": "A Turkish encyclopedic information source. Access to reliable information on various topics."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "wiley-online-library",
+      "title": "Wiley Online Library",
+      "categories": [
+        {"tr": "Genel", "en": "General"}
+      ],
+      "logo": "assets/images/databases/logos/wiley.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://onlinelibrary.wiley.com",
+      "description": {
+        "tr": "Wiley yayınevine ait multidisipliner dergi koleksiyonu. Fen, tıp, mühendislik, sosyal bilimler ve beşeri bilimlerde 1500+ dergiye tam metin erişim.",
+        "en": "A multidisciplinary journal collection from Wiley publishing house. Full-text access to over 1,500 journals in science, medicine, engineering, social sciences, and humanities."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "xpharm",
+      "title": "xPharm",
+      "categories": [
+        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+      ],
+      "logo": "assets/images/databases/logos/xpharm.png",
+      "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.sciencedirect.com/referencework/9780080552323",
+      "description": {
+        "tr": "Farmakolog ve toksikoloji alanında kapsamlı referans kaynağı. İlaç bilgisi ve toksikoloji verileri.",
+        "en": "A comprehensive reference source in pharmacology and toxicology. Drug information and toxicology data."
+      },
+      "accessType": "remote"
+    },
+    {
+      "id": "trdizin",
+      "title": "TR Dizin",
+      "categories": [
+        {"tr": "Ücretsiz Veritabanları", "en": "Free Databases"},
+        {"tr": "Genel", "en": "General"}
+      ],
+      "logo": "assets/images/databases/logos/trdizin.png",
+      "url": "http://trdizin.gov.tr/",
+      "description": {
+        "tr": "ULAKBİM tarafından oluşturulan TR Dizin; Sağlık Bilimleri (Tıp), Mühendislik ve Temel Bilimler, Sosyal ve Beşeri Bilimler, Yaşam Bilimleri ve Hukuk olmak üzere 5 ayrı temel konu alanındadır. TR Dizin'in içeriğini oluşturan ulusal bilimsel dergiler, ULAKBİM TR Dizin uzmanları ile ilgili konu alanlarındaki uzman ve akademisyenlerden oluşan komiteler tarafından Dergi Değerlendirme Kriterlerine bağlı olarak belirlenmektedir.",
+        "en": "TR Dizin, created by ULAKBİM, covers 5 main subject areas: Health Sciences (Medicine), Engineering and Basic Sciences, Social Sciences and Humanities, Life Sciences, and Law. National scientific journals that form the content of TR Dizin are determined by committees consisting of ULAKBİM TR Dizin experts and experts in relevant subject areas according to Journal Evaluation Criteria."
+      },
+      "accessType": "remote",
+      "apcSupport": false
+    },
+    {
+      "id": "dergipark",
+      "title": "DergiPark",
+      "categories": [
+        {"tr": "Ücretsiz Veritabanları", "en": "Free Databases"},
+        {"tr": "Genel", "en": "General"}
+      ],
+      "logo": "assets/images/databases/logos/dergipark.png",
+      "url": "https://dergipark.org.tr/",
+      "description": {
+        "tr": "TÜBİTAK ULAKBİM tarafından Eylül 2013 tarihinden itibaren yürütülmeye başlanan DergiPark Projesi ile ulusal akademik dergilerin kalitesini ve uluslararası etkisini artırmak amacıyla elektronik ortamda bir dergi yönetim sistemi kurulmuş ve dergi barındırma hizmeti verilmeye başlanmıştır. DergiPark'ta yayımlanan her derginin ayrı bir alan adı ve görünümü olmakla birlikte, tüm dergiler aynı alt yapıyı kullanmaktadır. DergiPark'a üye olan kullanıcılar, proje kapsamındaki dergilere tek bir üyelik ile erişebilirler.",
+        "en": "With the DergiPark Project initiated by TÜBİTAK ULAKBİM in September 2013, an electronic journal management system was established and journal hosting service was started to increase the quality and international impact of national academic journals. Although each journal published in DergiPark has its own domain and appearance, all journals use the same infrastructure. Users who become members of DergiPark can access journals within the scope of the project with a single membership."
+      },
+      "accessType": "remote",
+      "apcSupport": false
+    },
+    {
+      "id": "yok-tez-merkezi",
+      "title": "YÖK Ulusal Tez Merkezi",
+      "categories": [
+        {"tr": "Ücretsiz Veritabanları", "en": "Free Databases"},
+        {"tr": "Genel", "en": "General"}
+      ],
+      "logo": "assets/images/databases/logos/TezMerkezi.png",
+      "url": "https://tez.yok.gov.tr/UlusalTezMerkezi/",
+      "description": {
+        "tr": "Yükseköğretim Kurulu Ulusal Tez Merkezi lisansüstü tezleri, 2547 Sayılı Yükseköğretim Kanunu ek madde 40 hükümleri çerçevesinde bilime katkı sağlamak, bilimsel araştırma ve faaliyetleri desteklemek amacıyla elektronik ortamda erişime açmaktadır. Araştırmacılar tezlerin tamamı veya bir bölümünü yazarın izni olmadan ticari veya mali kazanç amaçlı kullanamaz, yayınlayamaz, dağıtamaz ve kopyalayamaz. Ulusal Tez Merkezi Web Sayfasını kullanan araştırmacılar, tezlerden bilimsel etik ve atıf kuralları çerçevesinde yararlanırlar.",
+        "en": "The Council of Higher Education National Thesis Center provides electronic access to graduate theses within the framework of additional article 40 of Law No. 2547 on Higher Education to contribute to science and support scientific research and activities. Researchers cannot use, publish, distribute, or copy all or part of the theses for commercial or financial gain without the author's permission. Researchers using the National Thesis Center Web Page benefit from theses within the framework of scientific ethics and citation rules."
+      },
+      "accessType": "remote",
+      "apcSupport": false
+    },
+    {
+      "id": "tdv-islam-ansiklopedisi",
+      "title": "TDV İslam Ansiklopedisi",
+      "categories": [
+        {"tr": "Ücretsiz Veritabanları", "en": "Free Databases"},
+        {"tr": "İnsani Bilimler", "en": "Humanities"}
+      ],
+      "logo": "assets/images/databases/logos/islam.png",
+      "url": "https://islamansiklopedisi.org.tr/",
+      "description": {
+        "tr": "TDV İslâm Ansiklopedisi dünyada müslümanlar tarafından hazırlanmış ve tamamlanmış, hem madde listesi hem de içerik ve üslûp açısından özgün, telif niteliği taşıyan ilk ansiklopedidir. Başlangıcından günümüze kadar İslâm dini, tarihi ve medeniyeti ile İslâm toplumlarına dair hemen her konuda güvenilir, doğru ve yeterli bilgi sunmayı hedefleyen TDV İslâm Ansiklopedisi, İslâm ilimleri ve İslâm düşüncesinin yanı sıra beşerî ve sosyal bilimlerin farklı alanlarında yapılacak araştırmalar için kapsamlı bir kaynaktır.",
+        "en": "TDV Islamic Encyclopedia is the first encyclopedia prepared and completed by Muslims worldwide, which is original and copyrighted in terms of both article list, content, and style. Aiming to provide reliable, accurate, and sufficient information on almost every subject related to Islamic religion, history, and civilization from its beginning to the present day, TDV Islamic Encyclopedia is a comprehensive source for research in different fields of humanities and social sciences as well as Islamic sciences and Islamic thought."
+      },
+      "accessType": "remote",
+      "apcSupport": false
+    },
+    {
+      "id": "turk-sinemasi-arastirmalari",
+      "title": "Türk Sineması Araştırmaları",
+      "categories": [
+        {"tr": "Ücretsiz Veritabanları", "en": "Free Databases"},
+        {"tr": "İnsani Bilimler", "en": "Humanities"}
+      ],
+      "logo": "assets/images/databases/logos/TurkSinema.png",
+      "url": "http://www.tsa.org.tr/",
+      "description": {
+        "tr": "Bilim ve Sanat Vakfı - Türk Sineması Araştırmaları (TSA) birimi tarafından hazırlanan Türk Sineması Arşiv Veritabanı, Türk sineması ile ilgili film, kişi, kitap, dergi, makale, söyleşi ve tez kategorilerinde sistematik künyelerin bulunduğu, yazılı, görsel ve işitsel belgelere dair arşiv veritabanı çalışmalarının yürütüldüğü bir Türk sineması internet platformudur. Platform üzerinden, 8173 Film, 50611 Kişi, 1105 Kitap, 258 Dergi, 7837 Makale, 1724 Söyleşi, 641 Tez, 42043 Görsel materyale erişmek mümkündür.",
+        "en": "The Turkish Cinema Archive Database, prepared by the Science and Art Foundation - Turkish Cinema Research (TSA) unit, is a Turkish cinema internet platform where archive database studies on written, visual, and audio documents are conducted, containing systematic bibliographic information in categories such as films, people, books, magazines, articles, interviews, and theses related to Turkish cinema. Through the platform, it is possible to access 8,173 films, 50,611 people, 1,105 books, 258 magazines, 7,837 articles, 1,724 interviews, 641 theses, and 42,043 visual materials."
+      },
+      "accessType": "remote",
+      "apcSupport": false
+    },
+    {
+      "id": "kalkinma-kutuphanesi",
+      "title": "Kalkınma Kütüphanesi",
+      "categories": [
+        {"tr": "Ücretsiz Veritabanları", "en": "Free Databases"},
+        {"tr": "Ekonomi", "en": "Economics"}
+      ],
+      "logo": "assets/images/databases/logos/Kalkinma.png",
+      "url": "https://www.kalkinmakutuphanesi.gov.tr/",
+      "description": {
+        "tr": "T.C. Sanayi ve Teknoloji Bakanlığı Kalkınma Ajansları Genel Müdürlüğüne bağlı 26 kalkınma ajansının hazırlamış olduğu dokümanlara, tek bir web sayfasından kolayca ulaşmanızı sağlayan interaktif çevrimiçi kütüphanedir.",
+        "en": "An interactive online library that provides easy access to documents prepared by 26 development agencies affiliated with the General Directorate of Development Agencies of the Ministry of Industry and Technology of the Republic of Turkey from a single web page."
+      },
+      "accessType": "remote",
+      "apcSupport": false
+    },
+    {
+      "id": "doaj",
+      "title": "DOAJ - Directory of Open Access Journals",
+      "categories": [
+        {"tr": "Ücretsiz Veritabanları", "en": "Free Databases"},
+        {"tr": "Genel", "en": "General"}
+      ],
+      "logo": "assets/images/databases/logos/Doaj.png",
+      "url": "https://doaj.org/",
+      "description": {
+        "tr": "129 ülkeden 12.457 dergiye ev sahipliği yapan Açık Erişim Dergi Platformu, 3,5 milyondan fazla makaleye ücretsiz erişim imkanı sağlıyor.",
+        "en": "The Directory of Open Access Journals, hosting 12,457 journals from 129 countries, provides free access to more than 3.5 million articles."
+      },
+      "accessType": "remote",
+      "apcSupport": false
+    },
+    {
+      "id": "doab",
+      "title": "DOAB - Directory of Open Access Books",
+      "categories": [
+        {"tr": "Ücretsiz Veritabanları", "en": "Free Databases"},
+        {"tr": "e-Kitap", "en": "e-Book"}
+      ],
+      "logo": "assets/images/databases/logos/doab.png",
+      "url": "https://www.doabooks.org/",
+      "description": {
+        "tr": "DOAB (Açık Erişim Kitap Platformu), Akademik standartlara uygun, 15 binden fazla hakemli kitap ve bölüme ücretsiz erişim sağlayan açık erişim platformudur.",
+        "en": "DOAB (Directory of Open Access Books) is an open access platform that provides free access to more than 15,000 peer-reviewed books and chapters that meet academic standards."
+      },
+      "accessType": "remote",
+      "apcSupport": false
+    },
+    {
+      "id": "stanford-encyclopedia-philosophy",
+      "title": "Stanford Encyclopedia of Philosophy",
+      "categories": [
+        {"tr": "Ücretsiz Veritabanları", "en": "Free Databases"},
+        {"tr": "İnsani Bilimler", "en": "Humanities"}
+      ],
+      "logo": "assets/images/databases/logos/Stanford.png",
+      "url": "https://plato.stanford.edu/",
+      "description": {
+        "tr": "Stanford Üniversitesi tarafından hazırlanan çevrimiçi felsefe ansiklopedisi. 1.600'den fazla başlık içermektedir.",
+        "en": "An online philosophy encyclopedia prepared by Stanford University. Contains over 1,600 entries."
+      },
+      "accessType": "remote",
+      "apcSupport": false
+    },
+    {
+      "id": "turkomp",
+      "title": "TürKomp - Ulusal Gıda Kompozisyon Veritabanı",
+      "categories": [
+        {"tr": "Ücretsiz Veritabanları", "en": "Free Databases"},
+        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+      ],
+      "logo": "assets/images/databases/logos/turkomp.png",
+      "url": "http://www.turkomp.gov.tr/database",
+      "description": {
+        "tr": "TürKomp Ulusal Gıda Kompozisyon Veritabanı, ülkemiz coğrafyasında üretilen ve tüketilen, işlenmiş-işlenmemiş tarımsal ürünlerin, besin öğeleri bileşimlerinin ve enerji değerlerini barındırır. TürKomp'ta 14 gıda grubundan 580 gıdaya ait 100 gıda bileşeni için yaklaşık 63.000 gıda bileşeni ve enerji değeri verisi bulunmaktadır. Aramalar menüsünden gıdaya, bileşene, beslenmeye ve gıda gruplarına göre arama yaparak gıdaların besin ögeleri ve enerji değerlerine ulaşabilir; bileşenlere göre gıdaları çoktan aza doğru sıralayabilirsiniz.",
+        "en": "TürKomp National Food Composition Database contains nutrient compositions and energy values of processed and unprocessed agricultural products produced and consumed in our country's geography. TürKomp contains approximately 63,000 food component and energy value data for 100 food components of 580 foods from 14 food groups. From the search menu, you can search by food, component, nutrition, and food groups to access the nutrients and energy values of foods; you can sort foods from most to least according to components."
+      },
+      "accessType": "remote",
+      "apcSupport": false
+    }
+  ]
+}

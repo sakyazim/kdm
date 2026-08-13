@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo: Floating Mini TOC</title>
+<link rel="alternate" hreflang="tr" href="https://kdm.anadolu.edu.tr/demo-toc-floating.html"/>
+<link rel="alternate" hreflang="en" href="https://kdm.anadolu.edu.tr/demo-toc-floating.html"/>
+<link rel="alternate" hreflang="x-default" href="https://kdm.anadolu.edu.tr/demo-toc-floating.html"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f5f5f5;
+    }
+    /* Container */
+    .page-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    /* Main Content */
+    .main-content {
+      background: white;
+      border-radius: 12px;
+      padding: 48px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .main-content h1 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 16px;
+    }
+    .main-content .subtitle {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 32px;
+    }
+    .content-section {
+      margin-bottom: 48px;
+      padding-top: 24px;
+      scroll-margin-top: 80px;
+    }
+    .content-section h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 3px solid #1976d2;
+    }
+    .content-section h3 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #333;
+      margin: 24px 0 12px;
+    }
+    .content-section p {
+      margin-bottom: 16px;
+      font-size: 16px;
+      line-height: 1.8;
+      color: #444;
+    }
+    .content-section ul, .content-section ol {
+      margin: 16px 0 16px 24px;
+    }
+    .content-section li {
+      margin-bottom: 8px;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+    .info-box {
+      background: #e3f2fd;
+      border-left: 4px solid #1976d2;
+      padding: 16px 20px;
+      margin: 24px 0;
+      border-radius: 8px;
+    }
+    .info-box p {
+      margin: 0;
+      color: #0d47a1;
+    }
+    /* ========================================
+       FLOATING TOC BUTTON & MENU
+       ======================================== */
+    /* Floating Button */
+    .floating-toc-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #1976d2 0%, #42a5f5 100%);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      box-shadow: 0 4px 16px rgba(25,118,210,0.4);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+    .floating-toc-btn:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 6px 24px rgba(25,118,210,0.5);
+    }
+    .floating-toc-btn.active {
+      background: linear-gradient(135deg, #d32f2f 0%, #f44336 100%);
+      transform: rotate(45deg);
+    }
+    /* Badge for section count */
+    .toc-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: #ff5722;
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      border: 2px solid white;
+    }
+    /* Floating TOC Panel */
+    .floating-toc-panel {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 360px;
+      max-height: 80vh;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      transform: scale(0) translateY(20px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-origin: bottom right;
+      z-index: 998;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .floating-toc-panel.active {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+    /* TOC Header */
+    .toc-panel-header {
+      padding: 20px 24px;
+      background: linear-gradient(135deg, #1976d2 0%, #42a5f5 100%);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 16px 16px 0 0;
+    }
+    .toc-panel-header h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0;
+    }
+    .toc-close-btn {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      transition: all 0.2s ease;
+    }
+    .toc-close-btn:hover {
+      background: rgba(255,255,255,0.3);
+      transform: rotate(90deg);
+    }
+    /* Progress Indicator */
+    .toc-progress {
+      padding: 16px 24px;
+      background: #f8f9fa;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .progress-text {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 8px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .progress-bar-container {
+      width: 100%;
+      height: 6px;
+      background: #e0e0e0;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #1976d2, #42a5f5);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+    /* TOC Content */
+    .toc-panel-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px;
+    }
+    .toc-panel-list {
+      list-style: none;
+    }
+    .toc-panel-list li {
+      margin-bottom: 4px;
+    }
+    .toc-panel-list a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      color: #555;
+      text-decoration: none;
+      font-size: 14px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    .toc-panel-list a:hover {
+      background: #f0f7ff;
+      color: #1976d2;
+      padding-left: 20px;
+    }
+    .toc-panel-list a.active {
+      background: #e3f2fd;
+      color: #1976d2;
+      font-weight: 600;
+      border-left: 4px solid #1976d2;
+      padding-left: 20px;
+    }
+    .toc-number {
+      width: 28px;
+      height: 28px;
+      background: #f0f0f0;
+      color: #666;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .toc-panel-list a.active .toc-number {
+      background: #1976d2;
+      color: white;
+    }
+    .toc-panel-list a:hover .toc-number {
+      background: #1976d2;
+      color: white;
+    }
+    /* Check icon for completed sections */
+    .toc-check {
+      margin-left: auto;
+      color: #4caf50;
+      font-size: 16px;
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.3s ease;
+    }
+    .toc-panel-list a.completed .toc-check {
+      opacity: 1;
+      transform: scale(1);
+    }
+    /* Custom Scrollbar */
+    .toc-panel-content::-webkit-scrollbar {
+      width: 6px;
+    }
+    .toc-panel-content::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    .toc-panel-content::-webkit-scrollbar-thumb {
+      background: #1976d2;
+      border-radius: 10px;
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+      .floating-toc-panel {
+        width: calc(100vw - 48px);
+        bottom: 100px;
+        right: 24px;
+        left: 24px;
+      }
+      .main-content {
+        padding: 32px 24px;
+      }
+      .main-content h1 {
+        font-size: 28px;
+      }
+    }
+    /* Overlay (optional) */
+    .toc-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.3);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 997;
+    }
+    .toc-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+</head>
+<body>
+  <div class="toc-overlay" id="tocOverlay" onclick="closeTOC()"></div>
+  <button class="floating-toc-btn" id="tocBtn" onclick="toggleTOC()">
+    <span id="tocIcon">📑</span>
+    <span class="toc-badge">6</span>
+  </button>
+  <div class="floating-toc-panel" id="tocPanel">
+    <div class="toc-panel-header">
+      <h3>İçindekiler</h3>
+      <button class="toc-close-btn" onclick="closeTOC()">✕</button>
+    </div>
+    <div class="toc-progress">
+      <div class="progress-text">Okuma İlerlemeniz</div>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="tocProgressBar"></div>
+      </div>
+    </div>
+    <div class="toc-panel-content">
+      <ul class="toc-panel-list">
+        <li>
+          <a href="#section1" data-section="section1" onclick="navigateToSection('section1')">
+            <div class="toc-number">1</div>
+            <span>Genel Bilgiler</span>
+            <span class="toc-check">✓</span>
+          </a>
+        </li>
+        <li>
+          <a href="#section2" data-section="section2" onclick="navigateToSection('section2')">
+            <div class="toc-number">2</div>
+            <span>Ücret Tarifeleri</span>
+            <span class="toc-check">✓</span>
+          </a>
+        </li>
+        <li>
+          <a href="#section3" data-section="section3" onclick="navigateToSection('section3')">
+            <div class="toc-number">3</div>
+            <span>Ödeme Yöntemleri</span>
+            <span class="toc-check">✓</span>
+          </a>
+        </li>
+        <li>
+          <a href="#section4" data-section="section4" onclick="navigateToSection('section4')">
+            <div class="toc-number">4</div>
+            <span>İndirim Koşulları</span>
+            <span class="toc-check">✓</span>
+          </a>
+        </li>
+        <li>
+          <a href="#section5" data-section="section5" onclick="navigateToSection('section5')">
+            <div class="toc-number">5</div>
+            <span>İptal ve İade</span>
+            <span class="toc-check">✓</span>
+          </a>
+        </li>
+        <li>
+          <a href="#section6" data-section="section6" onclick="navigateToSection('section6')">
+            <div class="toc-number">6</div>
+            <span>Sıkça Sorulan Sorular</span>
+            <span class="toc-check">✓</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="page-container">
+    <main class="main-content">
+      <h1>Makale İşlem Ücretleri</h1>
+      <p class="subtitle">Kütüphanemizde sunulan hizmetlere ilişkin ücret tarifeleri ve ödeme koşulları</p>
+      <section class="content-section" id="section1">
+        <h2>Genel Bilgiler</h2>
+        <p>Anadolu Üniversitesi Kütüphanesi, akademik ve araştırma faaliyetlerini desteklemek amacıyla çeşitli hizmetler sunmaktadır. Bu hizmetlerin bir kısmı ücretli olup, ücret tarifeleri aşağıda detaylı olarak açıklanmıştır.</p>
+        <h3>Hizmet Kapsamı</h3>
+        <p>Kütüphanemizde sunulan ücretli hizmetler şunlardır:</p>
+        <ul>
+          <li>Makale fotokopi ve baskı hizmetleri</li>
+          <li>Elektronik makale gönderimleri</li>
+          <li>Kitaplar arası ödünç verme (ILL)</li>
+          <li>Özel araştırma ve veri tarama hizmetleri</li>
+          <li>Kurumsal üyelik ve danışmanlık hizmetleri</li>
+        </ul>
+        <div class="info-box">
+          <p><strong>Önemli Not:</strong> Öğrenci ve akademik personele özel indirim oranları uygulanmaktadır.</p>
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      </section>
+      <section class="content-section" id="section2">
+        <h2>Ücret Tarifeleri</h2>
+        <p>Kütüphane hizmetlerine ilişkin güncel ücret tarifeleri aşağıdaki gibidir:</p>
+        <h3>Fotokopi ve Baskı Hizmetleri</h3>
+        <ul>
+          <li>Siyah-beyaz fotokopi/baskı: 0,50 TL/sayfa</li>
+          <li>Renkli fotokopi/baskı: 2,00 TL/sayfa</li>
+          <li>A3 boyutunda siyah-beyaz: 1,00 TL/sayfa</li>
+          <li>A3 boyutunda renkli: 4,00 TL/sayfa</li>
+        </ul>
+        <h3>Elektronik Makale Gönderimleri</h3>
+        <p>E-posta veya elektronik ortamda gönderilen makale başına: 5,00 TL</p>
+        <h3>Kitaplar Arası Ödünç Verme (ILL)</h3>
+        <ul>
+          <li>Yurt içi kütüphanelerden talep: 15,00 TL/makale</li>
+          <li>Yurt dışı kütüphanelerden talep: 25,00 TL/makale</li>
+          <li>Kargo ücreti (varsa) ayrıca hesaplanır</li>
+        </ul>
+        <div class="info-box">
+          <p><strong>Toplu İşlem İndirimi:</strong> 50 sayfanın üzerindeki işlemlerde %10 indirim uygulanır.</p>
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </section>
+      <section class="content-section" id="section3">
+        <h2>Ödeme Yöntemleri</h2>
+        <p>Kütüphane hizmetleri için ödeme yaparken aşağıdaki yöntemleri kullanabilirsiniz:</p>
+        <h3>Kabul Edilen Ödeme Yöntemleri</h3>
+        <ol>
+          <li><strong>Nakit Ödeme:</strong> Kütüphane gişesinden nakit olarak ödeme yapabilirsiniz.</li>
+          <li><strong>Kredi/Banka Kartı:</strong> Tüm yaygın kredi ve banka kartları kabul edilmektedir.</li>
+          <li><strong>Havale/EFT:</strong> Banka hesap bilgilerimize havale veya EFT yapabilirsiniz.</li>
+          <li><strong>Üniversite Kartı:</strong> Öğrenci ve personel için üniversite kartı ile ödeme mümkündür.</li>
+        </ol>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at nisi id nunc sagittis facilisis.</p>
+      </section>
+      <section class="content-section" id="section4">
+        <h2>İndirim Koşulları</h2>
+        <p>Belirli kullanıcı grupları ve koşullar altında indirimler uygulanmaktadır:</p>
+        <h3>Öğrenci İndirimleri</h3>
+        <ul>
+          <li>Lisans öğrencileri: %20 indirim</li>
+          <li>Yüksek lisans öğrencileri: %25 indirim</li>
+          <li>Doktora öğrencileri: %30 indirim</li>
+        </ul>
+        <h3>Akademik Personel İndirimleri</h3>
+        <ul>
+          <li>Araştırma görevlileri: %25 indirim</li>
+          <li>Öğretim görevlileri: %30 indirim</li>
+          <li>Doç. Dr. ve Prof. Dr.: %35 indirim</li>
+        </ul>
+        <div class="info-box">
+          <p><strong>İndirim Birleştirme:</strong> Maksimum toplam indirim oranı %40'tır.</p>
+        </div>
+      </section>
+      <section class="content-section" id="section5">
+        <h2>İptal ve İade</h2>
+        <p>Hizmet iptali ve ücret iadesi koşulları aşağıdaki gibidir:</p>
+        <h3>İptal Koşulları</h3>
+        <ul>
+          <li>Hizmet başlamadan önce yapılan iptal taleplerinde %100 iade yapılır.</li>
+          <li>Hizmet başladıktan sonra iptal mümkün değildir.</li>
+          <li>ILL hizmetlerinde dış kütüphanelerden kaynaklanan gecikmeler durumunda ücret iadesi yapılır.</li>
+        </ul>
+        <h3>İade Süreci</h3>
+        <ol>
+          <li>İptal talebinizi kütüphane gişesine veya e-posta ile iletiniz.</li>
+          <li>İade talebi 5 iş günü içinde değerlendirilir.</li>
+          <li>Onaylanan iadeler 10 iş günü içinde hesabınıza aktarılır.</li>
+        </ol>
+      </section>
+      <section class="content-section" id="section6">
+        <h2>Sıkça Sorulan Sorular</h2>
+        <h3>1. Öğrenci indiriminden nasıl yararlanabilirim?</h3>
+        <p>Öğrenci kartınızı veya öğrenci belgenizi gişeye ibraz etmeniz yeterlidir.</p>
+        <h3>2. Toplu işlem indirimi nasıl hesaplanır?</h3>
+        <p>Aynı anda yaptığınız tüm işlemlerin toplam sayfa sayısına göre indirim oranı belirlenir.</p>
+        <h3>3. Ödeme yaparken fatura alabilir miyim?</h3>
+        <p>Evet, talep etmeniz durumunda tüm ödemeler için fatura düzenlenmektedir.</p>
+        <h3>4. Elektronik makale gönderimleri ne kadar sürede tamamlanır?</h3>
+        <p>Yurt içi kaynaklardan 1-3 iş günü, yurt dışı kaynaklardan 5-10 iş günü içinde makaleler e-posta adresinize gönderilir.</p>
+        <h3>5. Ücret tarifelerinde değişiklik olur mu?</h3>
+        <p>Ücret tarifeleri yılda bir kez, akademik takvim başlangıcında güncellenebilir.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </section>
+    </main>
+  </div>
+  <script>
+    // ========================================
+    // FLOATING TOC FUNCTIONALITY
+    // ========================================
+    let isTOCOpen = false;
+    // Toggle TOC Panel
+    function toggleTOC() {
+      isTOCOpen = !isTOCOpen;
+      const panel = document.getElementById('tocPanel');
+      const overlay = document.getElementById('tocOverlay');
+      const btn = document.getElementById('tocBtn');
+      if (isTOCOpen) {
+        panel.classList.add('active');
+        overlay.classList.add('active');
+        btn.classList.add('active');
+      } else {
+        panel.classList.remove('active');
+        overlay.classList.remove('active');
+        btn.classList.remove('active');
+      }
+    }
+    // Close TOC
+    function closeTOC() {
+      isTOCOpen = false;
+      document.getElementById('tocPanel').classList.remove('active');
+      document.getElementById('tocOverlay').classList.remove('active');
+      document.getElementById('tocBtn').classList.remove('active');
+    }
+    // Navigate to section
+    function navigateToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        window.scrollTo({
+          top: section.offsetTop - 80,
+          behavior: 'smooth'
+        });
+        // Close TOC after navigation
+        setTimeout(closeTOC, 300);
+      }
+    }
+    // Update active section and completed sections
+    const sections = document.querySelectorAll('.content-section');
+    const tocLinks = document.querySelectorAll('.toc-panel-list a');
+    function updateTOCStatus() {
+      let currentSection = '';
+      const scrollPosition = window.scrollY;
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionBottom = sectionTop + section.offsetHeight;
+        // Mark sections as completed if user has scrolled past them
+        if (scrollPosition > sectionTop + 100) {
+          const sectionId = section.getAttribute('id');
+          const link = document.querySelector(`a[data-section="${sectionId}"]`);
+          if (link) {
+            link.classList.add('completed');
+          }
+        }
+        // Update active section
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+          currentSection = section.getAttribute('id');
+        }
+      });
+      // Update active state
+      tocLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('data-section') === currentSection) {
+          link.classList.add('active');
+        }
+      });
+      // Update progress bar
+      updateProgressBar();
+    }
+    // Update reading progress bar
+    function updateProgressBar() {
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.scrollY;
+      const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+      document.getElementById('tocProgressBar').style.width = scrollPercent + '%';
+    }
+    // Event Listeners
+    window.addEventListener('scroll', updateTOCStatus);
+    // Close TOC on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isTOCOpen) {
+        closeTOC();
+      }
+    });
+    // Initial call
+    updateTOCStatus();
+  </script>
+</body>
+</html>
+

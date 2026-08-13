@@ -1,0 +1,50 @@
+{
+  "title": {
+    "tr": "Uzaktan Erişim Kullanım Şartları",
+    "en": "Remote Access Terms of Use"
+  },
+  "icon": "bi bi-shield-lock",
+  "version": "1.0",
+  "agreementKey": "uzaktan-erisim-kullanim-sartlari",
+  "declineUrl": "index.html",
+  "paragraphs": [
+    {
+      "tr": "Anadolu Üniversitesi Kütüphanesi uzaktan erişim hizmeti, sadece üniversitemiz öğrencileri, akademik ve idari personeli için sağlanmaktadır.",
+      "en": "Anadolu University Library's remote access service is provided exclusively for our university's students, academic and administrative staff."
+    },
+    {
+      "tr": "Uzaktan erişim için kullanılan öğrenci/personel numarası ve şifreniz kişiseldir ve başkalarıyla paylaşılmamalıdır. Hesabınızdan gerçekleştirilen tüm işlemlerden siz sorumlusunuz.",
+      "en": "Your student/staff number and password used for remote access are personal and should not be shared with others. You are responsible for all activities performed through your account."
+    },
+    {
+      "tr": "Elektronik kaynakların telif haklarına uygun şekilde kullanılması zorunludur. Ticari amaçlı kullanım, sistematik toplu indirme ve üçüncü kişilerle içerik paylaşımı yasaktır.",
+      "en": "Electronic resources must be used in compliance with copyright laws. Commercial use, systematic bulk downloading, and content sharing with third parties are prohibited."
+    },
+    {
+      "tr": "Kullanım şartlarını ihlal eden hesaplar askıya alınabilir ve yasal işlem başlatılabilir.",
+      "en": "Accounts that violate the terms of use may be suspended and legal action may be initiated."
+    }
+  ],
+  "link": {
+    "icon": "bi bi-info-circle",
+    "text": {
+      "tr": "Uzaktan Erişim Yardım Sayfası",
+      "en": "Remote Access Help Page"
+    },
+    "url": "https://ekual.ulakbim.gov.tr/"
+  },
+  "acceptButton": {
+    "icon": "bi bi-check-circle",
+    "text": {
+      "tr": "OKUDUM, ANLADIM VE KABUL EDİYORUM",
+      "en": "I HAVE READ, UNDERSTOOD AND ACCEPT"
+    }
+  },
+  "declineButton": {
+    "icon": "bi bi-arrow-left-circle",
+    "text": {
+      "tr": "ANASAYFAYA GERİ DÖN",
+      "en": "RETURN TO HOMEPAGE"
+    }
+  }
+}

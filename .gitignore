@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+manager/.venv/
+
+# İşletim sistemi
+.DS_Store
+Thumbs.db
+
+# Ajan / editör çalışma dizinleri
+.freebuff/
+.claude/
+.vscode/
+
+# Yönetim aracı yerel yedekleri (ileride otomatik oluşturulacak)
+data/_backups/

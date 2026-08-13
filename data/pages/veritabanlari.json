@@ -1,0 +1,333 @@
+{
+  "hero": {
+    "title": {
+      "tr": "Veritabanları",
+      "en": "Databases"
+    },
+    "description": {
+      "tr": "Elektronik veritabanlarına erişim sağlayın ve araştırmalarınızı güçlendirin",
+      "en": "Access electronic databases and strengthen your research"
+    },
+    "icon": "bi bi-database",
+    "breadcrumb": [
+      {
+        "text": {
+          "tr": "Ana Sayfa",
+          "en": "Home"
+        },
+        "url": "index.html"
+      },
+      {
+        "text": {
+          "tr": "Veritabanları",
+          "en": "Databases"
+        },
+        "url": "veritabanlari.html"
+      }
+    ]
+  },
+  "content": [
+    {
+      "id": "search-filter-section",
+      "components": [
+        {
+          "type": "search-filter",
+          "data": {
+            "mode": "compact",
+            "sticky": false,
+            "mobileFiltersText": {
+              "tr": "Filtreler",
+              "en": "Filters"
+            },
+            "search": {
+              "placeholder": {
+                "tr": "Veritabanı ara...",
+                "en": "Search database..."
+              },
+              "icon": "bi bi-search",
+              "clearIcon": "bi bi-x-lg"
+            },
+            "sort": {
+              "enabled": true,
+              "icon": {
+                "desc": "bi bi-sort-down",
+                "asc": "bi bi-sort-up",
+                "default": "bi bi-sort-down"
+              },
+              "text": {
+                "desc": {
+                  "tr": "Varsayılan",
+                  "en": "Default"
+                },
+                "asc": {
+                  "tr": "A-Z",
+                  "en": "A-Z"
+                },
+                "default": {
+                  "tr": "Z-A",
+                  "en": "Z-A"
+                }
+              }
+            },
+            "viewToggle": {
+              "enabled": true,
+              "defaultView": "list",
+              "options": [
+                {
+                  "id": "card",
+                  "label": {
+                    "tr": "Kart Görünümü",
+                    "en": "Card View"
+                  },
+                  "icon": "bi bi-grid-3x3-gap"
+                },
+                {
+                  "id": "list",
+                  "label": {
+                    "tr": "Liste Görünümü",
+                    "en": "List View"
+                  },
+                  "icon": "bi bi-list-ul"
+                }
+              ]
+            },
+            "categories": [
+              {
+                "id": "all",
+                "label": {
+                  "tr": "Tümü",
+                  "en": "All"
+                },
+                "icon": "bi bi-grid"
+              },
+              {
+                "id": "Ücretsiz Veritabanları",
+                "label": {
+                  "tr": "Ücretsiz Veritabanları",
+                  "en": "Free Databases"
+                },
+                "icon": "bi bi-unlock"
+              },
+              {
+                "id": "Genel",
+                "label": {
+                  "tr": "Genel",
+                  "en": "General"
+                },
+                "icon": "bi bi-file-earmark-text"
+              },
+              {
+                "id": "Ekonomi",
+                "label": {
+                  "tr": "Ekonomi",
+                  "en": "Economics"
+                },
+                "icon": "bi bi-graph-up"
+              },
+              {
+                "id": "Hukuk",
+                "label": {
+                  "tr": "Hukuk",
+                  "en": "Law"
+                },
+                "icon": "bi bi-bank"
+              },
+              {
+                "id": "Sağlık/Eczacılık",
+                "label": {
+                  "tr": "Sağlık/Eczacılık",
+                  "en": "Health/Pharmacy"
+                },
+                "icon": "bi bi-heart-pulse"
+              },
+              {
+                "id": "Sosyal Bilimler",
+                "label": {
+                  "tr": "Sosyal Bilimler",
+                  "en": "Social Sciences"
+                },
+                "icon": "bi bi-people"
+              },
+              {
+                "id": "İnsani Bilimler",
+                "label": {
+                  "tr": "İnsani Bilimler",
+                  "en": "Humanities"
+                },
+                "icon": "bi bi-book"
+              },
+              {
+                "id": "Atıf/Bilimsel Literatür",
+                "label": {
+                  "tr": "Atıf/Bilimsel Literatür",
+                  "en": "Citation/Scientific Literature"
+                },
+                "icon": "bi bi-quote"
+              },
+              {
+                "id": "e-Kitap",
+                "label": {
+                  "tr": "e-Kitap",
+                  "en": "e-Book"
+                },
+                "icon": "bi bi-journal-text"
+              }
+            ],
+            "noResults": {
+              "icon": "bi bi-search",
+              "title": {
+                "tr": "Sonuç bulunamadı",
+                "en": "No results found"
+              },
+              "description": {
+                "tr": "Arama kriterlerinize uygun veritabanı bulunamadı. Lütfen farklı bir arama terimi deneyin.",
+                "en": "No database found matching your search criteria. Please try a different search term."
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "helpSection": {
+    "title": {
+      "tr": "Veritabanlarına erişim konusunda yardıma mı ihtiyacınız var?",
+      "en": "Do you need help accessing databases?"
+    },
+    "description": {
+      "tr": "Elektronik kaynaklar ve uzaktan erişim hakkında detaylı bilgi almak için bizimle iletişime geçin.",
+      "en": "Contact us for detailed information about electronic resources and remote access."
+    },
+    "buttons": [
+      {
+        "icon": "fas fa-phone",
+        "text": {
+          "tr": "Hemen Ara",
+          "en": "Call Now"
+        },
+        "link": "tel:+902223350580",
+        "variant": "primary"
+      },
+      {
+        "icon": "fas fa-envelope",
+        "text": {
+          "tr": "E-posta Gönder",
+          "en": "Send Email"
+        },
+        "link": "mailto:library@anadolu.edu.tr",
+        "variant": "primary"
+      },
+      {
+        "icon": "fas fa-home",
+        "text": {
+          "tr": "Ana Sayfa",
+          "en": "Home"
+        },
+        "link": "index.html",
+        "variant": "secondary"
+      }
+    ]
+  },
+  "translations": {
+    "tr": {
+      "sort": "Sırala",
+      "accessBtn": "Erişim Sağla",
+      "infoBtn": "Bilgi",
+      "resultsCount": "Toplam <strong>{count}</strong> veritabanı bulundu",
+      "backToFilters": "Filtreleri Göster",
+      "mobileFiltersBtn": "Filtreler ve Arama",
+      "tooltips": {
+        "apc": "Bu veritabanında APC ödemeden yayın yapabilirsiniz",
+        "remoteAccess": "Uzaktan Erişim - Kampüs dışından erişilebilir",
+        "campusAccess": "Kampüs İçi Erişim - Sadece kampüs ağından erişilebilir",
+        "detailedInfo": "Detaylı Bilgi"
+      },
+      "filterModal": {
+        "title": "Filtreler ve Arama",
+        "search": "Arama",
+        "categories": "Kategoriler",
+        "sortTitle": "Sıralama",
+        "sortDefault": "Varsayılan",
+        "sortAZ": "A-Z",
+        "sortZA": "Z-A",
+        "accessType": "Erişim Tipi",
+        "allAccess": "Tümü",
+        "remoteAccess": "Uzaktan Erişim",
+        "campusOnly": "Kampüs İçi",
+        "clear": "Temizle",
+        "apply": "Uygula"
+      },
+      "modal": {
+        "accessAddress": "Erişim Adresi:",
+        "contentList": "İçerik Listesi",
+        "userGuide": "Kullanım Kılavuzu",
+        "mobileGuide": "Mobil Uygulama Kılavuzu",
+        "videoTutorials": "Kullanım Videoları",
+        "journalList": "Dergi Listesi",
+        "bookList": "Kitap Listesi",
+        "apcSupport": "APC Desteği:",
+        "apcDescription": "Bu veritabanında APC ödemeden yayın yapabilirsiniz.",
+        "note": "Not:",
+        "closeBtn": "Kapat",
+        "accessBtn": "Veritabanına Eriş"
+      },
+      "filterModal": {
+        "title": "Filtreler",
+        "search": "Arama",
+        "categories": "Kategoriler",
+        "sortTitle": "Sıralama",
+        "accessType": "Erişim Tipi",
+        "remoteAccess": "Uzaktan Erişim",
+        "campusOnly": "Kampüs İçi",
+        "sortDefault": "Varsayılan",
+        "sortAZ": "A-Z",
+        "sortZA": "Z-A",
+        "clear": "Temizle",
+        "apply": "Uygula"
+      }
+    },
+    "en": {
+      "sort": "Sort",
+      "accessBtn": "Access",
+      "infoBtn": "Info",
+      "resultsCount": "Total <strong>{count}</strong> databases found",
+      "backToFilters": "Show Filters",
+      "mobileFiltersBtn": "Filters & Search",
+      "tooltips": {
+        "apc": "You can publish in this database without paying APC",
+        "remoteAccess": "Remote Access - Accessible from outside campus",
+        "campusAccess": "Campus Access - Only accessible from campus network",
+        "detailedInfo": "Detailed Information"
+      },
+      "modal": {
+        "accessAddress": "Access URL:",
+        "contentList": "Content List",
+        "userGuide": "User Guide",
+        "mobileGuide": "Mobile App Guide",
+        "videoTutorials": "Tutorial Videos",
+        "journalList": "Journal List",
+        "bookList": "Book List",
+        "apcSupport": "APC Support:",
+        "apcDescription": "You can publish in this database without paying APC.",
+        "note": "Note:",
+        "closeBtn": "Close",
+        "accessBtn": "Access Database"
+      },
+      "filterModal": {
+        "title": "Filters & Search",
+        "search": "Search",
+        "categories": "Categories",
+        "sortTitle": "Sorting",
+        "sortDefault": "Default",
+        "sortAZ": "A-Z",
+        "sortZA": "Z-A",
+        "accessType": "Access Type",
+        "allAccess": "All",
+        "remoteAccess": "Remote Access",
+        "campusOnly": "Campus Only",
+        "clear": "Clear",
+        "apply": "Apply"
+      }
+    }
+  }
+}

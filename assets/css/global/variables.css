@@ -1,0 +1,120 @@
+/**
+ * Anadolu Üniversitesi Kütüphane - CSS Değişkenleri
+ * Tüm renkler, fontlar, spacing ve genel değişkenler
+ */
+
+:root {
+  /* Layout */
+  --header-height: 80px;
+  --container-max-width: 1200px;
+  
+  /* Renk Paleti - Light Theme */
+  --primary-color: #1F4C8A;
+  --primary-dark: #153a6d;
+  --primary-light: #3667a6;
+  --secondary-color: #C03221;
+  --secondary-light: #db4a39;
+  --secondary-dark: #a01e11;
+  --tertiary-color: #EEF9FC;
+  --tertiary-dark: #d5eef5;
+  --accent-color: #FFC43D;
+  --accent-light: #ffd265;
+  --accent-dark: #f5b520;
+  
+  /* Background Colors */
+  --bg-color: #f8f9fa;
+  --bg-card: #ffffff;
+  --bg-input: #ffffff;
+  --bg-hover: #f8f9fa;
+  --new-arrivals-bg: #d5eef5;
+  --library-services-bg: #d5eef5;
+  --footer-top-bg: #f5f5f5;
+  
+  /* Text Colors */
+  --text-color: #212529;
+  --text-muted: #6c757d;
+  --text-light: #ffffff;
+  
+  /* Borders & Shadows */
+  --white: #ffffff;
+  --light-gray: #f5f5f5;
+  --border-color: #eaedf0;
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.08);
+  
+  /* Border Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  
+  /* Transitions */
+  --transition: all 0.3s ease;
+  --transition-fast: all 0.2s ease;
+  --transition-slow: all 0.5s ease;
+  
+  /* Typography */
+  --font-family-primary: 'Noto Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-family-heading: inherit;
+  
+  --font-size-base: 1rem;
+  --font-size-sm: 0.875rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-loose: 1.8;
+}
+
+/* Dark Theme Variables */
+html[data-theme="dark"] {
+  /* Background Colors */
+  --bg-color: #121212;
+  --bg-card: #1e1e1e;
+  --bg-input: #2c2c2c;
+  --bg-hover: #2a2a2a;
+  --new-arrivals-bg: #1a2533;
+  --library-services-bg: #1a2533;
+  --footer-top-bg: #222222;
+  
+  /* Primary Colors Adjustment */
+  --primary-color: #3667a6;
+  --primary-dark: #1F4C8A;
+  --primary-light: #5483c2;
+  --secondary-color: #db4a39;
+  --secondary-light: #e67565;
+  --secondary-dark: #C03221;
+  
+  /* Tertiary Colors Adjustment */
+  --tertiary-color: #1a2533;
+  --tertiary-dark: #121a24;
+  
+  /* Text Colors */
+  --text-color: #ffffff;
+  --text-muted: #c0c0c0;
+  
+  /* Borders & Shadows */
+  --border-color: #333333;
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Breakpoints (CSS Custom Properties için) */
+:root {
+  --breakpoint-mobile: 576px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 992px;
+  --breakpoint-wide: 1200px;
+}

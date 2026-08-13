@@ -1,0 +1,754 @@
+/*===================================================
+  FOOTER - Oldsite Stillerinden Uyarlandı
+=====================================================*/
+
+/* Footer Genel Yapı - ESKİ YAPIYI KORU */
+.footer {
+  position: relative;
+  overflow: visible;
+  margin-top: auto;
+  width: 100%;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.footer-top-info {
+  background: var(--primary-color);
+  padding: 25px 0;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.footer-top-info .row {
+  align-items: center;
+}
+
+.contact-links {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.contact-links a {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 8px 15px;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-links a:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.contact-links a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.contact-links a:hover:before {
+  left: 100%;
+}
+
+.contact-links a i {
+  margin-right: 10px;
+  color: var(--accent-color);
+  font-size: 1.1rem;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.social-links a {
+  color: white;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.social-links a:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.4s ease;
+}
+
+.social-links a:hover {
+  color: var(--accent-color);
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.social-links a:hover:before {
+  left: 100%;
+}
+
+.footer-content-wrapper {
+  position: relative;
+  z-index: 2;
+  background-color: var(--bg-card);
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  padding: 40px 0;
+}
+
+.footer-content-wrapper .row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+}
+
+.footer-column {
+  flex: 0 0 25%;
+  max-width: 25%;
+  padding: 0 15px;
+  margin-bottom: 25px;
+  box-sizing: border-box;
+}
+
+.footer-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 25px;
+  position: relative;
+  padding-bottom: 12px;
+  display: inline-block;
+}
+
+.footer-title:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent-color);
+  border-radius: 2px;
+}
+
+.footer-bottom-wrapper {
+  background: var(--primary-color);
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  padding: 25px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom-wrapper .row {
+  align-items: center;
+}
+
+.copyright {
+  color: var(--white);
+  font-size: 0.9rem;
+  flex: 1;
+  text-align: left;
+  font-weight: 500;
+  margin: 0;
+}
+
+.footer-legal {
+  display: flex;
+  gap: 30px;
+  justify-content: flex-end;
+  margin-top: 0;
+}
+
+.footer-legal a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  padding: 8px 15px;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+}
+
+.footer-legal a:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transition: left 0.5s ease;
+}
+
+.footer-legal a:hover {
+  color: var(--accent-color);
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.footer-legal a:hover:before {
+  left: 100%;
+}
+
+/* Footer Link Listesi */
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 15px;
+}
+
+/* Footer Linkleri - KAYMASIZ VE BASIT HOVER */
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  position: relative;
+  transition: all 0.3s ease;
+  padding-left: 0;
+  display: inline-block;
+  white-space: normal;
+  word-wrap: break-word;
+  line-height: 1.4;
+}
+
+/* Hover durumunda SADECE renk değişsin, kayma olmasın */
+.footer-links a:hover {
+  color: var(--primary-color);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* Alt çizgi sadece accent color */
+.footer-links a:after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-color);
+  transition: width 0.4s ease;
+  border-radius: 2px;
+}
+
+.footer-links a:hover:after {
+  width: 100%;
+}
+
+/* Active link - Alt çizgi sabit kalır */
+.footer-links a.active {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.footer-links a.active:after {
+  width: 100%;
+}
+
+/* Ok simgesini tamamen kaldır */
+.footer-links a:before {
+  display: none !important;
+}
+
+/* Tüm kolonlar eşit genişlikte */
+
+/* Focus durumu için accessibility */
+.footer-links a:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Animasyon Performance Optimizasyonu */
+.footer-links {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.footer-links a {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Ekstra: Focus trap için keyboard navigation */
+.footer-column:focus-within .footer-title {
+  color: var(--primary-color);
+}
+
+/* Print styles */
+@media print {
+  .footer-links a:after {
+    display: none;
+  }
+
+  .footer-links a {
+    color: #000 !important;
+    text-decoration: underline;
+  }
+}
+
+/* Dark theme düzeltmeleri */
+html[data-theme="dark"] .footer-content-wrapper {
+  background-color: var(--bg-card);
+}
+
+html[data-theme="dark"] .footer-top-info {
+  background: var(--primary-dark);
+}
+
+html[data-theme="dark"] .footer-bottom-wrapper {
+  background: var(--primary-dark);
+}
+
+html[data-theme="dark"] .footer-links a {
+  color: var(--text-muted);
+}
+
+html[data-theme="dark"] .footer-links a:hover {
+  color: var(--primary-light);
+}
+
+html[data-theme="dark"] .social-links a {
+  background-color: rgba(54, 103, 166, 0.2);
+  color: var(--text-light);
+}
+
+html[data-theme="dark"] .social-links a:hover {
+  background-color: var(--primary-color);
+}
+
+/* Mobil Responsive - Daha İyi Düzenleme */
+@media (max-width: 1199px) {
+  .footer-column {
+    min-width: 200px;
+  }
+
+  .footer-content-wrapper .row {
+    gap: 25px;
+  }
+}
+
+@media (max-width: 991px) {
+  .footer-content-wrapper .row {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .footer-column {
+    flex: 0 0 48%;
+    min-width: auto;
+    margin-bottom: 30px;
+  }
+
+  .footer-column:last-child {
+    flex: 0 0 48%;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer-column {
+    flex: 0 0 100%;
+    min-width: auto;
+    text-align: center;
+  }
+
+  .footer-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .footer-title:after {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+  }
+
+  .footer-links {
+    text-align: center;
+  }
+
+  .footer-links a {
+    display: block;
+    padding: 12px 20px;
+    margin: 0 auto 8px;
+    max-width: 280px;
+    background: rgba(31, 76, 138, 0.05);
+    border-radius: 8px;
+    border: 1px solid transparent;
+  }
+
+  .footer-links a:hover {
+    background: rgba(31, 76, 138, 0.1);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .footer-links a:after {
+    display: none; /* Mobilde alt çizgi kaldır */
+  }
+
+  .footer-top-info .row {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .contact-links {
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .footer-bottom-wrapper .row {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .copyright {
+    text-align: center;
+  }
+
+  .footer-legal {
+    justify-content: center;
+  }
+}
+
+/* Mobilde koyu tema için */
+@media (max-width: 767px) {
+  html[data-theme="dark"] .footer-links a {
+    background: rgba(54, 103, 166, 0.1);
+    color: var(--text-color);
+  }
+
+  html[data-theme="dark"] .footer-links a:hover {
+    background: rgba(54, 103, 166, 0.2);
+    border-color: var(--primary-light);
+  }
+}
+
+/* ========================================
+   MOBILE FOOTER MENU STYLES
+   ======================================== */
+
+/* Mobile Footer Menu Button Container */
+.mobile-footer-menu-container {
+  display: none;
+  background-color: var(--library-services-bg);
+  padding: 20px 0;
+  border-top: 1px solid rgba(31, 76, 138, 0.1);
+  border-bottom: 1px solid rgba(31, 76, 138, 0.1);
+}
+
+.mobile-footer-menu-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 15px 20px;
+  background: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(31, 76, 138, 0.2);
+}
+
+.mobile-footer-menu-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(31, 76, 138, 0.3);
+}
+
+.mobile-footer-menu-btn i:first-child {
+  font-size: 1.2rem;
+}
+
+.mobile-footer-menu-btn i:last-child {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+/* Mobile Footer Overlay */
+.mobile-footer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 2199;
+}
+
+.mobile-footer-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Mobile Footer Panel */
+.mobile-footer-panel {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  max-height: 80vh;
+  background-color: var(--primary-color);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+  transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2200;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px 20px 0 0;
+}
+
+.mobile-footer-panel.active {
+  bottom: 0;
+}
+
+/* Mobile Footer Header */
+.mobile-footer-header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: var(--primary-color);
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.mobile-footer-title {
+  color: var(--white);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mobile-footer-title i {
+  font-size: 1.3rem;
+  color: var(--accent-color);
+}
+
+.mobile-footer-close {
+  background: transparent;
+  border: none;
+  color: var(--white);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+}
+
+.mobile-footer-close:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: rotate(90deg);
+}
+
+/* Mobile Footer Content */
+.mobile-footer-content {
+  padding: 10px 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+}
+
+.mobile-footer-menu-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-footer-menu-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.mobile-footer-menu-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-footer-arrow {
+  transition: transform 0.3s ease;
+  font-size: 0.9rem;
+  color: var(--accent-color);
+}
+
+.mobile-footer-arrow.rotated {
+  transform: rotate(180deg);
+}
+
+/* Mobile Footer Submenu */
+.mobile-footer-submenu {
+  max-height: 0;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.15);
+  transition: max-height 0.3s ease;
+}
+
+.mobile-footer-submenu.active {
+  max-height: 800px;
+}
+
+.mobile-footer-submenu-link {
+  display: flex;
+  align-items: center;
+  padding: 14px 20px 14px 40px;
+  color: rgba(255, 255, 255, 0.95);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.mobile-footer-submenu-link i {
+  margin-right: 8px;
+  font-size: 1.2rem;
+  color: var(--accent-color);
+  transition: transform 0.3s ease;
+}
+
+.mobile-footer-submenu-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  border-left-color: var(--accent-color);
+  padding-left: 45px;
+}
+
+.mobile-footer-submenu-link:hover i {
+  transform: translateX(5px);
+}
+
+/* Mobile Footer Active States - İç sayfalarda */
+body[data-page-type="inner"] .mobile-footer-menu-item.active > .mobile-footer-menu-link {
+  font-weight: 700;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+body[data-page-type="inner"] .mobile-footer-submenu-link.active {
+  background-color: rgba(255, 255, 255, 0.15);
+  font-weight: 600;
+  color: var(--white);
+  border-left-color: var(--accent-color);
+}
+
+body[data-page-type="inner"] .mobile-footer-submenu-link.active i {
+  color: var(--accent-color);
+  transform: scale(1.2);
+}
+
+/* Dark Theme */
+html[data-theme="dark"] .mobile-footer-panel {
+  background-color: var(--primary-dark);
+}
+
+html[data-theme="dark"] .mobile-footer-header {
+  background-color: var(--primary-dark);
+}
+
+html[data-theme="dark"] .mobile-footer-menu-btn {
+  background: var(--primary-color);
+}
+
+html[data-theme="dark"] .mobile-footer-menu-btn:hover {
+  background: var(--primary-light);
+}
+
+/* Show Mobile Bottom Bar on small screens */
+@media (max-width: 767px) {
+  /* Hide old mobile footer menu */
+  .mobile-footer-menu-container {
+    display: none !important;
+  }
+
+  /* Hide desktop footer content on mobile */
+  .footer-content-wrapper {
+    display: none !important;
+  }
+
+  /* Hide footer-top-info on mobile (contact & social moved to bottom bar) */
+  .footer-top-info {
+    display: none !important;
+  }
+
+  /* Footer bottom stays visible but with adjusted padding for bottom bar */
+  .footer-bottom-wrapper {
+    padding: 20px 0;
+    margin-bottom: 0;
+  }
+}

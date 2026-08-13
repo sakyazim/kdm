@@ -1,0 +1,108 @@
+{
+  "_comment": "KULLANIM: activeModal ID belirtin VEYA boş bırakıp modallarda active:true yapın. activeModal varsa o modal gösterilir (eğer active:false değilse). activeModal null/boş ise active:true olan ilk modal gösterilir.",
+  "enabled": true,
+  "activeModal": "",
+  "modals": [
+    {
+      "id": "new-semester-2025",
+      "title": {
+        "tr": "Yeni Dönem Kütüphane Hizmetleri",
+        "en": "New Semester Library Services"
+      },
+      "description": {
+        "tr": "Sevgili öğrenciler ve akademisyenler, 2025 bahar dönemi ile birlikte kütüphane hizmetlerimiz güncellenmiştir. Uzaktan erişim, grup çalışma odaları ve yeni veritabanları hakkında detayları öğrenmek için tıklayın.",
+        "en": "Dear students and academics, our library services have been updated for the 2025 spring semester. Click to learn more about remote access, group study rooms, and new databases."
+      },
+      "image": {
+        "tr": "assets/images/modal-new-semester.jpg",
+        "en": "assets/images/modal-new-semester.jpg"
+      },
+      "buttonText": {
+        "tr": "Detaylı Bilgi",
+        "en": "Detailed Information"
+      },
+      "buttonUrl": "#new-semester-info",
+      "category": "academic",
+      "active": false,
+      "showOnce": false,
+      "startDate": "2024-01-01",
+      "endDate": "2026-02-29"
+    },
+    {
+      "id": "maintenance-notice",
+      "title": {
+        "tr": "Sistem Bakımı Duyurusu",
+        "en": "System Maintenance Notice"
+      },
+      "description": {
+        "tr": "Kütüphane sistemimizde planlı bakım çalışması yapılacaktır. Bu sürede bazı hizmetlerde kesinti yaşanabilir.",
+        "en": "Scheduled maintenance will be performed on the library system. Some services may be interrupted during this time."
+      },
+      "image": {
+        "tr": "assets/images/modal-maintenance.jpg",
+        "en": "assets/images/modal-maintenance-en.jpg"
+      },
+      "buttonText": {
+        "tr": "Ayrıntılar",
+        "en": "Details"
+      },
+      "buttonUrl": "#maintenance-info",
+      "category": "maintenance",
+      "active": false,
+      "showOnce": false,
+      "startDate": "2024-02-01",
+      "endDate": "2026-02-05"
+    },
+    {
+      "id": "new-database",
+      "title": {
+        "tr": "Yeni Veritabanı: Academic Research Plus",
+        "en": "New Database: Academic Research Plus"
+      },
+      "description": {
+        "tr": "Kütüphanemize yeni eklenen Academic Research Plus veritabanı ile 5000'den fazla akademik dergiye erişim sağlayabilirsiniz.",
+        "en": "Access over 5000 academic journals with the newly added Academic Research Plus database in our library."
+      },
+      "image": {
+        "tr": "assets/images/nopic.jpeg",
+        "en": "assets/images/nopic.jpeg"
+      },
+      "buttonText": {
+        "tr": "Veritabanına Git",
+        "en": "Go to Database"
+      },
+      "buttonUrl": "veritabanlari.html",
+      "category": "resource",
+      "active": true,
+      "showOnce": true,
+      "startDate": "2024-01-15",
+      "endDate": "2026-03-15"
+    },
+    {
+      "id": "holiday-notice",
+      "title": {
+        "tr": "Bayram Tatili Çalışma Saatleri",
+        "en": "Holiday Working Hours"
+      },
+      "description": {
+        "tr": "Bayram tatili süresince kütüphanemiz 10:00-16:00 saatleri arasında hizmet verecektir. Tüm öğrencilerimize ve akademisyenlerimize iyi bayramlar dileriz.",
+        "en": "During the holiday period, our library will serve between 10:00-16:00. We wish all our students and academics a happy holiday."
+      },
+      "image": {
+        "tr": "assets/images/modal-holiday.jpg",
+        "en": "assets/images/modal-holiday-en.jpg"
+      },
+      "buttonText": {
+        "tr": "Çalışma Saatleri",
+        "en": "Working Hours"
+      },
+      "buttonUrl": "calisma-saatleri.html",
+      "category": "announcement",
+      "active": false,
+      "showOnce": true,
+      "startDate": "2024-04-01",
+      "endDate": "2026-04-15"
+    }
+  ],
+  "lastModified": "2025-01-20T10:00:00Z"
+}

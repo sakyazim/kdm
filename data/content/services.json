@@ -1,0 +1,122 @@
+{
+  "title": {
+    "tr": "Kütüphane Hizmetleri",
+    "en": "Library Services"
+  },
+  "services": [
+    {
+      "id": "databases",
+      "title": {
+        "tr": "Veritabanları",
+        "en": "Databases"
+      },
+      "description": {
+        "tr": "Elektronik veritabanlarına erişim",
+        "en": "Access to electronic databases"
+      },
+      "icon": "bi bi-database",
+      "url": "veritabanlari.html",
+      "active": true
+    },
+    {
+      "id": "remote-access",
+      "title": {
+        "tr": "Uzaktan Erişim",
+        "en": "Remote Access"
+      },
+      "description": {
+        "tr": "Kampüs dışından e-kaynaklara erişim",
+        "en": "Access to e-resources off-campus"
+      },
+      "icon": "bi bi-wifi",
+      "url": "uzaktan-erisim.html",
+      "active": true
+    },
+    {
+      "id": "membership",
+      "title": {
+        "tr": "Üyelik",
+        "en": "Membership"
+      },
+      "description": {
+        "tr": "Kütüphane üyelik işlemleri",
+        "en": "Library membership procedures"
+      },
+      "icon": "bi bi-person-badge",
+      "url": "uyelik-odunc-islemleri.html",
+      "active": true
+    },
+    {
+      "id": "extension",
+      "title": {
+        "tr": "Süre Uzatma",
+        "en": "Renewal"
+      },
+      "description": {
+        "tr": "Ödünç aldığınız kaynakların süresini uzatın",
+        "en": "Renew your borrowed materials"
+      },
+      "icon": "bi bi-arrow-clockwise",
+      "url": "sure-uzatma.html",
+      "active": true
+    },
+    {
+      "id": "kullanim-klavuzu",
+      "title": {
+        "tr": "Kütüphane Kullanım Klavuzu",
+        "en": "Library Usage Guide"
+      },
+      "description": {
+        "tr": "Kütüphane Kullanım Klavuzu",
+        "en": "Library Usage Guide"
+      },
+      "icon": "bi bi-journal-bookmark",
+      "url": "kutuphane-kullanim-klavuzu.html",
+      "active": true
+    },
+    
+    {
+      "id": "ill",
+      "title": {
+        "tr": "Kütüphanelerarası İşbirlikleri",
+        "en": "Interlibrary Loan"
+      },
+      "description": {
+        "tr": "Kütüphanelerarası ödünç alma hizmeti",
+        "en": "Interlibrary loan service"
+      },
+      "icon": "bi bi-arrow-left-right",
+      "url": "ill.html",
+      "active": true
+    },
+    {
+      "id": "study-rooms",
+      "title": {
+        "tr": "Çalışma Odaları",
+        "en": "Study Rooms"
+      },
+      "description": {
+        "tr": "Grup çalışma odaları rezervasyonu",
+        "en": "Group study room reservations"
+      },
+      "icon": "bi bi-door-open",
+      "url": "calisma-odalari.html",
+      "active": true
+    },
+    {
+      "id": "saatler",
+      "title": {
+        "tr": "Çalışma Satleri",
+        "en": "Opening Hours"
+      },
+      "description": {
+        "tr": "Çalışma Satleri",
+        "en": "Opening Hours"
+      },
+      "icon": "bi bi-clock",
+      "url": "calisma-saatleri.html",
+      "active": true
+    }
+    
+  ]
+}

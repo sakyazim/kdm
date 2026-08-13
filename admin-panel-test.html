@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST: Master-Detail Tasarım | Admin Panel</title>
+<link rel="alternate" hreflang="tr" href="https://kdm.anadolu.edu.tr/admin-panel-test.html"/>
+<link rel="alternate" hreflang="en" href="https://kdm.anadolu.edu.tr/admin-panel-test.html"/>
+<link rel="alternate" hreflang="x-default" href="https://kdm.anadolu.edu.tr/admin-panel-test.html"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="assets/css/admin-panel.css">
+    <style>
+        /* Master-Detail için özel stil */
+        .master-detail-container {
+            display: flex;
+            gap: 0;
+            height: calc(100vh - 200px);
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+        }
+        .master-list {
+            width: 35%;
+            border-right: 1px solid #dee2e6;
+            display: flex;
+            flex-direction: column;
+            background: #f8f9fa;
+        }
+        .master-header {
+            padding: 15px;
+            background: white;
+            border-bottom: 2px solid #dee2e6;
+        }
+        .master-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px;
+        }
+        .master-item {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 4px solid transparent;
+        }
+        .master-item:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transform: translateX(3px);
+        }
+        .master-item.active {
+            border-left-color: #0d6efd;
+            background: #e7f1ff;
+            box-shadow: 0 2px 8px rgba(13,110,253,0.2);
+        }
+        .master-item-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .master-item-preview {
+            font-size: 13px;
+            color: #6c757d;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .detail-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: white;
+        }
+        .detail-header {
+            padding: 15px 20px;
+            background: white;
+            border-bottom: 2px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .detail-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .detail-footer {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #6c757d;
+        }
+        .list-item-editor {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 8px;
+        }
+        .list-item-editor input {
+            flex: 1;
+        }
+        .drag-handle {
+            cursor: move;
+            color: #adb5bd;
+        }
+        .drag-handle:hover {
+            color: #495057;
+        }
+    </style>
+</head>
+<body data-bs-theme="light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-pencil-square me-2"></i>
+                <strong>Admin Panel TEST - Master-Detail</strong>
+            </a>
+            <div class="d-flex align-items-center gap-2">
+                <a href="admin-panel.html" class="btn btn-sm btn-outline-light">
+                    <i class="bi bi-arrow-left me-1"></i>Normal Panele Dön
+                </a>
+                <button class="btn btn-sm btn-success" id="saveBtn">
+                    <i class="bi bi-check-circle me-1"></i>Kaydet
+                </button>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid p-4">
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle me-2"></i>
+                    <strong>TEST MOD:</strong> Bu sayfada "bilgisayar-laboratuvari.json" dosyasının <strong>Content</strong> bölümü için <strong>Master-Detail</strong> tasarımını test ediyorsunuz.
+                    Sol tarafta kart listesi, sağda seçilen kartın detaylı düzenleme paneli.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0">
+                            <i class="bi bi-file-earmark-code me-2"></i>
+                            bilgisayar-laboratuvari.json → Content → Cards
+                        </h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="master-detail-container">
+                            <div class="master-list">
+                                <div class="master-header">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h6 class="mb-0">
+                                            <i class="bi bi-list-ul me-2"></i>
+                                            Kartlar
+                                            <span class="badge bg-primary" id="cardCount">0</span>
+                                        </h6>
+                                    </div>
+                                    <button class="btn btn-sm btn-success w-100" id="addCardBtn">
+                                        <i class="bi bi-plus-circle me-1"></i>Yeni Kart Ekle
+                                    </button>
+                                </div>
+                                <div class="master-items" id="masterList">
+                                </div>
+                            </div>
+                            <div class="detail-panel">
+                                <div class="detail-header" id="detailHeader" style="display: none;">
+                                    <div>
+                                        <h6 class="mb-0" id="detailTitle">
+                                            <i class="bi bi-pencil-square me-2"></i>
+                                            Kart Düzenle
+                                        </h6>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-secondary" id="moveUpBtn" title="Yukarı Taşı">
+                                            <i class="bi bi-arrow-up"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-secondary" id="moveDownBtn" title="Aşağı Taşı">
+                                            <i class="bi bi-arrow-down"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger" id="deleteCardBtn" title="Kartı Sil">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="detail-body" id="detailBody">
+                                    <div class="empty-state">
+                                        <i class="bi bi-arrow-left-circle display-1 mb-3"></i>
+                                        <h4>Sol taraftan bir kart seçin</h4>
+                                        <p class="text-muted">Düzenlemek için listeden bir kart seçin veya yeni kart ekleyin</p>
+                                    </div>
+                                </div>
+                                <div class="detail-footer" id="detailFooter" style="display: none;">
+                                    <button class="btn btn-primary" id="saveCardBtn">
+                                        <i class="bi bi-check-circle me-1"></i>Değişiklikleri Uygula
+                                    </button>
+                                    <button class="btn btn-outline-secondary" id="cancelBtn">
+                                        <i class="bi bi-x-circle me-1"></i>İptal
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        class MasterDetailEditor {
+            constructor() {
+                this.data = null;
+                this.selectedIndex = null;
+                this.originalData = null;
+                this.init();
+            }
+            async init() {
+                await this.loadData();
+                this.renderMasterList();
+                this.setupEventListeners();
+            }
+            async loadData() {
+                try {
+                    const response = await fetch('data/pages/bilgisayar-laboratuvari.json');
+                    this.data = await response.json();
+                    this.originalData = JSON.parse(JSON.stringify(this.data));
+                } catch (error) {
+                    console.error('Veri yükleme hatası:', error);
+                    alert('JSON dosyası yüklenirken hata oluştu!');
+                }
+            }
+            renderMasterList() {
+                const masterList = document.getElementById('masterList');
+                const cards = this.data.content?.cards || [];
+                document.getElementById('cardCount').textContent = cards.length;
+                masterList.innerHTML = '';
+                if (cards.length === 0) {
+                    masterList.innerHTML = `
+                        <div class="text-center text-muted p-4">
+                            <i class="bi bi-inbox display-4 d-block mb-2"></i>
+                            <p>Henüz kart yok</p>
+                        </div>
+                    `;
+                    return;
+                }
+                cards.forEach((card, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'master-item';
+                    if (index === this.selectedIndex) {
+                        item.classList.add('active');
+                    }
+                    const contentType = Array.isArray(card.content) ? 'List' : 'Text';
+                    const contentPreview = Array.isArray(card.content)
+                        ? `${card.content.length} öğe`
+                        : (card.content?.substring(0, 50) || '');
+                    item.innerHTML = `
+                        <div class="master-item-title">
+                            <div>
+                                <i class="bi bi-card-text me-2"></i>
+                                <strong>${card.title || 'Başlıksız'}</strong>
+                            </div>
+                            <span class="badge ${contentType === 'List' ? 'bg-success' : 'bg-primary'}">${contentType}</span>
+                        </div>
+                        <div class="master-item-preview">${contentPreview}</div>
+                    `;
+                    item.addEventListener('click', () => this.selectCard(index));
+                    masterList.appendChild(item);
+                });
+            }
+            selectCard(index) {
+                this.selectedIndex = index;
+                this.renderMasterList();
+                this.renderDetailPanel();
+            }
+            renderDetailPanel() {
+                if (this.selectedIndex === null) {
+                    document.getElementById('detailHeader').style.display = 'none';
+                    document.getElementById('detailFooter').style.display = 'none';
+                    document.getElementById('detailBody').innerHTML = `
+                        <div class="empty-state">
+                            <i class="bi bi-arrow-left-circle display-1 mb-3"></i>
+                            <h4>Sol taraftan bir kart seçin</h4>
+                            <p class="text-muted">Düzenlemek için listeden bir kart seçin</p>
+                        </div>
+                    `;
+                    return;
+                }
+                const card = this.data.content.cards[this.selectedIndex];
+                document.getElementById('detailHeader').style.display = 'flex';
+                document.getElementById('detailFooter').style.display = 'flex';
+                document.getElementById('detailTitle').innerHTML = `
+                    <i class="bi bi-pencil-square me-2"></i>
+                    Kart #${this.selectedIndex + 1} Düzenle
+                `;
+                const isArray = Array.isArray(card.content);
+                document.getElementById('detailBody').innerHTML = `
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            <i class="bi bi-card-heading me-2"></i>Başlık
+                        </label>
+                        <input type="text" class="form-control" id="cardTitle" value="${card.title || ''}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            <i class="bi bi-type me-2"></i>İçerik Tipi
+                        </label>
+                        <select class="form-select" id="contentType">
+                            <option value="text" ${!isArray ? 'selected' : ''}>Metin (Text)</option>
+                            <option value="list" ${isArray ? 'selected' : ''}>Liste (List)</option>
+                        </select>
+                        <small class="text-muted">
+                            ${!isArray ? 'Tek bir metin bloğu' : 'Birden fazla liste öğesi'}
+                        </small>
+                    </div>
+                    <div class="mb-3" id="contentEditor">
+                        ${this.renderContentEditor(card.content)}
+                    </div>
+                `;
+                // Content type değişimini dinle
+                document.getElementById('contentType').addEventListener('change', (e) => {
+                    const newType = e.target.value;
+                    const contentEditor = document.getElementById('contentEditor');
+                    if (newType === 'text') {
+                        contentEditor.innerHTML = this.renderContentEditor('');
+                    } else {
+                        contentEditor.innerHTML = this.renderContentEditor([]);
+                    }
+                });
+            }
+            renderContentEditor(content) {
+                if (Array.isArray(content)) {
+                    // Liste editörü
+                    let html = `
+                        <label class="form-label fw-bold">
+                            <i class="bi bi-list-ul me-2"></i>Liste Öğeleri
+                        </label>
+                        <div id="listItems">
+                    `;
+                    content.forEach((item, i) => {
+                        html += `
+                            <div class="list-item-editor d-flex align-items-center gap-2">
+                                <i class="bi bi-grip-vertical drag-handle"></i>
+                                <input type="text" class="form-control form-control-sm" value="${item}" data-item-index="${i}">
+                                <button class="btn btn-sm btn-outline-danger" onclick="editor.removeListItem(${i})">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        `;
+                    });
+                    html += `
+                        </div>
+                        <button class="btn btn-sm btn-success mt-2" onclick="editor.addListItem()">
+                            <i class="bi bi-plus-circle me-1"></i>Yeni Öğe Ekle
+                        </button>
+                    `;
+                    return html;
+                } else {
+                    // Metin editörü
+                    return `
+                        <label class="form-label fw-bold">
+                            <i class="bi bi-file-text me-2"></i>İçerik Metni
+                        </label>
+                        <textarea class="form-control" id="contentText" rows="10">${content || ''}</textarea>
+                        <small class="text-muted">Kart içeriğini buraya yazın</small>
+                    `;
+                }
+            }
+            addListItem() {
+                const card = this.data.content.cards[this.selectedIndex];
+                if (!Array.isArray(card.content)) {
+                    card.content = [];
+                }
+                card.content.push('Yeni öğe');
+                this.renderDetailPanel();
+            }
+            removeListItem(index) {
+                if (confirm('Bu öğeyi silmek istediğinize emin misiniz?')) {
+                    const card = this.data.content.cards[this.selectedIndex];
+                    card.content.splice(index, 1);
+                    this.renderDetailPanel();
+                }
+            }
+            saveCard() {
+                const card = this.data.content.cards[this.selectedIndex];
+                // Başlığı kaydet
+                card.title = document.getElementById('cardTitle').value;
+                // İçeriği kaydet
+                const contentType = document.getElementById('contentType').value;
+                if (contentType === 'text') {
+                    card.content = document.getElementById('contentText').value;
+                } else {
+                    const items = [];
+                    document.querySelectorAll('#listItems input').forEach(input => {
+                        items.push(input.value);
+                    });
+                    card.content = items;
+                }
+                this.renderMasterList();
+                // Başarı mesajı
+                const btn = document.getElementById('saveCardBtn');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="bi bi-check-circle-fill me-1"></i>Kaydedildi!';
+                btn.classList.add('btn-success');
+                btn.classList.remove('btn-primary');
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('btn-success');
+                    btn.classList.add('btn-primary');
+                }, 1500);
+            }
+            addCard() {
+                if (!this.data.content.cards) {
+                    this.data.content.cards = [];
+                }
+                this.data.content.cards.push({
+                    title: 'Yeni Kart',
+                    content: ''
+                });
+                this.renderMasterList();
+                this.selectCard(this.data.content.cards.length - 1);
+            }
+            deleteCard() {
+                if (confirm('Bu kartı silmek istediğinize emin misiniz?')) {
+                    this.data.content.cards.splice(this.selectedIndex, 1);
+                    this.selectedIndex = null;
+                    this.renderMasterList();
+                    this.renderDetailPanel();
+                }
+            }
+            moveCard(direction) {
+                const newIndex = this.selectedIndex + direction;
+                if (newIndex < 0 || newIndex >= this.data.content.cards.length) return;
+                // Swap
+                const temp = this.data.content.cards[this.selectedIndex];
+                this.data.content.cards[this.selectedIndex] = this.data.content.cards[newIndex];
+                this.data.content.cards[newIndex] = temp;
+                this.selectedIndex = newIndex;
+                this.renderMasterList();
+            }
+            saveToFile() {
+                const jsonString = JSON.stringify(this.data, null, 2);
+                const blob = new Blob([jsonString], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'bilgisayar-laboratuvari.json';
+                a.click();
+                URL.revokeObjectURL(url);
+                alert('JSON dosyası indirildi! Gerçek dosyanın üzerine kaydetmeyi unutmayın.');
+            }
+            setupEventListeners() {
+                document.getElementById('addCardBtn').addEventListener('click', () => this.addCard());
+                document.getElementById('saveCardBtn').addEventListener('click', () => this.saveCard());
+                document.getElementById('deleteCardBtn').addEventListener('click', () => this.deleteCard());
+                document.getElementById('moveUpBtn').addEventListener('click', () => this.moveCard(-1));
+                document.getElementById('moveDownBtn').addEventListener('click', () => this.moveCard(1));
+                document.getElementById('saveBtn').addEventListener('click', () => this.saveToFile());
+                document.getElementById('cancelBtn').addEventListener('click', () => {
+                    if (confirm('Değişiklikleri iptal etmek istediğinize emin misiniz?')) {
+                        this.renderDetailPanel();
+                    }
+                });
+            }
+        }
+        // Global değişken
+        let editor;
+        document.addEventListener('DOMContentLoaded', () => {
+            editor = new MasterDetailEditor();
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anadolu Üniversitesi Kütüphane - Basit Admin Mockup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        /* Sol Panel - Dosya Listesi */
+        .sidebar {
+            width: 280px;
+            background: white;
+            border-right: 1px solid #e0e0e0;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .sidebar h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .controls select, .controls button {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9em;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .controls select:focus, .controls button:hover {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
+        .controls button {
+            background: #3498db;
+            color: white;
+            border: none;
+        }
+        
+        .controls button:hover {
+            background: #2980b9;
+        }
+        
+        .file-list {
+            max-height: calc(100vh - 180px);
+            overflow-y: auto;
+        }
+        
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+        
+        .file-item:hover {
+            background: #f0f0f0;
+            transform: translateX(2px);
+        }
+        
+        .file-item.active {
+            background: #e3f2fd;
+            border-color: #2196f3;
+            font-weight: 500;
+        }
+        
+        .file-name {
+            font-weight: 500;
+            min-width: 120px;
+        }
+        
+        .status-badge {
+            display: flex;
+            gap: 4px;
+            font-size: 0.8em;
+        }
+        
+        .status {
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .status.tr-only {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .status.en-only {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+        
+        .status.both {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+        
+        .status.none {
+            background: #f5f5f5;
+            color: #757575;
+        }
+        
+        /* Sağ Panel - İçerik Editörü */
+        .editor {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #fafafa;
+        }
+        
+        .editor-header {
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .editor-header h2 {
+            color: #2c3e50;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 0.95em;
+        }
+        
+        .form-group input, 
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            background: white;
+            transition: border-color 0.2s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .array-item {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+        
+        .array-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .array-header h3 {
+            margin: 0;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        
+        .array-actions button {
+            padding: 6px 10px;
+            font-size: 0.85em;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 4px;
+        }
+        
+        .array-actions button:hover {
+            background: #f0f0f0;
+        }
+        
+        .array-actions .add-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+        }
+        
+        .array-actions .add-btn:hover {
+            background: #218838;
+        }
+        
+        .array-actions .remove-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+        }
+        
+        .array-actions .remove-btn:hover {
+            background: #c82333;
+        }
+        
+        .editor-actions {
+            margin-top: auto;
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+        
+        .editor-actions button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .editor-actions .cancel-btn {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .editor-actions .cancel-btn:hover {
+            background: #5a6268;
+        }
+        
+        .editor-actions .save-btn {
+            background: #28a745;
+            color: white;
+        }
+        
+        .editor-actions .save-btn:hover {
+            background: #218838;
+        }
+        
+        .status-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #34495e;
+            color: white;
+            text-align: center;
+            padding: 8px;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: 200px;
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+            }
+            
+            .editor {
+                height: calc(100vh - 200px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sol Panel -->
+        <aside class="sidebar">
+            <h2>📁 Dosya Listesi</h2>
+            
+            <div class="controls">
+                <select id="language-select">
+                    <option value="tr">Türkçe</option>
+                    <option value="en">English</option>
+                </select>
+                <button id="new-file-btn">+ Yeni Dosya</button>
+            </div>
+            
+            <div class="file-list" id="file-list">
+                <!-- Dosya listesi JavaScript ile doldurulacak -->
+            </div>
+        </aside>
+        
+        <!-- Sağ Panel -->
+        <main class="editor">
+            <header class="editor-header">
+                <h2>✏️ İçerik Editörü</h2>
+                <div>
+                    <span id="current-file">Henüz dosya seçilmedi</span>
+                    <button id="save-btn" disabled>💾 Kaydet (Ctrl+S)</button>
+                    <button id="cancel-btn">❌ İptal</button>
+                </div>
+            </header>
+            
+            <form id="content-form">
+                <!-- Form alanları JavaScript ile doldurulacak -->
+            </form>
+            
+            <div class="editor-actions">
+                <button type="button" id="cancel-btn">İptal Et</button>
+                <button type="submit" id="save-btn" disabled>Değişiklikleri Kaydet</button>
+            </div>
+        </main>
+    </div>
+    
+    <div class="status-bar" id="status-bar">
+        Hazır | Dil: Türkçe | Dosya: -
+    </div>
+
+    <script>
+        // Mock veri sistemi - Gerçek uygulamada bu localStorage yerine dosya sistemi olacak
+        const initMockData = () => {
+            // Başlangıçta örnek iletisim.json verileri
+            const sampleDataTr = {
+                "meta": {
+                    "title": "Bilgisayar Laboratuvarı",
+                    "description": "Anadolu Üniversitesi Kütüphane - Bilgisayar Laboratuvarı"
+                },
+                "hero": {
+                    "title": "Bilgisayar Laboratuvarı",
+                    "description": "Modern teknoloji ile araştırmalarınızı destekliyoruz"
+                },
+                "content": {
+                    "cards": [
+                        {
+                            "title": "Bilgisayar Laboratuvarı",
+                            "content": "Kütüphanemizde bulunan bilgisayar laboratuvarında araştırmalarınızı yapabilir, oturum açabilir ve yazı yazabilirsiniz."
+                        },
+                        {
+                            "title": "Yazıcı ve Tarayıcı Hizmetleri",
+                            "content": "Belge yazdırma, tarama ve fotokopi hizmetleri mevcuttur."
+                        }
+                    ]
+                },
+                "help": {
+                    "title": "Aradığınız soruyu bulamadınız mı?",
+                    "description": "Kütüphane hizmetleri hakkında daha detaylı bilgi almak için bizimle iletişime geçin.",
+                    "buttons": [
+                        {
+                            "icon": "fas fa-phone",
+                            "text": "Hemen Ara",
+                            "link": "tel:+902223350580"
+                        }
+                    ]
+                }
+            };
+            
+            // localStorage'ya veri yoksa örnek veriyi ekle
+            if (!localStorage.getItem('mockFileSystem')) {
+                const mockFS = {
+                    "tr": {
+                        "pages": {
+                            "iletisim.json": sampleDataTr
+                        }
+                    },
+                    "en": {
+                        "pages": {
+                            // Başta çeviri yok
+                        }
+                    }
+                };
+                localStorage.setItem('mockFileSystem', JSON.stringify(mockFS));
+            }
+        };
+        
+        // localStorage'dan veri okuma
+        const getMockFileSystem = () => {
+            return JSON.parse(localStorage.getItem('mockFileSystem') || '{}');
+        };
+        
+        const saveMockFileSystem = (fs) => {
+            localStorage.setItem('mockFileSystem', JSON.stringify(fs));
+        };
+        
+        // Dosya okuma (mock)
+        const readMockFile = (lang, filePath) => {
+            const fs = getMockFileSystem();
+            return fs[lang]?.pages?.[filePath] || null;
+        };
+        
+        // Dosya yazma (mock)
+        const writeMockFile = (lang, filePath, data) => {
+            const fs = getMockFileSystem();
+            if (!fs[lang]) fs[lang] = { pages: {} };
+            if (!fs[lang].pages) fs[lang].pages = {};
+            fs[lang].pages[filePath] = data;
+            saveMockFileSystem(fs);
+        };
+        
+        // Uygulama durumu
+        let appState = {
+            currentLang: 'tr',
+            currentFile: null,
+            currentData: null,
+            isDirty: false
+        };
+        
+        // DOM elementleri
+        const languageSelect = document.getElementById('language-select');
+        const fileList = document.getElementById('file-list');
+        const contentForm = document.getElementById('content-form');
+        const saveBtn = document.getElementById('save-btn');
+        const cancelBtn = document.getElementById('cancel-btn');
+        const currentFileSpan = document.getElementById('current-file');
+        const statusBar = document.getElementById('status-bar');
+        const newFileBtn = document.getElementById('new-file-btn');
+        
+        // Başlat
+        initMockData();
+        renderFileList();
+        loadFile('iletisim.json'); // Başlangıç dosyası
+        
+        // Event listenerler
+        languageSelect.addEventListener('change', (e) => {
+            appState.currentLang = e.target.value;
+            updateStatusBar();
+            if (appState.currentFile) {
+                loadFile(appState.currentFile);
+            }
+        });
+        
+        newFileBtn.addEventListener('click', () => {
+            const fileName = prompt('Yeni dosya adı (uzantısız):', '');
+            if (fileName) {
+                const filePath = `${fileName}.json`;
+                // Boş veri oluştur
+                writeMockFile(appState.currentLang, filePath, {
+                    meta: { title: "", description: "" },
+                    hero: { title: "", description: "" },
+                    content: { cards: [] },
+                    help: { title: "", description: "", buttons: [] }
+                });
+                renderFileList();
+                loadFile(filePath);
+            }
+        });
+        
+        contentForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            saveContent();
+        });
+        
+        cancelBtn.addEventListener('click', () => {
+            if (appState.isDirty && !confirm('Kaydetilmemiş değişiklikler var. İptal etmek istediğinize emin misiniz?')) {
+                return;
+            }
+            if (appState.currentFile) {
+                loadFile(appState.currentFile);
+            }
+        });
+        
+        // Klavye kısayolları
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 's') {
+                e.preventDefault();
+                if (saveBtn.disabled === false) {
+                    saveContent();
+                }
+            }
+            if (e.key === 'Escape') {
+                cancelBtn.click();
+            }
+        });
+        
+        // Fonksiyonlar
+        function renderFileList() {
+            const fs = getMockFileSystem();
+            const langFiles = fs[appState.currentLang]?.pages || {};
+            
+            fileList.innerHTML = '';
+            
+            // Dosya listesini alfabetik sırala
+            const fileNames = Object.keys(langFiles).sort();
+            
+            fileNames.forEach(fileName => {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                fileItem.dataset.file = fileName;
+                
+                if (fileName === appState.currentFile) {
+                    fileItem.classList.add('active');
+                }
+                
+                // Durum belirleme
+                const trExists = fs.tr?.pages?.[fileName] !== undefined;
+                const enExists = fs.en?.pages?.[fileName] !== undefined;
+                
+                let statusClass = 'status.none';
+                let statusText = '-';
+                
+                if (trExists && enExists) {
+                    statusClass = 'status.both';
+                    statusText = 'TR+EN';
+                } else if (trExists) {
+                    statusClass = 'status.tr-only';
+                    statusText = 'TR';
+                } else if (enExists) {
+                    statusClass = 'status.en-only';
+                    statusText = 'EN';
+                }
+                
+                fileItem.innerHTML = `
+                    <div class="file-name">${fileName}</div>
+                    <div class="status-badge">
+                        <span class="status ${statusClass}">${statusText}</span>
+                    </div>
+                `;
+                
+                fileItem.addEventListener('click', () => {
+                    selectFile(fileName);
+                });
+                
+                fileList.appendChild(fileItem);
+            });
+            
+            // Eğer dosya listesi boşsa
+            if (fileNames.length === 0) {
+                fileList.innerHTML = '<div style="text-align: center; padding: 20px; color: #757575;">Dosya bulunamadı</div>';
+            }
+        }
+        
+        function selectFile(fileName) {
+            appState.currentFile = fileName;
+            loadFile(fileName);
+            renderFileList(); // Aktif dosyayı vurgulamak için
+            updateStatusBar();
+        }
+        
+        function loadFile(fileName) {
+            const data = readMockFile(appState.currentLang, fileName);
+            if (data === null) {
+                // Dil dosyası yoksa diğer dilde ara veya boş veri oluştur
+                const otherLang = appState.currentLang === 'tr' ? 'en' : 'tr';
+                const otherData = readMockFile(otherLang, fileName);
+                
+                if (otherData !== null) {
+                    // Başlangıç içeriği olarak diğer dilden kopyala (boş çeviri olarak)
+                    const emptyData = JSON.parse(JSON.stringify(otherData));
+                    // Metin alanlarını boşalt
+                    const emptyStrings = (obj) => {
+                        if (typeof obj === 'string') return '';
+                        if (Array.isArray(obj)) return obj.map(emptyStrings);
+                        if (obj && typeof obj === 'object') {
+                            const result = {};
+                            for (const key in obj) {
+                                result[key] = emptyStrings(obj[key]);
+                            }
+                            return result;
+                        }
+                        return obj;
+                    };
+                    
+                    const clearedData = emptyStrings(emptyData);
+                    writeMockFile(appState.currentLang, fileName, clearedData);
+                    loadFile(fileName); // Yeniden yükle
+                    return;
+                }
+                
+                // Hiçbir dilde yoksa tam boş veri
+                appState.currentData = {
+                    meta: { title: "", description: "" },
+                    hero: { title: "", description: "" },
+                    content: { cards: [] },
+                    help: { title: "", description: "", buttons: [] }
+                };
+            } else {
+                appState.currentData = data;
+            }
+            
+            appState.isDirty = false;
+            renderForm();
+            updateSaveButtonState();
+        }
+        
+        function renderForm() {
+            if (!appState.currentData) {
+                contentForm.innerHTML = '<p>Veri yüklenemedi.</p>';
+                return;
+            }
+            
+            contentForm.innerHTML = generateFormFields(appState.currentData, '');
+        }
+        
+        function generateFormFields(obj, path) {
+            let html = '';
+            
+            for (const key in obj) {
+                if (!obj.hasOwnProperty(key)) continue;
+                
+                const value = obj[key];
+                const fullPath = path ? `${path}.${key}` : key;
+                
+                // Kontrol: Tekrarlanan yapılar (array) için özel işlem
+                if (Array.isArray(value) && value.length > 0 && typeof value[0] === 'object') {
+                    html += `
+                        <div class="form-group">
+                            <label for="${fullPath}">${humanizeKey(key)}</label>
+                            <div id="${fullPath}-array">
+                                ${value.map((item, index) => `
+                                    <div class="array-item">
+                                        <div class="array-header">
+                                            <h3>${humanizeKey(key)} ${index + 1}</h3>
+                                            <div class="array-actions">
+                                                <button type="button" class="remove-btn" data-path="${fullPath}" data-index="${index}">- Kaldır</button>
+                                            </div>
+                                        </div>
+                                        ${generateFormFields(item, `${fullPath}[${index}]`)}
+                                    </div>
+                                `).join('')}
+                                <button type="button" class="add-btn" data-path="${fullPath}">+ ${humanizeKey(key)} Ekle</button>
+                            </div>
+                        </div>
+                    `;
+                } 
+                // Başka object ise derinleş
+                else if (typeof value === 'object' && value !== null) {
+                    // Çoklu dil objesi değilse (mock sistemimizde bu durum olmamalı ama güvenlik için)
+                    if (!(value.tr !== undefined || value.en !== undefined)) {
+                        html += `<div class="form-group">
+                            <label for="${fullPath}">${humanizeKey(key)}</label>
+                            ${generateFormFields(value, fullPath)}
+                        </div>`;
+                    } else {
+                        // Bu sistemimizde bu durumu işlemiyoruz çünkü her dosya tek dilde
+                        // Gerçek sistemde bu şekilde işlenecek
+                    }
+                }
+                // Basit tipler (string, number, boolean)
+                else {
+                    const inputType = typeof value === 'boolean' ? 'checkbox' : 
+                                    ['string', 'number'].includes(typeof value) ? 'text' : 
+                                    typeof value;
+                                    
+                    html += `<div class="form-group">
+                        <label for="${fullPath}">${humanizeKey(key)}</label>
+                        <input 
+                            type="${inputType === 'checkbox' ? 'checkbox' : 'text'}" 
+                            id="${fullPath}" 
+                            ${inputType === 'checkbox' ? (value ? 'checked' : '') : `value="${escapeHtml(String(value))}"`}
+                            data-path="${fullPath}"
+                        >
+                    </div>`;
+                }
+            }
+            
+            return html;
+        }
+        
+        function humanizeKey(key) {
+            return key
+                .replace(/([A-Z])/g, ' $1')
+                .replace(/^./, str => str.toUpperCase())
+                .replace(/_/g, ' ')
+                .trim();
+        }
+        
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+        
+        function saveContent() {
+            if (!appState.currentFile || !appState.currentData) return;
+            
+            // Form değerlerini topla
+            const formData = collectFormData(contentForm.elements);
+            
+            // Veriyi güncelle
+            appState.currentData = formData;
+            appState.isDirty = false;
+            
+            // Mock dosya sistemine yaz
+            writeMockFile(appState.currentLang, appState.currentFile, appState.currentData);
+            
+            // UI güncellemesi
+            updateSaveButtonState();
+            renderFileList(); // Durum işaretlerini güncelle
+            updateStatusBar();
+            
+            showStatus('Dosya başarıyla kaydedildi!', 'success');
+        }
+        
+        function collectFormData(elements) {
+            const data = {};
+            
+            // Dizi olmayan alanlar için
+            const regularInputs = Array.from(elements).filter(el => !el.dataset.path || !el.dataset.path.includes('['));
+            regularInputs.forEach(el => {
+                const value = getElementValue(el);
+                setNestedValue(data, el.dataset.path, value);
+            });
+            
+            // Diziler için (basitleştirilmiş - gerçek uygulamada daha kompleks olur)
+            // Bu mockup için basit bir yaklaşım
+            
+            return data;
+        }
+        
+        function getElementValue(element) {
+            switch (element.type) {
+                case 'checkbox':
+                    return element.checked;
+                case 'select-multiple':
+                    return Array.from(element.selectedOptions).map(opt => opt.value);
+                case 'select-one':
+                    return element.value;
+                default:
+                    return element.value;
+            }
+        }
+        
+        function setNestedValue(obj, path, value) {
+            if (!path) return obj;
+            
+            const parts = path.split('.');
+            let current = obj;
+            
+            for (let i = 0; i < parts.length - 1; i++) {
+                const part = parts[i];
+                
+                // Dizi işaretleri kontrolü
+                const arrayMatch = part.match(/^(.+)\[(\d+)\]$/);
+                if (arrayMatch) {
+                    const [, key, index] = arrayMatch;
+                    if (!current[key]) current[key] = [];
+                    if (!current[key][index]) current[key][index] = {};
+                    current = current[key][index];
+                } else {
+                    if (!current[part]) current[part] = {};
+                    current = current[part];
+                }
+            }
+            
+            const lastPart = parts[parts.length - 1];
+            const arrayMatch = lastPart.match(/^(.+)\[(\d+)\]$/);
+            
+            if (arrayMatch) {
+                const [, key, index] = arrayMatch;
+                if (!current[key]) current[key] = [];
+                current[key][index] = value;
+            } else {
+                current[lastPart] = value;
+            }
+            
+            return obj;
+        }
+        
+        function updateSaveButtonState() {
+            const hasFile = !!appState.currentFile;
+            saveBtn.disabled = !(hasFile && appState.isDirty);
+            
+            // Form değiştiğinde isDirty güncelle
+            if (appState.currentFile && contentForm) {
+                // Basitleştirilmiş: her input değişikliğinde dirty yap
+                // Gerçek uygulamada daha iyi bir değerlendirme yapılacak
+            }
+        }
+        
+        function updateStatusBar() {
+            const langText = appState.currentLang === 'tr' ? 'Türkçe' : 'English';
+            const fileText = appState.currentFile || '-';
+            statusBar.textContent = `Hazır | Dil: ${langText} | Dosya: ${fileText}`;
+        }
+        
+        function showStatus(message, type = 'info') {
+            statusBar.textContent = message;
+            statusBar.style.background = type === 'success' ? '#28a745' : 
+                                      type === 'error' ? '#dc3545' : 
+                                      '#34495e';
+            setTimeout(() => {
+                statusBar.style.background = '#34495e';
+                statusBar.textContent = `Hazır | Dil: ${appState.currentLang === 'tr' ? 'Türkçe' : 'English'} | Dosya: ${appState.currentFile || '-'}`;
+            }, 3000);
+        }
+        
+        // Dinamik elementler için event delegasyon
+        document.addEventListener('click', (e) => {
+            // Array elemanı ekleme
+            if (e.target.classList.contains('add-btn')) {
+                const path = e.target.dataset.path;
+                const fs = getMockFileSystem();
+                const langData = fs[appState.currentLang]?.pages?.[appState.currentFile];
+                
+                if (langData) {
+                    const obj = getNestedValue(langData, path);
+                    if (Array.isArray(obj)) {
+                        // Boş obje ekle
+                        obj.push({});
+                        writeMockFile(appState.currentLang, appState.currentFile, langData);
+                        loadFile(appState.currentFile);
+                    }
+                }
+            }
+            
+            // Array elemanı kaldırma
+            if (e.target.classList.contains('remove-btn')) {
+                const path = e.target.dataset.path;
+                const index = parseInt(e.target.dataset.index);
+                const fs = getMockFileSystem();
+                const langData = fs[appState.currentLang]?.pages?.[appState.currentFile];
+                
+                if (langData && confirm(`${path}[$index] öğesini kaldırmak istediğinize emin misiniz?`)) {
+                    const obj = getNestedValue(langData, path);
+                    if (Array.isArray(obj)) {
+                        obj.splice(index, 1);
+                        writeMockFile(appState.currentLang, appState.currentFile, langData);
+                        loadFile(appState.currentFile);
+                    }
+                }
+            }
+        });
+        
+        function getNestedValue(obj, path) {
+            if (!path) return obj;
+            
+            const parts = path.split('.');
+            let current = obj;
+            
+            for (let i = 0; i < parts.length; i++) {
+                const part = parts[i];
+                
+                // Dizi işaretleri kontrolü
+                const arrayMatch = part.match(/^(.+)\[(\d+)\]$/);
+                if (arrayMatch) {
+                    const [, key, index] = arrayMatch;
+                    if (current[key] && current[key][index] !== undefined) {
+                        current = current[key][index];
+                    } else {
+                        return undefined;
+                    }
+                } else {
+                    if (current[part] !== undefined) {
+                        current = current[part];
+                    } else {
+                        return undefined;
+                    }
+                }
+            }
+            
+            return current;
+        }
+    </script>
+</body>
+</html>

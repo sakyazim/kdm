@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo: Hybrid TOC (Desktop Sidebar + Mobile Drawer)</title>
+<link rel="alternate" hreflang="tr" href="https://kdm.anadolu.edu.tr/demo-toc-hybrid.html"/>
+<link rel="alternate" hreflang="en" href="https://kdm.anadolu.edu.tr/demo-toc-hybrid.html"/>
+<link rel="alternate" hreflang="x-default" href="https://kdm.anadolu.edu.tr/demo-toc-hybrid.html"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f5f5f5;
+    }
+    /* ========================================
+       MOBILE: LEFT DRAWER TOC
+       ======================================== */
+    /* Mobile Toggle Button (Fixed Left) */
+    .mobile-toc-toggle {
+      position: fixed;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 120px;
+      background: linear-gradient(135deg, #1976d2 0%, #42a5f5 100%);
+      color: white;
+      border: none;
+      border-radius: 0 12px 12px 0;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      box-shadow: 2px 0 12px rgba(25,118,210,0.4);
+      z-index: 998;
+      transition: all 0.3s ease;
+    }
+    .mobile-toc-toggle:hover {
+      width: 52px;
+      box-shadow: 4px 0 16px rgba(25,118,210,0.5);
+    }
+    .mobile-toc-toggle.hidden {
+      left: -48px;
+    }
+    /* Mobile Drawer */
+    .mobile-toc-drawer {
+      position: fixed;
+      left: -320px;
+      top: 0;
+      width: 320px;
+      height: 100vh;
+      background: white;
+      box-shadow: 2px 0 16px rgba(0,0,0,0.2);
+      z-index: 999;
+      transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .mobile-toc-drawer.open {
+      left: 0;
+    }
+    /* Drawer Header */
+    .drawer-header {
+      padding: 20px;
+      background: linear-gradient(135deg, #1976d2 0%, #42a5f5 100%);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .drawer-header h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0;
+    }
+    .drawer-close-btn {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      transition: all 0.2s ease;
+    }
+    .drawer-close-btn:hover {
+      background: rgba(255,255,255,0.3);
+      transform: rotate(90deg);
+    }
+    /* Drawer Progress */
+    .drawer-progress {
+      padding: 16px 20px;
+      background: #f8f9fa;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .drawer-progress-text {
+      font-size: 11px;
+      color: #666;
+      margin-bottom: 8px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .drawer-progress-bar-container {
+      width: 100%;
+      height: 6px;
+      background: #e0e0e0;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .drawer-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #1976d2, #42a5f5);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+    /* Drawer Content */
+    .drawer-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px;
+    }
+    .drawer-toc-list {
+      list-style: none;
+    }
+    .drawer-toc-list li {
+      margin-bottom: 4px;
+    }
+    .drawer-toc-list a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      color: #555;
+      text-decoration: none;
+      font-size: 14px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+    .drawer-toc-list a:hover {
+      background: #f0f7ff;
+      color: #1976d2;
+    }
+    .drawer-toc-list a.active {
+      background: #e3f2fd;
+      color: #1976d2;
+      font-weight: 600;
+      border-left: 4px solid #1976d2;
+    }
+    .drawer-toc-number {
+      width: 28px;
+      height: 28px;
+      background: #f0f0f0;
+      color: #666;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .drawer-toc-list a.active .drawer-toc-number {
+      background: #1976d2;
+      color: white;
+    }
+    /* Overlay */
+    .drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 998;
+      display: none;
+    }
+    .drawer-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    /* ========================================
+       DESKTOP: STICKY SIDEBAR TOC
+       ======================================== */
+    /* Container */
+    .page-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 40px;
+      padding: 40px 20px;
+    }
+    /* Desktop Sidebar TOC */
+    .desktop-toc-sidebar {
+      position: sticky;
+      top: 20px;
+      height: fit-content;
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      max-height: calc(100vh - 40px);
+      overflow-y: auto;
+    }
+    .desktop-toc-sidebar h3 {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #666;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #e0e0e0;
+    }
+    .desktop-toc-list {
+      list-style: none;
+    }
+    .desktop-toc-list li {
+      margin-bottom: 8px;
+    }
+    .desktop-toc-list a {
+      display: block;
+      padding: 8px 12px;
+      color: #555;
+      text-decoration: none;
+      font-size: 14px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      border-left: 3px solid transparent;
+    }
+    .desktop-toc-list a:hover {
+      background: #f0f7ff;
+      color: #1976d2;
+      padding-left: 16px;
+    }
+    .desktop-toc-list a.active {
+      background: #e3f2fd;
+      color: #1976d2;
+      border-left-color: #1976d2;
+      font-weight: 600;
+      padding-left: 16px;
+    }
+    /* Progress Bar */
+    .reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: #e0e0e0;
+      z-index: 1000;
+    }
+    .reading-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #1976d2, #42a5f5);
+      width: 0%;
+      transition: width 0.2s ease;
+    }
+    /* Main Content */
+    .main-content {
+      background: white;
+      border-radius: 12px;
+      padding: 48px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .main-content h1 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 16px;
+    }
+    .main-content .subtitle {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 32px;
+    }
+    .content-section {
+      margin-bottom: 48px;
+      padding-top: 24px;
+      scroll-margin-top: 24px;
+    }
+    .content-section h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 3px solid #1976d2;
+    }
+    .content-section h3 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #333;
+      margin: 24px 0 12px;
+    }
+    .content-section p {
+      margin-bottom: 16px;
+      font-size: 16px;
+      line-height: 1.8;
+      color: #444;
+    }
+    .content-section ul, .content-section ol {
+      margin: 16px 0 16px 24px;
+    }
+    .content-section li {
+      margin-bottom: 8px;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+    .info-box {
+      background: #e3f2fd;
+      border-left: 4px solid #1976d2;
+      padding: 16px 20px;
+      margin: 24px 0;
+      border-radius: 8px;
+    }
+    .info-box p {
+      margin: 0;
+      color: #0d47a1;
+    }
+    /* Custom Scrollbar */
+    .desktop-toc-sidebar::-webkit-scrollbar,
+    .drawer-content::-webkit-scrollbar {
+      width: 6px;
+    }
+    .desktop-toc-sidebar::-webkit-scrollbar-track,
+    .drawer-content::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+    .desktop-toc-sidebar::-webkit-scrollbar-thumb,
+    .drawer-content::-webkit-scrollbar-thumb {
+      background: #1976d2;
+      border-radius: 10px;
+    }
+    /* ========================================
+       RESPONSIVE BREAKPOINT
+       ======================================== */
+    @media (max-width: 1024px) {
+      /* Hide desktop sidebar */
+      .page-container {
+        grid-template-columns: 1fr;
+      }
+      .desktop-toc-sidebar {
+        display: none;
+      }
+      /* Show mobile drawer elements */
+      .mobile-toc-toggle {
+        display: flex;
+      }
+      .mobile-toc-drawer {
+        display: flex;
+      }
+      .drawer-overlay {
+        display: block;
+      }
+      .main-content {
+        padding: 32px 24px;
+      }
+      .main-content h1 {
+        font-size: 28px;
+      }
+    }
+    @media (max-width: 768px) {
+      .main-content {
+        padding: 24px 20px;
+      }
+      .content-section h2 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="reading-progress">
+    <div class="reading-progress-bar" id="progressBar"></div>
+  </div>
+  <button class="mobile-toc-toggle" id="mobileToggle" onclick="openDrawer()">
+    İçindekiler
+  </button>
+  <div class="mobile-toc-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <h3>İçindekiler</h3>
+      <button class="drawer-close-btn" onclick="closeDrawer()">✕</button>
+    </div>
+    <div class="drawer-progress">
+      <div class="drawer-progress-text">Okuma İlerlemeniz</div>
+      <div class="drawer-progress-bar-container">
+        <div class="drawer-progress-bar" id="drawerProgressBar"></div>
+      </div>
+    </div>
+    <div class="drawer-content">
+      <ul class="drawer-toc-list">
+        <li>
+          <a href="#section1" data-section="section1" onclick="navigateToSection('section1', true)">
+            <div class="drawer-toc-number">1</div>
+            <span>Genel Bilgiler</span>
+          </a>
+        </li>
+        <li>
+          <a href="#section2" data-section="section2" onclick="navigateToSection('section2', true)">
+            <div class="drawer-toc-number">2</div>
+            <span>Ücret Tarifeleri</span>
+          </a>
+        </li>
+        <li>
+          <a href="#section3" data-section="section3" onclick="navigateToSection('section3', true)">
+            <div class="drawer-toc-number">3</div>
+            <span>Ödeme Yöntemleri</span>
+          </a>
+        </li>
+        <li>
+          <a href="#section4" data-section="section4" onclick="navigateToSection('section4', true)">
+            <div class="drawer-toc-number">4</div>
+            <span>İndirim Koşulları</span>
+          </a>
+        </li>
+        <li>
+          <a href="#section5" data-section="section5" onclick="navigateToSection('section5', true)">
+            <div class="drawer-toc-number">5</div>
+            <span>İptal ve İade</span>
+          </a>
+        </li>
+        <li>
+          <a href="#section6" data-section="section6" onclick="navigateToSection('section6', true)">
+            <div class="drawer-toc-number">6</div>
+            <span>Sıkça Sorulan Sorular</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+  <div class="page-container">
+    <aside class="desktop-toc-sidebar">
+      <h3>İçindekiler</h3>
+      <ul class="desktop-toc-list">
+        <li><a href="#section1" data-section="section1" onclick="navigateToSection('section1', false)">Genel Bilgiler</a></li>
+        <li><a href="#section2" data-section="section2" onclick="navigateToSection('section2', false)">Ücret Tarifeleri</a></li>
+        <li><a href="#section3" data-section="section3" onclick="navigateToSection('section3', false)">Ödeme Yöntemleri</a></li>
+        <li><a href="#section4" data-section="section4" onclick="navigateToSection('section4', false)">İndirim Koşulları</a></li>
+        <li><a href="#section5" data-section="section5" onclick="navigateToSection('section5', false)">İptal ve İade</a></li>
+        <li><a href="#section6" data-section="section6" onclick="navigateToSection('section6', false)">Sıkça Sorulan Sorular</a></li>
+      </ul>
+    </aside>
+    <main class="main-content">
+      <h1>Makale İşlem Ücretleri</h1>
+      <p class="subtitle">Kütüphanemizde sunulan hizmetlere ilişkin ücret tarifeleri ve ödeme koşulları</p>
+      <section class="content-section" id="section1">
+        <h2>Genel Bilgiler</h2>
+        <p>Anadolu Üniversitesi Kütüphanesi, akademik ve araştırma faaliyetlerini desteklemek amacıyla çeşitli hizmetler sunmaktadır. Bu hizmetlerin bir kısmı ücretli olup, ücret tarifeleri aşağıda detaylı olarak açıklanmıştır.</p>
+        <h3>Hizmet Kapsamı</h3>
+        <p>Kütüphanemizde sunulan ücretli hizmetler şunlardır:</p>
+        <ul>
+          <li>Makale fotokopi ve baskı hizmetleri</li>
+          <li>Elektronik makale gönderimleri</li>
+          <li>Kitaplar arası ödünç verme (ILL)</li>
+          <li>Özel araştırma ve veri tarama hizmetleri</li>
+          <li>Kurumsal üyelik ve danışmanlık hizmetleri</li>
+        </ul>
+        <div class="info-box">
+          <p><strong>Önemli Not:</strong> Öğrenci ve akademik personele özel indirim oranları uygulanmaktadır. Detaylı bilgi için İndirim Koşulları bölümünü inceleyiniz.</p>
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </section>
+      <section class="content-section" id="section2">
+        <h2>Ücret Tarifeleri</h2>
+        <p>Kütüphane hizmetlerine ilişkin güncel ücret tarifeleri aşağıdaki gibidir:</p>
+        <h3>Fotokopi ve Baskı Hizmetleri</h3>
+        <ul>
+          <li>Siyah-beyaz fotokopi/baskı: 0,50 TL/sayfa</li>
+          <li>Renkli fotokopi/baskı: 2,00 TL/sayfa</li>
+          <li>A3 boyutunda siyah-beyaz: 1,00 TL/sayfa</li>
+          <li>A3 boyutunda renkli: 4,00 TL/sayfa</li>
+        </ul>
+        <h3>Elektronik Makale Gönderimleri</h3>
+        <p>E-posta veya elektronik ortamda gönderilen makale başına: 5,00 TL</p>
+        <h3>Kitaplar Arası Ödünç Verme (ILL)</h3>
+        <ul>
+          <li>Yurt içi kütüphanelerden talep: 15,00 TL/makale</li>
+          <li>Yurt dışı kütüphanelerden talep: 25,00 TL/makale</li>
+          <li>Kargo ücreti (varsa) ayrıca hesaplanır</li>
+        </ul>
+        <div class="info-box">
+          <p><strong>Toplu İşlem İndirimi:</strong> 50 sayfanın üzerindeki işlemlerde %10, 100 sayfanın üzerindeki işlemlerde %15 indirim uygulanır.</p>
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      </section>
+      <section class="content-section" id="section3">
+        <h2>Ödeme Yöntemleri</h2>
+        <p>Kütüphane hizmetleri için ödeme yaparken aşağıdaki yöntemleri kullanabilirsiniz:</p>
+        <h3>Kabul Edilen Ödeme Yöntemleri</h3>
+        <ol>
+          <li><strong>Nakit Ödeme:</strong> Kütüphane gişesinden nakit olarak ödeme yapabilirsiniz.</li>
+          <li><strong>Kredi/Banka Kartı:</strong> Tüm yaygın kredi ve banka kartları kabul edilmektedir.</li>
+          <li><strong>Havale/EFT:</strong> Banka hesap bilgilerimize havale veya EFT yapabilirsiniz.</li>
+          <li><strong>Üniversite Kartı:</strong> Öğrenci ve personel için üniversite kartı ile ödeme mümkündür.</li>
+        </ol>
+        <h3>Banka Hesap Bilgileri</h3>
+        <p>Havale/EFT yaparken aşağıdaki hesap bilgilerini kullanabilirsiniz:</p>
+        <ul>
+          <li>Banka: Ziraat Bankası Eskişehir Şubesi</li>
+          <li>Hesap Adı: Anadolu Üniversitesi Kütüphanesi</li>
+          <li>IBAN: TR33 0001 0000 0000 0000 0000 00</li>
+          <li>Açıklama: Ad Soyad - Öğrenci/Personel No</li>
+        </ul>
+        <div class="info-box">
+          <p><strong>Ödeme Sonrası:</strong> Havale/EFT ile yapılan ödemelerde dekont kopyasını mutlaka kütüphane gişesine ibraz ediniz.</p>
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at nisi id nunc sagittis facilisis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.</p>
+      </section>
+      <section class="content-section" id="section4">
+        <h2>İndirim Koşulları</h2>
+        <p>Belirli kullanıcı grupları ve koşullar altında indirimler uygulanmaktadır:</p>
+        <h3>Öğrenci İndirimleri</h3>
+        <ul>
+          <li>Lisans öğrencileri: %20 indirim</li>
+          <li>Yüksek lisans öğrencileri: %25 indirim</li>
+          <li>Doktora öğrencileri: %30 indirim</li>
+        </ul>
+        <h3>Akademik Personel İndirimleri</h3>
+        <ul>
+          <li>Araştırma görevlileri: %25 indirim</li>
+          <li>Öğretim görevlileri: %30 indirim</li>
+          <li>Doç. Dr. ve Prof. Dr.: %35 indirim</li>
+        </ul>
+        <h3>Toplu İşlem İndirimleri</h3>
+        <p>Aynı anda yapılan toplu işlemlerde aşağıdaki indirimler geçerlidir:</p>
+        <ul>
+          <li>50-99 sayfa: %10 indirim</li>
+          <li>100-199 sayfa: %15 indirim</li>
+          <li>200 sayfa ve üzeri: %20 indirim</li>
+        </ul>
+        <div class="info-box">
+          <p><strong>İndirim Birleştirme:</strong> Öğrenci/personel indirimi ile toplu işlem indirimi birlikte uygulanabilir. Maksimum toplam indirim oranı %40'tır.</p>
+        </div>
+      </section>
+      <section class="content-section" id="section5">
+        <h2>İptal ve İade</h2>
+        <p>Hizmet iptali ve ücret iadesi koşulları aşağıdaki gibidir:</p>
+        <h3>İptal Koşulları</h3>
+        <ul>
+          <li>Hizmet başlamadan önce yapılan iptal taleplerinde %100 iade yapılır.</li>
+          <li>Hizmet başladıktan sonra iptal mümkün değildir.</li>
+          <li>ILL hizmetlerinde dış kütüphanelerden kaynaklanan gecikmeler durumunda ücret iadesi yapılır.</li>
+        </ul>
+        <h3>İade Süreci</h3>
+        <ol>
+          <li>İptal talebinizi kütüphane gişesine veya e-posta ile iletiniz.</li>
+          <li>İade talebi 5 iş günü içinde değerlendirilir.</li>
+          <li>Onaylanan iadeler 10 iş günü içinde hesabınıza aktarılır.</li>
+          <li>Nakit ödemeler için kütüphane gişesinden iade alabilirsiniz.</li>
+        </ol>
+        <h3>İade Yapılamayan Durumlar</h3>
+        <ul>
+          <li>Tamamlanmış fotokopi ve baskı işlemleri</li>
+          <li>Gönderilmiş elektronik makale hizmetleri</li>
+          <li>Kullanıcı hatasından kaynaklanan yanlış talepler</li>
+        </ul>
+        <div class="info-box">
+          <p><strong>Önemli:</strong> İade taleplerinde ödeme dekontunuz ve kütüphane hizmet numaranız gereklidir.</p>
+        </div>
+      </section>
+      <section class="content-section" id="section6">
+        <h2>Sıkça Sorulan Sorular</h2>
+        <h3>1. Öğrenci indiriminden nasıl yararlanabilirim?</h3>
+        <p>Öğrenci kartınızı veya öğrenci belgenizi gişeye ibraz etmeniz yeterlidir. İndirim otomatik olarak uygulanacaktır.</p>
+        <h3>2. Toplu işlem indirimi nasıl hesaplanır?</h3>
+        <p>Aynı anda yaptığınız tüm işlemlerin toplam sayfa sayısına göre indirim oranı belirlenir ve tüm işlem tutarına uygulanır.</p>
+        <h3>3. Ödeme yaparken fatura alabilir miyim?</h3>
+        <p>Evet, talep etmeniz durumunda tüm ödemeler için fatura düzenlenmektedir. Fatura bilgilerinizi ödeme öncesinde bildirmeniz gerekmektedir.</p>
+        <h3>4. Elektronik makale gönderimleri ne kadar sürede tamamlanır?</h3>
+        <p>Yurt içi kaynaklardan 1-3 iş günü, yurt dışı kaynaklardan 5-10 iş günü içinde makaleler e-posta adresinize gönderilir.</p>
+        <h3>5. Ücret tarifelerinde değişiklik olur mu?</h3>
+        <p>Ücret tarifeleri yılda bir kez, akademik takvim başlangıcında güncellenebilir. Güncel tarifeler için web sitemizi takip edebilirsiniz.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </section>
+    </main>
+  </div>
+  <script>
+    // ========================================
+    // MOBILE DRAWER FUNCTIONALITY
+    // ========================================
+    function openDrawer() {
+      document.getElementById('mobileDrawer').classList.add('open');
+      document.getElementById('drawerOverlay').classList.add('active');
+      document.getElementById('mobileToggle').classList.add('hidden');
+    }
+    function closeDrawer() {
+      document.getElementById('mobileDrawer').classList.remove('open');
+      document.getElementById('drawerOverlay').classList.remove('active');
+      document.getElementById('mobileToggle').classList.remove('hidden');
+    }
+    // Close drawer on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeDrawer();
+      }
+    });
+    // ========================================
+    // NAVIGATION & ACTIVE SECTION TRACKING
+    // ========================================
+    const sections = document.querySelectorAll('.content-section');
+    const desktopLinks = document.querySelectorAll('.desktop-toc-list a');
+    const drawerLinks = document.querySelectorAll('.drawer-toc-list a');
+    function navigateToSection(sectionId, isMobile) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        window.scrollTo({
+          top: section.offsetTop - 24,
+          behavior: 'smooth'
+        });
+        // Close drawer if mobile
+        if (isMobile) {
+          setTimeout(closeDrawer, 300);
+        }
+      }
+      return false; // Prevent default anchor behavior
+    }
+    function updateActiveSection() {
+      let currentSection = '';
+      const scrollPosition = window.scrollY;
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionBottom = sectionTop + section.offsetHeight;
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+          currentSection = section.getAttribute('id');
+        }
+      });
+      // Update desktop TOC
+      desktopLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('data-section') === currentSection) {
+          link.classList.add('active');
+        }
+      });
+      // Update mobile drawer TOC
+      drawerLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('data-section') === currentSection) {
+          link.classList.add('active');
+        }
+      });
+    }
+    // ========================================
+    // READING PROGRESS BAR
+    // ========================================
+    function updateProgressBar() {
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.scrollY;
+      const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+      document.getElementById('progressBar').style.width = scrollPercent + '%';
+      document.getElementById('drawerProgressBar').style.width = scrollPercent + '%';
+    }
+    // Event Listeners
+    window.addEventListener('scroll', () => {
+      updateActiveSection();
+      updateProgressBar();
+    });
+    // Initial call
+    updateActiveSection();
+    updateProgressBar();
+  </script>
+</body>
+</html>
+

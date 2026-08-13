@@ -1,0 +1,146 @@
+{
+  "hero": {
+    "title": {
+      "tr": "Tarihçe ve Genel Bilgiler",
+      "en": "History and General Information"
+    },
+    "description": {
+      "tr": "Anadolu Üniversitesi Kütüphanesi'nin kuruluşundan bugüne uzanan serüveni ve sunduğu hizmetler hakkında bilgi edinin.",
+      "en": "Learn about the journey of Anadolu University Library from its establishment to the present and the services it offers."
+    },
+    "icon": "bi bi-clock-history",
+    "breadcrumb": [
+      {
+        "text": {
+          "tr": "Ana Sayfa",
+          "en": "Home"
+        },
+        "url": "index.html"
+      },
+      {
+        "text": {
+          "tr": "Tarihçe ve Genel Bilgiler",
+          "en": "History and General Information"
+        },
+        "url": "tarihce-genel-bilgiler.html"
+      }
+    ]
+  },
+  "content": [
+    {
+      "id": "tarihce-section",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Tarihçe ve Genel Bilgiler",
+              "en": "History and General Information"
+            },
+            "icon": "bi bi-clock-history",
+            "id": "tarihce-heading"
+          }
+        },
+        {
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "1958 yılında Eskişehir İktisadi ve Ticari İlimler Akademisi bünyesinde kurulan Kütüphanemiz, 124 Sayılı Kanun Hükmündeki Kararnamenin 33. maddesi doğrultusunda hizmet vermektedir. 9 Haziran 1980 tarih ve 17012 sayılı Resmî Gazete'de yayımlanarak yürürlüğe giren yönetmelik ile görev tanımı netleştirilmiştir. Kütüphane ve Dokümantasyon Dairesi Başkanlığı; üniversitemizin öğretim, araştırma ve eğitim ihtiyaçlarını karşılamak amacıyla, her alandan bilgi kaynaklarını temin eder, düzenler ve kullanıcıların erişimine sunar.",
+              "en": "Our Library, established in 1958 within the Eskişehir Academy of Economics and Commercial Sciences, provides services in accordance with Article 33 of the Decree Law No. 124. The job description was clarified with the regulation published in the Official Gazette dated June 9, 1980 and numbered 17012. The Library and Documentation Department procures, organizes and provides access to information resources from all fields to meet the teaching, research and educational needs of our university."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "vizyon-section",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Vizyonumuz",
+              "en": "Our Vision"
+            },
+            "icon": "bi bi-star-fill",
+            "id": "vizyon-heading"
+          }
+        },
+        {
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Evrensel ölçekte örnek gösterilen, çağdaş teknolojiyi etkili şekilde kullanan bir bilgi merkezi olmak.",
+              "en": "To be a universally exemplary information center that effectively utilizes contemporary technology."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "misyon-section",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Misyonumuz",
+              "en": "Our Mission"
+            },
+            "icon": "bi bi-bullseye",
+            "id": "misyon-heading"
+          }
+        },
+        {
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Anadolu Üniversitesi'nin temel misyonu doğrultusunda: Bilim, teknoloji, sanat ve spor alanlarında eğitim ve araştırma faaliyetlerine destek olmak, her yaştan bireye nitelikli ve özgün, örgün ve uzaktan öğrenme imkânları sunmak, toplumsal gereksinimlere yönelik yaratıcı ve yenilikçi çözümler üretmek, gerekli bilgi kaynaklarını kütüphanecilik ilkelerine uygun biçimde toplayarak erişime sunmak.",
+              "en": "In line with the core mission of Anadolu University: To support education and research activities in science, technology, arts and sports, to offer quality and original, formal and distance learning opportunities to individuals of all ages, to produce creative and innovative solutions for social needs, and to collect and provide access to necessary information resources in accordance with library principles."
+            }
+          }
+        }
+      ]
+    }
+    
+  ],
+  "helpSection": {
+    "title": {
+      "tr": "Daha fazla bilgi almak ister misiniz?",
+      "en": "Would you like more information?"
+    },
+    "description": {
+      "tr": "Kütüphane hizmetlerimiz ve tarihçemiz hakkında detaylı bilgi almak için bizimle iletişime geçebilirsiniz.",
+      "en": "You can contact us for detailed information about our library services and history."
+    },
+    "buttons": [
+      {
+        "icon": "fas fa-phone",
+        "text": {
+          "tr": "Hemen Ara",
+          "en": "Call Now"
+        },
+        "link": "tel:+902223350580"
+      },
+      {
+        "icon": "fas fa-envelope",
+        "text": {
+          "tr": "E-posta Gönder",
+          "en": "Send Email"
+        },
+        "link": "mailto:library@anadolu.edu.tr"
+      },
+      {
+        "icon": "fas fa-home",
+        "text": {
+          "tr": "Ana Sayfa",
+          "en": "Home"
+        },
+        "link": "index.html"
+      }
+    ]
+  }
+}

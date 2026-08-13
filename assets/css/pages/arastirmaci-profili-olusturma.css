@@ -1,0 +1,898 @@
+/* ============================================
+   Araştırmacı Profili Oluşturma Page Styles
+   ============================================
+
+   TOC (Table of Contents) handled by global component:
+   - assets/css/components/hybrid-toc.css
+   - assets/js/components/hybrid-toc.js
+
+   IMPORTANT:
+   - Page layout (.page-container, .main-content genişlik/margin) hybrid-toc.css'den alınır
+   - Bu dosyada sadece sayfa özel stiller (spacing, colors, components) bulunur
+   ============================================ */
+
+/* Grouped Quick Access Menu Styles */
+.nav-group {
+  margin-bottom: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.nav-group:last-child {
+  margin-bottom: 0;
+}
+
+.nav-group-header {
+  background: var(--tertiary-color);
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+}
+
+.nav-group-header:hover {
+  background: var(--tertiary-dark);
+}
+
+.nav-group-title {
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.nav-group-toggle {
+  transition: transform 0.3s ease;
+  font-size: 0.8rem;
+  color: var(--primary-color);
+}
+
+.nav-group.collapsed .nav-group-toggle {
+  transform: rotate(-90deg);
+}
+
+.nav-group-content {
+  max-height: 500px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background: white;
+}
+
+.nav-group.collapsed .nav-group-content {
+  max-height: 0;
+}
+
+.nav-group a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  font-size: 0.85rem;
+  border-left: 3px solid transparent;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.nav-group a:last-child {
+  border-bottom: none;
+}
+
+.nav-group a:hover {
+  color: var(--primary-color);
+  border-left-color: var(--primary-color);
+  background-color: var(--tertiary-color);
+  padding-left: 1.25rem;
+}
+
+.nav-group a.active {
+  color: var(--primary-color) !important;
+  font-weight: 600;
+  border-left-color: var(--primary-color);
+  background-color: var(--tertiary-color);
+  padding-left: 1.25rem;
+}
+
+/* Platform-specific Color Variables */
+:root {
+  /* ORCID Colors - Green theme */
+  --orcid-primary: #A6CE39;
+  --orcid-light: #c5e65a;
+  --orcid-bg: #f7fbf0;
+  --orcid-border: #d4e6a6;
+
+  /* Web of Science Colors - Blue theme */
+  --wos-primary: #1F4C8A;
+  --wos-light: #3667a6;
+  --wos-bg: #f0f4ff;
+  --wos-border: #b3c7ff;
+
+  /* Scopus Colors - Orange theme */
+  --scopus-primary: #FF6C00;
+  --scopus-light: #ff8533;
+  --scopus-bg: #fff5f0;
+  --scopus-border: #ffcc99;
+
+  /* Google Scholar Colors - Yellow/Gold theme */
+  --gs-primary: #FFC107;
+  --gs-light: #ffd54f;
+  --gs-bg: #fffbf0;
+  --gs-border: #ffe066;
+}
+
+/* Page Layout */
+.researcher-profile-page .row {
+  position: relative;
+}
+
+.researcher-profile-page .col-lg-3 {
+  position: relative;
+}
+
+/* Info Cards */
+.info-card {
+  background: var(--bg-card);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-color);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+/* Bölüm ayracı - sadece gerekli yerlerde göster */
+.info-card::after {
+  display: none;
+}
+
+.info-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.info-card .card-header {
+  background: white;
+  color: var(--primary-color);
+  padding: 1.25rem 1.5rem;
+  font-weight: 700;
+  font-size: 1.2rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.info-card .card-body {
+  padding: 2rem;
+}
+
+.info-card .lead {
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* Benefits List */
+.benefits-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.benefit-item {
+  background: var(--tertiary-color);
+  padding: 1.25rem;
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--primary-color);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.benefit-item:hover {
+  transform: translateX(5px);
+  box-shadow: var(--shadow-soft);
+}
+
+.benefit-number {
+  background: var(--primary-color);
+  color: white;
+  min-width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.benefit-content {
+  flex: 1;
+}
+
+.benefit-title {
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+}
+
+.benefit-description {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Platform Section - Base Styles */
+.platform-section {
+  background: var(--bg-card);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-color);
+  margin-bottom: 2rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Bölüm ayracı - sadece platform sonlarında göster */
+.platform-section::after {
+  display: none;
+}
+
+.platform-section.has-divider::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--primary-color) 20%,
+    var(--primary-color) 80%,
+    transparent
+  );
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+}
+
+.platform-section:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.platform-header {
+  padding: 1.5rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.platform-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.platform-header p {
+  margin: 0.5rem 0 0 0;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.platform-content {
+  padding: 2rem;
+}
+
+/* ORCID Sections - Green Theme */
+.platform-section.orcid-section {
+  border-top: 4px solid var(--primary-color);
+}
+
+.platform-section.orcid-section .platform-header {
+  background: white;
+}
+
+.platform-section.orcid-section .platform-header h2 {
+  color: var(--primary-color);
+}
+
+.platform-section.orcid-section .step-number {
+  background: var(--primary-color);
+}
+
+.platform-section.orcid-section .step-header {
+  background: var(--tertiary-color);
+  color: var(--primary-color);
+}
+
+.platform-section.orcid-section .step-header:hover {
+  background: var(--tertiary-dark);
+}
+
+.platform-section.orcid-section .benefit-number,
+.platform-section.orcid-section .benefit-item {
+  border-left-color: var(--primary-color);
+}
+
+.platform-section.orcid-section .benefit-number {
+  background: var(--primary-color);
+}
+
+.platform-section.orcid-section .benefit-title {
+  color: var(--primary-color);
+}
+
+/* Web of Science Sections - Blue Theme */
+.platform-section.wos-section {
+  border-top: 4px solid var(--primary-color);
+}
+
+.platform-section.wos-section .platform-header {
+  background: white;
+}
+
+.platform-section.wos-section .platform-header h2 {
+  color: var(--primary-color);
+}
+
+.platform-section.wos-section .step-number {
+  background: var(--primary-color);
+}
+
+.platform-section.wos-section .step-header {
+  background: var(--tertiary-color);
+  color: var(--primary-color);
+}
+
+.platform-section.wos-section .step-header:hover {
+  background: var(--tertiary-dark);
+}
+
+.platform-section.wos-section .benefit-number,
+.platform-section.wos-section .benefit-item {
+  border-left-color: var(--primary-color);
+}
+
+.platform-section.wos-section .benefit-number {
+  background: var(--primary-color);
+}
+
+.platform-section.wos-section .benefit-title {
+  color: var(--primary-color);
+}
+
+/* Scopus Sections - Orange Theme */
+.platform-section.scopus-section {
+  border-top: 4px solid var(--primary-color);
+}
+
+.platform-section.scopus-section .platform-header {
+  background: white;
+}
+
+.platform-section.scopus-section .platform-header h2 {
+  color: var(--primary-color);
+}
+
+.platform-section.scopus-section .step-number {
+  background: var(--primary-color);
+}
+
+.platform-section.scopus-section .step-header {
+  background: var(--tertiary-color);
+  color: var(--primary-color);
+}
+
+.platform-section.scopus-section .step-header:hover {
+  background: var(--tertiary-dark);
+}
+
+.platform-section.scopus-section .benefit-number,
+.platform-section.scopus-section .benefit-item {
+  border-left-color: var(--primary-color);
+}
+
+.platform-section.scopus-section .benefit-number {
+  background: var(--primary-color);
+}
+
+.platform-section.scopus-section .benefit-title {
+  color: var(--primary-color);
+}
+
+/* Google Scholar Sections - Yellow/Gold Theme */
+.platform-section.gs-section {
+  border-top: 4px solid var(--primary-color);
+}
+
+.platform-section.gs-section .platform-header {
+  background: white;
+}
+
+.platform-section.gs-section .platform-header h2 {
+  color: var(--primary-color);
+}
+
+.platform-section.gs-section .step-number {
+  background: var(--primary-color);
+}
+
+.platform-section.gs-section .step-header {
+  background: var(--tertiary-color);
+  color: var(--primary-color);
+}
+
+.platform-section.gs-section .step-header:hover {
+  background: var(--tertiary-dark);
+}
+
+.platform-section.gs-section .benefit-number,
+.platform-section.gs-section .benefit-item {
+  border-left-color: var(--primary-color);
+}
+
+.platform-section.gs-section .benefit-number {
+  background: var(--primary-color);
+}
+
+.platform-section.gs-section .benefit-title {
+  color: var(--primary-color);
+}
+
+/* Step Cards */
+.step-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.step-card:hover {
+  box-shadow: var(--shadow-soft);
+}
+
+.step-header {
+  background: var(--tertiary-color);
+  padding: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.step-header:hover {
+  background: var(--tertiary-dark);
+}
+
+.step-number {
+  background: var(--primary-color);
+  color: white;
+  min-width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.step-content {
+  padding: 1.5rem;
+  display: none;
+}
+
+.step-content.show {
+  display: block;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.step-content ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.step-content li {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.step-content p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.step-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Info Boxes */
+.info-box {
+  background: var(--tertiary-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1.25rem;
+  margin: 1rem 0;
+  border-left: 4px solid var(--primary-color);
+  transition: all 0.2s ease;
+}
+
+.info-box:hover {
+  box-shadow: var(--shadow-soft);
+  transform: translateX(3px);
+}
+
+.info-box .info-title {
+  color: var(--primary-color);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.05rem;
+}
+
+.info-box p:last-child {
+  margin-bottom: 0;
+}
+
+/* Warning Boxes */
+.warning-box {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: var(--border-radius);
+  padding: 1.25rem;
+  margin: 1rem 0;
+  border-left: 4px solid #ffc107;
+}
+
+.warning-box .warning-title {
+  color: #856404;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.05rem;
+}
+
+.warning-box p:last-child {
+  margin-bottom: 0;
+}
+
+/* Tip Items */
+.tip-item {
+  background: var(--tertiary-color);
+  padding: 1.25rem;
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--primary-color);
+  margin-bottom: 1rem;
+  transition: all 0.2s ease;
+}
+
+.tip-item:hover {
+  transform: translateX(5px);
+  box-shadow: var(--shadow-soft);
+}
+
+.tip-item i {
+  color: var(--primary-color);
+  font-size: 1.3rem;
+  margin-right: 0.75rem;
+  vertical-align: middle;
+}
+
+.tip-item strong {
+  color: var(--primary-color);
+  font-size: 1.05rem;
+}
+
+/* Comparison Table */
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.comparison-table thead {
+  background: var(--primary-color);
+  color: white;
+}
+
+.comparison-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.comparison-table td {
+  padding: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.comparison-table tbody tr {
+  background: var(--bg-card);
+  transition: background-color 0.2s ease;
+}
+
+.comparison-table tbody tr:hover {
+  background: var(--tertiary-color);
+}
+
+.comparison-table tbody tr:nth-child(even) {
+  background: var(--tertiary-color);
+}
+
+.comparison-table tbody tr:nth-child(even):hover {
+  background: var(--tertiary-dark);
+}
+
+/* Basic Steps Section */
+.basic-steps-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.basic-step-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  border-top: 4px solid var(--primary-color);
+}
+
+.basic-step-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--primary-color);
+}
+
+.basic-step-card h4 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.basic-step-card ol {
+  padding-left: 1.25rem;
+  margin: 0;
+}
+
+.basic-step-card li {
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+/* Contact Section */
+.contact-section {
+  background: linear-gradient(135deg, var(--tertiary-color), var(--tertiary-dark));
+  border-radius: var(--border-radius);
+  padding: 2.5rem;
+  margin: 2rem 0;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-soft);
+}
+
+.contact-section h4 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.contact-section p {
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+}
+
+.contact-info {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 1rem 1.5rem;
+  border-radius: var(--border-radius);
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  transition: all 0.3s ease;
+  min-width: 250px;
+}
+
+.contact-item:hover {
+  color: var(--primary-color);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--primary-color);
+}
+
+.contact-item i {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+.contact-item strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 1.05rem;
+}
+
+.contact-item small {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* Dark Theme Adjustments */
+html[data-theme="dark"] {
+  --orcid-bg: #2a3320;
+  --wos-bg: #1a2233;
+  --scopus-bg: #332010;
+  --gs-bg: #332c10;
+}
+
+html[data-theme="dark"] .warning-box {
+  background: #3a3020;
+  border-color: #ffc107;
+}
+
+html[data-theme="dark"] .warning-box .warning-title {
+  color: #ffc107;
+}
+
+html[data-theme="dark"] .nav-group-content {
+  background: var(--bg-card);
+}
+
+html[data-theme="dark"] .info-card .card-header,
+html[data-theme="dark"] .platform-header {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+html[data-theme="dark"] .quick-access-header h5 {
+  color: var(--primary-color);
+}
+
+/* Tüm navigation grup renkleri primary olacak */
+.nav-group .nav-group-title {
+  color: var(--primary-color);
+}
+.nav-group .nav-group-toggle {
+  color: var(--primary-color);
+}
+.nav-group a:hover,
+.nav-group a.active {
+  color: var(--primary-color) !important;
+  border-left-color: var(--primary-color);
+  background-color: var(--tertiary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .platform-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .basic-steps-list {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .info-card .card-body,
+  .platform-content {
+    padding: 1.5rem;
+  }
+
+  .benefit-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .benefit-number {
+    align-self: center;
+  }
+
+  .comparison-table {
+    font-size: 0.85rem;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.75rem;
+  }
+
+  .contact-section {
+    padding: 2rem 1.5rem;
+  }
+
+  .contact-item {
+    min-width: auto;
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 576px) {
+  .info-card .card-body,
+  .platform-content {
+    padding: 1rem;
+  }
+
+  .platform-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .benefit-title {
+    font-size: 1rem;
+  }
+
+  .comparison-table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .contact-section h4 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Animation Utilities */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Print styles are centralized in global/utilities.css - do not duplicate here */

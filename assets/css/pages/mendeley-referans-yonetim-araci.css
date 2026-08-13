@@ -1,0 +1,551 @@
+/* ============================================
+   Mendeley Referans Yönetim Aracı Sayfası
+   Özel Stiller
+   ============================================ */
+
+/*
+   TOC (Table of Contents) handled by global component:
+   - assets/css/components/hybrid-toc.css
+   - assets/js/components/hybrid-toc.js
+
+   IMPORTANT:
+   - Page layout (.page-container, .main-content genişlik/margin) hybrid-toc.css'den alınır
+   - Bu dosyada sadece sayfa özel stiller (spacing, colors, components) bulunur
+*/
+
+/* Mendeley Renk Değişkenleri - Makale işlem renkleriyle değiştirildi */
+:root {
+  --mendeley-primary: #1a5276; /* Koyu mavi */
+  --mendeley-light: #2980b9; /* Açık mavi */
+  --mendeley-bg: #eaf2f8; /* Açık mavi arkaplan */
+  --mendeley-border: #aed6f1; /* Açık mavi kenarlık */
+}
+
+/* ========================================
+   PAGE SPACING (Sadece padding ayarları)
+   ======================================== */
+
+.page-container {
+  padding: 40px 20px;
+}
+
+/* Sayfa Container */
+.mendeley-page {
+  min-height: 60vh;
+  padding: 2rem 0;
+}
+
+/* Info Cards */
+.info-card {
+  background: var(--bg-card);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-color);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.info-card .card-header {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  color: white;
+  padding: 1.25rem 1.5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: none;
+}
+
+.info-card .card-header.mendeley-header {
+  background: linear-gradient(135deg, var(--mendeley-primary), var(--mendeley-light));
+}
+
+.info-card .card-body {
+  padding: 2rem;
+}
+
+.info-card .lead {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+/* Features List (Grid Layout) */
+.features-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.feature-item {
+  background: var(--tertiary-color);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--mendeley-primary);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.feature-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-soft);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.feature-title {
+  font-weight: 700;
+  color: var(--mendeley-primary);
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+}
+
+.feature-description {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Info Boxes */
+.info-box {
+  background: var(--tertiary-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1.25rem;
+  margin: 1rem 0;
+  border-left: 4px solid var(--mendeley-primary);
+}
+
+.info-box .info-title {
+  color: var(--mendeley-primary);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.info-box p {
+  margin: 0;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Warning Boxes */
+.warning-box {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: var(--border-radius);
+  padding: 1.25rem;
+  margin: 1rem 0;
+  border-left: 4px solid #ffc107;
+}
+
+.warning-box .warning-title {
+  color: #856404;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.warning-box p {
+  margin: 0;
+  color: #856404;
+  line-height: 1.6;
+}
+
+/* Process Steps */
+.process-steps {
+  counter-reset: step-counter;
+  margin: 1.5rem 0;
+}
+
+.process-step {
+  counter-increment: step-counter;
+  position: relative;
+  padding: 1.5rem 1.5rem 1.5rem 3rem;
+  margin-bottom: 1rem;
+  background: var(--tertiary-color);
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--mendeley-primary);
+  transition: all 0.3s ease;
+}
+
+.process-step:hover {
+  transform: translateX(5px);
+  box-shadow: var(--shadow-soft);
+}
+
+.process-step::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--mendeley-primary);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 3px 10px rgba(26, 82, 118, 0.3);
+}
+
+.process-step .step-title {
+  font-weight: 700;
+  color: var(--mendeley-primary);
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+}
+
+.process-step p {
+  margin: 0;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* CTA Section */
+.cta-section {
+  background: linear-gradient(135deg, var(--mendeley-primary), var(--mendeley-light));
+  color: white;
+  text-align: center;
+  padding: 3rem 2rem;
+  border-radius: var(--border-radius);
+  margin: 2rem 0;
+}
+
+.cta-section h3 {
+  color: white;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.cta-section p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-mendeley {
+  background: var(--mendeley-primary);
+  border: none;
+  color: white;
+  padding: 0.8rem 2rem;
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.btn-mendeley:hover {
+  background: var(--mendeley-light);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(26, 82, 118, 0.3);
+}
+
+.cta-buttons .btn {
+  padding: 0.8rem 2rem;
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.cta-buttons .btn-light {
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  color: var(--mendeley-primary);
+}
+
+.cta-buttons .btn-light:hover {
+  background: white;
+  color: var(--mendeley-primary);
+  transform: translateY(-2px);
+}
+
+/* Benefits List */
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.benefits-list li {
+  padding: 0.75rem 0;
+  padding-left: 2rem;
+  position: relative;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.benefits-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--mendeley-primary);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Resource Links */
+.resource-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.resource-link {
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1.25rem;
+  text-decoration: none;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.resource-link:hover {
+  border-color: var(--mendeley-primary);
+  color: var(--text-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.resource-link.disabled {
+  opacity: 0.7;
+  cursor: default;
+  pointer-events: none;
+}
+
+.resource-icon {
+  font-size: 2rem;
+  color: var(--mendeley-primary);
+  min-width: 50px;
+  text-align: center;
+}
+
+.resource-content h5 {
+  color: var(--mendeley-primary);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.resource-content p {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.resource-content small {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* ========================================
+   RESPONSIVE SPACING
+   ======================================== */
+
+/* Medium-Large Screens */
+@media (max-width: 1400px) {
+  .page-container {
+    padding: 32px 16px;
+  }
+}
+
+/* Medium Screens */
+@media (max-width: 1199px) {
+  .page-container {
+    padding: 24px 16px;
+  }
+}
+
+@media (max-width: 991px) {
+  .mendeley-page {
+    padding: 1.5rem 0;
+  }
+
+  .features-list {
+    grid-template-columns: 1fr;
+  }
+
+  .resource-links {
+    grid-template-columns: 1fr;
+  }
+
+  .info-card .card-body {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 16px 8px;
+  }
+}
+
+@media (max-width: 767px) {
+  .mendeley-page {
+    padding: 1rem 0;
+  }
+
+  .info-card .card-header {
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+  }
+
+  .info-card .card-body {
+    padding: 1.25rem;
+  }
+
+  .info-card .lead {
+    font-size: 1.05rem;
+  }
+
+  .process-step {
+    padding-left: 2rem;
+  }
+
+  .process-step::before {
+    left: -15px;
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+  }
+
+  .cta-section {
+    padding: 2rem 1.5rem;
+  }
+
+  .cta-section h3 {
+    font-size: 1.5rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-buttons .btn,
+  .btn-mendeley {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 575px) {
+  .feature-item {
+    padding: 1.25rem;
+  }
+
+  .feature-icon {
+    font-size: 2rem;
+  }
+
+  .feature-title {
+    font-size: 1rem;
+  }
+
+  .resource-link {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .resource-icon {
+    min-width: auto;
+  }
+}
+
+/* Dark Theme Support */
+html[data-theme="dark"] .warning-box {
+  background: #4a3f00;
+  border-color: #806d00;
+}
+
+html[data-theme="dark"] .warning-box .warning-title,
+html[data-theme="dark"] .warning-box p {
+  color: #ffc107;
+}
+
+html[data-theme="dark"] .cta-buttons .btn-light {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+html[data-theme="dark"] .cta-buttons .btn-light:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Print Styles */
+@media print {
+  .mendeley-page {
+    padding: 0;
+  }
+
+  .info-card {
+    page-break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+
+  .process-step::before {
+    position: static;
+    display: inline-flex;
+    margin-right: 1rem;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .info-card,
+  .feature-item,
+  .process-step,
+  .resource-link,
+  .btn-mendeley,
+  .cta-buttons .btn {
+    transition: none;
+  }
+}

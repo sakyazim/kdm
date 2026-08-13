@@ -1,0 +1,606 @@
+/* ========================================
+   GLOBAL HYBRID TOC COMPONENT
+   Version: 2.0
+   ======================================== */
+
+/* ========================================
+   PROGRESS BAR (Top)
+   ======================================== */
+
+.toc-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--color-border, #e0e0e0);
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.toc-progress-fill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--primary-color, #1F4C8A),
+    var(--primary-light, #3667a6)
+  );
+  width: 0%;
+  transition: width 0.25s ease;
+}
+
+/* ========================================
+   DESKTOP SIDEBAR (>1024px)
+   ======================================== */
+
+.toc-desktop-sidebar {
+  position: fixed;
+  left: 20px;
+  top: 20px; /* JS ile dinamik ayarlanacak - hero sonrası */
+  width: 280px;
+  max-height: calc(100vh - 140px);
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  overflow-y: auto;
+  display: none;
+  z-index: 100;
+  opacity: 0; /* İlk başta gizli - JS ile gösterilecek */
+  transition: opacity 0.4s ease, transform 0.4s ease, width 0.3s ease, top 0.3s ease;
+}
+
+/* TOC ready state - JS ile eklenecek */
+.toc-desktop-sidebar.toc-ready {
+  opacity: 1;
+}
+
+/* Responsive Sidebar Width */
+@media (max-width: 1400px) {
+  .toc-desktop-sidebar {
+    width: 240px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .toc-desktop-sidebar {
+    width: 220px;
+  }
+
+  .toc-desktop-list .toc-link {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+
+  .toc-desktop-sidebar h3 {
+    font-size: 13px;
+  }
+}
+
+/* Smart hiding when footer approaches */
+.toc-desktop-sidebar.toc-hidden-by-footer {
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+}
+
+.toc-desktop-sidebar h3 {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted, #666);
+  margin: 0 0 16px 0;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border-color, #e0e0e0);
+}
+
+.toc-desktop-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-desktop-list li {
+  margin-bottom: 6px;
+}
+
+.toc-desktop-list .toc-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  color: var(--text-color, #555);
+  text-decoration: none;
+  font-size: 13px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.toc-desktop-list .toc-link:hover {
+  background: #f5f5f5;
+  color: var(--primary-color, #1F4C8A);
+  padding-left: 14px;
+}
+
+.toc-desktop-list .toc-link.active {
+  background: var(--tertiary-color, rgba(31, 76, 138, 0.08));
+  color: var(--primary-color, #1F4C8A);
+  border-left-color: var(--primary-color, #1F4C8A);
+  font-weight: 600;
+  padding-left: 14px;
+}
+
+/* TOC Numbers */
+.toc-number {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  background: #f0f0f0;
+  color: #666;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+/* When displaying numbers (not icons/emoji) */
+.toc-number:not(:has(i)):not(:has(span)) {
+  font-size: 11px;
+}
+
+.toc-number-square {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  background: #f0f0f0;
+  color: #666;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.toc-desktop-list .toc-link.active .toc-number,
+.toc-desktop-list .toc-link.active .toc-number-square {
+  background: var(--primary-color, #1F4C8A);
+  color: white;
+}
+
+.toc-text {
+  flex: 1;
+  line-height: 1.4;
+}
+
+/* Grouped Sections (Desktop) */
+.toc-desktop-list .toc-group {
+  margin-bottom: 20px;
+}
+
+.toc-desktop-list .toc-group-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0 10px 8px;
+  margin-bottom: 6px;
+}
+
+.toc-desktop-list .toc-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Custom Scrollbar */
+.toc-desktop-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.toc-desktop-sidebar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.toc-desktop-sidebar::-webkit-scrollbar-thumb {
+  background: var(--primary-color, #1F4C8A);
+  border-radius: 10px;
+}
+
+.toc-desktop-sidebar::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-light, #3667a6);
+}
+
+/* ========================================
+   MOBILE DRAWER (≤1024px)
+   ======================================== */
+
+/* Mobile Toggle Tab (Left Side) */
+.toc-mobile-toggle {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 100px;
+  background: var(--primary-color, #1F4C8A);
+  color: white;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+  z-index: 998;
+  transition: all 0.3s ease;
+}
+
+.toc-toggle-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.toc-mobile-toggle:hover {
+  width: 44px;
+  box-shadow: 3px 0 12px rgba(0, 0, 0, 0.2);
+}
+
+.toc-mobile-toggle.hidden {
+  left: -40px;
+  opacity: 0;
+}
+
+/* Mobile Drawer */
+.toc-mobile-drawer {
+  position: fixed;
+  left: -280px;
+  top: 0;
+  width: 280px;
+  height: 100vh;
+  background: white;
+  box-shadow: 4px 0 16px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.toc-mobile-drawer.open {
+  left: 0;
+}
+
+/* Drawer Header */
+.toc-drawer-header {
+  padding: 20px;
+  background: var(--primary-color, #1F4C8A);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.toc-drawer-header h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.toc-drawer-close {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.toc-drawer-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+}
+
+/* Drawer Progress */
+.toc-drawer-progress {
+  padding: 16px 20px;
+  background: #f8f9fa;
+  border-bottom: 1px solid var(--color-border, #e0e0e0);
+  flex-shrink: 0;
+}
+
+.toc-progress-text {
+  display: block;
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.toc-progress-track {
+  width: 100%;
+  height: 6px;
+  background: #e0e0e0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.toc-progress-fill-drawer {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--primary-color, #1F4C8A),
+    var(--primary-light, #3667a6)
+  );
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+/* Drawer Content */
+.toc-drawer-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.toc-drawer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-drawer-list li {
+  margin-bottom: 4px;
+}
+
+.toc-drawer-list .toc-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  color: var(--text-color, #555);
+  text-decoration: none;
+  font-size: 14px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.toc-drawer-list .toc-link:hover {
+  background: #f5f5f5;
+  color: var(--primary-color, #1F4C8A);
+}
+
+.toc-drawer-list .toc-link.active {
+  background: var(--tertiary-color, rgba(31, 76, 138, 0.08));
+  color: var(--primary-color, #1F4C8A);
+  border-left-color: var(--primary-color, #1F4C8A);
+  font-weight: 600;
+}
+
+.toc-drawer-list .toc-link.active .toc-number,
+.toc-drawer-list .toc-link.active .toc-number-square {
+  background: var(--primary-color, #1F4C8A);
+  color: white;
+}
+
+/* Grouped Sections (Mobile) */
+.toc-drawer-list .toc-group {
+  margin-bottom: 20px;
+}
+
+.toc-drawer-list .toc-group-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 8px 12px;
+  margin-bottom: 4px;
+}
+
+.toc-drawer-list .toc-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Drawer Content Scrollbar */
+.toc-drawer-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.toc-drawer-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.toc-drawer-content::-webkit-scrollbar-thumb {
+  background: var(--primary-color, #1F4C8A);
+  border-radius: 10px;
+}
+
+/* Overlay */
+.toc-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 998;
+  display: none;
+}
+
+.toc-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ========================================
+   RESPONSIVE BREAKPOINTS
+   ======================================== */
+
+/* Desktop: Show sidebar */
+@media (min-width: 1025px) {
+  .toc-desktop-sidebar {
+    display: block;
+  }
+
+  /* Container header ile aynı genişlikte - TOC'a yer bırakmadan */
+  body.has-toc .page-container {
+    max-width: var(--container-max-width, 1200px);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  /* Main content TOC'suz sayfalardaki gibi tam genişlikte */
+  body.has-toc .main-content {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+/* Mobile: Show drawer elements */
+@media (max-width: 1024px) {
+  .toc-mobile-toggle {
+    display: flex;
+  }
+
+  .toc-mobile-drawer {
+    display: flex;
+  }
+
+  .toc-overlay {
+    display: block;
+  }
+
+  /* Mobile'da padding-left kaldır */
+  body.has-toc .page-container {
+    padding-left: 20px !important;
+    padding-right: 10px !important; /* Sağ kenar boşluğu eklendi */
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+  .toc-mobile-drawer {
+    width: calc(100vw - 40px);
+    left: calc(-100vw + 40px);
+  }
+
+  .toc-toggle-text {
+    font-size: 10px;
+  }
+  
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+
+@media print {
+  .toc-progress-bar,
+  .toc-mobile-toggle,
+  .toc-mobile-drawer,
+  .toc-desktop-sidebar,
+  .toc-overlay {
+    display: none !important;
+  }
+
+  body.has-toc .page-container,
+  body.has-toc .main-content {
+    margin-left: 0 !important;
+  }
+    /* Küçük ekranlarda içerik kesilmesini önle */
+  .page-container, .container, .content-wrapper {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+  
+  /* Tüm kartlar ve içerik bölümleri için genişlik kontrolü */
+  .card, .info-card, .content-card, section, article {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-left: 0;
+    margin-right: 0;
+    overflow-x: hidden;
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY
+   ======================================== */
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .toc-desktop-sidebar,
+  .toc-mobile-drawer {
+    border: 2px solid currentColor;
+  }
+
+  .toc-link {
+    border: 1px solid transparent;
+  }
+
+  .toc-link:focus {
+    border-color: currentColor;
+    outline: 2px solid currentColor;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .toc-desktop-sidebar,
+  .toc-mobile-drawer,
+  .toc-overlay,
+  .toc-progress-fill,
+  .toc-link,
+  .toc-drawer-close {
+    transition: none !important;
+  }
+}
+
+/* Focus visible */
+.toc-link:focus-visible,
+.toc-mobile-toggle:focus-visible,
+.toc-drawer-close:focus-visible {
+  outline: 2px solid var(--primary-color, #1F4C8A);
+  outline-offset: 2px;
+}

@@ -1,0 +1,413 @@
+{
+  "hero": {
+    "title": {
+      "tr": "S.S.S. - Sıkça Sorulan Sorular",
+      "en": "F.A.Q. - Frequently Asked Questions"
+    },
+    "description": {
+      "tr": "Kütüphane hizmetleri hakkında merak ettiğiniz her şey burada! Aradığınız sorunun cevabını bulamazsanız bizimle iletişime geçin.",
+      "en": "Everything you want to know about library services is here! If you can't find the answer to your question, please contact us."
+    },
+    "icon": "bi bi-question-circle"
+  },
+  "help": {
+    "title": {
+      "tr": "Aradığınız soruyu bulamadınız mı?",
+      "en": "Can't find the question you're looking for?"
+    },
+    "description": {
+      "tr": "Kütüphane hizmetleri hakkında daha detaylı bilgi almak veya özel sorularınızı sormak için bizimle iletişime geçin.",
+      "en": "Contact us for more detailed information about library services or to ask your specific questions."
+    },
+    "buttons": [
+      {
+        "text": {
+          "tr": "Hemen Ara",
+          "en": "Call Now"
+        },
+        "url": "tel:+902223350580",
+        "icon": "fas fa-phone"
+      },
+      {
+        "text": {
+          "tr": "E-posta Gönder",
+          "en": "Send Email"
+        },
+        "url": "mailto:library@anadolu.edu.tr",
+        "icon": "fas fa-envelope"
+      },
+      {
+        "text": {
+          "tr": "Ana Sayfa",
+          "en": "Home"
+        },
+        "url": "index.html",
+        "icon": "fas fa-home"
+      }
+    ]
+  },
+  "search": {
+    "icon": "fas fa-search",
+    "placeholder": {
+      "tr": "Sorunuzu yazın... (örn: ödünç alma, süre uzatma, uzaktan erişim)",
+      "en": "Type your question... (e.g: borrowing, renewal, remote access)"
+    },
+    "clearButtonIcon": "fas fa-times",
+    "noResults": {
+      "title": {
+        "tr": "Aradığınız soruya ait sonuç bulunamadı",
+        "en": "No results found for your query"
+      },
+      "description": {
+        "tr": "Farklı anahtar kelimeler deneyebilir veya kategori filtrelerini kullanabilirsiniz.",
+        "en": "You can try different keywords or use category filters."
+      }
+    },
+    "categories": [
+      {
+        "id": "all",
+        "label": {
+          "tr": "Tümü",
+          "en": "All"
+        },
+        "icon": ""
+      },
+      {
+        "id": "genel",
+        "label": {
+          "tr": "Genel Bilgiler",
+          "en": "General Information"
+        },
+        "icon": "fas fa-info-circle"
+      },
+      {
+        "id": "odunc",
+        "label": {
+          "tr": "Ödünç İşlemleri",
+          "en": "Borrowing"
+        },
+        "icon": "fas fa-book"
+      },
+      {
+        "id": "elektronik",
+        "label": {
+          "tr": "Elektronik Kaynaklar",
+          "en": "Electronic Resources"
+        },
+        "icon": "fas fa-laptop"
+      },
+      {
+        "id": "hizmetler",
+        "label": {
+          "tr": "Kütüphane Hizmetleri",
+          "en": "Library Services"
+        },
+        "icon": "fas fa-building"
+      }
+    ]
+  },
+  "content": [
+    {
+      "id": "search-section",
+      "components": []
+    },
+    {
+      "id": "faq-genel",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Genel Bilgiler",
+              "en": "General Information"
+            },
+            "icon": "fas fa-info-circle",
+            "id": "faq-genel-heading"
+          }
+        },
+        {
+          "type": "accordion",
+          "data": {
+            "parentId": "faq-genel",
+            "items": [
+              {
+                "id": "genel-1",
+                "question": {
+                  "tr": "Kütüphane Hangi Saatlerde Açık?",
+                  "en": "What Are the Library Opening Hours?"
+                },
+                "answer": {
+                  "tr": "<p>Güncel çalışma saatleri için <a href='http://kdm.anadolu.edu.tr' target='_blank'>kütüphane web sitesini</a> ziyaret edebilirsiniz.</p><div class='component-info-box'><div class='info-title'><i class='fas fa-lightbulb'></i><span>İpucu</span></div><div class='info-content'><p>Özel günlerde (sınav dönemleri, tatiller) çalışma saatleri değişebilir. Web sitesinden güncel bilgileri takip etmenizi öneririz.</p></div></div>",
+                  "en": "<p>For current opening hours, you can visit the <a href='http://kdm.anadolu.edu.tr' target='_blank'>library website</a>.</p><div class='component-info-box'><div class='info-title'><i class='fas fa-lightbulb'></i><span>Tip</span></div><div class='info-content'><p>Opening hours may change on special days (exam periods, holidays). We recommend following current information from the website.</p></div></div>"
+                }
+              },
+              {
+                "id": "genel-2",
+                "question": {
+                  "tr": "Kütüphane ile İlgili Bilgi Almak İçin Nereye Başvurabilirim?",
+                  "en": "Where Can I Get Information About the Library?"
+                },
+                "answer": {
+                  "tr": "<div class='component-icon-list'><div class='list-wrapper'><div class='list-item'><i class='fas fa-envelope'></i><span><strong>E-posta:</strong><br><a href='mailto:library@anadolu.edu.tr'>library@anadolu.edu.tr</a></span></div><div class='list-item'><i class='fas fa-phone'></i><span><strong>Telefon:</strong><br><a href='tel:+902223350580'>(222) 335 05 80 / 1733</a></span></div><div class='list-item'><i class='fas fa-user-tie'></i><span><strong>Yüz yüze:</strong><br>Danışma Bölümü'ndeki danışman kütüphanecilere başvurabilirsiniz.</span></div></div></div>",
+                  "en": "<div class='component-icon-list'><div class='list-wrapper'><div class='list-item'><i class='fas fa-envelope'></i><span><strong>Email:</strong><br><a href='mailto:library@anadolu.edu.tr'>library@anadolu.edu.tr</a></span></div><div class='list-item'><i class='fas fa-phone'></i><span><strong>Phone:</strong><br><a href='tel:+902223350580'>(222) 335 05 80 / 1733</a></span></div><div class='list-item'><i class='fas fa-user-tie'></i><span><strong>In person:</strong><br>You can contact reference librarians at the Reference Department.</span></div></div></div>"
+                }
+              },
+              {
+                "id": "genel-3",
+                "question": {
+                  "tr": "Üniversiteye Yeni Kayıt Oldum. Nasıl Kitap Ödünç Alabilirim?",
+                  "en": "I'm Newly Enrolled at the University. How Can I Borrow Books?"
+                },
+                "answer": {
+                  "tr": "<p>Yeni kayıt yaptıran öğrenciler, otomatik olarak kütüphane sistemine kaydedilir.</p><div class='component-alert info'><i class='fas fa-info-circle'></i><div class='alert-content'><strong>Yapmanız gereken:</strong><p>Eskişehir'deki ikamet adresinizi ödünç verme servisinde kaydettirerek kitap almaya başlayabilirsiniz. Ödünç Verme Servisi kütüphane giriş katında bulunmaktadır.</p></div></div>",
+                  "en": "<p>Newly enrolled students are automatically registered in the library system.</p><div class='component-alert info'><i class='fas fa-info-circle'></i><div class='alert-content'><strong>What you need to do:</strong><p>You can start borrowing books by registering your Eskişehir residence address at the circulation service. The Circulation Service is located on the ground floor of the library.</p></div></div>"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "faq-odunc",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Ödünç İşlemleri",
+              "en": "Borrowing Transactions"
+            },
+            "icon": "fas fa-book",
+            "id": "faq-odunc-heading"
+          }
+        },
+        {
+          "type": "accordion",
+          "data": {
+            "parentId": "faq-odunc",
+            "items": [
+              {
+                "id": "odunc-1",
+                "question": {
+                  "tr": "Kaç Kitap Ödünç Alabilirim?",
+                  "en": "How Many Books Can I Borrow?"
+                },
+                "answer": {
+                  "tr": "<div class='component-table-container'><div class='table-responsive'><table class='component-table'><thead><tr><th>Kullanıcı Türü</th><th>Süre (Gün)</th><th>Adet</th></tr></thead><tbody><tr><td><i class='fas fa-user-tie'></i>Akademik Personel</td><td>30</td><td>20</td></tr><tr><td><i class='fas fa-user-cog'></i>İdari Personel</td><td>30</td><td>10</td></tr><tr><td><i class='fas fa-user-graduate'></i>Doktora Öğrencisi</td><td>30</td><td>15</td></tr><tr><td><i class='fas fa-user-graduate'></i>Yüksek Lisans Öğrencisi</td><td>15</td><td>7</td></tr><tr><td><i class='fas fa-user'></i>Lisans / Önlisans</td><td>15</td><td>3</td></tr><tr><td><i class='fas fa-user'></i>Dış Kullanıcı</td><td>15</td><td>2</td></tr><tr><td><i class='fas fa-star'></i>Özellikli Kullanıcı</td><td>90</td><td>10</td></tr></tbody></table></div></div><div class='component-info-box'><div class='info-title'><i class='fas fa-info-circle'></i><span>Not</span></div><div class='info-content'><p>Kütüphanelerarası (ILL) ödünç alma sayıya dahil değildir.</p></div></div>",
+                  "en": "<div class='component-table-container'><div class='table-responsive'><table class='component-table'><thead><tr><th>User Type</th><th>Period (Days)</th><th>Quantity</th></tr></thead><tbody><tr><td><i class='fas fa-user-tie'></i>Academic Staff</td><td>30</td><td>20</td></tr><tr><td><i class='fas fa-user-cog'></i>Administrative Staff</td><td>30</td><td>10</td></tr><tr><td><i class='fas fa-user-graduate'></i>PhD Student</td><td>30</td><td>15</td></tr><tr><td><i class='fas fa-user-graduate'></i>Master's Student</td><td>15</td><td>7</td></tr><tr><td><i class='fas fa-user'></i>Undergraduate / Associate</td><td>15</td><td>3</td></tr><tr><td><i class='fas fa-user'></i>External User</td><td>15</td><td>2</td></tr><tr><td><i class='fas fa-star'></i>Special User</td><td>90</td><td>10</td></tr></tbody></table></div></div><div class='component-info-box'><div class='info-title'><i class='fas fa-info-circle'></i><span>Note</span></div><div class='info-content'><p>Interlibrary loan (ILL) is not included in the count.</p></div></div>"
+                }
+              },
+              {
+                "id": "odunc-2",
+                "question": {
+                  "tr": "Kitap Süresini Nasıl Uzatabilirim?",
+                  "en": "How Can I Renew My Books?"
+                },
+                "answer": {
+                  "tr": "<div class='component-icon-list'><div class='list-title'><i class='fas fa-laptop'></i>Uzatma Yöntemleri</div><div class='list-wrapper'><div class='list-item'><i class='fas fa-globe'></i><span><strong>Web üzerinden</strong><br><a href='http://libra.anadolu.edu.tr' target='_blank'>libra.anadolu.edu.tr</a></span></div><div class='list-item'><i class='fas fa-building'></i><span><strong>Kütüphaneye gelerek</strong><br>Ödünç bankosundan</span></div><div class='list-item'><i class='fas fa-desktop'></i><span><strong>Ödünç istasyonlarını kullanarak</strong><br>Kütüphane içindeki self-servis noktalar</span></div></div></div><div class='component-alert warning'><i class='fas fa-exclamation-triangle'></i><div class='alert-content'><strong>Önemli Şartlar:</strong><ul><li>Kitap başka biri tarafından ayırtılmamış olmalı</li><li>İade süresi geçmemiş olmalı</li><li>En fazla 3 kez uzatma yapılabilir</li><li><strong>Telefonla uzatma yapılamaz!</strong></li></ul></div></div>",
+                  "en": "<div class='component-icon-list'><div class='list-title'><i class='fas fa-laptop'></i>Renewal Methods</div><div class='list-wrapper'><div class='list-item'><i class='fas fa-globe'></i><span><strong>Online</strong><br><a href='http://libra.anadolu.edu.tr' target='_blank'>libra.anadolu.edu.tr</a></span></div><div class='list-item'><i class='fas fa-building'></i><span><strong>Visit the library</strong><br>At the circulation desk</span></div><div class='list-item'><i class='fas fa-desktop'></i><span><strong>Using circulation stations</strong><br>Self-service points in the library</span></div></div></div><div class='component-alert warning'><i class='fas fa-exclamation-triangle'></i><div class='alert-content'><strong>Important Conditions:</strong><ul><li>The book must not be reserved by someone else</li><li>The return date must not have passed</li><li>Maximum 3 renewals allowed</li><li><strong>Renewal by phone is not possible!</strong></li></ul></div></div>"
+                }
+              },
+              {
+                "id": "odunc-3",
+                "question": {
+                  "tr": "Ödünç Aldığım Kitapları Nereye Teslim Edebilirim?",
+                  "en": "Where Can I Return Borrowed Books?"
+                },
+                "answer": {
+                  "tr": "<div class='component-icon-list'><div class='list-wrapper'><div class='list-item'><i class='fas fa-desk'></i><span><strong>Ödünç bankosuna</strong><br>Kütüphane giriş katında</span></div><div class='list-item'><i class='fas fa-desktop'></i><span><strong>Ödünç istasyonlarına</strong><br>Self-servis noktalar</span></div></div></div><div class='component-alert warning'><i class='fas fa-exclamation-circle'></i><div class='alert-content'><strong>Dikkat:</strong><p>İşlem tamamlanana kadar istasyondan ayrılmayınız.</p></div></div>",
+                  "en": "<div class='component-icon-list'><div class='list-wrapper'><div class='list-item'><i class='fas fa-desk'></i><span><strong>Circulation desk</strong><br>On the ground floor of the library</span></div><div class='list-item'><i class='fas fa-desktop'></i><span><strong>Circulation stations</strong><br>Self-service points</span></div></div></div><div class='component-alert warning'><i class='fas fa-exclamation-circle'></i><div class='alert-content'><strong>Attention:</strong><p>Do not leave the station until the transaction is complete.</p></div></div>"
+                }
+              },
+              {
+                "id": "odunc-4",
+                "question": {
+                  "tr": "Gecikme Cezası Nedir?",
+                  "en": "What Is the Late Fee?"
+                },
+                "answer": {
+                  "tr": "<div class='component-alert danger'><i class='fas fa-exclamation-triangle'></i><div class='alert-content'><strong>Ceza Hesaplama</strong><p>Geciken her gün için, <strong>1 gün x 5 gün</strong> ödünç alamama cezası uygulanır.</p><p><strong>Önemli:</strong> Cezası olan kullanıcıya yeni materyal verilmez.</p></div></div>",
+                  "en": "<div class='component-alert danger'><i class='fas fa-exclamation-triangle'></i><div class='alert-content'><strong>Fee Calculation</strong><p>For each overdue day, a <strong>1 day x 5 days</strong> borrowing suspension is applied.</p><p><strong>Important:</strong> No new materials are issued to users with fines.</p></div></div>"
+                }
+              },
+              {
+                "id": "odunc-5",
+                "question": {
+                  "tr": "İstediğim Kitap Kütüphanede Yoksa Başka Bir Kütüphaneden Temin Edilebilir mi?",
+                  "en": "Can a Book Be Obtained from Another Library If It's Not Available Here?"
+                },
+                "answer": {
+                  "tr": "<div class='component-alert info'><i class='fas fa-users'></i><div class='alert-content'><strong>Kimler Yararlanabilir?</strong><p>Bu hizmet, <strong>lisansüstü düzeydeki öğrenciler ile akademik ve idari personel</strong> için sunulmaktadır.</p><p>Eğer belirtilen gruptaysanız, başka bir üniversite kütüphanesinden kitap temin edebilirsiniz.</p></div></div><div class='component-info-box'><div class='info-title'><i class='fas fa-phone'></i><span>İletişim</span></div><div class='info-content'><p>İşlemin detayları için Ödünç Bölümü ile iletişime geçebilirsiniz.</p></div></div>",
+                  "en": "<div class='component-alert info'><i class='fas fa-users'></i><div class='alert-content'><strong>Who Can Benefit?</strong><p>This service is provided for <strong>graduate students and academic and administrative staff</strong>.</p><p>If you are in the specified group, you can obtain books from another university library.</p></div></div><div class='component-info-box'><div class='info-title'><i class='fas fa-phone'></i><span>Contact</span></div><div class='info-content'><p>For details of the transaction, you can contact the Circulation Department.</p></div></div>"
+                }
+              },
+              {
+                "id": "odunc-6",
+                "question": {
+                  "tr": "Kütüphanelerarası Ödünçte Süre ve Sayı Ne Kadar?",
+                  "en": "What Are the Duration and Quantity for Interlibrary Loans?"
+                },
+                "answer": {
+                  "tr": "<div class='component-info-box'><div class='info-title'><i class='fas fa-exchange-alt'></i><span>Değişken Koşullar</span></div><div class='info-content'><p>Başvurulan kütüphaneye göre değişmektedir.</p><p><strong>Bilgi:</strong> Her kütüphanenin kendine özgü kuralları bulunmaktadır. Detaylı bilgi için Ödünç Bölümü ile görüşünüz.</p></div></div>",
+                  "en": "<div class='component-info-box'><div class='info-title'><i class='fas fa-exchange-alt'></i><span>Variable Conditions</span></div><div class='info-content'><p>It varies depending on the library contacted.</p><p><strong>Information:</strong> Each library has its own specific rules. For detailed information, please contact the Circulation Department.</p></div></div>"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "faq-elektronik",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Elektronik Kaynaklar",
+              "en": "Electronic Resources"
+            },
+            "icon": "fas fa-laptop",
+            "id": "faq-elektronik-heading"
+          }
+        },
+        {
+          "type": "accordion",
+          "data": {
+            "parentId": "faq-elektronik",
+            "items": [
+              {
+                "id": "elektronik-1",
+                "question": {
+                  "tr": "Evden Veritabanlarına Erişebilir miyim?",
+                  "en": "Can I Access Databases from Home?"
+                },
+                "answer": {
+                  "tr": "<div class='component-alert success'><i class='fas fa-check-circle'></i><div class='alert-content'><strong>Evet, uzaktan erişim mümkündür!</strong><p>Proxy sistemiyle evden veritabanlarına erişim sağlayabilirsiniz.</p></div></div><div class='component-info-box'><div class='info-title'><i class='fas fa-link'></i><span>Ayrıntılı Bilgi</span></div><div class='info-content'><p><a href='http://kdm.anadolu.edu.tr/off-kampus.html' target='_blank'>kdm.anadolu.edu.tr/off-kampus.html</a></p></div></div>",
+                  "en": "<div class='component-alert success'><i class='fas fa-check-circle'></i><div class='alert-content'><strong>Yes, remote access is possible!</strong><p>You can access databases from home via the proxy system.</p></div></div><div class='component-info-box'><div class='info-title'><i class='fas fa-link'></i><span>Detailed Information</span></div><div class='info-content'><p><a href='http://kdm.anadolu.edu.tr/off-kampus.html' target='_blank'>kdm.anadolu.edu.tr/off-kampus.html</a></p></div></div>"
+                }
+              },
+              {
+                "id": "elektronik-2",
+                "question": {
+                  "tr": "Elektronik Kaynaklarda Sorun Yaşarsam Kime Ulaşabilirim?",
+                  "en": "Who Can I Contact If I Have Problems with Electronic Resources?"
+                },
+                "answer": {
+                  "tr": "<div class='component-info-box'><div class='info-title'><i class='fas fa-phone'></i><span>İletişim</span></div><div class='info-content'><p><strong>Telefon:</strong> <a href='tel:+902223350580'>(222) 335 05 80 / 1737</a></p></div></div>",
+                  "en": "<div class='component-info-box'><div class='info-title'><i class='fas fa-phone'></i><span>Contact</span></div><div class='info-content'><p><strong>Phone:</strong> <a href='tel:+902223350580'>(222) 335 05 80 / 1737</a></p></div></div>"
+                }
+              },
+              {
+                "id": "elektronik-3",
+                "question": {
+                  "tr": "Bulunmayan Makalelere Nasıl Ulaşabilirim?",
+                  "en": "How Can I Access Unavailable Articles?"
+                },
+                "answer": {
+                  "tr": "<div class='component-info-box'><div class='info-title'><i class='fas fa-user-tie'></i><span>Danışma Hizmeti</span></div><div class='info-content'><p>1. kattaki Danışma Bölümü'nde bulunan danışman kütüphanecilerden yardım alabilirsiniz.</p><p><strong>Konum:</strong> Danışma Bölümü - 1. Kat</p></div></div>",
+                  "en": "<div class='component-info-box'><div class='info-title'><i class='fas fa-user-tie'></i><span>Reference Service</span></div><div class='info-content'><p>You can get help from reference librarians at the Reference Department on the 1st floor.</p><p><strong>Location:</strong> Reference Department - 1st Floor</p></div></div>"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "faq-hizmetler",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Kütüphane Hizmetleri",
+              "en": "Library Services"
+            },
+            "icon": "fas fa-building",
+            "id": "faq-hizmetler-heading"
+          }
+        },
+        {
+          "type": "accordion",
+          "data": {
+            "parentId": "faq-hizmetler",
+            "items": [
+              {
+                "id": "hizmetler-1",
+                "question": {
+                  "tr": "Fotokopi Hizmeti Var mı?",
+                  "en": "Is There a Photocopy Service?"
+                },
+                "answer": {
+                  "tr": "<div class='component-alert success'><i class='fas fa-check-circle'></i><div class='alert-content'><strong>Evet, fotokopi hizmeti mevcuttur.</strong><p>Kütüphane açık olduğu sürece özel sektör tarafından hizmet verilmektedir.</p></div></div><div class='component-info-box'><div class='info-title'><i class='fas fa-phone'></i><span>Sorun ve Öneriler</span></div><div class='info-content'><p><a href='tel:+902223350580'>(222) 335 05 80 / 1534</a></p></div></div>",
+                  "en": "<div class='component-alert success'><i class='fas fa-check-circle'></i><div class='alert-content'><strong>Yes, photocopy service is available.</strong><p>Service is provided by the private sector as long as the library is open.</p></div></div><div class='component-info-box'><div class='info-title'><i class='fas fa-phone'></i><span>Problems and Suggestions</span></div><div class='info-content'><p><a href='tel:+902223350580'>(222) 335 05 80 / 1534</a></p></div></div>"
+                }
+              },
+              {
+                "id": "hizmetler-2",
+                "question": {
+                  "tr": "Kütüphaneye Kitaplar Nasıl Alınıyor?",
+                  "en": "How Are Books Acquired for the Library?"
+                },
+                "answer": {
+                  "tr": "<div class='component-info-box'><div class='info-title'><i class='fas fa-users'></i><span>Komisyon Sistemi</span></div><div class='info-content'><p>Her birim, taleplerini Kütüphane Komisyon Üyeleri aracılığıyla iletir.</p><p><strong>Komisyon üyeleri listesi için:</strong> <a href='http://kdm.anadolu.edu.tr' target='_blank'>kdm.anadolu.edu.tr</a></p></div></div>",
+                  "en": "<div class='component-info-box'><div class='info-title'><i class='fas fa-users'></i><span>Commission System</span></div><div class='info-content'><p>Each department submits its requests through Library Commission Members.</p><p><strong>For the list of commission members:</strong> <a href='http://kdm.anadolu.edu.tr' target='_blank'>kdm.anadolu.edu.tr</a></p></div></div>"
+                }
+              },
+              {
+                "id": "hizmetler-3",
+                "question": {
+                  "tr": "İstediğim Kitabın Kütüphaneye Alınması İçin Ne Yapmalıyım?",
+                  "en": "What Should I Do to Have a Book Acquired by the Library?"
+                },
+                "answer": {
+                  "tr": "<div class='component-info-box'><div class='info-title'><i class='fas fa-clipboard-list'></i><span>Talep İletme</span></div><div class='info-content'><p>Birimdeki komisyon üyesi ile iletişime geçerek talebinizi iletebilirsiniz.</p></div></div>",
+                  "en": "<div class='component-info-box'><div class='info-title'><i class='fas fa-clipboard-list'></i><span>Submit Request</span></div><div class='info-content'><p>You can submit your request by contacting the commission member in your department.</p></div></div>"
+                }
+              },
+              {
+                "id": "hizmetler-4",
+                "question": {
+                  "tr": "Çalışma Odalarından Nasıl Yararlanabilirim?",
+                  "en": "How Can I Use Study Rooms?"
+                },
+                "answer": {
+                  "tr": "<div class='component-alert info'><i class='fas fa-info-circle'></i><div class='alert-content'><strong>Kişiye Özel Çalışma Odaları</strong><p>Akademik personel ve lisansüstü öğrenciler için özel odalar mevcuttur.</p><p>Rezervasyon için Okuyucu Hizmetleri Sorumlusu ile görüşebilirsiniz.</p></div></div><div class='component-info-box'><div class='info-title'><i class='fas fa-phone'></i><span>İletişim</span></div><div class='info-content'><p><strong>Dahili Tel:</strong> <a href='tel:1733'>1733</a></p></div></div>",
+                  "en": "<div class='component-alert info'><i class='fas fa-info-circle'></i><div class='alert-content'><strong>Private Study Rooms</strong><p>Private rooms are available for academic staff and graduate students.</p><p>For reservations, you can contact the Reader Services Officer.</p></div></div><div class='component-info-box'><div class='info-title'><i class='fas fa-phone'></i><span>Contact</span></div><div class='info-content'><p><strong>Ext:</strong> <a href='tel:1733'>1733</a></p></div></div>"
+                }
+              },
+              {
+                "id": "hizmetler-5",
+                "question": {
+                  "tr": "Kütüphanede İnternete Girebilir miyim?",
+                  "en": "Can I Access the Internet in the Library?"
+                },
+                "answer": {
+                  "tr": "<div class='component-icon-list'><div class='list-wrapper'><div class='list-item'><i class='fas fa-desktop'></i><span><strong>Kütüphane Bilgisayarları</strong><br>Elektronik kaynaklara erişim için kullanılabilir</span></div><div class='list-item'><i class='fas fa-laptop'></i><span><strong>Kişisel Kullanım</strong><br>1. kattaki bilgisayar odası ve dizüstü bilgisayarlar</span></div></div></div>",
+                  "en": "<div class='component-icon-list'><div class='list-wrapper'><div class='list-item'><i class='fas fa-desktop'></i><span><strong>Library Computers</strong><br>Can be used for accessing electronic resources</span></div><div class='list-item'><i class='fas fa-laptop'></i><span><strong>Personal Use</strong><br>Computer room on the 1st floor and laptops</span></div></div></div>"
+                }
+              },
+              {
+                "id": "hizmetler-6",
+                "question": {
+                  "tr": "Kablosuz İnternet Var mı?",
+                  "en": "Is There Wireless Internet?"
+                },
+                "answer": {
+                  "tr": "<div class='component-alert success'><i class='fas fa-wifi'></i><div class='alert-content'><strong>Evet, Wi-Fi mevcuttur.</strong><p>Kütüphanenin her alanında kablosuz internet erişimi bulunmaktadır.</p></div></div><div class='component-info-box'><div class='info-title'><i class='fas fa-tools'></i><span>Teknik Destek</span></div><div class='info-content'><p>Yardım için Teknik Destek Birimi: <a href='tel:1706'>1706</a></p></div></div>",
+                  "en": "<div class='component-alert success'><i class='fas fa-wifi'></i><div class='alert-content'><strong>Yes, Wi-Fi is available.</strong><p>Wireless internet access is available in all areas of the library.</p></div></div><div class='component-info-box'><div class='info-title'><i class='fas fa-tools'></i><span>Technical Support</span></div><div class='info-content'><p>For assistance, Technical Support Unit: <a href='tel:1706'>1706</a></p></div></div>"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "title": {
+    "tr": "Veritabanları Kullanım Şartları",
+    "en": "Database Terms of Use"
+  },
+  "icon": "bi bi-shield-check",
+  "version": "1.0",
+  "agreementKey": "veritabanlari-kullanim-sartlari",
+  "declineUrl": "index.html",
+  "paragraphs": [
+    {
+      "tr": "Anadolu Üniversitesi Kütüphanesi tarafından sağlanan elektronik kaynaklar, yayıncılar ile yapılan lisans anlaşmaları ve 5846 sayılı Fikir ve Sanat Eserleri Kanunu gereğince kullanılmalıdır.",
+      "en": "Electronic resources provided by Anadolu University Library must be used in accordance with license agreements with publishers and the Law No. 5846 on Intellectual and Artistic Works."
+    },
+    {
+      "tr": "Elektronik kaynakların ticari amaçlarla kullanılması, otomatik dosya indirme programları ile sistematik toplu indirme yapılması, Anadolu Üniversitesi mensubu olmayan kişilere veritabanı içeriklerinin ya da uzaktan erişim şifrelerinin paylaşılması telif haklarına aykırıdır.",
+      "en": "Using electronic resources for commercial purposes, systematic bulk downloading with automated download programs, and sharing database contents or remote access passwords with non-Anadolu University members are violations of copyright."
+    },
+    {
+      "tr": "Bu tür ihlaller, tüm üniversitenin ilgili kaynağa erişiminin kesilmesine neden olacağı gibi kullanıcıya da yasal sorumluluklar yükler.",
+      "en": "Such violations may result in the entire university losing access to the relevant resource and may impose legal responsibilities on the user."
+    }
+  ],
+  "link": {
+    "icon": "bi bi-link-45deg",
+    "text": {
+      "tr": "TÜBİTAK EKUAL Kullanım Hakları Sözleşmesi",
+      "en": "TUBITAK EKUAL Usage Rights Agreement"
+    },
+    "url": "https://ekual.ulakbim.gov.tr/"
+  },
+  "acceptButton": {
+    "icon": "bi bi-check-circle",
+    "text": {
+      "tr": "UYARLARI OKUDUM, VERİTABANLARI SAYFASINI GÖRMEK İSTİYORUM",
+      "en": "I HAVE READ THE WARNINGS, I WANT TO VIEW THE DATABASES PAGE"
+    }
+  },
+  "declineButton": {
+    "icon": "bi bi-arrow-left-circle",
+    "text": {
+      "tr": "KÜTÜPHANE ANASAYFASINA DÖNMEK İSTİYORUM",
+      "en": "I WANT TO RETURN TO THE LIBRARY HOMEPAGE"
+    }
+  }
+}

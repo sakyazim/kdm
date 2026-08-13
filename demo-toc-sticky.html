@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo: Sticky Sidebar TOC</title>
+<link rel="alternate" hreflang="tr" href="https://kdm.anadolu.edu.tr/demo-toc-sticky.html"/>
+<link rel="alternate" hreflang="en" href="https://kdm.anadolu.edu.tr/demo-toc-sticky.html"/>
+<link rel="alternate" hreflang="x-default" href="https://kdm.anadolu.edu.tr/demo-toc-sticky.html"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f5f5f5;
+    }
+    /* Container */
+    .page-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 40px;
+      padding: 40px 20px;
+    }
+    /* Sidebar TOC */
+    .toc-sidebar {
+      position: sticky;
+      top: 20px;
+      height: fit-content;
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      max-height: calc(100vh - 40px);
+      overflow-y: auto;
+    }
+    .toc-sidebar h3 {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #666;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #e0e0e0;
+    }
+    .toc-list {
+      list-style: none;
+    }
+    .toc-list li {
+      margin-bottom: 8px;
+    }
+    .toc-list a {
+      display: block;
+      padding: 8px 12px;
+      color: #555;
+      text-decoration: none;
+      font-size: 14px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      border-left: 3px solid transparent;
+    }
+    .toc-list a:hover {
+      background: #f0f7ff;
+      color: #1976d2;
+      padding-left: 16px;
+    }
+    .toc-list a.active {
+      background: #e3f2fd;
+      color: #1976d2;
+      border-left-color: #1976d2;
+      font-weight: 600;
+      padding-left: 16px;
+    }
+    /* Progress Bar */
+    .reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: #e0e0e0;
+      z-index: 1000;
+    }
+    .reading-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #1976d2, #42a5f5);
+      width: 0%;
+      transition: width 0.2s ease;
+    }
+    /* Main Content */
+    .main-content {
+      background: white;
+      border-radius: 12px;
+      padding: 48px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .main-content h1 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 16px;
+    }
+    .main-content .subtitle {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 32px;
+    }
+    .content-section {
+      margin-bottom: 48px;
+      padding-top: 24px;
+      scroll-margin-top: 24px;
+    }
+    .content-section h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 3px solid #1976d2;
+    }
+    .content-section h3 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #333;
+      margin: 24px 0 12px;
+    }
+    .content-section p {
+      margin-bottom: 16px;
+      font-size: 16px;
+      line-height: 1.8;
+      color: #444;
+    }
+    .content-section ul, .content-section ol {
+      margin: 16px 0 16px 24px;
+    }
+    .content-section li {
+      margin-bottom: 8px;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+    .info-box {
+      background: #e3f2fd;
+      border-left: 4px solid #1976d2;
+      padding: 16px 20px;
+      margin: 24px 0;
+      border-radius: 8px;
+    }
+    .info-box p {
+      margin: 0;
+      color: #0d47a1;
+    }
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .page-container {
+        grid-template-columns: 1fr;
+      }
+      .toc-sidebar {
+        display: none;
+      }
+    }
+    /* Custom Scrollbar */
+    .toc-sidebar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .toc-sidebar::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+    .toc-sidebar::-webkit-scrollbar-thumb {
+      background: #1976d2;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="reading-progress">
+    <div class="reading-progress-bar" id="progressBar"></div>
+  </div>
+  <div class="page-container">
+    <aside class="toc-sidebar">
+      <h3>İçindekiler</h3>
+      <ul class="toc-list">
+        <li><a href="#section1" data-section="section1">Genel Bilgiler</a></li>
+        <li><a href="#section2" data-section="section2">Ücret Tarifeleri</a></li>
+        <li><a href="#section3" data-section="section3">Ödeme Yöntemleri</a></li>
+        <li><a href="#section4" data-section="section4">İndirim Koşulları</a></li>
+        <li><a href="#section5" data-section="section5">İptal ve İade</a></li>
+        <li><a href="#section6" data-section="section6">Sıkça Sorulan Sorular</a></li>
+      </ul>
+    </aside>
+    <main class="main-content">
+      <h1>Makale İşlem Ücretleri</h1>
+      <p class="subtitle">Kütüphanemizde sunulan hizmetlere ilişkin ücret tarifeleri ve ödeme koşulları</p>
+      <section class="content-section" id="section1">
+        <h2>Genel Bilgiler</h2>
+        <p>Anadolu Üniversitesi Kütüphanesi, akademik ve araştırma faaliyetlerini desteklemek amacıyla çeşitli hizmetler sunmaktadır. Bu hizmetlerin bir kısmı ücretli olup, ücret tarifeleri aşağıda detaylı olarak açıklanmıştır.</p>
+        <h3>Hizmet Kapsamı</h3>
+        <p>Kütüphanemizde sunulan ücretli hizmetler şunlardır:</p>
+        <ul>
+          <li>Makale fotokopi ve baskı hizmetleri</li>
+          <li>Elektronik makale gönderimleri</li>
+          <li>Kitaplar arası ödünç verme (ILL)</li>
+          <li>Özel araştırma ve veri tarama hizmetleri</li>
+          <li>Kurumsal üyelik ve danışmanlık hizmetleri</li>
+        </ul>
+        <div class="info-box">
+          <p><strong>Önemli Not:</strong> Öğrenci ve akademik personele özel indirim oranları uygulanmaktadır. Detaylı bilgi için İndirim Koşulları bölümünü inceleyiniz.</p>
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </section>
+      <section class="content-section" id="section2">
+        <h2>Ücret Tarifeleri</h2>
+        <p>Kütüphane hizmetlerine ilişkin güncel ücret tarifeleri aşağıdaki gibidir:</p>
+        <h3>Fotokopi ve Baskı Hizmetleri</h3>
+        <ul>
+          <li>Siyah-beyaz fotokopi/baskı: 0,50 TL/sayfa</li>
+          <li>Renkli fotokopi/baskı: 2,00 TL/sayfa</li>
+          <li>A3 boyutunda siyah-beyaz: 1,00 TL/sayfa</li>
+          <li>A3 boyutunda renkli: 4,00 TL/sayfa</li>
+        </ul>
+        <h3>Elektronik Makale Gönderimleri</h3>
+        <p>E-posta veya elektronik ortamda gönderilen makale başına: 5,00 TL</p>
+        <h3>Kitaplar Arası Ödünç Verme (ILL)</h3>
+        <ul>
+          <li>Yurt içi kütüphanelerden talep: 15,00 TL/makale</li>
+          <li>Yurt dışı kütüphanelerden talep: 25,00 TL/makale</li>
+          <li>Kargo ücreti (varsa) ayrıca hesaplanır</li>
+        </ul>
+        <div class="info-box">
+          <p><strong>Toplu İşlem İndirimi:</strong> 50 sayfanın üzerindeki işlemlerde %10, 100 sayfanın üzerindeki işlemlerde %15 indirim uygulanır.</p>
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      </section>
+      <section class="content-section" id="section3">
+        <h2>Ödeme Yöntemleri</h2>
+        <p>Kütüphane hizmetleri için ödeme yaparken aşağıdaki yöntemleri kullanabilirsiniz:</p>
+        <h3>Kabul Edilen Ödeme Yöntemleri</h3>
+        <ol>
+          <li><strong>Nakit Ödeme:</strong> Kütüphane gişesinden nakit olarak ödeme yapabilirsiniz.</li>
+          <li><strong>Kredi/Banka Kartı:</strong> Tüm yaygın kredi ve banka kartları kabul edilmektedir.</li>
+          <li><strong>Havale/EFT:</strong> Banka hesap bilgilerimize havale veya EFT yapabilirsiniz.</li>
+          <li><strong>Üniversite Kartı:</strong> Öğrenci ve personel için üniversite kartı ile ödeme mümkündür.</li>
+        </ol>
+        <h3>Banka Hesap Bilgileri</h3>
+        <p>Havale/EFT yaparken aşağıdaki hesap bilgilerini kullanabilirsiniz:</p>
+        <ul>
+          <li>Banka: Ziraat Bankası Eskişehir Şubesi</li>
+          <li>Hesap Adı: Anadolu Üniversitesi Kütüphanesi</li>
+          <li>IBAN: TR33 0001 0000 0000 0000 0000 00</li>
+          <li>Açıklama: Ad Soyad - Öğrenci/Personel No</li>
+        </ul>
+        <div class="info-box">
+          <p><strong>Ödeme Sonrası:</strong> Havale/EFT ile yapılan ödemelerde dekont kopyasını mutlaka kütüphane gişesine ibraz ediniz.</p>
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at nisi id nunc sagittis facilisis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.</p>
+      </section>
+      <section class="content-section" id="section4">
+        <h2>İndirim Koşulları</h2>
+        <p>Belirli kullanıcı grupları ve koşullar altında indirimler uygulanmaktadır:</p>
+        <h3>Öğrenci İndirimleri</h3>
+        <ul>
+          <li>Lisans öğrencileri: %20 indirim</li>
+          <li>Yüksek lisans öğrencileri: %25 indirim</li>
+          <li>Doktora öğrencileri: %30 indirim</li>
+        </ul>
+        <h3>Akademik Personel İndirimleri</h3>
+        <ul>
+          <li>Araştırma görevlileri: %25 indirim</li>
+          <li>Öğretim görevlileri: %30 indirim</li>
+          <li>Doç. Dr. ve Prof. Dr.: %35 indirim</li>
+        </ul>
+        <h3>Toplu İşlem İndirimleri</h3>
+        <p>Aynı anda yapılan toplu işlemlerde aşağıdaki indirimler geçerlidir:</p>
+        <ul>
+          <li>50-99 sayfa: %10 indirim</li>
+          <li>100-199 sayfa: %15 indirim</li>
+          <li>200 sayfa ve üzeri: %20 indirim</li>
+        </ul>
+        <div class="info-box">
+          <p><strong>İndirim Birleştirme:</strong> Öğrenci/personel indirimi ile toplu işlem indirimi birlikte uygulanabilir. Maksimum toplam indirim oranı %40'tır.</p>
+        </div>
+      </section>
+      <section class="content-section" id="section5">
+        <h2>İptal ve İade</h2>
+        <p>Hizmet iptali ve ücret iadesi koşulları aşağıdaki gibidir:</p>
+        <h3>İptal Koşulları</h3>
+        <ul>
+          <li>Hizmet başlamadan önce yapılan iptal taleplerinde %100 iade yapılır.</li>
+          <li>Hizmet başladıktan sonra iptal mümkün değildir.</li>
+          <li>ILL hizmetlerinde dış kütüphanelerden kaynaklanan gecikmeler durumunda ücret iadesi yapılır.</li>
+        </ul>
+        <h3>İade Süreci</h3>
+        <ol>
+          <li>İptal talebinizi kütüphane gişesine veya e-posta ile iletiniz.</li>
+          <li>İade talebi 5 iş günü içinde değerlendirilir.</li>
+          <li>Onaylanan iadeler 10 iş günü içinde hesabınıza aktarılır.</li>
+          <li>Nakit ödemeler için kütüphane gişesinden iade alabilirsiniz.</li>
+        </ol>
+        <h3>İade Yapılamayan Durumlar</h3>
+        <ul>
+          <li>Tamamlanmış fotokopi ve baskı işlemleri</li>
+          <li>Gönderilmiş elektronik makale hizmetleri</li>
+          <li>Kullanıcı hatasından kaynaklanan yanlış talepler</li>
+        </ul>
+        <div class="info-box">
+          <p><strong>Önemli:</strong> İade taleplerinde ödeme dekontunuz ve kütüphane hizmet numaranız gereklidir.</p>
+        </div>
+      </section>
+      <section class="content-section" id="section6">
+        <h2>Sıkça Sorulan Sorular</h2>
+        <h3>1. Öğrenci indiriminden nasıl yararlanabilirim?</h3>
+        <p>Öğrenci kartınızı veya öğrenci belgenizi gişeye ibraz etmeniz yeterlidir. İndirim otomatik olarak uygulanacaktır.</p>
+        <h3>2. Toplu işlem indirimi nasıl hesaplanır?</h3>
+        <p>Aynı anda yaptığınız tüm işlemlerin toplam sayfa sayısına göre indirim oranı belirlenir ve tüm işlem tutarına uygulanır.</p>
+        <h3>3. Ödeme yaparken fatura alabilir miyim?</h3>
+        <p>Evet, talep etmeniz durumunda tüm ödemeler için fatura düzenlenmektedir. Fatura bilgilerinizi ödeme öncesinde bildirmeniz gerekmektedir.</p>
+        <h3>4. Elektronik makale gönderimleri ne kadar sürede tamamlanır?</h3>
+        <p>Yurt içi kaynaklardan 1-3 iş günü, yurt dışı kaynaklardan 5-10 iş günü içinde makaleler e-posta adresinize gönderilir.</p>
+        <h3>5. Ücret tarifelerinde değişiklik olur mu?</h3>
+        <p>Ücret tarifeleri yılda bir kez, akademik takvim başlangıcında güncellenebilir. Güncel tarifeler için web sitemizi takip edebilirsiniz.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </section>
+    </main>
+  </div>
+  <script>
+    // ========================================
+    // STICKY TOC NAVIGATION
+    // ========================================
+    // 1. Active Section Tracking (Scroll Spy)
+    const sections = document.querySelectorAll('.content-section');
+    const tocLinks = document.querySelectorAll('.toc-list a');
+    function updateActiveSection() {
+      let currentSection = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionBottom = sectionTop + section.offsetHeight;
+        const scrollPosition = window.scrollY;
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+          currentSection = section.getAttribute('id');
+        }
+      });
+      tocLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('data-section') === currentSection) {
+          link.classList.add('active');
+        }
+      });
+    }
+    // 2. Smooth Scroll to Section
+    tocLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          window.scrollTo({
+            top: targetSection.offsetTop - 24,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    // 3. Reading Progress Bar
+    function updateProgressBar() {
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.scrollY;
+      const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+      document.getElementById('progressBar').style.width = scrollPercent + '%';
+    }
+    // Event Listeners
+    window.addEventListener('scroll', () => {
+      updateActiveSection();
+      updateProgressBar();
+    });
+    // Initial call
+    updateActiveSection();
+    updateProgressBar();
+  </script>
+</body>
+</html>
+

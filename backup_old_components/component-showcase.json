@@ -1,0 +1,549 @@
+{
+  "pageTitle": "Standart Bileşen Kütüphanesi",
+  "pageDescription": "Tüm sayfalarda kullanılacak standart bileşenlerin test ve önizleme sayfası",
+  "sections": [
+    {
+      "id": "heading-components",
+      "title": "Başlık Bileşenleri",
+      "icon": "fas fa-heading",
+      "description": "Tek satır ve çift satır başlık varyantları. İkonlu ve ikonsuz seçenekler.",
+      "componentCount": 4,
+      "showJson": true,
+      "variants": [
+        {
+          "label": "Tek Satır - İkonlu (Primary Color)",
+          "component": {
+            "type": "heading",
+            "variant": "single-icon",
+            "data": {
+              "title": "Oku & Yayımla Anlaşmaları Nedir?",
+              "icon": "fas fa-unlock-alt",
+              "id": "example-heading-1"
+            }
+          }
+        },
+        {
+          "label": "Tek Satır - İkonsuz (Gradient Background)",
+          "component": {
+            "type": "heading",
+            "variant": "single-plain",
+            "data": {
+              "title": "Makale İşlem Ücretleri (APC)",
+              "id": "example-heading-2"
+            }
+          }
+        },
+        {
+          "label": "Çift Satır - İkonlu",
+          "component": {
+            "type": "heading",
+            "variant": "double-icon",
+            "data": {
+              "title": "Genel Danışma & Kullanıcı Eğitimi Danışma Bölümü",
+              "subtitle": "Okuyucu Hizmetleri - İletişim ve Destek",
+              "icon": "fas fa-user-friends",
+              "id": "example-heading-3"
+            }
+          }
+        },
+        {
+          "label": "Çift Satır - İkonsuz",
+          "component": {
+            "type": "heading",
+            "variant": "double-plain",
+            "data": {
+              "title": "Kütüphane Hizmetleri",
+              "subtitle": "Akademik araştırma ve öğrenim sürecinde size destek olmak için buradayız",
+              "id": "example-heading-4"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "alert-components",
+      "title": "Alert / İkaz Kutuları",
+      "icon": "fas fa-exclamation-circle",
+      "description": "Tek satır, çoklu satır ve listeli uyarı kutuları. Info ve Warning varyantları.",
+      "componentCount": 5,
+      "showJson": true,
+      "variants": [
+        {
+          "label": "Info - Tek Satır (Önemli Uyarı)",
+          "component": {
+            "type": "alert",
+            "variant": "info",
+            "style": "single-line",
+            "data": {
+              "icon": "bi bi-info-circle",
+              "title": "Önemli:",
+              "content": "Kimlik kartı ile işlem yapabilmek için kütüphane giriş kapısındaki self-check cihazını kullanabilirsiniz."
+            }
+          }
+        },
+        {
+          "label": "Info - Çoklu Satır (Dönüştürücü Anlaşmalar)",
+          "component": {
+            "type": "alert",
+            "variant": "info",
+            "style": "multi-line",
+            "data": {
+              "icon": "fas fa-lightbulb",
+              "title": "Dönüştürücü Anlaşmalar",
+              "content": "Dönüştürücü anlaşmalar olarak bilinen bu anlaşmalar, veritabanı abonelik ücretlerinin yanında makale işlem ücretlerini de (Article Processing Charge, APC) içeren bir modeli ifade etmektedir. Bu sayede yazarlar yayınlarını açık erişimli olarak yayımlayabilirler."
+            }
+          }
+        },
+        {
+          "label": "Warning - Liste (Birden Fazla Kimlik)",
+          "component": {
+            "type": "alert",
+            "variant": "warning",
+            "style": "list",
+            "data": {
+              "icon": "fas fa-exclamation-triangle",
+              "title": "Dikkat: Birden Fazla Kimliğiniz Varsa",
+              "items": [
+                "Tüm kimliklerinizi tek bir profilde birleştirin",
+                "ORCID hesabınıza tüm yayınlarınızı ekleyin",
+                "Yinelenen kayıtları temizleyin",
+                "Kurumunuzu doğru şekilde belirtin"
+              ]
+            }
+          }
+        },
+        {
+          "label": "Warning - Tek Satır (Liste)",
+          "component": {
+            "type": "alert",
+            "variant": "warning",
+            "style": "single-line",
+            "data": {
+              "icon": "fas fa-exclamation-triangle",
+              "title": "Dikkat:",
+              "content": "Birden fazla kimliğiniz varsa, tüm kimliklerinizi tek bir profilde birleştirin."
+            }
+          }
+        },
+        {
+          "label": "Info - Otomatik Alıntı (Mendeley)",
+          "component": {
+            "type": "alert",
+            "variant": "info",
+            "style": "multi-line",
+            "data": {
+              "icon": "fas fa-magic",
+              "title": "Otomatik Alıntı Oluşturma",
+              "content": "Mendeley, kaynakları otomatik olarak tarayarak bibliyografik bilgileri çıkarır ve organize eder. Word ve LibreOffice eklentileri ile dokümanlarınıza kolayca alıntı ekleyebilirsiniz."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "icon-list-components",
+      "title": "İkonlu Listeler",
+      "icon": "fas fa-list-ul",
+      "description": "Sol kenarda accent color çizgisi olan, ikonlu madde listeleri. Konular, faydalar, özellikler için kullanılır.",
+      "componentCount": 2,
+      "showJson": true,
+      "variants": [
+        {
+          "label": "Yardım Alabileceğiniz Konular (Kime Sormalıyım)",
+          "component": {
+            "type": "icon-list",
+            "variant": "topics",
+            "data": {
+              "title": "Bu Birimden Yardım Alabileceğiniz Konular:",
+              "titleIcon": "fas fa-list-ul",
+              "items": [
+                {
+                  "icon": "fas fa-chevron-right",
+                  "text": "Ödünç alma ve iade işlemleri"
+                },
+                {
+                  "icon": "fas fa-chevron-right",
+                  "text": "Kütüphane üyelik işlemleri"
+                },
+                {
+                  "icon": "fas fa-chevron-right",
+                  "text": "Materyal arama ve kaynak bulma"
+                },
+                {
+                  "icon": "fas fa-chevron-right",
+                  "text": "Veritabanı kullanımı ve erişim sorunları"
+                },
+                {
+                  "icon": "fas fa-chevron-right",
+                  "text": "Kaynak rezervasyonu"
+                },
+                {
+                  "icon": "fas fa-chevron-right",
+                  "text": "Kütüphanelerarası ödünç verme (ILL)"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "label": "Araştırmacı Profili Faydaları",
+          "component": {
+            "type": "icon-list",
+            "variant": "benefits",
+            "data": {
+              "title": "Araştırmacı Profili Oluşturmanın Faydaları:",
+              "titleIcon": "fas fa-star",
+              "items": [
+                {
+                  "icon": "fas fa-check-circle",
+                  "text": "Yayınlarınızı tek bir merkezden yönetebilirsiniz"
+                },
+                {
+                  "icon": "fas fa-check-circle",
+                  "text": "Atıf sayılarınızı ve h-index değerinizi takip edebilirsiniz"
+                },
+                {
+                  "icon": "fas fa-check-circle",
+                  "text": "Akademik görünürlüğünüzü artırabilirsiniz"
+                },
+                {
+                  "icon": "fas fa-check-circle",
+                  "text": "İsim benzerliği sorunlarını çözebilirsiniz"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "table-components",
+      "title": "Tablo Bileşeni",
+      "icon": "fas fa-table",
+      "description": "Başlıklı, hover efektli, responsive tablolar. Vurgulu kolonlar desteklenir.",
+      "componentCount": 1,
+      "showJson": true,
+      "variants": [
+        {
+          "label": "Ödünç Süreleri ve Materyal Sayısı",
+          "component": {
+            "type": "table",
+            "variant": "standard",
+            "data": {
+              "title": "Ödünç Süreleri ve Materyal Sayısı",
+              "id": "odunc-sureleri-tablosu",
+              "headers": ["Kullanıcı Türü", "Ödünç Süresi", "Materyal Sayısı"],
+              "rows": [
+                {
+                  "icon": "bi bi-mortarboard",
+                  "cells": ["Akademik Personel", "30 gün", "20 adet"],
+                  "highlightColumns": [1, 2]
+                },
+                {
+                  "icon": "bi bi-person-badge",
+                  "cells": ["İdari Personel", "21 gün", "10 adet"],
+                  "highlightColumns": [1, 2]
+                },
+                {
+                  "icon": "bi bi-person",
+                  "cells": ["Lisansüstü Öğrenciler", "21 gün", "10 adet"],
+                  "highlightColumns": [1, 2]
+                },
+                {
+                  "icon": "bi bi-person",
+                  "cells": ["Lisans Öğrencileri", "14 gün", "5 adet"],
+                  "highlightColumns": [1, 2]
+                },
+                {
+                  "icon": "bi bi-person-check",
+                  "cells": ["Dış Araştırmacılar", "7 gün", "3 adet"],
+                  "highlightColumns": [1, 2]
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "step-card-components",
+      "title": "Step Card Bileşeni",
+      "icon": "fas fa-tasks",
+      "description": "Accordion tarzı adım kartları. Numaralı, açılır/kapanır içerikli.",
+      "componentCount": 2,
+      "showJson": true,
+      "variants": [
+        {
+          "label": "ORCID Profil Oluşturma Adımları",
+          "component": {
+            "type": "step-cards",
+            "variant": "accordion",
+            "data": {
+              "steps": [
+                {
+                  "number": 1,
+                  "title": "ORCID.org Sitesine Gidin",
+                  "content": "<p>Tarayıcınızda <strong>https://orcid.org</strong> adresine gidin ve sağ üst köşede bulunan <strong>'Register'</strong> (Kaydol) butonuna tıklayın.</p>",
+                  "defaultOpen": true
+                },
+                {
+                  "number": 2,
+                  "title": "Kayıt Formunu Doldurun",
+                  "content": "<ul><li><strong>Ad ve Soyad:</strong> Akademik yayınlarınızda kullandığınız ismi girin</li><li><strong>E-posta:</strong> Kurumsal e-posta adresinizi (@anadolu.edu.tr) kullanın</li><li><strong>Şifre:</strong> Güçlü bir şifre oluşturun</li><li><strong>Gizlilik:</strong> Profilinizin görünürlüğünü ayarlayın (Public önerilir)</li></ul>",
+                  "defaultOpen": false
+                },
+                {
+                  "number": 3,
+                  "title": "E-posta Doğrulaması",
+                  "content": "<p>Kayıt işleminden sonra e-posta adresinize bir doğrulama linki gönderilecektir. Bu linke tıklayarak hesabınızı aktif hale getirin.</p>",
+                  "defaultOpen": false
+                },
+                {
+                  "number": 4,
+                  "title": "Profilinizi Tamamlayın",
+                  "content": "<p>ORCID hesabınıza giriş yapın ve profilinize şu bilgileri ekleyin:</p><ul><li>Kurumunuz (Anadolu Üniversitesi)</li><li>Eğitim geçmişiniz</li><li>İş deneyiminiz</li><li>Yayınlarınız</li><li>Diğer akademik kimlikleriniz (Scopus ID, ResearcherID, vb.)</li></ul>",
+                  "defaultOpen": false
+                }
+              ]
+            }
+          }
+        },
+        {
+          "label": "Mendeley ile Başlangıç Adımları",
+          "component": {
+            "type": "step-cards",
+            "variant": "accordion",
+            "data": {
+              "steps": [
+                {
+                  "number": 1,
+                  "title": "Mendeley Hesabı Oluşturun",
+                  "content": "<p><strong>https://www.mendeley.com</strong> adresine gidin ve kurumsal e-posta adresinizle (@anadolu.edu.tr) kayıt olun. Kurumsal hesap ile sınırsız depolama ve gelişmiş özelliklere erişebilirsiniz.</p>",
+                  "defaultOpen": true
+                },
+                {
+                  "number": 2,
+                  "title": "Masaüstü Uygulamasını İndirin",
+                  "content": "<p>Mendeley Reference Manager (Masaüstü) uygulamasını bilgisayarınıza indirin ve kurun. Windows, Mac ve Linux sürümleri mevcuttur.</p>",
+                  "defaultOpen": false
+                },
+                {
+                  "number": 3,
+                  "title": "Kaynakları İçe Aktarın",
+                  "content": "<p>Mevcut kaynaklarınızı Mendeley'e ekleyin:</p><ul><li>PDF dosyalarını sürükle-bırak ile ekleyin</li><li>Web Importer eklentisi ile tarayıcıdan ekleyin</li><li>DOI, PubMed ID ile arama yapın</li><li>Diğer referans yöneticilerinden (EndNote, Zotero) içe aktarın</li></ul>",
+                  "defaultOpen": false
+                },
+                {
+                  "number": 4,
+                  "title": "Word Eklentisini Kurun",
+                  "content": "<p>Mendeley Cite eklentisini Microsoft Word veya LibreOffice'e kurun. Böylece dokümanlarınıza otomatik alıntı ekleyebilir ve bibliyografya oluşturabilirsiniz.</p>",
+                  "defaultOpen": false
+                },
+                {
+                  "number": 5,
+                  "title": "Klasörler ve Etiketler Oluşturun",
+                  "content": "<p>Kaynaklarınızı organize etmek için klasörler ve etiketler kullanın. Proje bazlı klasörler oluşturarak kolayca erişim sağlayabilirsiniz.</p>",
+                  "defaultOpen": false
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "info-box-components",
+      "title": "Info Box Bileşeni",
+      "icon": "fas fa-info-circle",
+      "description": "Önemli bilgileri vurgulamak için kullanılan kutular. Tek satır ve çift satır, ikonlu ve ikonsuz varyantlar. Arka plan gradyansız primary color, yazılar beyaz.",
+      "componentCount": 5,
+      "showJson": true,
+      "variants": [
+        {
+          "label": "Tek Satır - İkonlu (Primary Color)",
+          "component": {
+            "type": "info-box",
+            "variant": "single-icon",
+            "data": {
+              "title": "Maliyet Avantajı",
+              "titleIcon": "fas fa-building",
+              "content": "Makale işlem ücretlerini ödemeden veya büyük indirimlerle açık erişim yayın yapabilirsiniz."
+            }
+          }
+        },
+        {
+          "label": "Tek Satır - İkonsuz (Primary Color)",
+          "component": {
+            "type": "info-box",
+            "variant": "single-plain",
+            "data": {
+              "title": "Önemli Bilgilendirme",
+              "content": "Kütüphane kartınızı yanınızda bulundurmayı unutmayın."
+            }
+          }
+        },
+        {
+          "label": "Çift Satır - İkonlu (Primary Color)",
+          "component": {
+            "type": "info-box",
+            "variant": "double-icon",
+            "data": {
+              "title": "Kurumsal Hesap Avantajları",
+              "titleIcon": "fas fa-building",
+              "content": "Mendeley kurumsal hesabı ile sınırsız depolama alanı, gelişmiş işbirliği araçları ve öncelikli destek hizmetinden yararlanabilirsiniz. Anadolu Üniversitesi e-posta adresiniz ile kaydolduğunuzda bu avantajlar otomatik olarak aktif olur."
+            }
+          }
+        },
+        {
+          "label": "Çift Satır - İkonsuz (Primary Color)",
+          "component": {
+            "type": "info-box",
+            "variant": "double-plain",
+            "data": {
+              "title": "Süre Değişkendir",
+              "content": "Kütüphanelerarası ödünç verme işlemlerinde süre, kaynak kütüphanenin politikalarına göre değişiklik gösterebilir. Genellikle 2-4 hafta arasında sürmektedir. Acil ihtiyaçlarınız için hızlandırılmış işlem talebinde bulunabilirsiniz."
+            }
+          }
+        },
+        {
+          "label": "Warning - Tek Satır (Liste)",
+          "component": {
+            "type": "info-box",
+            "variant": "warning-single",
+            "data": {
+              "title": "Dikkat: Birden Fazla Kimliğiniz Varsa",
+              "titleIcon": "fas fa-exclamation-triangle",
+              "content": "Tüm kimliklerinizi tek bir profilde birleştirin ve yinelenen kayıtları temizleyin."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "resource-link-components",
+      "title": "Resource Link Bileşeni",
+      "icon": "fas fa-link",
+      "description": "Dış kaynaklara, kılavuzlara, araçlara yönlendiren linkler. Grid layout.",
+      "componentCount": 2,
+      "showJson": true,
+      "variants": [
+        {
+          "label": "ACS Kaynakları ve Kılavuzlar",
+          "component": {
+            "type": "resource-links",
+            "variant": "grid",
+            "data": {
+              "resources": [
+                {
+                  "title": "ACS Read & Publish Kılavuzu",
+                  "description": "Detaylı kullanım kılavuzu ve SSS",
+                  "url": "https://pubs.acs.org/page/read-and-publish",
+                  "icon": "fas fa-book-open"
+                },
+                {
+                  "title": "ACS Author Center",
+                  "description": "Yazar bilgilendirme merkezi",
+                  "url": "https://pubs.acs.org/page/authors/index.html",
+                  "icon": "fas fa-user-edit"
+                },
+                {
+                  "title": "ACS Journals Listesi",
+                  "description": "Kapsanan dergilerin tam listesi",
+                  "url": "https://pubs.acs.org/journal/browse",
+                  "icon": "fas fa-list"
+                },
+                {
+                  "title": "ACS Destek",
+                  "description": "Teknik destek ve yardım",
+                  "url": "https://help.acs.org/",
+                  "icon": "fas fa-question-circle"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "label": "Mendeley Kaynakları ve Yardım Materyalleri",
+          "component": {
+            "type": "resource-links",
+            "variant": "grid",
+            "data": {
+              "resources": [
+                {
+                  "title": "Mendeley Başlangıç Kılavuzu",
+                  "description": "Yeni başlayanlar için adım adım kılavuz",
+                  "url": "https://www.mendeley.com/guides/mendeley-reference-manager",
+                  "icon": "fas fa-book-reader"
+                },
+                {
+                  "title": "Video Eğitimler",
+                  "description": "Mendeley kullanımı ile ilgili video dersleri",
+                  "url": "https://www.mendeley.com/guides/videos",
+                  "icon": "fas fa-video"
+                },
+                {
+                  "title": "Word Eklentisi Kullanımı",
+                  "description": "Cite-While-You-Write özelliği kılavuzu",
+                  "url": "https://www.mendeley.com/guides/mendeley-cite",
+                  "icon": "fas fa-file-word"
+                },
+                {
+                  "title": "Web Importer Eklentisi",
+                  "description": "Tarayıcı eklentisi kurulum ve kullanım",
+                  "url": "https://www.mendeley.com/reference-management/web-importer",
+                  "icon": "fas fa-puzzle-piece"
+                },
+                {
+                  "title": "Mendeley Destek Merkezi",
+                  "description": "SSS ve teknik destek",
+                  "url": "https://service.elsevier.com/app/answers/list/p/10251/",
+                  "icon": "fas fa-life-ring"
+                },
+                {
+                  "title": "Atıf Stilleri Kılavuzu",
+                  "description": "APA, MLA, Chicago ve diğer stil ayarları",
+                  "url": "https://www.mendeley.com/guides/mendeley-cite-citation-styles",
+                  "icon": "fas fa-quote-right"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "search-components",
+      "title": "Arama Bileşeni",
+      "icon": "fas fa-search",
+      "description": "Modern arama kutusu. Clear butonu ile. SSS, Veritabanları, Kime Sormalıyım sayfalarında kullanılır.",
+      "componentCount": 2,
+      "showJson": true,
+      "variants": [
+        {
+          "label": "Basit Arama (SSS)",
+          "component": {
+            "type": "search",
+            "variant": "simple",
+            "data": {
+              "id": "faq-search",
+              "placeholder": "Sorunuzu yazın... (örn: ödünç alma, süre uzatma, uzaktan erişim)",
+              "showClearButton": true
+            }
+          }
+        },
+        {
+          "label": "Basit Arama (Veritabanları)",
+          "component": {
+            "type": "search",
+            "variant": "simple",
+            "data": {
+              "id": "database-search",
+              "placeholder": "Veritabanı ara... (örn: Scopus, Web of Science, EBSCO)",
+              "showClearButton": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

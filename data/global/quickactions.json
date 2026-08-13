@@ -1,0 +1,423 @@
+{
+  "global": [],
+  "pages": {
+    "uzaktan-erisim": [
+      {
+        "id": "toggle-theme",
+        "title": {
+          "tr": "Tema Değiştir",
+          "en": "Change Theme"
+        },
+        "description": {
+          "tr": "Açık/Koyu tema arasında geçiş yap",
+          "en": "Switch between light/dark theme"
+        },
+        "icon": "bi-moon-stars",
+        "action": "toggleTheme",
+        "enabled": true
+      },
+      {
+        "id": "show-terms",
+        "title": {
+          "tr": "Kullanım Şartlarını Tekrar Göster",
+          "en": "Show Terms of Use Again"
+        },
+        "description": {
+          "tr": "Uzaktan erişim kullanım şartlarını tekrar oku",
+          "en": "Read remote access terms of use again"
+        },
+        "icon": "bi-shield-lock",
+        "action": "resetAgreement:uzaktan-erisim-kullanim-sartlari",
+        "enabled": true
+      },
+      {
+        "id": "remote-access",
+        "title": {
+          "tr": "Uzaktan Erişim",
+          "en": "Remote Access"
+        },
+        "description": {
+          "tr": "Kampüs dışından kaynak erişimi",
+          "en": "Access resources from off-campus"
+        },
+        "icon": "bi-wifi",
+        "url": "uzaktan-erisim.html",
+        "enabled": true
+      },
+      {
+        "id": "extend-loan",
+        "title": {
+          "tr": "Süre Uzatma",
+          "en": "Extend Loan"
+        },
+        "description": {
+          "tr": "Ödünç aldığınız kitapların süresini uzatın",
+          "en": "Extend the loan period of your borrowed books"
+        },
+        "icon": "bi-clock-history",
+        "url": "sure-uzatma.html",
+        "enabled": true
+      },
+      {
+        "id": "current-news",
+        "title": {
+          "tr": "Güncel Haberler",
+          "en": "Current News"
+        },
+        "description": {
+          "tr": "Kütüphaneden haberler ve gelişmeler",
+          "en": "News and developments from the library"
+        },
+        "icon": "bi-newspaper",
+        "url": "guncel-haberler.html",
+        "enabled": true
+      },
+      {
+        "id": "announcements",
+        "title": {
+          "tr": "Duyurular",
+          "en": "Announcements"
+        },
+        "description": {
+          "tr": "Önemli duyuru ve bildirimler",
+          "en": "Important announcements and notifications"
+        },
+        "icon": "bi-megaphone-fill",
+        "url": "duyurular.html",
+        "enabled": true
+      },
+      {
+        "id": "guide-videos",
+        "title": {
+          "tr": "Rehber Videolar",
+          "en": "Guide Videos"
+        },
+        "description": {
+          "tr": "Video eğitimler ve kullanım kılavuzları",
+          "en": "Video tutorials and user guides"
+        },
+        "icon": "bi-play-circle",
+        "url": "rehber-videolar.html",
+        "enabled": true
+      }
+    ],
+    "veritabanlari": [
+      {
+        "id": "toggle-theme",
+        "title": {
+          "tr": "Tema Değiştir",
+          "en": "Change Theme"
+        },
+        "description": {
+          "tr": "Açık/Koyu tema arasında geçiş yap",
+          "en": "Switch between light/dark theme"
+        },
+        "icon": "bi-moon-stars",
+        "action": "toggleTheme",
+        "enabled": true
+      },
+      {
+        "id": "show-terms",
+        "title": {
+          "tr": "Kullanım Şartlarını Tekrar Göster",
+          "en": "Show Terms of Use Again"
+        },
+        "description": {
+          "tr": "Veritabanları kullanım şartlarını tekrar oku",
+          "en": "Read database terms of use again"
+        },
+        "icon": "bi-shield-check",
+        "action": "resetAgreement:veritabanlari-kullanim-sartlari",
+        "enabled": true
+      },
+      {
+        "id": "remote-access",
+        "title": {
+          "tr": "Uzaktan Erişim",
+          "en": "Remote Access"
+        },
+        "description": {
+          "tr": "Kampüs dışından kaynak erişimi",
+          "en": "Access resources from off-campus"
+        },
+        "icon": "bi-wifi",
+        "url": "uzaktan-erisim.html",
+        "enabled": true
+      },
+      {
+        "id": "extend-loan",
+        "title": {
+          "tr": "Süre Uzatma",
+          "en": "Extend Loan"
+        },
+        "description": {
+          "tr": "Ödünç aldığınız kitapların süresini uzatın",
+          "en": "Extend the loan period of your borrowed books"
+        },
+        "icon": "bi-clock-history",
+        "url": "sure-uzatma.html",
+        "enabled": true
+      },
+      {
+        "id": "current-news",
+        "title": {
+          "tr": "Güncel Haberler",
+          "en": "Current News"
+        },
+        "description": {
+          "tr": "Kütüphaneden haberler ve gelişmeler",
+          "en": "News and developments from the library"
+        },
+        "icon": "bi-newspaper",
+        "url": "guncel-haberler.html",
+        "enabled": true
+      },
+      {
+        "id": "announcements",
+        "title": {
+          "tr": "Duyurular",
+          "en": "Announcements"
+        },
+        "description": {
+          "tr": "Önemli duyuru ve bildirimler",
+          "en": "Important announcements and notifications"
+        },
+        "icon": "bi-megaphone-fill",
+        "url": "duyurular.html",
+        "enabled": true
+      },
+      {
+        "id": "guide-videos",
+        "title": {
+          "tr": "Rehber Videolar",
+          "en": "Guide Videos"
+        },
+        "description": {
+          "tr": "Video eğitimler ve kullanım kılavuzları",
+          "en": "Video tutorials and user guides"
+        },
+        "icon": "bi-play-circle",
+        "url": "rehber-videolar.html",
+        "enabled": true
+      }
+    ],
+    "home": [
+      {
+        "id": "toggle-theme",
+        "title": {
+          "tr": "Tema Değiştir",
+          "en": "Change Theme"
+        },
+        "description": {
+          "tr": "Açık/Koyu tema arasında geçiş yap",
+          "en": "Switch between light/dark theme"
+        },
+        "icon": "bi-moon-stars",
+        "action": "toggleTheme",
+        "enabled": true
+      },
+      {
+        "id": "show-announcements",
+        "title": {
+          "tr": "Duyuruları Göster",
+          "en": "Show Announcements"
+        },
+        "description": {
+          "tr": "Kapatılan duyuruları tekrar göster",
+          "en": "Show closed announcements again"
+        },
+        "icon": "bi-megaphone",
+        "action": "resetModals",
+        "enabled": true
+      },
+      {
+        "id": "remote-access",
+        "title": {
+          "tr": "Uzaktan Erişim",
+          "en": "Remote Access"
+        },
+        "description": {
+          "tr": "Kampüs dışından kaynak erişimi",
+          "en": "Access resources from off-campus"
+        },
+        "icon": "bi-wifi",
+        "url": "uzaktan-erisim.html",
+        "enabled": true
+      },
+      {
+        "id": "extend-loan",
+        "title": {
+          "tr": "Süre Uzatma",
+          "en": "Extend Loan"
+        },
+        "description": {
+          "tr": "Ödünç aldığınız kitapların süresini uzatın",
+          "en": "Extend the loan period of your borrowed books"
+        },
+        "icon": "bi-clock-history",
+        "url": "sure-uzatma.html",
+        "enabled": true
+      },
+      {
+        "id": "current-news",
+        "title": {
+          "tr": "Güncel Haberler",
+          "en": "Current News"
+        },
+        "description": {
+          "tr": "Kütüphaneden haberler ve gelişmeler",
+          "en": "News and developments from the library"
+        },
+        "icon": "bi-newspaper",
+        "url": "guncel-haberler.html",
+        "enabled": true
+      },
+      {
+        "id": "announcements",
+        "title": {
+          "tr": "Duyurular",
+          "en": "Announcements"
+        },
+        "description": {
+          "tr": "Önemli duyuru ve bildirimler",
+          "en": "Important announcements and notifications"
+        },
+        "icon": "bi-megaphone-fill",
+        "url": "duyurular.html",
+        "enabled": true
+      },
+      {
+        "id": "guide-videos",
+        "title": {
+          "tr": "Rehber Videolar",
+          "en": "Guide Videos"
+        },
+        "description": {
+          "tr": "Video eğitimler ve kullanım kılavuzları",
+          "en": "Video tutorials and user guides"
+        },
+        "icon": "bi-play-circle",
+        "url": "rehber-videolar.html",
+        "enabled": true
+      }
+    ],
+    "inner": [
+      {
+        "id": "toggle-theme",
+        "title": {
+          "tr": "Tema Değiştir",
+          "en": "Change Theme"
+        },
+        "description": {
+          "tr": "Açık/Koyu tema arasında geçiş yap",
+          "en": "Switch between light/dark theme"
+        },
+        "icon": "bi-moon-stars",
+        "action": "toggleTheme",
+        "enabled": true
+      },
+      {
+        "id": "remote-access",
+        "title": {
+          "tr": "Uzaktan Erişim",
+          "en": "Remote Access"
+        },
+        "description": {
+          "tr": "Kampüs dışından kaynak erişimi",
+          "en": "Access resources from off-campus"
+        },
+        "icon": "bi-wifi",
+        "url": "uzaktan-erisim.html",
+        "enabled": true
+      },
+      {
+        "id": "extend-loan",
+        "title": {
+          "tr": "Süre Uzatma",
+          "en": "Extend Loan"
+        },
+        "description": {
+          "tr": "Ödünç aldığınız kitapların süresini uzatın",
+          "en": "Extend the loan period of your borrowed books"
+        },
+        "icon": "bi-clock-history",
+        "url": "sure-uzatma.html",
+        "enabled": true
+      },
+      {
+        "id": "current-news",
+        "title": {
+          "tr": "Güncel Haberler",
+          "en": "Current News"
+        },
+        "description": {
+          "tr": "Kütüphaneden haberler ve gelişmeler",
+          "en": "News and developments from the library"
+        },
+        "icon": "bi-newspaper",
+        "url": "guncel-haberler.html",
+        "enabled": true
+      },
+      {
+        "id": "announcements",
+        "title": {
+          "tr": "Duyurular",
+          "en": "Announcements"
+        },
+        "description": {
+          "tr": "Önemli duyuru ve bildirimler",
+          "en": "Important announcements and notifications"
+        },
+        "icon": "bi-megaphone-fill",
+        "url": "duyurular.html",
+        "enabled": true
+      },
+      {
+        "id": "guide-videos",
+        "title": {
+          "tr": "Rehber Videolar",
+          "en": "Guide Videos"
+        },
+        "description": {
+          "tr": "Video eğitimler ve kullanım kılavuzları",
+          "en": "Video tutorials and user guides"
+        },
+        "icon": "bi-play-circle",
+        "url": "rehber-videolar.html",
+        "enabled": true
+      }
+    ]
+  },
+  "translations": {
+    "notifications": {
+      "modalsReset": {
+        "tr": "Duyurular sıfırlandı! Sayfa yenilendiğinde duyurular tekrar gösterilecek.",
+        "en": "Announcements have been reset! They will be shown again when the page is refreshed."
+      },
+      "agreementReset": {
+        "tr": "\"{title}\" kullanım şartları sıfırlandı! Sayfa yenilendiğinde tekrar gösterilecek.",
+        "en": "\"{title}\" terms of use have been reset! They will be shown again when the page is refreshed."
+      },
+      "cacheCleared": {
+        "tr": "Önbellek temizlendi! Sayfa yenileniyor...",
+        "en": "Cache cleared! Refreshing page..."
+      },
+      "databasesRefreshing": {
+        "tr": "Veritabanları yenileniyor...",
+        "en": "Refreshing databases..."
+      },
+      "themeChanged": {
+        "tr": "Tema değiştirildi!",
+        "en": "Theme changed!"
+      },
+      "pageShared": {
+        "tr": "Sayfa paylaşıldı!",
+        "en": "Page shared!"
+      },
+      "linkCopied": {
+        "tr": "Sayfa linki kopyalandı!",
+        "en": "Page link copied!"
+      }
+    }
+  }
+}

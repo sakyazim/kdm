@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Anadolu Üniversitesi Kütüphane - Veritabanları sayfası, elektronik veritabanlarına erişim">
+  <title>Veritabanları | Anadolu Üniversitesi Kütüphane</title>
+  <link rel="alternate" hreflang="tr" href="https://kdm.anadolu.edu.tr/veritabanlari.html"/>
+  <link rel="alternate" hreflang="en" href="https://kdm.anadolu.edu.tr/veritabanlari.html"/>
+  <link rel="alternate" hreflang="x-default" href="https://kdm.anadolu.edu.tr/veritabanlari.html"/>
+  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/global/variables.css">
+  <link rel="stylesheet" href="assets/css/global/base.css">
+  <link rel="stylesheet" href="assets/css/global/components.css">
+  <link rel="stylesheet" href="assets/css/global/header.css">
+  <link rel="stylesheet" href="assets/css/global/footer.css">
+  <link rel="stylesheet" href="assets/css/global/utilities.css">
+  <link rel="stylesheet" href="assets/css/global/inner-pages.css">
+  <link rel="stylesheet" href="assets/css/components/agreement-modal.css">
+  <link rel="stylesheet" href="assets/css/components/search-filter.css">
+  <link rel="stylesheet" href="assets/css/pages/veritabanlari.css">
+  <link rel="stylesheet" href="assets/css/global/accessibility.css">
+</head>
+<body data-page-type="inner" data-page-name="veritabanlari" data-requires-agreement="veritabanlari-kullanim-sartlari">
+  <div id="header-container"></div>
+  <div id="hero-container"></div>
+  <main class="container main-container">
+    <div class="databases-page">
+      <div class="content-wrapper"></div>
+      <div class="databases-container-wrapper">
+        <div id="databases-container">
+          <div id="card-view" class="databases-grid">
+          </div>
+          <div id="list-view" class="databases-list d-none">
+          </div>
+        </div>
+      </div>
+      <div id="no-results" class="no-results d-none">
+      </div>
+      <div id="loading" class="loading-container d-none">
+        <div class="loading-spinner">
+          <div class="spinner"></div>
+          <p>Veritabanları yükleniyor...</p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div id="help-container"></div>
+  <footer id="footer-container" class="footer"></footer>
+  <div class="terms-overlay hidden" id="terms-overlay">
+  </div>
+  <div class="modal fade" id="database-modal" tabindex="-1" aria-labelledby="database-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="database-modal-label">Veritabanı Detayları</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-4 d-flex flex-column align-items-center justify-content-center">
+              <img id="modal-logo" src="" alt="Database Logo" class="img-fluid modal-logo">
+              <div id="modal-categories" class="modal-categories"></div>
+            </div>
+            <div class="col-md-8">
+              <h3 id="modal-title" class="modal-db-title"></h3>
+              <div id="modal-description" class="modal-description"></div>
+              <div class="modal-access-info mt-3">
+                <strong id="modal-url-label">Erişim Adresi:</strong>
+                <a id="modal-url" href="#" target="_blank" class="modal-link"></a>
+              </div>
+              <div id="modal-additional-info" class="modal-additional mt-3"></div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+          <a id="modal-access-btn" href="#" target="_blank" class="btn btn-primary">
+            <i class="bi bi-box-arrow-up-right me-2"></i>Veritabanına Eriş
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module">
+    import { LibraryApp } from './assets/js/core/app.js';
+    // Uygulamayı başlat
+    window.libraryApp = new LibraryApp();
+  </script>
+</body>
+</html>
+

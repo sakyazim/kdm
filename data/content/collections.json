@@ -1,0 +1,142 @@
+[
+  {
+    "id": "eds",
+    "title": {
+      "tr": "Bütünleşik Arama",
+      "en": "Integrated Search"
+    },
+    "icon": "bi-search",
+    "description": {
+      "tr": "Tüm elektronik kaynaklarda arama yapın",
+      "en": "Search all electronic resources"
+    },
+    "active": true,
+    "formAction": "https://research.ebsco.com/c/o47xhr/search/results",
+    "formMethod": "GET",
+    "placeholder": {
+      "tr": "Makale, kitap, dergi ve daha fazlasını arayın",
+      "en": "Search for articles, books, journals and more"
+    },
+    "ariaLabel": {
+      "tr": "arama kutusu",
+      "en": "search box"
+    },
+    "searchParam": "q",
+    "hiddenFields": [
+      { "name": "limiters", "value": "FT1:Y" },
+      { "name": "acr_values", "value": "ip,guest" },
+      { "name": "autocorrect", "value": "y" },
+      { "name": "locale", "value": "tr" }
+    ]
+  },
+  {
+    "id": "catalog",
+    "title": {
+      "tr": "Katalog",
+      "en": "Catalog"
+    },
+    "icon": "bi-journal-bookmark",
+    "description": {
+      "tr": "Kütüphane kataloğunda arama yapın",
+      "en": "Search the library catalog"
+    },
+    "active": false,
+    "formAction": "https://libra.anadolu.edu.tr/libra.aspx",
+    "formMethod": "GET",
+    "placeholder": {
+      "tr": "Kütüphane kataloğundaki basılı kaynakları ve eKitapları tarayınız",
+      "en": "Browse print resources and eBooks in the library catalog"
+    },
+    "ariaLabel": {
+      "tr": "arama kutusu",
+      "en": "search box"
+    },
+    "searchParam": "SR",
+    "hiddenFields": [
+      { "name": "IS", "value": "TARA" },
+      { "name": "KT", "value": "TP" },
+      { "name": "DZ", "value": "12" },
+      { "name": "IL", "value": "1" }
+    ]
+  },
+  {
+    "id": "ejournals",
+    "title": {
+      "tr": "e-Dergiler",
+      "en": "e-Journals"
+    },
+    "icon": "bi-journal",
+    "description": {
+      "tr": "e-Dergi koleksiyonunda arama yapın",
+      "en": "Search the e-journal collection"
+    },
+    "active": false,
+    "formAction": "https://publications.ebsco.com/c/35vval",
+    "formMethod": "GET",
+    "placeholder": {
+      "tr": "eDergi Koleksiyonumuzu tarayınız",
+      "en": "Browse our e-journal collection"
+    },
+    "ariaLabel": {
+      "tr": "arama kutusu",
+      "en": "search box"
+    },
+    "searchParam": "search",
+    "hiddenFields": [
+      { "name": "highlightTag", "value": "mark" },
+      { "name": "resourceTypeOptionSelected", "value": "1" }
+    ]
+  },
+  {
+    "id": "tokat",
+    "title": {
+      "tr": "TO-KAT",
+      "en": "TO-KAT"
+    },
+    "icon": "bi-search",
+    "description": {
+      "tr": "Ulusal Toplu Katalog üzerinde tarama yapın",
+      "en": "Search the National Union Catalog"
+    },
+    "active": false,
+    "formAction": "https://www.toplukatalog.gov.tr/",
+    "formMethod": "GET",
+    "placeholder": {
+      "tr": "Ulusal Toplu Katalog üzerinde tarama yapınız",
+      "en": "Search the National Union Catalog"
+    },
+    "ariaLabel": {
+      "tr": "arama kutusu",
+      "en": "search box"
+    },
+    "searchParam": "keyword",
+    "hiddenFields": [
+      { "name": "tokat_search_field", "value": "1" }
+    ]
+  },
+  {
+    "id": "openaccess",
+    "title": {
+      "tr": "Açık Erişim",
+      "en": "Open Access"
+    },
+    "icon": "bi-unlock",
+    "description": {
+      "tr": "Akademik arşivde arama yapın",
+      "en": "Search the academic archive"
+    },
+    "active": false,
+    "formAction": "https://earsiv.anadolu.edu.tr/xmlui/discover",
+    "formMethod": "GET",
+    "placeholder": {
+      "tr": "Akademik arşivde arama yapın...",
+      "en": "Search the academic archive..."
+    },
+    "ariaLabel": {
+      "tr": "arama kutusu",
+      "en": "search box"
+    },
+    "searchParam": "query",
+    "hiddenFields": []
+  }
+]

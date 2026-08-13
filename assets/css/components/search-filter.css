@@ -1,0 +1,558 @@
+/**
+ * Global Search & Filter Component Styles
+ * Kullanım: Haberler, Duyurular, Veritabanları, SSS, Kime Sormalıyım
+ *
+ * @file search-filter.css
+ * @version 1.0.0
+ * @date 2025-11-12
+ *
+ * Features:
+ * - Sticky search with header adaptation
+ * - Responsive design
+ * - Compact mode (for databases)
+ * - Category filters with icons
+ * - Sort and view toggle controls
+ */
+
+/* ==========================================================================
+   BASE SEARCH SECTION
+   ========================================================================== */
+
+.search-filter-section {
+  background: var(--bg-card, white);
+  border-radius: var(--border-radius, 12px);
+  box-shadow: var(--shadow-soft, 0 2px 8px rgba(0, 0, 0, 0.08));
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid var(--border-color, #e9ecef);
+  transition: all 0.3s ease;
+}
+
+/* ==========================================================================
+   SEARCH AND CONTROLS ROW
+   ========================================================================== */
+
+.search-and-controls {
+  display: flex;
+  align-items: stretch;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+/* Search Wrapper - Flexible */
+.search-wrapper {
+  flex: 1;
+  min-width: 0; /* Allow shrinking */
+}
+
+.search-input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 2px solid var(--primary-color, #1f4c8a);
+  border-radius: 8px;
+  height: 48px;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.search-input-group:focus-within {
+  border-color: var(--primary-dark, #16395e);
+  box-shadow: 0 0 0 4px rgba(31, 76, 138, 0.15);
+}
+
+.search-icon {
+  color: var(--primary-color, #1f4c8a);
+  font-size: 1.1rem;
+  margin-left: 14px;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.search-input {
+  flex: 1;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  padding: 0 12px;
+  font-size: 1rem;
+  background: transparent;
+  color: var(--text-color, #333);
+  height: 100%;
+}
+
+.search-input::placeholder {
+  color: var(--text-muted, #6c757d);
+}
+
+/* Clear Search Button */
+.clear-search-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--text-muted, #6c757d);
+  cursor: pointer;
+  padding: 0 12px;
+  transition: color 0.2s;
+  height: 100%;
+}
+
+.clear-search-btn:hover {
+  color: var(--danger-color, #dc3545);
+}
+
+.clear-search-btn i {
+  font-size: 1rem;
+}
+
+/* Control Buttons (Sort, View Toggle) */
+.control-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  background: var(--primary-color, #1f4c8a);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  height: 48px;
+}
+
+.control-btn:hover {
+  background: var(--primary-dark, #16395e);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(31, 76, 138, 0.3);
+}
+
+.control-btn i {
+  font-size: 1.1rem;
+}
+
+.control-btn .sort-text {
+  font-size: 0.9rem;
+}
+
+/* View Toggle Group */
+.view-toggle-group {
+  display: flex;
+  gap: 0;
+  background: var(--bg-secondary, #f8f9fa);
+  border-radius: 8px;
+  padding: 4px;
+  border: 1px solid var(--border-color, #e9ecef);
+}
+
+.view-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted, #6c757d);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+  height: 40px;
+  min-width: 40px;
+}
+
+.view-toggle-btn:hover {
+  background: white;
+  color: var(--primary-color, #1f4c8a);
+}
+
+.view-toggle-btn.active {
+  background: var(--primary-color, #1f4c8a);
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.view-toggle-btn i {
+  font-size: 1.1rem;
+}
+
+/* ==========================================================================
+   MOBILE FILTERS BUTTON (Only visible on mobile)
+   ========================================================================== */
+
+.mobile-filters-btn {
+  display: none; /* Hidden by default */
+  width: 100%;
+  padding: 0.875rem 1.25rem;
+  background: linear-gradient(135deg, var(--primary-color, #1f4c8a), var(--primary-dark, #16395e));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  box-shadow: 0 4px 12px rgba(31, 76, 138, 0.3);
+}
+
+.mobile-filters-btn:hover {
+  background: linear-gradient(135deg, var(--primary-dark, #16395e), var(--primary-color, #1f4c8a));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(31, 76, 138, 0.4);
+}
+
+.mobile-filters-btn i {
+  font-size: 1.1rem;
+}
+
+/* ==========================================================================
+   CATEGORY FILTERS ROW
+   ========================================================================== */
+
+.category-filters {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.category-btn,
+.filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.7rem 1.25rem;
+  border: 2px solid var(--primary-color, #1f4c8a);
+  background: transparent;
+  color: var(--primary-color, #1f4c8a);
+  border-radius: 25px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.category-btn:hover,
+.category-btn.active,
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--primary-color, #1f4c8a);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(31, 76, 138, 0.25);
+}
+
+.category-btn i,
+.filter-btn i {
+  font-size: 1rem;
+}
+
+/* Count Badge (for databases) */
+.count-badge {
+  margin-left: 4px;
+  padding: 2px 8px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.category-btn:hover .count-badge,
+.category-btn.active .count-badge,
+.filter-btn:hover .count-badge,
+.filter-btn.active .count-badge {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ==========================================================================
+   STICKY MODE - HEADER ADAPTIVE
+   ========================================================================== */
+
+.search-filter-section.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  z-index: 999; /* Header: 1020, Header dropdown: 1050, Sticky: 999 (header altında) */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  padding: 12px 0;
+  margin: 0;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid var(--border-color, #e9ecef);
+  animation: slideDownSticky 0.3s ease;
+  transition: top 0.3s ease; /* Smooth header adaptation */
+}
+
+/* Sticky içerik container'ı */
+.search-filter-section.sticky .search-and-controls,
+.search-filter-section.sticky .category-filters {
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.search-filter-section.sticky .search-and-controls {
+  margin-bottom: 12px;
+}
+
+/* Sticky animasyonu */
+@keyframes slideDownSticky {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Header görünüyorsa sticky aşağıda */
+.search-filter-section.sticky.below-header {
+  top: var(--header-height, 80px);
+}
+
+/* Header kaybolmuşsa sticky en üstte */
+.search-filter-section.sticky.at-top {
+  top: 0;
+}
+
+/* ==========================================================================
+   COMPACT MODE (Veritabanları için)
+   ========================================================================== */
+
+.search-filter-section.compact .control-btn {
+  padding: 0 12px;
+}
+
+.search-filter-section.compact .control-btn .sort-text {
+  font-size: 0.85rem;
+}
+
+.search-filter-section.compact .category-btn,
+.search-filter-section.compact .filter-btn {
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+}
+
+.search-filter-section.compact .count-badge {
+  padding: 1px 6px;
+  font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   DARK MODE
+   ========================================================================== */
+
+[data-theme="dark"] .mobile-filters-btn {
+  background: linear-gradient(135deg, var(--primary-dark, #16395e), var(--tertiary-color, #003d82));
+}
+
+[data-theme="dark"] .mobile-filters-btn:hover {
+  background: linear-gradient(135deg, var(--tertiary-color, #003d82), var(--primary-dark, #16395e));
+}
+
+[data-theme="dark"] .search-filter-section {
+  background: var(--bg-primary-dark, #1a1a1a);
+  border-color: var(--border-color-dark, #333);
+}
+
+[data-theme="dark"] .search-input-group {
+  background: var(--bg-secondary-dark, #2a2a2a);
+  border-color: var(--primary-color, #1f4c8a);
+}
+
+[data-theme="dark"] .search-input {
+  color: var(--text-color-dark, #e0e0e0);
+}
+
+[data-theme="dark"] .view-toggle-group {
+  background: var(--bg-secondary-dark, #2a2a2a);
+  border-color: var(--border-color-dark, #333);
+}
+
+[data-theme="dark"] .view-toggle-btn:hover {
+  background: var(--bg-primary-dark, #1a1a1a);
+}
+
+[data-theme="dark"] .search-filter-section.sticky {
+  background: var(--bg-primary-dark, #1a1a1a);
+  border-bottom-color: var(--border-color-dark, #333);
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+/* Tablet (< 1024px) */
+@media (max-width: 1024px) {
+  .search-filter-section.sticky .search-and-controls,
+  .search-filter-section.sticky .category-filters {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 768px) {
+  .search-filter-section {
+    padding: 1rem;
+  }
+
+  .search-and-controls {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .search-wrapper {
+    width: 100%;
+  }
+
+  /* Controls row */
+  .controls-row {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .control-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 0 12px;
+  }
+
+  .control-btn .sort-text {
+    display: none; /* Sadece ikon göster */
+  }
+
+  .view-toggle-group {
+    flex-shrink: 0;
+  }
+
+  /* Mobile filters button - VISIBLE on mobile */
+  .mobile-filters-btn {
+    display: flex !important;
+  }
+
+  /* Category filters - HIDE on mobile (use modal instead) */
+  .category-filters {
+    display: none !important;
+  }
+
+  .category-btn,
+  .filter-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  /* Sticky mode mobil */
+  .search-filter-section.sticky {
+    padding: 8px 0;
+  }
+
+  .search-filter-section.sticky .search-and-controls,
+  .search-filter-section.sticky .category-filters {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .search-filter-section.sticky .search-and-controls {
+    margin-bottom: 8px;
+  }
+}
+
+/* Small Mobile (< 480px) */
+@media (max-width: 480px) {
+  .search-input-group {
+    height: 44px;
+  }
+
+  .control-btn,
+  .view-toggle-btn {
+    height: 44px;
+  }
+
+  .category-btn,
+  .filter-btn {
+    padding: 0.5rem 0.85rem;
+    font-size: 0.85rem;
+  }
+
+  .category-btn i,
+  .filter-btn i {
+    font-size: 0.9rem;
+  }
+}
+
+/* ==========================================================================
+   NO RESULTS MESSAGE
+   ========================================================================== */
+
+.no-results {
+  display: none;
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--text-muted, #6c757d);
+}
+
+.no-results.show {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-results i {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-muted, #6c757d);
+  opacity: 0.4;
+}
+
+.no-results-content h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-color, #333);
+  margin-bottom: 0.75rem;
+}
+
+.no-results-content p {
+  font-size: 1rem;
+  color: var(--text-muted, #6c757d);
+  margin: 0;
+}
+
+/* ==========================================================================
+   UTILITY CLASSES
+   ========================================================================== */
+
+.d-none {
+  display: none !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+/* Spacer for sticky placeholder */
+.sticky-placeholder {
+  display: none;
+  height: 0;
+  transition: height 0.3s ease;
+}
+
+.sticky-placeholder.active {
+  display: block;
+}

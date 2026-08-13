@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <title>Admin Panel Demo</title>
+  <style>
+    body{font-family:sans-serif;margin:0;padding:0;background:#f4f6f9;color:#333;}
+    .header{display:flex;align-items:center;background:#24292e;color:#fff;padding:0.75rem 1rem;}
+    .title{font-size:1.125rem;font-weight:600;flex:1;}
+    .action{display:flex;gap:0.5rem;}
+    .action button{background:#0366d6;color:#fff;border:none;padding:0.5rem 0.75rem;border-radius:4px;cursor:pointer;}
+    .action button:hover{background:#0356b6;}
+    .main{display:flex;height:calc(100vh-48px)}
+    .sidebar{flex-basis:15%;max-width:200px;background:#fff;border-right:1px solid #ddd;padding:1rem;overflow:auto;}
+    .sidebar h3{font-size:1rem;margin-top:0;margin-bottom:.5rem}
+    .sidebar ul{list-style:none;padding:0;margin:0}
+    .sidebar li{margin-bottom:.5rem}
+    .sidebar a{color:#0366d6;text-decoration:none;display:block;padding:.25rem .5rem}
+    .sidebar a:hover{background:#f0f0f0}
+    .content{flex:1;padding:1rem;overflow:auto}
+    .editor{display:flex;gap:1rem;}
+    .editor textarea{flex:1;min-height:400px;font-family:monospace;font-size:.875rem;border:1px solid #ddd;border-radius:4px;padding:.5rem;}
+    .preview{flex:1;background:#fff;border:1px solid #ddd;border-radius:4px;padding:.5rem;overflow:auto}
+    .footer{padding:.5rem 1rem;font-size:.75rem;background:#20232d;color:#fff;}
+    .theme-toggle{background:none;border:none;color:#fff;cursor:pointer;font-size:1rem}
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="title">Admin Panel Demo</div>
+    <div class="action">
+      <button id="downloadBtn">İndir</button>
+      <button id="resetBtn">Reset</button>
+      <button id="validateBtn">Validate</button>
+      <button class="theme-toggle" id="themeToggle">🌙</button>
+    </div>
+  </header>
+
+  <main class="main" id="mainContent">
+    <div class="sidebar" id="fileList">
+      <h3>Dosyalar</h3>
+      <ul>
+        <li><a href="#" data-file="home.json">home.json</a></li>
+        <li><a href="#" data-file="contact.json">contact.json</a></li>
+        <li><a href="#" data-file="header.json">header.json</a></li>
+      </ul>
+    </div>
+
+    <div class="content" id="mainPanel">
+      <div class="editor" id="editor">
+        <textarea id="jsonInput" placeholder="JSON editor..." readonly></textarea>
+      </div>
+      <div class="preview" id="jsonPreview">
+        <pre id="previewData">Live preview will appear here.</pre>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">Demo mockup – no dynamic functionality in this static snapshot.</footer>
+
+  <script>
+    // Simple theme toggler
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click',()=>{document.body.classList.toggle('dark');});
+    // Basic interaction placeholder
+    const fileLinks = document.querySelectorAll('#fileList a');
+    fileLinks.forEach(link=>{
+      link.addEventListener('click',e=>{e.preventDefault();document.getElementById('jsonInput').value='{}<json: sample>';});
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agreement Modal Testi</title>
+<link rel="alternate" hreflang="tr" href="https://kdm.anadolu.edu.tr/test-agreement-modal.html"/>
+<link rel="alternate" hreflang="en" href="https://kdm.anadolu.edu.tr/test-agreement-modal.html"/>
+<link rel="alternate" hreflang="x-default" href="https://kdm.anadolu.edu.tr/test-agreement-modal.html"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #1976d2;
+      margin-bottom: 30px;
+    }
+    .test-section {
+      background: #f5f5f5;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .button {
+      padding: 12px 24px;
+      margin: 8px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .button-primary {
+      background: #1976d2;
+      color: white;
+    }
+    .button-primary:hover {
+      background: #1565c0;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+    }
+    .button-secondary {
+      background: #757575;
+      color: white;
+    }
+    .button-secondary:hover {
+      background: #616161;
+    }
+    .button-danger {
+      background: #d32f2f;
+      color: white;
+    }
+    .button-danger:hover {
+      background: #c62828;
+    }
+    .info {
+      background: #e3f2fd;
+      border-left: 4px solid #1976d2;
+      padding: 12px 16px;
+      margin: 16px 0;
+      border-radius: 4px;
+    }
+    .status {
+      margin-top: 20px;
+      padding: 16px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .status-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .status-item:last-child {
+      border-bottom: none;
+    }
+    .lang-switcher {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: white;
+      padding: 12px 20px;
+      border-radius: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      display: flex;
+      gap: 12px;
+    }
+    .lang-btn {
+      padding: 6px 16px;
+      border: 1px solid #ddd;
+      border-radius: 16px;
+      background: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .lang-btn.active {
+      background: #1976d2;
+      color: white;
+      border-color: #1976d2;
+    }
+  </style>
+</head>
+<body>
+  <div class="lang-switcher">
+    <button class="lang-btn active" data-lang="tr">🇹🇷 TR</button>
+    <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+  </div>
+  <h1>🧪 Agreement Modal - Çoklu Dil Testi</h1>
+  <div class="info">
+    <strong>📌 Test Senaryosu:</strong><br>
+    1. Dil değiştir (TR ↔ EN)<br>
+    2. Modalı aç ve içeriğin seçili dilde göründüğünü doğrula<br>
+    3. "Kabul Et" veya "Reddet" butonunu test et<br>
+    4. localStorage'ı temizle ve tekrar test et
+  </div>
+  <div class="test-section">
+    <h2>🔓 Agreement Durumu</h2>
+    <div class="status" id="status">
+      <div class="status-item">
+        <span>Uzaktan Erişim:</span>
+        <span id="uzaktan-status">❌</span>
+      </div>
+      <div class="status-item">
+        <span>Veritabanları:</span>
+        <span id="veritabanlari-status">❌</span>
+      </div>
+      <div class="status-item">
+        <span>Aktif Dil:</span>
+        <span id="current-lang">TR</span>
+      </div>
+    </div>
+  </div>
+  <div class="test-section">
+    <h2>🧪 Test Butonları</h2>
+    <div style="margin: 20px 0;">
+      <h3>Modalları Aç:</h3>
+      <button class="button button-primary" onclick="testUzaktanErisim()">
+        🔐 Uzaktan Erişim Modalı Aç
+      </button>
+      <button class="button button-primary" onclick="testVeritabanlari()">
+        🗄️ Veritabanları Modalı Aç
+      </button>
+    </div>
+    <div style="margin: 20px 0;">
+      <h3>Sayfalara Git:</h3>
+      <button class="button button-secondary" onclick="window.location.href='uzaktan-erisim.html'">
+        📖 Uzaktan Erişim Sayfasına Git
+      </button>
+      <button class="button button-secondary" onclick="window.location.href='veritabanlari.html'">
+        📚 Veritabanları Sayfasına Git
+      </button>
+    </div>
+    <div style="margin: 20px 0;">
+      <h3>Temizleme:</h3>
+      <button class="button button-danger" onclick="clearAgreements()">
+        🗑️ Tüm Agreement Verilerini Temizle
+      </button>
+      <button class="button button-danger" onclick="clearUzaktan()">
+        🗑️ Sadece Uzaktan Erişim Temizle
+      </button>
+      <button class="button button-danger" onclick="clearVeritabanlari()">
+        🗑️ Sadece Veritabanları Temizle
+      </button>
+    </div>
+  </div>
+  <div class="test-section">
+    <h2>📊 LocalStorage İçeriği</h2>
+    <pre id="localStorage-content" style="background: #263238; color: #aed581; padding: 16px; border-radius: 8px; overflow-x: auto;"></pre>
+  </div>
+  <script type="module">
+    import { LanguageManager } from './assets/js/core/language-manager.js';
+    import { AgreementModalManager } from './assets/js/components/agreement-modal.js';
+    // Dil değiştirme
+    const langButtons = document.querySelectorAll('.lang-btn');
+    langButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.getAttribute('data-lang');
+        LanguageManager.setLanguage(lang);
+        // UI güncelle
+        langButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        updateStatus();
+      });
+    });
+    // Test fonksiyonları
+    window.testUzaktanErisim = async function() {
+      // localStorage'ı temizle
+      localStorage.removeItem('uzaktan-erisim-kullanim-sartlari-accepted');
+      const manager = new AgreementModalManager();
+      manager.agreementKey = 'uzaktan-erisim-kullanim-sartlari';
+      await manager.loadAgreementData();
+      manager.createModal();
+      manager.setupEventListeners();
+      manager.showModal();
+      // Modal kapandığında status'u güncelle
+      document.addEventListener('agreementAccepted', updateStatus, { once: true });
+    };
+    window.testVeritabanlari = async function() {
+      // localStorage'ı temizle
+      localStorage.removeItem('veritabanlari-kullanim-sartlari-accepted');
+      const manager = new AgreementModalManager();
+      manager.agreementKey = 'veritabanlari-kullanim-sartlari';
+      await manager.loadAgreementData();
+      manager.createModal();
+      manager.setupEventListeners();
+      manager.showModal();
+      // Modal kapandığında status'u güncelle
+      document.addEventListener('agreementAccepted', updateStatus, { once: true });
+    };
+    window.clearAgreements = function() {
+      localStorage.removeItem('uzaktan-erisim-kullanim-sartlari-accepted');
+      localStorage.removeItem('uzaktan-erisim-kullanim-sartlari-accepted-version');
+      localStorage.removeItem('uzaktan-erisim-kullanim-sartlari-accepted-date');
+      localStorage.removeItem('veritabanlari-kullanim-sartlari-accepted');
+      localStorage.removeItem('veritabanlari-kullanim-sartlari-accepted-version');
+      localStorage.removeItem('veritabanlari-kullanim-sartlari-accepted-date');
+      updateStatus();
+      alert('✅ Tüm agreement verileri temizlendi!');
+    };
+    window.clearUzaktan = function() {
+      localStorage.removeItem('uzaktan-erisim-kullanim-sartlari-accepted');
+      localStorage.removeItem('uzaktan-erisim-kullanim-sartlari-accepted-version');
+      localStorage.removeItem('uzaktan-erisim-kullanim-sartlari-accepted-date');
+      updateStatus();
+      alert('✅ Uzaktan erişim agreement verisi temizlendi!');
+    };
+    window.clearVeritabanlari = function() {
+      localStorage.removeItem('veritabanlari-kullanim-sartlari-accepted');
+      localStorage.removeItem('veritabanlari-kullanim-sartlari-accepted-version');
+      localStorage.removeItem('veritabanlari-kullanim-sartlari-accepted-date');
+      updateStatus();
+      alert('✅ Veritabanları agreement verisi temizlendi!');
+    };
+    function updateStatus() {
+      // Agreement durumları
+      const uzaktanAccepted = localStorage.getItem('uzaktan-erisim-kullanim-sartlari-accepted') === 'true';
+      const veritabanlariAccepted = localStorage.getItem('veritabanlari-kullanim-sartlari-accepted') === 'true';
+      document.getElementById('uzaktan-status').textContent = uzaktanAccepted ? '✅ Kabul Edildi' : '❌ Kabul Edilmedi';
+      document.getElementById('veritabanlari-status').textContent = veritabanlariAccepted ? '✅ Kabul Edildi' : '❌ Kabul Edilmedi';
+      // Aktif dil
+      const currentLang = LanguageManager.getCurrentLanguage();
+      document.getElementById('current-lang').textContent = currentLang.toUpperCase();
+      // localStorage içeriği
+      const localStorageObj = {};
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.includes('agreement') || key.includes('accepted') || key.includes('language')) {
+          localStorageObj[key] = localStorage.getItem(key);
+        }
+      }
+      document.getElementById('localStorage-content').textContent = JSON.stringify(localStorageObj, null, 2);
+    }
+    // İlk yükleme
+    updateStatus();
+    setInterval(updateStatus, 1000);
+  </script>
+</body>
+</html>
+

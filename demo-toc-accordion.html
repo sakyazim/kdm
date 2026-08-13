@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo: Accordion Sections</title>
+<link rel="alternate" hreflang="tr" href="https://kdm.anadolu.edu.tr/demo-toc-accordion.html"/>
+<link rel="alternate" hreflang="en" href="https://kdm.anadolu.edu.tr/demo-toc-accordion.html"/>
+<link rel="alternate" hreflang="x-default" href="https://kdm.anadolu.edu.tr/demo-toc-accordion.html"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f5f5f5;
+      padding: 40px 20px;
+    }
+    /* Container */
+    .page-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    /* Page Header */
+    .page-header {
+      background: white;
+      border-radius: 12px;
+      padding: 48px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .page-header h1 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 12px;
+    }
+    .page-header .subtitle {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 24px;
+    }
+    /* Quick Navigation */
+    .quick-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .quick-nav-btn {
+      padding: 8px 16px;
+      background: #e3f2fd;
+      color: #1976d2;
+      border: none;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .quick-nav-btn:hover {
+      background: #1976d2;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(25,118,210,0.3);
+    }
+    /* Accordion Container */
+    .accordion-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    /* Accordion Item */
+    .accordion-item {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .accordion-item.active {
+      box-shadow: 0 4px 16px rgba(25,118,210,0.15);
+      border: 2px solid #1976d2;
+    }
+    /* Accordion Header */
+    .accordion-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 32px;
+      cursor: pointer;
+      background: white;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+    .accordion-header:hover {
+      background: #f8f9fa;
+    }
+    .accordion-item.active .accordion-header {
+      background: linear-gradient(135deg, #1976d2 0%, #42a5f5 100%);
+      color: white;
+    }
+    .accordion-title {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex: 1;
+    }
+    .accordion-number {
+      width: 40px;
+      height: 40px;
+      background: #e3f2fd;
+      color: #1976d2;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .accordion-item.active .accordion-number {
+      background: rgba(255,255,255,0.3);
+      color: white;
+    }
+    .accordion-title h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0;
+    }
+    .accordion-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      transition: transform 0.3s ease;
+      color: #1976d2;
+      flex-shrink: 0;
+    }
+    .accordion-item.active .accordion-icon {
+      transform: rotate(180deg);
+      color: white;
+    }
+    /* Accordion Content */
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .accordion-item.active .accordion-content {
+      max-height: 5000px;
+    }
+    .accordion-body {
+      padding: 32px;
+      background: #fafafa;
+    }
+    .accordion-body h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #333;
+      margin: 24px 0 12px;
+    }
+    .accordion-body h3:first-child {
+      margin-top: 0;
+    }
+    .accordion-body p {
+      margin-bottom: 16px;
+      font-size: 16px;
+      line-height: 1.8;
+      color: #444;
+    }
+    .accordion-body ul, .accordion-body ol {
+      margin: 16px 0 16px 24px;
+    }
+    .accordion-body li {
+      margin-bottom: 8px;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+    .info-box {
+      background: #e3f2fd;
+      border-left: 4px solid #1976d2;
+      padding: 16px 20px;
+      margin: 24px 0;
+      border-radius: 8px;
+    }
+    .info-box p {
+      margin: 0;
+      color: #0d47a1;
+    }
+    /* Expand/Collapse All Buttons */
+    .control-buttons {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .control-btn {
+      padding: 12px 24px;
+      background: white;
+      color: #1976d2;
+      border: 2px solid #1976d2;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .control-btn:hover {
+      background: #1976d2;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(25,118,210,0.3);
+    }
+    .control-btn i {
+      font-size: 16px;
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+      .page-header {
+        padding: 32px 24px;
+      }
+      .page-header h1 {
+        font-size: 28px;
+      }
+      .accordion-header {
+        padding: 20px 24px;
+      }
+      .accordion-title h2 {
+        font-size: 18px;
+      }
+      .accordion-body {
+        padding: 24px;
+      }
+      .accordion-number {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-container">
+    <div class="page-header">
+      <h1>Makale İşlem Ücretleri</h1>
+      <p class="subtitle">Kütüphanemizde sunulan hizmetlere ilişkin ücret tarifeleri ve ödeme koşulları</p>
+      <div class="quick-nav">
+        <button class="quick-nav-btn" onclick="scrollToSection('section1')">Genel Bilgiler</button>
+        <button class="quick-nav-btn" onclick="scrollToSection('section2')">Ücret Tarifeleri</button>
+        <button class="quick-nav-btn" onclick="scrollToSection('section3')">Ödeme Yöntemleri</button>
+        <button class="quick-nav-btn" onclick="scrollToSection('section4')">İndirim Koşulları</button>
+        <button class="quick-nav-btn" onclick="scrollToSection('section5')">İptal ve İade</button>
+        <button class="quick-nav-btn" onclick="scrollToSection('section6')">SSS</button>
+      </div>
+    </div>
+    <div class="control-buttons">
+      <button class="control-btn" onclick="expandAll()">
+        <span>➕</span>
+        <span>Tümünü Aç</span>
+      </button>
+      <button class="control-btn" onclick="collapseAll()">
+        <span>➖</span>
+        <span>Tümünü Kapat</span>
+      </button>
+    </div>
+    <div class="accordion-container">
+      <div class="accordion-item" id="section1">
+        <div class="accordion-header" onclick="toggleAccordion('section1')">
+          <div class="accordion-title">
+            <div class="accordion-number">1</div>
+            <h2>Genel Bilgiler</h2>
+          </div>
+          <div class="accordion-icon">▼</div>
+        </div>
+        <div class="accordion-content">
+          <div class="accordion-body">
+            <p>Anadolu Üniversitesi Kütüphanesi, akademik ve araştırma faaliyetlerini desteklemek amacıyla çeşitli hizmetler sunmaktadır. Bu hizmetlerin bir kısmı ücretli olup, ücret tarifeleri aşağıda detaylı olarak açıklanmıştır.</p>
+            <h3>Hizmet Kapsamı</h3>
+            <p>Kütüphanemizde sunulan ücretli hizmetler şunlardır:</p>
+            <ul>
+              <li>Makale fotokopi ve baskı hizmetleri</li>
+              <li>Elektronik makale gönderimleri</li>
+              <li>Kitaplar arası ödünç verme (ILL)</li>
+              <li>Özel araştırma ve veri tarama hizmetleri</li>
+              <li>Kurumsal üyelik ve danışmanlık hizmetleri</li>
+            </ul>
+            <div class="info-box">
+              <p><strong>Önemli Not:</strong> Öğrenci ve akademik personele özel indirim oranları uygulanmaktadır. Detaylı bilgi için İndirim Koşulları bölümünü inceleyiniz.</p>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item" id="section2">
+        <div class="accordion-header" onclick="toggleAccordion('section2')">
+          <div class="accordion-title">
+            <div class="accordion-number">2</div>
+            <h2>Ücret Tarifeleri</h2>
+          </div>
+          <div class="accordion-icon">▼</div>
+        </div>
+        <div class="accordion-content">
+          <div class="accordion-body">
+            <p>Kütüphane hizmetlerine ilişkin güncel ücret tarifeleri aşağıdaki gibidir:</p>
+            <h3>Fotokopi ve Baskı Hizmetleri</h3>
+            <ul>
+              <li>Siyah-beyaz fotokopi/baskı: 0,50 TL/sayfa</li>
+              <li>Renkli fotokopi/baskı: 2,00 TL/sayfa</li>
+              <li>A3 boyutunda siyah-beyaz: 1,00 TL/sayfa</li>
+              <li>A3 boyutunda renkli: 4,00 TL/sayfa</li>
+            </ul>
+            <h3>Elektronik Makale Gönderimleri</h3>
+            <p>E-posta veya elektronik ortamda gönderilen makale başına: 5,00 TL</p>
+            <h3>Kitaplar Arası Ödünç Verme (ILL)</h3>
+            <ul>
+              <li>Yurt içi kütüphanelerden talep: 15,00 TL/makale</li>
+              <li>Yurt dışı kütüphanelerden talep: 25,00 TL/makale</li>
+              <li>Kargo ücreti (varsa) ayrıca hesaplanır</li>
+            </ul>
+            <div class="info-box">
+              <p><strong>Toplu İşlem İndirimi:</strong> 50 sayfanın üzerindeki işlemlerde %10, 100 sayfanın üzerindeki işlemlerde %15 indirim uygulanır.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item" id="section3">
+        <div class="accordion-header" onclick="toggleAccordion('section3')">
+          <div class="accordion-title">
+            <div class="accordion-number">3</div>
+            <h2>Ödeme Yöntemleri</h2>
+          </div>
+          <div class="accordion-icon">▼</div>
+        </div>
+        <div class="accordion-content">
+          <div class="accordion-body">
+            <p>Kütüphane hizmetleri için ödeme yaparken aşağıdaki yöntemleri kullanabilirsiniz:</p>
+            <h3>Kabul Edilen Ödeme Yöntemleri</h3>
+            <ol>
+              <li><strong>Nakit Ödeme:</strong> Kütüphane gişesinden nakit olarak ödeme yapabilirsiniz.</li>
+              <li><strong>Kredi/Banka Kartı:</strong> Tüm yaygın kredi ve banka kartları kabul edilmektedir.</li>
+              <li><strong>Havale/EFT:</strong> Banka hesap bilgilerimize havale veya EFT yapabilirsiniz.</li>
+              <li><strong>Üniversite Kartı:</strong> Öğrenci ve personel için üniversite kartı ile ödeme mümkündür.</li>
+            </ol>
+            <h3>Banka Hesap Bilgileri</h3>
+            <p>Havale/EFT yaparken aşağıdaki hesap bilgilerini kullanabilirsiniz:</p>
+            <ul>
+              <li>Banka: Ziraat Bankası Eskişehir Şubesi</li>
+              <li>Hesap Adı: Anadolu Üniversitesi Kütüphanesi</li>
+              <li>IBAN: TR33 0001 0000 0000 0000 0000 00</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item" id="section4">
+        <div class="accordion-header" onclick="toggleAccordion('section4')">
+          <div class="accordion-title">
+            <div class="accordion-number">4</div>
+            <h2>İndirim Koşulları</h2>
+          </div>
+          <div class="accordion-icon">▼</div>
+        </div>
+        <div class="accordion-content">
+          <div class="accordion-body">
+            <p>Belirli kullanıcı grupları ve koşullar altında indirimler uygulanmaktadır:</p>
+            <h3>Öğrenci İndirimleri</h3>
+            <ul>
+              <li>Lisans öğrencileri: %20 indirim</li>
+              <li>Yüksek lisans öğrencileri: %25 indirim</li>
+              <li>Doktora öğrencileri: %30 indirim</li>
+            </ul>
+            <h3>Akademik Personel İndirimleri</h3>
+            <ul>
+              <li>Araştırma görevlileri: %25 indirim</li>
+              <li>Öğretim görevlileri: %30 indirim</li>
+              <li>Doç. Dr. ve Prof. Dr.: %35 indirim</li>
+            </ul>
+            <div class="info-box">
+              <p><strong>İndirim Birleştirme:</strong> Öğrenci/personel indirimi ile toplu işlem indirimi birlikte uygulanabilir. Maksimum toplam indirim oranı %40'tır.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item" id="section5">
+        <div class="accordion-header" onclick="toggleAccordion('section5')">
+          <div class="accordion-title">
+            <div class="accordion-number">5</div>
+            <h2>İptal ve İade</h2>
+          </div>
+          <div class="accordion-icon">▼</div>
+        </div>
+        <div class="accordion-content">
+          <div class="accordion-body">
+            <p>Hizmet iptali ve ücret iadesi koşulları aşağıdaki gibidir:</p>
+            <h3>İptal Koşulları</h3>
+            <ul>
+              <li>Hizmet başlamadan önce yapılan iptal taleplerinde %100 iade yapılır.</li>
+              <li>Hizmet başladıktan sonra iptal mümkün değildir.</li>
+              <li>ILL hizmetlerinde dış kütüphanelerden kaynaklanan gecikmeler durumunda ücret iadesi yapılır.</li>
+            </ul>
+            <h3>İade Süreci</h3>
+            <ol>
+              <li>İptal talebinizi kütüphane gişesine veya e-posta ile iletiniz.</li>
+              <li>İade talebi 5 iş günü içinde değerlendirilir.</li>
+              <li>Onaylanan iadeler 10 iş günü içinde hesabınıza aktarılır.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item" id="section6">
+        <div class="accordion-header" onclick="toggleAccordion('section6')">
+          <div class="accordion-title">
+            <div class="accordion-number">6</div>
+            <h2>Sıkça Sorulan Sorular</h2>
+          </div>
+          <div class="accordion-icon">▼</div>
+        </div>
+        <div class="accordion-content">
+          <div class="accordion-body">
+            <h3>1. Öğrenci indiriminden nasıl yararlanabilirim?</h3>
+            <p>Öğrenci kartınızı veya öğrenci belgenizi gişeye ibraz etmeniz yeterlidir. İndirim otomatik olarak uygulanacaktır.</p>
+            <h3>2. Toplu işlem indirimi nasıl hesaplanır?</h3>
+            <p>Aynı anda yaptığınız tüm işlemlerin toplam sayfa sayısına göre indirim oranı belirlenir ve tüm işlem tutarına uygulanır.</p>
+            <h3>3. Ödeme yaparken fatura alabilir miyim?</h3>
+            <p>Evet, talep etmeniz durumunda tüm ödemeler için fatura düzenlenmektedir.</p>
+            <h3>4. Elektronik makale gönderimleri ne kadar sürede tamamlanır?</h3>
+            <p>Yurt içi kaynaklardan 1-3 iş günü, yurt dışı kaynaklardan 5-10 iş günü içinde makaleler e-posta adresinize gönderilir.</p>
+            <h3>5. Ücret tarifelerinde değişiklik olur mu?</h3>
+            <p>Ücret tarifeleri yılda bir kez, akademik takvim başlangıcında güncellenebilir.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // ========================================
+    // ACCORDION FUNCTIONALITY
+    // ========================================
+    function toggleAccordion(sectionId) {
+      const item = document.getElementById(sectionId);
+      const isActive = item.classList.contains('active');
+      // Close all other sections (optional - remove these 3 lines for multi-open)
+      document.querySelectorAll('.accordion-item').forEach(i => {
+        i.classList.remove('active');
+      });
+      // Toggle current section
+      if (!isActive) {
+        item.classList.add('active');
+        // Scroll to section header
+        setTimeout(() => {
+          item.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
+      }
+    }
+    function scrollToSection(sectionId) {
+      const item = document.getElementById(sectionId);
+      if (item) {
+        // Open the section
+        if (!item.classList.contains('active')) {
+          toggleAccordion(sectionId);
+        }
+        // Scroll to it
+        setTimeout(() => {
+          item.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    }
+    function expandAll() {
+      document.querySelectorAll('.accordion-item').forEach(item => {
+        item.classList.add('active');
+      });
+    }
+    function collapseAll() {
+      document.querySelectorAll('.accordion-item').forEach(item => {
+        item.classList.remove('active');
+      });
+    }
+    // Open first section by default
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('section1').classList.add('active');
+    });
+  </script>
+</body>
+</html>
+

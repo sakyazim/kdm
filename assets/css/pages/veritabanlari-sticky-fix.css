@@ -1,0 +1,159 @@
+/**
+ * Veritabanları Sayfası - Sticky Search Filter Özel Düzenlemeleri
+ *
+ * Bu CSS sadece veritabanları sayfasına özel olarak sticky arama/filtreleme
+ * alanını optimize eder. Diğer sayfalar etkilenmez.
+ *
+ * @file veritabanlari-sticky-fix.css
+ * @version 1.0.0
+ * @date 2025-11-12
+ */
+
+/* ==========================================================================
+   VERİTABANLARI SAYFASI İÇİN ÖZEL DÜZENLEMELER
+   ========================================================================== */
+
+/* Sadece veritabanları sayfasında aktif olacak */
+body[data-page-name="veritabanlari"] .search-filter-section {
+  /* Normal modda daha kompakt */
+  padding: 1.25rem;
+}
+
+body[data-page-name="veritabanlari"] .search-filter-section .search-and-controls {
+  margin-bottom: 0.85rem;
+}
+
+/* Kategori butonlarını küçült - VERİTABANLARI SAYFASINA ÖZEL */
+body[data-page-name="veritabanlari"] .category-btn,
+body[data-page-name="veritabanlari"] .filter-btn {
+  padding: 0.5rem 0.95rem !important;
+  font-size: 0.875rem !important;
+  border-width: 1.5px !important;
+}
+
+body[data-page-name="veritabanlari"] .category-btn i,
+body[data-page-name="veritabanlari"] .filter-btn i {
+  font-size: 0.9rem !important;
+}
+
+body[data-page-name="veritabanlari"] .count-badge {
+  padding: 1px 6px !important;
+  font-size: 0.75rem !important;
+  margin-left: 3px !important;
+}
+
+/* Kategori filtreleri için daha az boşluk */
+body[data-page-name="veritabanlari"] .category-filters {
+  gap: 0.5rem !important;
+}
+
+/* ==========================================================================
+   STICKY MODE - VERİTABANLARI SAYFASINA ÖZEL
+   ========================================================================== */
+
+body[data-page-name="veritabanlari"] .search-filter-section.sticky {
+  padding: 10px 0 !important;
+  z-index: 999 !important; /* Header menüsünün (1020) altında olmalı */
+}
+
+body[data-page-name="veritabanlari"] .search-filter-section.sticky .search-and-controls,
+body[data-page-name="veritabanlari"] .search-filter-section.sticky .category-filters {
+  max-width: 100% !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+body[data-page-name="veritabanlari"] .search-filter-section.sticky .search-and-controls {
+  margin-bottom: 8px !important;
+}
+
+/* Sticky modda kategori butonları daha da kompakt */
+body[data-page-name="veritabanlari"] .search-filter-section.sticky .category-btn,
+body[data-page-name="veritabanlari"] .search-filter-section.sticky .filter-btn {
+  padding: 0.4rem 0.8rem !important;
+  font-size: 0.8rem !important;
+  border-radius: 18px !important;
+}
+
+body[data-page-name="veritabanlari"] .search-filter-section.sticky .category-btn i,
+body[data-page-name="veritabanlari"] .search-filter-section.sticky .filter-btn i {
+  font-size: 0.85rem !important;
+}
+
+body[data-page-name="veritabanlari"] .search-filter-section.sticky .count-badge {
+  padding: 0px 5px !important;
+  font-size: 0.7rem !important;
+}
+
+body[data-page-name="veritabanlari"] .search-filter-section.sticky .category-filters {
+  gap: 0.4rem !important;
+}
+
+/* Search input'u sticky modda biraz küçült */
+body[data-page-name="veritabanlari"] .search-filter-section.sticky .search-input-group {
+  height: 44px !important;
+}
+
+body[data-page-name="veritabanlari"] .search-filter-section.sticky .control-btn {
+  height: 44px !important;
+  padding: 0 14px !important;
+}
+
+body[data-page-name="veritabanlari"] .search-filter-section.sticky .view-toggle-btn {
+  height: 38px !important;
+}
+
+/* ==========================================================================
+   RESPONSIVE - VERİTABANLARI SAYFASI
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  body[data-page-name="veritabanlari"] .category-btn,
+  body[data-page-name="veritabanlari"] .filter-btn {
+    padding: 0.45rem 0.85rem !important;
+    font-size: 0.82rem !important;
+  }
+
+  /* MOBİLDE STICKY: Sadece arama kutusu görünsün */
+  body[data-page-name="veritabanlari"] .search-filter-section.sticky {
+    padding: 6px 0 !important;
+  }
+
+  body[data-page-name="veritabanlari"] .search-filter-section.sticky .search-and-controls {
+    margin-bottom: 0 !important;
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  body[data-page-name="veritabanlari"] .search-filter-section.sticky .category-filters {
+    display: none !important; /* Mobilde sticky kategorileri gizle */
+  }
+
+  body[data-page-name="veritabanlari"] .search-filter-section.sticky .search-input-group {
+    height: 42px !important;
+  }
+
+  body[data-page-name="veritabanlari"] .search-filter-section.sticky .control-btn {
+    height: 42px !important;
+    padding: 0 10px !important;
+  }
+
+  body[data-page-name="veritabanlari"] .search-filter-section.sticky .view-toggle-btn {
+    height: 36px !important;
+    min-width: 36px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  body[data-page-name="veritabanlari"] .category-btn,
+  body[data-page-name="veritabanlari"] .filter-btn {
+    padding: 0.4rem 0.75rem !important;
+    font-size: 0.78rem !important;
+  }
+
+  body[data-page-name="veritabanlari"] .search-filter-section.sticky .category-btn,
+  body[data-page-name="veritabanlari"] .search-filter-section.sticky .filter-btn {
+    padding: 0.3rem 0.6rem !important;
+    font-size: 0.72rem !important;
+  }
+}

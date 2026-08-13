@@ -1,0 +1,166 @@
+{
+  "title": {
+    "tr": "Yeni Gelenler",
+    "en": "New Arrivals"
+  },
+  "translations": {
+    "location": {
+      "tr": "Yeri:",
+      "en": "Location:"
+    },
+    "callNumber": {
+      "tr": "Yer Numarası:",
+      "en": "Call Number:"
+    },
+    "copy": {
+      "tr": "Kopyala",
+      "en": "Copy"
+    }
+  },
+  "arrivals": [
+    {
+      "id": 1,
+      "title": {
+        "tr": "Yapay Zeka ve Makine Öğrenmesi",
+        "en": "Artificial Intelligence and Machine Learning"
+      },
+      "author": {
+        "tr": "John D. Kelleher",
+        "en": "John D. Kelleher"
+      },
+      "floor": {
+        "tr": "3. Kat",
+        "en": "3rd Floor"
+      },
+      "callNumber": "006.3 K29y",
+      "image": "assets/images/nopic.jpeg",
+      "active": true
+    },
+    {
+      "id": 2,
+      "title": {
+        "tr": "Veri Bilimi ve Analitik",
+        "en": "Data Science and Analytics"
+      },
+      "author": {
+        "tr": "Foster Provost",
+        "en": "Foster Provost"
+      },
+      "floor": {
+        "tr": "3. Kat",
+        "en": "3rd Floor"
+      },
+      "callNumber": "658.4038 P96v",
+      "image": "assets/images/nopic.jpeg",
+      "active": true
+    },
+    {
+      "id": 3,
+      "title": {
+        "tr": "Modern Web Geliştirme",
+        "en": "Modern Web Development"
+      },
+      "author": {
+        "tr": "Kyle Simpson",
+        "en": "Kyle Simpson"
+      },
+      "floor": {
+        "tr": "3. Kat",
+        "en": "3rd Floor"
+      },
+      "callNumber": "005.133 S59m",
+      "image": "assets/images/nopic.jpeg",
+      "active": true
+    },
+    {
+      "id": 4,
+      "title": {
+        "tr": "Blockchain Teknolojileri",
+        "en": "Blockchain Technologies"
+      },
+      "author": {
+        "tr": "Imran Bashir",
+        "en": "Imran Bashir"
+      },
+      "floor": {
+        "tr": "3. Kat",
+        "en": "3rd Floor"
+      },
+      "callNumber": "005.824 B33b",
+      "image": "assets/images/nopic.jpeg",
+      "active": true
+    },
+    {
+      "id": 5,
+      "title": {
+        "tr": "Bulut Bilişim ve AWS",
+        "en": "Cloud Computing and AWS"
+      },
+      "author": {
+        "tr": "Anthony Sequeira",
+        "en": "Anthony Sequeira"
+      },
+      "floor": {
+        "tr": "3. Kat",
+        "en": "3rd Floor"
+      },
+      "callNumber": "004.678 S47b",
+      "image": "assets/images/nopic.jpeg",
+      "active": true
+    },
+    {
+      "id": 6,
+      "title": {
+        "tr": "Python ile Veri Analizi",
+        "en": "Data Analysis with Python"
+      },
+      "author": {
+        "tr": "Wes McKinney",
+        "en": "Wes McKinney"
+      },
+      "floor": {
+        "tr": "3. Kat",
+        "en": "3rd Floor"
+      },
+      "callNumber": "005.133 M15p",
+      "image": "assets/images/nopic.jpeg",
+      "active": true
+    },
+    {
+      "id": 7,
+      "title": {
+        "tr": "Siber Güvenlik Temelleri",
+        "en": "Cybersecurity Fundamentals"
+      },
+      "author": {
+        "tr": "Charles J. Brooks",
+        "en": "Charles J. Brooks"
+      },
+      "floor": {
+        "tr": "3. Kat",
+        "en": "3rd Floor"
+      },
+      "callNumber": "005.8 B79s",
+      "image": "assets/images/nopic.jpeg",
+      "active": true
+    },
+    {
+      "id": 8,
+      "title": {
+        "tr": "Mobil Uygulama Geliştirme",
+        "en": "Mobile Application Development"
+      },
+      "author": {
+        "tr": "Neil Smyth",
+        "en": "Neil Smyth"
+      },
+      "floor": {
+        "tr": "3. Kat",
+        "en": "3rd Floor"
+      },
+      "callNumber": "005.258 S66m",
+      "image": "assets/images/nopic.jpeg",
+      "active": true
+    }
+  ]
+}

@@ -1,0 +1,623 @@
+/* ====================================
+   Çalışma Saatleri Sayfası Özel Stilleri
+   ==================================== */
+
+/* Page Hero - Card Elevated Style */
+.page-hero {
+  background: linear-gradient(135deg, var(--tertiary-color), var(--tertiary-dark));
+  padding: 1.5rem 0 2rem 0;
+  margin-bottom: 0;
+  margin-top: var(--header-height);
+  border-bottom: none;
+}
+
+.page-hero-content {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem 3rem;
+  max-width: fit-content;
+  margin: 0 auto;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  border-top: none;
+  text-align: center;
+}
+
+/* Page Title */
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.page-description {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Main Container */
+.main-container {
+  padding-top: 2rem;
+  padding-bottom: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Alert Section */
+.alert-section {
+  margin-bottom: 2rem;
+}
+
+.alert-custom {
+  background: linear-gradient(135deg, #d1ecf1, #bee5eb);
+  border: 1px solid var(--primary-color);
+  border-left: 4px solid var(--primary-color);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.alert-icon {
+  font-size: 2rem;
+  color: var(--primary-color);
+  min-width: 40px;
+}
+
+.alert-content a {
+  color: var(--primary-color);
+  text-decoration: underline;
+  transition: all 0.3s ease;
+}
+
+.alert-content a:hover {
+  color: var(--primary-dark);
+  text-decoration: none;
+}
+
+.alert-content h5 {
+  color: var(--primary-color);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.alert-content p {
+  margin: 0;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Main Library Card */
+.library-card {
+  background: var(--bg-card);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-color);
+  margin-bottom: 2rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.library-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.library-header {
+  background: var(--primary-color);
+  color: white;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.library-header-content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+.library-icon {
+  font-size: 3rem;
+  color: var(--primary-color);
+  min-width: 60px;
+}
+
+.library-info h3 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: white;
+}
+
+.library-info p {
+  margin: 0.5rem 0 0 0;
+  opacity: 0.9;
+  font-size: 1rem;
+  color: white;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.status-badge.open {
+  background: #d4edda;
+  color: #155724;
+  border: 2px solid #28a745;
+}
+
+.status-badge.open i {
+  animation: pulse-open 2s ease-in-out infinite;
+}
+
+.status-badge.closed {
+  background: #f8d7da;
+  color: #721c24;
+  border: 2px solid #dc3545;
+}
+
+.status-badge.closed i {
+  animation: pulse-closed 2s ease-in-out infinite;
+}
+
+.status-badge i {
+  font-size: 0.5rem;
+}
+
+/* Pulse animations */
+@keyframes pulse-open {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes pulse-closed {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.library-body {
+  padding: 1.5rem;
+}
+
+/* Hours Grid */
+.hours-grid {
+  background: var(--tertiary-color);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.day-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(31, 76, 138, 0.1);
+  transition: all 0.3s ease;
+}
+
+.day-row:last-child {
+  border-bottom: none;
+}
+
+.day-row:hover {
+  background: rgba(31, 76, 138, 0.05);
+  transform: translateX(5px);
+}
+
+.day-row.weekend {
+  opacity: 0.7;
+}
+
+.day-row .day {
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 1rem;
+}
+
+.day-row .time {
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* Contact Info */
+.contact-info-box {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contact-item-box {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--tertiary-color);
+  border-radius: 20px;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.contact-item-box:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(31, 76, 138, 0.25);
+}
+
+.contact-item-box i {
+  font-size: 1.25rem;
+}
+
+/* Services Section */
+.services-section {
+  background: var(--bg-card);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-color);
+  margin-bottom: 2rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.services-section:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.services-header {
+  background: var(--primary-color);
+  color: white;
+  padding: 1.5rem;
+}
+
+.services-header-content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.services-icon {
+  font-size: 2.5rem;
+  color: white;
+  min-width: 50px;
+}
+
+.services-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+.services-table-wrapper {
+  background: var(--bg-card);
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.services-table {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+}
+
+.services-table thead {
+  background: var(--tertiary-color);
+  color: var(--primary-color);
+}
+
+.services-table thead th {
+  padding: 1rem 1.5rem;
+  text-align: left;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  color: var(--primary-color) !important;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.services-table tbody tr {
+  background: var(--bg-card);
+  transition: all 0.2s ease;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.services-table tbody tr:nth-child(even) {
+  background: var(--tertiary-color);
+}
+
+.services-table tbody tr:hover {
+  background: var(--primary-color) !important;
+  transform: none;
+}
+
+.services-table tbody tr:hover td {
+  color: white !important;
+}
+
+.services-table tbody td {
+  padding: 1rem 1.5rem;
+  border: none;
+  color: var(--text-color);
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+  vertical-align: middle;
+}
+
+.services-table tbody td:first-child {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.services-table tbody tr:hover td:first-child {
+  color: white !important;
+}
+
+.services-table .text-muted {
+  color: #999 !important;
+  font-style: italic;
+}
+
+.services-table tbody tr:hover .text-muted {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Special Hours Section */
+.special-hours-section {
+  background: var(--bg-card);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-color);
+  margin-bottom: 2rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.special-hours-section:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.special-hours-header {
+  background: var(--primary-color);
+  color: white;
+  padding: 1.5rem;
+}
+
+.special-hours-header-content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.special-hours-icon {
+  font-size: 2.5rem;
+  color: white;
+  min-width: 50px;
+}
+
+.special-hours-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+.special-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: var(--bg-card);
+}
+
+.special-card {
+  background: var(--tertiary-color);
+  border-radius: var(--border-radius);
+  box-shadow: none;
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.special-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+
+.special-icon {
+  font-size: 3rem;
+  min-width: 60px;
+  color: var(--primary-color);
+}
+
+.special-icon.warning {
+  color: var(--primary-color);
+}
+
+.special-icon.info {
+  color: var(--primary-color);
+}
+
+.special-content h4 {
+  color: var(--primary-color);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+}
+
+.special-content p {
+  color: var(--text-color);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.special-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.special-content ul li {
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  position: relative;
+  color: var(--text-color);
+}
+
+.special-content ul li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+/* Help Section: Global CSS'ten (inner-pages.css) miras alınır */
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .page-hero-content {
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-hero {
+    padding: 1.5rem 0 2rem 0;
+  }
+
+  .page-hero-content {
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+    max-width: 95%;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .page-description {
+    font-size: 0.95rem;
+  }
+
+  .library-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .library-header-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .day-row {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .special-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .special-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .services-header-content {
+    flex-direction: row;
+  }
+
+  .services-icon {
+    font-size: 2rem;
+    min-width: 40px;
+  }
+
+  .services-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .special-hours-header-content {
+    flex-direction: row;
+  }
+
+  .special-hours-icon {
+    font-size: 2rem;
+    min-width: 40px;
+  }
+
+  .special-hours-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .services-table {
+    font-size: 0.85rem;
+  }
+
+  .services-table thead th,
+  .services-table tbody td {
+    padding: 0.75rem 1rem;
+  }
+
+  /* Help Section responsive styles: Global CSS'ten (inner-pages.css) miras alınır */
+}
+
+/* Dark Theme Support */
+html[data-theme="dark"] .page-hero {
+  background: linear-gradient(135deg, var(--tertiary-color), var(--tertiary-dark));
+}
+
+html[data-theme="dark"] .page-title {
+  color: var(--primary-light);
+}
+
+html[data-theme="dark"] .page-hero-content {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+html[data-theme="dark"] .alert-custom {
+  background: linear-gradient(135deg, #1a3a44, #0f2830);
+}
+
+html[data-theme="dark"] .services-table tbody tr:hover {
+  background: var(--tertiary-color);
+}

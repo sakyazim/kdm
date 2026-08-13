@@ -1,0 +1,593 @@
+/* ============================================
+   ACCESSIBILITY WIDGET STYLES
+   UserWay-style Accessibility Menu
+   ============================================ */
+
+/* Disleksi Dostu Font */
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('https://cdn.jsdelivr.net/npm/opendyslexic@3.0.1/fonts/OpenDyslexic-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ============================================
+   Widget Container & Trigger Button
+   ============================================ */
+
+.accessibility-widget {
+  position: fixed !important;
+  bottom: 90px !important;
+  left: 20px !important;
+  z-index: 1030 !important;
+  pointer-events: all !important;
+}
+
+.accessibility-trigger {
+  width: 56px !important;
+  height: 56px !important;
+  border-radius: 50% !important;
+  background: #1F4C8A !important;
+  border: none !important;
+  color: white !important;
+  font-size: 24px !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 20px rgba(31, 76, 138, 0.4) !important;
+  transition: all 0.3s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  animation: pulse 2s infinite !important;
+  pointer-events: all !important;
+}
+
+.accessibility-trigger:hover {
+  transform: scale(1.1) !important;
+  background: #153a6d !important;
+  box-shadow: 0 6px 30px rgba(31, 76, 138, 0.6) !important;
+}
+
+.accessibility-trigger:active {
+  transform: scale(0.95) !important;
+}
+
+/* Active features indicator */
+.accessibility-trigger.has-active-features::after {
+  content: '✓';
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 20px;
+  height: 20px;
+  background: #28a745;
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+  font-weight: bold;
+  border: 2px solid white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  animation: pulse-indicator 2s infinite;
+}
+
+@keyframes pulse-indicator {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 4px 20px rgba(31, 76, 138, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 30px rgba(31, 76, 138, 0.6);
+  }
+}
+
+/* ============================================
+   Accessibility Panel (Offcanvas Style)
+   ============================================ */
+
+.accessibility-panel {
+  position: fixed !important;
+  left: -100% !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 340px !important;
+  max-width: 90vw !important;
+  background: white !important;
+  box-shadow: 4px 0 30px rgba(0, 0, 0, 0.2) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  z-index: 1030 !important;
+  pointer-events: all !important;
+}
+
+.accessibility-panel.active {
+  left: 0 !important;
+}
+
+/* Big Widget Mode */
+.accessibility-panel.big-widget {
+  width: 420px !important;
+}
+
+.accessibility-panel.big-widget .accessibility-option {
+  min-height: 85px !important;
+  padding: 14px 10px !important;
+}
+
+.accessibility-panel.big-widget .accessibility-option .option-icon {
+  font-size: 22px !important;
+}
+
+.accessibility-panel.big-widget .accessibility-option span {
+  font-size: 12px !important;
+}
+
+/* Overlay - Disabled, panel opens without darkening */
+.accessibility-overlay {
+  display: none !important;
+}
+
+/* ============================================
+   Panel Header
+   ============================================ */
+
+.accessibility-header {
+  padding: 20px !important;
+  background: #1F4C8A !important;
+  color: white !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-shrink: 0 !important;
+}
+
+.accessibility-header h5 {
+  margin: 0 !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  color: #ffffff;
+}
+
+.accessibility-close {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: none !important;
+  color: white !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s !important;
+}
+
+.accessibility-close:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+  transform: scale(1.1) !important;
+}
+
+/* Language Selector */
+.language-selector {
+  display: flex !important;
+  gap: 8px !important;
+  margin-top: 12px !important;
+}
+
+.lang-btn {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: white !important;
+  padding: 6px 14px !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  transition: all 0.2s !important;
+}
+
+.lang-btn:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+
+.lang-btn.active {
+  background: white !important;
+  color: #1F4C8A !important;
+  font-weight: 600 !important;
+}
+
+/* ============================================
+   Panel Content
+   ============================================ */
+
+.accessibility-content {
+  padding: 14px !important;
+  overflow-y: auto !important;
+  flex: 1 !important;
+  max-height: calc(100vh - 70px) !important;
+}
+
+/* Custom scrollbar */
+.accessibility-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.accessibility-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.accessibility-content::-webkit-scrollbar-thumb {
+  background: #1976d2;
+  border-radius: 10px;
+}
+
+.accessibility-content::-webkit-scrollbar-thumb:hover {
+  background: #1565c0;
+}
+
+/* ============================================
+   Options Grid (Always 3 columns, responsive sizing)
+   ============================================ */
+
+.accessibility-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 8px !important;
+  margin-bottom: 16px !important;
+}
+
+/* Responsive option boxes - scale with panel width */
+.accessibility-option {
+  background: #f8f9fa !important;
+  border: 2px solid transparent !important;
+  border-radius: 10px !important;
+  padding: 10px 6px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  text-align: center !important;
+  min-height: 70px !important;
+  position: relative !important;
+}
+
+/* Modern hover effects */
+.accessibility-option:hover {
+  background: #f0f7ff !important;
+  border-color: #1976d2 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.15) !important;
+}
+
+/* Modern active state */
+.accessibility-option.active {
+  background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%) !important;
+  border-color: #1565c0 !important;
+  color: white !important;
+  box-shadow: 0 4px 16px rgba(25, 118, 210, 0.3) !important;
+}
+
+.accessibility-option.active:hover {
+  background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%) !important;
+  transform: translateY(-2px) !important;
+}
+
+.accessibility-option .option-icon {
+  font-size: 18px !important;
+  color: #495057 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 2px !important;
+  transition: color 0.3s ease !important;
+}
+
+.accessibility-option.active .option-icon {
+  color: white !important;
+}
+
+.accessibility-option span {
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  color: #495057 !important;
+  line-height: 1.1 !important;
+  transition: color 0.3s ease !important;
+}
+
+.accessibility-option.active span {
+  color: white !important;
+  font-weight: 600 !important;
+}
+
+/* Checkmark indicator for active options */
+.accessibility-option.active::after {
+  content: '✓';
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Level indicator for big-text */
+.accessibility-option[data-feature="big-text"][data-level="1"]::after {
+  content: '1';
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.accessibility-option[data-feature="big-text"][data-level="2"]::after {
+  content: '2';
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================
+   Reset Button
+   ============================================ */
+
+.accessibility-reset {
+  width: 100% !important;
+  padding: 14px !important;
+  background: #fff3cd !important;
+  border: 2px solid #ffc107 !important;
+  border-radius: 10px !important;
+  color: #856404 !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  transition: all 0.2s !important;
+}
+
+.accessibility-reset:hover {
+  background: #ffc107 !important;
+  color: #000 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3) !important;
+}
+
+.accessibility-reset i {
+  font-size: 16px;
+}
+
+/* ============================================
+   ACCESSIBILITY FEATURES STYLES
+   ============================================ */
+
+/* High Contrast Mode */
+body.accessibility-contrast *:not(.accessibility-widget):not(.accessibility-widget *):not(.accessibility-panel):not(.accessibility-panel *):not(.accessibility-overlay) {
+  filter: contrast(1.5) !important;
+}
+
+/* Highlight Links */
+body.accessibility-highlight-links a:not(.accessibility-widget a):not(.accessibility-panel a) {
+  background-color: yellow !important;
+  color: #000 !important;
+  text-decoration: underline !important;
+  font-weight: bold !important;
+  padding: 2px 4px !important;
+  border-radius: 3px !important;
+}
+
+/* Big Text - 3 Levels */
+body.accessibility-big-text-1 *:not(.accessibility-widget):not(.accessibility-widget *):not(.accessibility-panel):not(.accessibility-panel *) {
+  font-size: 110% !important;
+}
+
+body.accessibility-big-text-2 *:not(.accessibility-widget):not(.accessibility-widget *):not(.accessibility-panel):not(.accessibility-panel *) {
+  font-size: 120% !important;
+}
+
+/* Text Spacing */
+body.accessibility-text-spacing *:not(.accessibility-widget):not(.accessibility-widget *):not(.accessibility-panel):not(.accessibility-panel *) {
+  letter-spacing: 0.12em !important;
+  word-spacing: 0.16em !important;
+}
+
+/* Stop Animations */
+body.accessibility-stop-animations *:not(.accessibility-widget):not(.accessibility-widget *),
+body.accessibility-stop-animations *::before:not(.accessibility-widget *::before),
+body.accessibility-stop-animations *::after:not(.accessibility-widget *::after) {
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+}
+
+/* Hide Images */
+body.accessibility-hide-images img:not(.accessibility-widget img),
+body.accessibility-hide-images picture:not(.accessibility-widget picture),
+body.accessibility-hide-images svg:not(.accessibility-widget svg):not(.progress-ring) {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Dyslexia Friendly Font */
+body.accessibility-dyslexia-font *:not(.accessibility-widget):not(.accessibility-widget *):not(.accessibility-panel):not(.accessibility-panel *) {
+  font-family: 'OpenDyslexic', 'Comic Sans MS', cursive !important;
+}
+
+/* Big Cursor */
+body.accessibility-big-cursor,
+body.accessibility-big-cursor * {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><defs><filter id="shadow"><feDropShadow dx="1" dy="1" stdDeviation="1" flood-opacity="0.5"/></filter></defs><path d="M8 4 L8 38 L18 28 L24 42 L30 40 L24 26 L40 26 L8 4 Z" fill="%231F4C8A" stroke="white" stroke-width="2.5" filter="url(%23shadow)"/></svg>') 4 4, auto !important;
+}
+
+/* Reading Guide */
+.reading-guide-line {
+  position: fixed !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 3px !important;
+  background: #1F4C8A !important;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.3) !important;
+  pointer-events: none !important;
+  z-index: 1030 !important;
+  transform: translateY(-50%) !important;
+}
+
+/* Line Height */
+body.accessibility-line-height *:not(.accessibility-widget):not(.accessibility-widget *):not(.accessibility-panel):not(.accessibility-panel *) {
+  line-height: 2 !important;
+}
+
+/* Text Align Left */
+body.accessibility-text-align *:not(.accessibility-widget):not(.accessibility-widget *):not(.accessibility-panel):not(.accessibility-panel *) {
+  text-align: left !important;
+}
+
+/* Low Saturation */
+body.accessibility-saturation *:not(.accessibility-widget):not(.accessibility-widget *):not(.accessibility-panel):not(.accessibility-panel *):not(.accessibility-overlay) {
+  filter: saturate(0.3) !important;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+@media (max-width: 768px) {
+  .accessibility-widget {
+    bottom: 80px !important;
+    left: 15px !important;
+  }
+
+  .accessibility-trigger {
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 20px !important;
+  }
+
+  .accessibility-panel {
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+
+  .accessibility-content {
+    padding: 12px !important;
+  }
+
+  .accessibility-grid {
+    gap: 8px !important;
+  }
+
+  .accessibility-option {
+    padding: 10px 6px !important;
+    min-height: 75px !important;
+  }
+
+  .accessibility-option .option-icon {
+    font-size: 20px !important;
+  }
+
+  .accessibility-option span {
+    font-size: 10px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .accessibility-header h5 {
+    font-size: 16px !important;
+  }
+
+  .accessibility-content {
+    padding: 10px !important;
+  }
+
+  .accessibility-grid {
+    gap: 6px !important;
+  }
+
+  .accessibility-option {
+    padding: 8px 4px !important;
+    min-height: 70px !important;
+  }
+
+  .accessibility-option .option-icon {
+    font-size: 18px !important;
+  }
+
+  .accessibility-option span {
+    font-size: 9px !important;
+  }
+
+  .accessibility-reset {
+    font-size: 12px !important;
+    padding: 10px !important;
+  }
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+
+@media print {
+  .accessibility-widget,
+  .accessibility-overlay,
+  .reading-guide-line {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   Focus Styles (Keyboard Accessibility)
+   ============================================ */
+
+.accessibility-trigger:focus-visible,
+.accessibility-option:focus-visible,
+.accessibility-close:focus-visible,
+.accessibility-reset:focus-visible,
+.lang-btn:focus-visible {
+  outline: 3px solid #1976d2 !important;
+  outline-offset: 2px !important;
+  z-index: 10 !important;
+}
+
+.accessibility-option:focus-visible {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.25) !important;
+}
+
+/* ============================================
+   Large screens - slightly bigger panel
+   ============================================ */
+@media (min-width: 1600px) {
+  .accessibility-panel {
+    width: 380px !important;
+  }
+
+  .accessibility-option {
+    min-height: 75px !important;
+    padding: 12px 8px !important;
+  }
+
+  .accessibility-option .option-icon {
+    font-size: 20px !important;
+  }
+
+  .accessibility-option span {
+    font-size: 11px !important;
+  }
+}

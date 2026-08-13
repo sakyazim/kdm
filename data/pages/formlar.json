@@ -1,0 +1,407 @@
+{
+  "hero": {
+    "title": {
+      "tr": "Formlar ve Dökümanlar",
+      "en": "Forms and Documents"
+    },
+    "description": {
+      "tr": "Kütüphane hizmetleri için gerekli formlar, başvuru belgeleri ve kılavuzlar.",
+      "en": "Required forms, application documents and guides for library services."
+    },
+    "icon": "bi bi-file-earmark-text"
+  },
+  "content": [
+    {
+      "id": "nereden-baslamali",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Nereden Başlamalı?",
+              "en": "Where to Start?"
+            },
+            "icon": "bi bi-info-circle",
+            "id": "nereden-baslamali"
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "info",
+          "data": {
+            "icon": "bi bi-book",
+            "title": {
+              "tr": "Kütüphane Kullanım Kılavuzu",
+              "en": "Library User Guide"
+            },
+            "content": {
+              "tr": "Kütüphanemizi ilk kez mi kullanıyorsunuz? Kütüphane hizmetlerimizden nasıl yararlanacağınızı öğrenmek için kullanım kılavuzumuzu inceleyebilirsiniz.",
+              "en": "Are you using our library for the first time? You can review our user guide to learn how to benefit from our library services."
+            },
+            "link": {
+              "tr": "https://kdm.anadolu.edu.tr/Documents/KutuphaneKullanimKlavuzu-TR.pdf",
+              "en": "https://kdm.anadolu.edu.tr/Documents/KutuphaneKullanimKlavuzu-EN.pdf"
+            },
+            "linkText": {
+              "tr": "Kütüphane Kullanım Kılavuzu (PDF)",
+              "en": "Library User Guide (PDF)"
+            },
+            "linkIcon": "bi bi-download"
+          }
+        }
+      ]
+    },
+    {
+      "id": "odunc-formlar",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Ödünç ve İşbirliği Formları",
+              "en": "Borrowing and Cooperation Forms"
+            },
+            "icon": "bi bi-file-earmark-arrow-down",
+            "id": "odunc-formlar"
+          }
+        },
+        {
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Kütüphanelerarası ödünç verme ve rezerve hizmetleri için aşağıdaki formları kullanabilirsiniz:",
+              "en": "You can use the following forms for interlibrary loan and reservation services:"
+            }
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "primary",
+          "data": {
+            "icon": "bi bi-arrow-left-right",
+            "title": {
+              "tr": "ILL Formu (Kütüphanelerarası İşbirliği)",
+              "en": "ILL Form (Interlibrary Loan)"
+            },
+            "content": {
+              "tr": "Kütüphanemizde bulunmayan bir kaynağı başka kütüphanelerden talep etmek için ILL (Interlibrary Loan) formunu kullanabilirsiniz. Form doldurulduktan sonra kütüphane personeline iletilmelidir.",
+              "en": "You can use the ILL (Interlibrary Loan) form to request a resource not available in our library from other libraries. The form must be submitted to library staff after completion."
+            },
+            "link": {
+              "tr": "https://kdm.anadolu.edu.tr/Documents/ill-TR.doc",
+              "en": "https://kdm.anadolu.edu.tr/Documents/ill-EN.doc"
+            },
+            "linkText": {
+              "tr": "ILL Formunu İndir (DOC)",
+              "en": "Download ILL Form (DOC)"
+            },
+            "linkIcon": "bi bi-download"
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "primary",
+          "data": {
+            "icon": "bi bi-bank",
+            "title": {
+              "tr": "TÜBESS Formu",
+              "en": "TUBESS Form"
+            },
+            "content": {
+              "tr": "TÜBİTAK Kütüphaneler Arası İşbirliği Sistemi (TÜBESS) üzerinden belge temini için kullanılır. TÜBESS üyesi kütüphanelerden ücretsiz veya düşük maliyetle makale ve belge temin edebilirsiniz.",
+              "en": "Used for document delivery through TUBITAK Interlibrary Cooperation System (TUBESS). You can obtain articles and documents free or at low cost from TUBESS member libraries."
+            },
+            "link": {
+              "tr": "https://kdm.anadolu.edu.tr/Documents/tubess-TR.docx",
+              "en": "https://kdm.anadolu.edu.tr/Documents/tubess-EN.docx"
+            },
+            "linkText": {
+              "tr": "TÜBESS Formunu İndir (DOCX)",
+              "en": "Download TUBESS Form (DOCX)"
+            },
+            "linkIcon": "bi bi-download"
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "primary",
+          "data": {
+            "icon": "bi bi-bookmark-check",
+            "title": {
+              "tr": "Rezerve İstek Formu",
+              "en": "Hold Request Form"
+            },
+            "content": {
+              "tr": "Ödünç verilmiş olan bir kaynağı rezerve etmek istiyorsanız bu formu kullanabilirsiniz. Kaynak iade edildiğinde size haber verilir ve öncelikli olarak ödünç almanız sağlanır.",
+              "en": "If you want to place a hold on a checked-out resource, you can use this form. You will be notified when the resource is returned and given priority to borrow it."
+            },
+            "link": {
+              "tr": "https://kdm.anadolu.edu.tr/Documents/rezerveform-TR.doc",
+              "en": "https://kdm.anadolu.edu.tr/Documents/rezerveform-EN.doc"
+            },
+            "linkText": {
+              "tr": "Rezerve İstek Formunu İndir (DOC)",
+              "en": "Download Hold Request Form (DOC)"
+            },
+            "linkIcon": "bi bi-download"
+          }
+        }
+      ]
+    },
+    {
+      "id": "kurum-dokumanlari",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Kurumsal Dökümanlar",
+              "en": "Institutional Documents"
+            },
+            "icon": "bi bi-building",
+            "id": "kurum-dokumanlari"
+          }
+        },
+        {
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Kütüphanemizin organizasyon yapısı ve yönetim bilgileri:",
+              "en": "Organizational structure and management information of our library:"
+            }
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "primary",
+          "data": {
+            "icon": "bi bi-people",
+            "title": {
+              "tr": "Kütüphane Komisyonu Üyeleri",
+              "en": "Library Commission Members"
+            },
+            "content": {
+              "tr": "Kütüphane Komisyonu, kütüphanenin akademik ve idari işleyişini denetleyen ve yönlendiren danışma organıdır. Komisyon üyeleri ve görev tanımları hakkında detaylı bilgi edinebilirsiniz.",
+              "en": "The Library Commission is an advisory body that oversees and guides the academic and administrative operations of the library. You can get detailed information about commission members and their roles."
+            },
+            "link": {
+              "tr": "https://kdm.anadolu.edu.tr/Documents/Komisyon-Uyeleri-TR.pdf",
+              "en": "https://kdm.anadolu.edu.tr/Documents/Komisyon-Uyeleri-EN.pdf"
+            },
+            "linkText": {
+              "tr": "Komisyon Üyelerini Görüntüle (PDF)",
+              "en": "View Commission Members (PDF)"
+            },
+            "linkIcon": "bi bi-download"
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "primary",
+          "data": {
+            "icon": "bi bi-diagram-3",
+            "title": {
+              "tr": "Organizasyon Şeması",
+              "en": "Organizational Chart"
+            },
+            "content": {
+              "tr": "Kütüphane organizasyon yapısı, departmanlar, görev dağılımı ve hiyerarşik yapı hakkında bilgi alabilirsiniz.",
+              "en": "You can get information about the library organizational structure, departments, task distribution and hierarchical structure."
+            },
+            "link": {
+              "tr": "https://kdm.anadolu.edu.tr/Documents/OrganizasyonSemasi-TR.pdf",
+              "en": ""
+            },
+            "linkText": {
+              "tr": "Organizasyon Şemasını Görüntüle (PDF)",
+              "en": "View Organizational Chart (PDF)"
+            },
+            "linkIcon": "bi bi-download"
+          }
+        }
+      ]
+    },
+    {
+      "id": "kullanim-ipuclari",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Form Kullanım İpuçları",
+              "en": "Form Usage Tips"
+            },
+            "icon": "bi bi-lightbulb",
+            "id": "kullanim-ipuclari"
+          }
+        },
+        {
+          "type": "icon-list",
+          "data": {
+            "items": [
+              {
+                "icon": "bi bi-pencil-square",
+                "title": {
+                  "tr": "Eksiksiz Doldurun",
+                  "en": "Fill Completely"
+                },
+                "description": {
+                  "tr": "Formları eksiksiz ve doğru bilgilerle doldurun. Eksik bilgiler işlem sürenizi uzatabilir.",
+                  "en": "Fill out forms completely and accurately. Missing information may extend your processing time."
+                }
+              },
+              {
+                "icon": "bi bi-envelope",
+                "title": {
+                  "tr": "E-posta Adresi",
+                  "en": "Email Address"
+                },
+                "description": {
+                  "tr": "Güncel e-posta adresinizi yazmayı unutmayın. Tüm bildirimler e-posta yoluyla yapılır.",
+                  "en": "Don't forget to write your current email address. All notifications are sent via email."
+                }
+              },
+              {
+                "icon": "bi bi-clock",
+                "title": {
+                  "tr": "İşlem Süreleri",
+                  "en": "Processing Times"
+                },
+                "description": {
+                  "tr": "ILL ve TÜBESS talepleri genellikle 3-7 iş günü içinde sonuçlandırılır. Rezerve işlemleri kaynak iade edildiğinde aktif hale gelir.",
+                  "en": "ILL and TUBESS requests are typically completed within 3-7 business days. Hold requests become active when the resource is returned."
+                }
+              },
+              {
+                "icon": "bi bi-question-circle",
+                "title": {
+                  "tr": "Yardım Alın",
+                  "en": "Get Help"
+                },
+                "description": {
+                  "tr": "Form doldururken sorun yaşarsanız Danışma Masası personelimizden yardım alabilirsiniz.",
+                  "en": "If you have trouble filling out the form, you can get help from our Reference Desk staff."
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "dijital-hizmetler",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Dijital Form Hizmetleri",
+              "en": "Digital Form Services"
+            },
+            "icon": "bi bi-globe",
+            "id": "dijital-hizmetler"
+          }
+        },
+        {
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Bazı hizmetler için çevrimiçi form sistemimizi kullanabilirsiniz:",
+              "en": "You can use our online form system for some services:"
+            }
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "info",
+          "data": {
+            "icon": "bi bi-laptop",
+            "title": {
+              "tr": "Çevrimiçi Form Sistemi",
+              "en": "Online Form System"
+            },
+            "content": {
+              "tr": "Yakında bazı formlar için çevrimiçi başvuru sistemi aktif olacaktır. Bu sayede formları dijital ortamda doldurup gönderebileceksiniz.",
+              "en": "An online application system for some forms will be activated soon. This way you will be able to fill out and submit forms digitally."
+            }
+          }
+        },
+        {
+          "type": "icon-list",
+          "data": {
+            "items": [
+              {
+                "icon": "bi bi-shield-check",
+                "title": {
+                  "tr": "Güvenli İletişim",
+                  "en": "Secure Communication"
+                },
+                "description": {
+                  "tr": "Tüm form verileriniz şifreli bağlantı üzerinden iletilir ve gizlilik politikamıza uygun şekilde korunur.",
+                  "en": "All your form data is transmitted over encrypted connection and protected in accordance with our privacy policy."
+                }
+              },
+              {
+                "icon": "bi bi-bell",
+                "title": {
+                  "tr": "Otomatik Bildirimler",
+                  "en": "Automatic Notifications"
+                },
+                "description": {
+                  "tr": "Form durumunuz hakkında otomatik e-posta bildirimleri alırsınız.",
+                  "en": "You will receive automatic email notifications about your form status."
+                }
+              },
+              {
+                "icon": "bi bi-clock-history",
+                "title": {
+                  "tr": "Başvuru Takibi",
+                  "en": "Application Tracking"
+                },
+                "description": {
+                  "tr": "Gönderdiğiniz formların durumunu çevrimiçi olarak takip edebilirsiniz.",
+                  "en": "You can track the status of your submitted forms online."
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "helpSection": {
+    "title": {
+      "tr": "Form konusunda yardıma mı ihtiyacınız var?",
+      "en": "Need help with forms?"
+    },
+    "description": {
+      "tr": "Form doldurma, belge temini veya başvuru süreçleri hakkında sorularınız için bizimle iletişime geçebilirsiniz.",
+      "en": "You can contact us for questions about filling out forms, document delivery or application processes."
+    },
+    "buttons": [
+      {
+        "text": {
+          "tr": "Bize Ulaşın",
+          "en": "Contact Us"
+        },
+        "link": "iletisim.html",
+        "variant": "primary",
+        "icon": "bi bi-envelope"
+      },
+      {
+        "text": {
+          "tr": "SSS",
+          "en": "FAQ"
+        },
+        "link": "sss.html",
+        "variant": "outline",
+        "icon": "bi bi-question-circle"
+      }
+    ]
+  }
+}

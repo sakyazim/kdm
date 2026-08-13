@@ -1,0 +1,81 @@
+/* assets/css/pages/calisma-odalari.css */
+
+#lab-content .info-card {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  margin-bottom: var(--spacing-lg);
+  overflow: hidden; /* Ensures border-radius is respected by children */
+}
+
+#lab-content .info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+#lab-content .card-header {
+  background-color: var(--tertiary-color);
+  color: var(--primary-dark);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 2px solid var(--primary-color);
+}
+
+#lab-content .card-subtitle {
+  background-color: var(--tertiary-dark);
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+#lab-content .card-body {
+  padding: var(--spacing-lg);
+  color: var(--text-color);
+  line-height: var(--line-height-loose);
+}
+
+#lab-content .card-body p {
+  margin-bottom: 0;
+}
+
+#lab-content .card-body ul {
+  padding-left: var(--spacing-md);
+  margin-top: var(--spacing-sm);
+  margin-bottom: 0;
+}
+
+#lab-content .card-body ul li {
+  margin-bottom: var(--spacing-sm);
+  padding-left: var(--spacing-sm);
+  position: relative;
+}
+
+#lab-content .card-body ul li::before {
+  content: '\25CF'; /* Filled circle */
+  color: var(--primary-color);
+  font-size: 0.8em;
+  position: absolute;
+  left: -1.2em;
+  top: 0.4em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #lab-content .card-header {
+    font-size: var(--font-size-lg);
+    padding: var(--spacing-md);
+  }
+
+  #lab-content .card-subtitle {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  #lab-content .card-body {
+    padding: var(--spacing-md);
+  }
+}

@@ -1,0 +1,419 @@
+{
+  "hero": {
+    "title": {
+      "tr": "Çalışma Odaları",
+      "en": "Study Rooms"
+    },
+    "description": {
+      "tr": "Akademik personel ve lisansüstü öğrenciler için özel çalışma alanları",
+      "en": "Private study spaces for academic staff and graduate students"
+    },
+    "icon": "fas fa-door-open",
+    "breadcrumb": [
+      {
+        "text": {
+          "tr": "Ana Sayfa",
+          "en": "Home"
+        },
+        "url": "index.html"
+      },
+      {
+        "text": {
+          "tr": "Hizmetler",
+          "en": "Services"
+        },
+        "url": "#"
+      },
+      {
+        "text": {
+          "tr": "Çalışma Odaları",
+          "en": "Study Rooms"
+        },
+        "url": "calisma-odalari.html"
+      }
+    ]
+  },
+  "content": [
+    {
+      "id": "general-info-section",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Genel Bilgiler",
+              "en": "General Information"
+            },
+            "icon": "fas fa-info-circle",
+            "id": "general-info-heading"
+          }
+        },
+        {
+          "type": "info-box",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Çalışma Odaları Hakkında",
+              "en": "About Study Rooms"
+            },
+            "titleIcon": "fas fa-door-open",
+            "content": {
+              "tr": "Akademik personelin ve lisans üstü öğrencilerin 11 adet çalışma odası (internet bağlantılı bilgisayar, çalışma masası, dolap) bulunmaktadır. Çalışma odası kullanım kuralları çerçevesinde isteyen kullanıcılar okuyucu hizmetleri sorumlusu (tlf. 1733) ile görüşebilirler.",
+              "en": "There are 11 study rooms (with internet-connected computer, desk, locker) for academic staff and graduate students. Users who wish to use the study rooms can contact the reader services officer (tel. 1733) within the framework of the study room usage rules."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "academic-staff-section",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Akademik Personel İçin Çalışma Odası Kullanım Kuralları",
+              "en": "Study Room Usage Rules for Academic Staff"
+            },
+            "icon": "fas fa-user-tie",
+            "id": "academic-staff-heading"
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "info",
+          "style": "single-line",
+          "data": {
+            "icon": "fas fa-clock",
+            "content": {
+              "tr": "Kullanım süresi 1 hafta olan odalar",
+              "en": "Rooms with 1-week usage period"
+            }
+          }
+        },
+        {
+          "type": "icon-list",
+          "variant": "default",
+          "data": {
+            "items": [
+              {
+                "icon": "fas fa-check-circle",
+                "text": {
+                  "tr": "Çalışma odaları Anadolu Üniversitesi akademik personeli tarafından kullanılabilir.",
+                  "en": "Study rooms can be used by Anadolu University academic staff."
+                }
+              },
+              {
+                "icon": "fas fa-calendar-week",
+                "text": {
+                  "tr": "Kullanım süresi 1 haftadır.",
+                  "en": "Usage period is 1 week."
+                }
+              },
+              {
+                "icon": "fas fa-list-ol",
+                "text": {
+                  "tr": "İstek sırasına göre ayrılır.",
+                  "en": "Allocated on a first-come, first-served basis."
+                }
+              },
+              {
+                "icon": "fas fa-key",
+                "text": {
+                  "tr": "Çalışma odalarını kullanmak isteyenler Okuyucu Hizmetleri Sorumlusuna başvurarak o oda için hazırlanan belgeyi doldurup imzaladıktan sonra anahtarı alabilir.",
+                  "en": "Those who want to use the study rooms can get the key after applying to the Reader Services Officer and filling in and signing the document prepared for that room."
+                }
+              },
+              {
+                "icon": "fas fa-book",
+                "text": {
+                  "tr": "Çalışma odalarında bulunan kütüphane materyali ödünç alınmış olmalıdır, kontrol sırasında ödünç alınmamış materyal koleksiyona iade edilir, ikaz yazısı bırakılır, tekrarı halinde çalışma odası kullanımı iptal edilir.",
+                  "en": "Library materials in study rooms must be borrowed; during inspection, unborrowed materials will be returned to the collection, a warning letter will be left, and in case of repetition, study room use will be cancelled."
+                }
+              },
+              {
+                "icon": "fas fa-laptop",
+                "text": {
+                  "tr": "Bilgisayarlar kullanılır durumda teslim edilir ve süre sonunda kullanılır durumda teslim alınır.",
+                  "en": "Computers are delivered in working condition and must be returned in working condition at the end of the period."
+                }
+              },
+              {
+                "icon": "fas fa-clock",
+                "text": {
+                  "tr": "Anahtar kullanım süresinin bittiği gün akşam teslim edilir.",
+                  "en": "The key must be returned in the evening of the day the usage period ends."
+                }
+              },
+              {
+                "icon": "fas fa-question-circle",
+                "text": {
+                  "tr": "Danışma kaynaklarının kullanılmak istenmesi durumunda Danışma bölümünden kullanım süresi istenir (saatli kullanım hakkı verilir).",
+                  "en": "If reference resources are to be used, a usage period should be requested from the Reference section (hourly usage right is given)."
+                }
+              },
+              {
+                "icon": "fas fa-ban",
+                "text": {
+                  "tr": "Yiyecek, içecek bulundurulması ve tütün mamüllerinin kullanımı yasaktır.",
+                  "en": "Keeping food and drinks and using tobacco products is prohibited."
+                }
+              },
+              {
+                "icon": "fas fa-times-circle",
+                "text": {
+                  "tr": "Aynı anda birden fazla çalışma odası kullanılamaz.",
+                  "en": "More than one study room cannot be used at the same time."
+                }
+              },
+              {
+                "icon": "fas fa-user",
+                "text": {
+                  "tr": "Çalışma odalarında birden fazla kişi bulunamaz, grup çalışması yapılamaz.",
+                  "en": "There cannot be more than one person in study rooms, group study is not allowed."
+                }
+              },
+              {
+                "icon": "fas fa-exclamation-triangle",
+                "text": {
+                  "tr": "Kütüphane yönetimi gerektiğinde odayı geri isteyebilir.",
+                  "en": "Library management may request the room back when necessary."
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "graduate-students-section",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Yüksek Lisans ve Doktora Öğrencileri İçin Kullanım Kuralları",
+              "en": "Usage Rules for Master's and Doctoral Students"
+            },
+            "icon": "fas fa-user-graduate",
+            "id": "graduate-students-heading"
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "info",
+          "style": "single-line",
+          "data": {
+            "icon": "fas fa-calendar-day",
+            "content": {
+              "tr": "Kullanım süresi günlük olan odalar",
+              "en": "Rooms with daily usage period"
+            }
+          }
+        },
+        {
+          "type": "icon-list",
+          "variant": "default",
+          "data": {
+            "items": [
+              {
+                "icon": "fas fa-check-circle",
+                "text": {
+                  "tr": "Çalışma odalarını Anadolu Üniversitesi yüksek lisans ve doktora öğrencisi ve Anadolu Üniversitesi akademik personeli kullanabilir.",
+                  "en": "Study rooms can be used by Anadolu University master's and doctoral students and Anadolu University academic staff."
+                }
+              },
+              {
+                "icon": "fas fa-clock",
+                "text": {
+                  "tr": "Odalar Pazartesi, Salı, Çarşamba, Perşembe günleri 9:00-15:00 ve 15:00-22:00 saatleri arasında kullanılabilir. 9:00-15:00 saatleri arasında oda kullananlar aynı gün saat 16:00'dan sonra boş oda olması koşuluyla saat 22:00 a kadar tekrar oda kullanabilirler.",
+                  "en": "Rooms can be used on Monday, Tuesday, Wednesday, Thursday between 9:00-15:00 and 15:00-22:00. Those who use the room between 9:00-15:00 can use the room again until 22:00 after 16:00 on the same day, provided that there is an empty room."
+                }
+              },
+              {
+                "icon": "fas fa-calendar-alt",
+                "text": {
+                  "tr": "Odalar Cuma günleri saat 9:00-17:00 saatleri arasında kullanılır.",
+                  "en": "Rooms are used on Fridays between 9:00-17:00."
+                }
+              },
+              {
+                "icon": "fas fa-key",
+                "text": {
+                  "tr": "Çalışma odalarını kullanmak isteyenler Okuyucu Hizmetleri sorumlusuna başvurarak o oda için hazırlanan belgeyi doldurup imzaladıktan sonra anahtarı alabilir.",
+                  "en": "Those who want to use the study rooms can get the key after applying to the Reader Services Officer and filling in and signing the document prepared for that room."
+                }
+              },
+              {
+                "icon": "fas fa-exclamation-circle",
+                "text": {
+                  "tr": "Oda anahtarları kullanım süresinin bitiminde mutlaka teslim edilmelidir. Oda anahtarını zamanında teslim etmeyen kullanıcılar 1 hafta boyunca oda kullanma haklarını kaybederler.",
+                  "en": "Room keys must be returned at the end of the usage period. Users who do not return the room key on time lose their right to use the room for 1 week."
+                }
+              },
+              {
+                "icon": "fas fa-book",
+                "text": {
+                  "tr": "Çalışma odalarında bulunan kütüphane materyali ödünç alınmış olmalıdır, kontrol sırasında ödünç alınmamış materyal koleksiyona iade edilir, ikaz yazısı bırakılır, tekrarı halinde çalışma odası kullanımı iptal edilir.",
+                  "en": "Library materials in study rooms must be borrowed; during inspection, unborrowed materials will be returned to the collection, a warning letter will be left, and in case of repetition, study room use will be cancelled."
+                }
+              },
+              {
+                "icon": "fas fa-question-circle",
+                "text": {
+                  "tr": "Danışma kaynaklarının kullanılmak istenmesi durumunda Danışma bölümünden kullanım süresi istenir (saatli kullanım hakkı verilir).",
+                  "en": "If reference resources are to be used, a usage period should be requested from the Reference section (hourly usage right is given)."
+                }
+              },
+              {
+                "icon": "fas fa-ban",
+                "text": {
+                  "tr": "Yiyecek, içecek bulundurulması ve tütün mamüllerinin kullanımı yasaktır.",
+                  "en": "Keeping food and drinks and using tobacco products is prohibited."
+                }
+              },
+              {
+                "icon": "fas fa-times-circle",
+                "text": {
+                  "tr": "Aynı anda birden fazla çalışma odası kullanılamaz.",
+                  "en": "More than one study room cannot be used at the same time."
+                }
+              },
+              {
+                "icon": "fas fa-user",
+                "text": {
+                  "tr": "Çalışma odalarında birden fazla kişi bulunamaz, grup çalışması yapılamaz.",
+                  "en": "There cannot be more than one person in study rooms, group study is not allowed."
+                }
+              },
+              {
+                "icon": "fas fa-exclamation-triangle",
+                "text": {
+                  "tr": "Kütüphane yönetimi gerektiğinde odayı geri isteyebilir.",
+                  "en": "Library management may request the room back when necessary."
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "students-section",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Öğrenciler İçin Ayrılan Çalışma Odaları",
+              "en": "Study Rooms Reserved for Students"
+            },
+            "icon": "fas fa-users",
+            "id": "students-heading"
+          }
+        },
+        {
+          "type": "icon-list",
+          "variant": "default",
+          "data": {
+            "items": [
+              {
+                "icon": "fas fa-times-circle",
+                "text": {
+                  "tr": "Aynı anda birden fazla çalışma odası kullanılamaz.",
+                  "en": "More than one study room cannot be used at the same time."
+                }
+              },
+              {
+                "icon": "fas fa-user",
+                "text": {
+                  "tr": "Çalışma odalarında birden fazla kişi bulunamaz, grup çalışması yapılamaz.",
+                  "en": "There cannot be more than one person in study rooms, group study is not allowed."
+                }
+              },
+              {
+                "icon": "fas fa-ban",
+                "text": {
+                  "tr": "Yiyecek, içecek bulundurulması ve tütün mamüllerinin içilmesi yasaktır.",
+                  "en": "Keeping food and drinks and smoking tobacco is prohibited."
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "group-study-section",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Grup Çalışma Salonu",
+              "en": "Group Study Hall"
+            },
+            "icon": "fas fa-users",
+            "id": "group-study-heading"
+          }
+        },
+        {
+          "type": "info-box",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Grup Çalışma Salonu Hakkında",
+              "en": "About Group Study Hall"
+            },
+            "titleIcon": "fas fa-door-open",
+            "content": {
+              "tr": "Kütüphanemizde bulunan; öğrencilerimizin kendi kitaplarıyla ders çalıştıkları üç salonumuzdan biri olan en üst kattaki salon, grup çalışma salonu olarak ayrılmıştır. Grup olarak ya da sesli ders çalışmak isteyen kullanıcılarımız, 7 gün 24 saat açık olan bu salonu kullanabilirler. Kitaplarımızın bulunduğu salonlardan materyal alıp grup çalışma salonlarında çalışılabilir. Ancak materyal, manyetik kapı kontrol sisteminden geçirilmeden önce ödünç bankosunda işlem yaptırılmalıdır.",
+              "en": "The hall on the top floor, which is one of the three halls in our library where our students study with their own books, has been designated as a group study hall. Our users who want to study in groups or study aloud can use this hall, which is open 24/7. Materials can be taken from the halls where our books are located and studied in the group study halls. However, the material must be processed at the loan desk before passing through the magnetic door control system."
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "helpSection": {
+    "title": {
+      "tr": "Daha fazla yardıma mı ihtiyacınız var?",
+      "en": "Need more help?"
+    },
+    "description": {
+      "tr": "Çalışma odaları hakkında daha detaylı bilgi almak veya özel sorularınızı sormak için bizimle iletişime geçin.",
+      "en": "Contact us for more detailed information about study rooms or to ask your specific questions."
+    },
+    "buttons": [
+      {
+        "icon": "fas fa-phone",
+        "text": {
+          "tr": "Hemen Ara",
+          "en": "Call Now"
+        },
+        "link": "tel:+902223350580"
+      },
+      {
+        "icon": "fas fa-envelope",
+        "text": {
+          "tr": "E-posta Gönder",
+          "en": "Send Email"
+        },
+        "link": "mailto:library@anadolu.edu.tr"
+      },
+      {
+        "icon": "fas fa-home",
+        "text": {
+          "tr": "Ana Sayfa",
+          "en": "Home"
+        },
+        "link": "index.html"
+      }
+    ]
+  }
+}

@@ -1,0 +1,189 @@
+/* JSON Editor Enhancements CSS */
+
+/* Ağaç Görünümü Stilleri */
+.json-tree-container {
+    font-family: var(--bs-font-sans-serif);
+}
+
+.json-tree-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.json-tree-item {
+    position: relative;
+    margin-bottom: 2px;
+}
+
+.json-tree-children {
+    padding-left: 1.5rem;
+    border-left: 1px dashed #dee2e6;
+    margin-left: 0.5rem;
+}
+
+.json-tree-node {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.02);
+    transition: background-color 0.2s ease;
+}
+
+.json-tree-node:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.json-tree-key {
+    font-weight: 500;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.json-tree-caret {
+    margin-right: 0.5rem;
+    font-size: 0.75rem;
+    transition: transform 0.2s ease;
+}
+
+.json-tree-collapsed .json-tree-caret {
+    transform: rotate(-90deg);
+}
+
+.json-tree-value {
+    color: #0d6efd;
+    flex-grow: 1;
+    word-break: break-all;
+}
+
+.json-tree-actions {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.json-tree-node:hover .json-tree-actions {
+    opacity: 1;
+}
+
+.json-tree-collapsed > .json-tree-children {
+    display: none;
+}
+
+/* Yol Göstergesi */
+.path-indicator {
+    font-size: 0.9rem;
+    border-left: 3px solid #0d6efd;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Vurgulama Butonları */
+.highlight-btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+}
+
+/* Form Alanı Geliştirmeleri */
+.form-group {
+    position: relative;
+    transition: background-color 0.3s ease;
+    border-radius: 4px;
+    padding: 0.5rem;
+}
+
+.form-group:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.form-group:focus-within {
+    background-color: rgba(13, 110, 253, 0.05);
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1);
+}
+
+/* Zengin metin düzenleyici */
+.btn-toolbar {
+    background-color: #f8f9fa;
+    padding: 0.25rem;
+    border-radius: 4px;
+}
+
+/* Resim önizleme */
+.image-preview {
+    background-color: #f8f9fa;
+    padding: 0.5rem;
+    border-radius: 4px;
+    text-align: center;
+}
+
+/* Önizlemede vurgulanan elementler için stil */
+.json-editor-highlight {
+    outline: 2px dashed #ffc107 !important;
+    position: relative;
+    z-index: 1000;
+}
+
+/* Düzenleme alanlarını gruplandırma */
+.field-group {
+    border-left: 3px solid #dee2e6;
+    padding-left: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.field-group-title {
+    margin-left: -1rem;
+    font-weight: 500;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.field-group-title:hover {
+    color: #0d6efd;
+}
+
+.field-group-content {
+    margin-top: 0.5rem;
+}
+
+.field-group-collapsed .field-group-content {
+    display: none;
+}
+
+.field-group-caret {
+    margin-right: 0.5rem;
+    transition: transform 0.2s ease;
+}
+
+.field-group-collapsed .field-group-caret {
+    transform: rotate(-90deg);
+}
+
+/* Karanlık mod uyumluluğu */
+[data-bs-theme="dark"] .json-tree-node {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-bs-theme="dark"] .json-tree-node:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-bs-theme="dark"] .json-tree-children {
+    border-left-color: #495057;
+}
+
+[data-bs-theme="dark"] .btn-toolbar {
+    background-color: #343a40;
+}
+
+[data-bs-theme="dark"] .image-preview {
+    background-color: #343a40;
+}
+
+[data-bs-theme="dark"] .field-group {
+    border-left-color: #495057;
+}

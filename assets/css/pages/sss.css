@@ -1,0 +1,413 @@
+/* ====================================
+   S.S.S. Sayfası Özel Stilleri
+   ==================================== */
+
+/* Page Hero - Card Elevated Style */
+.page-hero {
+  background: linear-gradient(135deg, var(--tertiary-color), var(--tertiary-dark));
+  padding: 1.5rem 0 2rem 0;
+  margin-bottom: 0;
+  margin-top: var(--header-height);
+  border-bottom: 3px solid var(--primary-color);
+}
+
+.page-hero-content {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem 3rem;
+  max-width: fit-content;
+  margin: 0 auto;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  border-top: 3px solid var(--accent-color);
+  text-align: center;
+}
+
+/* Page Title */
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.page-description {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.4;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* Main Container */
+.main-container {
+  padding-top: 0;
+  padding-bottom: 0;
+ 
+}
+
+/* Search Section */
+.search-section {
+  background: var(--bg-card);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-soft);
+  padding: 0.5rem;
+  margin-top: -3rem;
+  margin-bottom: 2rem;
+  border: 1px solid var(--border-color);
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-wrapper {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.search-icon-inside {
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--primary-color);
+  font-size: 1.25rem;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.search-input {
+  border: 2px solid var(--primary-color);
+  border-radius: var(--border-radius);
+  padding: 1rem 3.5rem 1rem 1.5rem;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  background-color: var(--tertiary-color);
+  width: 100%;
+}
+
+.search-input:focus {
+  box-shadow: 0 0 0 0.25rem rgba(31, 76, 138, 0.25);
+  border-color: var(--primary-color);
+  background-color: white;
+  outline: none;
+}
+
+/* Category Filters */
+.category-filters {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.category-btn {
+  padding: 0.6rem 1.25rem;
+  border: 2px solid var(--primary-color);
+  background: transparent;
+  color: var(--primary-color);
+  border-radius: 25px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.category-btn:hover,
+.category-btn.active {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+
+/* FAQ Container */
+.faq-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.faq-category {
+  margin-bottom: 2.5rem;
+}
+
+/* Category Headers */
+.category-header {
+ background: var(--primary-color);
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  text-align: left;
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.category-header i {
+  color: white;
+  font-size: 1.4rem;
+}
+
+.category-header h3 {
+  color: white;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+/* Accordion Items */
+.accordion-item {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius) !important;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+  background: var(--bg-card);
+}
+
+.accordion-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Accordion Buttons */
+.accordion-button {
+  background: var(--bg-card);
+  border: none;
+  padding: 1.25rem 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+  border-radius: var(--border-radius) !important;
+}
+
+.accordion-button:not(.collapsed) {
+  background: var(--tertiary-color);
+  color: var(--primary-dark);
+  box-shadow: none;
+  border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+}
+
+.accordion-button:focus {
+  box-shadow: 0 0 0 0.25rem rgba(31, 76, 138, 0.25);
+  border-color: var(--primary-color);
+}
+
+.accordion-button::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23153a6d'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+  flex-shrink: 0;
+}
+
+/* Accordion Body */
+.accordion-body {
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border-top: 2px solid var(--primary-color);
+}
+
+/* FAQ Answers */
+.faq-answer {
+  color: var(--text-color);
+  line-height: 1.8;
+}
+
+.faq-answer p {
+  margin-bottom: 1rem;
+}
+
+.faq-answer a {
+  color: var(--primary-color);
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.faq-answer a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+.faq-answer ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.faq-answer li {
+  margin-bottom: 0.5rem;
+}
+
+/* FAQ Table */
+.faq-table {
+  margin: 1.5rem 0;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+
+.faq-table thead th {
+  background: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 1rem;
+  text-align: center;
+}
+
+.faq-table tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+.faq-table tbody tr:nth-child(even) {
+  background: var(--tertiary-color);
+}
+
+.faq-table tbody tr:hover {
+  background: var(--tertiary-dark);
+}
+
+.faq-table tbody td {
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--border-color);
+  text-align: center;
+}
+
+/* Contact Info */
+.contact-info {
+  background: var(--tertiary-color);
+  border-radius: var(--border-radius);
+  padding: 1rem 1.25rem;
+  border-left: 4px solid var(--accent-color);
+  margin: 1rem 0;
+}
+
+.contact-info strong {
+  color: var(--primary-color);
+}
+
+.contact-info ul {
+  margin-bottom: 0;
+}
+
+/* No Results: Global CSS'ten (inner-page-components.css) miras alınır */
+
+/* Help Section: Global CSS'ten (inner-pages.css) miras alinir */
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .page-hero-content,
+  .search-section,
+  .faq-container {
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-hero {
+    padding: 1.5rem 0 2rem 0;
+  }
+
+  .page-hero-content {
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+    max-width: 95%;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+    white-space: normal;
+  }
+
+  .page-description {
+    font-size: 0.95rem;
+    white-space: normal;
+  }
+
+  .search-section {
+    padding: 1.5rem;
+  }
+
+  .category-filters {
+    justify-content: flex-start;
+  }
+
+  .category-btn {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .category-header {
+    font-size: 1rem;
+    padding: 0.65rem 1rem;
+  }
+
+  .category-header h3 {
+    font-size: 1rem;
+    padding: 0;
+  }
+
+  .category-header i {
+    font-size: 1.2rem;
+  }
+
+  .accordion-button {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .accordion-body {
+    padding: 1rem;
+  }
+
+  .faq-table {
+    font-size: 0.85rem;
+  }
+
+  .faq-table thead th,
+  .faq-table tbody td {
+    padding: 0.7rem 0.5rem;
+  }
+}
+
+/* Dark Theme Support */
+html[data-theme="dark"] .page-hero {
+  background: linear-gradient(135deg, var(--tertiary-color), var(--tertiary-dark));
+}
+
+html[data-theme="dark"] .breadcrumb-item a {
+  color: var(--primary-light);
+}
+
+html[data-theme="dark"] .page-title {
+  color: var(--primary-light);
+}
+
+html[data-theme="dark"] .search-input {
+  background-color: var(--tertiary-dark);
+  color: var(--text-color);
+}
+
+html[data-theme="dark"] .accordion-button:not(.collapsed) {
+  background: var(--tertiary-dark);
+}

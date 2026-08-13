@@ -1,0 +1,437 @@
+{
+  "hero": {
+    "title": "Makale İşlem Ücretleri (APC)",
+    "description": "Oku & Yayımla Anlaşmaları ile Açık Erişim Yayıncılık Desteği"
+  },
+  "toc": {
+    "enabled": true,
+    "mode": "sidebar",
+    "containerId": "quick-access-container",
+    "stickyOnMobile": true,
+    "autoHighlight": true,
+    "smoothScroll": true,
+    "title": {
+      "tr": "İçindekiler",
+      "en": "Table of Contents"
+    },
+    "mobileTitle": {
+      "tr": "Başlıklar",
+      "en": "Quick Access"
+    },
+    "icon": "bi bi-list-ul",
+    "items": [
+      {
+        "text": {
+          "tr": "Oku & Yayımla Anlaşmaları",
+          "en": "Read & Publish Agreements"
+        },
+        "anchor": "genel-bilgi",
+        "icon": "fas fa-unlock-alt"
+      },
+      {
+        "text": {
+          "tr": "Gerekli Şartlar",
+          "en": "Requirements"
+        },
+        "anchor": "sartlar",
+        "icon": "fas fa-clipboard-list"
+      },
+      {
+        "text": {
+          "tr": "American Chemical Society",
+          "en": "American Chemical Society"
+        },
+        "anchor": "acs",
+        "icon": "1"
+      },
+      {
+        "text": {
+          "tr": "Bentham Science",
+          "en": "Bentham Science"
+        },
+        "anchor": "bentham",
+        "icon": "2"
+      },
+      {
+        "text": {
+          "tr": "Oxford Journals",
+          "en": "Oxford Journals"
+        },
+        "anchor": "oxford",
+        "icon": "🎓"
+      },
+      {
+        "text": {
+          "tr": "SAGE Journals",
+          "en": "SAGE Journals"
+        },
+        "anchor": "sage",
+        "icon": "📖"
+      },
+      {
+        "text": {
+          "tr": "Springer-Nature",
+          "en": "Springer-Nature"
+        },
+        "anchor": "springer",
+        "icon": "🔬"
+      },
+      {
+        "text": {
+          "tr": "Wiley",
+          "en": "Wiley"
+        },
+        "anchor": "wiley",
+        "icon": "📊"
+      },
+      {
+        "text": {
+          "tr": "İletişim",
+          "en": "Contact"
+        },
+        "anchor": "iletisim",
+        "icon": "fas fa-phone-alt"
+      }
+    ]
+  },
+  "generalInfo": {
+    "id": "genel-bilgi",
+    "title": "Oku & Yayımla Anlaşmaları Nedir?",
+    "icon": "fas fa-unlock-alt",
+    "content": {
+      "intro": "TUBİTAK-EKUAL ve kütüphanemizin üyesi olduğu Anadolu Üniversite Kütüphaneleri Konsorsiyumu (ANKOS) tarafından bazı büyük yayıncılar ile \"Read & Publish\" (Oku ve Yayımla) modeli ile lisans anlaşmaları yapılmaktadır.",
+      "infoBoxes": [
+        {
+          "title": "Dönüştürücü Anlaşmalar",
+          "icon": "fas fa-lightbulb",
+          "text": "Dönüştürücü anlaşmalar olarak bilinen bu anlaşmalar, veritabanı abonelik ücretlerinin yanında makale işlem ücretlerini de (Article Processing Charge, APC) içeren bir modeli ifade etmektedir."
+        },
+        {
+          "title": "Maliyet Avantajı",
+          "icon": "fas fa-dollar-sign",
+          "text": "Makale işlem ücretlerini ödemeden veya büyük indirimlerle açık erişim yayın yapabilirsiniz."
+        },
+        {
+          "title": "Açık Erişim",
+          "icon": "fas fa-globe",
+          "text": "Yayınlarınız Creative Commons lisansları altında herkese açık olarak yayınlanır."
+        }
+      ],
+      "description": "Oku ve Yayımla Anlaşmaları yazarlara yayınları kabul edildikten sonra yayınlarını makale işlem ücreti (Article Processing Charge) ödemeden ya da yüksek oranda indirimle açık erişimli olarak yayımlama imkânı sağlamaktadır."
+    }
+  },
+  "requirements": {
+    "id": "sartlar",
+    "title": "Anlaşmalardan Faydalanabilmek İçin Gerekli Şartlar",
+    "icon": "fas fa-clipboard-list",
+    "intro": "Anlaşmalardan faydalanabilmek için aşağıdaki maddeler göz önünde bulundurulmalıdır:",
+    "items": [
+      {
+        "icon": "fas fa-user-check",
+        "title": "Sorumlu Yazar:",
+        "description": "Sorumlu yazar Anadolu Üniversitesi mensubu olmalıdır."
+      },
+      {
+        "icon": "fas fa-file-contract",
+        "title": "Yayın Türü:",
+        "description": "Yayın türünün veritabanı özelinde yapılan anlaşma kapsamında olup olmadığı kontrol edilmelidir."
+      },
+      {
+        "icon": "fas fa-envelope",
+        "title": "E-posta Uzantısı:",
+        "description": "Süreç @anadolu.edu.tr uzantılı mail adresleri ile yürütülmeli ve kurum olarak Anadolu Üniversitesi seçilmelidir."
+      },
+      {
+        "icon": "fab fa-creative-commons",
+        "title": "Creative Commons Lisansı:",
+        "description": "Açık erişimli yayınların büyük çoğunluğu Creative Commons lisansları altında yayınlanmaktadır. 6 türü olan bu lisans modelinden yayın için uygun olanı seçilmelidir."
+      }
+    ]
+  },
+  "publishers": [
+    {
+      "id": "acs",
+      "name": "American Chemical Society (ACS)",
+      "emoji": "🧪",
+      "badges": [
+        {
+          "type": "free",
+          "text": "Ücretsiz"
+        }
+      ],
+      "tokenInfo": {
+        "label": "Kalan Token Sayısı",
+        "count": 6
+      },
+      "description": "Anlaşma, ACS Omega, JACS Au, ACS Au ve tüm ACS hibrit dergileri dahil olmak üzere tüm ACS dergilerinde yapılan yayınları (additions, corrections, editorials ve kitap bölümleri hariç) kapsamaktadır.",
+      "warnings": [
+        {
+          "title": "Önemli Sınırlamalar",
+          "icon": "fas fa-exclamation-triangle",
+          "items": [
+            "Kurum kotası bulunmaktadır, \"İlk Gelen Sıraya Girer\" kuralına bağlı olarak onay verilecektir",
+            "Token'lar içinde bulunduğumuz yılda kabul almış yayınlar için kullanılabilmektedir",
+            "Sınırlı Token sayısından dolayı her bir öğretim üyesi aynı yıl içinde 1 kez bu haktan faydalanabilmektedir"
+          ]
+        }
+      ],
+      "infoBoxes": [
+        {
+          "title": "Tavsiye",
+          "icon": "fas fa-info-circle",
+          "text": "Makalenizi yayıncıya göndermeden önce bu konuda bilgi almak için kütüphane ile iletişime geçebilirsiniz."
+        }
+      ],
+      "resources": [
+        {
+          "title": "ACS Read & Publish Kılavuzu",
+          "description": "Detaylı kullanım rehberi",
+          "icon": "fas fa-book",
+          "url": "https://acsopenscience.org/customers/ankos/"
+        }
+      ]
+    },
+    {
+      "id": "bentham",
+      "name": "Bentham Science",
+      "emoji": "📚",
+      "badges": [
+        {
+          "type": "free",
+          "text": "Ücretsiz"
+        }
+      ],
+      "description": "Bentham Science yayınevinin dergi koleksiyonunda yapılacak yayınlarda Makale İşlem Ücreti (APC) alınmayacaktır.",
+      "resources": [
+        {
+          "title": "Bentham Science Read & Publish Kılavuzu",
+          "description": "PDF rehber dosyası",
+          "icon": "fas fa-file-pdf",
+          "url": "https://kdm.anadolu.edu.tr/Documents/RP/Bentham.RP.pdf"
+        }
+      ]
+    },
+    {
+      "id": "oxford",
+      "name": "Oxford Journals Online",
+      "emoji": "🎓",
+      "badges": [
+        {
+          "type": "free",
+          "text": "Hibrit Dergiler Ücretsiz"
+        },
+        {
+          "type": "discount",
+          "text": "Açık Erişim %15 İndirim"
+        }
+      ],
+      "description": "Oxford Journals Online 2025 Dergi Koleksiyonu içerisinde yer alan Hibrit dergilerdeki yayınlarda (research article, review article, brief report, case report) Makale İşlem Ücreti (APC) alınmayacaktır. Açık Erişim dergilerde yapılacak olan yayınlarda ise %15 Makale İşlem Ücreti (APC) indirimi uygulanacaktır.",
+      "infoBoxes": [
+        {
+          "title": "Hibrit Dergiler",
+          "icon": "fas fa-unlock",
+          "text": "Oxford Journals Online 2025 Dergi Koleksiyonu içerisinde yer alan Hibrit dergilerdeki yayınlarda (research article, review article, brief report, case report) Makale İşlem Ücreti (APC) alınmayacaktır."
+        },
+        {
+          "title": "Açık Erişim Dergiler",
+          "icon": "fas fa-percentage",
+          "text": "Açık Erişim dergilerde yapılacak olan yayınlarda ise %15 Makale İşlem Ücreti (APC) indirimi uygulanacaktır."
+        }
+      ],
+      "resources": [
+        {
+          "title": "Oxford Hibrit Dergi Listesi",
+          "description": "Excel dosyası",
+          "icon": "fas fa-file-excel",
+          "url": "https://kdm.anadolu.edu.tr/Documents/RP/Oxford.List.2025.xlsx"
+        },
+        {
+          "title": "Oxford Journals Read & Publish Kılavuzu",
+          "description": "PDF rehber dosyası",
+          "icon": "fas fa-file-pdf",
+          "url": "https://kdm.anadolu.edu.tr/Documents/RP/Oxford.RP.pdf"
+        }
+      ]
+    },
+    {
+      "id": "sage",
+      "name": "SAGE Journals",
+      "emoji": "📖",
+      "badges": [
+        {
+          "type": "discount",
+          "text": "%90 İndirim"
+        },
+        {
+          "type": "discount",
+          "text": "200 GBP Sabit Fiyat"
+        }
+      ],
+      "description": "SAGE Premier paketindeki tüm SAGE Choice dergilerinde Açık Erişimli yayınlanacak makalelerin Makale İşlem Ücreti (APC) %90 indirim uygulanarak £200 olarak sabitlenmiştir.",
+      "infoBoxes": [
+        {
+          "title": "Otomatik İndirim",
+          "icon": "fas fa-robot",
+          "text": "Araştırmacılarımız makalelerini gönderirken Sage Yayınevi sisteme otomatik olarak indirimli fiyatı yansıtacaktır."
+        }
+      ],
+      "warnings": [
+        {
+          "title": "Kapsam",
+          "icon": "fas fa-info-circle",
+          "items": [
+            "Anlaşma SAGE Choice Hybrid dergileri kapsamaktadır. Gold OA dergiler anlaşma kapsamında değildir."
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "title": "SAGE Choice Dergi Listesi",
+          "description": "Excel dosyası",
+          "icon": "fas fa-file-excel",
+          "url": "https://kdm.anadolu.edu.tr/Documents/RP/Sage.Choice.2025.xlsx"
+        }
+      ]
+    },
+    {
+      "id": "springer",
+      "name": "Springer-Nature",
+      "emoji": "🔬",
+      "badges": [
+        {
+          "type": "free",
+          "text": "Ücretsiz (Sınırlı Kota)"
+        }
+      ],
+      "tokenInfo": {
+        "label": "2025 Ülke Kotası",
+        "count": 2711
+      },
+      "description": "TÜBİTAK-EKUAL tarafından belirlenen kriterler doğrultusunda Springer Hibrit dergilerinde Makale İşlem Ücreti (APC) ödemeden açık erişimli yayın yapma olanağı sağlanacaktır. Anlaşma 2024-2026 yılları arasında geçerlidir.",
+      "guidelines": [
+        {
+          "number": 1,
+          "text": "Araştırmacının, makalenin sorumlu yazarı olması gerekmektedir."
+        },
+        {
+          "number": 2,
+          "text": "AE yayın için makale ücreti talepleri, TÜBİTAK ULAKBİM tarafından \"ilk gelen ilk hizmet alır\" kuralına göre onaylanmak üzere incelenecektir."
+        },
+        {
+          "number": 3,
+          "text": "Anlaşma kapsamındaki makale türleri: Original Paper, Review Paper, Brief Communication, Continuing Education"
+        }
+      ],
+      "resources": [
+        {
+          "title": "Fonlanan Dergi Listesi",
+          "description": "Excel dosyası - TÜBİTAK ULAKBİM",
+          "icon": "fas fa-file-excel",
+          "url": "https://cabim.ulakbim.gov.tr/wp-content/uploads/sites/4/2025/02/fonlanan_ae_dergi_listesi.xlsx"
+        },
+        {
+          "title": "Springer-Nature Read & Publish Kılavuzu",
+          "description": "Yazarlar için iş akışı",
+          "icon": "fas fa-file-pdf",
+          "url": "https://cabim.ulakbim.gov.tr/wp-content/uploads/sites/4/2024/01/yazarlar_icin_is_akisi_1.pdf"
+        }
+      ]
+    },
+    {
+      "id": "wiley",
+      "name": "Wiley",
+      "emoji": "📊",
+      "badges": [
+        {
+          "type": "free",
+          "text": "Ücretsiz (Sınırlı Kota)"
+        }
+      ],
+      "tokenInfo": {
+        "label": "2025 Ülke Kotası",
+        "count": 1561
+      },
+      "description": "Araştırmacılarımızın Web of Science SCIE, SSCI, AHCI kategorilerinde yer alan, Q1 ve Q2 Grubu Wiley Hibrit ve Wiley Gold dergilerinde (Hindawi hariç) research article, review article, data article ve rapid publication türündeki yayınları Açık Erişim desteği kapsamında olacaktır.",
+      "infoBoxes": [
+        {
+          "title": "Anlaşma Süresi",
+          "icon": "fas fa-calendar-alt",
+          "text": "2023 - 2025 yıllarını kapsayan bu anlaşmada yıllık Açık Erişim makale yayımlama kotası bulunmaktadır."
+        }
+      ],
+      "warnings": [
+        {
+          "title": "Kota Sistemi",
+          "icon": "fas fa-users",
+          "items": [
+            "Kurumlar için bir kota tahsisi yapılmayacak, makalesi kabul edilen yazarın yayını, \"İlk Gelen Sıraya Girer\" kuralına uygun olarak sıraya girecek ve ülke kotası dahilinde TÜBİTAK-ULAKBİM tarafından onay verilecektir."
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "title": "Fonlanan Dergi Listesi",
+          "description": "Excel dosyası - güncel liste",
+          "icon": "fas fa-file-excel",
+          "url": "https://cabim.ulakbim.gov.tr/wp-content/uploads/sites/4/2025/01/zWiley_Fonlanan_AE_Dergi_Listesi_Tem2024_Ara2025_07Jan2025.xlsx"
+        },
+        {
+          "title": "Wiley Read & Publish Kılavuzu",
+          "description": "PDF rehber dosyası",
+          "icon": "fas fa-file-pdf",
+          "url": "https://kdm.anadolu.edu.tr/Documents/RP/Wiley.RP.pdf"
+        },
+        {
+          "title": "Wiley Read & Publish Sıkça Sorulan Sorular",
+          "description": "SSS rehber dosyası",
+          "icon": "fas fa-question-circle",
+          "url": "https://kdm.anadolu.edu.tr/Documents/RP/Wiley.SSS.pdf"
+        }
+      ]
+    }
+  ],
+  "contact": {
+    "id": "iletisim",
+    "title": "Soru ve Sorunlarınız İçin İletişim",
+    "icon": "fas fa-phone-alt",
+    "description": "Read & Publish (Oku ve Yayımla) anlaşmaları hakkında detaylı bilgi almak için:",
+    "items": [
+      {
+        "icon": "fas fa-envelope",
+        "name": "Öğr. Gör. Canan Yılmaz",
+        "email": "canan_yilmaz@anadolu.edu.tr",
+        "url": "mailto:canan_yilmaz@anadolu.edu.tr"
+      },
+      {
+        "icon": "fas fa-phone",
+        "name": "Dahili: 1749",
+        "phone": "0 222 335 05 80",
+        "url": "tel:+902223350580"
+      }
+    ]
+  },
+  "helpSection": {
+    "title": "Makale işlem ücretleri hakkında yardıma mı ihtiyacınız var?",
+    "description": "Oku & Yayımla anlaşmaları ve açık erişim yayıncılık hakkında detaylı bilgi ve destek için kütüphane uzmanlarımızla iletişime geçebilirsiniz.",
+    "buttons": [
+      {
+        "icon": "fas fa-phone",
+        "text": "Hemen Ara",
+        "link": "tel:+902223350580",
+        "class": "btn-outline-primary"
+      },
+      {
+        "icon": "fas fa-envelope",
+        "text": "E-posta Gönder",
+        "link": "mailto:canan_yilmaz@anadolu.edu.tr",
+        "class": "btn-outline-primary"
+      },
+      {
+        "icon": "fas fa-home",
+        "text": "Ana Sayfa",
+        "link": "index.html",
+        "class": "btn-outline-primary"
+      }
+    ]
+  }
+}

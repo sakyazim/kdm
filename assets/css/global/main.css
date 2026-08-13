@@ -1,0 +1,44 @@
+/**
+ * Anadolu Üniversitesi Kütüphane - Main CSS Index
+ * Tüm CSS dosyalarını doğru sırayla import eder
+ * 
+ * KULLANIM:
+ * HTML'de sadece bu dosyayı import edin:
+ * <link rel="stylesheet" href="assets/css/main.css">
+ */
+
+/* 1. Değişkenler (Variables) - İlk önce yüklenmeli */
+@import url('variables.css');
+
+/* 2. Base & Reset - Temel HTML stilleri */
+@import url('base.css');
+
+/* 3. Components - Ortak bileşenler */
+@import url('components.css');
+
+/* 4. Layout - Header & Footer */
+@import url('header.css');
+@import url('footer.css');
+
+/* 5. Utilities - Yardımcı elemanlar */
+@import url('utilities.css');
+
+/* 6. Pages - Sayfa özel stiller (ihtiyaç durumunda) */
+/* Ana sayfa için home.css ayrıca yüklenecek */
+/* İç sayfalar için inner-pages.css veya databases.css ayrıca yüklenecek */
+
+/**
+ * NOT: Sayfa özel CSS dosyaları HTML'de ayrıca import edilmelidir:
+ * 
+ * Ana Sayfa (index.html):
+ * <link rel="stylesheet" href="assets/css/main.css">
+ * <link rel="stylesheet" href="assets/css/pages/home.css">
+ * 
+ * Veritabanları Sayfası (veritabanlari.html):
+ * <link rel="stylesheet" href="assets/css/main.css">
+ * <link rel="stylesheet" href="assets/css/pages/databases.css">
+ * 
+ * Diğer İç Sayfalar (sss.html, tarihce.html vs.):
+ * <link rel="stylesheet" href="assets/css/main.css">
+ * <link rel="stylesheet" href="assets/css/pages/inner-pages.css">
+ */

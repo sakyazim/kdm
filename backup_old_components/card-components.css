@@ -1,0 +1,950 @@
+/* ============================================
+   GLOBAL CARD COMPONENTS SYSTEM
+   Tüm iç sayfalarda kullanılacak ortak componentler
+   JSON-driven, esnek ve yeniden kullanılabilir
+   ============================================ */
+
+/* =====================================================
+   CARD HEADERS
+   3 ana tip: V1 (düz/gradyanlı), V1-icon (ikonlu), V2 (geniş/2 satır)
+===================================================== */
+
+/* Card Header V1 - Gradyanlı (Makale İşlem Ücretleri tarzı) */
+.card-header-v1.gradient {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  color: white;
+  padding: 1.25rem 1.5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: none;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.card-header-v1.gradient i {
+  font-size: 1.5rem;
+  color: white;
+}
+
+/* Card Header V1 - Düz/Plain (Üyelik & Ödünç tarzı) */
+.card-header-v1.plain {
+  background: white;
+  color: var(--primary-color);
+  padding: 1.25rem 1.5rem;
+  font-weight: 700;
+  font-size: 1.2rem;
+  border-bottom: 2px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.card-header-v1.plain i {
+  font-size: 1.3rem;
+  color: var(--primary-color);
+}
+
+/* Card Header V1 - İkonlu Gradyanlı (İletişim tarzı) */
+.card-header-icon {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  color: white;
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.card-header-icon i {
+  font-size: 1.5rem;
+  color: white;
+}
+
+/* Card Header V2 - Geniş, 2 Satır, Büyük İkon (Eğitim Programları tarzı) */
+.card-header-v2 {
+  background: var(--primary-color);
+  color: white;
+  padding: 1.25rem;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.card-header-v2 .header-content-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.card-header-v2 .program-icon {
+  font-size: 2.5rem;
+  color: white;
+  min-width: 60px;
+  text-align: center;
+}
+
+.card-header-v2 .header-text h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+.card-header-v2 .header-text p {
+  margin: 0.5rem 0 0 0;
+  opacity: 0.9;
+  font-size: 1rem;
+  color: white;
+}
+
+/* Card Header - Primary Background (Section Header tarzı) */
+.card-header-primary {
+  background: var(--primary-color) !important;
+  color: white !important;
+  padding: 1.5rem;
+  border-bottom: none;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.card-header-primary h2,
+.card-header-primary h3 {
+  color: white !important;
+  margin: 0;
+}
+
+/* =====================================================
+   CARD BODY ELEMENTS
+===================================================== */
+
+/* Standard Card Body */
+.card-body-custom {
+  padding: 1.5rem;
+  background: var(--bg-card);
+}
+
+/* =====================================================
+   INFO BOXES & ALERTS
+===================================================== */
+
+/* Info Box - Tertiary background + left border */
+.info-box {
+  background: var(--tertiary-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1.25rem;
+  margin: 1rem 0;
+  border-left: 4px solid var(--primary-color);
+  transition: all 0.2s ease;
+}
+
+.info-box:hover {
+  box-shadow: var(--shadow-soft);
+  transform: translateX(3px);
+}
+
+.info-box .info-title {
+  color: var(--primary-color);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.05rem;
+}
+
+.info-box .info-title i {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+}
+
+.info-box p:last-child {
+  margin-bottom: 0;
+}
+
+/* Warning Box */
+.warning-box {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: var(--border-radius);
+  padding: 1.25rem;
+  margin: 1rem 0;
+  border-left: 4px solid #ffc107;
+  transition: all 0.2s ease;
+}
+
+.warning-box:hover {
+  box-shadow: var(--shadow-soft);
+  transform: translateX(3px);
+}
+
+.warning-box .warning-title {
+  color: #856404;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.05rem;
+}
+
+.warning-box .warning-title i {
+  font-size: 1.2rem;
+  color: #856404;
+}
+
+.warning-box ul {
+  margin-bottom: 0;
+  padding-left: 1.25rem;
+}
+
+.warning-box li {
+  margin-bottom: 0.5rem;
+}
+
+/* Note Box */
+.note-box {
+  padding: 1.25rem;
+  border-radius: var(--border-radius);
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--tertiary-color);
+  border-left: 4px solid var(--primary-color);
+  transition: all 0.2s ease;
+}
+
+.note-box:hover {
+  box-shadow: var(--shadow-soft);
+  transform: translateX(3px);
+}
+
+.note-box i {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  color: var(--primary-color);
+}
+
+/* Important Note */
+.important-note {
+  background: var(--tertiary-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1.25rem;
+  margin: 1rem 0;
+  border-left: 4px solid var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.important-note:hover {
+  box-shadow: var(--shadow-soft);
+  transform: translateX(3px);
+}
+
+.important-note i {
+  color: var(--primary-color);
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+/* Alert Custom Boxes */
+.alert-custom {
+  padding: 1.25rem;
+  margin: 1rem 0;
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  transition: all 0.2s ease;
+  border-left: 4px solid;
+}
+
+.alert-custom:hover {
+  transform: translateX(3px);
+  box-shadow: var(--shadow-soft);
+}
+
+.alert-custom > i {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 0.1rem;
+}
+
+.alert-custom h6 {
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--primary-color);
+}
+
+.alert-custom ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.alert-custom ul li {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.alert-custom ul li:last-child {
+  margin-bottom: 0;
+}
+
+.alert-custom ul li i {
+  flex-shrink: 0;
+  font-size: 1.1rem;
+}
+
+.alert-custom p {
+  margin-bottom: 0.75rem;
+}
+
+.alert-custom p:last-child {
+  margin-bottom: 0;
+}
+
+/* Alert Info Custom */
+.alert-info-custom {
+  background: var(--tertiary-color);
+  border-left-color: var(--primary-color);
+}
+
+.alert-info-custom i {
+  color: var(--primary-color);
+}
+
+/* Alert Warning Custom */
+.alert-warning-custom {
+  background: var(--tertiary-color);
+  border-left-color: var(--primary-color);
+}
+
+.alert-warning-custom i {
+  color: var(--primary-color);
+}
+
+/* =====================================================
+   LISTS
+===================================================== */
+
+/* Process List */
+.process-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.process-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+}
+
+.process-item i {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+/* Content List */
+.content-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.content-list li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.content-list li:last-child {
+  border-bottom: none;
+}
+
+.content-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.1rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary-color);
+}
+
+/* Requirements List */
+.requirements-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.requirements-list li {
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  background: var(--tertiary-color);
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--primary-color);
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: all 0.2s ease;
+}
+
+.requirements-list li:hover {
+  transform: translateX(5px);
+  box-shadow: var(--shadow-soft);
+}
+
+.requirements-list li i {
+  color: var(--primary-color);
+  font-size: 1.3rem;
+  margin-top: 0.1rem;
+  flex-shrink: 0;
+}
+
+/* Guidelines List */
+.guidelines-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.guideline-item {
+  background: var(--tertiary-color);
+  padding: 1.25rem;
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--primary-color);
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: all 0.2s ease;
+}
+
+.guideline-item:hover {
+  transform: translateX(5px);
+  box-shadow: var(--shadow-soft);
+}
+
+.guideline-number {
+  background: var(--primary-color);
+  color: white;
+  min-width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+/* Process Steps */
+.process-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.process-step {
+  background: var(--tertiary-color);
+  border-radius: var(--border-radius);
+  padding: 1.25rem;
+  position: relative;
+  border-left: 4px solid var(--primary-color);
+  transition: all 0.2s ease;
+}
+
+.process-step:hover {
+  transform: translateX(5px);
+  box-shadow: var(--shadow-soft);
+}
+
+/* =====================================================
+   TABLES
+===================================================== */
+
+/* Table V1 - Ödünç Tablosu Stili */
+.odunc-table-container {
+  width: 100%;
+  margin: 1.5rem 0;
+  background: var(--bg-card);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-color);
+}
+
+.odunc-table-container .table-title {
+  background: var(--tertiary-color);
+  color: var(--primary-color);
+  padding: 1rem 1.5rem;
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.odunc-table-container .table-responsive {
+  margin: 0;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.odunc-table {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+}
+
+.odunc-table thead {
+  background: var(--primary-color);
+  color: white;
+}
+
+.odunc-table thead th {
+  padding: 1rem 1.5rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+}
+
+.odunc-table tbody tr {
+  background: var(--bg-card);
+  transition: all 0.2s ease;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.odunc-table tbody tr:nth-child(even) {
+  background: var(--tertiary-color);
+}
+
+.odunc-table tbody tr:hover {
+  background: var(--primary-color);
+  transform: none;
+}
+
+.odunc-table tbody tr:hover td {
+  color: white;
+}
+
+.odunc-table tbody tr:hover td i {
+  color: white;
+}
+
+.odunc-table tbody td {
+  padding: 1rem 1.5rem;
+  border: none;
+  color: var(--text-color);
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.odunc-table tbody td:nth-child(2),
+.odunc-table tbody td:nth-child(3) {
+  font-weight: 700;
+  color: var(--primary-color);
+  font-size: 1rem;
+}
+
+.odunc-table tbody td i {
+  color: var(--primary-color);
+  margin-right: 0.5rem;
+  font-size: 1.1rem;
+  transition: color 0.2s ease;
+}
+
+/* =====================================================
+   CONTACT & RESOURCE ELEMENTS
+===================================================== */
+
+/* Contact Item */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 1rem 1.5rem;
+  border-radius: var(--border-radius);
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  transition: all 0.3s ease;
+  min-width: 250px;
+}
+
+.contact-item:hover {
+  color: var(--primary-color);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--primary-color);
+}
+
+.contact-item i {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  color: var(--primary-color);
+}
+
+.contact-item strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 1.05rem;
+}
+
+.contact-item small {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* Contact Section */
+.contact-section {
+  background: linear-gradient(135deg, var(--tertiary-color), var(--tertiary-dark));
+  border-radius: var(--border-radius);
+  padding: 2.5rem;
+  margin: 2rem 0;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-soft);
+}
+
+.contact-section h4 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.contact-section h4 i {
+  color: var(--primary-color);
+}
+
+.contact-section p {
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+}
+
+.contact-info {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Resource Links */
+.resource-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.resource-link {
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1.25rem;
+  text-decoration: none;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.resource-link:hover {
+  border-color: var(--primary-color);
+  color: var(--text-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.resource-icon {
+  font-size: 1.8rem;
+  min-width: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+}
+
+.resource-content h6 {
+  color: var(--primary-color);
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.resource-content small {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* Detail Item (Eğitim Programları tarzı) */
+.detail-item {
+  background: var(--tertiary-color);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  border-left: 4px solid var(--primary-color);
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+.detail-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.detail-icon {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  min-width: 30px;
+}
+
+.detail-content h6 {
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  font-size: 1rem;
+}
+
+.detail-content p {
+  color: var(--text-color);
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* =====================================================
+   BADGES & TOKENS
+===================================================== */
+
+/* Price Badge */
+.price-badge {
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: white;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0.25rem;
+  white-space: nowrap;
+}
+
+.price-free {
+  background: var(--primary-color);
+}
+
+.price-discount {
+  background: var(--primary-color);
+}
+
+/* Token Counter */
+.token-counter {
+  background: var(--primary-color);
+  color: white;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.token-counter small {
+  font-size: 0.8rem;
+  opacity: 0.95;
+}
+
+.token-number {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+/* =====================================================
+   DARK THEME SUPPORT
+===================================================== */
+
+html[data-theme="dark"] .card-header-v1.plain {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+html[data-theme="dark"] .warning-box {
+  background: #3a3020;
+  border-color: #ffc107;
+}
+
+html[data-theme="dark"] .warning-box .warning-title {
+  color: #ffc107;
+}
+
+html[data-theme="dark"] .odunc-table-container {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+html[data-theme="dark"] .odunc-table-container .table-title {
+  background: var(--tertiary-color);
+  color: var(--primary-color);
+}
+
+html[data-theme="dark"] .odunc-table tbody tr {
+  background: var(--bg-card);
+}
+
+html[data-theme="dark"] .odunc-table tbody tr:nth-child(even) {
+  background: var(--tertiary-color);
+}
+
+html[data-theme="dark"] .odunc-table tbody tr:hover {
+  background: var(--bg-hover);
+}
+
+html[data-theme="dark"] .contact-section {
+  background: linear-gradient(135deg, var(--tertiary-color), var(--tertiary-dark));
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+===================================================== */
+
+@media (max-width: 768px) {
+  .card-body-custom {
+    padding: 1rem;
+  }
+
+  .card-header-v2 .header-content-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-item {
+    min-width: auto;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .resource-links {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .detail-icon {
+    font-size: 2rem;
+  }
+
+  .odunc-table thead th,
+  .odunc-table tbody td {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .odunc-table tbody td i {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .card-header-v1 {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+
+  .card-header-v2 {
+    padding: 1rem;
+  }
+
+  .alert-custom {
+    padding: 0.75rem 1rem;
+  }
+
+  .contact-section {
+    padding: 2rem 1.5rem;
+  }
+
+  .contact-section h4 {
+    font-size: 1.25rem;
+  }
+
+  .odunc-table {
+    font-size: 0.85rem;
+  }
+
+  .odunc-table thead th,
+  .odunc-table tbody td {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .odunc-table tbody td i {
+    font-size: 0.9rem;
+    margin-right: 0.25rem;
+  }
+
+  /* Mobil'de scroll yapmak için */
+  .odunc-table-container .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* =====================================================
+   ANIMATION UTILITIES
+===================================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

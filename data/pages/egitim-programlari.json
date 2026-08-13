@@ -1,0 +1,541 @@
+{
+  "hero": {
+    "title": {
+      "tr": "Eğitim Programları",
+      "en": "Training Programs"
+    },
+    "description": {
+      "tr": "Kütüphanemiz, kullanıcıların bilgi kaynaklarından en etkin şekilde faydalanabilmeleri için eğitim programları sunmaktadır.",
+      "en": "Our library offers training programs to help users make the most effective use of information resources."
+    },
+    "icon": "fas fa-graduation-cap"
+  },
+  "helpSection": {
+    "title": {
+      "tr": "Eğitim programları hakkında sorularınız mı var?",
+      "en": "Do you have questions about training programs?"
+    },
+    "description": {
+      "tr": "Bilgi okuryazarlığı, elektronik kaynak kullanımı ve kütüphane hizmetleri eğitimleri hakkında detaylı bilgi almak için bizimle iletişime geçin.",
+      "en": "Contact us for detailed information about information literacy, electronic resource usage, and library services training."
+    },
+    "buttons": [
+      {
+        "text": {
+          "tr": "Hemen Ara",
+          "en": "Call Now"
+        },
+        "link": "tel:+902223350580",
+        "icon": "fas fa-phone",
+        "variant": "primary"
+      },
+      {
+        "text": {
+          "tr": "E-posta Gönder",
+          "en": "Send Email"
+        },
+        "link": "mailto:library@anadolu.edu.tr",
+        "icon": "fas fa-envelope",
+        "variant": "primary"
+      },
+      {
+        "text": {
+          "tr": "Ana Sayfa",
+          "en": "Home Page"
+        },
+        "link": "index.html",
+        "icon": "fas fa-home",
+        "variant": "outline"
+      }
+    ]
+  },
+  "content": [
+    {
+      "id": "genel-egitim",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Genel Eğitim Programları",
+              "en": "General Training Programs"
+            },
+            "icon": "fas fa-chalkboard-teacher",
+            "id": "genel-egitim-heading"
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "info",
+          "data": {
+            "icon": "fas fa-handshake",
+            "title": {
+              "tr": "İşbirliği",
+              "en": "Collaboration"
+            },
+            "content": {
+              "tr": "Danışma Birimi ve Elektronik Kaynaklar Birimi İşbirliği",
+              "en": "Reference Unit and Electronic Resources Unit Collaboration"
+            }
+          }
+        },
+        {
+          "type": "icon-list",
+          "variant": "default",
+          "data": {
+            "title": {
+              "tr": "Eğitim Detayları",
+              "en": "Training Details"
+            },
+            "titleIcon": "fas fa-info-circle",
+            "items": [
+              {
+                "icon": "fas fa-bullseye",
+                "title": {
+                  "tr": "Eğitim İçeriği",
+                  "en": "Training Content"
+                },
+                "description": {
+                  "tr": "Katılımcıların (akademisyen veya öğrenci) taleplerine ve ihtiyaçlarına göre hazırlanmaktadır.",
+                  "en": "Prepared according to the requests and needs of participants (faculty or students)."
+                }
+              },
+              {
+                "icon": "fas fa-clock",
+                "title": {
+                  "tr": "Süre",
+                  "en": "Duration"
+                },
+                "description": {
+                  "tr": "45 dakika - 1,5 saat arası esnek zamanlama",
+                  "en": "Flexible timing between 45 minutes - 1.5 hours"
+                }
+              },
+              {
+                "icon": "fas fa-map-marker-alt",
+                "title": {
+                  "tr": "Yer",
+                  "en": "Location"
+                },
+                "description": {
+                  "tr": "Kütüphane Toplantı Odası",
+                  "en": "Library Meeting Room"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "warning",
+          "data": {
+            "icon": "fas fa-calendar-check",
+            "title": {
+              "tr": "Randevu Almak İçin",
+              "en": "To Make an Appointment"
+            },
+            "content": {
+              "tr": "E-posta veya telefon ile iletişime geçiniz.",
+              "en": "Contact us via email or phone."
+            }
+          }
+        },
+        {
+          "type": "icon-list",
+          "variant": "contact-grid",
+          "data": {
+            "items": [
+              {
+                "icon": "fas fa-phone",
+                "text": {
+                  "tr": "<strong>Telefon</strong><br><a href='tel:+902223350580'>0 (222) 335 05 80 / 1730 - 1733</a>",
+                  "en": "<strong>Phone</strong><br><a href='tel:+902223350580'>0 (222) 335 05 80 / 1730 - 1733</a>"
+                }
+              },
+              {
+                "icon": "fas fa-envelope",
+                "text": {
+                  "tr": "<strong>E-posta</strong><br><a href='mailto:library@anadolu.edu.tr'>library@anadolu.edu.tr</a>",
+                  "en": "<strong>Email</strong><br><a href='mailto:library@anadolu.edu.tr'>library@anadolu.edu.tr</a>"
+                }
+              },
+              {
+                "icon": "fas fa-envelope",
+                "text": {
+                  "tr": "<strong>E-posta</strong><br><a href='mailto:hatil@anadolu.edu.tr'>hatil@anadolu.edu.tr</a>",
+                  "en": "<strong>Email</strong><br><a href='mailto:hatil@anadolu.edu.tr'>hatil@anadolu.edu.tr</a>"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "elektronik-kaynak",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Elektronik Kaynak Eğitimleri",
+              "en": "Electronic Resource Training"
+            },
+            "icon": "fas fa-laptop-code",
+            "id": "elektronik-kaynak-heading"
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "info",
+          "data": {
+            "icon": "fas fa-users",
+            "title": {
+              "tr": "Eğitim Sorumluları",
+              "en": "Training Coordinators"
+            },
+            "content": {
+              "tr": "Elektronik Kaynaklar Birimi Sorumluları Tarafından",
+              "en": "By Electronic Resources Unit Coordinators"
+            }
+          }
+        },
+        {
+          "type": "icon-list",
+          "variant": "default",
+          "data": {
+            "title": {
+              "tr": "Eğitim Detayları",
+              "en": "Training Details"
+            },
+            "titleIcon": "fas fa-info-circle",
+            "items": [
+              {
+                "icon": "fas fa-users",
+                "title": {
+                  "tr": "Hedef Kitle",
+                  "en": "Target Audience"
+                },
+                "description": {
+                  "tr": "Üniversitemiz öğrencileri ve akademik personeli",
+                  "en": "University students and academic staff"
+                }
+              },
+              {
+                "icon": "fas fa-chalkboard",
+                "title": {
+                  "tr": "Eğitmenler",
+                  "en": "Instructors"
+                },
+                "description": {
+                  "tr": "Elektronik Kaynaklar Birimi sorumluları veya veritabanı temsilcileri",
+                  "en": "Electronic Resources Unit coordinators or database representatives"
+                }
+              },
+              {
+                "icon": "fas fa-location-arrow",
+                "title": {
+                  "tr": "Esnek Mekan Seçenekleri",
+                  "en": "Flexible Venue Options"
+                },
+                "description": {
+                  "tr": "Gelen talepler doğrultusunda eğitimler fakültelerde veya merkezi alanlarda düzenlenebilir.",
+                  "en": "Training can be organized in faculties or central areas based on incoming requests."
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "success",
+          "data": {
+            "icon": "fas fa-star",
+            "title": {
+              "tr": "Özelleştirilmiş Eğitimler",
+              "en": "Customized Training"
+            },
+            "content": {
+              "tr": "Bölüm veya fakülte ihtiyaçlarına göre özel veritabanı eğitimleri organize edilebilir.",
+              "en": "Specialized database training can be organized according to department or faculty needs."
+            }
+          }
+        },
+        {
+          "type": "icon-list",
+          "variant": "contact-grid",
+          "data": {
+            "items": [
+              {
+                "icon": "fas fa-phone",
+                "text": {
+                  "tr": "<strong>Telefon</strong><br><a href='tel:+902223350580'>0 (222) 335 05 80 / 1737</a>",
+                  "en": "<strong>Phone</strong><br><a href='tel:+902223350580'>0 (222) 335 05 80 / 1737</a>"
+                }
+              },
+              {
+                "icon": "fas fa-envelope",
+                "text": {
+                  "tr": "<strong>E-posta</strong><br><a href='mailto:arify@anadolu.edu.tr'>arify@anadolu.edu.tr</a>",
+                  "en": "<strong>Email</strong><br><a href='mailto:arify@anadolu.edu.tr'>arify@anadolu.edu.tr</a>"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "tanitim-oryantasyon",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Tanıtım ve Oryantasyon Programları",
+              "en": "Introduction and Orientation Programs"
+            },
+            "icon": "fas fa-university",
+            "id": "tanitim-oryantasyon-heading"
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "info",
+          "data": {
+            "icon": "fas fa-calendar-alt",
+            "title": {
+              "tr": "Düzenlenme Zamanı",
+              "en": "Schedule"
+            },
+            "content": {
+              "tr": "Her Akademik Yıl Başında Düzenlenen Programlar",
+              "en": "Programs Organized at the Beginning of Each Academic Year"
+            }
+          }
+        },
+        {
+          "type": "icon-list",
+          "variant": "default",
+          "data": {
+            "title": {
+              "tr": "Program İçeriği",
+              "en": "Program Content"
+            },
+            "titleIcon": "fas fa-list-check",
+            "items": [
+              {
+                "icon": "fas fa-user-graduate",
+                "title": {
+                  "tr": "Hedef Kitle",
+                  "en": "Target Audience"
+                },
+                "description": {
+                  "tr": "Yeni kayıt olan öğrenciler ve kütüphaneyi ziyaret eden gruplar",
+                  "en": "Newly enrolled students and groups visiting the library"
+                }
+              },
+              {
+                "icon": "fas fa-book-open",
+                "title": {
+                  "tr": "Kütüphane Hizmetleri Tanıtımı",
+                  "en": "Library Services Introduction"
+                },
+                "description": {
+                  "tr": "Genel kütüphane hizmetleri ve kaynakları hakkında bilgilendirme",
+                  "en": "Information about general library services and resources"
+                }
+              },
+              {
+                "icon": "fas fa-building",
+                "title": {
+                  "tr": "Birimlerle İlgili Bilgilendirme",
+                  "en": "Information About Units"
+                },
+                "description": {
+                  "tr": "Kütüphanenin farklı birimlerinin görevleri ve hizmetleri",
+                  "en": "Duties and services of different library units"
+                }
+              },
+              {
+                "icon": "fas fa-route",
+                "title": {
+                  "tr": "Kısa Gezi Programları",
+                  "en": "Short Tour Programs"
+                },
+                "description": {
+                  "tr": "Kütüphane binası ve kullanım alanlarının tanıtımı",
+                  "en": "Introduction to library building and usage areas"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "icon-list",
+          "variant": "contact-grid",
+          "data": {
+            "items": [
+              {
+                "icon": "fas fa-phone",
+                "text": {
+                  "tr": "<strong>Telefon</strong><br><a href='tel:+902223350580'>0 (222) 335 05 80 / 1730 - 1733</a>",
+                  "en": "<strong>Phone</strong><br><a href='tel:+902223350580'>0 (222) 335 05 80 / 1730 - 1733</a>"
+                }
+              },
+              {
+                "icon": "fas fa-envelope",
+                "text": {
+                  "tr": "<strong>E-posta</strong><br><a href='mailto:library@anadolu.edu.tr'>library@anadolu.edu.tr</a>",
+                  "en": "<strong>Email</strong><br><a href='mailto:library@anadolu.edu.tr'>library@anadolu.edu.tr</a>"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "dis-ziyaretci",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Dış Ziyaretçiler İçin Kütüphane Gezileri",
+              "en": "Library Tours for External Visitors"
+            },
+            "icon": "fas fa-users",
+            "id": "dis-ziyaretci-heading"
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "info",
+          "data": {
+            "icon": "fas fa-info-circle",
+            "title": {
+              "tr": "Genel Bilgi",
+              "en": "General Information"
+            },
+            "content": {
+              "tr": "Kampüs Gezisi Kapsamında Kütüphane Ziyaretleri",
+              "en": "Library Visits Within Campus Tour"
+            }
+          }
+        },
+        {
+          "type": "step-cards",
+          "data": {
+            "items": [
+              {
+                "number": "1",
+                "title": {
+                  "tr": "Randevu Alın",
+                  "en": "Make an Appointment"
+                },
+                "content": {
+                  "tr": "Anadolu Üniversitesi Kurumsal İletişim Birimi'nden randevu alınması",
+                  "en": "Make an appointment with Anadolu University Corporate Communications Unit"
+                },
+                "icon": "fas fa-clipboard-check"
+              },
+              {
+                "number": "2",
+                "title": {
+                  "tr": "Bilgi Verin",
+                  "en": "Provide Information"
+                },
+                "content": {
+                  "tr": "Randevu sonrası kütüphaneye bilgi verilmesi",
+                  "en": "Inform the library after the appointment"
+                },
+                "icon": "fas fa-bell"
+              }
+            ]
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "warning",
+          "data": {
+            "icon": "fas fa-building",
+            "title": {
+              "tr": "Sorumlu Birim",
+              "en": "Responsible Unit"
+            },
+            "content": {
+              "tr": "Kurumsal İletişim Birimi - Halkla İlişkiler ve Tanıtım Birimi",
+              "en": "Corporate Communications Unit - Public Relations and Promotion Unit"
+            }
+          }
+        },
+        {
+          "type": "icon-list",
+          "variant": "contact-grid",
+          "data": {
+            "items": [
+              {
+                "icon": "fas fa-phone",
+                "text": {
+                  "tr": "<strong>Telefon</strong><br><a href='tel:+902223350580'>0 (222) 335 05 80</a>",
+                  "en": "<strong>Phone</strong><br><a href='tel:+902223350580'>0 (222) 335 05 80</a>"
+                }
+              },
+              {
+                "icon": "fas fa-envelope",
+                "text": {
+                  "tr": "<strong>E-posta</strong><br><a href='mailto:library@anadolu.edu.tr'>library@anadolu.edu.tr</a>",
+                  "en": "<strong>Email</strong><br><a href='mailto:library@anadolu.edu.tr'>library@anadolu.edu.tr</a>"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "help": {
+    "title": {
+      "tr": "Eğitim programları hakkında sorularınız mı var?",
+      "en": "Do you have questions about training programs?"
+    },
+    "description": {
+      "tr": "Bilgi okuryazarlığı, elektronik kaynak kullanımı ve kütüphane hizmetleri eğitimleri hakkında detaylı bilgi almak için bizimle iletişime geçin.",
+      "en": "Contact us for detailed information about information literacy, electronic resource usage, and library services training."
+    },
+    "buttons": [
+      {
+        "icon": "fas fa-phone",
+        "text": {
+          "tr": "Hemen Ara",
+          "en": "Call Now"
+        },
+        "link": "tel:+902223350580",
+        "variant": "primary"
+      },
+      {
+        "icon": "fas fa-envelope",
+        "text": {
+          "tr": "E-posta Gönder",
+          "en": "Send Email"
+        },
+        "link": "mailto:library@anadolu.edu.tr",
+        "variant": "primary"
+      },
+      {
+        "icon": "fas fa-home",
+        "text": {
+          "tr": "Ana Sayfa",
+          "en": "Home"
+        },
+        "link": "index.html",
+        "variant": "outline"
+      }
+    ]
+  }
+}

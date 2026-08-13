@@ -1,0 +1,1473 @@
+{
+  "hero": {
+    "title": {
+      "tr": "Personel",
+      "en": "Staff"
+    },
+    "description": {
+      "tr": "Kütüphane ve Dokümantasyon Daire Başkanlığı",
+      "en": "Library and Documentation Department"
+    },
+    "icon": "bi bi-people-fill"
+  },
+  "content": [
+    {
+      "id": "page-description",
+      "components": [
+        {
+          "type": "alert",
+          "variant": "info",
+          "data": {
+            "icon": "bi bi-info-circle",
+            "content": {
+              "tr": "Anadolu Üniversitesi Kütüphane ve Dokümantasyon Daire Başkanlığı personel bilgilerine aşağıdan ulaşabilirsiniz.",
+              "en": "You can access the staff information of Anadolu University Library and Documentation Department below."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "daire-baskani",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Kütüphane ve Dokümantasyon Dairesi Başkanlığı",
+              "en": "Library and Documentation Department Head"
+            },
+            "icon": "bi bi-people-fill",
+            "id": "daire-baskani-heading"
+          }
+        },
+        {
+          "type": "staff-list",
+          "data": {
+            "staff": [
+              {
+                "name": "Dr. Gültekin GÜLLÜ",
+                "title": {
+                  "tr": "Daire Başkanı",
+                  "en": "Department Head"
+                },
+                "email": "gultekingullu[at]anadolu.edu.tr",
+                "phone": "1730",
+                "showName": false,
+                "showTitle": true,
+                "showEmail": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "sekreterya-idari",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Sekreterya ve İdari İşler",
+              "en": "Secretariat and Administrative Affairs"
+            },
+            "icon": "bi bi-people-fill",
+            "id": "sekreterya-idari-heading"
+          }
+        },
+        {
+          "type": "staff-list",
+          "data": {
+            "staff": [
+              {
+                "name": "Nimet ölmeztürk",
+                "title": {
+                  "tr": "Sekreterya",
+                  "en": "Secretary"
+                },
+                "email": "imanay[at]anadolu.edu.tr",
+                "phone": "1730",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Ali BALCI",
+                "title": {
+                  "tr": "İdari İşler Sorumlusu",
+                  "en": "Administrative Affairs Officer"
+                },
+                "email": "a_balci[at]anadolu.edu.tr",
+                "phone": "1702",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "okuyucu-hizmetleri",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Okuyucu Hizmetleri ve Danışma",
+              "en": "Reader Services and Reference"
+            },
+            "icon": "bi bi-people-fill",
+            "id": "okuyucu-hizmetleri-heading"
+          }
+        },
+        {
+          "type": "staff-list",
+          "data": {
+            "staff": [
+              {
+                "name": "Halime YÖRÜ",
+                "title": {
+                  "tr": "Öğr. Gör.",
+                  "en": "Instructor"
+                },
+                "email": "hatil[at]anadolu.edu.tr",
+                "phone": "1733",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Arzu KÜLÜK ÖKTEM",
+                "title": {
+                  "tr": "Öğr. Gör.",
+                  "en": "Instructor"
+                },
+                "email": "arzu_k[at]anadolu.edu.tr",
+                "phone": "1733",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "rezerve",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Rezerve",
+              "en": "Reserve"
+            },
+            "icon": "bi bi-people-fill",
+            "id": "rezerve-heading"
+          }
+        },
+        {
+          "type": "staff-list",
+          "data": {
+            "staff": [
+              {
+                "name": "Esma ÇELİK",
+                "title": {
+                  "tr": "Memur (Bil. İşlet.)",
+                  "en": "Officer (IT)"
+                },
+                "email": "esma_celik[at]anadolu.edu.tr",
+                "phone": "1704",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "odunc-ill",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Ödünç ve ILL Hizmetleri",
+              "en": "Loan and ILL Services"
+            },
+            "icon": "bi bi-people-fill",
+            "id": "odunc-ill-heading"
+          }
+        },
+        {
+          "type": "staff-list",
+          "data": {
+            "staff": [
+              {
+                "name": "Reyhan BOZTAŞ",
+                "title": {
+                  "tr": "Memur (Bil. İşlet.)",
+                  "en": "Officer (IT)"
+                },
+                "email": "rboztas[at]anadolu.edu.tr",
+                "phone": "1731-1705",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Nilüfer AKÇAĞLAN",
+                "title": {
+                  "tr": "Memur (Bil. İşlet.)",
+                  "en": "Officer (IT)"
+                },
+                "email": "niluferd[at]anadolu.edu.tr",
+                "phone": "1731-1705",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Suna CALAP",
+                "title": {
+                  "tr": "Memur (Bil. İşlet.)",
+                  "en": "Officer (IT)"
+                },
+                "email": "scalap[at]anadolu.edu.tr",
+                "phone": "1731-1705",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Murat ERDOĞAN",
+                "title": {
+                  "tr": "Memur (Bil. İşlet.)",
+                  "en": "Officer (IT)"
+                },
+                "email": "m.erdogan[at]anadolu.edu.tr",
+                "phone": "1731-1705",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Hakan GÖÇKON",
+                "title": {
+                  "tr": "Memur (V.H.K.İ.)",
+                  "en": "Officer (VHKI)"
+                },
+                "email": "hgockon[at]anadolu.edu.tr",
+                "phone": "1731-1705",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Önder KOŞAR",
+                "title": {
+                  "tr": "Memur (Bil. İşlet.)",
+                  "en": "Officer (IT)"
+                },
+                "email": "onderkosar[at]anadolu.edu.tr",
+                "phone": "1731-1705",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "mikro-film",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Mikro Film",
+              "en": "Microfilm"
+            },
+            "icon": "bi bi-people-fill",
+            "id": "mikro-film-heading"
+          }
+        },
+        {
+          "type": "staff-list",
+          "data": {
+            "staff": [
+              {
+                "name": "Ufuk ÇİLİNGİR",
+                "title": {
+                  "tr": "Büro Personeli",
+                  "en": "Office Staff"
+                },
+                "email": "uclingir[at]anadolu.edu.tr",
+                "phone": "1739",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "kataloglama",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Kataloglama",
+              "en": "Cataloging"
+            },
+            "icon": "bi bi-people-fill",
+            "id": "kataloglama-heading"
+          }
+        },
+        {
+          "type": "staff-list",
+          "data": {
+            "staff": [
+              {
+                "name": "Memnun AKKAN",
+                "title": {
+                  "tr": "Öğr. Gör.",
+                  "en": "Instructor"
+                },
+                "email": "meakkan[at]anadolu.edu.tr",
+                "phone": "1736",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Hayriye AKBULUT",
+                "title": {
+                  "tr": "Öğr. Gör.",
+                  "en": "Instructor"
+                },
+                "email": "hcetintas[at]anadolu.edu.tr",
+                "phone": "1736",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Muhammed Fehim CEYLAN",
+                "title": {
+                  "tr": "Kütüphaneci",
+                  "en": "Librarian"
+                },
+                "email": "m_f_c[at]anadolu.edu.tr",
+                "phone": "1736",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Gözde Anıl YILMAZ",
+                "title": {
+                  "tr": "Kütüphaneci",
+                  "en": "Librarian"
+                },
+                "email": "gozdeanilyilmaz[at]anadolu.edu.tr",
+                "phone": "1736",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Özkan YÜRÜK",
+                "title": {
+                  "tr": "Teknisyen",
+                  "en": "Technician"
+                },
+                "email": "ozkanyuruk[at]anadolu.edu.tr",
+                "phone": "1736",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "sureli-yayinlar",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Süreli Yayınlar",
+              "en": "Periodicals"
+            },
+            "icon": "bi bi-people-fill",
+            "id": "sureli-yayinlar-heading"
+          }
+        },
+        {
+          "type": "staff-list",
+          "data": {
+            "staff": [
+              {
+                "name": "Osman Nuri KIDAK",
+                "title": {
+                  "tr": "Şube Müdürü",
+                  "en": "Branch Manager"
+                },
+                "email": "osmannk[at]anadolu.edu.tr",
+                "phone": "1732",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "saglama",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Sağlama",
+              "en": "Acquisition"
+            },
+            "icon": "bi bi-people-fill",
+            "id": "saglama-heading"
+          }
+        },
+        {
+          "type": "staff-list",
+          "data": {
+            "staff": [
+              {
+                "name": "Özdilek UYGUR",
+                "title": {
+                  "tr": "Öğr. Gör.",
+                  "en": "Instructor"
+                },
+                "email": "ohuner[at]anadolu.edu.tr",
+                "phone": "1735",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Binnaz KARA",
+                "title": {
+                  "tr": "Memur (Bil. İşlet.)",
+                  "en": "Officer (IT)"
+                },
+                "email": "bisin[at]anadolu.edu.tr",
+                "phone": "1735",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "İlknur Rukiye ÇİRİK",
+                "title": {
+                  "tr": "Memur",
+                  "en": "Officer"
+                },
+                "email": "iry[at]anadolu.edu.tr",
+                "phone": "1735",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "satin-alma",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Satın Alma",
+              "en": "Purchasing"
+            },
+            "icon": "bi bi-people-fill",
+            "id": "satin-alma-heading"
+          }
+        },
+        {
+          "type": "staff-list",
+          "data": {
+            "staff": [
+              {
+                "name": "Osman ÖZYILMAZ",
+                "title": {
+                  "tr": "Büro Personeli",
+                  "en": "Office Staff"
+                },
+                "email": "osmanozyilmaz[at]anadolu.edu.tr",
+                "phone": "1712",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Kadriye ŞENGİL",
+                "title": {
+                  "tr": "Memur (Bil. İşlet.)",
+                  "en": "Officer (IT)"
+                },
+                "email": "kadriyeu[at]anadolu.edu.tr",
+                "phone": "1712",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ayniyat",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Ayniyat",
+              "en": "Property Records"
+            },
+            "icon": "bi bi-people-fill",
+            "id": "ayniyat-heading"
+          }
+        },
+        {
+          "type": "staff-list",
+          "data": {
+            "staff": [
+              {
+                "name": "Mehmet Güzel KAYACAN",
+                "title": {
+                  "tr": "Memur",
+                  "en": "Officer"
+                },
+                "email": "mgk[at]anadolu.edu.tr",
+                "phone": "1711",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Gülistan CESUR",
+                "title": {
+                  "tr": "Tekniker",
+                  "en": "Technician"
+                },
+                "email": "gcesur[at]anadolu.edu.tr",
+                "phone": "1711",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "e-kaynaklar",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "E-Kaynaklar",
+              "en": "E-Resources"
+            },
+            "icon": "bi bi-people-fill",
+            "id": "e-kaynaklar-heading"
+          }
+        },
+        {
+          "type": "staff-list",
+          "data": {
+            "staff": [
+              {
+                "name": "Arif YILMAZ",
+                "title": {
+                  "tr": "Öğr. Gör.",
+                  "en": "Instructor"
+                },
+                "email": "arify[at]anadolu.edu.tr",
+                "phone": "1737",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Emel Fatma BAYRAKERİ",
+                "title": {
+                  "tr": "Öğr. Gör.",
+                  "en": "Instructor"
+                },
+                "email": "efbayrakeri[at]anadolu.edu.tr",
+                "phone": "1737",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "bilisim-hizmetleri",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Bilişim Hizmetleri",
+              "en": "IT Services"
+            },
+            "icon": "bi bi-people-fill",
+            "id": "bilisim-hizmetleri-heading"
+          }
+        },
+        {
+          "type": "staff-list",
+          "data": {
+            "staff": [
+              {
+                "name": "Sinan AKYAZI",
+                "title": {
+                  "tr": "Büro Personeli",
+                  "en": "Office Staff"
+                },
+                "email": "sakyazi[at]anadolu.edu.tr",
+                "phone": "1748",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "acik-erisim",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Açık Erişim",
+              "en": "Open Access"
+            },
+            "icon": "bi bi-people-fill",
+            "id": "acik-erisim-heading"
+          }
+        },
+        {
+          "type": "staff-list",
+          "data": {
+            "staff": [
+              {
+                "name": "Canan YILMAZ",
+                "title": {
+                  "tr": "Öğr. Gör.",
+                  "en": "Instructor"
+                },
+                "email": "canan_yilmaz[at]anadolu.edu.tr",
+                "phone": "1749",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "isitsel-bolum",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "İşitsel Bölüm",
+              "en": "Audio-Visual Section"
+            },
+            "icon": "bi bi-people-fill",
+            "id": "isitsel-bolum-heading"
+          }
+        },
+        {
+          "type": "staff-list",
+          "data": {
+            "staff": [
+              {
+                "name": "Semra YILDIZ KESKİN",
+                "title": {
+                  "tr": "Teknisyen",
+                  "en": "Technician"
+                },
+                "email": "semrayildiz[at]anadolu.edu.tr",
+                "phone": "1742",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "bilgisayar-lab",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Bilgisayar Laboratuvarı",
+              "en": "Computer Laboratory"
+            },
+            "icon": "bi bi-people-fill",
+            "id": "bilgisayar-lab-heading"
+          }
+        },
+        {
+          "type": "staff-list",
+          "data": {
+            "staff": [
+              {
+                "name": "Derya ŞAHİN",
+                "title": {
+                  "tr": "Büro Personeli",
+                  "en": "Office Staff"
+                },
+                "email": "d_sahin[at]anadolu.edu.tr",
+                "phone": "1706",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "dijitallestirme",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Dijitalleştirme Hizmetleri",
+              "en": "Digitization Services"
+            },
+            "icon": "bi bi-people-fill",
+            "id": "dijitallestirme-heading"
+          }
+        },
+        {
+          "type": "staff-list",
+          "data": {
+            "staff": [
+              {
+                "name": "Arda ÇELİK",
+                "title": {
+                  "tr": "Büro Personeli",
+                  "en": "Office Staff"
+                },
+                "email": "ardacelik[at]anadolu.edu.tr",
+                "phone": "1706",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Alperen ŞEN",
+                "title": {
+                  "tr": "Memur (Bil. İşlet.)",
+                  "en": "Officer (IT)"
+                },
+                "email": "alpersen[at]anadolu.edu.tr",
+                "phone": "1742",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Ahmet YİĞİTTEPE",
+                "title": {
+                  "tr": "Büro Personeli",
+                  "en": "Office Staff"
+                },
+                "email": "ayigittepe[at]anadolu.edu.tr",
+                "phone": "1742",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Kevser KOÇ",
+                "title": {
+                  "tr": "Büro Personeli",
+                  "en": "Office Staff"
+                },
+                "email": "kevser_koc[at]anadolu.edu.tr",
+                "phone": "1742",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "kitap-koleksiyonu-sube",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Kitap Koleksiyonu - Şube Müdürü",
+              "en": "Book Collection - Branch Manager"
+            },
+            "icon": "bi bi-people-fill",
+            "id": "kitap-koleksiyonu-sube-heading"
+          }
+        },
+        {
+          "type": "staff-list",
+          "data": {
+            "staff": [
+              {
+                "name": "Nida ERKAL",
+                "title": {
+                  "tr": "Şube Müdürü",
+                  "en": "Branch Manager"
+                },
+                "email": "nidai[at]anadolu.edu.tr",
+                "phone": "1730",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "kitap-kat1",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Kitap Koleksiyonu - 1. Kat",
+              "en": "Book Collection - 1st Floor"
+            },
+            "icon": "bi bi-people-fill",
+            "id": "kitap-kat1-heading"
+          }
+        },
+        {
+          "type": "staff-list",
+          "data": {
+            "staff": [
+              {
+                "name": "Murat DUMAN",
+                "title": {
+                  "tr": "Memur (Bil. İşlet.)",
+                  "en": "Officer (IT)"
+                },
+                "email": "murat.duman[at]anadolu.edu.tr",
+                "phone": "1733",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Ercan ŞENOL",
+                "title": {
+                  "tr": "Memur (Bil. İşlet.)",
+                  "en": "Officer (IT)"
+                },
+                "email": "ercansenol[at]anadolu.edu.tr",
+                "phone": "1733",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Seçkin TEKELİ",
+                "title": {
+                  "tr": "Memur (Bil. İşlet.)",
+                  "en": "Officer (IT)"
+                },
+                "email": "seckint[at]anadolu.edu.tr",
+                "phone": "1733",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "kitap-kat2",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Kitap Koleksiyonu - 2. Kat",
+              "en": "Book Collection - 2nd Floor"
+            },
+            "icon": "bi bi-people-fill",
+            "id": "kitap-kat2-heading"
+          }
+        },
+        {
+          "type": "staff-list",
+          "data": {
+            "staff": [
+              {
+                "name": "Kural DEMİROĞLU",
+                "title": {
+                  "tr": "Büro Personeli",
+                  "en": "Office Staff"
+                },
+                "email": "kurald[at]anadolu.edu.tr",
+                "phone": "1734",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Murat AKTÜRK",
+                "title": {
+                  "tr": "Memur (Bil. İşlet.)",
+                  "en": "Officer (IT)"
+                },
+                "email": "muratakturk[at]anadolu.edu.tr",
+                "phone": "1734",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Ali DURİ",
+                "title": {
+                  "tr": "Memur (Bil. İşlet.)",
+                  "en": "Officer (IT)"
+                },
+                "email": "aduri[at]anadolu.edu.tr",
+                "phone": "1734",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Sadık KÖSRELİ",
+                "title": {
+                  "tr": "Memur (Bil. İşlet.)",
+                  "en": "Officer (IT)"
+                },
+                "email": "sk527[at]anadolu.edu.tr",
+                "phone": "1734",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Barış ŞAN",
+                "title": {
+                  "tr": "İşçi",
+                  "en": "Worker"
+                },
+                "email": "bsan[at]anadolu.edu.tr",
+                "phone": "1751",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Sertaç ULUDÖNMEZ",
+                "title": {
+                  "tr": "Büro Personeli",
+                  "en": "Office Staff"
+                },
+                "email": "sertaculudonmez[at]anadolu.edu.tr",
+                "phone": "1751",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "kitap-kat3",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Kitap Koleksiyonu - 3. Kat",
+              "en": "Book Collection - 3rd Floor"
+            },
+            "icon": "bi bi-people-fill",
+            "id": "kitap-kat3-heading"
+          }
+        },
+        {
+          "type": "staff-list",
+          "data": {
+            "staff": [
+              {
+                "name": "İsmail BİLGİ",
+                "title": {
+                  "tr": "Memur",
+                  "en": "Officer"
+                },
+                "email": "ibilgi[at]anadolu.edu.tr",
+                "phone": "1751",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Bilal BARITÇI",
+                "title": {
+                  "tr": "Memur (Bil. İşlet.)",
+                  "en": "Officer (IT)"
+                },
+                "email": "bilalbaritci[at]anadolu.edu.tr",
+                "phone": "1751",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Mehmet BOZDOĞAN",
+                "title": {
+                  "tr": "Büro Personeli",
+                  "en": "Office Staff"
+                },
+                "email": "mbozdogan[at]anadolu.edu.tr",
+                "phone": "1751",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Musa İŞÇİ",
+                "title": {
+                  "tr": "Memur (Bil. İşlet.)",
+                  "en": "Officer (IT)"
+                },
+                "email": "musai[at]anadolu.edu.tr",
+                "phone": "1751",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "kitap-kat4",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Kitap Koleksiyonu - 4. Kat",
+              "en": "Book Collection - 4th Floor"
+            },
+            "icon": "bi bi-people-fill",
+            "id": "kitap-kat4-heading"
+          }
+        },
+        {
+          "type": "staff-list",
+          "data": {
+            "staff": [
+              {
+                "name": "Muharrem TOY",
+                "title": {
+                  "tr": "Memur",
+                  "en": "Officer"
+                },
+                "email": "muharremt[at]anadolu.edu.tr",
+                "phone": "1752",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Sabahattin AYDIN",
+                "title": {
+                  "tr": "Memur",
+                  "en": "Officer"
+                },
+                "email": "saydin134[at]anadolu.edu.tr",
+                "phone": "1752",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Ferit ÇOKAL",
+                "title": {
+                  "tr": "Memur (Bil. İşlet.)",
+                  "en": "Officer (IT)"
+                },
+                "email": "feritcokal[at]anadolu.edu.tr",
+                "phone": "1752",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Yıldırım KARAKAŞ",
+                "title": {
+                  "tr": "Memur (Bil. İşlet.)",
+                  "en": "Officer (IT)"
+                },
+                "email": "yildirimkarakas[at]anadolu.edu.tr",
+                "phone": "1752",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Fikret TÜRKCAN",
+                "title": {
+                  "tr": "İşçi",
+                  "en": "Worker"
+                },
+                "email": "fikretturkcan[at]anadolu.edu.tr",
+                "phone": "1752",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              },
+              {
+                "name": "Necmettin YAVUZ",
+                "title": {
+                  "tr": "Memur (Bil. İşlet.)",
+                  "en": "Officer (IT)"
+                },
+                "email": "necmettiny[at]anadolu.edu.tr",
+                "phone": "1752",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "destek-hizmetleri",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Destek Hizmetleri - 1740",
+              "en": "Support Services - 1740"
+            },
+            "icon": "bi bi-people-fill",
+            "id": "destek-hizmetleri-heading"
+          }
+        },
+        {
+          "type": "staff-list",
+          "data": {
+            "staff": [
+              {
+                "name": "Barbaros TANKİŞİ",
+                "title": {
+                  "tr": "Personel",
+                  "en": "Staff"
+                },
+                "email": "",
+                "phone": "",
+                "showName": true,
+                "showTitle": false,
+                "showEmail": false
+              },
+              {
+                "name": "Ömer ALTIN",
+                "title": {
+                  "tr": "Personel",
+                  "en": "Staff"
+                },
+                "email": "",
+                "phone": "",
+                "showName": true,
+                "showTitle": false,
+                "showEmail": false
+              },
+              {
+                "name": "Aziz ALTUNAY",
+                "title": {
+                  "tr": "Personel",
+                  "en": "Staff"
+                },
+                "email": "",
+                "phone": "",
+                "showName": true,
+                "showTitle": false,
+                "showEmail": false
+              },
+              {
+                "name": "Yetkin ÇELİK",
+                "title": {
+                  "tr": "Personel",
+                  "en": "Staff"
+                },
+                "email": "",
+                "phone": "",
+                "showName": true,
+                "showTitle": false,
+                "showEmail": false
+              },
+              {
+                "name": "Mehmet GÜNDÜZ",
+                "title": {
+                  "tr": "Personel",
+                  "en": "Staff"
+                },
+                "email": "",
+                "phone": "",
+                "showName": true,
+                "showTitle": false,
+                "showEmail": false
+              },
+              {
+                "name": "Temine KARİP",
+                "title": {
+                  "tr": "Personel",
+                  "en": "Staff"
+                },
+                "email": "",
+                "phone": "",
+                "showName": true,
+                "showTitle": false,
+                "showEmail": false
+              },
+              {
+                "name": "Necmiye KISA",
+                "title": {
+                  "tr": "Personel",
+                  "en": "Staff"
+                },
+                "email": "",
+                "phone": "",
+                "showName": true,
+                "showTitle": false,
+                "showEmail": false
+              },
+              {
+                "name": "Meryem KÜÇÜK",
+                "title": {
+                  "tr": "Personel",
+                  "en": "Staff"
+                },
+                "email": "",
+                "phone": "",
+                "showName": true,
+                "showTitle": false,
+                "showEmail": false
+              },
+              {
+                "name": "Sema ÖZER",
+                "title": {
+                  "tr": "Personel",
+                  "en": "Staff"
+                },
+                "email": "",
+                "phone": "",
+                "showName": true,
+                "showTitle": false,
+                "showEmail": false
+              },
+              {
+                "name": "Sevda SORKON",
+                "title": {
+                  "tr": "Personel",
+                  "en": "Staff"
+                },
+                "email": "",
+                "phone": "",
+                "showName": true,
+                "showTitle": false,
+                "showEmail": false
+              },
+              {
+                "name": "Ayşe SOYLU",
+                "title": {
+                  "tr": "Personel",
+                  "en": "Staff"
+                },
+                "email": "",
+                "phone": "",
+                "showName": true,
+                "showTitle": false,
+                "showEmail": false
+              },
+              {
+                "name": "Nevin YENİCE",
+                "title": {
+                  "tr": "Personel",
+                  "en": "Staff"
+                },
+                "email": "",
+                "phone": "",
+                "showName": true,
+                "showTitle": false,
+                "showEmail": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "genel-iletisim",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-plain",
+          "data": {
+            "title": {
+              "tr": "Genel İletişim",
+              "en": "General Contact"
+            },
+            "id": "genel-iletisim-heading"
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "info",
+          "style": "list",
+          "data": {
+            "icon": "bi bi-info-circle",
+            "title": {
+              "tr": "Herhangi bir sorunuz için genel iletişim bilgilerimizi kullanabilirsiniz:",
+              "en": "You can use our general contact information for any questions:"
+            },
+            "items": [
+              {
+                "tr": "📞 Telefon: 0222 335 05 80",
+                "en": "📞 Phone: 0222 335 05 80"
+              },
+              {
+                "tr": "✉️ E-posta: library[at]anadolu.edu.tr",
+                "en": "✉️ Email: library[at]anadolu.edu.tr"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "helpSection": {
+    "title": {
+      "tr": "Personel hakkında daha fazla bilgi mi gerekiyor?",
+      "en": "Need more information about staff?"
+    },
+    "description": {
+      "tr": "İlgili birimle iletişime geçmek için aşağıdaki iletişim kanallarını kullanabilirsiniz.",
+      "en": "You can use the following contact channels to get in touch with the relevant department."
+    },
+    "buttons": [
+      {
+        "icon": "fas fa-phone",
+        "text": {
+          "tr": "Hemen Ara",
+          "en": "Call Now"
+        },
+        "link": "tel:+902223350580"
+      },
+      {
+        "icon": "fas fa-envelope",
+        "text": {
+          "tr": "E-posta Gönder",
+          "en": "Send Email"
+        },
+        "link": "mailto:library@anadolu.edu.tr"
+      },
+      {
+        "icon": "fas fa-home",
+        "text": {
+          "tr": "Ana Sayfa",
+          "en": "Home"
+        },
+        "link": "index.html"
+      }
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+/* ============================================
+   ILL (Kütüphanelerarası Ödünç) Page Styles
+   Sayfa özel stiller - Component stilleri inner-page-components.css'de
+   ============================================ */
+
+/* ==========================================
+   1. SAYFA ÖZEL LAYOUT
+   ========================================== */
+
+.ill-page {
+  /* Sayfa özel container stilleri buraya eklenebilir */
+}
+
+/* Content Section Layout */
+.content-section {
+  margin-bottom: 2rem;
+}
+
+/* ==========================================
+   2. ÖZEL SECTION: Süre ve Ücretler
+   (Bu section'daki info-box'ların özel düzeni)
+   ========================================== */
+
+#sure-ve-ucretler-components {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+#sure-ve-ucretler-components .component-heading {
+  margin-bottom: 1.5rem;
+}
+
+#sure-ve-ucretler-components .component-info-box:first-of-type {
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  margin-bottom: 0;
+}
+
+#sure-ve-ucretler-components .component-info-box:last-of-type {
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  border-top: none;
+}
+
+/* ==========================================
+   3. RESPONSIVE DESIGN
+   ========================================== */
+
+@media (min-width: 768px) {
+  #sure-ve-ucretler-components {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  #sure-ve-ucretler-components .component-info-box {
+    margin: 0;
+  }
+
+  #sure-ve-ucretler-components .component-info-box:first-of-type {
+    border-radius: 0;
+  }
+
+  #sure-ve-ucretler-components .component-info-box:last-of-type {
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+  }
+}
+
+/* ==========================================
+   NOTLAR:
+   - Tüm component stilleri (alert, icon-list, step-cards, info-box, heading)
+     artık inner-page-components.css dosyasında global olarak tanımlandı
+   - Bu dosya sadece ILL sayfasına özel layout ve düzen ayarlarını içerir
+   ========================================== */

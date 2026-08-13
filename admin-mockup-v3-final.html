@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel v3.0 - Final Mockup</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            /* Site Ana Renkleri */
+            --primary-color: #1F4C8A;
+            --primary-dark: #153a6d;
+            --primary-light: #3667a6;
+            --secondary-color: #C03221;
+            --secondary-light: #db4a39;
+            --tertiary-color: #EEF9FC;
+            --tertiary-dark: #d5eef5;
+            --accent-color: #FFC43D;
+            --accent-light: #ffd265;
+            --bg-color: #f8f9fa;
+            --bg-card: #ffffff;
+            --text-color: #212529;
+            --text-muted: #6c757d;
+            --border-color: #eaedf0;
+            --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            background: var(--bg-color);
+            font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ==================== HEADER ==================== */
+        .admin-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .admin-header h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .changes-indicator {
+            background: var(--accent-color);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .btn-header {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            border: 2px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .btn-header:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-header.btn-save {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: var(--text-color);
+        }
+
+        .btn-header.btn-save:hover {
+            background: var(--accent-light);
+            border-color: var(--accent-light);
+        }
+
+        /* ==================== LAYOUT ==================== */
+        .main-container {
+            display: grid;
+            grid-template-columns: 0px 1fr 0px;
+            gap: 1rem;
+            padding: 1rem;
+            transition: grid-template-columns 0.3s ease;
+            position: relative;
+        }
+
+        .main-container.sidebar-visible {
+            grid-template-columns: 280px 1fr 0px;
+        }
+
+        .main-container.preview-visible {
+            grid-template-columns: 0px 1fr 450px;
+        }
+
+        .main-container.both-visible {
+            grid-template-columns: 280px 1fr 450px;
+        }
+
+        /* ==================== RESIZE HANDLE ==================== */
+        .resize-handle {
+            position: absolute;
+            right: 450px;
+            top: 0;
+            bottom: 0;
+            width: 8px;
+            cursor: col-resize;
+            background: transparent;
+            z-index: 100;
+            transition: right 0.3s ease;
+            display: none;
+        }
+
+        .preview-visible .resize-handle,
+        .both-visible .resize-handle {
+            display: block;
+        }
+
+        .resize-handle::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 4px;
+            height: 40px;
+            background: var(--border-color);
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
+
+        .resize-handle:hover::before,
+        .resize-handle.dragging::before {
+            background: var(--primary-color);
+            width: 6px;
+            height: 60px;
+        }
+
+        /* ==================== TOGGLE BUTTONS ==================== */
+        .toggle-btn {
+            position: fixed;
+            top: 100px;
+            z-index: 999;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            box-shadow: var(--shadow-md);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .toggle-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        .toggle-sidebar {
+            left: 10px;
+        }
+
+        .toggle-preview {
+            right: 10px;
+        }
+
+        /* ==================== SIDEBAR ==================== */
+        .sidebar-panel {
+            background: var(--bg-card);
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            max-height: calc(100vh - 120px);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.3s;
+        }
+
+        .sidebar-visible .sidebar-panel {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .sidebar-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1rem;
+            font-weight: 600;
+        }
+
+        .sidebar-search {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .file-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0.5rem;
+        }
+
+        .file-item {
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.25rem;
+            border: 2px solid transparent;
+        }
+
+        .file-item:hover {
+            background: var(--tertiary-color);
+            border-color: var(--tertiary-dark);
+            padding-left: 1.5rem;
+        }
+
+        .file-item.active {
+            background: linear-gradient(90deg, var(--primary-color)15 0%, var(--primary-light)15 100%);
+            border-left: 4px solid var(--primary-color);
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* ==================== EDITOR PANEL ==================== */
+        .editor-panel {
+            background: var(--bg-card);
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            max-height: calc(100vh - 120px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .editor-header {
+            background: white;
+            padding: 1.25rem;
+            border-bottom: 2px solid var(--border-color);
+            border-radius: 12px 12px 0 0;
+        }
+
+        .editor-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--primary-color);
+            background: var(--tertiary-color);
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+
+        .tab-btn .badge {
+            background: var(--accent-color);
+            color: var(--text-color);
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+        }
+
+        .tab-btn.active .badge {
+            background: rgba(255,255,255,0.3);
+            color: white;
+        }
+
+        .editor-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+
+        /* ==================== SECTION CARDS ==================== */
+        .section-card {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .section-card:hover {
+            border-color: var(--primary-light);
+            box-shadow: 0 4px 12px rgba(31, 76, 138, 0.1);
+        }
+
+        .section-header {
+            background: var(--tertiary-color);
+            padding: 1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 0;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .section-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .section-body {
+            padding: 1.25rem;
+        }
+
+        /* ==================== FORM GROUPS ==================== */
+        .form-group-lang {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label-main {
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .lang-inputs {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .lang-input-group {
+            position: relative;
+        }
+
+        .lang-badge {
+            position: absolute;
+            top: -10px;
+            left: 12px;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            z-index: 5;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .lang-badge.en {
+            background: var(--secondary-color);
+        }
+
+        .form-control, .form-select {
+            padding: 0.75rem 1rem;
+            padding-top: 1.25rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(31, 76, 138, 0.1);
+            outline: none;
+        }
+
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        /* ==================== ACCORDION CARDS ==================== */
+        .accordion-card {
+            background: var(--bg-color);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            margin-bottom: 0.75rem;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 1rem;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .accordion-header:hover {
+            background: var(--tertiary-color);
+            border-bottom-color: var(--primary-light);
+        }
+
+        .accordion-header.active {
+            background: var(--tertiary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .accordion-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 600;
+        }
+
+        .card-number {
+            background: var(--primary-color);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            font-weight: 700;
+        }
+
+        .accordion-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-icon.btn-up {
+            background: var(--tertiary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-icon.btn-up:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-icon.btn-down {
+            background: var(--tertiary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-icon.btn-down:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-icon.btn-delete {
+            background: #fee;
+            color: var(--secondary-color);
+        }
+
+        .btn-icon.btn-delete:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .accordion-body {
+            padding: 1.25rem;
+            display: none;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .accordion-header.active + .accordion-body {
+            display: block;
+        }
+
+        .chevron-icon {
+            transition: transform 0.3s;
+        }
+
+        .accordion-header.active .chevron-icon {
+            transform: rotate(180deg);
+        }
+
+        /* ==================== ADD NEW BUTTON ==================== */
+        .btn-add-new {
+            width: 100%;
+            padding: 1rem;
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
+            background: white;
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .btn-add-new:hover {
+            border-color: var(--primary-color);
+            background: var(--tertiary-color);
+            border-style: solid;
+        }
+
+        /* ==================== ICON PICKER ==================== */
+        .icon-picker-btn {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            background: white;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .icon-picker-btn:hover {
+            border-color: var(--primary-color);
+            background: var(--tertiary-color);
+        }
+
+        .icon-preview {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* ==================== PREVIEW PANEL ==================== */
+        .preview-panel {
+            background: var(--bg-card);
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            max-height: calc(100vh - 120px);
+            overflow: hidden;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.3s;
+        }
+
+        .preview-visible .preview-panel,
+        .both-visible .preview-panel {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .preview-header {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .preview-body {
+            height: calc(100vh - 180px);
+            background: white;
+        }
+
+        .preview-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ==================== UTILITIES ==================== */
+        .status-badge {
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-complete {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-incomplete {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        /* ==================== SCROLLBAR ==================== */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color);
+        }
+
+        /* ==================== EMPTY STATE ==================== */
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--text-muted);
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ==================== ANIMATIONS ==================== */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-card {
+            animation: slideIn 0.3s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="admin-header">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1>
+                    <i class="bi bi-pencil-square me-2"></i>
+                    Admin Panel v3.0
+                </h1>
+                <div class="header-actions">
+                    <!-- Changes Indicator -->
+                    <div class="changes-indicator">
+                        <i class="bi bi-exclamation-circle-fill"></i>
+                        <span>Kaydedilmemiş değişiklikler var</span>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <button class="btn-header" onclick="cancelChanges()">
+                        <i class="bi bi-x-lg me-1"></i>
+                        İptal
+                    </button>
+                    <button class="btn-header btn-save" onclick="saveChanges()">
+                        <i class="bi bi-check-lg me-1"></i>
+                        Kaydet ve İndir
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toggle Buttons -->
+    <button class="toggle-btn toggle-sidebar" onclick="toggleSidebar()">
+        <i class="bi bi-file-earmark-text-fill"></i>
+    </button>
+    <button class="toggle-btn toggle-preview" onclick="togglePreview()">
+        <i class="bi bi-eye-fill"></i>
+    </button>
+
+    <!-- Main Container -->
+    <div class="main-container" id="mainContainer">
+        <!-- Resize Handle (for preview panel) -->
+        <div class="resize-handle" id="resizeHandle"></div>
+
+        <!-- Sidebar -->
+        <div class="sidebar-panel">
+            <div class="sidebar-header">
+                <i class="bi bi-folder2-open me-2"></i>
+                JSON Dosyaları
+            </div>
+            <div class="sidebar-search">
+                <input type="search" class="form-control form-control-sm" placeholder="Dosya ara...">
+            </div>
+            <div class="file-list">
+                <div class="file-item">
+                    <span><i class="bi bi-file-earmark-code text-primary me-2"></i>home.json</span>
+                </div>
+                <div class="file-item active">
+                    <span><i class="bi bi-file-earmark-code text-primary me-2"></i>iletisim.json</span>
+                    <i class="bi bi-chevron-right"></i>
+                </div>
+                <div class="file-item">
+                    <span><i class="bi bi-file-earmark-code text-primary me-2"></i>personel.json</span>
+                </div>
+                <div class="file-item">
+                    <span><i class="bi bi-file-earmark-code text-primary me-2"></i>veritabanlari.json</span>
+                </div>
+                <div class="file-item">
+                    <span><i class="bi bi-file-earmark-code text-primary me-2"></i>sss.json</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Editor Panel -->
+        <div class="editor-panel">
+            <!-- Header -->
+            <div class="editor-header">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h5 class="mb-1">
+                            <i class="bi bi-pencil-square text-primary me-2"></i>
+                            İletişim Sayfası
+                        </h5>
+                        <small class="text-muted">data/pages/iletisim.json</small>
+                    </div>
+                    <div>
+                        <span class="status-badge status-complete me-2">
+                            <i class="bi bi-check-circle-fill me-1"></i>TR Tamamlandı
+                        </span>
+                        <span class="status-badge status-incomplete">
+                            <i class="bi bi-exclamation-circle-fill me-1"></i>EN Eksik
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="editor-tabs">
+                    <button class="tab-btn active" onclick="switchTab('content')">
+                        <i class="bi bi-card-list"></i>
+                        İçerik
+                        <span class="badge">3</span>
+                    </button>
+                    <button class="tab-btn" onclick="switchTab('general')">
+                        <i class="bi bi-sliders"></i>
+                        Genel Ayarlar
+                        <span class="badge">Meta, Hero, Yardım</span>
+                    </button>
+                </div>
+
+                <!-- Search -->
+                <div class="input-group input-group-sm mt-2">
+                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                    <input type="text" class="form-control" placeholder="Alan ara... (örn: title, description)">
+                </div>
+            </div>
+
+            <!-- Editor Body - Content Tab -->
+            <div class="editor-body" id="contentTab">
+                <!-- İletişim Bilgileri Section -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <div class="section-icon">
+                                <i class="bi bi-telephone-fill"></i>
+                            </div>
+                            <span>İletişim Bilgileri</span>
+                        </div>
+                        <div class="section-actions">
+                            <button class="btn btn-sm btn-success">
+                                <i class="bi bi-plus-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="section-body">
+                        <!-- Card 1 - Accordion Style -->
+                        <div class="accordion-card">
+                            <div class="accordion-header active" onclick="toggleAccordion(this)">
+                                <div class="accordion-title">
+                                    <div class="card-number">1</div>
+                                    <i class="bi bi-telephone-fill text-primary"></i>
+                                    <span>Telefon</span>
+                                </div>
+                                <div class="accordion-actions">
+                                    <button class="btn-icon btn-up" onclick="event.stopPropagation()">
+                                        <i class="bi bi-arrow-up"></i>
+                                    </button>
+                                    <button class="btn-icon btn-down" onclick="event.stopPropagation()">
+                                        <i class="bi bi-arrow-down"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" onclick="event.stopPropagation()">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                    <i class="bi bi-chevron-down chevron-icon"></i>
+                                </div>
+                            </div>
+                            <div class="accordion-body">
+                                <!-- Icon Picker -->
+                                <div class="form-group-lang mb-3">
+                                    <label class="form-label-main">
+                                        <i class="bi bi-star text-warning"></i>
+                                        Icon
+                                    </label>
+                                    <div class="icon-picker-btn">
+                                        <div class="icon-preview">
+                                            <i class="bi bi-telephone-fill"></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <div class="fw-bold">bi-telephone-fill</div>
+                                            <small class="text-muted">Icon seçmek için tıklayın</small>
+                                        </div>
+                                        <i class="bi bi-chevron-right text-muted"></i>
+                                    </div>
+                                </div>
+
+                                <!-- Title -->
+                                <div class="form-group-lang">
+                                    <label class="form-label-main">
+                                        <i class="bi bi-card-heading text-primary"></i>
+                                        Başlık
+                                    </label>
+                                    <div class="lang-inputs">
+                                        <div class="lang-input-group">
+                                            <span class="lang-badge">🇹🇷 TR</span>
+                                            <input type="text" class="form-control" value="Telefon">
+                                        </div>
+                                        <div class="lang-input-group">
+                                            <span class="lang-badge en">🇬🇧 EN</span>
+                                            <input type="text" class="form-control" value="Phone">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Content -->
+                                <div class="form-group-lang">
+                                    <label class="form-label-main">
+                                        <i class="bi bi-text-paragraph text-success"></i>
+                                        İçerik
+                                    </label>
+                                    <div class="lang-inputs">
+                                        <div class="lang-input-group">
+                                            <span class="lang-badge">🇹🇷 TR</span>
+                                            <textarea class="form-control">+90 (222) 335 05 80</textarea>
+                                        </div>
+                                        <div class="lang-input-group">
+                                            <span class="lang-badge en">🇬🇧 EN</span>
+                                            <textarea class="form-control">+90 (222) 335 05 80</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 - Collapsed -->
+                        <div class="accordion-card">
+                            <div class="accordion-header" onclick="toggleAccordion(this)">
+                                <div class="accordion-title">
+                                    <div class="card-number">2</div>
+                                    <i class="bi bi-envelope-fill text-primary"></i>
+                                    <span>E-posta</span>
+                                </div>
+                                <div class="accordion-actions">
+                                    <button class="btn-icon btn-up" onclick="event.stopPropagation()">
+                                        <i class="bi bi-arrow-up"></i>
+                                    </button>
+                                    <button class="btn-icon btn-down" onclick="event.stopPropagation()">
+                                        <i class="bi bi-arrow-down"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" onclick="event.stopPropagation()">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                    <i class="bi bi-chevron-down chevron-icon"></i>
+                                </div>
+                            </div>
+                            <div class="accordion-body">
+                                <p class="text-muted">İçerik burada gösterilecek...</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 - Collapsed -->
+                        <div class="accordion-card">
+                            <div class="accordion-header" onclick="toggleAccordion(this)">
+                                <div class="accordion-title">
+                                    <div class="card-number">3</div>
+                                    <i class="bi bi-geo-alt-fill text-primary"></i>
+                                    <span>Adres</span>
+                                </div>
+                                <div class="accordion-actions">
+                                    <button class="btn-icon btn-up" onclick="event.stopPropagation()">
+                                        <i class="bi bi-arrow-up"></i>
+                                    </button>
+                                    <button class="btn-icon btn-down" onclick="event.stopPropagation()">
+                                        <i class="bi bi-arrow-down"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" onclick="event.stopPropagation()">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                    <i class="bi bi-chevron-down chevron-icon"></i>
+                                </div>
+                            </div>
+                            <div class="accordion-body">
+                                <p class="text-muted">İçerik burada gösterilecek...</p>
+                            </div>
+                        </div>
+
+                        <!-- Add New Button -->
+                        <button class="btn-add-new">
+                            <i class="bi bi-plus-circle-fill"></i>
+                            Yeni Kart Ekle
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Harita Section -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <div class="section-icon">
+                                <i class="bi bi-map-fill"></i>
+                            </div>
+                            <span>Harita</span>
+                        </div>
+                    </div>
+                    <div class="section-body">
+                        <div class="form-group-lang">
+                            <label class="form-label-main">
+                                <i class="bi bi-card-heading text-primary"></i>
+                                Başlık
+                            </label>
+                            <div class="lang-inputs">
+                                <div class="lang-input-group">
+                                    <span class="lang-badge">🇹🇷 TR</span>
+                                    <input type="text" class="form-control" value="Konumumuz">
+                                </div>
+                                <div class="lang-input-group">
+                                    <span class="lang-badge en">🇬🇧 EN</span>
+                                    <input type="text" class="form-control" value="Our Location">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Editor Body - General Tab (Hidden by default) -->
+            <div class="editor-body" id="generalTab" style="display: none;">
+                <div class="empty-state">
+                    <i class="bi bi-sliders"></i>
+                    <h5>Genel Ayarlar</h5>
+                    <p>Meta, Hero ve Yardım bölümlerini buradan düzenleyebilirsiniz</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preview Panel -->
+        <div class="preview-panel" id="previewPanel">
+            <div class="preview-header">
+                <h6 class="mb-0">
+                    <i class="bi bi-eye-fill me-2"></i>
+                    Canlı Önizleme
+                </h6>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-sm btn-outline-light">
+                        <i class="bi bi-phone"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-light">
+                        <i class="bi bi-tablet"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-light">
+                        <i class="bi bi-laptop"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="preview-body">
+                <div class="empty-state">
+                    <i class="bi bi-browser-chrome"></i>
+                    <h5>Önizleme Yükleniyor...</h5>
+                    <p>Yaptığınız değişiklikler burada gerçek zamanlı görünecek</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Resize Handle Logic
+        const resizeHandle = document.getElementById('resizeHandle');
+        const mainContainer = document.getElementById('mainContainer');
+        const previewPanel = document.getElementById('previewPanel');
+        let isResizing = false;
+        let startX = 0;
+        let startWidth = 450;
+
+        resizeHandle.addEventListener('mousedown', (e) => {
+            isResizing = true;
+            startX = e.clientX;
+            startWidth = previewPanel.offsetWidth;
+            resizeHandle.classList.add('dragging');
+            document.body.style.cursor = 'col-resize';
+            document.body.style.userSelect = 'none';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isResizing) return;
+
+            const diff = startX - e.clientX;
+            const newWidth = Math.max(300, Math.min(800, startWidth + diff));
+
+            // Update preview panel width
+            previewPanel.style.width = newWidth + 'px';
+            resizeHandle.style.right = newWidth + 'px';
+
+            // Update grid template
+            const sidebarWidth = mainContainer.classList.contains('sidebar-visible') ||
+                                 mainContainer.classList.contains('both-visible') ? '280px' : '0px';
+            mainContainer.style.gridTemplateColumns = `${sidebarWidth} 1fr ${newWidth}px`;
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (isResizing) {
+                isResizing = false;
+                resizeHandle.classList.remove('dragging');
+                document.body.style.cursor = '';
+                document.body.style.userSelect = '';
+            }
+        });
+
+        // Toggle Sidebar
+        function toggleSidebar() {
+            const container = document.getElementById('mainContainer');
+            const hasBoth = container.classList.contains('both-visible');
+            const hasPreview = container.classList.contains('preview-visible');
+
+            container.classList.remove('sidebar-visible', 'preview-visible', 'both-visible');
+
+            if (hasBoth) {
+                container.classList.add('preview-visible');
+            } else if (hasPreview) {
+                container.classList.add('both-visible');
+            } else {
+                container.classList.add('sidebar-visible');
+            }
+        }
+
+        // Toggle Preview
+        function togglePreview() {
+            const container = document.getElementById('mainContainer');
+            const hasBoth = container.classList.contains('both-visible');
+            const hasSidebar = container.classList.contains('sidebar-visible');
+
+            container.classList.remove('sidebar-visible', 'preview-visible', 'both-visible');
+
+            if (hasBoth) {
+                container.classList.add('sidebar-visible');
+            } else if (hasSidebar) {
+                container.classList.add('both-visible');
+            } else {
+                container.classList.add('preview-visible');
+            }
+        }
+
+        // Toggle Accordion
+        function toggleAccordion(header) {
+            header.classList.toggle('active');
+        }
+
+        // Switch Tab
+        function switchTab(tab) {
+            // Update tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.closest('.tab-btn').classList.add('active');
+
+            // Update tab content
+            document.getElementById('contentTab').style.display = tab === 'content' ? 'block' : 'none';
+            document.getElementById('generalTab').style.display = tab === 'general' ? 'block' : 'none';
+        }
+
+        // Save Changes
+        function saveChanges() {
+            alert('Değişiklikler kaydedildi ve JSON dosyası indirildi!');
+        }
+
+        // Cancel Changes
+        function cancelChanges() {
+            if (confirm('Kaydedilmemiş değişiklikleri iptal etmek istediğinize emin misiniz?')) {
+                location.reload();
+            }
+        }
+
+        // Auto-open sidebar on load (demo purposes)
+        window.addEventListener('load', () => {
+            document.getElementById('mainContainer').classList.add('sidebar-visible');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+/* ====================================
+   Tarihçe ve Genel Bilgiler Sayfası Stilleri
+   ==================================== */
+
+/* Ana İçerik Container */
+.tarihce-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 0 2rem 0;
+}
+
+/* İçerik Bölümleri */
+.content-section {
+  background: var(--bg-card);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-soft);
+  border-left: 4px solid var(--tertiary-dark);
+  transition: all 0.3s ease;
+}
+
+.content-section:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Bölüm Başlıkları */
+.section-title {
+  color: var(--primary-dark);
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--tertiary-color);
+}
+
+.section-title i.section-icon {
+  color: var(--primary-color);
+  font-size: 0.6rem;
+  margin-right: 0.75rem;
+}
+
+/* Bölüm Metni */
+.section-text {
+  color: var(--text-color);
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.section-text p {
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+/* İstatistikler Bölümü */
+.statistics-section {
+  background: linear-gradient(135deg, var(--tertiary-color), #e8f4f8);
+  border-radius: var(--border-radius);
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-soft);
+  border-top: 4px solid var(--tertiary-dark);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.stat-card {
+  background: white;
+  border-radius: var(--border-radius);
+  padding: 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--primary-color);
+}
+
+.stat-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stat-icon i {
+  font-size: 1.75rem;
+  color: white;
+}
+
+.stat-content {
+  flex: 1;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  line-height: 1.2;
+}
+
+/* Koleksiyon Bölümü */
+.collection-section {
+  background: var(--bg-card);
+  border-radius: var(--border-radius);
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-soft);
+  border-left: 4px solid var(--tertiary-dark);
+}
+
+.table-responsive {
+  margin-top: 1.5rem;
+  overflow-x: auto;
+}
+
+.collection-table {
+  width: 100%;
+  margin: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.collection-table thead {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+}
+
+.collection-table thead th {
+  color: white;
+  font-weight: 600;
+  padding: 1.25rem 1.5rem;
+  text-align: left;
+  border: none;
+  font-size: 1.05rem;
+}
+
+.collection-table tbody tr {
+  background: white;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid var(--tertiary-dark);
+}
+
+.collection-table tbody tr:nth-child(even) {
+  background: var(--tertiary-color);
+}
+
+.collection-table tbody tr:hover {
+  background: #e0f2f7;
+  transform: scale(1.01);
+}
+
+.collection-table tbody td {
+  padding: 1rem 1.5rem;
+  color: var(--text-color);
+  border-right: 1px solid var(--tertiary-dark);
+  font-size: 0.98rem;
+}
+
+.collection-table tbody td:last-child {
+  border-right: none;
+}
+
+.collection-table tbody td:first-child {
+  font-weight: 500;
+}
+
+.collection-table tbody td:first-child i {
+  color: var(--primary-color);
+  margin-right: 0.5rem;
+}
+
+.collection-table tbody td:last-child {
+  text-align: right;
+  font-weight: 600;
+  color: var(--primary-dark);
+}
+
+/* Animasyonlar */
+.fade-in {
+  animation: fadeIn 0.6s ease-in forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+  .tarihce-content {
+    padding: 1rem 0;
+  }
+
+  .content-section,
+  .statistics-section,
+  .collection-section {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .section-title i {
+    font-size: 1.3rem;
+  }
+
+  .section-text {
+    font-size: 1rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .stat-card {
+    padding: 1.25rem;
+  }
+
+  .stat-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .stat-icon i {
+    font-size: 1.5rem;
+  }
+
+  .stat-value {
+    font-size: 1.25rem;
+  }
+
+  .collection-table {
+    font-size: 0.9rem;
+  }
+
+  .collection-table thead th,
+  .collection-table tbody td {
+    padding: 0.85rem 1rem;
+  }
+
+  .collection-table tbody td:last-child {
+    text-align: left;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-title {
+    font-size: 1.25rem;
+  }
+
+  .collection-table {
+    font-size: 0.85rem;
+  }
+
+  .collection-table thead th,
+  .collection-table tbody td {
+    padding: 0.75rem 0.75rem;
+  }
+}
+
+/* Dark Theme Support */
+html[data-theme="dark"] .content-section,
+html[data-theme="dark"] .collection-section {
+  background: var(--bg-card-dark);
+  border-left-color: var(--primary-light);
+}
+
+html[data-theme="dark"] .statistics-section {
+  background: linear-gradient(135deg, var(--tertiary-dark), #1a3a4a);
+}
+
+html[data-theme="dark"] .stat-card {
+  background: var(--bg-card-dark);
+  border-color: var(--border-color-dark);
+}
+
+html[data-theme="dark"] .collection-table tbody tr {
+  background: var(--bg-card-dark);
+}
+
+html[data-theme="dark"] .collection-table tbody tr:nth-child(even) {
+  background: var(--tertiary-dark);
+}
+
+html[data-theme="dark"] .collection-table tbody tr:hover {
+  background: #2a4a5a;
+}

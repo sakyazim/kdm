@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | Kütüphane Yönetim Paneli</title>
+<link rel="alternate" hreflang="tr" href="https://kdm.anadolu.edu.tr/admin-panel.html"/>
+<link rel="alternate" hreflang="en" href="https://kdm.anadolu.edu.tr/admin-panel.html"/>
+<link rel="alternate" hreflang="x-default" href="https://kdm.anadolu.edu.tr/admin-panel.html"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="assets/css/admin-panel.css?v=2.0">
+</head>
+<body data-bs-theme="light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-pencil-square me-2"></i>
+                <strong>Admin Panel v2.0</strong>
+            </a>
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-sm btn-success" id="quickDownloadBtn" disabled title="JSON'u İndir">
+                    <i class="bi bi-download me-1"></i>İndir
+                </button>
+                <button class="btn btn-sm btn-info text-white" id="quickPreviewBtn" disabled title="JSON Önizleme">
+                    <i class="bi bi-code-square"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-light" id="darkModeToggle" title="Karanlık Mod">
+                    <i class="bi bi-moon-fill"></i>
+                </button>
+                <span class="badge bg-light text-dark" id="fileCounter">0 Dosya</span>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid p-4">
+        <div class="row">
+            <button class="btn btn-primary sidebar-toggle-btn" id="sidebarToggle" aria-label="Toggle Sidebar">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+            <div class="col-lg-2 col-md-3 mb-4 sidebar-column" id="sidebarColumn">
+                <div class="card shadow-sm sticky-top" style="top: 80px;">
+                    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                        <h6 class="mb-0 sidebar-title">
+                            <i class="bi bi-folder2-open me-2"></i>
+                            <span class="sidebar-text">JSON Dosyaları</span>
+                        </h6>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="p-3 border-bottom">
+                            <input type="text" class="form-control form-control-sm" id="fileSearch" placeholder="Dosya ara...">
+                        </div>
+                        <div class="accordion accordion-flush" id="fileAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#pagesCollapse">
+                                        <i class="bi bi-file-earmark-text me-2"></i>
+                                        <strong class="sidebar-text">Pages</strong>
+                                        <span class="badge bg-primary ms-auto me-2" id="pagesCount">0</span>
+                                    </button>
+                                </h2>
+                                <div id="pagesCollapse" class="accordion-collapse collapse show">
+                                    <div class="accordion-body p-0">
+                                        <div class="list-group list-group-flush" id="pagesList"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#contentCollapse">
+                                        <i class="bi bi-box-seam me-2"></i>
+                                        <strong class="sidebar-text">Content</strong>
+                                        <span class="badge bg-success ms-auto me-2" id="contentCount">0</span>
+                                    </button>
+                                </h2>
+                                <div id="contentCollapse" class="accordion-collapse collapse">
+                                    <div class="accordion-body p-0">
+                                        <div class="list-group list-group-flush" id="contentList"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#globalCollapse">
+                                        <i class="bi bi-globe me-2"></i>
+                                        <strong class="sidebar-text">Global</strong>
+                                        <span class="badge bg-warning ms-auto me-2" id="globalCount">0</span>
+                                    </button>
+                                </h2>
+                                <div id="globalCollapse" class="accordion-collapse collapse">
+                                    <div class="accordion-body p-0">
+                                        <div class="list-group list-group-flush" id="globalList"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#agreementsCollapse">
+                                        <i class="bi bi-file-earmark-check me-2"></i>
+                                        <strong class="sidebar-text">Agreements</strong>
+                                        <span class="badge bg-danger ms-auto me-2" id="agreementsCount">0</span>
+                                    </button>
+                                </h2>
+                                <div id="agreementsCollapse" class="accordion-collapse collapse">
+                                    <div class="accordion-body p-0">
+                                        <div class="list-group list-group-flush" id="agreementsList"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-6 mb-4 editor-column" id="editorColumn">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="mb-0" id="currentFileName">
+                                <i class="bi bi-file-earmark-code me-2"></i>
+                                Dosya Seçin
+                            </h5>
+                            <small class="text-muted" id="currentFilePath"></small>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn btn-sm btn-outline-primary" id="uploadJsonBtn" disabled>
+                                <i class="bi bi-upload me-1"></i>Yükle
+                            </button>
+                            <button class="btn btn-sm btn-primary" id="downloadJsonBtn" disabled>
+                                <i class="bi bi-download me-1"></i>İndir
+                            </button>
+                            <button class="btn btn-sm btn-info text-white" id="showJsonPreviewBtn" disabled data-bs-toggle="modal" data-bs-target="#fullscreenJsonModal" title="JSON Önizleme">
+                                <i class="bi bi-code-square"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-header bg-light border-top" id="breadcrumbContainer" style="display: none;">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0 small" id="breadcrumbNav">
+                                <li class="breadcrumb-item active">Root</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="card-header border-top" id="fieldSearchContainer" style="display: none;">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="fieldSearch" placeholder="Alan ara... (örn: title, description)">
+                            <button class="btn btn-outline-secondary" type="button" id="clearFieldSearch">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <small class="text-muted" id="searchResultCount"></small>
+                    </div>
+                    <div id="sectionTabsContainer" style="display: none;">
+                        <ul class="nav nav-tabs card-header bg-white border-bottom-0" id="sectionTabs" role="tablist"></ul>
+                    </div>
+                    <div class="card-body" style="max-height: calc(100vh - 280px); overflow-y: auto;">
+                        <div id="welcomeScreen" class="text-center py-5">
+                            <i class="bi bi-arrow-left-circle display-1 text-muted mb-3"></i>
+                            <h4 class="text-muted">Soldan bir JSON dosyası seçin</h4>
+                            <p class="text-muted">Düzenlemek için soldaki listeden bir dosya seçebilirsiniz</p>
+                        </div>
+                        <div id="masterDetailContainer" class="master-detail-container" style="display: none;">
+                            <div class="master-list">
+                                <div class="master-header">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h6 class="mb-0">
+                                            <i class="bi bi-card-list me-2"></i>
+                                            <span id="masterListTitle">Kartlar</span>
+                                            <span class="badge bg-primary ms-2" id="masterCardCount">0</span>
+                                        </h6>
+                                        <button class="btn btn-sm btn-success" id="addNewCardBtn" title="Yeni Kart Ekle">
+                                            <i class="bi bi-plus-lg"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text" class="form-control form-control-sm" id="masterSearch" placeholder="Kart ara...">
+                                </div>
+                                <div class="master-items" id="masterItems">
+                                </div>
+                            </div>
+                            <div class="resize-handle" id="resizeHandle" title="Sürükleyerek genişliği ayarlayın">
+                                <div class="resize-handle-line"></div>
+                            </div>
+                            <div class="detail-panel">
+                                <div class="detail-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h6 class="mb-0" id="detailTitle">
+                                            <i class="bi bi-pencil-square me-2"></i>
+                                            Kart Seçin
+                                        </h6>
+                                        <div class="btn-group btn-group-sm" id="detailActions" style="display: none;">
+                                            <button class="btn btn-outline-danger" id="deleteCardBtn" title="Kartı Sil">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                            <button class="btn btn-outline-secondary" id="moveCardUpBtn" title="Yukarı Taşı">
+                                                <i class="bi bi-arrow-up"></i>
+                                            </button>
+                                            <button class="btn btn-outline-secondary" id="moveCardDownBtn" title="Aşağı Taşı">
+                                                <i class="bi bi-arrow-down"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="detail-body" id="detailBody">
+                                    <div class="empty-state" id="detailEmptyState">
+                                        <i class="bi bi-inbox display-4 text-muted mb-3"></i>
+                                        <p class="text-muted">Soldan bir kart seçin veya yeni kart ekleyin</p>
+                                    </div>
+                                    <form id="detailEditorForm" style="display: none;">
+                                    </form>
+                                </div>
+                                <div class="detail-footer" id="detailFooter" style="display: none;">
+                                    <div class="d-flex justify-content-end gap-2">
+                                        <button type="button" class="btn btn-sm btn-secondary" id="cancelCardBtn">
+                                            <i class="bi bi-x-lg me-1"></i>İptal
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-primary" id="saveCardBtn">
+                                            <i class="bi bi-check-lg me-1"></i>Kaydet
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <form id="editorForm" style="display: none;">
+                            <div class="tab-content" id="sectionTabContent"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-dark preview-toggle-btn" id="previewToggle" aria-label="Toggle Preview">
+                <i class="bi bi-chevron-right"></i>
+            </button>
+            <div class="col-lg-5 col-md-3 mb-4 live-preview-column" id="livePreviewColumn">
+                <div class="card shadow-sm sticky-top" style="top: 80px; height: calc(100vh - 100px);">
+                    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                        <h6 class="mb-0">
+                            <i class="bi bi-eye me-2"></i>
+                            Canlı Önizleme
+                        </h6>
+                        <button class="btn btn-sm btn-outline-light" id="previewCollapseBtn" title="Önizlemeyi Daralt">
+                            <i class="bi bi-arrows-angle-contract"></i>
+                        </button>
+                    </div>
+                    <div class="card-body p-0 h-100">
+                        <iframe id="livePreviewIframe" src="about:blank" frameborder="0" class="w-100 h-100"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="fullscreenJsonModal" tabindex="-1" data-bs-backdrop="static">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content bg-dark">
+                <div class="modal-header bg-dark text-white border-secondary">
+                    <div class="d-flex align-items-center gap-3">
+                        <h5 class="modal-title mb-0">
+                            <i class="bi bi-code-square me-2"></i>
+                            JSON Önizleme - Tam Ekran
+                        </h5>
+                        <span class="badge bg-light text-dark" id="fullscreenJsonSize">0 karakter</span>
+                        <span class="badge bg-success" id="fullscreenJsonStatus">Geçerli</span>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-sm btn-outline-light" id="fullscreenCopyBtn" title="JSON'u Kopyala">
+                            <i class="bi bi-clipboard me-1"></i>Kopyala
+                        </button>
+                        <button class="btn btn-sm btn-outline-light" id="fullscreenDownloadBtn" title="JSON'u İndir">
+                            <i class="bi bi-download me-1"></i>İndir
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-light" data-bs-dismiss="modal" title="Kapat">
+                            <i class="bi bi-x-lg me-1"></i>Kapat
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-body p-0 bg-dark">
+                    <pre id="fullscreenJsonPreview" class="m-0 p-4 h-100" style="overflow: auto;"><code class="text-muted">Yükleniyor...</code></pre>
+                </div>
+                <div class="modal-footer bg-dark text-white border-secondary">
+                    <small class="text-muted me-auto" id="fullscreenFileName">Dosya: -</small>
+                    <small class="text-muted">ESC tuşuyla veya Kapat butonuyla çıkabilirsiniz</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="uploadModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="bi bi-upload me-2"></i>JSON Dosyası Yükle</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="file" class="form-control" id="fileInput" accept=".json">
+                    <div class="alert alert-info mt-3 mb-0">
+                        <i class="bi bi-info-circle me-2"></i>
+                        Yüklediğiniz JSON dosyası mevcut içeriğin üzerine yazılacaktır.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                    <button type="button" class="btn btn-primary" id="confirmUpload">Yükle</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/admin-panel.js?v=2.0"></script>
+</body>
+</html>
+
