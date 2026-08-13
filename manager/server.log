@@ -1,0 +1,6 @@
+[127.0.0.1] "GET /api/files HTTP/1.1" 200 -
+[127.0.0.1] "GET /api/file?path=data/pages/iletisim.json HTTP/1.1" 200 -
+[127.0.0.1] "GET /api/file?path=data/pages/iletisim.json HTTP/1.1" 200 -
+[127.0.0.1] "POST /api/validate HTTP/1.1" 200 -
+[127.0.0.1] "POST /api/file HTTP/1.1" 200 -
+[127.0.0.1] "POST /api/file HTTP/1.1" 200 -

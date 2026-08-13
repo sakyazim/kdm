@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kütüphane İçerik Yönetimi</title>
+<link rel="stylesheet" href="/manager/assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">📚</span>
+    <div>
+      <h1>Kütüphane İçerik Yönetimi</h1>
+      <span class="subtitle">Lokal yönetim aracı — her kayıt git commit'i olarak saklanır</span>
+    </div>
+  </div>
+  <div class="topbar-actions">
+    <span id="gitStatus" class="git-status" title="Git durumu">…</span>
+    <input id="commitMessage" class="commit-msg" type="text" placeholder="Commit mesajı (opsiyonel)" title="Bu kayıt için açıklama">
+    <button id="validateBtn" class="btn" disabled title="Kaydetmeden önce doğrula">Doğrula</button>
+    <button id="saveBtn" class="btn primary" disabled title="Ctrl+S ile de kaydedebilirsiniz">Kaydet ve Commit Et</button>
+  </div>
+</header>
+
+<div id="errorBanner" class="error-banner hidden"></div>
+
+<main class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-search">
+      <input id="fileSearch" type="text" placeholder="Dosya ara…">
+    </div>
+    <div id="fileTree" class="file-tree"></div>
+  </aside>
+
+  <section class="editor">
+    <div class="editor-header">
+      <div>
+        <h2 id="editorTitle">Dosya seçin</h2>
+        <p id="editorDesc" class="muted">Soldaki listeden bir JSON dosyası seçin.</p>
+      </div>
+      <div id="editorMeta" class="editor-meta"></div>
+    </div>
+    <div id="formArea" class="form-area"></div>
+    <textarea id="rawArea" class="raw-area hidden" spellcheck="false"></textarea>
+  </section>
+
+  <aside class="preview">
+    <div class="preview-bar">
+      <span>Önizleme</span>
+      <div>
+        <a id="openSiteLink" class="btn small" href="/" target="_blank" rel="noopener">Sitede Aç ↗</a>
+        <button id="previewToggle" class="btn small">Gizle</button>
+      </div>
+    </div>
+    <iframe id="previewFrame" src="/" title="Önizleme"></iframe>
+  </aside>
+</main>
+
+<script src="/manager/assets/app.js"></script>
+</body>
+</html>
