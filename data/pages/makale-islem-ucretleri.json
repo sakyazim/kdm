@@ -433,5 +433,16 @@
         "class": "btn-outline-primary"
       }
     ]
-  }
+  },
+  "meta": {
+    "title": {
+      "tr": "Makale İşlem Ücretleri (APC)",
+      "en": ""
+    },
+    "description": {
+      "tr": "Anadolu Üniversitesi Kütüphane - Makale İşlem Ücretleri (APC) ve Oku & Yayımla Anlaşmaları Rehberi",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-14 15:25"
 }

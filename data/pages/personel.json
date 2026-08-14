@@ -1469,5 +1469,16 @@
         "link": "index.html"
       }
     ]
-  }
+  },
+  "meta": {
+    "title": {
+      "tr": "Personel",
+      "en": ""
+    },
+    "description": {
+      "tr": "Anadolu Üniversitesi Kütüphane ve Dokümantasyon Daire Başkanlığı Personeli ve Bölümler",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-14 15:25"
 }

@@ -1098,5 +1098,16 @@
         }
       ]
     }
-  ]
+  ],
+  "meta": {
+    "title": {
+      "tr": "Üyelik & Ödünç İşlemleri",
+      "en": ""
+    },
+    "description": {
+      "tr": "Anadolu Üniversitesi Kütüphane - Üyelik ve Ödünç İşlemleri Rehberi",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-14 15:25"
 }

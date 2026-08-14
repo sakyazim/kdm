@@ -16,9 +16,11 @@ dosyalarını okur/yazar ve her kaydı git commit'i olarak saklar.
 import json
 import mimetypes
 import os
+import re
 import secrets
 import sys
 import urllib.parse
+from datetime import datetime, timedelta, timezone
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -90,7 +92,9 @@ def _resolve_registry(fields):
 
 
 def _pretty_key(key):
-    return str(key).replace("-", " ").replace("_", " ").capitalize()
+    """camelCase anahtarları okunur etiketlere çevirir: viewAllButton → View All Button"""
+    s = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", " ", str(key))
+    return s.replace("-", " ").replace("_", " ").capitalize()
 
 
 def _infer_field(key, value, depth=0):
@@ -98,7 +102,10 @@ def _infer_field(key, value, depth=0):
     if isinstance(value, dict):
         if "tr" in value or "en" in value:
             return {"key": key, "label": _pretty_key(key), "type": "lang"}
-        if depth < 2 and all(isinstance(v, (dict, list, str, int, float, bool)) for v in value.values()):
+        # Derinlik sınırı: sığ ayar nesnelerini (viewAllButton vb.) JSON textarea'ya
+        # düşürmemek için yeterince derine izin ver; aşırı iç içe kalmış değerler
+        # yine "raw" olarak gösterilir.
+        if depth < 6 and all(isinstance(v, (dict, list, str, int, float, bool)) for v in value.values()):
             return {
                 "key": key,
                 "label": _pretty_key(key),
@@ -146,12 +153,40 @@ def dynamic_schema(content):
     return schema
 
 
+SCHEMAS = load_schemas()
+SCHEMA_MTIMES = {}
+
+
+def _schema_mtimes():
+    res = {}
+    if os.path.isdir(SCHEMAS_DIR):
+        for fn in os.listdir(SCHEMAS_DIR):
+            if fn.startswith("_") or not fn.endswith(".json"):
+                continue
+            p = os.path.join(SCHEMAS_DIR, fn)
+            try:
+                res[p] = os.path.getmtime(p)
+            except OSError:
+                pass
+    return res
+
+
+def _reload_schemas_if_changed():
+    """Şema dosyaları düzenlendiğinde sunucuyu yeniden başlatmadan yeniden yükle."""
+    global SCHEMAS, SCHEMA_MTIMES
+    mt = _schema_mtimes()
+    if mt != SCHEMA_MTIMES:
+        try:
+            SCHEMAS = load_schemas()
+        except Exception as e:
+            print("Şema yenileme hatası: %s" % e)
+        SCHEMA_MTIMES = mt
+
+
 def get_schema(relpath, content):
+    _reload_schemas_if_changed()
     s = SCHEMAS.get(relpath)
     return s if s else dynamic_schema(content)
-
-
-SCHEMAS = load_schemas()
 
 # Canlı önizleme: oturum (sid) -> {dosya yolu: {"content": ..., "errors": [...], "valid": bool}}
 PREVIEW_STORE = {}
@@ -365,6 +400,9 @@ def api_save_file(payload):
         return 400, {"ok": False, "errors": ["Geçersiz dosya yolu (data/ altında .json olmalı)."]}
     if not isinstance(content, (dict, list)):
         return 400, {"ok": False, "errors": ["İçerik bir JSON nesnesi veya dizisi olmalı."]}
+    # lastModified alanı varsa kayıt anında otomatik güncelle (Türkiye saati, UTC+3, 24 saat)
+    if isinstance(content, dict) and "lastModified" in content:
+        content["lastModified"] = (datetime.now(timezone.utc) + timedelta(hours=3)).strftime("%Y-%m-%d %H:%M")
     errors = validation.validate(content, relpath, get_schema(relpath, content), ROOT)
     if errors:
         return 400, {"ok": False, "validated": False, "errors": errors}

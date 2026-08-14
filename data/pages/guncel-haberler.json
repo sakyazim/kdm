@@ -126,7 +126,7 @@
     {
       "id": 1,
       "title": {
-        "tr": "---Yeni Veritabanı Erişimi Açıldı",
+        "tr": "Yeni Veritabanı Erişimi Açıldı",
         "en": "New Database Access Opened"
       },
       "summary": {
@@ -138,7 +138,7 @@
         "en": "Access to new academic databases has been opened in our library. You can expand your research with these databases. You can access current resources especially in engineering, social sciences and medicine.\n\nNewly added databases include IEEE Xplore, JSTOR, PubMed and Web of Science. You can access 24/7 from campus network or via VPN.\n\nYou can visit our library website for detailed user guides and training videos, or get support from the information desk."
       },
       "image": "assets/images/nopic.jpeg",
-      "date": "2024-01-15",
+      "date": "2026-08-10",
       "category": "Veritabanları",
       "categoryColor": "#1F4C8A",
       "actionType": "external",
@@ -160,7 +160,7 @@
         "en": "Our library opening hours have been updated for the new semester. We serve weekdays from 08:00-22:00, weekends from 09:00-18:00.\n\nOpening hours may change on special days and exam periods. You can follow our website for current information.\n\nSummer period and public holiday opening hours will be announced separately."
       },
       "image": "assets/images/nopic.jpeg",
-      "date": "2024-01-10",
+      "date": "2026-08-05",
       "category": "Duyuru",
       "categoryColor": "#C03221",
       "actionType": "modal",
@@ -182,7 +182,7 @@
         "en": "Registration for information literacy training sessions for our students has started. The training covers research techniques, resource evaluation and academic writing.\n\nTraining Program Content:\n• Access to information resources and search strategies\n• Use of academic databases\n• Resource evaluation and reliability analysis\n• Citation and reference management\n• Plagiarism avoidance techniques\n\nOnline and face-to-face options are available. Visit the library website to register."
       },
       "image": "assets/images/nopic.jpeg",
-      "date": "2024-01-08",
+      "date": "2026-07-25",
       "category": "Eğitim",
       "categoryColor": "#198754",
       "actionType": "page",
@@ -204,7 +204,7 @@
         "en": "Our events organized within the scope of International Open Access Week are starting. Seminars will be held on open science, open data and academic publishing.\n\nEvent Program:\n• October 23: Open Access and Academic Publishing Seminar\n• October 24: Open Data Management Workshop\n• October 25: ORCID and Researcher Profiles Training\n• October 26: Creative Commons Licenses Panel\n• October 27: Open Science Applications Workshop\n\nAll events are free and certificates of participation will be provided."
       },
       "image": "assets/images/nopic.jpeg",
-      "date": "2024-01-05",
+      "date": "2026-07-15",
       "category": "Etkinlik",
       "categoryColor": "#fd7e14",
       "url": "#",
@@ -225,11 +225,12 @@
         "en": "5 new group study rooms on the 2nd floor of our library are now available. Each room is designed for groups of 4-6 people.\n\nRoom Features:\n• Smart board and projection system\n• Whiteboard\n• Ergonomic tables and chairs\n• Quiet and air-conditioned environment\n• Wi-Fi access\n\nYou can make online reservations through the library website."
       },
       "image": "assets/images/nopic.jpeg",
-      "date": "2024-01-03",
+      "date": "2026-07-08",
       "category": "Duyuru",
       "categoryColor": "#C03221",
       "url": "calisma-odalari.html",
-      "featured": true
+      "featured": true,
+      "actionType": "page"
     },
     {
       "id": 6,
@@ -246,7 +247,7 @@
         "en": "The 2024 version of the thesis writing guide for graduate students has been published. The new guide explains APA 7 format in detail.\n\nUpdated Sections:\n• APA 7th Edition citation rules\n• Electronic resource citation\n• Table and figure usage\n• Digital thesis preparation requirements\n\nYou can download the guide in PDF format from the library website."
       },
       "image": "assets/images/nopic.jpeg",
-      "date": "2023-12-28",
+      "date": "2026-06-25",
       "category": "Eğitim",
       "categoryColor": "#198754",
       "url": "#",
@@ -267,7 +268,7 @@
         "en": "5000 new resources have been added to our collection with the first book purchase of 2024. New books have been selected according to faculty and student requests.\n\nCategory Distribution:\n• Social Sciences: 1500 books\n• Natural Sciences: 1200 books\n• Engineering: 1000 books\n• Medicine and Health: 800 books\n• Fine Arts: 500 books\n\nYou can view new books from the catalog using the 'New Arrivals' filter."
       },
       "image": "assets/images/nopic.jpeg",
-      "date": "2023-12-20",
+      "date": "2026-06-12",
       "category": "Duyuru",
       "categoryColor": "#C03221",
       "url": "#",
@@ -288,7 +289,7 @@
         "en": "A workshop on data management and sharing for researchers will be organized. The workshop will cover the storage, organization and sharing of research data.\n\nTopics:\n• Preparing a data management plan\n• Data storage and archiving\n• Data sharing platforms\n• FAIR data principles\n• Data security and ethics\n\nPre-registration is required for participation. Certificates of participation will be provided at the end of the workshop."
       },
       "image": "assets/images/nopic.jpeg",
-      "date": "2023-12-15",
+      "date": "2026-05-28",
       "category": "Etkinlik",
       "categoryColor": "#fd7e14",
       "url": "#",
@@ -324,5 +325,16 @@
         "action": "/sss.html"
       }
     ]
-  }
+  },
+  "meta": {
+    "title": {
+      "tr": "Güncel Haberler",
+      "en": ""
+    },
+    "description": {
+      "tr": "Anadolu Üniversitesi Kütüphane - Güncel Haberler, Duyurular ve Etkinlikler",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-14 15:25"
 }

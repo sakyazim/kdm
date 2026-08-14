@@ -20,3 +20,6 @@ manager/config.json
 manager/server.log
 manager-v2/server.log
 manager-v2/config.json
+
+# Anasayfa/diger duzeltmeler oncesi klasor yedekleri
+_yedek/

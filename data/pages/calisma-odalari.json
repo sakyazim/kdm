@@ -415,5 +415,16 @@
         "link": "index.html"
       }
     ]
-  }
+  },
+  "meta": {
+    "title": {
+      "tr": "Çalışma Odaları",
+      "en": ""
+    },
+    "description": {
+      "tr": "Anadolu Üniversitesi Kütüphane - Çalışma Odaları",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-14 15:25"
 }

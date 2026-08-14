@@ -555,5 +555,16 @@
         "icon": "bi bi-question-circle"
       }
     ]
-  }
+  },
+  "meta": {
+    "title": {
+      "tr": "Gizlilik",
+      "en": ""
+    },
+    "description": {
+      "tr": "Anadolu Üniversitesi Kütüphane",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-14 15:25"
 }

@@ -39,28 +39,65 @@ export class HomePage {
     // Section başlıklarını güncelle
     this.updateSectionTitles();
 
-    // Koleksiyonlar verisi yoksa varsayılan verileri yükle
-    if (!this.data.collections) {
-      this.loadFallbackCollections();
+    // home.json sections.*.enabled ayarlarına göre bölümleri göster/gizle
+    this.applySectionVisibility();
+
+    // Bölümler etkinse verileri yükle (home.json sections.*.enabled)
+    const sections = this.data.homeSettings?.sections || {};
+    if (sections.collections?.enabled !== false) {
+      // Koleksiyonlar verisi yoksa varsayılan verileri yükle
+      if (!this.data.collections) {
+        this.loadFallbackCollections();
+      }
+      this.loadCollections();
+      this.setupCollectionCards();
+    }
+    if (sections.services?.enabled !== false) {
+      this.loadServices();
+    }
+    if (sections.news?.enabled !== false) {
+      this.loadNews();
+      this.initializeSliders();
     }
 
-    this.loadCollections();
-    this.loadServices();
-    this.loadNews();
-
     // Duyurular bileşenini başlat (duyurular.json'dan featured olanları)
-    await this.loadAnnouncements();
+    if (sections.announcements?.enabled !== false) {
+      await this.loadAnnouncements();
+    }
 
-    this.loadArrivals();
+    if (sections.arrivals?.enabled !== false) {
+      this.loadArrivals();
+      this.setupArrivalsInteraction();
+    }
 
-    this.setupCollectionCards();
-    this.initializeSliders();
-    this.setupArrivalsInteraction();
     this.setupAutoModal();
     this.setupCopyCallNumber();
     this.updateViewAllLinks();
 
     Utils.log('HomePage initialized');
+  }
+
+  /**
+   * home.json sections.*.enabled ayarlarına göre bölümleri göster/gizle
+   */
+  applySectionVisibility() {
+    const sections = this.data.homeSettings?.sections;
+    if (!sections) return;
+    const setVisible = (selector, on) => {
+      const el = document.querySelector(selector);
+      if (el) el.style.display = on ? '' : 'none';
+    };
+    setVisible('section.collections', sections.collections?.enabled !== false);
+    setVisible('section.library-quick-services', sections.services?.enabled !== false);
+
+    // Haber ve duyurular aynı section içinde (article + aside)
+    const newsOn = sections.news?.enabled !== false;
+    const annOn = sections.announcements?.enabled !== false;
+    setVisible('article.slider-container', newsOn);
+    setVisible('aside.announcements-container', annOn);
+    if (!newsOn && !annOn) setVisible('section.news-announcements', false);
+
+    setVisible('section.arrivals', sections.arrivals?.enabled !== false);
   }
 
   /**
@@ -581,8 +618,15 @@ export class HomePage {
    * @returns {string} URL
    */
   getActionUrl(item, basePage) {
-    // ActionType yoksa eski sistemi kullan (default: modal)
+    // ActionType yazılmamışsa:
+    // - url gerçek bir hedefse (sayfa/dış link) sayfa olarak davran — actionType'ı unutmak
+    //   artık ölü link üretmez (kapana karşı güvenlik)
+    // - url yoksa veya '#' ise eski davranış: modal
     if (!item.actionType) {
+      const u = item.url;
+      if (u && u !== '#' && !u.startsWith('#')) {
+        return u;
+      }
       return `${basePage}?id=${item.id}`;
     }
 
@@ -611,9 +655,16 @@ export class HomePage {
   loadNews() {
     if (!this.data.news || this.data.news.length === 0) return;
 
-    // Sadece featured haberleri al
-    const featuredNews = this.data.news.filter(news => news.featured === true);
+    // Sadece featured haberleri al, tarihe göre yeniden eskiye sırala
+    let featuredNews = this.data.news
+      .filter(news => news.featured === true)
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
     if (featuredNews.length === 0) return;
+
+    // home.json sections.news.maxItems ayarını uygula (config fallback)
+    const maxItems = this.data.homeSettings?.sections?.news?.maxItems
+      || this.config.maxNewsItems || 4;
+    featuredNews = featuredNews.slice(0, maxItems);
 
     const sliderContainer = document.querySelector('.slider-items-container');
     const indicatorsContainer = document.querySelector('.slider-indicators');
@@ -666,7 +717,10 @@ export class HomePage {
    */
   async loadAnnouncements() {
     try {
-      const response = await fetch('data/pages/duyurular.json');
+      // Veri kaynağını home.json'dan al (sections.announcements.dataSource), fallback: varsayılan
+      const dataSource = this.data.homeSettings?.sections?.announcements?.dataSource
+        || 'data/pages/duyurular.json';
+      const response = await fetch(dataSource);
       if (!response.ok) {
         console.warn('Duyurular verisi yüklenemedi');
         return;
@@ -675,8 +729,10 @@ export class HomePage {
       const data = await response.json();
       const announcementItems = data.announcementItems || [];
 
-      // Sadece featured olanları filtrele
-      const featuredAnnouncements = announcementItems.filter(item => item.featured === true);
+      // Sadece featured olanları filtrele, tarihe göre yeniden eskiye sırala
+      const featuredAnnouncements = announcementItems
+        .filter(item => item.featured === true)
+        .sort((a, b) => new Date(b.date) - new Date(a.date));
 
       // Announcements component'ine gönder
       this.announcementsComponent.init(featuredAnnouncements);
@@ -864,11 +920,23 @@ export class HomePage {
       return;
     }
 
-    // Slider otomatik geçiş süresi
-    const autoSlideInterval = this.config.sliderInterval || 5000;
+    // Slider ayarlarını home.json sliderSettings'ten al, fallback: config
+    const s = this.data.homeSettings?.sliderSettings || {};
+    this.sliderConfig = {
+      duration: parseInt(s.duration, 10) || this.config.sliderDuration || 5000,
+      autoPlay: s.autoPlay !== false,
+      showProgressBar: s.showProgressBar !== false,
+      pauseOnHover: s.pauseOnHover !== false
+    };
+
+    // showProgressBar kapalıysa ilerleme çubuğunu gizle
+    if (!this.sliderConfig.showProgressBar) {
+      document.querySelector('.slider-progress-container')
+        ?.style.setProperty('display', 'none');
+    }
 
     // Slider'ı başlat
-    this.startSlider(slides, indicators, progressFill, autoSlideInterval);
+    this.startSlider(slides, indicators, progressFill, this.sliderConfig.duration);
 
     // Gösterge düğmelerine tıklama olayları
     if (indicators && indicators.length > 0) {
@@ -900,14 +968,36 @@ export class HomePage {
     // Önceki zamanlayıcıları temizle
     if (this.slideInterval) clearInterval(this.slideInterval);
     if (this.progressInterval) clearInterval(this.progressInterval);
-    
-    // Otomatik geçiş için zamanlayıcı
-    this.slideInterval = setInterval(() => {
-      this.nextSlide(slides, indicators, progressFill);
-    }, interval);
-    
+
+    const cfg = this.sliderConfig || { autoPlay: true, showProgressBar: true, pauseOnHover: true };
+
+    // Otomatik geçiş için zamanlayıcı (autoPlay kapalıysa başlatma)
+    if (cfg.autoPlay) {
+      this.slideInterval = setInterval(() => {
+        this.nextSlide(slides, indicators, progressFill);
+      }, interval);
+    }
+
+    // Hover'da duraklat (pauseOnHover) — bir kez bağla, her başlatmada yeniden bağlama
+    if (cfg.pauseOnHover && !this._pauseBound) {
+      this._pauseBound = true;
+      const container = document.querySelector('.slider-container');
+      if (container) {
+        const resume = () => {
+          if (cfg.autoPlay) {
+            this.startSlider(slides, indicators, progressFill, this.sliderConfig.duration);
+          }
+        };
+        container.addEventListener('mouseenter', () => {
+          if (this.slideInterval) clearInterval(this.slideInterval);
+          if (this.progressInterval) clearInterval(this.progressInterval);
+        });
+        container.addEventListener('mouseleave', resume);
+      }
+    }
+
     // İlerleme çubuğu için zamanlayıcı
-    if (progressFill) {
+    if (cfg.showProgressBar && progressFill) {
       progressFill.style.width = '0%';
       const stepTime = 50; // 50ms'de bir güncelle
       const steps = interval / stepTime;
@@ -951,8 +1041,8 @@ export class HomePage {
       indicators[index].classList.add('active');
     }
 
-    // Zamanlayıcıyı yeniden başlat
-    const interval = this.config.sliderInterval || 5000;
+    // Zamanlayıcıyı yeniden başlat (home.json sliderSettings.duration)
+    const interval = this.sliderConfig?.duration || this.config.sliderDuration || 5000;
     this.startSlider(slides, indicators, progressFill, interval);
   }
   

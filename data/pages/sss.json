@@ -1129,5 +1129,16 @@
         }
       ]
     }
-  ]
+  ],
+  "meta": {
+    "title": {
+      "tr": "S.S.S. - Sıkça Sorulan Sorular",
+      "en": ""
+    },
+    "description": {
+      "tr": "Anadolu Üniversitesi Kütüphane - Sıkça Sorulan Sorular ve Cevapları",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-14 15:25"
 }

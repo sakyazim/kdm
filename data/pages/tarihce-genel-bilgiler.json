@@ -141,5 +141,16 @@
         "link": "index.html"
       }
     ]
-  }
+  },
+  "meta": {
+    "title": {
+      "tr": "Tarihçe ve Genel Bilgiler",
+      "en": ""
+    },
+    "description": {
+      "tr": "Anadolu Üniversitesi Kütüphane - Tarihçe ve Genel Bilgiler",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-14 15:25"
 }

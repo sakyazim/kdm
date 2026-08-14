@@ -367,5 +367,16 @@
         "link": "index.html"
       }
     ]
-  }
+  },
+  "meta": {
+    "title": {
+      "tr": "Kütüphane Kullanım Kuralları",
+      "en": ""
+    },
+    "description": {
+      "tr": "Anadolu Üniversitesi Kütüphane - Kütüphane Kullanım Kuralları ve Düzenlemeler",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-14 15:25"
 }

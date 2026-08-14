@@ -6,6 +6,7 @@
 import AppConfig from './config.js';
 import Utils from './utils.js';
 import { LanguageManager } from './language-manager.js';
+import MetaManager from './seo.js';
 import { ThemeManager } from '../components/theme.js';
 import { TooltipManager } from '../components/tooltip.js';
 import { HeaderManager } from '../components/header.js';
@@ -73,11 +74,13 @@ export class LibraryApp {
     this.accessibilityManager = null;
     this.agreementModalManager = null;
     this.mobileBottomBar = null;
-    this.quickAccess = null;
-
-    // Page instance
+    this.quickAccess = null;    // Page instance
     this.currentPage = null;
+
+    // SEO meta yönetimi
+    this.seo = new MetaManager(this);
     
+
     // Page info
     this.pageInfo = Utils.getPageInfo();
     
@@ -173,6 +176,13 @@ export class LibraryApp {
           console.log(`${fileName} loaded successfully (multi-lang)`, pageData);
         }
 
+        // SEO meta etiketlerini sayfa verisinden uygula (title, OG, canonical, JSON-LD...)
+        try {
+          this.seo.apply(pageData, this.pageInfo);
+        } catch (e) {
+          console.warn('SEO meta uygulanamadı:', e.message);
+        }
+
         // QuickAccess otomatik başlatma
         this.initQuickAccess(pageData);
 
@@ -233,11 +243,15 @@ export class LibraryApp {
   async loadContentData(contentTypes) {
     const loadPromises = contentTypes.map(async (key) => {
       try {
-        const fileName = this.config.dataFiles[key];
-        const response = await fetch(`${this.config.jsonPath}content/${fileName}`);
+        // home.json sections.<key>.dataSource ayarı varsa onu kullan, yoksa config fallback
+        const dataSource = this.data.homeSettings?.sections?.[key]?.dataSource
+          || `${this.config.jsonPath}content/${this.config.dataFiles[key]}`;
+        const response = await fetch(dataSource);
         if (response.ok) {
           this.data[key] = await response.json();
           console.log(`${key}.json loaded successfully`);
+        } else {
+          console.warn(`${key}.json yüklenemedi (${dataSource}): ${response.status}`);
         }
       } catch (error) {
         console.warn(`Error loading ${key}.json:`, error.message);
@@ -330,6 +344,14 @@ export class LibraryApp {
         console.warn(`Unknown page type: ${pageType}`);
         break;
     }
+
+    // SEO: sayfa verisi yüklendikten sonra meta etiketlerini uygula (title, OG, JSON-LD...)
+    try {
+      const pd = pageType === 'home' ? this.data.homeSettings : (this.currentPage?.pageData || null);
+      if (pd) this.seo.apply(pd, this.pageInfo);
+    } catch (e) {
+      console.warn('SEO meta uygulanamadı:', e.message);
+    }
   }
 
   /**
@@ -348,8 +370,9 @@ export class LibraryApp {
     // Haberler için özel yükleme (güncel-haberler.json'dan newsItems)
     await this.loadNewsFromGuncelHaberler();
 
-    // Duyurular için özel yükleme (duyurular.json'dan showInSlider: true olanlar)
-    await this.loadAnnouncementsFromDuyurular();
+    // Duyurular HomePage tarafından featured filtresiyle yüklenir
+    // (eski loadAnnouncementsFromDuyurular: showInSlider alanı veride yoktu,
+    // her zaman 0 kayıt dönüyordu ve duyurular.json iki kez çekiliyordu — kaldırıldı)
 
     // HomePage instance oluştur ve başlat
     this.currentPage = new HomePage(this);
@@ -361,7 +384,10 @@ export class LibraryApp {
    */
   async loadNewsFromGuncelHaberler() {
     try {
-      const response = await fetch('data/pages/guncel-haberler.json');
+      // Veri kaynağını home.json'dan al (sections.news.dataSource), fallback: varsayılan
+      const dataSource = this.data.homeSettings?.sections?.news?.dataSource
+        || 'data/pages/guncel-haberler.json';
+      const response = await fetch(dataSource);
       if (response.ok) {
         const data = await response.json();
         this.data.news = data.newsItems || [];
@@ -370,34 +396,6 @@ export class LibraryApp {
     } catch (error) {
       console.warn('Error loading news from guncel-haberler.json:', error.message);
       this.data.news = [];
-    }
-  }
-
-  /**
-   * Duyurular sayfasından ana sayfa slider için duyuruları yükle
-   * Sadece showInSlider: true olanları alır
-   */
-  async loadAnnouncementsFromDuyurular() {
-    try {
-      const response = await fetch('data/pages/duyurular.json');
-      if (response.ok) {
-        const data = await response.json();
-        // showInSlider: true olanları filtrele ve announcements formatına çevir
-        const sliderAnnouncements = (data.announcementItems || [])
-          .filter(item => item.showInSlider === true)
-          .map(item => ({
-            title: item.title,
-            description: item.summary,
-            date: item.date,
-            url: item.url || '#'
-          }));
-
-        this.data.announcements = sliderAnnouncements;
-        console.log('Announcements loaded from duyurular.json successfully:', sliderAnnouncements.length, 'items');
-      }
-    } catch (error) {
-      console.warn('Error loading announcements from duyurular.json:', error.message);
-      this.data.announcements = [];
     }
   }
 

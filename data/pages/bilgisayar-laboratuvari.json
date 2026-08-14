@@ -248,5 +248,16 @@
         "link": "index.html"
       }
     ]
-  }
+  },
+  "meta": {
+    "title": {
+      "tr": "Bilgisayar Laboratuvarı",
+      "en": ""
+    },
+    "description": {
+      "tr": "Anadolu Üniversitesi Kütüphane - Bilgisayar Laboratuvarı",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-14 15:25"
 }

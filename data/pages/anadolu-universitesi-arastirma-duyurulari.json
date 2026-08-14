@@ -48,5 +48,16 @@
         "link": "index.html"
       }
     ]
-  }
+  },
+  "meta": {
+    "title": {
+      "tr": "Araştırma Duyuruları",
+      "en": ""
+    },
+    "description": {
+      "tr": "Anadolu Üniversitesi Araştırma Duyuruları",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-14 15:25"
 }

@@ -63,11 +63,11 @@
     {
       "id": "kullanim-klavuzu",
       "title": {
-        "tr": "Kütüphane Kullanım Klavuzu",
+        "tr": "Kütüphane Kullanım Kılavuzu",
         "en": "Library Usage Guide"
       },
       "description": {
-        "tr": "Kütüphane Kullanım Klavuzu",
+        "tr": "Kütüphane Kullanım Kılavuzu",
         "en": "Library Usage Guide"
       },
       "icon": "bi bi-journal-bookmark",
@@ -106,11 +106,11 @@
     {
       "id": "saatler",
       "title": {
-        "tr": "Çalışma Satleri",
+        "tr": "Çalışma Saatleri",
         "en": "Opening Hours"
       },
       "description": {
-        "tr": "Çalışma Satleri",
+        "tr": "Çalışma Saatleri",
         "en": "Opening Hours"
       },
       "icon": "bi bi-clock",

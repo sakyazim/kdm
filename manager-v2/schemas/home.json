@@ -1,0 +1,372 @@
+{
+  "file": "data/pages/home.json",
+  "label": "Ana Sayfa Ayarları",
+  "description": "Ana sayfanın bölüm ayarları: slider davranışı, haber/duyuru/yeni gelen bölümlerinin hangi JSON dosyalarından beslendiği ve tüm çeviri metinleri.",
+  "fields": [
+    {
+      "key": "pageId",
+      "label": "Sayfa Kimliği",
+      "type": "text",
+      "readonly": true,
+      "hint": "Kilitli — yalnızca JSON dosyasından değiştirilebilir (yönlendirme için kullanılır)"
+    },
+    {
+      "key": "pageType",
+      "label": "Sayfa Tipi",
+      "type": "text",
+      "readonly": true,
+      "hint": "Kilitli — yalnızca JSON dosyasından değiştirilebilir"
+    },    {
+      "key": "meta",
+      "label": "SEO Bilgileri",
+      "type": "object",
+      "fields": [
+        { "key": "title", "label": "Sayfa Başlığı (title)", "type": "lang", "hint": "Sekme başlığı — iç sayfalarda otomatik \" | Anadolu Üniversitesi Kütüphane\" eklenir" },
+        { "key": "description", "label": "Açıklama (description)", "type": "lang", "hint": "Google sonuçlarında görünen 150-160 karakterlik özet" },
+        { "key": "keywords", "label": "Anahtar Kelimeler", "type": "lang", "hint": "Virgülle ayırın" },
+        { "key": "ogImage", "label": "Paylaşım Görseli (og:image)", "type": "text", "hint": "1200x630 önerilir. /assets/... veya tam URL" },
+        { "key": "ogType", "label": "İçerik Tipi (og:type)", "type": "text", "hint": "website (anasayfa) / article (iç sayfa) — boşsa otomatik" },
+        { "key": "section", "label": "Bölüm (article:section)", "type": "lang" },
+        { "key": "author", "label": "Yazar", "type": "lang" },
+        { "key": "publishedTime", "label": "Yayın Tarihi", "type": "date", "hint": "article:published_time için" },
+        { "key": "tags", "label": "Etiketler (article:tag)", "type": "array", "itemType": "text", "itemLabel": "Etiket" },
+        { "key": "searchUrlTemplate", "label": "Arama URL Şablonu", "type": "text", "hint": "SearchAction için — {search_term_string} yer tutucusu ile katalog arama adresi" },
+        { "key": "logo", "label": "Logo URL", "type": "text" },
+        {
+          "key": "openingHours",
+          "label": "Çalışma Saatleri (Google Şeması)",
+          "type": "array",
+          "itemLabel": "Saat Aralığı",
+          "itemFields": [
+            { "key": "dayOfWeek", "label": "Gün", "type": "select", "options": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] },
+            { "key": "opens", "label": "Açılış (HH:MM)", "type": "text" },
+            { "key": "closes", "label": "Kapanış (HH:MM)", "type": "text" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "sliderSettings",
+      "label": "Slider Ayarları",
+      "type": "object",
+      "fields": [
+        {
+          "key": "autoPlay",
+          "label": "Otomatik Oynat",
+          "type": "boolean"
+        },
+        {
+          "key": "duration",
+          "label": "Geçiş Süresi (ms)",
+          "type": "number",
+          "hint": "Örn: 5000 = 5 saniye"
+        },
+        {
+          "key": "showProgressBar",
+          "label": "İlerleme Çubuğu Göster",
+          "type": "boolean"
+        },
+        {
+          "key": "pauseOnHover",
+          "label": "Üzerine Gelince Dursun",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "key": "sections",
+      "label": "Bölümler",
+      "type": "object",
+      "fields": [
+        {
+          "key": "collections",
+          "label": "Koleksiyon Arama",
+          "type": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "label": "Etkin",
+              "type": "boolean"
+            },
+            {
+              "key": "title",
+              "label": "Başlık",
+              "type": "lang"
+            },
+            {
+              "key": "dataSource",
+              "label": "Veri Kaynağı (JSON)",
+              "type": "jsonfile",
+              "hint": "Koleksiyon kartlarının okunduğu JSON — tıklayınca açılır"
+            }
+          ]
+        },
+        {
+          "key": "services",
+          "label": "Kütüphane Hizmetleri",
+          "type": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "label": "Etkin",
+              "type": "boolean"
+            },
+            {
+              "key": "title",
+              "label": "Başlık",
+              "type": "lang"
+            },
+            {
+              "key": "maxItems",
+              "label": "Maks. Gösterim",
+              "type": "number",
+              "hint": "En fazla kaç hizmet kartı gösterilsin"
+            },
+            {
+              "key": "dataSource",
+              "label": "Veri Kaynağı (JSON)",
+              "type": "jsonfile",
+              "hint": "Hizmet kartlarının okunduğu JSON — tıklayınca açılır"
+            }
+          ]
+        },
+        {
+          "key": "news",
+          "label": "Güncel Haberler",
+          "type": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "label": "Etkin",
+              "type": "boolean"
+            },
+            {
+              "key": "title",
+              "label": "Başlık",
+              "type": "lang"
+            },
+            {
+              "key": "maxItems",
+              "label": "Slider'da Gösterilecek Haber Sayısı",
+              "type": "number"
+            },
+            {
+              "key": "dataSource",
+              "label": "Veri Kaynağı (JSON)",
+              "type": "jsonfile",
+              "hint": "Kilitli — üzerine tıklayınca dosya açılır, ✏️ ile düzenlenebilir"
+            },
+            {
+              "key": "dataKey",
+              "label": "Veri Anahtarı",
+              "type": "text",
+              "hint": "JSON içindeki dizi anahtarı (örn: newsItems)"
+            }
+          ]
+        },
+        {
+          "key": "announcements",
+          "label": "Duyurular",
+          "type": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "label": "Etkin",
+              "type": "boolean"
+            },
+            {
+              "key": "title",
+              "label": "Başlık",
+              "type": "lang"
+            },
+            {
+              "key": "itemsPerPage",
+              "label": "Sayfa Başına Duyuru",
+              "type": "number"
+            },
+            {
+              "key": "dataSource",
+              "label": "Veri Kaynağı (JSON)",
+              "type": "jsonfile",
+              "hint": "Kilitli — üzerine tıklayınca dosya açılır, ✏️ ile düzenlenebilir"
+            },
+            {
+              "key": "dataKey",
+              "label": "Veri Anahtarı",
+              "type": "text",
+              "hint": "JSON içindeki dizi anahtarı (örn: announcementItems)"
+            }
+          ]
+        },
+        {
+          "key": "arrivals",
+          "label": "Yeni Gelenler",
+          "type": "object",
+          "fields": [
+            {
+              "key": "enabled",
+              "label": "Etkin",
+              "type": "boolean"
+            },
+            {
+              "key": "title",
+              "label": "Başlık",
+              "type": "lang"
+            },
+            {
+              "key": "maxItems",
+              "label": "Gösterilecek Kitap Sayısı",
+              "type": "number"
+            },
+            {
+              "key": "dataSource",
+              "label": "Veri Kaynağı (JSON)",
+              "type": "jsonfile",
+              "hint": "Yeni gelenlerin okunduğu JSON — tıklayınca açılır"
+            },
+            {
+              "key": "viewAllButton",
+              "label": "\"Tümünü Gör\" Butonu",
+              "type": "object",
+              "fields": [
+                {
+                  "key": "enabled",
+                  "label": "Etkin",
+                  "type": "boolean"
+                },
+                {
+                  "key": "text",
+                  "label": "Buton Metni",
+                  "type": "lang"
+                },
+                {
+                  "key": "url",
+                  "label": "Bağlantı",
+                  "type": "url"
+                },
+                {
+                  "key": "target",
+                  "label": "Hedef",
+                  "type": "text",
+                  "hint": "_blank veya _self"
+                },
+                {
+                  "key": "icon",
+                  "label": "İkon (Bootstrap)",
+                  "type": "icon"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "translations",
+      "label": "Çeviriler",
+      "type": "object",
+      "fields": [
+        {
+          "key": "searchButton",
+          "label": "Ara Butonu",
+          "type": "lang"
+        },
+        {
+          "key": "detailsButton",
+          "label": "Detayları Gör Butonu",
+          "type": "lang"
+        },
+        {
+          "key": "viewAll",
+          "label": "Tümünü Gör",
+          "type": "lang"
+        },
+        {
+          "key": "copyNotification",
+          "label": "Kopyalama Bildirimi",
+          "type": "lang"
+        },
+        {
+          "key": "slider",
+          "label": "Slider Erişilebilirlik",
+          "type": "object",
+          "fields": [
+            {
+              "key": "prev",
+              "label": "Önceki",
+              "type": "lang"
+            },
+            {
+              "key": "next",
+              "label": "Sonraki",
+              "type": "lang"
+            }
+          ]
+        },
+        {
+          "key": "mobileCollection",
+          "label": "Mobil Koleksiyon Seçimi",
+          "type": "object",
+          "fields": [
+            {
+              "key": "ariaLabel",
+              "label": "Erişilebilirlik Etiketi",
+              "type": "lang"
+            }
+          ]
+        },
+        {
+          "key": "modal",
+          "label": "Açılır Pencere",
+          "type": "object",
+          "fields": [
+            {
+              "key": "close",
+              "label": "Kapat",
+              "type": "lang"
+            },
+            {
+              "key": "detailButton",
+              "label": "Detay Butonu",
+              "type": "lang"
+            },
+            {
+              "key": "dontShowAgain",
+              "label": "Tekrar Gösterme",
+              "type": "lang"
+            },
+            {
+              "key": "defaultTitle",
+              "label": "Varsayılan Başlık",
+              "type": "lang"
+            },
+            {
+              "key": "defaultDescription",
+              "label": "Varsayılan Açıklama",
+              "type": "lang"
+            }
+          ]
+        },
+        {
+          "key": "sections",
+          "label": "Bölüm Başlıkları",
+          "type": "object",
+          "fields": [
+            {
+              "key": "newsAndAnnouncements",
+              "label": "Haberler ve Duyurular",
+              "type": "lang"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "lastModified",
+      "label": "Son Güncelleme (TSİ)",
+      "type": "text",
+      "readonly": true,
+      "hint": "Kaydetmede otomatik güncellenir — Türkiye saati, 24 saat formatı"
+    }
+  ]
+}

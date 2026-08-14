@@ -336,5 +336,16 @@
         "class": "btn-outline-primary"
       }
     ]
-  }
+  },
+  "meta": {
+    "title": {
+      "tr": "Mendeley Referans Yönetim Aracı",
+      "en": ""
+    },
+    "description": {
+      "tr": "Anadolu Üniversitesi Kütüphane - Mendeley Referans Yönetim Aracı Rehberi",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-14 15:25"
 }

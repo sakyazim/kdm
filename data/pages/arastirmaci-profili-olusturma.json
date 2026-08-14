@@ -969,5 +969,16 @@
         "link": "index.html"
       }
     ]
-  }
+  },
+  "meta": {
+    "title": {
+      "tr": "Araştırmacı Profili Oluşturma: ORCID, Web of Science, Scopus, Google Scholar Rehberi",
+      "en": ""
+    },
+    "description": {
+      "tr": "ORCID, Web of Science ResearcherID, Scopus Author ID ve Google Scholar profili oluşturma adım adım rehberi. Akademik görünürlüğünüzü artırın, yayınlarınızı takip edin.",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-14 15:25"
 }

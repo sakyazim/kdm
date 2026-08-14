@@ -31,7 +31,9 @@ export class AnnouncementsComponent {
    * Ekran boyutuna göre duyuru sayısı
    */
   getItemsPerPage() {
-    return window.innerWidth <= 767.98 ? 2 : 3;
+    // Mobilde 2; masaüstünde home.json sections.announcements.itemsPerPage (fallback: 3)
+    const jsonSetting = this.app?.data?.homeSettings?.sections?.announcements?.itemsPerPage;
+    return window.innerWidth <= 767.98 ? 2 : (jsonSetting || 3);
   }
 
   /**
@@ -113,8 +115,15 @@ export class AnnouncementsComponent {
    * @returns {string} URL
    */
   getActionUrl(item) {
-    // ActionType yoksa eski sistemi kullan (default: modal)
+    // ActionType yazılmamışsa:
+    // - url gerçek bir hedefse sayfa olarak davran — actionType'ı unutmak
+    //   artık ölü link üretmez (kapana karşı güvenlik)
+    // - url yoksa veya '#' ise eski davranış: modal
     if (!item.actionType) {
+      const u = item.url;
+      if (u && u !== '#' && !u.startsWith('#')) {
+        return u;
+      }
       return `duyurular.html?id=${item.id}`;
     }
 

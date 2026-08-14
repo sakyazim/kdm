@@ -77,8 +77,6 @@ export const AppConfig = {
     footer: 'footer.json',
     collections: 'collections.json',
     services: 'services.json',
-    news: 'news.json',
-    announcements: 'announcements.json',
     arrivals: 'arrivals.json',
     modal: 'modal.json',
     settings: 'settings.json',

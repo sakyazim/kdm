@@ -506,5 +506,16 @@
         "link": "index.html"
       }
     ]
-  }
+  },
+  "meta": {
+    "title": {
+      "tr": "Çalışma Saatleri",
+      "en": ""
+    },
+    "description": {
+      "tr": "Anadolu Üniversitesi Kütüphane",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-14 15:25"
 }

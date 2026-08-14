@@ -439,5 +439,16 @@
         "link": "veritabanlari.html"
       }
     ]
-  }
+  },
+  "meta": {
+    "title": {
+      "tr": "Uzaktan Erişim Rehberi",
+      "en": ""
+    },
+    "description": {
+      "tr": "Anadolu Üniversitesi Kütüphane - Uzaktan Erişim Nasıl Yapılır? Adım Adım Rehber",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-14 15:25"
 }

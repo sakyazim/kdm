@@ -783,6 +783,9 @@ function renderField(f, obj, path) {
     case "raw":
       wrap.appendChild(renderRaw(f, obj));
       break;
+    case "jsonfile":
+      wrap.appendChild(renderJsonFileField(f, obj[f.key], (v) => { obj[f.key] = v; markDirty(); }));
+      break;
     case "boolean": {
       const cb = document.createElement("input");
       cb.type = "checkbox";
@@ -813,11 +816,91 @@ function renderField(f, obj, path) {
   return wrap;
 }
 
+function renderJsonFileField(f, value, onchange) {
+  const holder = document.createElement("div");
+  holder.className = "control";
+  const row = document.createElement("div");
+  row.className = "jsonfile-row";
+  const st = { unlocked: false };
+  function build() {
+    row.innerHTML = "";
+    if (st.unlocked) {
+      const inp = document.createElement("input");
+      inp.type = "text";
+      inp.value = value ?? "";
+      inp.addEventListener("input", () => { value = inp.value; onchange(value); });
+      const lockBtn = document.createElement("button");
+      lockBtn.type = "button";
+      lockBtn.className = "btn tiny";
+      lockBtn.title = "Kilitle";
+      lockBtn.textContent = "🔒";
+      lockBtn.addEventListener("click", () => { st.unlocked = false; build(); });
+      row.appendChild(inp);
+      row.appendChild(lockBtn);
+    } else {
+      const lock = document.createElement("span");
+      lock.className = "lock-ic";
+      lock.textContent = "🔒";
+      row.appendChild(lock);
+      const val = (value || "").trim();
+      if (/^data\/.*\.json$/.test(val)) {
+        const a = document.createElement("a");
+        a.className = "json-link";
+        a.textContent = val;
+        a.title = "Bu JSON dosyasını editörde aç";
+        a.href = "#";
+        a.addEventListener("click", (e) => { e.preventDefault(); e.stopPropagation(); selectFile(val); });
+        row.appendChild(a);
+      } else {
+        const span = document.createElement("span");
+        span.className = "json-path-text";
+        span.textContent = val || "—";
+        row.appendChild(span);
+      }
+      const unlockBtn = document.createElement("button");
+      unlockBtn.type = "button";
+      unlockBtn.className = "btn tiny";
+      unlockBtn.title = "Düzenlemek için kilidi aç";
+      unlockBtn.textContent = "✏️";
+      unlockBtn.addEventListener("click", () => { st.unlocked = true; build(); });
+      row.appendChild(unlockBtn);
+    }
+  }
+  build();
+  holder.appendChild(row);
+  if (f.hint) {
+    const h = document.createElement("div");
+    h.className = "hint";
+    h.textContent = f.hint;
+    holder.appendChild(h);
+  }
+  return holder;
+}
+
 function renderScalar(f, value, onchange) {
   if (f.type === "icon") return renderIconField(f, value, onchange);
   const holder = document.createElement("div");
   holder.className = "control";
   let ctl;
+  if (f.readonly) {
+    const disp = document.createElement("div");
+    disp.className = "locked-value";
+    const lock = document.createElement("span");
+    lock.className = "lock-ic";
+    lock.textContent = "🔒";
+    disp.appendChild(lock);
+    const span = document.createElement("span");
+    span.textContent = value ?? "";
+    disp.appendChild(span);
+    holder.appendChild(disp);
+    if (f.hint) {
+      const h = document.createElement("div");
+      h.className = "hint";
+      h.textContent = f.hint;
+      holder.appendChild(h);
+    }
+    return holder;
+  }
   switch (f.type) {
     case "textarea": {
       const ta = document.createElement("textarea");

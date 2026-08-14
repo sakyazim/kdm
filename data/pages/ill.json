@@ -305,5 +305,16 @@
         }
       ]
     }
-  ]
+  ],
+  "meta": {
+    "title": {
+      "tr": "Kütüphanelerarası Ödünç (ILL)",
+      "en": ""
+    },
+    "description": {
+      "tr": "Anadolu Üniversitesi Kütüphane - Kütüphanelerarası Ödünç Yayın Sağlama Hizmeti",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-14 15:25"
 }

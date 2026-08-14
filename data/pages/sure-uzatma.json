@@ -380,5 +380,16 @@
         "link": "sss.html"
       }
     ]
-  }
+  },
+  "meta": {
+    "title": {
+      "tr": "Ödünç Süre Uzatma",
+      "en": ""
+    },
+    "description": {
+      "tr": "Anadolu Üniversitesi Kütüphane - Ödünç Aldığınız Kitapların Süresini Nasıl Uzatırsınız? Adım Adım Rehber",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-14 15:25"
 }

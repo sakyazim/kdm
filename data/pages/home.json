@@ -9,7 +9,22 @@
     "description": {
       "tr": "Anadolu Üniversitesi Kütüphane ve Dokümantasyon Merkezi - Katalog tarama, elektronik kaynaklar ve kütüphane hizmetleri",
       "en": "Anadolu University Library and Documentation Center - Catalog search, electronic resources and library services"
-    }
+    },
+    "keywords": {
+      "tr": "Anadolu Üniversitesi Kütüphane, katalog tarama, elektronik kaynaklar, kütüphane hizmetleri, Eskişehir, üniversite kütüphanesi",
+      "en": "Anadolu University Library, catalog search, electronic resources, library services, Eskisehir, university library"
+    },
+    "ogImage": "/assets/images/og/library-og.png",
+    "searchUrlTemplate": "https://libra.anadolu.edu.tr/libra.aspx?keyword={search_term_string}",
+    "logo": "/assets/images/au-logo.png",
+    "openingHours": [
+      { "dayOfWeek": "Monday", "opens": "08:00", "closes": "23:00" },
+      { "dayOfWeek": "Tuesday", "opens": "08:00", "closes": "23:00" },
+      { "dayOfWeek": "Wednesday", "opens": "08:00", "closes": "23:00" },
+      { "dayOfWeek": "Thursday", "opens": "08:00", "closes": "23:00" },
+      { "dayOfWeek": "Friday", "opens": "08:00", "closes": "23:00" },
+      { "dayOfWeek": "Saturday", "opens": "09:00", "closes": "18:00" }
+    ]
   },
   "sliderSettings": {
     "autoPlay": true,
@@ -23,7 +38,8 @@
       "title": {
         "tr": "Koleksiyon Arama",
         "en": "Collection Search"
-      }
+      },
+      "dataSource": "data/content/collections.json"
     },
     "services": {
       "enabled": true,
@@ -31,7 +47,8 @@
         "tr": "Kütüphane Hizmetleri",
         "en": "Library Services"
       },
-      "maxItems": 8
+      "maxItems": 8,
+      "dataSource": "data/content/services.json"
     },
     "news": {
       "enabled": true,
@@ -60,6 +77,7 @@
         "en": "New Arrivals"
       },
       "maxItems": 5,
+      "dataSource": "data/content/arrivals.json",
       "viewAllButton": {
         "enabled": true,
         "text": {

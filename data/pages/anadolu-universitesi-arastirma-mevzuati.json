@@ -75,5 +75,16 @@
         "link": "index.html"
       }
     ]
-  }
+  },
+  "meta": {
+    "title": {
+      "tr": "Araştırma Mevzuatı",
+      "en": ""
+    },
+    "description": {
+      "tr": "Anadolu Üniversitesi Araştırma Mevzuatı",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-14 15:25"
 }

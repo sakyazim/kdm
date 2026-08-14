@@ -78,5 +78,16 @@
         "link": "index.html"
       }
     ]
-  }
+  },
+  "meta": {
+    "title": {
+      "tr": "Araştırma Birimleri",
+      "en": ""
+    },
+    "description": {
+      "tr": "Anadolu Üniversitesi Araştırma Birimleri",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-14 15:25"
 }

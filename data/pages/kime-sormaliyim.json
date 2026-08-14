@@ -334,5 +334,16 @@
         "link": "index.html"
       }
     ]
-  }
+  },
+  "meta": {
+    "title": {
+      "tr": "Kime Sormalıyım?",
+      "en": ""
+    },
+    "description": {
+      "tr": "Anadolu Üniversitesi Kütüphane - Kütüphane hizmetleri için hangi birimle iletişime geçeceğinizi öğrenin",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-14 15:25"
 }

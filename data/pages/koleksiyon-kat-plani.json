@@ -917,5 +917,16 @@
         "link": "iletisim.html"
       }
     ]
-  }
+  },
+  "meta": {
+    "title": {
+      "tr": "Koleksiyon & Kat Planı",
+      "en": ""
+    },
+    "description": {
+      "tr": "Anadolu Üniversitesi Kütüphane Koleksiyon ve Kat Planı",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-14 15:25"
 }
