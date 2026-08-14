@@ -1,6 +1,6 @@
 {
   "data/content/collections.json": {
     "locked": true,
-    "reason": "Koleksiyon Arama (Servis Kodları) — riskli dosya"
+    "reason": "Yıllık değişen servis kodları — yanlışlıkla bozulmaması için kilitli"
   }
 }
