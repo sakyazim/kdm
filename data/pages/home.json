@@ -12,9 +12,9 @@
     }
   },
   "sliderSettings": {
-    "autoPlay": false,
+    "autoPlay": true,
     "duration": 5000,
-    "showProgressBar": false,
+    "showProgressBar": true,
     "pauseOnHover": true
   },
   "sections": {
@@ -134,5 +134,5 @@
       }
     }
   },
-  "lastModified": "2026-08-14T12:25:21Z"
+  "lastModified": "2026-08-14 15:39"
 }
