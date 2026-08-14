@@ -2,7 +2,7 @@
   {
     "id": "eds",
     "title": {
-      "tr": "Bütünleşik Arama",
+      "tr": "Bütünleşik Arama---",
       "en": "Integrated Search"
     },
     "icon": "bi-search",
@@ -23,10 +23,22 @@
     },
     "searchParam": "q",
     "hiddenFields": [
-      { "name": "limiters", "value": "FT1:Y" },
-      { "name": "acr_values", "value": "ip,guest" },
-      { "name": "autocorrect", "value": "y" },
-      { "name": "locale", "value": "tr" }
+      {
+        "name": "limiters",
+        "value": "FT1:Y"
+      },
+      {
+        "name": "acr_values",
+        "value": "ip,guest"
+      },
+      {
+        "name": "autocorrect",
+        "value": "y"
+      },
+      {
+        "name": "locale",
+        "value": "tr"
+      }
     ]
   },
   {
@@ -53,10 +65,22 @@
     },
     "searchParam": "SR",
     "hiddenFields": [
-      { "name": "IS", "value": "TARA" },
-      { "name": "KT", "value": "TP" },
-      { "name": "DZ", "value": "12" },
-      { "name": "IL", "value": "1" }
+      {
+        "name": "IS",
+        "value": "TARA"
+      },
+      {
+        "name": "KT",
+        "value": "TP"
+      },
+      {
+        "name": "DZ",
+        "value": "12"
+      },
+      {
+        "name": "IL",
+        "value": "1"
+      }
     ]
   },
   {
@@ -83,8 +107,14 @@
     },
     "searchParam": "search",
     "hiddenFields": [
-      { "name": "highlightTag", "value": "mark" },
-      { "name": "resourceTypeOptionSelected", "value": "1" }
+      {
+        "name": "highlightTag",
+        "value": "mark"
+      },
+      {
+        "name": "resourceTypeOptionSelected",
+        "value": "1"
+      }
     ]
   },
   {
@@ -111,7 +141,10 @@
     },
     "searchParam": "keyword",
     "hiddenFields": [
-      { "name": "tokat_search_field", "value": "1" }
+      {
+        "name": "tokat_search_field",
+        "value": "1"
+      }
     ]
   },
   {
