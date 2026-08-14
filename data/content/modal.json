@@ -1,9 +1,10 @@
 {
-  "_comment": "Gösterilecek modalı 'active: true' ile seçin (yalnızca biri aktif olmalı). Tarih aralığındaysa otomatik açılır; 'showOnce: true' ise bir kez gösterilir. Süresi dolan modalı manager'daki 'Duyuruya Aktar' ile duyurular bölümüne taşıyabilirsiniz.",
+  "_comment": "KULLANIM: activeModal ID belirtin VEYA boş bırakıp modallarda active:true yapın. activeModal varsa o modal gösterilir (eğer active:false değilse). activeModal null/boş ise active:true olan ilk modal gösterilir.",
   "enabled": true,
+  "activeModal": "",
   "modals": [
     {
-      "id": "new-semester-2026",
+      "id": "new-semester-2025",
       "title": {
         "tr": "Yeni Dönem Kütüphane Hizmetleri",
         "en": "New Semester Library Services"
@@ -20,7 +21,8 @@
         "tr": "Detaylı Bilgi",
         "en": "Detailed Information"
       },
-      "buttonUrl": "duyurular.html",
+      "buttonUrl": "#new-semester-info",
+      "category": "academic",
       "active": false,
       "showOnce": false,
       "startDate": "2026-09-01",
@@ -44,7 +46,8 @@
         "tr": "Ayrıntılar",
         "en": "Details"
       },
-      "buttonUrl": "duyurular.html",
+      "buttonUrl": "#maintenance-info",
+      "category": "maintenance",
       "active": false,
       "showOnce": false,
       "startDate": "2026-08-01",
@@ -69,6 +72,7 @@
         "en": "Go to Database"
       },
       "buttonUrl": "veritabanlari.html",
+      "category": "resource",
       "active": true,
       "showOnce": true,
       "startDate": "2026-08-01",
@@ -93,12 +97,12 @@
         "en": "Working Hours"
       },
       "buttonUrl": "calisma-saatleri.html",
+      "category": "announcement",
       "active": false,
       "showOnce": true,
       "startDate": "2026-09-20",
-      "endDate": "2026-09-27",
-      "announcementId": 11
+      "endDate": "2026-09-27"
     }
   ],
-  "lastModified": "2026-08-14 17:07"
+  "lastModified": "2025-01-20T10:00:00Z"
 }

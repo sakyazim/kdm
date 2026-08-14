@@ -167,8 +167,7 @@
       "category": "Tatil/Kapanış",
       "categoryColor": "#fd7e14",
       "url": "#",
-      "featured": true,
-      "actionType": "modal"
+      "featured": true
     },
     {
       "id": 2,
@@ -233,8 +232,7 @@
       "category": "Sistem Bildirimi",
       "categoryColor": "#6c757d",
       "url": "#",
-      "featured": false,
-      "actionType": "modal"
+      "featured": false
     },
     {
       "id": 5,
@@ -255,8 +253,7 @@
       "category": "Genel Duyuru",
       "categoryColor": "#1F4C8A",
       "url": "#",
-      "featured": false,
-      "actionType": "modal"
+      "featured": false
     },
     {
       "id": 6,
@@ -299,8 +296,7 @@
       "category": "Genel Duyuru",
       "categoryColor": "#1F4C8A",
       "url": "#",
-      "featured": false,
-      "actionType": "modal"
+      "featured": false
     },
     {
       "id": 8,
@@ -321,8 +317,7 @@
       "category": "Acil Duyuru",
       "categoryColor": "#C03221",
       "url": "#",
-      "featured": true,
-      "actionType": "modal"
+      "featured": true
     },
     {
       "id": 9,
@@ -371,15 +366,15 @@
     {
       "id": 11,
       "title": {
-        "tr": "Bayram Tatili Çalışma Saatleri",
+        "tr": "Bayram Tatili Ã‡alÄ±ÅŸma Saatleri",
         "en": "Holiday Working Hours"
       },
       "summary": {
-        "tr": "Bayram tatili süresince kütüphanemiz 10:00-16:00 saatleri arasında hizmet verecektir. Tüm öğrencilerimize ve akademisyenlerimize iyi bayramlar dileriz.",
+        "tr": "Bayram tatili sÃ¼resince kÃ¼tÃ¼phanemiz 10:00-16:00 saatleri arasÄ±nda hizmet verecektir. TÃ¼m Ã¶ÄŸrencilerimize ve akademisyenlerimize iyi bayramlar dileriz.",
         "en": "During the holiday period, our library will serve between 10:00-16:00. We wish all our students and academics a happy holiday."
       },
       "content": {
-        "tr": "Bayram tatili süresince kütüphanemiz 10:00-16:00 saatleri arasında hizmet verecektir. Tüm öğrencilerimize ve akademisyenlerimize iyi bayramlar dileriz.",
+        "tr": "Bayram tatili sÃ¼resince kÃ¼tÃ¼phanemiz 10:00-16:00 saatleri arasÄ±nda hizmet verecektir. TÃ¼m Ã¶ÄŸrencilerimize ve akademisyenlerimize iyi bayramlar dileriz.",
         "en": "During the holiday period, our library will serve between 10:00-16:00. We wish all our students and academics a happy holiday."
       },
       "image": "assets/images/modal-holiday.jpg",
@@ -431,5 +426,5 @@
       "en": ""
     }
   },
-  "lastModified": "2026-08-14 17:07"
+  "lastModified": "2026-08-14 17:11"
 }
