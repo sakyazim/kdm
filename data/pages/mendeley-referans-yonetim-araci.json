@@ -123,13 +123,13 @@
       "type": "info-card",
       "headerClass": "mendeley-header",
       "content": {
-        "lead": "<strong>Mendeley</strong> ücretsiz bir Referans Yöneticisi ve bir Akademik sosyal ağdır.",
+        "lead": "**Mendeley** ücretsiz bir Referans Yöneticisi ve bir Akademik sosyal ağdır.",
         "text": "Mendeley, araştırmacıların araştırmalarını yönetmelerine ve geliştirmelerine, diğer araştırmacılar ile çevrimiçi işbirliği yapabilmelerine ve yapılmış olan son araştırmaları keşfetmelerine yardımcı olan güçlü bir araçtır.",
         "infoBoxes": [
           {
             "title": "Önemli Bilgi",
             "icon": "fas fa-info-circle",
-            "text": "Kişisel hesabınızı Mendeley'in <a href=\"https://www.mendeley.com/\" target=\"_blank\" class=\"fw-bold\">web sitesinden</a> oluşturabilirsiniz. Kayıt olmak için edu.tr uzantılı mail adresinizi kullanmak zorunda değilsiniz, kişisel mail adresinizi de kullanabilirsiniz."
+            "text": "Kişisel hesabınızı Mendeley'in [web sitesinden](https://www.mendeley.com/) oluşturabilirsiniz. Kayıt olmak için edu.tr uzantılı mail adresinizi kullanmak zorunda değilsiniz, kişisel mail adresinizi de kullanabilirsiniz."
           }
         ]
       }
@@ -183,11 +183,11 @@
         "steps": [
           {
             "title": "Hesap Oluşturun",
-            "text": "<a href=\"https://www.mendeley.com/\" target=\"_blank\" class=\"fw-bold\">www.mendeley.com</a> adresinde ücretsiz hesap oluşturun. Kurumsal veya kişisel e-posta adresinizi kullanabilirsiniz."
+            "text": "[www.mendeley.com](https://www.mendeley.com/) adresinde ücretsiz hesap oluşturun. Kurumsal veya kişisel e-posta adresinizi kullanabilirsiniz."
           },
           {
             "title": "Masaüstü Uygulamasını İndirin",
-            "text": "Windows, Mac OS ve Linux için <a href=\"https://www.mendeley.com/download-desktop/\" target=\"_blank\" class=\"fw-bold\">Masaüstü</a> sürümünü indirin ve kurulum yapın."
+            "text": "Windows, Mac OS ve Linux için [Masaüstü](https://www.mendeley.com/download-desktop/) sürümünü indirin ve kurulum yapın."
           },
           {
             "title": "Web Alıcı Eklentisini Ekleyin",

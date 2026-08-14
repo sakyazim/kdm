@@ -57,22 +57,22 @@
               {
                 "icon": "fas fa-phone",
                 "text": {
-                  "tr": "<strong>Tel (Direkt)</strong><br><a href='tel:+902223352552'>0 (222) 335 25 52</a>",
-                  "en": "<strong>Phone (Direct)</strong><br><a href='tel:+902223352552'>0 (222) 335 25 52</a>"
+                  "tr": "**Tel (Direkt)**\n[0 (222) 335 25 52](tel:+902223352552)",
+                  "en": "**Phone (Direct)**\n[0 (222) 335 25 52](tel:+902223352552)"
                 }
               },
               {
                 "icon": "fas fa-phone-alt",
                 "text": {
-                  "tr": "<strong>Santral</strong><br><a href='tel:+902223350580'>0 (222) 335 05 80 / 1730</a>",
-                  "en": "<strong>Switchboard</strong><br><a href='tel:+902223350580'>0 (222) 335 05 80 / 1730</a>"
+                  "tr": "**Santral**\n[0 (222) 335 05 80 / 1730](tel:+902223350580)",
+                  "en": "**Switchboard**\n[0 (222) 335 05 80 / 1730](tel:+902223350580)"
                 }
               },
               {
                 "icon": "fas fa-envelope",
                 "text": {
-                  "tr": "<strong>E-Posta</strong><br><a href='mailto:library@anadolu.edu.tr'>library@anadolu.edu.tr</a>",
-                  "en": "<strong>E-mail</strong><br><a href='mailto:library@anadolu.edu.tr'>library@anadolu.edu.tr</a>"
+                  "tr": "**E-Posta**\n[library@anadolu.edu.tr](mailto:library@anadolu.edu.tr)",
+                  "en": "**E-mail**\n[library@anadolu.edu.tr](mailto:library@anadolu.edu.tr)"
                 }
               }
             ]

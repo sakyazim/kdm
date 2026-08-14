@@ -485,12 +485,42 @@
     "title": "📊 Özet Tablo",
     "icon": "fas fa-table",
     "table": {
-      "headers": ["Platform", "Kimlik Türü", "Otomatik Profil?", "ORCID Entegrasyonu", "Kritik Özellik"],
+      "headers": [
+        "Platform",
+        "Kimlik Türü",
+        "Otomatik Profil?",
+        "ORCID Entegrasyonu",
+        "Kritik Özellik"
+      ],
       "rows": [
-        ["ORCID", "Benzersiz ID", "Hayır", "Ana Platform", "Evrensel akademik kimlik"],
-        ["Web of Science", "ResearcherID", "Evet (çoğu zaman)", "Evet", "Atıf analizi ve h-index"],
-        ["Scopus", "Author ID", "Evet", "Evet", "Scopus indeksli yayınlar"],
-        ["Google Scholar", "Profil Sayfası", "Evet", "Evet", "Geniş kapsam ve kullanım kolaylığı"]
+        [
+          "ORCID",
+          "Benzersiz ID",
+          "Hayır",
+          "Ana Platform",
+          "Evrensel akademik kimlik"
+        ],
+        [
+          "Web of Science",
+          "ResearcherID",
+          "Evet (çoğu zaman)",
+          "Evet",
+          "Atıf analizi ve h-index"
+        ],
+        [
+          "Scopus",
+          "Author ID",
+          "Evet",
+          "Evet",
+          "Scopus indeksli yayınlar"
+        ],
+        [
+          "Google Scholar",
+          "Profil Sayfası",
+          "Evet",
+          "Evet",
+          "Geniş kapsam ve kullanım kolaylığı"
+        ]
       ]
     }
   },
@@ -522,7 +552,7 @@
         "icon": "🆔",
         "title": "ORCID Nedir?",
         "subtitle": "Open Researcher and Contributor ID",
-        "content": "<p class=\"lead\">ORCID, bireylerin araştırma, bilim ve yenilik faaliyetlerinde bulunurken kendi adlarıyla birlikte kullanabilecekleri benzersiz bir numaradır. Araştırmacılar ORCID oluşturduklarında aynı zamanda yayınlarını, çalışmalarını ve eğitim, istihdam gibi diğer bilgilerini listeleyebilecekleri halka açık bir profil sayfasına da sahip olurlar.</p>"
+        "content": "ORCID, bireylerin araştırma, bilim ve yenilik faaliyetlerinde bulunurken kendi adlarıyla birlikte kullanabilecekleri benzersiz bir numaradır. Araştırmacılar ORCID oluşturduklarında aynı zamanda yayınlarını, çalışmalarını ve eğitim, istihdam gibi diğer bilgilerini listeleyebilecekleri halka açık bir profil sayfasına da sahip olurlar."
       },
       {
         "id": "orcid-steps",
@@ -535,22 +565,22 @@
           {
             "number": 1,
             "title": "Kayıt Başlatma",
-            "content": "<ul><li>Başlamak için bu bağlantı adresini kullanın: <a href=\"https://orcid.org/register\" target=\"_blank\">https://orcid.org/register</a></li><li>İsminizi ve diğer kişisel bilgilerinizi girin.</li><li>Bir e-posta adresi girin. Bu e-posta adresi kurumsal ya da bireysel e-posta adresiniz olabilir.</li></ul>"
+            "content": "- Başlamak için bu bağlantı adresini kullanın: [https://orcid.org/register](https://orcid.org/register)\n- İsminizi ve diğer kişisel bilgilerinizi girin.\n- Bir e-posta adresi girin. Bu e-posta adresi kurumsal ya da bireysel e-posta adresiniz olabilir."
           },
           {
             "number": 2,
             "title": "Şifre Oluşturma ve Onaylama",
-            "content": "<ul><li>Bir şifre oluşturun.</li><li>Şifrenizi onaylayın ve \"Sonraki Adım\" seçeneğine tıklayın.</li></ul>"
+            "content": "- Bir şifre oluşturun.\n- Şifrenizi onaylayın ve \"Sonraki Adım\" seçeneğine tıklayın."
           },
           {
             "number": 3,
             "title": "Kurum Seçimi",
-            "content": "<ul><li>ORCID kimliği oluşturmak için kurumsal e-posta adresinizi kullanırsanız kurumunuz size otomatik olarak gösterilecektir.</li><li>Kayıt için kurumsal e-posta adresinizi kullanmadıysanız lütfen kurumunuzu seçiniz.</li></ul>"
+            "content": "- ORCID kimliği oluşturmak için kurumsal e-posta adresinizi kullanırsanız kurumunuz size otomatik olarak gösterilecektir.\n- Kayıt için kurumsal e-posta adresinizi kullanmadıysanız lütfen kurumunuzu seçiniz."
           },
           {
             "number": 4,
             "title": "Tamamlama",
-            "content": "<ul><li>Son adımda şartlar ve koşulları kabul et seçeneğini tıkladığınızda ORCID kimliğiniz oluşturulacaktır.</li></ul>"
+            "content": "- Son adımda şartlar ve koşulları kabul et seçeneğini tıkladığınızda ORCID kimliğiniz oluşturulacaktır."
           }
         ]
       }
@@ -562,7 +592,7 @@
         "icon": "🔬",
         "title": "Web of Science Araştırmacı Profili",
         "subtitle": "ResearcherID Oluşturma ve ORCID Senkronizasyonu",
-        "content": "<p>Web of Science, 2019 yılında araştırmacıların akran değerlendirmesi ve editörlük kapsamında gerçekleştirdiği işlemleri takip edip doğruladıkları bir platform olan Publons ile Clarivate Analytics ana şemsiyesi altında birleşmiştir. Bu entegrasyon, isim yazımlarındaki farklılıklar, kurum değişiklikleri vb. nedenlerle tekilleştirilebilmeyen yayınların Researcher ID ile ilişkilendirerek tek bir profil altında toplanmasını sağlar.</p>",
+        "content": "Web of Science, 2019 yılında araştırmacıların akran değerlendirmesi ve editörlük kapsamında gerçekleştirdiği işlemleri takip edip doğruladıkları bir platform olan Publons ile Clarivate Analytics ana şemsiyesi altında birleşmiştir. Bu entegrasyon, isim yazımlarındaki farklılıklar, kurum değişiklikleri vb. nedenlerle tekilleştirilebilmeyen yayınların Researcher ID ile ilişkilendirerek tek bir profil altında toplanmasını sağlar.",
         "infoBoxes": [
           {
             "icon": "fas fa-info-circle",
@@ -580,24 +610,24 @@
           {
             "number": 1,
             "title": "Web of Science'a Erişim",
-            "content": "<p><a href=\"https://kdm.anadolu.edu.tr/\" target=\"_blank\">Anadolu Üniversitesi Kütüphanesi web sayfasında</a> yer alan veri tabanları sekmesinde alfabetik sıralı veritabanlarından Web of Science'a gidiniz.</p>",
+            "content": "[Anadolu Üniversitesi Kütüphanesi web sayfasında](https://kdm.anadolu.edu.tr/) yer alan veri tabanları sekmesinde alfabetik sıralı veritabanlarından Web of Science'a gidiniz.",
             "infoBoxes": [
               {
                 "icon": "fas fa-key",
                 "title": "Şifre Unuttuysanız",
-                "text": "Daha önce Web of Science üyeliği oluşturup şifresini unuttuysanız <strong>\"Forgot Password?\"</strong> seçeneğine tıklayınız."
+                "text": "Daha önce Web of Science üyeliği oluşturup şifresini unuttuysanız **\"Forgot Password?\"** seçeneğine tıklayınız."
               }
             ]
           },
           {
             "number": 2,
             "title": "Yeni Kayıt İşlemi",
-            "content": "<p>Yeni kayıt yapıyorsanız ekranın sağ üstünde yer alan <strong>\"Register\"</strong> seçeneğine tıklayınız. E-posta adresinizi giriniz.</p>"
+            "content": "Yeni kayıt yapıyorsanız ekranın sağ üstünde yer alan **\"Register\"** seçeneğine tıklayınız. E-posta adresinizi giriniz."
           },
           {
             "number": 3,
             "title": "E-posta Aktivasyonu",
-            "content": "<p>E-posta adresinize gelen aktivasyon mailine tıklayarak hesap oluşturma işleminizi tamamlayınız.</p>"
+            "content": "E-posta adresinize gelen aktivasyon mailine tıklayarak hesap oluşturma işleminizi tamamlayınız."
           }
         ]
       },
@@ -610,17 +640,17 @@
           {
             "number": 1,
             "title": "Web of Science'a Giriş",
-            "content": "<p>Web of Science adresine giderek hesabınıza giriş yapınız.</p>"
+            "content": "Web of Science adresine giderek hesabınıza giriş yapınız."
           },
           {
             "number": 2,
             "title": "Researcher Profile Oluşturma",
-            "content": "<p>İlk kez hesap oluşturuyorsanız ekranın sağ tarafında yer alan \"Menu\" seçeneğinin altındaki <strong>\"Researcher Profile\"</strong>e tıklayınız. Bu aşamadan sonra kayıt olduğunuz mail adresinize ResearcherID'nizin yer aldığı bir mail iletilecektir.</p>"
+            "content": "İlk kez hesap oluşturuyorsanız ekranın sağ tarafında yer alan \"Menu\" seçeneğinin altındaki **\"Researcher Profile\"**e tıklayınız. Bu aşamadan sonra kayıt olduğunuz mail adresinize ResearcherID'nizin yer aldığı bir mail iletilecektir."
           },
           {
             "number": 3,
             "title": "Mevcut ResearcherID'yi Görüntüleme",
-            "content": "<p>Önceden oluşturulmuş hesabınız varsa \"Menu > Profile > My Researcher Profile\" yolunu izleyerek ResearcherID'nizi görüntüleyebilirsiniz.</p>",
+            "content": "Önceden oluşturulmuş hesabınız varsa \"Menu > Profile > My Researcher Profile\" yolunu izleyerek ResearcherID'nizi görüntüleyebilirsiniz.",
             "infoBoxes": [
               {
                 "icon": "fas fa-robot",
@@ -636,7 +666,7 @@
         "platformClass": "wos-section",
         "icon": "📚",
         "title": "Manuel Yayın Ekleme İşlemi",
-        "content": "<p>Yayınları profilinize manuel olarak eklemek isterseniz \"Menu > Profile > My Records\" sekmesinden ilgili ekleme ve düzenlemeleri yapabilirsiniz.</p>"
+        "content": "Yayınları profilinize manuel olarak eklemek isterseniz \"Menu > Profile > My Records\" sekmesinden ilgili ekleme ve düzenlemeleri yapabilirsiniz."
       },
       {
         "id": "wos-merge",
@@ -647,12 +677,12 @@
           {
             "number": 1,
             "title": "Settings Erişimi",
-            "content": "<p>Ekranın sağ üst kısmında yer alan profilinize tıklayarak <strong>\"Settings\"</strong> başlığını seçiniz.</p>"
+            "content": "Ekranın sağ üst kısmında yer alan profilinize tıklayarak **\"Settings\"** başlığını seçiniz."
           },
           {
             "number": 2,
             "title": "Hesap Birleştirme Talebi",
-            "content": "<p>\"Settings > Account Settings > Delete/merge account\" yolunu izleyiniz. <strong>\"I need to merge duplicate accounts\"</strong> seçeneğini işaretleyerek tekrarlanan profilleri birleştirme talebinizi gönderin.</p>"
+            "content": "\"Settings > Account Settings > Delete/merge account\" yolunu izleyiniz. **\"I need to merge duplicate accounts\"** seçeneğini işaretleyerek tekrarlanan profilleri birleştirme talebinizi gönderin."
           }
         ]
       },
@@ -666,12 +696,12 @@
           {
             "number": 1,
             "title": "Edit Profile Erişimi",
-            "content": "<p>\"Menu > Profile > My Researcher Profile > Edit\" adımlarını uygulayınız.</p>"
+            "content": "\"Menu > Profile > My Researcher Profile > Edit\" adımlarını uygulayınız."
           },
           {
             "number": 2,
             "title": "ORCID Bağlantısı",
-            "content": "<p>\"Profile Settings > ORCID Syncing > Connect your ORCID ID\" yolunu izleyerek senkronizasyon işlemlerinizi tamamlayabilirsiniz.</p>"
+            "content": "\"Profile Settings > ORCID Syncing > Connect your ORCID ID\" yolunu izleyerek senkronizasyon işlemlerinizi tamamlayabilirsiniz."
           }
         ]
       }
@@ -682,12 +712,12 @@
         "platformClass": "scopus-section",
         "icon": "📚",
         "title": "Scopus Araştırmacı/Yazar Profili",
-        "content": "<p>Bilim, teknik, tıp ve sosyal bilimler alanında, 5000 farklı yayınevine ait 18.000 yayında yer alan çalışmaların 1960 yılından günümüze özet, 1996 yılından günümüze de atıf bilgilerini içeren bibliyografik bir veritabanıdır.</p>",
+        "content": "Bilim, teknik, tıp ve sosyal bilimler alanında, 5000 farklı yayınevine ait 18.000 yayında yer alan çalışmaların 1960 yılından günümüze özet, 1996 yılından günümüze de atıf bilgilerini içeren bibliyografik bir veritabanıdır.",
         "infoBoxes": [
           {
             "icon": "fas fa-info-circle",
             "title": "Scopus Profili",
-            "text": "Scopus Yazar Profiliniz, <strong>Scopus'ta indekslenebilen bir makale yayını yaptığınızda otomatik olarak oluşturulur.</strong><br><br>Algoritma adınıza, e-postanıza, bağlı olduğunuz kuruma, konu alanına, alıntılara ve ortak yazarlara göre kimliğinizi oluşturur."
+            "text": "Scopus Yazar Profiliniz, **Scopus'ta indekslenebilen bir makale yayını yaptığınızda otomatik olarak oluşturulur.**\n\nAlgoritma adınıza, e-postanıza, bağlı olduğunuz kuruma, konu alanına, alıntılara ve ortak yazarlara göre kimliğinizi oluşturur."
           }
         ],
         "warnings": [
@@ -703,12 +733,12 @@
         "platformClass": "scopus-section",
         "icon": "🔍",
         "title": "Scopus Kimliğinizi Bulun",
-        "content": "<p><a href=\"https://kdm.anadolu.edu.tr/\" target=\"_blank\">Anadolu Üniversitesi Kütüphanesi</a> veritabanlarından Scopus'a gidiniz.</p><p>Scopus <strong>authors</strong> arama alanına adınızı girip arama butonuna tıklayınız. Scopus'ta sizinle aynı veya benzer isimlere sahip ve indekslenen çalışmaları olan tüm yazarlar gösterilecektir.</p>",
+        "content": "[Anadolu Üniversitesi Kütüphanesi](https://kdm.anadolu.edu.tr/) veritabanlarından Scopus'a gidiniz.\n\nScopus **authors** arama alanına adınızı girip arama butonuna tıklayınız. Scopus'ta sizinle aynı veya benzer isimlere sahip ve indekslenen çalışmaları olan tüm yazarlar gösterilecektir.",
         "warnings": [
           {
             "icon": "fas fa-users",
             "title": "Birden Fazla Kimlik",
-            "text": "Adınızla bağlantılı birden fazla Scopus Kimliği görürseniz bu kimlikleri tek isim altında birleştirebilirsiniz.<br><br>Farklı ve birden çok isimle yayın yapıyorsanız, her bir ismin bilgilerini kontrol edip birleştirmek için arama yapın."
+            "text": "Adınızla bağlantılı birden fazla Scopus Kimliği görürseniz bu kimlikleri tek isim altında birleştirebilirsiniz.\n\nFarklı ve birden çok isimle yayın yapıyorsanız, her bir ismin bilgilerini kontrol edip birleştirmek için arama yapın."
           }
         ]
       },
@@ -717,7 +747,7 @@
         "platformClass": "scopus-section",
         "icon": "✏️",
         "title": "Scopus Kimliğinizde Değişiklik Yapın",
-        "content": "<p>Yazar profilinizde değişiklik talep etmek için bir <strong>Elsevier hesabı</strong> oluşturmanız gerekecektir.</p><p>Scopus'a giriş yapın ve ardından sayfanın sağ üst köşesindeki <strong>Create Account</strong> seçeneğine tıklayın. Kurumunuz aracılığıyla oturum açın seçeneğini kullanarak Single Sign On (SSO) sistemi ile hesabınızı oluşturun.</p>",
+        "content": "Yazar profilinizde değişiklik talep etmek için bir **Elsevier hesabı** oluşturmanız gerekecektir.\n\nScopus'a giriş yapın ve ardından sayfanın sağ üst köşesindeki **Create Account** seçeneğine tıklayın. Kurumunuz aracılığıyla oturum açın seçeneğini kullanarak Single Sign On (SSO) sistemi ile hesabınızı oluşturun.",
         "infoBoxes": [
           {
             "icon": "fas fa-user-plus",
@@ -731,17 +761,17 @@
         "platformClass": "scopus-section",
         "icon": "🔄",
         "title": "Çoklu Scopus Kimliklerini Birleştirme",
-        "content": "<p>Bazen kendi isminizle yazar araması yaptığınızda adınıza tanımlanmış birden fazla ID ile karşılaşabilirsiniz. Bu durum önceden farklı isim ve soy isimlerle ya da farklı kurumlardayken yaptığınız yayınlardan dolayı ortaya çıkabilir.</p>",
+        "content": "Bazen kendi isminizle yazar araması yaptığınızda adınıza tanımlanmış birden fazla ID ile karşılaşabilirsiniz. Bu durum önceden farklı isim ve soy isimlerle ya da farklı kurumlardayken yaptığınız yayınlardan dolayı ortaya çıkabilir.",
         "steps": [
           {
             "number": 1,
             "title": "Arama Sonuçlarını Kullanarak Kimlik Birleştirme",
-            "content": "<ul><li>İsimlere tıklayarak profilleri açın ve size ait çalışmaların listelenip listelenmediğini kontrol edin.</li><li>Yazar adının yanındaki kutucukları seçin ve ardından sonuçların üst kısmındaki <strong>Request to merge authors</strong>'ı seçin.</li></ul>"
+            "content": "- İsimlere tıklayarak profilleri açın ve size ait çalışmaların listelenip listelenmediğini kontrol edin.\n- Yazar adının yanındaki kutucukları seçin ve ardından sonuçların üst kısmındaki **Request to merge authors**'ı seçin."
           },
           {
             "number": 2,
             "title": "Potansiyel Yazar Eşleşmelerini Birleştirme",
-            "content": "<p><strong>Potential author matches</strong> ile Scopus profilinize benzer bazı profilleri de gösterir.</p><ul><li>Açılır pencerede görüntülenen yazarları ve eserlerini inceleyin ve ardından size ait profilleri seçin.</li><li><strong>Request to merge author</strong> seçeneğine tıklayın ve isteğinizi Scopus'a göndermek için Author Feedback Wizard adımlarını izleyin.</li></ul>",
+            "content": "**Potential author matches** ile Scopus profilinize benzer bazı profilleri de gösterir.\n\n- Açılır pencerede görüntülenen yazarları ve eserlerini inceleyin ve ardından size ait profilleri seçin.\n- **Request to merge author** seçeneğine tıklayın ve isteğinizi Scopus'a göndermek için Author Feedback Wizard adımlarını izleyin.",
             "infoBoxes": [
               {
                 "icon": "fas fa-clock",
@@ -757,22 +787,22 @@
         "platformClass": "scopus-section",
         "icon": "⚙️",
         "title": "Ayrıntıları Güncelleme ve Düzenleme",
-        "content": "<p>Elsevier hesabınızı kullanarak yazar profilinizin ayrıntılarını düzenleyebilirsiniz.</p>",
+        "content": "Elsevier hesabınızı kullanarak yazar profilinizin ayrıntılarını düzenleyebilirsiniz.",
         "steps": [
           {
             "number": 1,
             "title": "Profil Bilgileri Güncelleme",
-            "content": "<ul><li><strong>edit profile</strong> aracılığıyla adınızı ve bağlı olduğunuz kurumu güncelleyebilir, profilinize yayın ekleyebilir veya kaldırabilirsiniz.</li><li><strong>Authors details</strong> kısmından bağlı olduğunuz mevcut kurumunuzu değiştirebilir ve istediğiniz kurumu seçebilirsiniz.</li><li>Scopus'ta yayınlanmış ve indekslenmiş isimlerin seçilebileceğini göreceksiniz.</li><li><strong>Review changes</strong>'i seçin.</li><li>Değişikliği Scopus tarafından incelenmek üzere göndermek için <strong>Submit request</strong> seçeneğini seçin.</li></ul>"
+            "content": "- **edit profile** aracılığıyla adınızı ve bağlı olduğunuz kurumu güncelleyebilir, profilinize yayın ekleyebilir veya kaldırabilirsiniz.\n- **Authors details** kısmından bağlı olduğunuz mevcut kurumunuzu değiştirebilir ve istediğiniz kurumu seçebilirsiniz.\n- Scopus'ta yayınlanmış ve indekslenmiş isimlerin seçilebileceğini göreceksiniz.\n- **Review changes**'i seçin.\n- Değişikliği Scopus tarafından incelenmek üzere göndermek için **Submit request** seçeneğini seçin."
           },
           {
             "number": 2,
             "title": "Öğe/Yayın Ekleme",
-            "content": "<p><strong>Öğe Scopus'ta zaten mevcutsa:</strong></p><ul><li>Author Feedback Wizard'ta <strong>Documents</strong>'a gidin ve belge listesinin altında <strong>Search for missing documents on Scopus</strong> seçin.</li><li>Belgeyi bulmak için aramayı kullanın ve ardından <strong>Confirm author</strong>'u seçin.</li><li>Belgeyle ilişkili yazarı seçin.</li><li><strong>Add document</strong>'i seçin.</li><li><strong>Review changes</strong>'i seçin.</li><li>Değişikliği Scopus tarafından incelenmek üzere göndermek için <strong>Submit request</strong>'i seçin.</li></ul>"
+            "content": "**Öğe Scopus'ta zaten mevcutsa:**\n\n- Author Feedback Wizard'ta **Documents**'a gidin ve belge listesinin altında **Search for missing documents on Scopus** seçin.\n- Belgeyi bulmak için aramayı kullanın ve ardından **Confirm author**'u seçin.\n- Belgeyle ilişkili yazarı seçin.\n- **Add document**'i seçin.\n- **Review changes**'i seçin.\n- Değişikliği Scopus tarafından incelenmek üzere göndermek için **Submit request**'i seçin."
           },
           {
             "number": 3,
             "title": "Öğe/Yayın Çıkarma",
-            "content": "<ul><li>Author Feedback Wizard'ta <strong>Documents</strong>'a gidin.</li><li>Listede size ait olmayan öğeleri bulun.</li><li><strong>Remove from profile</strong>'ı seçin.</li><li><strong>Review changes</strong>'i seçin.</li><li>Değişikliği Scopus tarafından incelenmek üzere göndermek için <strong>Submit request</strong> seçeneğini seçin.</li></ul><p>Talepten sonra Scopus, talebi ve ayrıntıları onaylayacak veya reddedecek şekilde değerlendirecektir.</p>"
+            "content": "- Author Feedback Wizard'ta **Documents**'a gidin.\n- Listede size ait olmayan öğeleri bulun.\n- **Remove from profile**'ı seçin.\n- **Review changes**'i seçin.\n- Değişikliği Scopus tarafından incelenmek üzere göndermek için **Submit request** seçeneğini seçin.\n\nTalepten sonra Scopus, talebi ve ayrıntıları onaylayacak veya reddedecek şekilde değerlendirecektir."
           }
         ]
       },
@@ -782,17 +812,17 @@
         "icon": "🔗",
         "title": "Scopus Yazar Profiliniz ile ORCID'yi Bağlama",
         "hasDivider": true,
-        "content": "<p>Scopus ID'nizi ORCID'ye bağlamak, yayın ayrıntılarını Scopus'tan ORCID profilinize aktarmanıza olanak tanır.</p>",
+        "content": "Scopus ID'nizi ORCID'ye bağlamak, yayın ayrıntılarını Scopus'tan ORCID profilinize aktarmanıza olanak tanır.",
         "steps": [
           {
             "number": 1,
             "title": "Seçenek 1: ORCID'yi Scopus'tan Bağlama",
-            "content": "<ul><li>Scopus <strong>Author</strong> aramasına gidin.</li><li><strong>Affiliation</strong> alanında adınıza ve Anadolu Üniversitesine göre arama yapın.</li><li>Profil sayfanızı açmak için sonuçlar listesinde adınızı seçin.</li><li>Yazar Kimliğiniz varsa <strong>Connect to ORCID</strong>'yi seçin.</li><li>Scopus yazar profilinizi ORCID kaydınızla ilişkilendirmek için adımları izleyin.</li></ul>"
+            "content": "- Scopus **Author** aramasına gidin.\n- **Affiliation** alanında adınıza ve Anadolu Üniversitesine göre arama yapın.\n- Profil sayfanızı açmak için sonuçlar listesinde adınızı seçin.\n- Yazar Kimliğiniz varsa **Connect to ORCID**'yi seçin.\n- Scopus yazar profilinizi ORCID kaydınızla ilişkilendirmek için adımları izleyin."
           },
           {
             "number": 2,
             "title": "Seçenek 2: ORCID'den Scopus Bağlama",
-            "content": "<ul><li>ORCID'de oturum açın.</li><li><strong>Works</strong> bölümünde <strong>'Add works'</strong> ve ardından <strong>'Search and link'</strong>i seçin</li><li>Scopus profilinizi ve ORCID ile çalışmayı ilişkilendirmek için adımları izleyin.</li></ul>"
+            "content": "- ORCID'de oturum açın.\n- **Works** bölümünde **'Add works'** ve ardından **'Search and link'**i seçin\n- Scopus profilinizi ve ORCID ile çalışmayı ilişkilendirmek için adımları izleyin."
           }
         ]
       }
@@ -809,7 +839,7 @@
         "platformClass": "gs-section",
         "icon": "✨",
         "title": "Google Akademik Profili Oluşturmanın Avantajları",
-        "content": "<p>Google Akademik profili oluşturmak, araştırmacılar ve akademisyenler için birçok avantaj sunar:</p>",
+        "content": "Google Akademik profili oluşturmak, araştırmacılar ve akademisyenler için birçok avantaj sunar:",
         "benefits": [
           {
             "number": 1,
@@ -857,37 +887,37 @@
           {
             "number": 1,
             "title": "Google Akademik'e Giriş Yapın",
-            "content": "<ul><li><a href=\"https://scholar.google.com/\" target=\"_blank\">Google Akademik</a> adresine gidin.</li><li>Sayfanın üst kısmındaki \"Profilim\" butonuna tıklayın.</li><li>Google hesabınızla giriş yapın. Eğer bir Google hesabınız yoksa, yeni bir hesap oluşturmanız gerekecektir.</li></ul>"
+            "content": "- [Google Akademik](https://scholar.google.com/) adresine gidin.\n- Sayfanın üst kısmındaki \"Profilim\" butonuna tıklayın.\n- Google hesabınızla giriş yapın. Eğer bir Google hesabınız yoksa, yeni bir hesap oluşturmanız gerekecektir."
           },
           {
             "number": 2,
             "title": "Profilinizi Düzenleyin",
-            "content": "<ul><li>Hesabınıza giriş yaptıktan sonra, profilinizi oluşturmanız istenecektir.</li><li>Adınızı, bağlı olduğunuz kurumu ve kurumsal e-posta adresinizi girin.</li><li>Profesyonel bir fotoğraf ekleyin.</li></ul>"
+            "content": "- Hesabınıza giriş yaptıktan sonra, profilinizi oluşturmanız istenecektir.\n- Adınızı, bağlı olduğunuz kurumu ve kurumsal e-posta adresinizi girin.\n- Profesyonel bir fotoğraf ekleyin."
           },
           {
             "number": 3,
             "title": "Araştırma Alanlarınızı Ekleyin",
-            "content": "<ul><li>Araştırma alanlarınızı ilgili anahtar kelimeleri girerek belirtin. Bu, başkalarının profilinizi bulmasına ve uzmanlık alanlarınızı anlamasına yardımcı olacaktır.</li></ul>"
+            "content": "- Araştırma alanlarınızı ilgili anahtar kelimeleri girerek belirtin. Bu, başkalarının profilinizi bulmasına ve uzmanlık alanlarınızı anlamasına yardımcı olacaktır."
           },
           {
             "number": 4,
             "title": "Yayınlarınızı Ekleyin",
-            "content": "<ul><li>Google Akademik, size ait olduğunu düşündüğü makaleleri önerecektir. Bu önerileri gözden geçirin ve doğru olanları profilinize ekleyin.</li><li>Eksik olan yayınlar varsa, bunları el ile ekleyebilirsiniz. \"+\" butonuna tıklayın, ardından \"El ile makale ekle\" öğesini seçin ve gerekli bilgileri doldurun.</li></ul>"
+            "content": "- Google Akademik, size ait olduğunu düşündüğü makaleleri önerecektir. Bu önerileri gözden geçirin ve doğru olanları profilinize ekleyin.\n- Eksik olan yayınlar varsa, bunları el ile ekleyebilirsiniz. \"+\" butonuna tıklayın, ardından \"El ile makale ekle\" öğesini seçin ve gerekli bilgileri doldurun."
           },
           {
             "number": 5,
             "title": "E-posta Adresinizi Doğrulayın",
-            "content": "<ul><li>Google Akademik, e-posta adresinizi doğrulamanızı isteyecektir. Kurumsal e-postanızı kontrol edin ve Google Akademik tarafından gönderilen doğrulama bağlantısına tıklayın.</li></ul>"
+            "content": "- Google Akademik, e-posta adresinizi doğrulamanızı isteyecektir. Kurumsal e-postanızı kontrol edin ve Google Akademik tarafından gönderilen doğrulama bağlantısına tıklayın."
           },
           {
             "number": 6,
             "title": "Profilinizi Herkese Açık Hale Getirin",
-            "content": "<ul><li>Profilinizin diğer kişiler tarafından görülebilir olduğundan emin olun. \"Profilimi herkese açık yap\" kutusunu işaretleyin.</li><li>Profilinizi doğruluk ve tamlık açısından gözden geçirin.</li></ul>"
+            "content": "- Profilinizin diğer kişiler tarafından görülebilir olduğundan emin olun. \"Profilimi herkese açık yap\" kutusunu işaretleyin.\n- Profilinizi doğruluk ve tamlık açısından gözden geçirin."
           },
           {
             "number": 7,
             "title": "Profilinizi Güncel Tutun",
-            "content": "<ul><li>Profilinizi yeni yayınlar ve araştırma ilgi alanlarındaki değişikliklerle düzenli olarak güncelleyin.</li><li>Yayın listenizdeki herhangi bir yanlışlığı izleyin ve düzeltin.</li></ul>"
+            "content": "- Profilinizi yeni yayınlar ve araştırma ilgi alanlarındaki değişikliklerle düzenli olarak güncelleyin.\n- Yayın listenizdeki herhangi bir yanlışlığı izleyin ve düzeltin."
           }
         ]
       },
@@ -901,17 +931,17 @@
           {
             "number": 1,
             "title": "Google Scholar'dan BibTeX Dışa Aktarma",
-            "content": "<ul><li><a href=\"https://scholar.google.com/\" target=\"_blank\">Google Akademik Profilinizde</a> oturum açın.</li><li><strong>Alıntılarım</strong> sayfasından, her makalenin yanında bulunan kutuya tıklayarak dışa aktarılacak makaleleri seçin.</li><li>Dışa aktarmak istediğiniz makaleleri seçtikten sonra <strong>Dışa Aktar</strong> düğmesine tıklayın, ardından <strong>BibTeX</strong>'i seçin.</li><li>Dosyayı bilgisayarınıza kaydedin.</li></ul>"
+            "content": "- [Google Akademik Profilinizde](https://scholar.google.com/) oturum açın.\n- **Alıntılarım** sayfasından, her makalenin yanında bulunan kutuya tıklayarak dışa aktarılacak makaleleri seçin.\n- Dışa aktarmak istediğiniz makaleleri seçtikten sonra **Dışa Aktar** düğmesine tıklayın, ardından **BibTeX**'i seçin.\n- Dosyayı bilgisayarınıza kaydedin."
           },
           {
             "number": 2,
             "title": "ORCID'ye BibTeX İçe Aktarma",
-            "content": "<ul><li><a href=\"https://orcid.org/signin\" target=\"_blank\">ORCID</a> hesabınızda oturum açın.</li><li>Hesabınızın <strong>Works (Çalışmalar)</strong> bölümünden, <strong>Add works (Çalışmaları ekle)</strong> seçeneğine, ardından <strong>Import BibTeX (BibTeX'i içe aktar)</strong> seçeneğine gidin.</li><li>Bilgisayarınızdan BibTeX (.bib) dosyası seçin ve tıklayarak açın.</li><li>Dosyadaki yayınlar, yanlarında Save/Delete simgeleriyle birlikte bir liste halinde görünecektir.</li></ul>",
+            "content": "- [ORCID](https://orcid.org/signin) hesabınızda oturum açın.\n- Hesabınızın **Works (Çalışmalar)** bölümünden, **Add works (Çalışmaları ekle)** seçeneğine, ardından **Import BibTeX (BibTeX'i içe aktar)** seçeneğine gidin.\n- Bilgisayarınızdan BibTeX (.bib) dosyası seçin ve tıklayarak açın.\n- Dosyadaki yayınlar, yanlarında Save/Delete simgeleriyle birlikte bir liste halinde görünecektir.",
             "warnings": [
               {
                 "icon": "fas fa-exclamation-triangle",
                 "title": "Önemli Not",
-                "text": "ORCID hesabınıza eklemek istediğiniz her yayını kaydedene kadar içe aktarma işleminiz tamamlanmaz. Bir alıntıyı <strong>Kaydet</strong> simgesine tıklayarak kaydedebilirsiniz. Sizden alıntıyı düzenlemeniz istenecektir; varsa gerekli değişiklikleri yaptıktan sonra alıntıyı ORCID kaydınıza eklemek için <strong>Add to List (Listeye Ekle)</strong> seçeneğine tıklayın."
+                "text": "ORCID hesabınıza eklemek istediğiniz her yayını kaydedene kadar içe aktarma işleminiz tamamlanmaz. Bir alıntıyı **Kaydet** simgesine tıklayarak kaydedebilirsiniz. Sizden alıntıyı düzenlemeniz istenecektir; varsa gerekli değişiklikleri yaptıktan sonra alıntıyı ORCID kaydınıza eklemek için **Add to List (Listeye Ekle)** seçeneğine tıklayın."
               }
             ]
           }

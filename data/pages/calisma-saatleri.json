@@ -41,8 +41,8 @@
               "en": "Important Notice"
             },
             "content": {
-              "tr": "Resmi tatil günlerinde kütüphane kapalıdır. Özel durumlar ve değişiklikler için <a href='duyurular.html' style='color: var(--primary-color); font-weight: 600; text-decoration: underline;'>duyurular</a> bölümümüzü takip ediniz.",
-              "en": "The library is closed on official holidays. Please follow our <a href='duyurular.html' style='color: var(--primary-color); font-weight: 600; text-decoration: underline;'>announcements</a> section for special cases and changes."
+              "tr": "Resmi tatil günlerinde kütüphane kapalıdır. Özel durumlar ve değişiklikler için [duyurular](duyurular.html) bölümümüzü takip ediniz.",
+              "en": "The library is closed on official holidays. Please follow our [announcements](duyurular.html) section for special cases and changes."
             }
           }
         }
@@ -78,7 +78,13 @@
                     "isWeekend": false,
                     "openTime": "08:00",
                     "closeTime": "23:00",
-                    "dayNumbers": [1, 2, 3, 4, 5]
+                    "dayNumbers": [
+                      1,
+                      2,
+                      3,
+                      4,
+                      5
+                    ]
                   },
                   {
                     "day": {
@@ -89,7 +95,9 @@
                     "isWeekend": false,
                     "openTime": "09:00",
                     "closeTime": "18:00",
-                    "dayNumbers": [6]
+                    "dayNumbers": [
+                      6
+                    ]
                   },
                   {
                     "day": {
@@ -103,7 +111,9 @@
                     "isWeekend": true,
                     "openTime": null,
                     "closeTime": null,
-                    "dayNumbers": [0]
+                    "dayNumbers": [
+                      0
+                    ]
                   }
                 ]
               }
@@ -438,8 +448,8 @@
             },
             "titleIcon": "fas fa-calendar-check",
             "content": {
-              "tr": "Final ve bütünleme sınav dönemlerinde Merkez Kütüphane çalışma saatleri uzatılır.<br><br><strong>• Pazartesi - Pazar:</strong> 08:00 - 24:00<br><strong>• 24 saat açık günler duyurulur</strong>",
-              "en": "During final and resit exam periods, Central Library working hours are extended.<br><br><strong>• Monday - Sunday:</strong> 08:00 - 24:00<br><strong>• 24-hour opening days will be announced</strong>"
+              "tr": "Final ve bütünleme sınav dönemlerinde Merkez Kütüphane çalışma saatleri uzatılır.\n\n**• Pazartesi - Pazar:** 08:00 - 24:00\n**• 24 saat açık günler duyurulur**",
+              "en": "During final and resit exam periods, Central Library working hours are extended.\n\n**• Monday - Sunday:** 08:00 - 24:00\n**• 24-hour opening days will be announced**"
             }
           }
         },
@@ -453,8 +463,8 @@
             },
             "titleIcon": "fas fa-umbrella-beach",
             "content": {
-              "tr": "Haziran - Ağustos ayları arasında kısıtlı hizmet verilir.<br><br><strong>• Pazartesi - Cuma:</strong> 08:30 - 17:30<br><strong>• Hafta sonları kapalı</strong>",
-              "en": "Limited service is provided between June and August.<br><br><strong>• Monday - Friday:</strong> 08:30 - 17:30<br><strong>• Closed on weekends</strong>"
+              "tr": "Haziran - Ağustos ayları arasında kısıtlı hizmet verilir.\n\n**• Pazartesi - Cuma:** 08:30 - 17:30\n**• Hafta sonları kapalı**",
+              "en": "Limited service is provided between June and August.\n\n**• Monday - Friday:** 08:30 - 17:30\n**• Closed on weekends**"
             }
           }
         }

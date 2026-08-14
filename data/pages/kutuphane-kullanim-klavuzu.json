@@ -106,8 +106,8 @@
                   "en": "Online Access from Outside"
                 },
                 "description": {
-                  "tr": "Eğer bina dışındaysanız, <a href='https://www.kdm.anadolu.edu.tr' target='_blank'><strong>www.kdm.anadolu.edu.tr</strong></a> adresinden araştırmalarınızı yapabilirsiniz.",
-                  "en": "If you are outside the building, you can conduct your research from <a href='https://www.kdm.anadolu.edu.tr' target='_blank'><strong>www.kdm.anadolu.edu.tr</strong></a>."
+                  "tr": "Eğer bina dışındaysanız, [**www.kdm.anadolu.edu.tr**](https://www.kdm.anadolu.edu.tr) adresinden araştırmalarınızı yapabilirsiniz.",
+                  "en": "If you are outside the building, you can conduct your research from [**www.kdm.anadolu.edu.tr**](https://www.kdm.anadolu.edu.tr)."
                 }
               }
             ]
@@ -138,8 +138,8 @@
               "en": "Do You Need Help?"
             },
             "content": {
-              "tr": "Kütüphane kataloğunu kullanmayı bilmiyorsanız, <strong>danışman kütüphanecilerden</strong> yardım alabilirsiniz.",
-              "en": "If you don't know how to use the library catalog, you can get help from <strong>reference librarians</strong>."
+              "tr": "Kütüphane kataloğunu kullanmayı bilmiyorsanız, **danışman kütüphanecilerden** yardım alabilirsiniz.",
+              "en": "If you don't know how to use the library catalog, you can get help from **reference librarians**."
             }
           }
         }
@@ -174,8 +174,8 @@
               "en": "First Step"
             },
             "content": {
-              "tr": "Katalog kaydında materyalin <strong>ödünç bilgisini kontrol edin</strong>.",
-              "en": "Check the <strong>loan status</strong> of the material in the catalog record."
+              "tr": "Katalog kaydında materyalin **ödünç bilgisini kontrol edin**.",
+              "en": "Check the **loan status** of the material in the catalog record."
             }
           }
         },
@@ -192,8 +192,8 @@
               {
                 "type": "paragraph",
                 "content": {
-                  "tr": "Eğer materyal ödünç gözükmüyor ve kullanılabilir durumdaysa; harf ve rakamlardan oluşan <strong>yer numarasını alarak</strong> ilgili kata çıkarak materyale ulaşabilirsiniz.",
-                  "en": "If the material is not on loan and is available; you can reach the material by taking the <strong>call number</strong> consisting of letters and numbers and going to the relevant floor."
+                  "tr": "Eğer materyal ödünç gözükmüyor ve kullanılabilir durumdaysa; harf ve rakamlardan oluşan **yer numarasını alarak** ilgili kata çıkarak materyale ulaşabilirsiniz.",
+                  "en": "If the material is not on loan and is available; you can reach the material by taking the **call number** consisting of letters and numbers and going to the relevant floor."
                 }
               },
               {
@@ -206,8 +206,8 @@
                     "en": "Our Library Uses the Library of Congress Classification System"
                   },
                   "content": {
-                    "tr": "<strong>Harfler konuları temsil etmektedir</strong> ve hangi harfin hangi konuya karşılık geldiğini raflar üzerinde görebilirsiniz. Elinizdeki harfe göre ilgili rafa yönelebilirsiniz.",
-                    "en": "<strong>Letters represent subjects</strong> and you can see which letter corresponds to which subject on the shelves. You can go to the relevant shelf according to the letter you have."
+                    "tr": "**Harfler konuları temsil etmektedir** ve hangi harfin hangi konuya karşılık geldiğini raflar üzerinde görebilirsiniz. Elinizdeki harfe göre ilgili rafa yönelebilirsiniz.",
+                    "en": "**Letters represent subjects** and you can see which letter corresponds to which subject on the shelves. You can go to the relevant shelf according to the letter you have."
                   }
                 }
               },
@@ -221,8 +221,8 @@
                     "en": "Arrangement of Books on Shelves"
                   },
                   "content": {
-                    "tr": "Rafta kitaplar, aldıkları sınıflama numarasına göre <strong>soldan sağa doğru dizilmişlerdir</strong>.",
-                    "en": "Books on the shelf are arranged <strong>from left to right</strong> according to their classification number."
+                    "tr": "Rafta kitaplar, aldıkları sınıflama numarasına göre **soldan sağa doğru dizilmişlerdir**.",
+                    "en": "Books on the shelf are arranged **from left to right** according to their classification number."
                   }
                 }
               }
@@ -242,8 +242,8 @@
               {
                 "type": "paragraph",
                 "content": {
-                  "tr": "Elektronik kaynaklara ulaşmak için <strong>internet bağlantılı bir bilgisayara</strong> ihtiyacınız olacaktır.",
-                  "en": "You will need <strong>a computer with internet connection</strong> to access electronic resources."
+                  "tr": "Elektronik kaynaklara ulaşmak için **internet bağlantılı bir bilgisayara** ihtiyacınız olacaktır.",
+                  "en": "You will need **a computer with internet connection** to access electronic resources."
                 }
               },
               {
@@ -256,8 +256,8 @@
                     "en": "If You Don't Have a Computer"
                   },
                   "content": {
-                    "tr": "Kütüphanemizde bulunan <strong>Bilgisayar Odası'nı</strong> kullanabilirsiniz ya da kütüphaneden <strong>ödünç tablet</strong> alabilirsiniz.",
-                    "en": "You can use the <strong>Computer Room</strong> in our library or <strong>borrow a tablet</strong> from the library."
+                    "tr": "Kütüphanemizde bulunan **Bilgisayar Odası'nı** kullanabilirsiniz ya da kütüphaneden **ödünç tablet** alabilirsiniz.",
+                    "en": "You can use the **Computer Room** in our library or **borrow a tablet** from the library."
                   }
                 }
               },
@@ -271,8 +271,8 @@
                     "en": "Off-Campus Access"
                   },
                   "content": {
-                    "tr": "E-kaynaklara kampüs dışından erişim sağlamak için kütüphane web sayfasında yer alan <a href='uzaktan-erisim.html'><strong>uzaktan erişim menüsünü</strong></a> inceleyerek gerekli ayarları yapmanız gerekmektedir.",
-                    "en": "To access e-resources from off-campus, you need to review the <a href='uzaktan-erisim.html'><strong>remote access menu</strong></a> on the library website and make the necessary settings."
+                    "tr": "E-kaynaklara kampüs dışından erişim sağlamak için kütüphane web sayfasında yer alan [**uzaktan erişim menüsünü**](uzaktan-erisim.html) inceleyerek gerekli ayarları yapmanız gerekmektedir.",
+                    "en": "To access e-resources from off-campus, you need to review the [**remote access menu**](uzaktan-erisim.html) on the library website and make the necessary settings."
                   }
                 }
               },
@@ -286,8 +286,8 @@
                     "en": "Get Support"
                   },
                   "content": {
-                    "tr": "E-kaynakların kullanımı için <strong>danışman kütüphanecilerden</strong> ve <strong>e-kaynaklar biriminden</strong>; bağlantı ile ilgili sorunlar yaşıyorsanız <strong>sistem kütüphanecilerinden</strong> yardım alabilirsiniz.",
-                    "en": "For using e-resources, you can get help from <strong>reference librarians</strong> and <strong>e-resources unit</strong>; if you have connection problems, you can get help from <strong>system librarians</strong>."
+                    "tr": "E-kaynakların kullanımı için **danışman kütüphanecilerden** ve **e-kaynaklar biriminden**; bağlantı ile ilgili sorunlar yaşıyorsanız **sistem kütüphanecilerinden** yardım alabilirsiniz.",
+                    "en": "For using e-resources, you can get help from **reference librarians** and **e-resources unit**; if you have connection problems, you can get help from **system librarians**."
                   }
                 }
               }
@@ -386,8 +386,8 @@
               "en": "Ask for Help"
             },
             "content": {
-              "tr": "<strong>Kat görevlilerinden yardım isteyiniz.</strong> Yeterli yardımı alamadıysanız <strong>Kullanıcı Hizmetleri Sorumlusu</strong> ile görüşünüz.",
-              "en": "<strong>Ask for help from floor staff.</strong> If you didn't get sufficient help, consult with the <strong>User Services Manager</strong>."
+              "tr": "**Kat görevlilerinden yardım isteyiniz.** Yeterli yardımı alamadıysanız **Kullanıcı Hizmetleri Sorumlusu** ile görüşünüz.",
+              "en": "**Ask for help from floor staff.** If you didn't get sufficient help, consult with the **User Services Manager**."
             }
           }
         }
@@ -571,8 +571,8 @@
                     "en": "Union Catalog"
                   },
                   "content": {
-                    "tr": "Türkiye'deki birçok kütüphane kataloğuna <a href='https://www.toplukatalog.gov.tr' target='_blank'><strong>www.toplukatalog.gov.tr</strong></a> adresinden erişebilirsiniz.",
-                    "en": "You can access many library catalogs in Turkey from <a href='https://www.toplukatalog.gov.tr' target='_blank'><strong>www.toplukatalog.gov.tr</strong></a>."
+                    "tr": "Türkiye'deki birçok kütüphane kataloğuna [**www.toplukatalog.gov.tr**](https://www.toplukatalog.gov.tr) adresinden erişebilirsiniz.",
+                    "en": "You can access many library catalogs in Turkey from [**www.toplukatalog.gov.tr**](https://www.toplukatalog.gov.tr)."
                   }
                 }
               },
@@ -651,8 +651,8 @@
               {
                 "type": "paragraph",
                 "content": {
-                  "tr": "Uluslararası kaynakları en zengin biçimiyle sizlere sunan veri tabanlarını kütüphane web sayfasında, <strong>SUMMON toplu tarama motorunu</strong> ya da <strong>e-kaynaklar sekmesini</strong> kullanarak erişebilirsiniz.",
-                  "en": "You can access databases offering international resources in the richest form through the library website, using the <strong>SUMMON discovery tool</strong> or the <strong>e-resources tab</strong>."
+                  "tr": "Uluslararası kaynakları en zengin biçimiyle sizlere sunan veri tabanlarını kütüphane web sayfasında, **SUMMON toplu tarama motorunu** ya da **e-kaynaklar sekmesini** kullanarak erişebilirsiniz.",
+                  "en": "You can access databases offering international resources in the richest form through the library website, using the **SUMMON discovery tool** or the **e-resources tab**."
                 }
               },
               {
@@ -722,8 +722,8 @@
               {
                 "type": "paragraph",
                 "content": {
-                  "tr": "Kütüphane kataloğundan <strong>tezler seçeneğini</strong> kullanarak; üniversitemizde yapılmış yüksek lisans, doktora ve sanatta yeterlilik tezlerini bulabilirsiniz.",
-                  "en": "By using the <strong>theses option</strong> from the library catalog; you can find master's, doctoral, and proficiency in art theses completed at our university."
+                  "tr": "Kütüphane kataloğundan **tezler seçeneğini** kullanarak; üniversitemizde yapılmış yüksek lisans, doktora ve sanatta yeterlilik tezlerini bulabilirsiniz.",
+                  "en": "By using the **theses option** from the library catalog; you can find master's, doctoral, and proficiency in art theses completed at our university."
                 }
               },
               {
@@ -788,8 +788,8 @@
                     "en": "Subscription Required"
                   },
                   "content": {
-                    "tr": "ProQuest Dissertations and Theses Global ücretli bir veri tabanıdır. Kullanmak için kütüphanenin abone olması gerekmektedir. İlgili veri tabanına <strong>kütüphanemiz abonedir</strong>.",
-                    "en": "ProQuest Dissertations and Theses Global is a subscription-based database. The library must be subscribed to use it. <strong>Our library is subscribed</strong> to this database."
+                    "tr": "ProQuest Dissertations and Theses Global ücretli bir veri tabanıdır. Kullanmak için kütüphanenin abone olması gerekmektedir. İlgili veri tabanına **kütüphanemiz abonedir**.",
+                    "en": "ProQuest Dissertations and Theses Global is a subscription-based database. The library must be subscribed to use it. **Our library is subscribed** to this database."
                   }
                 }
               },

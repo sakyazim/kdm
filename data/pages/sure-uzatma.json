@@ -44,8 +44,8 @@
               "en": "Access to LIBRA System"
             },
             "content": {
-              "tr": "<p><a href='http://libra.anadolu.edu.tr' target='_blank' rel='noopener noreferrer'><strong>http://libra.anadolu.edu.tr</strong></a> sayfasına giderek <a href='https://libra.anadolu.edu.tr/libra.aspx?DS=ODUNC' target='_blank' rel='noopener noreferrer'><strong>\"Ödünç Kayıtları\"</strong></a> bölümüne giriniz.</p><div class='mt-3 text-center'><a href='https://libra.anadolu.edu.tr/libra.aspx?DS=ODUNC' target='_blank' rel='noopener noreferrer' class='btn btn-primary btn-lg'><i class='bi bi-box-arrow-up-right me-2'></i>Ödünç Kayıtlarına Git</a></div>",
-              "en": "<p>Go to <a href='http://libra.anadolu.edu.tr' target='_blank' rel='noopener noreferrer'><strong>http://libra.anadolu.edu.tr</strong></a> and navigate to the <a href='https://libra.anadolu.edu.tr/libra.aspx?DS=ODUNC' target='_blank' rel='noopener noreferrer'><strong>\"Borrowing Records\"</strong></a> section.</p><div class='mt-3 text-center'><a href='https://libra.anadolu.edu.tr/libra.aspx?DS=ODUNC' target='_blank' rel='noopener noreferrer' class='btn btn-primary btn-lg'><i class='bi bi-box-arrow-up-right me-2'></i>Go to Borrowing Records</a></div>"
+              "tr": "[**http://libra.anadolu.edu.tr**](http://libra.anadolu.edu.tr) sayfasına giderek [**\"Ödünç Kayıtları\"**](https://libra.anadolu.edu.tr/libra.aspx?DS=ODUNC) bölümüne giriniz.\n\n[Ödünç Kayıtlarına Git](https://libra.anadolu.edu.tr/libra.aspx?DS=ODUNC)",
+              "en": "Go to [**http://libra.anadolu.edu.tr**](http://libra.anadolu.edu.tr) and navigate to the [**\"Borrowing Records\"**](https://libra.anadolu.edu.tr/libra.aspx?DS=ODUNC) section.\n\n[Go to Borrowing Records](https://libra.anadolu.edu.tr/libra.aspx?DS=ODUNC)"
             }
           }
         }
@@ -65,8 +65,8 @@
                   "en": "Go to LIBRA Page"
                 },
                 "description": {
-                  "tr": "Yukarıdaki butona tıklayarak <strong>\"Ödünç Kayıtları\"</strong> sayfasına gidin. T.C. Kimlik No alanına <strong>11 haneli T.C. Kimlik numaranızı</strong> girin. Güvenlik Kodu kısmına <strong>resimde gördüğünüz güvenlik kodunu</strong> girin. <strong>\"Ödünç Listele\"</strong> butonuna tıklayarak üzerinizdeki materyalleri görüntüleyin.",
-                  "en": "Click the button above to go to the <strong>\"Borrowing Records\"</strong> page. Enter your <strong>11-digit Turkish ID number</strong> in the TC ID No field. Enter the <strong>security code shown in the image</strong> in the Security Code field. Click the <strong>\"List Loans\"</strong> button to view your borrowed materials."
+                  "tr": "Yukarıdaki butona tıklayarak **\"Ödünç Kayıtları\"** sayfasına gidin. T.C. Kimlik No alanına **11 haneli T.C. Kimlik numaranızı** girin. Güvenlik Kodu kısmına **resimde gördüğünüz güvenlik kodunu** girin. **\"Ödünç Listele\"** butonuna tıklayarak üzerinizdeki materyalleri görüntüleyin.",
+                  "en": "Click the button above to go to the **\"Borrowing Records\"** page. Enter your **11-digit Turkish ID number** in the TC ID No field. Enter the **security code shown in the image** in the Security Code field. Click the **\"List Loans\"** button to view your borrowed materials."
                 },
                 "image": {
                   "tr": "assets/images/sure-uzatma/sure-uzatma-1-tr.png",
@@ -88,8 +88,8 @@
                   "en": "View Material List"
                 },
                 "description": {
-                  "tr": "Üzerinizdeki materyaller görüntülendiğinde, her materyalin <strong>iade tarihini</strong> ve <strong>durumunu</strong> görebilirsiniz. Rezerve edilmemiş materyallerin iade tarihi bölümünde <strong>\"Süre Uzat\"</strong> linki bulunur.",
-                  "en": "When your borrowed materials are displayed, you can see the <strong>return date</strong> and <strong>status</strong> of each material. The <strong>\"Extend Loan\"</strong> link is available in the return date section for materials that are not reserved."
+                  "tr": "Üzerinizdeki materyaller görüntülendiğinde, her materyalin **iade tarihini** ve **durumunu** görebilirsiniz. Rezerve edilmemiş materyallerin iade tarihi bölümünde **\"Süre Uzat\"** linki bulunur.",
+                  "en": "When your borrowed materials are displayed, you can see the **return date** and **status** of each material. The **\"Extend Loan\"** link is available in the return date section for materials that are not reserved."
                 },
                 "image": {
                   "tr": "assets/images/sure-uzatma/sure-uzatma-2-tr.png",
@@ -111,8 +111,8 @@
                   "en": "Perform Loan Extension"
                 },
                 "description": {
-                  "tr": "Rezerve edilmemiş materyallerin iade tarihi bölümündeki <strong>\"Süre Uzat\"</strong> linkini tıkladığınızda, iade tarihi otomatik olarak uzatılacaktır. Yeni iade tarihi ekranda görüntülenecektir.",
-                  "en": "When you click the <strong>\"Extend Loan\"</strong> link in the return date section for materials that are not reserved, the return date will be automatically extended. The new return date will be displayed on the screen."
+                  "tr": "Rezerve edilmemiş materyallerin iade tarihi bölümündeki **\"Süre Uzat\"** linkini tıkladığınızda, iade tarihi otomatik olarak uzatılacaktır. Yeni iade tarihi ekranda görüntülenecektir.",
+                  "en": "When you click the **\"Extend Loan\"** link in the return date section for materials that are not reserved, the return date will be automatically extended. The new return date will be displayed on the screen."
                 },
                 "note": {
                   "tr": "Her materyal için maksimum 3 kez süre uzatma yapabilirsiniz.",
@@ -133,8 +133,8 @@
             "style": "warning",
             "icon": "bi bi-exclamation-triangle-fill",
             "content": {
-              "tr": "<strong>Önemli Kurallar:</strong><ul class='mt-2 mb-0'><li>Bu işlemi sadece <strong>3 kez</strong> yapabilirsiniz.</li><li>İade süresini uzatmak istediğiniz materyal <strong>rezerve edilmemiş</strong> olmalıdır.</li><li>Geç iade cezası olan materyaller için süre uzatma yapılamaz.</li></ul>",
-              "en": "<strong>Important Rules:</strong><ul class='mt-2 mb-0'><li>You can perform this operation only <strong>3 times</strong>.</li><li>The material you want to extend must be <strong>not reserved</strong>.</li><li>Loan extension cannot be made for materials with late return penalties.</li></ul>"
+              "tr": "- Bu işlemi sadece **3 kez** yapabilirsiniz.\n- İade süresini uzatmak istediğiniz materyal **rezerve edilmemiş** olmalıdır.\n- Geç iade cezası olan materyaller için süre uzatma yapılamaz.",
+              "en": "- You can perform this operation only **3 times**.\n- The material you want to extend must be **not reserved**.\n- Loan extension cannot be made for materials with late return penalties."
             }
           }
         }
@@ -165,16 +165,16 @@
                 "type": "unordered-list",
                 "items": [
                   {
-                    "tr": "<strong>Telefon ile:</strong> Kütüphane Dolaşım Servisi'ni arayarak süre uzatma talebinde bulunabilirsiniz.",
-                    "en": "<strong>By Phone:</strong> You can call the Library Circulation Service to request a loan extension."
+                    "tr": "**Telefon ile:** Kütüphane Dolaşım Servisi'ni arayarak süre uzatma talebinde bulunabilirsiniz.",
+                    "en": "**By Phone:** You can call the Library Circulation Service to request a loan extension."
                   },
                   {
-                    "tr": "<strong>E-posta ile:</strong> <a href='mailto:kutuphanedolasim@anadolu.edu.tr'>kutuphanedolasim@anadolu.edu.tr</a> adresine T.C. Kimlik numaranız ve uzatmak istediğiniz materyalin bilgilerini göndererek işlem yapabilirsiniz.",
-                    "en": "<strong>By Email:</strong> You can send your TC ID number and material information to <a href='mailto:kutuphanedolasim@anadolu.edu.tr'>kutuphanedolasim@anadolu.edu.tr</a> to request an extension."
+                    "tr": "**E-posta ile:** [kutuphanedolasim@anadolu.edu.tr](mailto:kutuphanedolasim@anadolu.edu.tr) adresine T.C. Kimlik numaranız ve uzatmak istediğiniz materyalin bilgilerini göndererek işlem yapabilirsiniz.",
+                    "en": "**By Email:** You can send your TC ID number and material information to [kutuphanedolasim@anadolu.edu.tr](mailto:kutuphanedolasim@anadolu.edu.tr) to request an extension."
                   },
                   {
-                    "tr": "<strong>Kütüphaneden:</strong> Dolaşım masasından bizzat süre uzatma işlemi yaptırabilirsiniz.",
-                    "en": "<strong>From the Library:</strong> You can request a loan extension directly from the circulation desk."
+                    "tr": "**Kütüphaneden:** Dolaşım masasından bizzat süre uzatma işlemi yaptırabilirsiniz.",
+                    "en": "**From the Library:** You can request a loan extension directly from the circulation desk."
                   }
                 ]
               }
@@ -203,8 +203,8 @@
                 },
                 "icon": "bi bi-x-circle",
                 "content": {
-                  "tr": "Bu durumun nedenleri şunlar olabilir:<br>• Materyal başka bir kullanıcı tarafından <strong>rezerve edilmiş</strong> olabilir<br>• Materyal için <strong>maksimum uzatma sayısına (3 kez)</strong> ulaşmış olabilirsiniz<br>• Üzerinizde <strong>geç iade cezası</strong> olabilir",
-                  "en": "Possible reasons for this:<br>• The material may be <strong>reserved</strong> by another user<br>• You may have reached the <strong>maximum extension limit (3 times)</strong> for this material<br>• You may have a <strong>late return penalty</strong>"
+                  "tr": "Bu durumun nedenleri şunlar olabilir:\n• Materyal başka bir kullanıcı tarafından **rezerve edilmiş** olabilir\n• Materyal için **maksimum uzatma sayısına (3 kez)** ulaşmış olabilirsiniz\n• Üzerinizde **geç iade cezası** olabilir",
+                  "en": "Possible reasons for this:\n• The material may be **reserved** by another user\n• You may have reached the **maximum extension limit (3 times)** for this material\n• You may have a **late return penalty**"
                 }
               },
               {
@@ -215,8 +215,8 @@
                 },
                 "icon": "bi bi-exclamation-triangle",
                 "content": {
-                  "tr": "T.C. Kimlik numaranızı <strong>11 haneli</strong> olarak ve <strong>başında sıfır varsa sıfır ile birlikte</strong> girdiğinizden emin olun. Sorun devam ederse Dolaşım Servisi ile iletişime geçin.",
-                  "en": "Make sure you enter your TC ID number as <strong>11 digits</strong> and <strong>including leading zeros if any</strong>. If the problem persists, contact the Circulation Service."
+                  "tr": "T.C. Kimlik numaranızı **11 haneli** olarak ve **başında sıfır varsa sıfır ile birlikte** girdiğinizden emin olun. Sorun devam ederse Dolaşım Servisi ile iletişime geçin.",
+                  "en": "Make sure you enter your TC ID number as **11 digits** and **including leading zeros if any**. If the problem persists, contact the Circulation Service."
                 }
               },
               {
@@ -269,8 +269,8 @@
             "style": "info",
             "icon": "bi bi-telephone-fill",
             "content": {
-              "tr": "<strong>Yardıma mı İhtiyacınız Var?</strong><br>Mesai saatleri içinde <a href='tel:02223350580'><strong>0222 335 05 80 / 1730</strong></a> numaralı telefondan <strong>Dolaşım Servisi</strong> ile görüşebilirsiniz.<br><br>E-posta ile destek: <a href='mailto:kutuphanedolasim@anadolu.edu.tr'><strong>kutuphanedolasim@anadolu.edu.tr</strong></a>",
-              "en": "<strong>Need Help?</strong><br>During office hours, you can contact the <strong>Circulation Service</strong> at <a href='tel:02223350580'><strong>0222 335 05 80 / 1730</strong></a>.<br><br>Email support: <a href='mailto:kutuphanedolasim@anadolu.edu.tr'><strong>kutuphanedolasim@anadolu.edu.tr</strong></a>"
+              "tr": "**Yardıma mı İhtiyacınız Var?**\nMesai saatleri içinde [**0222 335 05 80 / 1730**](tel:02223350580) numaralı telefondan **Dolaşım Servisi** ile görüşebilirsiniz.\n\nE-posta ile destek: [**kutuphanedolasim@anadolu.edu.tr**](mailto:kutuphanedolasim@anadolu.edu.tr)",
+              "en": "**Need Help?**\nDuring office hours, you can contact the **Circulation Service** at [**0222 335 05 80 / 1730**](tel:02223350580).\n\nEmail support: [**kutuphanedolasim@anadolu.edu.tr**](mailto:kutuphanedolasim@anadolu.edu.tr)"
             }
           }
         }

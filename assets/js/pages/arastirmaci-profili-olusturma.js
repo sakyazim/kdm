@@ -149,7 +149,7 @@ export class ArastirmaciProfiliOlusturmaPage {
           <div class="benefit-number">${item.number}</div>
           <div class="benefit-content">
             <div class="benefit-title">${item.title}</div>
-            <div class="benefit-description">${item.description}</div>
+            <div class="benefit-description">${Utils.mdToHtml(Utils.getLocalizedText(item.description))}</div>
           </div>
         </div>
       `;
@@ -214,7 +214,7 @@ export class ArastirmaciProfiliOlusturmaPage {
       html += `
         <div class="tip-item">
           <i class="${item.icon}"></i>
-          <strong>${item.title}:</strong> ${item.text}
+          <strong>${item.title}:</strong> ${Utils.mdToHtml(Utils.getLocalizedText(item.text))}
         </div>
       `;
     });
@@ -310,7 +310,7 @@ export class ArastirmaciProfiliOlusturmaPage {
 
     // Content
     if (section.content) {
-      html += section.content;
+      html += Utils.mdToHtml(Utils.getLocalizedText(section.content));
     }
 
     // Info Boxes
@@ -322,7 +322,7 @@ export class ArastirmaciProfiliOlusturmaPage {
               <i class="${box.icon}"></i>
               ${box.title}
             </div>
-            <p>${box.text}</p>
+            <p>${Utils.mdToHtml(Utils.getLocalizedText(box.text))}</p>
           </div>
         `;
       });
@@ -337,7 +337,7 @@ export class ArastirmaciProfiliOlusturmaPage {
               <i class="${warning.icon}"></i>
               ${warning.title}
             </div>
-            <p>${warning.text}</p>
+            <p>${Utils.mdToHtml(Utils.getLocalizedText(warning.text))}</p>
           </div>
         `;
       });
@@ -352,7 +352,7 @@ export class ArastirmaciProfiliOlusturmaPage {
             <div class="benefit-number">${benefit.number}</div>
             <div class="benefit-content">
               <div class="benefit-title">${benefit.title}</div>
-              <div class="benefit-description">${benefit.description}</div>
+              <div class="benefit-description">${Utils.mdToHtml(Utils.getLocalizedText(benefit.description))}</div>
             </div>
           </div>
         `;
@@ -371,7 +371,7 @@ export class ArastirmaciProfiliOlusturmaPage {
               <i class="fas fa-chevron-down ms-auto"></i>
             </div>
             <div class="step-content">
-              ${step.content}
+              ${Utils.mdToHtml(Utils.getLocalizedText(step.content))}
         `;
 
         // Info Boxes in steps
@@ -383,7 +383,7 @@ export class ArastirmaciProfiliOlusturmaPage {
                   <i class="${box.icon}"></i>
                   ${box.title}
                 </div>
-                <p>${box.text}</p>
+                <p>${Utils.mdToHtml(Utils.getLocalizedText(box.text))}</p>
               </div>
             `;
           });
@@ -398,7 +398,7 @@ export class ArastirmaciProfiliOlusturmaPage {
                   <i class="${warning.icon}"></i>
                   ${warning.title}
                 </div>
-                <p>${warning.text}</p>
+                <p>${Utils.mdToHtml(Utils.getLocalizedText(warning.text))}</p>
               </div>
             `;
           });
@@ -424,7 +424,7 @@ export class ArastirmaciProfiliOlusturmaPage {
     let html = `
       <div id="${contact.id}" class="contact-section">
         <h4>${contact.title}</h4>
-        <p>${contact.description}</p>
+        <p>${Utils.mdToHtml(Utils.getLocalizedText(contact.description))}</p>
         <div class="contact-info">
     `;
 

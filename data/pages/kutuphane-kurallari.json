@@ -59,15 +59,15 @@
               {
                 "icon": "bi bi-shield-lock",
                 "text": {
-                  "tr": "<strong>RFID Güvenlik Sistemi</strong><br>Kütüphanedeki materyallerin güvenliği, Radyo Frekansı ile Tanımlama (RFID - Radio Frequency Identification) teknolojisini kullanan bir güvenlik kapı kontrol sistemi ile sağlanmaktadır.",
-                  "en": "<strong>RFID Security System</strong><br>The security of library materials is ensured by a security gate control system using Radio Frequency Identification (RFID) technology."
+                  "tr": "**RFID Güvenlik Sistemi**\nKütüphanedeki materyallerin güvenliği, Radyo Frekansı ile Tanımlama (RFID - Radio Frequency Identification) teknolojisini kullanan bir güvenlik kapı kontrol sistemi ile sağlanmaktadır.",
+                  "en": "**RFID Security System**\nThe security of library materials is ensured by a security gate control system using Radio Frequency Identification (RFID) technology."
                 }
               },
               {
                 "icon": "bi bi-x-octagon",
                 "text": {
-                  "tr": "<strong>Ödünç İşlemi Zorunluluğu</strong><br>Materyaller, ödünç alma işlemi yapılmadan kütüphane dışına çıkarılamaz. İşlem yapılmadan materyal çıkarmaya teşebbüs edenler hakkında yasal işlem başlatılır.",
-                  "en": "<strong>Loan Transaction Requirement</strong><br>Materials cannot be taken out of the library without completing a loan transaction. Legal action will be taken against those who attempt to remove materials without processing."
+                  "tr": "**Ödünç İşlemi Zorunluluğu**\nMateryaller, ödünç alma işlemi yapılmadan kütüphane dışına çıkarılamaz. İşlem yapılmadan materyal çıkarmaya teşebbüs edenler hakkında yasal işlem başlatılır.",
+                  "en": "**Loan Transaction Requirement**\nMaterials cannot be taken out of the library without completing a loan transaction. Legal action will be taken against those who attempt to remove materials without processing."
                 }
               }
             ]
@@ -113,36 +113,36 @@
               {
                 "icon": "bi bi-cup-straw",
                 "text": {
-                  "tr": "<strong>Yiyecek İçecek Yasağı</strong><br>Kütüphane içinde yiyecek, içecek tüketimi ve tütün ürünlerinin kullanımı yasaktır.",
-                  "en": "<strong>Food and Beverage Prohibition</strong><br>Consumption of food, beverages and use of tobacco products is prohibited in the library."
+                  "tr": "**Yiyecek İçecek Yasağı**\nKütüphane içinde yiyecek, içecek tüketimi ve tütün ürünlerinin kullanımı yasaktır.",
+                  "en": "**Food and Beverage Prohibition**\nConsumption of food, beverages and use of tobacco products is prohibited in the library."
                 }
               },
               {
                 "icon": "bi bi-person-check",
                 "text": {
-                  "tr": "<strong>Kişisel Eşya Sorumluluğu</strong><br>Kullanıcılar, kişisel eşyalarının güvenliğinden kendileri sorumludur. Kayıp ve çalıntı eşyalar için kütüphane sorumluluk kabul etmez.",
-                  "en": "<strong>Personal Belongings Responsibility</strong><br>Users are responsible for the security of their personal belongings. The library accepts no responsibility for lost or stolen items."
+                  "tr": "**Kişisel Eşya Sorumluluğu**\nKullanıcılar, kişisel eşyalarının güvenliğinden kendileri sorumludur. Kayıp ve çalıntı eşyalar için kütüphane sorumluluk kabul etmez.",
+                  "en": "**Personal Belongings Responsibility**\nUsers are responsible for the security of their personal belongings. The library accepts no responsibility for lost or stolen items."
                 }
               },
               {
                 "icon": "bi bi-phone-vibrate",
                 "text": {
-                  "tr": "<strong>Cep Telefonu Kuralı</strong><br>Kütüphaneye girerken cep telefonları sessize alınmalı veya kapatılmalıdır.",
-                  "en": "<strong>Mobile Phone Rule</strong><br>Mobile phones must be silenced or turned off when entering the library."
+                  "tr": "**Cep Telefonu Kuralı**\nKütüphaneye girerken cep telefonları sessize alınmalı veya kapatılmalıdır.",
+                  "en": "**Mobile Phone Rule**\nMobile phones must be silenced or turned off when entering the library."
                 }
               },
               {
                 "icon": "bi bi-camera-video-off",
                 "text": {
-                  "tr": "<strong>Kayıt Yasağı</strong><br>İzinsiz fotoğraf, video ve ses kaydı yapılması yasaktır.",
-                  "en": "<strong>Recording Prohibition</strong><br>Unauthorized photography, video and audio recording is prohibited."
+                  "tr": "**Kayıt Yasağı**\nİzinsiz fotoğraf, video ve ses kaydı yapılması yasaktır.",
+                  "en": "**Recording Prohibition**\nUnauthorized photography, video and audio recording is prohibited."
                 }
               },
               {
                 "icon": "bi bi-people",
                 "text": {
-                  "tr": "<strong>Grup Çalışması</strong><br>Grup çalışması yalnızca grup çalışma salonlarında yapılabilir. Diğer alanlarda sessiz çalışmaya özen gösterilmelidir.",
-                  "en": "<strong>Group Study</strong><br>Group study can only be done in group study rooms. Silent study should be observed in other areas."
+                  "tr": "**Grup Çalışması**\nGrup çalışması yalnızca grup çalışma salonlarında yapılabilir. Diğer alanlarda sessiz çalışmaya özen gösterilmelidir.",
+                  "en": "**Group Study**\nGroup study can only be done in group study rooms. Silent study should be observed in other areas."
                 }
               }
             ]
@@ -173,15 +173,15 @@
               {
                 "icon": "bi bi-file-earmark-person",
                 "text": {
-                  "tr": "<strong>İlişiği Yoktur Belgesi</strong><br>Emekli olan, istifa eden, askerlik veya görevlendirme nedeniyle üniversiteden ayrılan personel ile mezun olan öğrenciler, ilişkilerini kesmeden önce \"ilişiği yoktur\" belgesi almak zorundadır.",
-                  "en": "<strong>Clearance Certificate</strong><br>Staff who retire, resign, leave the university due to military service or assignment, and graduating students must obtain a \"clearance certificate\" before terminating their relationship."
+                  "tr": "**İlişiği Yoktur Belgesi**\nEmekli olan, istifa eden, askerlik veya görevlendirme nedeniyle üniversiteden ayrılan personel ile mezun olan öğrenciler, ilişkilerini kesmeden önce \"ilişiği yoktur\" belgesi almak zorundadır.",
+                  "en": "**Clearance Certificate**\nStaff who retire, resign, leave the university due to military service or assignment, and graduating students must obtain a \"clearance certificate\" before terminating their relationship."
                 }
               },
               {
                 "icon": "bi bi-arrow-return-left",
                 "text": {
-                  "tr": "<strong>Zorunlu İade</strong><br>Kütüphane tarafından herhangi bir nedenle istenen materyaller, süresi dolmamış olsa dahi iade edilmelidir.",
-                  "en": "<strong>Mandatory Return</strong><br>Materials requested by the library for any reason must be returned even if their due date has not expired."
+                  "tr": "**Zorunlu İade**\nKütüphane tarafından herhangi bir nedenle istenen materyaller, süresi dolmamış olsa dahi iade edilmelidir.",
+                  "en": "**Mandatory Return**\nMaterials requested by the library for any reason must be returned even if their due date has not expired."
                 }
               }
             ]
@@ -275,8 +275,8 @@
               {
                 "icon": "bi bi-clipboard-check",
                 "text": {
-                  "tr": "<strong>Oda Kullanım Kuralları</strong><br>Çalışma odalarını kullananlar, ilgili oda kullanım kurallarına uymak zorundadır.",
-                  "en": "<strong>Room Usage Rules</strong><br>Users of study rooms must comply with the relevant room usage rules."
+                  "tr": "**Oda Kullanım Kuralları**\nÇalışma odalarını kullananlar, ilgili oda kullanım kurallarına uymak zorundadır.",
+                  "en": "**Room Usage Rules**\nUsers of study rooms must comply with the relevant room usage rules."
                 }
               }
             ]

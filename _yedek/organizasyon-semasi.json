@@ -1,0 +1,378 @@
+{
+  "hero": {
+    "title": {
+      "tr": "Organizasyon Şeması",
+      "en": "Organizational Chart"
+    },
+    "description": {
+      "tr": "Kütüphane ve Dokümantasyon Daire Başkanlığı organizasyon yapısı",
+      "en": "Library and Documentation Department Organizational Structure"
+    },
+    "icon": "bi bi-diagram-3"
+  },
+  "content": [
+    {
+      "id": "daire-baskani",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "double-plain",
+          "data": {
+            "title": {
+              "tr": "Daire Başkanı",
+              "en": "Department Director"
+            },
+            "subtitle": {
+              "tr": "Dr. Gültekin GÜLLÜ",
+              "en": "Dr. Gültekin GÜLLÜ"
+            },
+            "id": "daire-baskani-heading"
+          }
+        },
+        {
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Kütüphane ve Dokümantasyon Daire Başkanlığı'nın en üst yöneticisidir. Tüm birimlerin koordinasyonundan ve stratejik planlamadan sorumludur.",
+              "en": "The top executive of the Library and Documentation Department. Responsible for coordinating all units and strategic planning."
+            }
+          }
+        },
+        {
+          "type": "icon-list",
+          "variant": "default",
+          "data": {
+            "items": [
+              {
+                "icon": "bi bi-person-workspace",
+                "text": {
+                  "tr": "Sekreterya",
+                  "en": "Secretariat"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "destek-hizmetleri",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "double-plain",
+          "data": {
+            "title": {
+              "tr": "ŞUBE MÜDÜRÜ",
+              "en": "BRANCH MANAGER"
+            },
+            "subtitle": {
+              "tr": "Osman Nuri Kıdak",
+              "en": "Osman Nuri Kıdak"
+            },
+            "id": "destek-hizmetleri-heading"
+          }
+        },
+        {
+          "type": "icon-list",
+          "variant": "default",
+          "data": {
+            "items": [
+              {
+                "icon": "bi bi-box-seam",
+                "text": {
+                  "tr": "Ayniyat Birimi",
+                  "en": "Inventory Unit"
+                }
+              },
+              {
+                "icon": "bi bi-cart",
+                "text": {
+                  "tr": "Satınalma Birimi",
+                  "en": "Procurement Unit"
+                }
+              },
+              {
+                "icon": "bi bi-file-earmark-text",
+                "text": {
+                  "tr": "İdari İşler",
+                  "en": "Administrative Affairs"
+                }
+              },
+              {
+                "icon": "bi bi-tools",
+                "text": {
+                  "tr": "Destek Hizmetleri",
+                  "en": "Support Services"
+                }
+              },
+              {
+                "icon": "bi bi-clock",
+                "text": {
+                  "tr": "Vardiya Personeli",
+                  "en": "Shift Staff"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "kullanici-hizmetleri",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "double-plain",
+          "data": {
+            "title": {
+              "tr": "KULLANICI HİZMETLERİ SORUMLUSU",
+              "en": "USER SERVICES COORDINATOR"
+            },
+            "subtitle": {
+              "tr": "Halime Yörü",
+              "en": "Halime Yörü"
+            },
+            "id": "kullanici-hizmetleri-heading"
+          }
+        },
+        {
+          "type": "icon-list",
+          "variant": "default",
+          "data": {
+            "items": [
+              {
+                "icon": "bi bi-people",
+                "text": {
+                  "tr": "Kullanıcı Eğitimi ve Enformasyon",
+                  "en": "User Training and Information"
+                }
+              },
+              {
+                "icon": "bi bi-book",
+                "text": {
+                  "tr": "Ödünç ve ILL Hizmeti",
+                  "en": "Loan and ILL Service"
+                }
+              },
+              {
+                "icon": "bi bi-info-circle",
+                "text": {
+                  "tr": "Ön Danışma ve Rezerve Hizmeti",
+                  "en": "Reference and Reserve Service"
+                }
+              },
+              {
+                "icon": "bi bi-bookshelf",
+                "text": {
+                  "tr": "Koleksiyonlar ve Raf Hizmetleri",
+                  "en": "Collections and Shelf Services"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "teknik-hizmetler",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "double-plain",
+          "data": {
+            "title": {
+              "tr": "TEKNİK HİZMETLER SORUMLUSU",
+              "en": "TECHNICAL SERVICES COORDINATOR"
+            },
+            "subtitle": {
+              "tr": "Özdilek Uygur",
+              "en": "Özdilek Uygur"
+            },
+            "id": "teknik-hizmetleri-heading"
+          }
+        },
+        {
+          "type": "icon-list",
+          "variant": "default",
+          "data": {
+            "items": [
+              {
+                "icon": "bi bi-tags",
+                "text": {
+                  "tr": "Kataloglama ve Sınıflama",
+                  "en": "Cataloging and Classification"
+                }
+              },
+              {
+                "icon": "bi bi-box-arrow-in-down",
+                "text": {
+                  "tr": "Sağlama Birimi",
+                  "en": "Acquisition Unit"
+                }
+              },
+              {
+                "icon": "bi bi-journal-text",
+                "text": {
+                  "tr": "Süreli (Basılı) Yayınlar",
+                  "en": "Serial (Print) Publications"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "bilisim-hizmetleri",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "double-plain",
+          "data": {
+            "title": {
+              "tr": "Bilişim Hizmetleri Sorumlusu",
+              "en": "IT Services Coordinator"
+            },
+            "subtitle": {
+              "tr": "Arif Yılmaz",
+              "en": "Arif Yılmaz"
+            },
+            "id": "bilisim-hizmetleri-heading"
+          }
+        },
+        {
+          "type": "icon-list",
+          "variant": "default",
+          "data": {
+            "items": [
+              {
+                "icon": "bi bi-laptop",
+                "text": {
+                  "tr": "Kütüphane Otomasyon ve E-Kaynaklar",
+                  "en": "Library Automation and E-Resources"
+                }
+              },
+              {
+                "icon": "bi bi-file-earmark-image",
+                "text": {
+                  "tr": "Mikrofilm Hizmetleri ve Dijitalleştirme",
+                  "en": "Microfilm Services and Digitization"
+                }
+              },
+              {
+                "icon": "bi bi-music-note-beamed",
+                "text": {
+                  "tr": "İşitsel Hizmetler",
+                  "en": "Audio Services"
+                }
+              },
+              {
+                "icon": "bi bi-camera-video",
+                "text": {
+                  "tr": "Görsel Hizmetler",
+                  "en": "Visual Services"
+                }
+              },
+              {
+                "icon": "bi bi-unlock",
+                "text": {
+                  "tr": "Açık Erişim",
+                  "en": "Open Access"
+                }
+              },
+              {
+                "icon": "bi bi-pc-display",
+                "text": {
+                  "tr": "Bilgisayar Laboratuvarı",
+                  "en": "Computer Laboratory"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "pdf-indirme",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Organizasyon Şeması PDF",
+              "en": "Organizational Chart PDF"
+            },
+            "icon": "bi bi-file-earmark-pdf",
+            "id": "pdf-indirme-heading"
+          }
+        },
+        {
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Kütüphane ve Dokümantasyon Daire Başkanlığı organizasyon şemasını PDF formatında indirebilirsiniz.",
+              "en": "You can download the Library and Documentation Department organizational chart in PDF format."
+            }
+          }
+        },
+        {
+          "type": "resource-links",
+          "data": {
+            "resources": [
+              {
+                "title": {
+                  "tr": "Organizasyon Şeması PDF İndir",
+                  "en": "Download Organizational Chart PDF"
+                },
+                "icon": "bi bi-download",
+                "url": "assets/documents/organizasyon-semasi.pdf",
+                "description": {
+                  "tr": "PDF formatında organizasyon şeması",
+                  "en": "Organizational chart in PDF format"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "helpSection": {
+    "title": {
+      "tr": "Yardıma mı ihtiyacınız var?",
+      "en": "Need help?"
+    },
+    "description": {
+      "tr": "Organizasyon yapısı ile ilgili sorularınız için bizimle iletişime geçebilirsiniz.",
+      "en": "You can contact us for questions about the organizational structure."
+    },
+    "buttons": [
+      {
+        "icon": "fas fa-phone",
+        "text": {
+          "tr": "Hemen Ara",
+          "en": "Call Now"
+        },
+        "link": "tel:+902223350580"
+      },
+      {
+        "icon": "fas fa-envelope",
+        "text": {
+          "tr": "E-posta Gönder",
+          "en": "Send Email"
+        },
+        "link": "mailto:library@anadolu.edu.tr"
+      },
+      {
+        "icon": "fas fa-home",
+        "text": {
+          "tr": "Ana Sayfa",
+          "en": "Home"
+        },
+        "link": "index.html"
+      }
+    ]
+  }
+}

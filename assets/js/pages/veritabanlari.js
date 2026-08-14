@@ -490,7 +490,7 @@ export class VeritabanlariPage {
     const categoriesHtml = localizedCategories.map(cat =>
       `<span class="category-tag">${cat}</span>`
     ).join('');
-    const description = Utils.getLocalizedText(database.description);
+    const description = Utils.mdToHtml(Utils.getLocalizedText(database.description));
 
     const t = this.translations || {};
     const apcBadge = database.apcSupport ? `<span class="apc-badge" data-bs-toggle="tooltip" data-bs-placement="top" title="${t.tooltips?.apc || 'APC'}">APC</span>` : '';
@@ -539,7 +539,7 @@ export class VeritabanlariPage {
 
   createDatabaseListItem(database) {
     // Localize description
-    const description = Utils.getLocalizedText(database.description);
+    const description = Utils.mdToHtml(Utils.getLocalizedText(database.description));
 
     const t = this.translations || {};
     const apcBadge = database.apcSupport ? `<span class="apc-badge" data-bs-toggle="tooltip" data-bs-placement="top" title="${t.tooltips?.apc || 'APC'}">APC</span>` : '';
@@ -600,7 +600,7 @@ export class VeritabanlariPage {
     const t = this.translations || {};
 
     // Localize description and categories
-    const description = Utils.getLocalizedText(database.description);
+    const description = Utils.mdToHtml(Utils.getLocalizedText(database.description));
     const localizedCategories = database.categories.map(cat => Utils.getLocalizedText(cat));
 
     if (modalTitle) modalTitle.textContent = database.title;
@@ -744,8 +744,8 @@ export class VeritabanlariPage {
     const resultsCount = document.getElementById('results-count');
     if (resultsCount) {
       const t = this.translations || {};
-      const text = t.resultsCount || 'Total <strong>{count}</strong> databases found';
-      resultsCount.innerHTML = text.replace('{count}', this.filteredDatabases.length);
+      const text = t.resultsCount || 'Total **{count}** databases found';
+      resultsCount.innerHTML = Utils.mdToHtml(text.replace('{count}', this.filteredDatabases.length));
     }
   }
 

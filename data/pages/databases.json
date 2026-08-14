@@ -4,8 +4,14 @@
       "id": "abi-inform",
       "title": "ABI/INFORM",
       "categories": [
-        {"tr": "Genel", "en": "General"},
-        {"tr": "Ekonomi", "en": "Economics"}
+        {
+          "tr": "Genel",
+          "en": "General"
+        },
+        {
+          "tr": "Ekonomi",
+          "en": "Economics"
+        }
       ],
       "logo": "assets/images/databases/logos/Proquest.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://search.proquest.com/abicomplete",
@@ -23,7 +29,10 @@
       "id": "academic-search-ultimate",
       "title": "Academic Search Ultimate",
       "categories": [
-        {"tr": "Genel", "en": "General"}
+        {
+          "tr": "Genel",
+          "en": "General"
+        }
       ],
       "logo": "assets/images/databases/logos/ASC.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://search.ebscohost.com/login.aspx?authtype=ip,uid&profile=ehost&defaultdb=asn",
@@ -41,7 +50,10 @@
       "id": "access-pharmacy",
       "title": "Access Pharmacy",
       "categories": [
-        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+        {
+          "tr": "Sağlık/Eczacılık",
+          "en": "Health/Pharmacy"
+        }
       ],
       "logo": "assets/images/databases/logos/AccessPharmacy.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://accesspharmacy.mhmedical.com",
@@ -59,7 +71,10 @@
       "id": "acs-journals",
       "title": "American Chemical Society Journals",
       "categories": [
-        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+        {
+          "tr": "Sağlık/Eczacılık",
+          "en": "Health/Pharmacy"
+        }
       ],
       "logo": "assets/images/databases/logos/acs.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://pubs.acs.org",
@@ -74,7 +89,10 @@
       "id": "aiaa",
       "title": "American Institute of Aeronautics and Astronautics",
       "categories": [
-        {"tr": "Genel", "en": "General"}
+        {
+          "tr": "Genel",
+          "en": "General"
+        }
       ],
       "logo": "assets/images/databases/logos/aiaa.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://arc.aiaa.org/action/showPublications?pubType=journal",
@@ -92,7 +110,10 @@
       "id": "annual-reviews",
       "title": "Annual Reviews",
       "categories": [
-        {"tr": "Genel", "en": "General"}
+        {
+          "tr": "Genel",
+          "en": "General"
+        }
       ],
       "logo": "assets/images/databases/logos/AnnualReviews.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.annualreviews.org/",
@@ -106,8 +127,14 @@
       "id": "apa-psycarticles",
       "title": "APA PsycArticles",
       "categories": [
-        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"},
-        {"tr": "Sosyal Bilimler", "en": "Social Sciences"}
+        {
+          "tr": "Sağlık/Eczacılık",
+          "en": "Health/Pharmacy"
+        },
+        {
+          "tr": "Sosyal Bilimler",
+          "en": "Social Sciences"
+        }
       ],
       "logo": "assets/images/databases/logos/apa.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://search.ebscohost.com/login.aspx?authtype=ip,uid&profile=ehost&defaultdb=pdh",
@@ -121,7 +148,10 @@
       "id": "beck-online",
       "title": "Beck Online",
       "categories": [
-        {"tr": "Hukuk", "en": "Law"}
+        {
+          "tr": "Hukuk",
+          "en": "Law"
+        }
       ],
       "logo": "assets/images/databases/logos/beck.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://beck-online.beck.de",
@@ -135,7 +165,10 @@
       "id": "bentham-science",
       "title": "Bentham Science",
       "categories": [
-        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+        {
+          "tr": "Sağlık/Eczacılık",
+          "en": "Health/Pharmacy"
+        }
       ],
       "logo": "assets/images/databases/logos/bentham.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.eurekaselect.com/",
@@ -150,8 +183,14 @@
       "id": "brill-journals",
       "title": "Brill Journals",
       "categories": [
-        {"tr": "Genel", "en": "General"},
-        {"tr": "Sosyal Bilimler", "en": "Social Sciences"}
+        {
+          "tr": "Genel",
+          "en": "General"
+        },
+        {
+          "tr": "Sosyal Bilimler",
+          "en": "Social Sciences"
+        }
       ],
       "logo": "assets/images/databases/logos/Brill.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://brill.com",
@@ -165,7 +204,10 @@
       "id": "business-source-complete",
       "title": "Business Source Complete",
       "categories": [
-        {"tr": "Ekonomi", "en": "Economics"}
+        {
+          "tr": "Ekonomi",
+          "en": "Economics"
+        }
       ],
       "logo": "assets/images/databases/logos/BSC.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://search.ebscohost.com/login.aspx?authtype=ip,uid&profile=ehost&defaultdb=bth",
@@ -179,7 +221,10 @@
       "id": "cambridge-core",
       "title": "Cambridge Core",
       "categories": [
-        {"tr": "Genel", "en": "General"}
+        {
+          "tr": "Genel",
+          "en": "General"
+        }
       ],
       "logo": "assets/images/databases/logos/Chicago.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.cambridge.org/core",
@@ -193,7 +238,10 @@
       "id": "central-eastern-european",
       "title": "Central & Eastern European Academic Source",
       "categories": [
-        {"tr": "Genel", "en": "General"}
+        {
+          "tr": "Genel",
+          "en": "General"
+        }
       ],
       "logo": "assets/images/databases/logos/CentralEastern.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://search.ebscohost.com/login.aspx?authtype=ip,uid&profile=ehost&defaultdb=e5h",
@@ -207,8 +255,14 @@
       "id": "communication-source",
       "title": "Communication Source",
       "categories": [
-        {"tr": "Genel", "en": "General"},
-        {"tr": "Sosyal Bilimler", "en": "Social Sciences"}
+        {
+          "tr": "Genel",
+          "en": "General"
+        },
+        {
+          "tr": "Sosyal Bilimler",
+          "en": "Social Sciences"
+        }
       ],
       "logo": "assets/images/databases/logos/CommunicationSource.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://search.ebscohost.com/login.aspx?authtype=ip,uid&profile=ehost&defaultdb=cms",
@@ -222,7 +276,10 @@
       "id": "dalloz",
       "title": "Dalloz",
       "categories": [
-        {"tr": "Hukuk", "en": "Law"}
+        {
+          "tr": "Hukuk",
+          "en": "Law"
+        }
       ],
       "logo": "assets/images/databases/logos/Dalloz.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.dalloz.fr",
@@ -236,7 +293,10 @@
       "id": "de-gruyter",
       "title": "De Gruyter",
       "categories": [
-        {"tr": "Genel", "en": "General"}
+        {
+          "tr": "Genel",
+          "en": "General"
+        }
       ],
       "logo": "assets/images/databases/logos/degruyter.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.degruyter.com",
@@ -250,8 +310,14 @@
       "id": "dergipark",
       "title": "DergiPark",
       "categories": [
-        {"tr": "Genel", "en": "General"},
-        {"tr": "Referans", "en": "Reference"}
+        {
+          "tr": "Genel",
+          "en": "General"
+        },
+        {
+          "tr": "Referans",
+          "en": "Reference"
+        }
       ],
       "logo": "assets/images/databases/logos/dergipark.png",
       "url": "https://dergipark.org.tr/",
@@ -265,7 +331,10 @@
       "id": "ebsco-ebook",
       "title": "EBSCO eBook Collection",
       "categories": [
-        {"tr": "e-Kitap", "en": "e-Book"}
+        {
+          "tr": "e-Kitap",
+          "en": "e-Book"
+        }
       ],
       "logo": "assets/images/databases/logos/ebsco.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://search.ebscohost.com/login.aspx?authtype=ip,uid&profile=ehost&defaultdb=e000xww",
@@ -279,7 +348,10 @@
       "id": "ebook-central",
       "title": "ProQuest Ebook Central",
       "categories": [
-        {"tr": "e-Kitap", "en": "e-Book"}
+        {
+          "tr": "e-Kitap",
+          "en": "e-Book"
+        }
       ],
       "logo": "assets/images/databases/logos/EbookCentral.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://ebookcentral.proquest.com",
@@ -293,7 +365,10 @@
       "id": "elsevier",
       "title": "Elsevier (ScienceDirect)",
       "categories": [
-        {"tr": "Genel", "en": "General"}
+        {
+          "tr": "Genel",
+          "en": "General"
+        }
       ],
       "logo": "assets/images/databases/logos/elsevier.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.sciencedirect.com",
@@ -307,7 +382,10 @@
       "id": "emerald",
       "title": "Emerald Insight",
       "categories": [
-        {"tr": "Ekonomi", "en": "Economics"}
+        {
+          "tr": "Ekonomi",
+          "en": "Economics"
+        }
       ],
       "logo": "assets/images/databases/logos/emerald.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.emerald.com/insight",
@@ -321,8 +399,14 @@
       "id": "e-osmanlica",
       "title": "e-Osmanlıca",
       "categories": [
-        {"tr": "Referans", "en": "Reference"},
-        {"tr": "İnsani Bilimler", "en": "Humanities"}
+        {
+          "tr": "Referans",
+          "en": "Reference"
+        },
+        {
+          "tr": "İnsani Bilimler",
+          "en": "Humanities"
+        }
       ],
       "logo": "assets/images/databases/logos/eosmanlica.png",
       "url": "https://eosmanlica.ayk.gov.tr/",
@@ -336,7 +420,10 @@
       "id": "heinonline",
       "title": "HeinOnline",
       "categories": [
-        {"tr": "Hukuk", "en": "Law"}
+        {
+          "tr": "Hukuk",
+          "en": "Law"
+        }
       ],
       "logo": "assets/images/databases/logos/heinonline.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://heinonline.org",
@@ -350,7 +437,10 @@
       "id": "hiperkitap",
       "title": "Hiperkitap",
       "categories": [
-        {"tr": "e-Kitap", "en": "e-Book"}
+        {
+          "tr": "e-Kitap",
+          "en": "e-Book"
+        }
       ],
       "logo": "assets/images/databases/logos/hiperkitap.png",
       "url": "https://www.hiperkitap.com/",
@@ -364,7 +454,10 @@
       "id": "ieee-xplore",
       "title": "IEEE Xplore",
       "categories": [
-        {"tr": "Genel", "en": "General"}
+        {
+          "tr": "Genel",
+          "en": "General"
+        }
       ],
       "logo": "assets/images/databases/logos/ieee.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://ieeexplore.ieee.org",
@@ -378,7 +471,10 @@
       "id": "igi-global",
       "title": "IGI Global",
       "categories": [
-        {"tr": "Genel", "en": "General"}
+        {
+          "tr": "Genel",
+          "en": "General"
+        }
       ],
       "logo": "assets/images/databases/logos/igiglobal.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.igi-global.com",
@@ -392,7 +488,10 @@
       "id": "imf-elibrary",
       "title": "IMF eLibrary",
       "categories": [
-        {"tr": "Ekonomi", "en": "Economics"}
+        {
+          "tr": "Ekonomi",
+          "en": "Economics"
+        }
       ],
       "logo": "assets/images/databases/logos/imf.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.elibrary.imf.org",
@@ -406,7 +505,10 @@
       "id": "intihal-net",
       "title": "intihal.net",
       "categories": [
-        {"tr": "Referans", "en": "Reference"}
+        {
+          "tr": "Referans",
+          "en": "Reference"
+        }
       ],
       "logo": "assets/images/databases/logos/intihal.png",
       "url": "https://intihal.net/",
@@ -420,7 +522,10 @@
       "id": "iop-science",
       "title": "IOP Science",
       "categories": [
-        {"tr": "Genel", "en": "General"}
+        {
+          "tr": "Genel",
+          "en": "General"
+        }
       ],
       "logo": "assets/images/databases/logos/iop.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://iopscience.iop.org",
@@ -434,7 +539,10 @@
       "id": "jcr-journal-citation-reports",
       "title": "Journal Citation Reports (JCR)",
       "categories": [
-        {"tr": "Atıf/Bilimsel Literatür", "en": "Citation/Scientific Literature"}
+        {
+          "tr": "Atıf/Bilimsel Literatür",
+          "en": "Citation/Scientific Literature"
+        }
       ],
       "logo": "assets/images/databases/logos/jcr.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://jcr.clarivate.com",
@@ -448,7 +556,10 @@
       "id": "jstor",
       "title": "JSTOR",
       "categories": [
-        {"tr": "Genel", "en": "General"}
+        {
+          "tr": "Genel",
+          "en": "General"
+        }
       ],
       "logo": "assets/images/databases/logos/jstor.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.jstor.org",
@@ -462,7 +573,10 @@
       "id": "jurix",
       "title": "Jurix",
       "categories": [
-        {"tr": "Hukuk", "en": "Law"}
+        {
+          "tr": "Hukuk",
+          "en": "Law"
+        }
       ],
       "logo": "assets/images/databases/logos/Jurix.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.jurix.com.tr",
@@ -476,7 +590,10 @@
       "id": "kelime-kilavuzu",
       "title": "Kelime Kılavuzu",
       "categories": [
-        {"tr": "Referans", "en": "Reference"}
+        {
+          "tr": "Referans",
+          "en": "Reference"
+        }
       ],
       "logo": "assets/images/databases/logos/kelime.png",
       "url": "https://kelimekilavuzu.ayk.gov.tr/",
@@ -490,7 +607,10 @@
       "id": "legal-periodicals",
       "title": "Legal Periodicals & Books",
       "categories": [
-        {"tr": "Hukuk", "en": "Law"}
+        {
+          "tr": "Hukuk",
+          "en": "Law"
+        }
       ],
       "logo": "assets/images/databases/logos/Legal.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://search.ebscohost.com/login.aspx?authtype=ip,uid&profile=ehost&defaultdb=lgs",
@@ -504,7 +624,10 @@
       "id": "lexidrug",
       "title": "Lexidrug",
       "categories": [
-        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+        {
+          "tr": "Sağlık/Eczacılık",
+          "en": "Health/Pharmacy"
+        }
       ],
       "logo": "assets/images/databases/logos/Lexidrug.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://online.lexi.com",
@@ -518,7 +641,10 @@
       "id": "lexpera",
       "title": "Lexpera",
       "categories": [
-        {"tr": "Hukuk", "en": "Law"}
+        {
+          "tr": "Hukuk",
+          "en": "Law"
+        }
       ],
       "logo": "assets/images/databases/logos/lexpera.png",
       "url": "https://www.lexpera.com.tr/",
@@ -532,7 +658,10 @@
       "id": "lseg-datastream",
       "title": "LSEG Datastream",
       "categories": [
-        {"tr": "Ekonomi", "en": "Economics"}
+        {
+          "tr": "Ekonomi",
+          "en": "Economics"
+        }
       ],
       "logo": "assets/images/databases/logos/Lseg.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.refinitiv.com/en/products/datastream-macroeconomic-analysis",
@@ -546,7 +675,10 @@
       "id": "medici-tv",
       "title": "Medici.tv",
       "categories": [
-        {"tr": "Müzik", "en": "Music"}
+        {
+          "tr": "Müzik",
+          "en": "Music"
+        }
       ],
       "logo": "assets/images/databases/logos/Medici.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.medici.tv",
@@ -560,7 +692,10 @@
       "id": "medicines-complete",
       "title": "Medicines Complete",
       "categories": [
-        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+        {
+          "tr": "Sağlık/Eczacılık",
+          "en": "Health/Pharmacy"
+        }
       ],
       "logo": "assets/images/databases/logos/medicinescomplete.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.medicinescomplete.com",
@@ -574,7 +709,10 @@
       "id": "mendeley",
       "title": "Mendeley",
       "categories": [
-        {"tr": "Referans", "en": "Reference"}
+        {
+          "tr": "Referans",
+          "en": "Reference"
+        }
       ],
       "logo": "assets/images/databases/logos/mendeley.png",
       "url": "https://www.mendeley.com/",
@@ -588,7 +726,10 @@
       "id": "merck-index",
       "title": "Merck Index",
       "categories": [
-        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+        {
+          "tr": "Sağlık/Eczacılık",
+          "en": "Health/Pharmacy"
+        }
       ],
       "logo": "assets/images/databases/logos/merck.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.rsc.org/merck-index",
@@ -602,7 +743,10 @@
       "id": "micromedex",
       "title": "Micromedex",
       "categories": [
-        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+        {
+          "tr": "Sağlık/Eczacılık",
+          "en": "Health/Pharmacy"
+        }
       ],
       "logo": "assets/images/databases/logos/Micromedex.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.micromedexsolutions.com",
@@ -616,7 +760,10 @@
       "id": "mildata",
       "title": "MİLDATA",
       "categories": [
-        {"tr": "Referans", "en": "Reference"}
+        {
+          "tr": "Referans",
+          "en": "Reference"
+        }
       ],
       "logo": "assets/images/databases/logos/Mildata.png",
       "url": "https://mildata.ayk.gov.tr/",
@@ -630,8 +777,14 @@
       "id": "muteferriqa",
       "title": "Müteferrika",
       "categories": [
-        {"tr": "e-Kitap", "en": "e-Book"},
-        {"tr": "İnsani Bilimler", "en": "Humanities"}
+        {
+          "tr": "e-Kitap",
+          "en": "e-Book"
+        },
+        {
+          "tr": "İnsani Bilimler",
+          "en": "Humanities"
+        }
       ],
       "logo": "assets/images/databases/logos/Muteferriqa.png",
       "url": "https://muteferrika.ayk.gov.tr/",
@@ -645,7 +798,10 @@
       "id": "natural-medicines",
       "title": "Natural Medicines",
       "categories": [
-        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+        {
+          "tr": "Sağlık/Eczacılık",
+          "en": "Health/Pharmacy"
+        }
       ],
       "logo": "assets/images/databases/logos/NaturalMedicines.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://naturalmedicines.therapeuticresearch.com",
@@ -659,7 +815,10 @@
       "id": "nature",
       "title": "Nature",
       "categories": [
-        {"tr": "Genel", "en": "General"}
+        {
+          "tr": "Genel",
+          "en": "General"
+        }
       ],
       "logo": "assets/images/databases/logos/Nature.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.nature.com",
@@ -673,7 +832,10 @@
       "id": "naxos-music-library",
       "title": "Naxos Music Library",
       "categories": [
-        {"tr": "Müzik", "en": "Music"}
+        {
+          "tr": "Müzik",
+          "en": "Music"
+        }
       ],
       "logo": "assets/images/databases/logos/naxos.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.naxosmusiclibrary.com",
@@ -687,7 +849,10 @@
       "id": "ovid",
       "title": "Ovid",
       "categories": [
-        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+        {
+          "tr": "Sağlık/Eczacılık",
+          "en": "Health/Pharmacy"
+        }
       ],
       "logo": "assets/images/databases/logos/Ovid.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://ovidsp.ovid.com",
@@ -701,7 +866,10 @@
       "id": "oxford-academic",
       "title": "Oxford Academic",
       "categories": [
-        {"tr": "Genel", "en": "General"}
+        {
+          "tr": "Genel",
+          "en": "General"
+        }
       ],
       "logo": "assets/images/databases/logos/oxford.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://academic.oup.com",
@@ -715,7 +883,10 @@
       "id": "oxford-music-online",
       "title": "Oxford Music Online",
       "categories": [
-        {"tr": "Müzik", "en": "Music"}
+        {
+          "tr": "Müzik",
+          "en": "Music"
+        }
       ],
       "logo": "assets/images/databases/logos/OxfordMusicOnline.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.oxfordmusiconline.com",
@@ -729,7 +900,10 @@
       "id": "palgrave-macmillan",
       "title": "Palgrave Macmillan",
       "categories": [
-        {"tr": "Genel", "en": "General"}
+        {
+          "tr": "Genel",
+          "en": "General"
+        }
       ],
       "logo": "assets/images/databases/logos/Palgrave.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://link.springer.com",
@@ -743,7 +917,10 @@
       "id": "rsc-royal-society-chemistry",
       "title": "Royal Society of Chemistry (RSC)",
       "categories": [
-        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+        {
+          "tr": "Sağlık/Eczacılık",
+          "en": "Health/Pharmacy"
+        }
       ],
       "logo": "assets/images/databases/logos/rsc.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://pubs.rsc.org",
@@ -757,7 +934,10 @@
       "id": "sage-journals",
       "title": "SAGE Journals",
       "categories": [
-        {"tr": "Genel", "en": "General"}
+        {
+          "tr": "Genel",
+          "en": "General"
+        }
       ],
       "logo": "assets/images/databases/logos/Sage.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://journals.sagepub.com",
@@ -771,7 +951,10 @@
       "id": "scifinder",
       "title": "SciFinder",
       "categories": [
-        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+        {
+          "tr": "Sağlık/Eczacılık",
+          "en": "Health/Pharmacy"
+        }
       ],
       "logo": "assets/images/databases/logos/Scifinder.png",
       "url": "https://scifinder.cas.org",
@@ -789,7 +972,10 @@
       "id": "sciencedirect",
       "title": "ScienceDirect",
       "categories": [
-        {"tr": "Genel", "en": "General"}
+        {
+          "tr": "Genel",
+          "en": "General"
+        }
       ],
       "logo": "assets/images/databases/logos/sciencedirect.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.sciencedirect.com",
@@ -803,7 +989,10 @@
       "id": "scopus",
       "title": "Scopus",
       "categories": [
-        {"tr": "Atıf/Bilimsel Literatür", "en": "Citation/Scientific Literature"}
+        {
+          "tr": "Atıf/Bilimsel Literatür",
+          "en": "Citation/Scientific Literature"
+        }
       ],
       "logo": "assets/images/databases/logos/scopus.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.scopus.com",
@@ -817,7 +1006,10 @@
       "id": "springer-nature",
       "title": "Springer Nature",
       "categories": [
-        {"tr": "Genel", "en": "General"}
+        {
+          "tr": "Genel",
+          "en": "General"
+        }
       ],
       "logo": "assets/images/databases/logos/springernature.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://link.springer.com",
@@ -831,7 +1023,10 @@
       "id": "swisslex",
       "title": "Swisslex",
       "categories": [
-        {"tr": "Hukuk", "en": "Law"}
+        {
+          "tr": "Hukuk",
+          "en": "Law"
+        }
       ],
       "logo": "assets/images/databases/logos/swisslex.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.swisslex.ch",
@@ -845,7 +1040,10 @@
       "id": "taylor-francis",
       "title": "Taylor & Francis Online",
       "categories": [
-        {"tr": "Genel", "en": "General"}
+        {
+          "tr": "Genel",
+          "en": "General"
+        }
       ],
       "logo": "assets/images/databases/logos/TaylorFrancis.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.tandfonline.com",
@@ -859,7 +1057,10 @@
       "id": "thieme",
       "title": "Thieme",
       "categories": [
-        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+        {
+          "tr": "Sağlık/Eczacılık",
+          "en": "Health/Pharmacy"
+        }
       ],
       "logo": "assets/images/databases/logos/Thieme.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.thieme-connect.com",
@@ -873,8 +1074,14 @@
       "id": "turcademy",
       "title": "TürkAkademi",
       "categories": [
-        {"tr": "Genel", "en": "General"},
-        {"tr": "Referans", "en": "Reference"}
+        {
+          "tr": "Genel",
+          "en": "General"
+        },
+        {
+          "tr": "Referans",
+          "en": "Reference"
+        }
       ],
       "logo": "assets/images/databases/logos/Turcademy.png",
       "url": "https://www.turcademy.com/",
@@ -888,7 +1095,10 @@
       "id": "web-of-science",
       "title": "Web of Science",
       "categories": [
-        {"tr": "Atıf/Bilimsel Literatür", "en": "Citation/Scientific Literature"}
+        {
+          "tr": "Atıf/Bilimsel Literatür",
+          "en": "Citation/Scientific Literature"
+        }
       ],
       "logo": "assets/images/databases/logos/Clarivate.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.webofscience.com",
@@ -902,7 +1112,10 @@
       "id": "wikilala",
       "title": "Wikilala",
       "categories": [
-        {"tr": "Referans", "en": "Reference"}
+        {
+          "tr": "Referans",
+          "en": "Reference"
+        }
       ],
       "logo": "assets/images/databases/logos/wikilala.png",
       "url": "https://wikilala.com/",
@@ -916,7 +1129,10 @@
       "id": "wiley-online-library",
       "title": "Wiley Online Library",
       "categories": [
-        {"tr": "Genel", "en": "General"}
+        {
+          "tr": "Genel",
+          "en": "General"
+        }
       ],
       "logo": "assets/images/databases/logos/wiley.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://onlinelibrary.wiley.com",
@@ -930,7 +1146,10 @@
       "id": "xpharm",
       "title": "xPharm",
       "categories": [
-        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+        {
+          "tr": "Sağlık/Eczacılık",
+          "en": "Health/Pharmacy"
+        }
       ],
       "logo": "assets/images/databases/logos/xpharm.png",
       "url": "https://login.offcampus.anadolu.edu.tr/login?url=https://www.sciencedirect.com/referencework/9780080552323",
@@ -944,8 +1163,14 @@
       "id": "trdizin",
       "title": "TR Dizin",
       "categories": [
-        {"tr": "Ücretsiz Veritabanları", "en": "Free Databases"},
-        {"tr": "Genel", "en": "General"}
+        {
+          "tr": "Ücretsiz Veritabanları",
+          "en": "Free Databases"
+        },
+        {
+          "tr": "Genel",
+          "en": "General"
+        }
       ],
       "logo": "assets/images/databases/logos/trdizin.png",
       "url": "http://trdizin.gov.tr/",
@@ -960,8 +1185,14 @@
       "id": "dergipark",
       "title": "DergiPark",
       "categories": [
-        {"tr": "Ücretsiz Veritabanları", "en": "Free Databases"},
-        {"tr": "Genel", "en": "General"}
+        {
+          "tr": "Ücretsiz Veritabanları",
+          "en": "Free Databases"
+        },
+        {
+          "tr": "Genel",
+          "en": "General"
+        }
       ],
       "logo": "assets/images/databases/logos/dergipark.png",
       "url": "https://dergipark.org.tr/",
@@ -976,8 +1207,14 @@
       "id": "yok-tez-merkezi",
       "title": "YÖK Ulusal Tez Merkezi",
       "categories": [
-        {"tr": "Ücretsiz Veritabanları", "en": "Free Databases"},
-        {"tr": "Genel", "en": "General"}
+        {
+          "tr": "Ücretsiz Veritabanları",
+          "en": "Free Databases"
+        },
+        {
+          "tr": "Genel",
+          "en": "General"
+        }
       ],
       "logo": "assets/images/databases/logos/TezMerkezi.png",
       "url": "https://tez.yok.gov.tr/UlusalTezMerkezi/",
@@ -992,8 +1229,14 @@
       "id": "tdv-islam-ansiklopedisi",
       "title": "TDV İslam Ansiklopedisi",
       "categories": [
-        {"tr": "Ücretsiz Veritabanları", "en": "Free Databases"},
-        {"tr": "İnsani Bilimler", "en": "Humanities"}
+        {
+          "tr": "Ücretsiz Veritabanları",
+          "en": "Free Databases"
+        },
+        {
+          "tr": "İnsani Bilimler",
+          "en": "Humanities"
+        }
       ],
       "logo": "assets/images/databases/logos/islam.png",
       "url": "https://islamansiklopedisi.org.tr/",
@@ -1008,8 +1251,14 @@
       "id": "turk-sinemasi-arastirmalari",
       "title": "Türk Sineması Araştırmaları",
       "categories": [
-        {"tr": "Ücretsiz Veritabanları", "en": "Free Databases"},
-        {"tr": "İnsani Bilimler", "en": "Humanities"}
+        {
+          "tr": "Ücretsiz Veritabanları",
+          "en": "Free Databases"
+        },
+        {
+          "tr": "İnsani Bilimler",
+          "en": "Humanities"
+        }
       ],
       "logo": "assets/images/databases/logos/TurkSinema.png",
       "url": "http://www.tsa.org.tr/",
@@ -1024,8 +1273,14 @@
       "id": "kalkinma-kutuphanesi",
       "title": "Kalkınma Kütüphanesi",
       "categories": [
-        {"tr": "Ücretsiz Veritabanları", "en": "Free Databases"},
-        {"tr": "Ekonomi", "en": "Economics"}
+        {
+          "tr": "Ücretsiz Veritabanları",
+          "en": "Free Databases"
+        },
+        {
+          "tr": "Ekonomi",
+          "en": "Economics"
+        }
       ],
       "logo": "assets/images/databases/logos/Kalkinma.png",
       "url": "https://www.kalkinmakutuphanesi.gov.tr/",
@@ -1040,8 +1295,14 @@
       "id": "doaj",
       "title": "DOAJ - Directory of Open Access Journals",
       "categories": [
-        {"tr": "Ücretsiz Veritabanları", "en": "Free Databases"},
-        {"tr": "Genel", "en": "General"}
+        {
+          "tr": "Ücretsiz Veritabanları",
+          "en": "Free Databases"
+        },
+        {
+          "tr": "Genel",
+          "en": "General"
+        }
       ],
       "logo": "assets/images/databases/logos/Doaj.png",
       "url": "https://doaj.org/",
@@ -1056,8 +1317,14 @@
       "id": "doab",
       "title": "DOAB - Directory of Open Access Books",
       "categories": [
-        {"tr": "Ücretsiz Veritabanları", "en": "Free Databases"},
-        {"tr": "e-Kitap", "en": "e-Book"}
+        {
+          "tr": "Ücretsiz Veritabanları",
+          "en": "Free Databases"
+        },
+        {
+          "tr": "e-Kitap",
+          "en": "e-Book"
+        }
       ],
       "logo": "assets/images/databases/logos/doab.png",
       "url": "https://www.doabooks.org/",
@@ -1072,8 +1339,14 @@
       "id": "stanford-encyclopedia-philosophy",
       "title": "Stanford Encyclopedia of Philosophy",
       "categories": [
-        {"tr": "Ücretsiz Veritabanları", "en": "Free Databases"},
-        {"tr": "İnsani Bilimler", "en": "Humanities"}
+        {
+          "tr": "Ücretsiz Veritabanları",
+          "en": "Free Databases"
+        },
+        {
+          "tr": "İnsani Bilimler",
+          "en": "Humanities"
+        }
       ],
       "logo": "assets/images/databases/logos/Stanford.png",
       "url": "https://plato.stanford.edu/",
@@ -1088,8 +1361,14 @@
       "id": "turkomp",
       "title": "TürKomp - Ulusal Gıda Kompozisyon Veritabanı",
       "categories": [
-        {"tr": "Ücretsiz Veritabanları", "en": "Free Databases"},
-        {"tr": "Sağlık/Eczacılık", "en": "Health/Pharmacy"}
+        {
+          "tr": "Ücretsiz Veritabanları",
+          "en": "Free Databases"
+        },
+        {
+          "tr": "Sağlık/Eczacılık",
+          "en": "Health/Pharmacy"
+        }
       ],
       "logo": "assets/images/databases/logos/turkomp.png",
       "url": "http://www.turkomp.gov.tr/database",

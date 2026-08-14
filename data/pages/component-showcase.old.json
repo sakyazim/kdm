@@ -125,11 +125,27 @@
           "description": "İkonlu tablo - Üyelik & Ödünç sayfasında kullanılır. Hover'da satır primary renk olur, zebra striping var.",
           "config": {
             "title": "Ödünç Verme Süreleri",
-            "headers": ["Materyal Türü", "Süre", "Yenileme"],
+            "headers": [
+              "Materyal Türü",
+              "Süre",
+              "Yenileme"
+            ],
             "rows": [
-              ["<i class='fas fa-book'></i> Kitap", "<strong>15 gün</strong>", "3 kez"],
-              ["<i class='fas fa-newspaper'></i> Dergi", "<strong>7 gün</strong>", "2 kez"],
-              ["<i class='fas fa-video'></i> Görsel-İşitsel", "<strong>3 gün</strong>", "1 kez"]
+              [
+                "Kitap",
+                "**15 gün**",
+                "3 kez"
+              ],
+              [
+                "Dergi",
+                "**7 gün**",
+                "2 kez"
+              ],
+              [
+                "Görsel-İşitsel",
+                "**3 gün**",
+                "1 kez"
+              ]
             ]
           }
         }
@@ -460,8 +476,14 @@
             "status": "open",
             "statusText": "Açık",
             "hours": [
-              {"day": "Pazartesi - Cuma", "time": "08:30 - 22:00"},
-              {"day": "Cumartesi - Pazar", "time": "09:00 - 18:00"}
+              {
+                "day": "Pazartesi - Cuma",
+                "time": "08:30 - 22:00"
+              },
+              {
+                "day": "Cumartesi - Pazar",
+                "time": "09:00 - 18:00"
+              }
             ]
           }
         },
@@ -610,10 +632,30 @@
           "description": "Buton bazlı kategori filtreleme sistemi",
           "config": {
             "categories": [
-              {"id": "all", "label": "Tümü", "count": 15, "active": true},
-              {"id": "genel", "label": "Genel", "count": 5, "active": false},
-              {"id": "ekonomi", "label": "Ekonomi", "count": 3, "active": false},
-              {"id": "hukuk", "label": "Hukuk", "count": 2, "active": false}
+              {
+                "id": "all",
+                "label": "Tümü",
+                "count": 15,
+                "active": true
+              },
+              {
+                "id": "genel",
+                "label": "Genel",
+                "count": 5,
+                "active": false
+              },
+              {
+                "id": "ekonomi",
+                "label": "Ekonomi",
+                "count": 3,
+                "active": false
+              },
+              {
+                "id": "hukuk",
+                "label": "Hukuk",
+                "count": 2,
+                "active": false
+              }
             ]
           }
         },

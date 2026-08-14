@@ -35,8 +35,8 @@
             "style": "info",
             "icon": "bi bi-check-circle",
             "content": {
-              "tr": "<strong>Gereksinimler:</strong> Uzaktan erişim için <code>@anadolu.edu.tr</code> uzantılı mail adresiniz ve şifreniz yeterlidir. VPN kurulumu gerekmez.",
-              "en": "<strong>Requirements:</strong> Your <code>@anadolu.edu.tr</code> email address and password are sufficient for remote access. No VPN setup required."
+              "tr": "**Gereksinimler:** Uzaktan erişim için `@anadolu.edu.tr` uzantılı mail adresiniz ve şifreniz yeterlidir. VPN kurulumu gerekmez.",
+              "en": "**Requirements:** Your `@anadolu.edu.tr` email address and password are sufficient for remote access. No VPN setup required."
             }
           }
         }
@@ -56,8 +56,8 @@
                   "en": "Open the Databases Page"
                 },
                 "description": {
-                  "tr": "Kütüphane web sitesinden <strong>Veritabanları</strong> menüsüne gidin veya arama kutusunu kullanın.",
-                  "en": "Go to the <strong>Databases</strong> menu from the library website or use the search box."
+                  "tr": "Kütüphane web sitesinden **Veritabanları** menüsüne gidin veya arama kutusunu kullanın.",
+                  "en": "Go to the **Databases** menu from the library website or use the search box."
                 },
                 "image": {
                   "tr": "assets/images/remote-access/off-kampus-1-tr.png",
@@ -68,8 +68,8 @@
                   "en": "Databases menu screenshot"
                 },
                 "note": {
-                  "tr": "İpucu: Doğrudan <a href='veritabanlari.html'>Veritabanları sayfası</a>ndan da başlayabilirsiniz.",
-                  "en": "Tip: You can also start directly from the <a href='veritabanlari.html'>Databases page</a>."
+                  "tr": "İpucu: Doğrudan [Veritabanları sayfası](veritabanlari.html)ndan da başlayabilirsiniz.",
+                  "en": "Tip: You can also start directly from the [Databases page](veritabanlari.html)."
                 }
               },
               {
@@ -79,8 +79,8 @@
                   "en": "Click on Access Link"
                 },
                 "description": {
-                  "tr": "Ulaşmak istediğiniz veritabanını bulun ve <strong>\"Erişim Adresi\"</strong> butonuna tıklayın.",
-                  "en": "Find the database you want to access and click the <strong>\"Access Link\"</strong> button."
+                  "tr": "Ulaşmak istediğiniz veritabanını bulun ve **\"Erişim Adresi\"** butonuna tıklayın.",
+                  "en": "Find the database you want to access and click the **\"Access Link\"** button."
                 },
                 "image": {
                   "tr": "assets/images/remote-access/off-kampus-2-tr.png",
@@ -102,8 +102,8 @@
                   "en": "Authentication Page"
                 },
                 "description": {
-                  "tr": "Açılan <strong>\"Kampüs Dışı Erişim\"</strong> sayfasında Anadolu Üniversitesi mail adresinizi (<code>kullaniciadi@anadolu.edu.tr</code>) ve şifrenizi girin.",
-                  "en": "On the <strong>\"Off-Campus Access\"</strong> page that opens, enter your Anadolu University email address (<code>username@anadolu.edu.tr</code>) and password."
+                  "tr": "Açılan **\"Kampüs Dışı Erişim\"** sayfasında Anadolu Üniversitesi mail adresinizi (`kullaniciadi@anadolu.edu.tr`) ve şifrenizi girin.",
+                  "en": "On the **\"Off-Campus Access\"** page that opens, enter your Anadolu University email address (`username@anadolu.edu.tr`) and password."
                 },
                 "image": {
                   "tr": "assets/images/remote-access/off-kampus-3-tr.png",
@@ -125,8 +125,8 @@
                   "en": "Access Granted"
                 },
                 "description": {
-                  "tr": "<strong>\"Giriş Yap\"</strong> butonuna tıkladıktan sonra otomatik olarak veritabanına yönlendirileceksiniz. Artık kampüs dışından tüm kaynaklara erişebilirsiniz.",
-                  "en": "After clicking the <strong>\"Login\"</strong> button, you will be automatically redirected to the database. Now you can access all resources from off-campus."
+                  "tr": "**\"Giriş Yap\"** butonuna tıkladıktan sonra otomatik olarak veritabanına yönlendirileceksiniz. Artık kampüs dışından tüm kaynaklara erişebilirsiniz.",
+                  "en": "After clicking the **\"Login\"** button, you will be automatically redirected to the database. Now you can access all resources from off-campus."
                 },
                 "image": {
                   "tr": "assets/images/remote-access/off-kampus-4-tr.png",
@@ -163,8 +163,8 @@
               {
                 "type": "paragraph",
                 "text": {
-                  "tr": "Kütüphane anasayfasındaki <strong>EDS</strong> arama kutusunu kullanarak da uzaktan erişim yapabilirsiniz.",
-                  "en": "You can also use remote access through the <strong>EDS</strong> search box on the library homepage."
+                  "tr": "Kütüphane anasayfasındaki **EDS** arama kutusunu kullanarak da uzaktan erişim yapabilirsiniz.",
+                  "en": "You can also use remote access through the **EDS** search box on the library homepage."
                 }
               },
               {
@@ -224,8 +224,8 @@
                 },
                 "icon": "bi bi-exclamation-triangle",
                 "content": {
-                  "tr": "Anadolu Üniversitesi mail şifrenizi kullanmanız gerekmektedir. Eğer şifrenizi unuttuysanız <a href='https://mail.anadolu.edu.tr'>mail.anadolu.edu.tr</a> adresinden sıfırlayabilirsiniz.",
-                  "en": "You must use your Anadolu University email password. If you forgot your password, you can reset it at <a href='https://mail.anadolu.edu.tr'>mail.anadolu.edu.tr</a>."
+                  "tr": "Anadolu Üniversitesi mail şifrenizi kullanmanız gerekmektedir. Eğer şifrenizi unuttuysanız [mail.anadolu.edu.tr](https://mail.anadolu.edu.tr) adresinden sıfırlayabilirsiniz.",
+                  "en": "You must use your Anadolu University email password. If you forgot your password, you can reset it at [mail.anadolu.edu.tr](https://mail.anadolu.edu.tr)."
                 }
               },
               {
@@ -290,8 +290,8 @@
             "style": "warning",
             "icon": "bi bi-telephone",
             "content": {
-              "tr": "<strong>Hala Sorun mu Yaşıyorsunuz?</strong><br>Mesai saatleri içinde <a href='tel:02223350580'><strong>0222 335 05 80 / 1737</strong></a> numaralı telefondan <strong>Arif YILMAZ</strong> ile görüşebilirsiniz.<br><br>Bilgisayarınızın başında değilseniz, ekran görüntülerini <a href='mailto:arify@anadolu.edu.tr'><strong>arify@anadolu.edu.tr</strong></a> adresine göndererek daha hızlı çözüm alabilirsiniz.",
-              "en": "<strong>Still Having Issues?</strong><br>During office hours, you can contact <strong>Arif YILMAZ</strong> at <a href='tel:02223350580'><strong>0222 335 05 80 / 1737</strong></a>.<br><br>If you are not at your computer, you can send screenshots to <a href='mailto:arify@anadolu.edu.tr'><strong>arify@anadolu.edu.tr</strong></a> for faster resolution."
+              "tr": "**Hala Sorun mu Yaşıyorsunuz?**\nMesai saatleri içinde [**0222 335 05 80 / 1737**](tel:02223350580) numaralı telefondan **Arif YILMAZ** ile görüşebilirsiniz.\n\nBilgisayarınızın başında değilseniz, ekran görüntülerini [**arify@anadolu.edu.tr**](mailto:arify@anadolu.edu.tr) adresine göndererek daha hızlı çözüm alabilirsiniz.",
+              "en": "**Still Having Issues?**\nDuring office hours, you can contact **Arif YILMAZ** at [**0222 335 05 80 / 1737**](tel:02223350580).\n\nIf you are not at your computer, you can send screenshots to [**arify@anadolu.edu.tr**](mailto:arify@anadolu.edu.tr) for faster resolution."
             }
           }
         }

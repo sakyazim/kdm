@@ -146,10 +146,22 @@ function setSidebar(hidden) {
 
 /* ---------- Dosya seçme / editör ---------- */
 
+// JSON dosyası adı -> önizleme HTML sayfası (site adlandırma farklılıkları)
+const PAGE_OVERRIDES = {
+  home: "index.html",
+  "kutuphane-kurallari": "kurallar.html",
+  databases: "veritabanlari.html",
+  "anadolu-arastirma": "anadolu-universitesi-arastirma-birimleri.html",
+  "component-showcase.old": null, // gerçek site sayfası yok
+};
+
 function previewHtmlFor(path) {
   if (!path) return null;
   const m = path.match(/^data\/pages\/(.+)\.json$/);
-  return m ? m[1] + ".html" : null;
+  if (!m) return null;
+  const name = m[1];
+  if (name in PAGE_OVERRIDES) return PAGE_OVERRIDES[name];
+  return name + ".html";
 }
 
 async function selectFile(path) {
@@ -636,10 +648,33 @@ function iconBtn(text, title, onClick) {
 
 function itemTitle(f, item) {
   if (!item || typeof item !== "object") return String(item ?? "");
+  const val = (v) => {
+    if (typeof v === "string" && v.trim()) return v;
+    if (v && typeof v === "object" && "tr" in v && v.tr) return v.tr;
+    return "";
+  };
+  // 1) Başlık benzeri alan öncelikli (title / başlık / name / isim)
   for (const sf of f.itemFields || []) {
-    if (sf.type === "lang" && item[sf.key] && item[sf.key].tr) return item[sf.key].tr;
+    if (/title|başlık|name|isim|baslik/i.test(sf.key)) {
+      const t = val(item[sf.key]);
+      if (t) return t;
+    }
   }
+  // 2) İlk çoklu dil (lang) alanı
+  for (const sf of f.itemFields || []) {
+    if (sf.type === "lang") {
+      const t = val(item[sf.key]);
+      if (t) return t;
+    }
+  }
+  // 3) Bileşen tipi
   if (item.type) return item.type;
+  // 4) Kısa metin alanı (tr/en gibi; id/url/logo benzeri atlanır)
+  for (const sf of f.itemFields || []) {
+    if (/^(id|url|link|logo|icon|image|img|anchor)$/i.test(sf.key)) continue;
+    const v = item[sf.key];
+    if (typeof v === "string" && v.trim() && v.trim().length <= 60) return v.trim();
+  }
   return item.id || "Öğe";
 }
 

@@ -229,7 +229,11 @@ export class SSSPage {
       <div class="accordion accordion-flush" id="accordion-${accordionData.parentId}">
         ${accordionData.items.map(item => {
           const question = Utils.getLocalizedText(item.question);
-          const answer = Utils.getLocalizedText(item.answer);
+          // answer artık blok dizisi (ComponentRenderer formatı) veya markdown string olabilir
+          const answerRaw = Utils.getLocalizedText(item.answer);
+          const answer = Array.isArray(answerRaw)
+            ? ComponentRenderer.renderMultiple(answerRaw)
+            : Utils.mdToHtml(answerRaw);
 
           return `
             <div class="accordion-item" data-faq-id="${item.id}" data-category="${accordionData.parentId.replace('faq-', '')}">

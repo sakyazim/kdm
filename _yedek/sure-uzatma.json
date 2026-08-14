@@ -1,0 +1,384 @@
+{
+  "hero": {
+    "title": {
+      "tr": "Süre Uzatma - Ödünç Kayıtları",
+      "en": "Loan Extension - Borrowing Records"
+    },
+    "description": {
+      "tr": "Ödünç aldığınız materyallerin iade süresini online olarak uzatabilirsiniz",
+      "en": "You can extend the return period of borrowed materials online"
+    },
+    "icon": "bi bi-clock-history"
+  },
+  "content": [
+    {
+      "id": "intro-section",
+      "components": [
+        {
+          "type": "info-box",
+          "data": {
+            "style": "primary",
+            "icon": "bi bi-info-circle-fill",
+            "title": {
+              "tr": "Süre Uzatma Hakkında",
+              "en": "About Loan Extension"
+            },
+            "content": {
+              "tr": "Süre uzatma işlemi için aşağıdaki yönergeleri takip edebilirsiniz. Rezerve edilmemiş materyaller için maksimum 3 kez süre uzatma yapabilirsiniz.",
+              "en": "You can follow the instructions below for loan extension. You can extend the loan period up to 3 times for materials that are not reserved."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "libra-access-section",
+      "components": [
+        {
+          "type": "info-box",
+          "data": {
+            "style": "primary",
+            "icon": "bi bi-box-arrow-up-right",
+            "title": {
+              "tr": "LIBRA Sistemine Erişim",
+              "en": "Access to LIBRA System"
+            },
+            "content": {
+              "tr": "<p><a href='http://libra.anadolu.edu.tr' target='_blank' rel='noopener noreferrer'><strong>http://libra.anadolu.edu.tr</strong></a> sayfasına giderek <a href='https://libra.anadolu.edu.tr/libra.aspx?DS=ODUNC' target='_blank' rel='noopener noreferrer'><strong>\"Ödünç Kayıtları\"</strong></a> bölümüne giriniz.</p><div class='mt-3 text-center'><a href='https://libra.anadolu.edu.tr/libra.aspx?DS=ODUNC' target='_blank' rel='noopener noreferrer' class='btn btn-primary btn-lg'><i class='bi bi-box-arrow-up-right me-2'></i>Ödünç Kayıtlarına Git</a></div>",
+              "en": "<p>Go to <a href='http://libra.anadolu.edu.tr' target='_blank' rel='noopener noreferrer'><strong>http://libra.anadolu.edu.tr</strong></a> and navigate to the <a href='https://libra.anadolu.edu.tr/libra.aspx?DS=ODUNC' target='_blank' rel='noopener noreferrer'><strong>\"Borrowing Records\"</strong></a> section.</p><div class='mt-3 text-center'><a href='https://libra.anadolu.edu.tr/libra.aspx?DS=ODUNC' target='_blank' rel='noopener noreferrer' class='btn btn-primary btn-lg'><i class='bi bi-box-arrow-up-right me-2'></i>Go to Borrowing Records</a></div>"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "steps-section",
+      "components": [
+        {
+          "type": "step-guide",
+          "data": {
+            "steps": [
+              {
+                "id": 1,
+                "title": {
+                  "tr": "LIBRA Sayfasına Gidin",
+                  "en": "Go to LIBRA Page"
+                },
+                "description": {
+                  "tr": "Yukarıdaki butona tıklayarak <strong>\"Ödünç Kayıtları\"</strong> sayfasına gidin. T.C. Kimlik No alanına <strong>11 haneli T.C. Kimlik numaranızı</strong> girin. Güvenlik Kodu kısmına <strong>resimde gördüğünüz güvenlik kodunu</strong> girin. <strong>\"Ödünç Listele\"</strong> butonuna tıklayarak üzerinizdeki materyalleri görüntüleyin.",
+                  "en": "Click the button above to go to the <strong>\"Borrowing Records\"</strong> page. Enter your <strong>11-digit Turkish ID number</strong> in the TC ID No field. Enter the <strong>security code shown in the image</strong> in the Security Code field. Click the <strong>\"List Loans\"</strong> button to view your borrowed materials."
+                },
+                "image": {
+                  "tr": "assets/images/sure-uzatma/sure-uzatma-1-tr.png",
+                  "en": "assets/images/sure-uzatma/sure-uzatma-1-en.png"
+                },
+                "imageAlt": {
+                  "tr": "LIBRA Ödünç Kayıtları Giriş Ekranı",
+                  "en": "LIBRA Borrowing Records Login Screen"
+                },
+                "note": {
+                  "tr": "T.C. Kimlik numaranızı doğru girdiğinizden emin olun.",
+                  "en": "Make sure you enter your TC ID number correctly."
+                }
+              },
+              {
+                "id": 2,
+                "title": {
+                  "tr": "Materyal Listesini Görüntüleyin",
+                  "en": "View Material List"
+                },
+                "description": {
+                  "tr": "Üzerinizdeki materyaller görüntülendiğinde, her materyalin <strong>iade tarihini</strong> ve <strong>durumunu</strong> görebilirsiniz. Rezerve edilmemiş materyallerin iade tarihi bölümünde <strong>\"Süre Uzat\"</strong> linki bulunur.",
+                  "en": "When your borrowed materials are displayed, you can see the <strong>return date</strong> and <strong>status</strong> of each material. The <strong>\"Extend Loan\"</strong> link is available in the return date section for materials that are not reserved."
+                },
+                "image": {
+                  "tr": "assets/images/sure-uzatma/sure-uzatma-2-tr.png",
+                  "en": "assets/images/sure-uzatma/sure-uzatma-2-en.png"
+                },
+                "imageAlt": {
+                  "tr": "LIBRA Ödünç Listesi ve Süre Uzatma",
+                  "en": "LIBRA Loan List and Extension"
+                },
+                "note": {
+                  "tr": "Sadece rezerve edilmemiş materyaller için \"Süre Uzat\" linki görünür.",
+                  "en": "The \"Extend Loan\" link only appears for materials that are not reserved."
+                }
+              },
+              {
+                "id": 3,
+                "title": {
+                  "tr": "Süre Uzatma İşlemini Yapın",
+                  "en": "Perform Loan Extension"
+                },
+                "description": {
+                  "tr": "Rezerve edilmemiş materyallerin iade tarihi bölümündeki <strong>\"Süre Uzat\"</strong> linkini tıkladığınızda, iade tarihi otomatik olarak uzatılacaktır. Yeni iade tarihi ekranda görüntülenecektir.",
+                  "en": "When you click the <strong>\"Extend Loan\"</strong> link in the return date section for materials that are not reserved, the return date will be automatically extended. The new return date will be displayed on the screen."
+                },
+                "note": {
+                  "tr": "Her materyal için maksimum 3 kez süre uzatma yapabilirsiniz.",
+                  "en": "You can extend the loan period up to 3 times for each material."
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "rules-section",
+      "components": [
+        {
+          "type": "alert",
+          "data": {
+            "style": "warning",
+            "icon": "bi bi-exclamation-triangle-fill",
+            "content": {
+              "tr": "<strong>Önemli Kurallar:</strong><ul class='mt-2 mb-0'><li>Bu işlemi sadece <strong>3 kez</strong> yapabilirsiniz.</li><li>İade süresini uzatmak istediğiniz materyal <strong>rezerve edilmemiş</strong> olmalıdır.</li><li>Geç iade cezası olan materyaller için süre uzatma yapılamaz.</li></ul>",
+              "en": "<strong>Important Rules:</strong><ul class='mt-2 mb-0'><li>You can perform this operation only <strong>3 times</strong>.</li><li>The material you want to extend must be <strong>not reserved</strong>.</li><li>Loan extension cannot be made for materials with late return penalties.</li></ul>"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "alternative-methods",
+      "components": [
+        {
+          "type": "collapsible-section",
+          "data": {
+            "id": "other-methods",
+            "title": {
+              "tr": "Alternatif Yöntemler",
+              "en": "Alternative Methods"
+            },
+            "icon": "bi bi-telephone-fill",
+            "expanded": false,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "Online sistem dışında aşağıdaki yöntemlerle de süre uzatma işlemi yapabilirsiniz:",
+                  "en": "You can also perform loan extension through the following methods besides the online system:"
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "<strong>Telefon ile:</strong> Kütüphane Dolaşım Servisi'ni arayarak süre uzatma talebinde bulunabilirsiniz.",
+                    "en": "<strong>By Phone:</strong> You can call the Library Circulation Service to request a loan extension."
+                  },
+                  {
+                    "tr": "<strong>E-posta ile:</strong> <a href='mailto:kutuphanedolasim@anadolu.edu.tr'>kutuphanedolasim@anadolu.edu.tr</a> adresine T.C. Kimlik numaranız ve uzatmak istediğiniz materyalin bilgilerini göndererek işlem yapabilirsiniz.",
+                    "en": "<strong>By Email:</strong> You can send your TC ID number and material information to <a href='mailto:kutuphanedolasim@anadolu.edu.tr'>kutuphanedolasim@anadolu.edu.tr</a> to request an extension."
+                  },
+                  {
+                    "tr": "<strong>Kütüphaneden:</strong> Dolaşım masasından bizzat süre uzatma işlemi yaptırabilirsiniz.",
+                    "en": "<strong>From the Library:</strong> You can request a loan extension directly from the circulation desk."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "troubleshooting",
+      "components": [
+        {
+          "type": "accordion",
+          "data": {
+            "id": "faq-accordion",
+            "title": {
+              "tr": "Sık Karşılaşılan Sorunlar",
+              "en": "Common Issues"
+            },
+            "items": [
+              {
+                "id": "cannot-extend",
+                "title": {
+                  "tr": "\"Süre Uzat\" Linki Görünmüyor",
+                  "en": "\"Extend Loan\" Link Not Visible"
+                },
+                "icon": "bi bi-x-circle",
+                "content": {
+                  "tr": "Bu durumun nedenleri şunlar olabilir:<br>• Materyal başka bir kullanıcı tarafından <strong>rezerve edilmiş</strong> olabilir<br>• Materyal için <strong>maksimum uzatma sayısına (3 kez)</strong> ulaşmış olabilirsiniz<br>• Üzerinizde <strong>geç iade cezası</strong> olabilir",
+                  "en": "Possible reasons for this:<br>• The material may be <strong>reserved</strong> by another user<br>• You may have reached the <strong>maximum extension limit (3 times)</strong> for this material<br>• You may have a <strong>late return penalty</strong>"
+                }
+              },
+              {
+                "id": "tc-kimlik-error",
+                "title": {
+                  "tr": "T.C. Kimlik Numaramı Kabul Etmiyor",
+                  "en": "System Not Accepting My TC ID Number"
+                },
+                "icon": "bi bi-exclamation-triangle",
+                "content": {
+                  "tr": "T.C. Kimlik numaranızı <strong>11 haneli</strong> olarak ve <strong>başında sıfır varsa sıfır ile birlikte</strong> girdiğinizden emin olun. Sorun devam ederse Dolaşım Servisi ile iletişime geçin.",
+                  "en": "Make sure you enter your TC ID number as <strong>11 digits</strong> and <strong>including leading zeros if any</strong>. If the problem persists, contact the Circulation Service."
+                }
+              },
+              {
+                "id": "security-code",
+                "title": {
+                  "tr": "Güvenlik Kodunu Okuyamıyorum",
+                  "en": "Cannot Read Security Code"
+                },
+                "icon": "bi bi-shield-check",
+                "content": {
+                  "tr": "Güvenlik kodu görüntüsü net değilse, sayfayı yenileyerek yeni bir kod oluşturabilirsiniz. Kodları dikkatli bir şekilde büyük/küçük harf duyarlılığına dikkat ederek girin.",
+                  "en": "If the security code image is not clear, you can refresh the page to generate a new code. Enter the code carefully, paying attention to case sensitivity."
+                }
+              },
+              {
+                "id": "late-fee",
+                "title": {
+                  "tr": "Geç İade Cezam Var",
+                  "en": "I Have a Late Return Penalty"
+                },
+                "icon": "bi bi-credit-card",
+                "content": {
+                  "tr": "Üzerinizde geç iade cezası varsa süre uzatma yapamayabilirsiniz. Cezanızı ödemek için kütüphane Dolaşım Servisi ile görüşün.",
+                  "en": "If you have a late return penalty, you may not be able to extend the loan period. Contact the Library Circulation Service to pay your penalty."
+                }
+              },
+              {
+                "id": "max-renewal",
+                "title": {
+                  "tr": "3 Kez Uzattım, Daha Fazla Uzatabilir miyim?",
+                  "en": "I Extended 3 Times, Can I Extend More?"
+                },
+                "icon": "bi bi-arrow-repeat",
+                "content": {
+                  "tr": "Maalesef her materyal için maksimum 3 kez süre uzatma yapabilirsiniz. Daha fazla süreye ihtiyacınız varsa, materyali iade edip tekrar ödünç alabilirsiniz (materyal müsait ise).",
+                  "en": "Unfortunately, you can only extend the loan period up to 3 times for each material. If you need more time, you can return the material and borrow it again (if available)."
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "help-section",
+      "components": [
+        {
+          "type": "alert",
+          "data": {
+            "style": "info",
+            "icon": "bi bi-telephone-fill",
+            "content": {
+              "tr": "<strong>Yardıma mı İhtiyacınız Var?</strong><br>Mesai saatleri içinde <a href='tel:02223350580'><strong>0222 335 05 80 / 1730</strong></a> numaralı telefondan <strong>Dolaşım Servisi</strong> ile görüşebilirsiniz.<br><br>E-posta ile destek: <a href='mailto:kutuphanedolasim@anadolu.edu.tr'><strong>kutuphanedolasim@anadolu.edu.tr</strong></a>",
+              "en": "<strong>Need Help?</strong><br>During office hours, you can contact the <strong>Circulation Service</strong> at <a href='tel:02223350580'><strong>0222 335 05 80 / 1730</strong></a>.<br><br>Email support: <a href='mailto:kutuphanedolasim@anadolu.edu.tr'><strong>kutuphanedolasim@anadolu.edu.tr</strong></a>"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "related-links",
+      "components": [
+        {
+          "type": "link-cards",
+          "data": {
+            "title": {
+              "tr": "İlgili Sayfalar",
+              "en": "Related Pages"
+            },
+            "cards": [
+              {
+                "title": {
+                  "tr": "Üyelik & Ödünç Alma",
+                  "en": "Membership & Borrowing"
+                },
+                "description": {
+                  "tr": "Kütüphane üyelik işlemleri ve ödünç alma kuralları",
+                  "en": "Library membership procedures and borrowing rules"
+                },
+                "icon": "bi bi-card-checklist",
+                "url": "uyelik-odunc-islemleri.html",
+                "color": "#1F4C8A"
+              },
+              {
+                "title": {
+                  "tr": "Sıkça Sorulan Sorular",
+                  "en": "Frequently Asked Questions"
+                },
+                "description": {
+                  "tr": "Diğer sorularınızın cevapları",
+                  "en": "Answers to your other questions"
+                },
+                "icon": "bi bi-question-circle",
+                "url": "sss.html",
+                "color": "#1F4C8A"
+              },
+              {
+                "title": {
+                  "tr": "Bize Danışın",
+                  "en": "Consult Us"
+                },
+                "description": {
+                  "tr": "Kütüphaneciye sorun",
+                  "en": "Ask the librarian"
+                },
+                "icon": "bi bi-chat-dots",
+                "url": "kime-sormaliyim.html",
+                "color": "#1F4C8A"
+              },
+              {
+                "title": {
+                  "tr": "İletişim",
+                  "en": "Contact"
+                },
+                "description": {
+                  "tr": "Bizimle iletişime geçin",
+                  "en": "Get in touch with us"
+                },
+                "icon": "bi bi-envelope",
+                "url": "iletisim.html",
+                "color": "#1F4C8A"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "helpSection": {
+    "title": {
+      "tr": "Yardıma mı ihtiyacınız var?",
+      "en": "Need Help?"
+    },
+    "description": {
+      "tr": "Süre uzatma işlemi ile ilgili sorularınız için kütüphane dolaşım servisi ile iletişime geçebilirsiniz.",
+      "en": "You can contact the library circulation service for questions about loan extension."
+    },
+    "buttons": [
+      {
+        "icon": "fas fa-phone",
+        "text": {
+          "tr": "Hemen Ara",
+          "en": "Call Now"
+        },
+        "link": "tel:+902223350580"
+      },
+      {
+        "icon": "fas fa-envelope",
+        "text": {
+          "tr": "E-posta Gönder",
+          "en": "Send Email"
+        },
+        "link": "mailto:kutuphanedolasim@anadolu.edu.tr"
+      },
+      {
+        "icon": "fas fa-question-circle",
+        "text": {
+          "tr": "Sıkça Sorulan Sorular",
+          "en": "Frequently Asked Questions"
+        },
+        "link": "sss.html"
+      }
+    ]
+  }
+}

@@ -165,7 +165,7 @@ export class InnerPage {
         return `
           <section class="content-section">
             ${section.title ? `<h2>${section.title}</h2>` : ''}
-            ${section.content || ''}
+            ${section.content ? Utils.mdToHtml(Utils.getLocalizedText(section.content)) : ''}
           </section>
         `;
       }).join('');
@@ -178,15 +178,15 @@ export class InnerPage {
           } else {
             cardContent = `<ul>${card.content.map(item => {
               if (typeof item === 'string') {
-                return `<li>${item}</li>`;
+                return `<li>${Utils.mdToHtml(item)}</li>`;
               } else if (typeof item === 'object' && item.text && item.link) {
-                return `<li><a href="${item.link}" target="_blank">${item.text}</a></li>`;
+                return `<li><a href="${item.link}" target="_blank">${Utils.mdToHtml(Utils.getLocalizedText(item.text))}</a></li>`;
               }
               return '';
             }).join('')}</ul>`;
           }
         } else if (card.content) {
-          cardContent = `<p>${card.content}</p>`;
+          cardContent = Utils.mdToHtml(Utils.getLocalizedText(card.content));
         } else {
             cardContent = '<p>Henüz bir bilgi girilmemiştir.</p>';
         }

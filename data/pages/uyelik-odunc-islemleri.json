@@ -973,8 +973,8 @@
             },
             "titleIcon": "bi bi-calculator",
             "content": {
-              "tr": "<strong>Her gecikme günü için:</strong> Gecikme süresi × 5 gün<br><br><strong>Örnek:</strong> 3 gün gecikme = 3 × 5 = 15 gün yeni materyal alma yasağı",
-              "en": "<strong>For each overdue day:</strong> Overdue period × 5 days<br><br><strong>Example:</strong> 3 days overdue = 3 × 5 = 15 days suspension from borrowing new materials"
+              "tr": "**Her gecikme günü için:** Gecikme süresi × 5 gün\n\n**Örnek:** 3 gün gecikme = 3 × 5 = 15 gün yeni materyal alma yasağı",
+              "en": "**For each overdue day:** Overdue period × 5 days\n\n**Example:** 3 days overdue = 3 × 5 = 15 days suspension from borrowing new materials"
             }
           }
         },
@@ -1048,8 +1048,8 @@
             },
             "titleIcon": "bi bi-cash-stack",
             "content": {
-              "tr": "<strong>Ödeme Tutarı:</strong> Materyalin güncel rayiç bedelinin %50 fazlası tahsil edilir<br><br><strong>Alternatif Seçenek:</strong> Aynı baskının temini de kabul edilebilir",
-              "en": "<strong>Payment Amount:</strong> 50% above the current market value of the material is charged<br><br><strong>Alternative Option:</strong> Providing the same edition may also be accepted"
+              "tr": "**Ödeme Tutarı:** Materyalin güncel rayiç bedelinin %50 fazlası tahsil edilir\n\n**Alternatif Seçenek:** Aynı baskının temini de kabul edilebilir",
+              "en": "**Payment Amount:** 50% above the current market value of the material is charged\n\n**Alternative Option:** Providing the same edition may also be accepted"
             }
           }
         },
@@ -1066,15 +1066,15 @@
               {
                 "icon": "bi bi-exclamation-triangle",
                 "text": {
-                  "tr": "<strong>Kasıtlı Zarar:</strong> 3 ay ödünç alma yasağı uygulanır",
-                  "en": "<strong>Intentional Damage:</strong> 3-month borrowing suspension is applied"
+                  "tr": "**Kasıtlı Zarar:** 3 ay ödünç alma yasağı uygulanır",
+                  "en": "**Intentional Damage:** 3-month borrowing suspension is applied"
                 }
               },
               {
                 "icon": "bi bi-x-circle",
                 "text": {
-                  "tr": "<strong>İki Kez Zarar/Kayıp:</strong> Kalıcı olarak ödünç hizmeti verilmez",
-                  "en": "<strong>Two Times Damage/Loss:</strong> Borrowing privileges are permanently revoked"
+                  "tr": "**İki Kez Zarar/Kayıp:** Kalıcı olarak ödünç hizmeti verilmez",
+                  "en": "**Two Times Damage/Loss:** Borrowing privileges are permanently revoked"
                 }
               }
             ]

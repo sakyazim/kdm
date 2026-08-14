@@ -69,12 +69,12 @@
     },
     {
       "id": "big-text",
-      "iconHtml": "<span style=\"font-size: 1.2em; font-weight: bold;\">T</span><span style=\"font-size: 0.8em;\">T</span>",
       "ariaLabel": {
         "tr": "Büyük Metin",
         "en": "Big Text"
       },
-      "enabled": true
+      "enabled": true,
+      "icon": "bi bi-text-height"
     },
     {
       "id": "text-spacing",
@@ -105,12 +105,12 @@
     },
     {
       "id": "dyslexia-font",
-      "iconHtml": "<span style=\"font-weight: bold;\">Df</span>",
       "ariaLabel": {
         "tr": "Disleksi Dostu Font",
         "en": "Dyslexia Font"
       },
-      "enabled": true
+      "enabled": true,
+      "icon": "bi bi-fonts"
     },
     {
       "id": "big-cursor",

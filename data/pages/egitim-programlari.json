@@ -149,22 +149,22 @@
               {
                 "icon": "fas fa-phone",
                 "text": {
-                  "tr": "<strong>Telefon</strong><br><a href='tel:+902223350580'>0 (222) 335 05 80 / 1730 - 1733</a>",
-                  "en": "<strong>Phone</strong><br><a href='tel:+902223350580'>0 (222) 335 05 80 / 1730 - 1733</a>"
+                  "tr": "**Telefon**\n[0 (222) 335 05 80 / 1730 - 1733](tel:+902223350580)",
+                  "en": "**Phone**\n[0 (222) 335 05 80 / 1730 - 1733](tel:+902223350580)"
                 }
               },
               {
                 "icon": "fas fa-envelope",
                 "text": {
-                  "tr": "<strong>E-posta</strong><br><a href='mailto:library@anadolu.edu.tr'>library@anadolu.edu.tr</a>",
-                  "en": "<strong>Email</strong><br><a href='mailto:library@anadolu.edu.tr'>library@anadolu.edu.tr</a>"
+                  "tr": "**E-posta**\n[library@anadolu.edu.tr](mailto:library@anadolu.edu.tr)",
+                  "en": "**Email**\n[library@anadolu.edu.tr](mailto:library@anadolu.edu.tr)"
                 }
               },
               {
                 "icon": "fas fa-envelope",
                 "text": {
-                  "tr": "<strong>E-posta</strong><br><a href='mailto:hatil@anadolu.edu.tr'>hatil@anadolu.edu.tr</a>",
-                  "en": "<strong>Email</strong><br><a href='mailto:hatil@anadolu.edu.tr'>hatil@anadolu.edu.tr</a>"
+                  "tr": "**E-posta**\n[hatil@anadolu.edu.tr](mailto:hatil@anadolu.edu.tr)",
+                  "en": "**Email**\n[hatil@anadolu.edu.tr](mailto:hatil@anadolu.edu.tr)"
                 }
               }
             ]
@@ -271,15 +271,15 @@
               {
                 "icon": "fas fa-phone",
                 "text": {
-                  "tr": "<strong>Telefon</strong><br><a href='tel:+902223350580'>0 (222) 335 05 80 / 1737</a>",
-                  "en": "<strong>Phone</strong><br><a href='tel:+902223350580'>0 (222) 335 05 80 / 1737</a>"
+                  "tr": "**Telefon**\n[0 (222) 335 05 80 / 1737](tel:+902223350580)",
+                  "en": "**Phone**\n[0 (222) 335 05 80 / 1737](tel:+902223350580)"
                 }
               },
               {
                 "icon": "fas fa-envelope",
                 "text": {
-                  "tr": "<strong>E-posta</strong><br><a href='mailto:arify@anadolu.edu.tr'>arify@anadolu.edu.tr</a>",
-                  "en": "<strong>Email</strong><br><a href='mailto:arify@anadolu.edu.tr'>arify@anadolu.edu.tr</a>"
+                  "tr": "**E-posta**\n[arify@anadolu.edu.tr](mailto:arify@anadolu.edu.tr)",
+                  "en": "**Email**\n[arify@anadolu.edu.tr](mailto:arify@anadolu.edu.tr)"
                 }
               }
             ]
@@ -382,15 +382,15 @@
               {
                 "icon": "fas fa-phone",
                 "text": {
-                  "tr": "<strong>Telefon</strong><br><a href='tel:+902223350580'>0 (222) 335 05 80 / 1730 - 1733</a>",
-                  "en": "<strong>Phone</strong><br><a href='tel:+902223350580'>0 (222) 335 05 80 / 1730 - 1733</a>"
+                  "tr": "**Telefon**\n[0 (222) 335 05 80 / 1730 - 1733](tel:+902223350580)",
+                  "en": "**Phone**\n[0 (222) 335 05 80 / 1730 - 1733](tel:+902223350580)"
                 }
               },
               {
                 "icon": "fas fa-envelope",
                 "text": {
-                  "tr": "<strong>E-posta</strong><br><a href='mailto:library@anadolu.edu.tr'>library@anadolu.edu.tr</a>",
-                  "en": "<strong>Email</strong><br><a href='mailto:library@anadolu.edu.tr'>library@anadolu.edu.tr</a>"
+                  "tr": "**E-posta**\n[library@anadolu.edu.tr](mailto:library@anadolu.edu.tr)",
+                  "en": "**Email**\n[library@anadolu.edu.tr](mailto:library@anadolu.edu.tr)"
                 }
               }
             ]
@@ -482,15 +482,15 @@
               {
                 "icon": "fas fa-phone",
                 "text": {
-                  "tr": "<strong>Telefon</strong><br><a href='tel:+902223350580'>0 (222) 335 05 80</a>",
-                  "en": "<strong>Phone</strong><br><a href='tel:+902223350580'>0 (222) 335 05 80</a>"
+                  "tr": "**Telefon**\n[0 (222) 335 05 80](tel:+902223350580)",
+                  "en": "**Phone**\n[0 (222) 335 05 80](tel:+902223350580)"
                 }
               },
               {
                 "icon": "fas fa-envelope",
                 "text": {
-                  "tr": "<strong>E-posta</strong><br><a href='mailto:library@anadolu.edu.tr'>library@anadolu.edu.tr</a>",
-                  "en": "<strong>Email</strong><br><a href='mailto:library@anadolu.edu.tr'>library@anadolu.edu.tr</a>"
+                  "tr": "**E-posta**\n[library@anadolu.edu.tr](mailto:library@anadolu.edu.tr)",
+                  "en": "**Email**\n[library@anadolu.edu.tr](mailto:library@anadolu.edu.tr)"
                 }
               }
             ]

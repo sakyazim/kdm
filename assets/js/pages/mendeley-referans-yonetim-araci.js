@@ -113,12 +113,12 @@ export class MendeleyReferansYonetimAraciPage {
 
     // Lead text
     if (section.content.lead) {
-      html += `<p class="lead">${section.content.lead}</p>`;
+      html += `<p class="lead">${Utils.mdToHtml(Utils.getLocalizedText(section.content.lead))}</p>`;
     }
 
     // Regular text
     if (section.content.text) {
-      html += `<p>${section.content.text}</p>`;
+      html += `<p>${Utils.mdToHtml(Utils.getLocalizedText(section.content.text))}</p>`;
     }
 
     // Features grid
@@ -175,7 +175,7 @@ export class MendeleyReferansYonetimAraciPage {
         <div class="feature-item">
           <div class="feature-icon">${feature.icon}</div>
           <div class="feature-title">${feature.title}</div>
-          <div class="feature-description">${feature.description}</div>
+          <div class="feature-description">${Utils.mdToHtml(Utils.getLocalizedText(feature.description))}</div>
         </div>
       `;
     });
@@ -191,13 +191,12 @@ export class MendeleyReferansYonetimAraciPage {
     let html = '';
 
     infoBoxes.forEach(box => {
-      html += `
-        <div class="info-box">
+      html += `          <div class="info-box">
           <div class="info-title">
             <i class="${box.icon}"></i>
             ${box.title}
           </div>
-          <p>${box.text}</p>
+          <p>${Utils.mdToHtml(Utils.getLocalizedText(box.text))}</p>
         </div>
       `;
     });
@@ -214,10 +213,9 @@ export class MendeleyReferansYonetimAraciPage {
     steps.forEach((step, index) => {
       html += `
         <div class="process-step">
-          <div class="step-number">${index + 1}</div>
-          <div class="step-content">
+          <div class="step-number">${index + 1}</div>            <div class="step-content">
             <div class="step-title">${step.title}</div>
-            <p>${step.text}</p>
+            <p>${Utils.mdToHtml(Utils.getLocalizedText(step.text))}</p>
           </div>
         </div>
       `;
@@ -233,8 +231,7 @@ export class MendeleyReferansYonetimAraciPage {
   renderCTA(cta) {
     let html = `
       <div class="cta-section">
-        <h3>${cta.title}</h3>
-        <p>${cta.text}</p>
+        <h3>${cta.title}</h3>          <p>${Utils.mdToHtml(Utils.getLocalizedText(cta.text))}</p>
         <div class="cta-buttons">
     `;
 
@@ -268,7 +265,7 @@ export class MendeleyReferansYonetimAraciPage {
             <i class="${warning.icon}"></i>
             ${warning.title}
           </div>
-          <p>${warning.text}</p>
+          <p>${Utils.mdToHtml(Utils.getLocalizedText(warning.text))}</p>
         </div>
       `;
     });
@@ -315,8 +312,8 @@ export class MendeleyReferansYonetimAraciPage {
           </div>
           <div class="resource-content">
             <h5>${resource.title}</h5>
-            <p>${resource.description}</p>
-            ${resource.note ? `<small class="text-muted">${resource.note}</small>` : ''}
+            <p>${Utils.mdToHtml(Utils.getLocalizedText(resource.description))}</p>
+            ${resource.note ? `<small class="text-muted">${Utils.mdToHtml(Utils.getLocalizedText(resource.note))}</small>` : ''}
           </div>
         </a>
       `;

@@ -1,0 +1,371 @@
+{
+  "hero": {
+    "title": {
+      "tr": "Kütüphane Kullanım Kuralları",
+      "en": "Library Usage Rules"
+    },
+    "description": {
+      "tr": "Tüm kullanıcıların rahat bir çalışma ortamına sahip olabilmesi için lütfen kurallara uyunuz",
+      "en": "Please follow the rules so that all users can have a comfortable working environment"
+    },
+    "icon": "fas fa-gavel",
+    "breadcrumb": [
+      {
+        "text": {
+          "tr": "Ana Sayfa",
+          "en": "Home"
+        },
+        "url": "index.html"
+      },
+      {
+        "text": {
+          "tr": "Kütüphane Kullanım Kuralları",
+          "en": "Library Usage Rules"
+        },
+        "url": "kurallar.html"
+      }
+    ]
+  },
+  "content": [
+    {
+      "id": "material-security",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Materyal Güvenliği",
+              "en": "Material Security"
+            },
+            "icon": "bi bi-shield-check",
+            "id": "material-security"
+          }
+        },
+        {
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Kütüphanedeki materyallerin güvenliği RFID teknolojisi ile sağlanmaktadır.",
+              "en": "The security of library materials is ensured by RFID technology."
+            }
+          }
+        },
+        {
+          "type": "icon-list",
+          "variant": "rules-horizontal",
+          "data": {
+            "items": [
+              {
+                "icon": "bi bi-shield-lock",
+                "text": {
+                  "tr": "<strong>RFID Güvenlik Sistemi</strong><br>Kütüphanedeki materyallerin güvenliği, Radyo Frekansı ile Tanımlama (RFID - Radio Frequency Identification) teknolojisini kullanan bir güvenlik kapı kontrol sistemi ile sağlanmaktadır.",
+                  "en": "<strong>RFID Security System</strong><br>The security of library materials is ensured by a security gate control system using Radio Frequency Identification (RFID) technology."
+                }
+              },
+              {
+                "icon": "bi bi-x-octagon",
+                "text": {
+                  "tr": "<strong>Ödünç İşlemi Zorunluluğu</strong><br>Materyaller, ödünç alma işlemi yapılmadan kütüphane dışına çıkarılamaz. İşlem yapılmadan materyal çıkarmaya teşebbüs edenler hakkında yasal işlem başlatılır.",
+                  "en": "<strong>Loan Transaction Requirement</strong><br>Materials cannot be taken out of the library without completing a loan transaction. Legal action will be taken against those who attempt to remove materials without processing."
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "info",
+          "data": {
+            "icon": "bi bi-volume-up",
+            "title": {
+              "tr": "İkaz Sesi Duyulması Durumunda",
+              "en": "In Case of Alarm Sound"
+            },
+            "content": {
+              "tr": "İkaz sesi duyulması durumunda üzeriniz aranabilir; lütfen görevliye yardımcı olunuz.",
+              "en": "In case of an alarm sound, you may be searched; please cooperate with the staff."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "prohibitions",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Yasaklar ve Sorumluluklar",
+              "en": "Prohibitions and Responsibilities"
+            },
+            "icon": "bi bi-slash-circle",
+            "id": "prohibitions"
+          }
+        },
+        {
+          "type": "icon-list",
+          "variant": "rules-horizontal",
+          "data": {
+            "items": [
+              {
+                "icon": "bi bi-cup-straw",
+                "text": {
+                  "tr": "<strong>Yiyecek İçecek Yasağı</strong><br>Kütüphane içinde yiyecek, içecek tüketimi ve tütün ürünlerinin kullanımı yasaktır.",
+                  "en": "<strong>Food and Beverage Prohibition</strong><br>Consumption of food, beverages and use of tobacco products is prohibited in the library."
+                }
+              },
+              {
+                "icon": "bi bi-person-check",
+                "text": {
+                  "tr": "<strong>Kişisel Eşya Sorumluluğu</strong><br>Kullanıcılar, kişisel eşyalarının güvenliğinden kendileri sorumludur. Kayıp ve çalıntı eşyalar için kütüphane sorumluluk kabul etmez.",
+                  "en": "<strong>Personal Belongings Responsibility</strong><br>Users are responsible for the security of their personal belongings. The library accepts no responsibility for lost or stolen items."
+                }
+              },
+              {
+                "icon": "bi bi-phone-vibrate",
+                "text": {
+                  "tr": "<strong>Cep Telefonu Kuralı</strong><br>Kütüphaneye girerken cep telefonları sessize alınmalı veya kapatılmalıdır.",
+                  "en": "<strong>Mobile Phone Rule</strong><br>Mobile phones must be silenced or turned off when entering the library."
+                }
+              },
+              {
+                "icon": "bi bi-camera-video-off",
+                "text": {
+                  "tr": "<strong>Kayıt Yasağı</strong><br>İzinsiz fotoğraf, video ve ses kaydı yapılması yasaktır.",
+                  "en": "<strong>Recording Prohibition</strong><br>Unauthorized photography, video and audio recording is prohibited."
+                }
+              },
+              {
+                "icon": "bi bi-people",
+                "text": {
+                  "tr": "<strong>Grup Çalışması</strong><br>Grup çalışması yalnızca grup çalışma salonlarında yapılabilir. Diğer alanlarda sessiz çalışmaya özen gösterilmelidir.",
+                  "en": "<strong>Group Study</strong><br>Group study can only be done in group study rooms. Silent study should be observed in other areas."
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "membership-returns",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Üyelik ve Materyal İade",
+              "en": "Membership and Material Return"
+            },
+            "icon": "bi bi-file-earmark-check",
+            "id": "membership-returns"
+          }
+        },
+        {
+          "type": "icon-list",
+          "variant": "rules-horizontal",
+          "data": {
+            "items": [
+              {
+                "icon": "bi bi-file-earmark-person",
+                "text": {
+                  "tr": "<strong>İlişiği Yoktur Belgesi</strong><br>Emekli olan, istifa eden, askerlik veya görevlendirme nedeniyle üniversiteden ayrılan personel ile mezun olan öğrenciler, ilişkilerini kesmeden önce \"ilişiği yoktur\" belgesi almak zorundadır.",
+                  "en": "<strong>Clearance Certificate</strong><br>Staff who retire, resign, leave the university due to military service or assignment, and graduating students must obtain a \"clearance certificate\" before terminating their relationship."
+                }
+              },
+              {
+                "icon": "bi bi-arrow-return-left",
+                "text": {
+                  "tr": "<strong>Zorunlu İade</strong><br>Kütüphane tarafından herhangi bir nedenle istenen materyaller, süresi dolmamış olsa dahi iade edilmelidir.",
+                  "en": "<strong>Mandatory Return</strong><br>Materials requested by the library for any reason must be returned even if their due date has not expired."
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "warning",
+          "data": {
+            "icon": "bi bi-exclamation-triangle",
+            "title": {
+              "tr": "Hizmet Kısıtlaması",
+              "en": "Service Restriction"
+            },
+            "content": {
+              "tr": "Zorunlu iade talebine uyulmaması durumunda ödünç alma hizmetlerinden yararlanma hakkı kısıtlanır.",
+              "en": "Failure to comply with the mandatory return request will result in restriction of loan services."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "communication",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "İletişim ve Geri Bildirim",
+              "en": "Communication and Feedback"
+            },
+            "icon": "bi bi-chat-left-text",
+            "id": "communication"
+          }
+        },
+        {
+          "type": "contact-box",
+          "variant": "help-section-style",
+          "data": {
+            "icon": "bi bi-envelope-heart",
+            "title": {
+              "tr": "Dilek, Öneri ve Şikâyetleriniz",
+              "en": "Your Requests, Suggestions and Complaints"
+            },
+            "text": {
+              "tr": "Her türlü dilek, öneri ve şikâyet için aşağıdaki kanalları kullanabilirsiniz:",
+              "en": "You can use the following channels for any requests, suggestions and complaints:"
+            },
+            "links": [
+              {
+                "icon": "bi bi-envelope",
+                "text": "library@anadolu.edu.tr",
+                "url": "mailto:library@anadolu.edu.tr"
+              },
+              {
+                "icon": "bi bi-person-badge",
+                "text": {
+                  "tr": "Kütüphane Personeli",
+                  "en": "Library Staff"
+                },
+                "url": "#",
+                "onclick": "alert('Kütüphane personeline doğrudan başvurabilirsiniz.'); return false;"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "study-rooms",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Çalışma Odaları Kullanımı",
+              "en": "Study Rooms Usage"
+            },
+            "icon": "bi bi-door-open",
+            "id": "study-rooms"
+          }
+        },
+        {
+          "type": "icon-list",
+          "variant": "rules-horizontal",
+          "data": {
+            "items": [
+              {
+                "icon": "bi bi-clipboard-check",
+                "text": {
+                  "tr": "<strong>Oda Kullanım Kuralları</strong><br>Çalışma odalarını kullananlar, ilgili oda kullanım kurallarına uymak zorundadır.",
+                  "en": "<strong>Room Usage Rules</strong><br>Users of study rooms must comply with the relevant room usage rules."
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "warning",
+          "data": {
+            "icon": "bi bi-x-circle",
+            "title": {
+              "tr": "Kullanım Hakkı İptali",
+              "en": "Cancellation of Usage Right"
+            },
+            "content": {
+              "tr": "Kurallara uymayan kullanıcıların çalışma odası kullanım hakkı iptal edilir.",
+              "en": "Users who do not comply with the rules will have their study room usage rights cancelled."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "general-rule",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Genel Kural",
+              "en": "General Rule"
+            },
+            "icon": "bi bi-bookmark-check",
+            "id": "general-rule"
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "info",
+          "data": {
+            "icon": "bi bi-check-circle",
+            "title": {
+              "tr": "Kuralları Kabul Etme",
+              "en": "Acceptance of Rules"
+            },
+            "content": {
+              "tr": "Kütüphaneye giren her kullanıcı, kütüphane kullanım kurallarını kabul etmiş sayılır.",
+              "en": "Every user entering the library is deemed to have accepted the library usage rules."
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "helpSection": {
+    "title": {
+      "tr": "Kütüphane kuralları hakkında sorularınız mı var?",
+      "en": "Do you have questions about library rules?"
+    },
+    "description": {
+      "tr": "Kütüphane kullanım kuralları ve düzenlemeler hakkında detaylı bilgi için kütüphane personelimizle iletişime geçebilirsiniz.",
+      "en": "You can contact our library staff for detailed information about library usage rules and regulations."
+    },
+    "buttons": [
+      {
+        "icon": "fas fa-phone",
+        "text": {
+          "tr": "Hemen Ara",
+          "en": "Call Now"
+        },
+        "link": "tel:+902223350580"
+      },
+      {
+        "icon": "fas fa-envelope",
+        "text": {
+          "tr": "E-posta Gönder",
+          "en": "Send Email"
+        },
+        "link": "mailto:library@anadolu.edu.tr"
+      },
+      {
+        "icon": "fas fa-home",
+        "text": {
+          "tr": "Ana Sayfa",
+          "en": "Home"
+        },
+        "link": "index.html"
+      }
+    ]
+  }
+}

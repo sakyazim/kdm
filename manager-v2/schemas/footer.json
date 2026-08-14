@@ -1,0 +1,61 @@
+{
+  "file": "data/global/footer.json",
+  "label": "Alt Bilgi (Footer)",
+  "description": "Tüm sayfalarda görünen alt bilgi: iletişim, sosyal medya, bağlantı sütunları ve yasal bağlantılar.",
+  "fields": [
+    {
+      "key": "contactInfo",
+      "label": "İletişim Bilgileri",
+      "type": "array",
+      "itemLabel": "Öğe",
+      "itemFields": [
+        { "key": "icon", "label": "İkon (Bootstrap)", "type": "icon", "hint": "Örn: bi bi-telephone-fill" },
+        { "key": "text", "label": "Metin", "type": "lang" },
+        { "key": "url", "label": "Bağlantı", "type": "url" },
+        { "key": "target", "label": "Hedef (örn: _blank)", "type": "text" }
+      ]
+    },
+    {
+      "key": "socialMedia",
+      "label": "Sosyal Medya",
+      "type": "array",
+      "itemLabel": "Hesap",
+      "itemFields": [
+        { "key": "icon", "label": "İkon", "type": "icon" },
+        { "key": "url", "label": "Bağlantı", "type": "url" },
+        { "key": "title", "label": "Başlık", "type": "text" },
+        { "key": "target", "label": "Hedef", "type": "text" }
+      ]
+    },
+    {
+      "key": "columns",
+      "label": "Bağlantı Sütunları",
+      "type": "array",
+      "itemLabel": "Sütun",
+      "itemFields": [
+        { "key": "title", "label": "Sütun Başlığı", "type": "lang" },
+        {
+          "key": "links",
+          "label": "Bağlantılar",
+          "type": "array",
+          "itemLabel": "Bağlantı",
+          "itemFields": [
+            { "key": "text", "label": "Metin", "type": "lang", "required": true },
+            { "key": "url", "label": "Bağlantı", "type": "url", "required": true }
+          ]
+        }
+      ]
+    },
+    { "key": "copyright", "label": "Telif Metni", "type": "lang" },
+    {
+      "key": "legalLinks",
+      "label": "Yasal Bağlantılar",
+      "type": "array",
+      "itemLabel": "Bağlantı",
+      "itemFields": [
+        { "key": "text", "label": "Metin", "type": "lang" },
+        { "key": "url", "label": "Bağlantı", "type": "url" }
+      ]
+    }
+  ]
+}

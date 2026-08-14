@@ -1,0 +1,309 @@
+{
+  "hero": {
+    "title": {
+      "tr": "Kütüphanelerarası Ödünç (ILL)",
+      "en": "Interlibrary Loan (ILL)"
+    },
+    "description": {
+      "tr": "Türkiye'deki üniversite kütüphanelerinden kitap ve makale ödünç alma hizmeti",
+      "en": "Book and article borrowing service from university libraries in Turkey"
+    }
+  },
+  "help": {
+    "title": {
+      "tr": "ILL Hizmeti Hakkında Sorularınız mı Var?",
+      "en": "Do You Have Questions About ILL Service?"
+    },
+    "description": {
+      "tr": "Kütüphanelerarası ödünç hizmeti hakkında detaylı bilgi almak ve başvuru yapmak için Ödünç Birimi ile iletişime geçebilirsiniz.",
+      "en": "You can contact the Circulation Unit for detailed information about interlibrary loan service and to apply."
+    },
+    "buttons": [
+      {
+        "text": {
+          "tr": "Hemen Ara",
+          "en": "Call Now"
+        },
+        "url": "tel:+902223350580",
+        "icon": "fas fa-phone"
+      },
+      {
+        "text": {
+          "tr": "E-posta Gönder",
+          "en": "Send Email"
+        },
+        "url": "mailto:kutuphane@anadolu.edu.tr",
+        "icon": "fas fa-envelope"
+      }
+    ]
+  },
+  "content": [
+    {
+      "id": "genel-bilgi",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Önemli Bilgilendirme",
+              "en": "Important Information"
+            },
+            "icon": "bi bi-info-circle",
+            "id": "genel-bilgi-heading"
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "info",
+          "style": "single-icon",
+          "data": {
+            "icon": "fas fa-lightbulb",
+            "title": {
+              "tr": "KİTS Sistemi",
+              "en": "KITS System"
+            },
+            "content": {
+              "tr": "Bu hizmet üniversite kütüphaneleri arasında, Üniversite Kütüphane ve Dokümantasyon Daire Başkanları toplantısında alınan karar gereğince yapılır. ANKOS üyesi kütüphaneler, ödünç kitap isteklerini <strong>KİTS (Kütüphanelerarası İşbirliği Takip Sistemi)</strong> aracılığı ile yapabilirler.",
+              "en": "This service is provided among university libraries according to the decision taken at the University Library and Documentation Directors' meeting. ANKOS member libraries can make their book loan requests through <strong>KITS (Interlibrary Cooperation Tracking System)</strong>."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "kimler-yararlanabilir",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Kimler Yararlanabilir?",
+              "en": "Who Can Benefit?"
+            },
+            "icon": "bi bi-people",
+            "id": "kimler-yararlanabilir-heading"
+          }
+        },
+        {
+          "type": "icon-list",
+          "variant": "eligibility",
+          "data": {
+            "items": [
+              {
+                "icon": "bi bi-person-workspace",
+                "text": {
+                  "tr": "<strong>Akademik Personel</strong><br>Anadolu Üniversitesi akademik personeli",
+                  "en": "<strong>Academic Staff</strong><br>Anadolu University academic staff"
+                }
+              },
+              {
+                "icon": "bi bi-mortarboard",
+                "text": {
+                  "tr": "<strong>Lisansüstü Öğrenciler</strong><br>Yüksek lisans ve doktora öğrencileri",
+                  "en": "<strong>Graduate Students</strong><br>Master's and PhD students"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "info",
+          "style": "single-line",
+          "data": {
+            "icon": "bi bi-building",
+            "title": {
+              "tr": "Not:",
+              "en": "Note:"
+            },
+            "content": {
+              "tr": "Türkiye'deki üniversite kütüphanelerinden kitap ve makale ödünç alabilirler",
+              "en": "They can borrow books and articles from university libraries in Turkey"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "istekler-nasil-yapilir",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "İstekler Nasıl Yapılır?",
+              "en": "How to Make Requests?"
+            },
+            "icon": "bi bi-list-check",
+            "id": "istekler-nasil-yapilir-heading"
+          }
+        },
+        {
+          "type": "step-cards",
+          "variant": "accordion",
+          "data": {
+            "steps": [
+              {
+                "number": 1,
+                "title": {
+                  "tr": "Kaynak Arama",
+                  "en": "Resource Search"
+                },
+                "content": {
+                  "tr": "<p>İhtiyaç duyulan kaynakların bulunması için <a href='https://www.toplukatalog.gov.tr' target='_blank' class='external-link'><i class='bi bi-box-arrow-up-right'></i> www.toplukatalog.gov.tr</a> platformundan yararlanılır.</p>",
+                  "en": "<p>To find the required resources, use the <a href='https://www.toplukatalog.gov.tr' target='_blank' class='external-link'><i class='bi bi-box-arrow-up-right'></i> www.toplukatalog.gov.tr</a> platform.</p>"
+                },
+                "defaultOpen": true
+              },
+              {
+                "number": 2,
+                "title": {
+                  "tr": "Form Doldurma",
+                  "en": "Form Filling"
+                },
+                "content": {
+                  "tr": "<p>Bulunduğu kütüphane tespit edilen kaynak için <a href='https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fkdm.anadolu.edu.tr%2FDocuments%2Fill.doc&wdOrigin=BROWSELINK' target='_blank' class='external-link'><i class='bi bi-file-earmark-text'></i> ILL Formu</a> doldurularak Ödünç Birimine iletilir.</p>",
+                  "en": "<p>For the resource whose library has been determined, fill out the <a href='https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fkdm.anadolu.edu.tr%2FDocuments%2Fill.doc&wdOrigin=BROWSELINK' target='_blank' class='external-link'><i class='bi bi-file-earmark-text'></i> ILL Form</a> and submit it to the Circulation Unit.</p>"
+                },
+                "defaultOpen": false
+              },
+              {
+                "number": 3,
+                "title": {
+                  "tr": "İşlem Takibi",
+                  "en": "Process Tracking"
+                },
+                "content": {
+                  "tr": "<p>Materyalin nasıl sağlanacağı kütüphanelerarası ödünç kurallarına bağlıdır. Her kütüphanenin kendine özgü kuralları geçerlidir.</p>",
+                  "en": "<p>How the material will be provided depends on interlibrary loan rules. Each library has its own specific rules.</p>"
+                },
+                "defaultOpen": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "sure-ve-ucretler",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "double-icon",
+          "data": {
+            "title": {
+              "tr": "Süre ve Ücretler",
+              "en": "Duration and Fees"
+            },
+            "subtitle": {
+              "tr": "Materyal geliş süreleri ve ödeme bilgileri",
+              "en": "Material arrival times and payment information"
+            },
+            "icon": "bi bi-clock-history",
+            "id": "sure-ve-ucretler-heading"
+          }
+        },
+        {
+          "type": "info-box",
+          "variant": "double-icon",
+          "data": {
+            "title": {
+              "tr": "Materyal Geliş Süresi",
+              "en": "Material Arrival Time"
+            },
+            "titleIcon": "bi bi-clock",
+            "content": {
+              "tr": "Materyalin geliş süresi materyali gönderen kurumlara ve postada geçen zamana göre değişir. <strong>Süre değişkendir.</strong>",
+              "en": "The arrival time of the material varies depending on the sending institutions and the time spent in the mail. <strong>Duration is variable.</strong>"
+            }
+          }
+        },
+        {
+          "type": "info-box",
+          "variant": "double-icon",
+          "data": {
+            "title": {
+              "tr": "Ücretler",
+              "en": "Fees"
+            },
+            "titleIcon": "bi bi-cash-coin",
+            "content": {
+              "tr": "İstek yapılan materyal karşı kurumdan geldiğinde kargo ücreti kullanıcı tarafından ödenerek teslim alınır. <strong>Sadece kargo ücreti ödenir.</strong>",
+              "en": "When the requested material arrives from the other institution, it is received by paying the shipping fee by the user. <strong>Only the shipping fee is paid.</strong>"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "uygulama-kurallari",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Kütüphanelerarası Ödünç Uygulama Kuralları",
+              "en": "Interlibrary Loan Implementation Rules"
+            },
+            "icon": "bi bi-list-ul",
+            "id": "uygulama-kurallari-heading"
+          }
+        },
+        {
+          "type": "icon-list",
+          "variant": "rules",
+          "data": {
+            "items": [
+              {
+                "icon": "bi bi-search",
+                "text": {
+                  "tr": "<strong>Ön Kontrol:</strong><br>İstekte bulunulmadan önce, kitabın kütüphanemiz koleksiyonunda yer aldığı ve ödünç alınabilir durumda olduğu kontrol edilerek kesinleştirilmelidir.",
+                  "en": "<strong>Pre-Check:</strong><br>Before making a request, it must be verified and confirmed that the book is in our library collection and available for loan."
+                }
+              },
+              {
+                "icon": "bi bi-shield-check",
+                "text": {
+                  "tr": "<strong>Sorumluluk:</strong><br>Ödünç alınan kitabın kaybolması (postada kaybolmalar dahil) veya hasar görmesi halinde, sorumluluk kütüphanelerarası ödünç kitap/fotokopi istek işlemini gerçekleştiren yetkili kişilerindir.",
+                  "en": "<strong>Responsibility:</strong><br>In case the borrowed book is lost (including losses in the mail) or damaged, the responsibility belongs to the authorized persons who performed the interlibrary loan book/photocopy request process."
+                }
+              },
+              {
+                "icon": "bi bi-box-seam",
+                "text": {
+                  "tr": "<strong>Kargo İşlemleri:</strong><br>Kitap istekleri kargo ile gönderilir, iadesi kargo ile istenir.",
+                  "en": "<strong>Shipping Procedures:</strong><br>Book requests are sent by cargo, and returns are requested by cargo."
+                }
+              },
+              {
+                "icon": "bi bi-calculator",
+                "text": {
+                  "tr": "<strong>Limit ve Süre:</strong><br>Her kütüphanenin toplam 15 adet kitap ödünç alma hakkı vardır. Ödünç verme süresi posta süresi dahil 30 gündür, bu süre uzatılamaz.",
+                  "en": "<strong>Limit and Duration:</strong><br>Each library has the right to borrow a total of 15 books. The loan period is 30 days including postal time, this period cannot be extended."
+                }
+              },
+              {
+                "icon": "bi bi-x-circle",
+                "text": {
+                  "tr": "<strong>Kısıtlamalar:</strong><br>Kullanımda olan kitaplar için rezerve işlemi yapılmaz. Üzerinde iade süresi geçmiş kitap bulunan kütüphanelerin yeni istekleri değerlendirilmez.",
+                  "en": "<strong>Restrictions:</strong><br>No reservation is made for books in use. New requests from libraries with overdue books are not evaluated."
+                }
+              },
+              {
+                "icon": "bi bi-exclamation-triangle",
+                "text": {
+                  "tr": "<strong>Ceza Durumu:</strong><br>Kaybedilen, hasara uğrayan kitapların zararı karşılanana kadar diğer istekler dondurulur. Materyalin yıpranması ve kaybolması durumunda cezalar kullanıcı tarafından karşılanır.",
+                  "en": "<strong>Penalty Situation:</strong><br>Other requests are frozen until the damage of lost or damaged books is compensated. Penalties for wear and loss of materials are paid by the user."
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

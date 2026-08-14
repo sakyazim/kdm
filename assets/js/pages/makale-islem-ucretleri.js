@@ -222,14 +222,14 @@ export class MakaleIslemUcretleriPage {
               <i class="${box.icon}"></i>
               ${box.title}
             </div>
-            <p>${box.text}</p>
+            <p>${Utils.mdToHtml(Utils.getLocalizedText(box.text))}</p>
           </div>
         `;
       });
     }
 
     html += `
-          <p>${info.content.description}</p>
+          <p>${Utils.mdToHtml(Utils.getLocalizedText(info.content.description))}</p>
         </div>
       </div>
     `;
@@ -254,7 +254,7 @@ export class MakaleIslemUcretleriPage {
         <li>
           <i class="${item.icon}"></i>
           <div>
-            <strong>${item.title}</strong> ${item.description}
+            <strong>${item.title}</strong> ${Utils.mdToHtml(Utils.getLocalizedText(item.description))}
           </div>
         </li>
       `;
@@ -298,7 +298,7 @@ export class MakaleIslemUcretleriPage {
           </div>
         </div>
         <div class="publisher-content">
-          <p>${pub.description}</p>
+          <p>${Utils.mdToHtml(Utils.getLocalizedText(pub.description))}</p>
     `;
 
     // Warnings
@@ -331,7 +331,7 @@ export class MakaleIslemUcretleriPage {
               <i class="${box.icon}"></i>
               ${box.title}
             </div>
-            <p>${box.text}</p>
+            <p>${Utils.mdToHtml(Utils.getLocalizedText(box.text))}</p>
           </div>
         `;
       });
@@ -344,7 +344,7 @@ export class MakaleIslemUcretleriPage {
         html += `
           <div class="guideline-item">
             <div class="guideline-number">${guide.number}</div>
-            <div>${guide.text}</div>
+            <div>${Utils.mdToHtml(Utils.getLocalizedText(guide.text))}</div>
           </div>
         `;
       });
@@ -362,7 +362,7 @@ export class MakaleIslemUcretleriPage {
             </div>
             <div class="resource-content">
               <h6>${res.title}</h6>
-              <small>${res.description}</small>
+              <small>${Utils.mdToHtml(Utils.getLocalizedText(res.description))}</small>
             </div>
           </a>
         `;
@@ -382,7 +382,7 @@ export class MakaleIslemUcretleriPage {
     let html = `
       <div id="${contact.id}" class="contact-section">
         <h4><i class="${contact.icon}"></i> ${contact.title}</h4>
-        <p>${contact.description}</p>
+        <p>${Utils.mdToHtml(Utils.getLocalizedText(contact.description))}</p>
         <div class="contact-info">
     `;
 

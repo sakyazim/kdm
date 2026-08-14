@@ -1,0 +1,65 @@
+{
+  "file": "data/pages/iletisim.json",
+  "label": "İletişim Sayfası",
+  "preview": "iletisim.html",
+  "description": "İletişim sayfasının tüm içeriği: üst bant (hero), içerik bölümleri ve yardım bölümü.",
+  "fields": [
+    {
+      "key": "hero",
+      "label": "Üst Bant (Hero)",
+      "type": "object",
+      "required": true,
+      "fields": [
+        { "key": "title", "label": "Başlık", "type": "lang", "required": true },
+        { "key": "description", "label": "Açıklama", "type": "lang" },
+        { "key": "icon", "label": "İkon (FontAwesome)", "type": "icon", "hint": "Örn: fas fa-envelope" },
+        {
+          "key": "breadcrumb",
+          "label": "Gezinti Yolu (Breadcrumb)",
+          "type": "array",
+          "itemLabel": "Adım",
+          "itemFields": [
+            { "key": "text", "label": "Metin", "type": "lang", "required": true },
+            { "key": "url", "label": "Bağlantı", "type": "url" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "content",
+      "label": "İçerik Bölümleri",
+      "type": "array",
+      "itemLabel": "Bölüm",
+      "itemFields": [
+        { "key": "id", "label": "Bölüm ID", "type": "text" },
+        {
+          "key": "components",
+          "label": "Bileşenler",
+          "type": "components",
+          "registry": "components"
+        }
+      ]
+    },
+    {
+      "key": "helpSection",
+      "label": "Yardım Bölümü",
+      "type": "object",
+      "required": true,
+      "fields": [
+        { "key": "title", "label": "Başlık", "type": "lang" },
+        { "key": "description", "label": "Açıklama", "type": "lang" },
+        {
+          "key": "buttons",
+          "label": "Butonlar",
+          "type": "array",
+          "itemLabel": "Buton",
+          "itemFields": [
+            { "key": "icon", "label": "İkon", "type": "icon" },
+            { "key": "text", "label": "Metin", "type": "lang", "required": true },
+            { "key": "link", "label": "Bağlantı", "type": "url", "required": true }
+          ]
+        }
+      ]
+    }
+  ]
+}

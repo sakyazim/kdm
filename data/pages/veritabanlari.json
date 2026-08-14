@@ -233,7 +233,7 @@
       "sort": "Sırala",
       "accessBtn": "Erişim Sağla",
       "infoBtn": "Bilgi",
-      "resultsCount": "Toplam <strong>{count}</strong> veritabanı bulundu",
+      "resultsCount": "Toplam **{count}** veritabanı bulundu",
       "backToFilters": "Filtreleri Göster",
       "mobileFiltersBtn": "Filtreler ve Arama",
       "tooltips": {
@@ -243,17 +243,16 @@
         "detailedInfo": "Detaylı Bilgi"
       },
       "filterModal": {
-        "title": "Filtreler ve Arama",
+        "title": "Filtreler",
         "search": "Arama",
         "categories": "Kategoriler",
         "sortTitle": "Sıralama",
+        "accessType": "Erişim Tipi",
+        "remoteAccess": "Uzaktan Erişim",
+        "campusOnly": "Kampüs İçi",
         "sortDefault": "Varsayılan",
         "sortAZ": "A-Z",
         "sortZA": "Z-A",
-        "accessType": "Erişim Tipi",
-        "allAccess": "Tümü",
-        "remoteAccess": "Uzaktan Erişim",
-        "campusOnly": "Kampüs İçi",
         "clear": "Temizle",
         "apply": "Uygula"
       },
@@ -270,27 +269,13 @@
         "note": "Not:",
         "closeBtn": "Kapat",
         "accessBtn": "Veritabanına Eriş"
-      },
-      "filterModal": {
-        "title": "Filtreler",
-        "search": "Arama",
-        "categories": "Kategoriler",
-        "sortTitle": "Sıralama",
-        "accessType": "Erişim Tipi",
-        "remoteAccess": "Uzaktan Erişim",
-        "campusOnly": "Kampüs İçi",
-        "sortDefault": "Varsayılan",
-        "sortAZ": "A-Z",
-        "sortZA": "Z-A",
-        "clear": "Temizle",
-        "apply": "Uygula"
       }
     },
     "en": {
       "sort": "Sort",
       "accessBtn": "Access",
       "infoBtn": "Info",
-      "resultsCount": "Total <strong>{count}</strong> databases found",
+      "resultsCount": "Total **{count}** databases found",
       "backToFilters": "Show Filters",
       "mobileFiltersBtn": "Filters & Search",
       "tooltips": {

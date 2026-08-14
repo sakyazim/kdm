@@ -443,6 +443,129 @@ export const Utils = {
   },
 
   /**
+   * Hafif işaretlemeyi (markdown alt kümesi) güvenli HTML'e çevirir.
+   * Desteklenen kalıplar:
+   *   **kalın** → <strong>
+   *   [metin](url) → <a> (dış linklere target=_blank + rel=noopener)
+   *   `kod` → <code>
+   *   - madde → <ul><li>
+   *   1. madde → <ol><li>
+   *   | hücre | hücre | → <table> (ilk satır başlık)
+   *   \n\n → paragraf, \n → <br>
+   * Bilinmeyen tüm < > & karakterleri escape edilir (XSS güvenli).
+   * @param {string} md - Markdown benzeri metin
+   * @returns {string} - Güvenli HTML
+   */
+  mdToHtml(md) {
+    if (md === null || md === undefined) return '';
+    const text = String(md);
+    if (!text.trim()) return '';
+
+    // Satır içi dönüştürücü: escape → kod → kalın → link
+    const inline = (s) => {
+      let r = s
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+      r = r.replace(/`([^`]+)`/g, (m, c) => `<code>${c}</code>`);
+      r = r.replace(/\*\*([^*]+)\*\*/g, (m, c) => `<strong>${c}</strong>`);
+      r = r.replace(/\[([^\]]+)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g, (m, t, u) => {
+        if (/^javascript:/i.test(u)) return t;
+        const isExternal = /^(https?:|ftp:)/i.test(u);
+        return `<a href="${u}"${isExternal ? ' target="_blank" rel="noopener"' : ''}>${t}</a>`;
+      });
+      return r;
+    };
+
+    const lines = text.split(/\r?\n/);
+    const out = [];
+    let listType = null; // 'ul' | 'ol' | null
+    let inTable = false;
+    let tableHtml = '';
+
+    const closeList = () => {
+      if (listType) {
+        out.push(`</${listType}>`);
+        listType = null;
+      }
+    };
+    const closeTable = () => {
+      if (inTable) {
+        out.push(tableHtml + '</table>');
+        tableHtml = '';
+        inTable = false;
+      }
+    };
+
+    for (const rawLine of lines) {
+      const line = rawLine.trim();
+
+      // Tablo satırı: | a | b |
+      if (/^\|.*\|$/.test(line)) {
+        const cells = line
+          .replace(/^\||\|$/g, '')
+          .split('|')
+          .map(c => c.trim());
+        // Ayraç satırı: | --- | --- | → atla
+        if (cells.every(c => /^:?-{2,}:?$/.test(c))) {
+          closeList();
+          continue;
+        }
+        closeList();
+        if (!inTable) {
+          inTable = true;
+          tableHtml = '<div class="md-table-wrap"><table class="md-table">';
+        }
+        const tag = inTable && !tableHtml.includes('<tr') ? 'th' : 'td';
+        tableHtml += `<tr>${cells.map(c => `<${tag}>${inline(c)}</${tag}>`).join('')}</tr>`;
+        continue;
+      }
+      closeTable();
+
+      // Liste: - madde
+      const ulMatch = line.match(/^-\s+(.*)/);
+      const olMatch = line.match(/^\d+\.\s+(.*)/);
+      if (ulMatch || olMatch) {
+        const type = ulMatch ? 'ul' : 'ol';
+        const content = ulMatch ? ulMatch[1] : olMatch[1];
+        if (listType !== type) {
+          closeList();
+          out.push(`<${type}>`);
+          listType = type;
+        }
+        out.push(`<li>${inline(content)}</li>`);
+        continue;
+      }
+      closeList();
+
+      // Boş satır → paragraf ayracı
+      if (!line) {
+        continue;
+      }
+
+      // Normal paragraf satırı
+      out.push(`<p>${inline(line)}</p>`);
+    }
+    closeList();
+    closeTable();
+
+    return out.join('\n');
+  },
+
+  /**
+   * İçerik alanı render yardımcısı: string ise mdToHtml,
+   * dizi ise (bileşen blokları) her elemanı mdToHtml'den geçirir.
+   * @param {string|string[]} value
+   * @returns {string}
+   */
+  renderRich(value) {
+    if (Array.isArray(value)) {
+      return value.map(v => this.mdToHtml(v)).join('\n');
+    }
+    return this.mdToHtml(value);
+  },
+
+  /**
    * Deep localize an entire object recursively
    * @param {Object} obj - Object to localize
    * @param {string} lang - Language code (optional)

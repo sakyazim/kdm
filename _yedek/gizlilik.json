@@ -1,0 +1,559 @@
+{
+  "hero": {
+    "title": {
+      "tr": "Gizlilik Politikası",
+      "en": "Privacy Policy"
+    },
+    "description": {
+      "tr": "Kütüphanemiz kullanıcı gizliliğini koruma taahhüdünü en üst düzeyde tutar.",
+      "en": "Our library maintains the highest level of commitment to protecting user privacy."
+    },
+    "icon": "bi bi-shield-lock"
+  },
+  "content": [
+    {
+      "id": "temel-ilkeler",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Temel İlkelerimiz",
+              "en": "Our Core Principles"
+            },
+            "icon": "bi bi-compass",
+            "id": "temel-ilkeler"
+          }
+        },
+        {
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Anadolu Üniversitesi Kütüphanesi olarak, kullanıcılarımızın gizlilik haklarını korumayı en temel görevlerimizden biri olarak görüyoruz. Kütüphanemiz, American Library Association (ALA) Etik Koduna uygun olarak: \"Her kütüphane kullanıcısının aradığı veya aldığı bilgiler, danıştığı, ödünç aldığı veya eriştiği kaynaklar ile ilgili gizlilik ve mahremiyetini koruruz\" ilkesini benimser.",
+              "en": "As Anadolu University Library, we consider protecting the privacy rights of our users as one of our fundamental duties. Our library adheres to the American Library Association (ALA) Code of Ethics principle: \"We protect each library user's right to privacy and confidentiality with respect to information sought or received and resources consulted, borrowed, or accessed.\""
+            }
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "info",
+          "data": {
+            "icon": "bi bi-info-circle",
+            "title": {
+              "tr": "Adil Bilgi Uygulamaları İlkeleri",
+              "en": "Fair Information Practice Principles"
+            },
+            "content": {
+              "tr": "Gizlilik politikamız, beş temel \"Adil Bilgi Uygulamaları İlkesi\"ne dayanır: Bildirim Hakkı, Seçim Hakkı, Erişim Hakkı, Güvenlik Hakkı ve Uygulama Hakkı.",
+              "en": "Our privacy policy is based on five fundamental \"Fair Information Practice Principles\": Right to Notice, Right to Choice, Right to Access, Right to Security, and Right to Enforcement."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "veri-toplama",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Veri Toplama ve Saklama",
+              "en": "Data Collection and Storage"
+            },
+            "icon": "bi bi-database",
+            "id": "veri-toplama"
+          }
+        },
+        {
+          "type": "icon-list",
+          "data": {
+            "items": [
+              {
+                "icon": "bi bi-check-circle",
+                "title": {
+                  "tr": "Minimal Veri Toplama",
+                  "en": "Minimal Data Collection"
+                },
+                "description": {
+                  "tr": "Sadece gerekli minimum bilgileri toplar ve bunları yalnızca belirli bir işlemi tamamlamak için gerekli olduğu sürece saklarız.",
+                  "en": "We collect only the minimum necessary information and retain it only as long as required to complete a specific transaction."
+                }
+              },
+              {
+                "icon": "bi bi-clock-history",
+                "title": {
+                  "tr": "Sınırlı Saklama Süresi",
+                  "en": "Limited Retention Period"
+                },
+                "description": {
+                  "tr": "Kütüphanemizin misyonunu yerine getirmek için gerekli olmayan kayıtları tutmaktan kaçınırız.",
+                  "en": "We avoid maintaining records that are not necessary to fulfill our library's mission."
+                }
+              },
+              {
+                "icon": "bi bi-shield-check",
+                "title": {
+                  "tr": "Gereksiz Kayıt Oluşturmama",
+                  "en": "No Unnecessary Records"
+                },
+                "description": {
+                  "tr": "İhtiyaç duyulmayan kişisel kayıtları oluşturmamaya özen gösteririz.",
+                  "en": "We take care not to create personal records that are not needed."
+                }
+              },
+              {
+                "icon": "bi bi-graph-down",
+                "title": {
+                  "tr": "Veri Anonimleştirme",
+                  "en": "Data Anonymization"
+                },
+                "description": {
+                  "tr": "Web analitik platformlarımız GDPR uyumlu, çerez kullanmayan, veri anonimleştirme özellikleri olan sistemlerdir.",
+                  "en": "Our web analytics platforms are GDPR-compliant, cookie-free systems with data anonymization features."
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "toplanan-bilgiler",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Toplanan Bilgiler",
+              "en": "Information Collected"
+            },
+            "icon": "bi bi-list-check",
+            "id": "toplanan-bilgiler"
+          }
+        },
+        {
+          "type": "step-cards",
+          "data": {
+            "items": [
+              {
+                "number": 1,
+                "title": {
+                  "tr": "Üyelik Bilgileri",
+                  "en": "Membership Information"
+                },
+                "icon": "bi bi-person-badge",
+                "content": {
+                  "tr": "Adınız, soyadınız, öğrenci/personel numaranız, e-posta adresiniz ve iletişim bilgileriniz kütüphane üyeliği oluşturmak için toplanır.",
+                  "en": "Your name, surname, student/staff number, email address, and contact information are collected to create library membership."
+                }
+              },
+              {
+                "number": 2,
+                "title": {
+                  "tr": "Ödünç Alma Kayıtları",
+                  "en": "Borrowing Records"
+                },
+                "icon": "bi bi-journal-bookmark",
+                "content": {
+                  "tr": "Ödünç aldığınız materyaller, ödünç alma ve iade tarihleri kayıt altına alınır. Bu kayıtlar materyal iade edildikten sonra silinir ve sadece istatistiksel amaçlar için anonimleştirilmiş veriler saklanır.",
+                  "en": "Materials you borrow, borrowing and return dates are recorded. These records are deleted after the material is returned, and only anonymized data is retained for statistical purposes."
+                }
+              },
+              {
+                "number": 3,
+                "title": {
+                  "tr": "Veritabanı Kullanımı",
+                  "en": "Database Usage"
+                },
+                "content": {
+                  "tr": "Elektronik veritabanlarına erişiminiz kayıt altına alınır ancak hangi makaleleri okuduğunuz veya aradığınız bilgiler kişisel kimliğinizle ilişkilendirilmez.",
+                  "en": "Your access to electronic databases is recorded, but information about which articles you read or searched is not associated with your personal identity."
+                }
+              },
+              {
+                "number": 4,
+                "title": {
+                  "tr": "Web Sitesi Trafiği",
+                  "en": "Website Traffic"
+                },
+                "icon": "bi bi-graph-up",
+                "content": {
+                  "tr": "Web sitemizde toplanan veriler (ziyaret edilen sayfalar, tıklamalar vb.) anonim olarak toplanır ve bireysel kullanıcıları tanımlamak için kullanılmaz.",
+                  "en": "Data collected on our website (pages visited, clicks, etc.) is collected anonymously and is not used to identify individual users."
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ucuncu-taraf",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Üçüncü Taraf Hizmet Sağlayıcılar",
+              "en": "Third-Party Service Providers"
+            },
+            "icon": "bi bi-people",
+            "id": "ucuncu-taraf"
+          }
+        },
+        {
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Kütüphanemiz, elektronik veritabanları ve dergiler gibi dijital bilgi kaynakları sağlayan ticari hizmet sağlayıcılarla çalışmaktadır. Bu hizmet sağlayıcılarla yapılan lisans anlaşmalarına kullanıcı gizliliği koruma hükümleri dahil edilir.",
+              "en": "Our library works with commercial service providers that supply digital information resources such as electronic databases and journals. User privacy protection provisions are included in licensing agreements with these service providers."
+            }
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "warning",
+          "data": {
+            "icon": "bi bi-exclamation-triangle",
+            "title": {
+              "tr": "Satıcı Gizlilik Politikaları",
+              "en": "Vendor Privacy Policies"
+            },
+            "content": {
+              "tr": "Tüm veritabanı ve e-kaynak satıcılarının gizlilik politikalarını belgeliyoruz. Aşırı veri toplayan hizmetleri edinmeyi reddeder veya kullanıcı gizliliğini tehlikeye atabilecek teknolojilerin kullanımını sınırlarız.",
+              "en": "We document the privacy policies of all database and e-resource vendors. We refuse to acquire services that collect excessive data or limit the use of technologies that may compromise user privacy."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "guvenlik",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Güvenlik Önlemleri",
+              "en": "Security Measures"
+            },
+            "icon": "bi bi-lock",
+            "id": "guvenlik"
+          }
+        },
+        {
+          "type": "icon-list",
+          "data": {
+            "items": [
+              {
+                "icon": "bi bi-shield-lock-fill",
+                "title": {
+                  "tr": "SSL/TLS Şifreleme",
+                  "en": "SSL/TLS Encryption"
+                },
+                "description": {
+                  "tr": "Web sitemiz ve tüm çevrimiçi hizmetlerimiz SSL/TLS şifrelemesi ile korunmaktadır.",
+                  "en": "Our website and all online services are protected with SSL/TLS encryption."
+                }
+              },
+              {
+                "icon": "bi bi-server",
+                "title": {
+                  "tr": "Güvenli Sunucular",
+                  "en": "Secure Servers"
+                },
+                "description": {
+                  "tr": "Tüm veriler, fiziksel ve dijital güvenlik önlemleriyle korunan güvenli sunucularda saklanır.",
+                  "en": "All data is stored on secure servers protected by physical and digital security measures."
+                }
+              },
+              {
+                "icon": "bi bi-person-lock",
+                "title": {
+                  "tr": "Erişim Kontrolü",
+                  "en": "Access Control"
+                },
+                "description": {
+                  "tr": "Kişisel bilgilere erişim, sadece görevlerini yerine getirmesi gereken yetkili personelle sınırlıdır.",
+                  "en": "Access to personal information is limited to authorized personnel who need it to perform their duties."
+                }
+              },
+              {
+                "icon": "bi bi-arrow-clockwise",
+                "title": {
+                  "tr": "Düzenli Güvenlik Denetimleri",
+                  "en": "Regular Security Audits"
+                },
+                "description": {
+                  "tr": "Gizlilik politikamızın uygulandığından emin olmak için düzenli gizlilik denetimleri yapılır.",
+                  "en": "Regular privacy audits are conducted to ensure our privacy policy is being implemented."
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "haklariniz",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Kullanıcı Hakları",
+              "en": "User Rights"
+            },
+            "icon": "bi bi-person-check",
+            "id": "haklariniz"
+          }
+        },
+        {
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Kullanıcı olarak aşağıdaki haklara sahipsiniz:",
+              "en": "As a user, you have the following rights:"
+            }
+          }
+        },
+        {
+          "type": "icon-list",
+          "data": {
+            "items": [
+              {
+                "icon": "bi bi-eye",
+                "title": {
+                  "tr": "Bilgi Alma Hakkı",
+                  "en": "Right to Information"
+                },
+                "description": {
+                  "tr": "Hangi kişisel verilerinizin toplandığını ve nasıl kullanıldığını öğrenme hakkına sahipsiniz.",
+                  "en": "You have the right to learn what personal data is collected and how it is used."
+                }
+              },
+              {
+                "icon": "bi bi-pencil-square",
+                "title": {
+                  "tr": "Düzeltme Hakkı",
+                  "en": "Right to Rectification"
+                },
+                "description": {
+                  "tr": "Kişisel bilgilerinizde hata olması durumunda bunların düzeltilmesini talep edebilirsiniz.",
+                  "en": "If there are errors in your personal information, you can request their correction."
+                }
+              },
+              {
+                "icon": "bi bi-trash",
+                "title": {
+                  "tr": "Silme Hakkı",
+                  "en": "Right to Erasure"
+                },
+                "description": {
+                  "tr": "Yasal zorunluluklar saklı kalmak kaydıyla, kişisel verilerinizin silinmesini talep edebilirsiniz.",
+                  "en": "Subject to legal obligations, you can request the deletion of your personal data."
+                }
+              },
+              {
+                "icon": "bi bi-hand-thumbs-down",
+                "title": {
+                  "tr": "İtiraz Hakkı",
+                  "en": "Right to Object"
+                },
+                "description": {
+                  "tr": "Kişisel verilerinizin işlenmesine itiraz etme hakkına sahipsiniz.",
+                  "en": "You have the right to object to the processing of your personal data."
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "yasal-talepler",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Yasal Talepler ve İstisnaları",
+              "en": "Legal Requests and Exceptions"
+            },
+            "icon": "bi bi-file-earmark-text",
+            "id": "yasal-talepler"
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "warning",
+          "data": {
+            "icon": "bi bi-gavel",
+            "title": {
+              "tr": "Mahkeme Kararları",
+              "en": "Court Orders"
+            },
+            "content": {
+              "tr": "Kütüphanemiz, sadece geçerli bir mahkeme kararı ile talep edilmesi durumunda kullanıcı kayıtlarını paylaşabilir. Bu tür talepler yasal prosedürler çerçevesinde titizlikle değerlendirilir.",
+              "en": "Our library may share user records only upon request with a valid court order. Such requests are carefully evaluated within the framework of legal procedures."
+            }
+          }
+        },
+        {
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Kullanıcı gizliliğini koruma taahhüdümüz gereği, yasal zorunluluk olmadıkça hiçbir üçüncü tarafa kullanıcı bilgisi sağlamayız.",
+              "en": "In accordance with our commitment to protecting user privacy, we do not provide user information to any third party unless legally required."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "egitim",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Gizlilik Eğitimi ve Farkındalık",
+              "en": "Privacy Education and Awareness"
+            },
+            "icon": "bi bi-mortarboard",
+            "id": "egitim"
+          }
+        },
+        {
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Kütüphanemiz, kullanıcıların dijital gizlilik konusunda bilinçlenmesini destekler:",
+              "en": "Our library supports user awareness of digital privacy:"
+            }
+          }
+        },
+        {
+          "type": "icon-list",
+          "data": {
+            "items": [
+              {
+                "icon": "bi bi-book",
+                "title": {
+                  "tr": "Gizlilik Eğitim Programları",
+                  "en": "Privacy Training Programs"
+                },
+                "description": {
+                  "tr": "Öğrenciler ve akademik personel için düzenli gizlilik ve veri güvenliği eğitimleri düzenliyoruz.",
+                  "en": "We organize regular privacy and data security training for students and academic staff."
+                }
+              },
+              {
+                "icon": "bi bi-people-fill",
+                "title": {
+                  "tr": "Personel Eğitimi",
+                  "en": "Staff Training"
+                },
+                "description": {
+                  "tr": "Tüm kütüphane çalışanlarına zorunlu gizlilik eğitimi verilmektedir.",
+                  "en": "Mandatory privacy training is provided to all library staff."
+                }
+              },
+              {
+                "icon": "bi bi-journal-text",
+                "title": {
+                  "tr": "Kaynak Rehberleri",
+                  "en": "Resource Guides"
+                },
+                "description": {
+                  "tr": "Kullanıcılarımıza, gizlilik risklerinin ne zaman, nerede ve nasıl oluştuğunu anlatan eğitim materyalleri sunuyoruz.",
+                  "en": "We provide educational materials to our users that explain when, where, and how privacy risks occur."
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "politika-degisiklikleri",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Politika Güncellemeleri",
+              "en": "Policy Updates"
+            },
+            "icon": "bi bi-arrow-repeat",
+            "id": "politika-degisiklikleri"
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "info",
+          "data": {
+            "icon": "bi bi-bell",
+            "title": {
+              "tr": "Değişiklik Bildirimi",
+              "en": "Change Notification"
+            },
+            "content": {
+              "tr": "Bu gizlilik politikası zaman zaman güncellenebilir. Politika değiştiğinde, bu değişiklikler web sitemizde yayınlanır ve kullanıcılara geniş kapsamlı bildirim yapılır.",
+              "en": "This privacy policy may be updated from time to time. When the policy changes, these changes are published on our website and comprehensive notification is made to users."
+            }
+          }
+        },
+        {
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Son güncelleme tarihi: Ocak 2025",
+              "en": "Last updated: January 2025"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "helpSection": {
+    "title": {
+      "tr": "Gizlilik ile ilgili sorularınız mı var?",
+      "en": "Do you have questions about privacy?"
+    },
+    "description": {
+      "tr": "Gizlilik politikamız hakkında daha fazla bilgi almak veya verilerinizle ilgili haklarınızı kullanmak için bizimle iletişime geçebilirsiniz.",
+      "en": "You can contact us to learn more about our privacy policy or to exercise your rights regarding your data."
+    },
+    "buttons": [
+      {
+        "text": {
+          "tr": "Bize Ulaşın",
+          "en": "Contact Us"
+        },
+        "link": "iletisim.html",
+        "variant": "primary",
+        "icon": "bi bi-envelope"
+      },
+      {
+        "text": {
+          "tr": "SSS",
+          "en": "FAQ"
+        },
+        "link": "sss.html",
+        "variant": "outline",
+        "icon": "bi bi-question-circle"
+      }
+    ]
+  }
+}

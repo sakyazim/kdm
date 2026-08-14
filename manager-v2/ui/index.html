@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kütüphane İçerik Yönetimi v2</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="/manager/assets/style.css">
+</head>
+<body data-theme="light">
+<header class="topbar">
+  <button id="sidebarToggle" class="icon-btn topbar-icon" title="Dosya listesini göster/gizle">☰</button>
+  <div class="brand">
+    <span class="logo">📚</span>
+    <div>
+      <h1>Kütüphane İçerik Yönetimi <span class="v2-badge">v2</span></h1>
+      <span class="subtitle">Lokal yönetim aracı — her kayıt git commit'i olarak saklanır</span>
+    </div>
+  </div>
+  <div class="topbar-actions">
+    <button id="paletteBtn" class="icon-btn topbar-icon" title="Komut paleti (Ctrl+K)">⌘</button>
+    <button id="themeToggle" class="icon-btn topbar-icon" title="Koyu/Aydınlık tema (Ctrl+Shift+D)">🌙</button>
+    <span id="gitStatus" class="git-status" title="Git durumu">…</span>
+    <button id="syncBtn" class="btn small" title="Uzak repodan çek ve gönder (uzak repo tanımlıysa)">Senkronize Et</button>
+    <button id="publishBtn" class="btn small" title="Yayımlama: ZIP indir / SFTP ile yükle">Yayımla</button>
+    <button id="previewToggle" class="btn small" title="Önizlemeyi göster/gizle (Ctrl+B)">Önizleme: Gizle</button>
+    <input id="commitMessage" class="commit-msg" type="text" placeholder="Commit mesajı (opsiyonel)" title="Bu kayıt için açıklama">
+    <span id="errorCount" class="err-count hidden" title="Doğrulama hataları">0 hata</span>
+    <button id="validateBtn" class="btn" disabled title="Kaydetmeden önce doğrula">Doğrula</button>
+    <button id="saveBtn" class="btn primary" disabled title="Ctrl+S ile de kaydedebilirsiniz">Kaydet ve Commit Et</button>
+  </div>
+</header>
+
+<div id="errorBanner" class="error-banner hidden"></div>
+
+<nav id="tabBar" class="tab-bar hidden" aria-label="Açık dosyalar"></nav>
+
+<main class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-search">
+      <input id="fileSearch" type="text" placeholder="Dosya ara…">
+    </div>
+    <div id="fileTree" class="file-tree"></div>
+  </aside>
+
+  <section class="editor">
+    <div class="editor-header">
+      <div>
+        <h2 id="editorTitle">Dosya seçin</h2>
+        <p id="editorDesc" class="muted">Soldaki listeden bir JSON dosyası seçin (Ctrl+K ile de açabilirsiniz).</p>
+      </div>
+      <div id="editorMeta" class="editor-meta"></div>
+    </div>
+    <div id="tocBar" class="toc-bar hidden"></div>
+    <div id="formArea" class="form-area"></div>
+    <textarea id="rawArea" class="raw-area hidden" spellcheck="false"></textarea>
+  </section>
+
+  <aside class="preview">
+    <div class="preview-bar">
+      <span>Önizleme <em id="previewBadge" class="preview-badge hidden">kaydedilmemiş</em></span>
+      <div class="preview-bar-actions">
+        <span class="lang-switch" title="Önizlemede dil (site localStorage üzerinden değişir)">
+          <button id="langTr" class="lang-btn active">TR</button>
+          <button id="langEn" class="lang-btn">EN</button>
+        </span>
+        <button id="editModeBtn" class="btn small" title="Önizlemede bir öğeye tıklayınca formdaki alanı bulur">Düzenleme: Kapalı</button>
+        <a id="openSiteLink" class="btn small" href="/" target="_blank" rel="noopener">Sitede Aç ↗</a>
+      </div>
+    </div>
+    <iframe id="previewFrame" src="/" title="Önizleme"></iframe>
+  </aside>
+</main>
+
+<div id="modalOverlay" class="modal-overlay hidden">
+  <div class="modal" id="modalBox"></div>
+</div>
+
+<div id="paletteOverlay" class="palette-overlay hidden">
+  <div class="palette" role="dialog" aria-label="Komut paleti">
+    <div class="palette-input-row">
+      <span class="palette-icon">⌘</span>
+      <input id="paletteInput" type="text" placeholder="Dosya veya komut ara… (↑↓ seç, Enter çalıştır, Esc kapat)">
+    </div>
+    <div id="paletteResults" class="palette-results"></div>
+    <div class="palette-footer">
+      <span><kbd>↑</kbd><kbd>↓</kbd> gezin</span>
+      <span><kbd>Enter</kbd> çalıştır</span>
+      <span><kbd>Esc</kbd> kapat</span>
+    </div>
+  </div>
+</div>
+
+<script src="/manager/assets/app.js"></script>
+</body>
+</html>

@@ -158,7 +158,7 @@ export class ComponentRenderer {
 
     // Çoklu dil desteği
     const localizedTitle = title ? Utils.getLocalizedText(title) : '';
-    const localizedContent = content ? Utils.getLocalizedText(content) : '';
+    const localizedContent = content ? Utils.mdToHtml(Utils.getLocalizedText(content)) : '';
     const localizedLinkText = linkText ? Utils.getLocalizedText(linkText) : '';
 
     const iconHTML = icon ? `<i class="${icon}"></i>` : '';
@@ -167,18 +167,18 @@ export class ComponentRenderer {
 
     if (style === 'list' && items && items.length > 0) {
       const localizedItems = Utils.getLocalizedText(items);
-      const listItems = localizedItems.map(item => `<li>${item}</li>`).join('');
+      const listItems = localizedItems.map(item => `<li>${Utils.mdToHtml(item)}</li>`).join('');
       contentHTML = `
         <div class="alert-content">
-          ${localizedTitle ? `<strong>${localizedTitle}</strong>` : ''}
+          ${localizedTitle ? `<strong>${Utils.mdToHtml(localizedTitle)}</strong>` : ''}
           <ul>${listItems}</ul>
         </div>
       `;
     } else {
       contentHTML = `
         <div class="alert-content">
-          ${localizedTitle ? `<strong>${localizedTitle}</strong>` : ''}
-          ${localizedContent ? `<p>${localizedContent}</p>` : ''}
+          ${localizedTitle ? `<strong>${Utils.mdToHtml(localizedTitle)}</strong>` : ''}
+          ${localizedContent}
         </div>
       `;
     }
@@ -240,7 +240,7 @@ export class ComponentRenderer {
         return `
           <div class="list-item">
             <i class="${item.icon}"></i>
-            <span>${itemTitle}</span>
+            <span>${Utils.mdToHtml(itemTitle)}</span>
           </div>
         `;
       }
@@ -250,8 +250,8 @@ export class ComponentRenderer {
         <div class="list-item">
           <i class="${item.icon}"></i>
           <div class="list-item-content">
-            <strong>${itemTitle}</strong>
-            <p>${itemDescription}</p>
+            <strong>${Utils.mdToHtml(itemTitle)}</strong>
+            <p>${Utils.mdToHtml(itemDescription)}</p>
           </div>
         </div>
       `;
@@ -328,7 +328,7 @@ export class ComponentRenderer {
     // Headers - çoklu dil desteği
     const headersHTML = headers.map(header => {
       const localizedHeader = Utils.getLocalizedText(header);
-      return `<th>${localizedHeader}</th>`;
+      return `<th>${Utils.mdToHtml(localizedHeader)}</th>`;
     }).join('');
 
     // Rows - çoklu dil desteği
@@ -337,7 +337,7 @@ export class ComponentRenderer {
       const cellsHTML = row.cells.map((cell, index) => {
         const highlightClass = row.highlightColumns?.includes(index) ? 'highlight' : '';
         const localizedCell = Utils.getLocalizedText(cell);
-        return `<td class="${highlightClass}">${index === 0 && iconHTML ? iconHTML : ''}${localizedCell}</td>`;
+        return `<td class="${highlightClass}">${index === 0 && iconHTML ? iconHTML : ''}${Utils.mdToHtml(localizedCell)}</td>`;
       }).join('');
       return `<tr>${cellsHTML}</tr>`;
     }).join('');
@@ -379,7 +379,7 @@ export class ComponentRenderer {
 
       // Çoklu dil desteği
       const localizedTitle = Utils.getLocalizedText(step.title);
-      const localizedContent = Utils.getLocalizedText(step.content);
+      const localizedContent = Utils.mdToHtml(Utils.getLocalizedText(step.content));
 
       return `
         <div class="component-step-card ${openClass}" data-step="${index}">
@@ -440,7 +440,7 @@ export class ComponentRenderer {
 
     // Çoklu dil desteği
     const localizedTitle = Utils.getLocalizedText(title);
-    const localizedContent = Utils.getLocalizedText(content);
+    const localizedContent = Utils.mdToHtml(Utils.getLocalizedText(content));
 
     const titleIconHTML = titleIcon ? `<i class="${titleIcon}"></i>` : '';
     const variantClass = variant ? variant : 'default';
@@ -452,7 +452,7 @@ export class ComponentRenderer {
           ${localizedTitle}
         </div>
         <div class="info-content">
-          <p>${localizedContent}</p>
+          ${localizedContent}
         </div>
       </div>
     `;
@@ -468,7 +468,7 @@ export class ComponentRenderer {
     const linksHTML = resources.map(resource => {
       // Çoklu dil desteği
       const localizedTitle = Utils.getLocalizedText(resource.title);
-      const localizedDescription = Utils.getLocalizedText(resource.description);
+      const localizedDescription = Utils.mdToHtml(Utils.getLocalizedText(resource.description));
 
       return `
         <a href="${resource.url}" class="component-resource-link" target="_blank" rel="noopener">
@@ -652,11 +652,11 @@ export class ComponentRenderer {
     }
 
     // Çoklu dil desteği
-    const localizedContent = Utils.getLocalizedText(content);
+    const localizedContent = Utils.mdToHtml(Utils.getLocalizedText(content));
 
     return `
       <div class="component-content">
-        <p>${localizedContent}</p>
+        ${localizedContent}
       </div>
     `;
   }
@@ -1023,9 +1023,9 @@ export class ComponentRenderer {
 
       // Çoklu dil desteği
       const localizedTitle = Utils.getLocalizedText(step.title);
-      const localizedDescription = Utils.getLocalizedText(step.description);
+      const localizedDescription = Utils.mdToHtml(Utils.getLocalizedText(step.description));
       const localizedImageAlt = Utils.getLocalizedText(step.imageAlt || step.title);
-      const localizedNote = step.note ? Utils.getLocalizedText(step.note) : '';
+      const localizedNote = step.note ? Utils.mdToHtml(Utils.getLocalizedText(step.note)) : '';
 
       // Resim için çoklu dil desteği (yeni!)
       const localizedImage = step.image ? Utils.getLocalizedText(step.image) : '';
@@ -1090,7 +1090,7 @@ export class ComponentRenderer {
 
       // Çoklu dil desteği
       const localizedItemTitle = Utils.getLocalizedText(item.title);
-      const localizedItemContent = Utils.getLocalizedText(item.content);
+      const localizedItemContent = Utils.mdToHtml(Utils.getLocalizedText(item.content));
 
       html += `
         <div class="accordion-item">
@@ -1142,13 +1142,13 @@ export class ComponentRenderer {
       content.forEach(item => {
         switch (item.type) {
           case 'paragraph':
-            const localizedText = Utils.getLocalizedText(item.text);
-            contentHtml += `<p>${localizedText}</p>`;
+            const localizedText = Utils.mdToHtml(Utils.getLocalizedText(item.text));
+            contentHtml += localizedText;
             break;
           case 'ordered-list':
             contentHtml += '<ol>';
             item.items.forEach(li => {
-              const localizedLi = Utils.getLocalizedText(li);
+              const localizedLi = Utils.mdToHtml(Utils.getLocalizedText(li));
               contentHtml += `<li>${localizedLi}</li>`;
             });
             contentHtml += '</ol>';
@@ -1156,7 +1156,7 @@ export class ComponentRenderer {
           case 'unordered-list':
             contentHtml += '<ul>';
             item.items.forEach(li => {
-              const localizedLi = Utils.getLocalizedText(li);
+              const localizedLi = Utils.mdToHtml(Utils.getLocalizedText(li));
               contentHtml += `<li>${localizedLi}</li>`;
             });
             contentHtml += '</ul>';

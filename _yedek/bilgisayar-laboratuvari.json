@@ -1,0 +1,252 @@
+{
+  "hero": {
+    "title": {
+      "tr": "Bilgisayar Laboratuvarı",
+      "en": "Computer Laboratory"
+    },
+    "description": {
+      "tr": "Modern teknoloji ile araştırmalarınızı destekliyoruz",
+      "en": "Supporting your research with modern technology"
+    },
+    "icon": "fas fa-laptop",
+    "breadcrumb": [
+      {
+        "text": {
+          "tr": "Ana Sayfa",
+          "en": "Home"
+        },
+        "url": "index.html"
+      },
+      {
+        "text": {
+          "tr": "Hizmetler",
+          "en": "Services"
+        },
+        "url": "#"
+      },
+      {
+        "text": {
+          "tr": "Bilgisayar Laboratuvarı",
+          "en": "Computer Laboratory"
+        },
+        "url": "bilgisayar-laboratuvari.html"
+      }
+    ]
+  },
+  "content": [
+    {
+      "id": "lab-info-section",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Bilgisayar Laboratuvarı",
+              "en": "Computer Laboratory"
+            },
+            "icon": "fas fa-laptop",
+            "id": "lab-info-heading"
+          }
+        },
+        {
+          "type": "info-box",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Hakkında",
+              "en": "About"
+            },
+            "titleIcon": "fas fa-info-circle",
+            "content": {
+              "tr": "Kütüphanemizde bulunan bilgisayar laboratuvarında araştırmalarınızı yapabilir, akademik çalışmalarınızı gerçekleştirebilirsiniz. Modern donanıma sahip bilgisayarlarımız ile internet erişimi ve özel veritabanlarına ulaşım imkanı sunuyoruz.",
+              "en": "You can conduct your research and carry out academic studies in our library's computer laboratory. We offer internet access and access to specialized databases with our computers equipped with modern hardware."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "services-section",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Sunulan Hizmetler",
+              "en": "Services Offered"
+            },
+            "icon": "fas fa-cogs",
+            "id": "services-heading"
+          }
+        },
+        {
+          "type": "icon-list",
+          "variant": "default",
+          "data": {
+            "items": [
+              {
+                "icon": "fas fa-wifi",
+                "text": {
+                  "tr": "İnternet erişimi",
+                  "en": "Internet access"
+                }
+              },
+              {
+                "icon": "fas fa-database",
+                "text": {
+                  "tr": "Akademik veritabanlarına erişim",
+                  "en": "Access to academic databases"
+                }
+              },
+              {
+                "icon": "fas fa-chart-line",
+                "text": {
+                  "tr": "Thomson veri tabanı ile araştırma ve analiz yapabilme",
+                  "en": "Research and analysis capabilities with Thomson database"
+                }
+              },
+              {
+                "icon": "fas fa-file-word",
+                "text": {
+                  "tr": "Ofis uygulamaları (Word, Excel, PowerPoint)",
+                  "en": "Office applications (Word, Excel, PowerPoint)"
+                }
+              },
+              {
+                "icon": "fas fa-print",
+                "text": {
+                  "tr": "Tarama ve yazdırma hizmetleri",
+                  "en": "Scanning and printing services"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "rules-section",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Kullanım Kuralları",
+              "en": "Usage Rules"
+            },
+            "icon": "fas fa-clipboard-list",
+            "id": "rules-heading"
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "info",
+          "style": "single-line",
+          "data": {
+            "icon": "fas fa-info-circle",
+            "content": {
+              "tr": "Araştırmacılarımız ve öğrencilerimizin ödev, proje, araştırma gibi aktivitelerini gerçekleştirebilmeleri amacıyla kütüphanemizde Bilgisayar Laboratuvarı mevcuttur.",
+              "en": "A Computer Laboratory is available in our library for our researchers and students to carry out activities such as homework, projects, and research."
+            }
+          }
+        },
+        {
+          "type": "icon-list",
+          "variant": "default",
+          "data": {
+            "items": [
+              {
+                "icon": "fas fa-clock",
+                "text": {
+                  "tr": "Laboratuvarımız hafta içi ve hafta sonu mesai saatleri içinde kullanıma açıktır.",
+                  "en": "Our laboratory is open for use during weekday and weekend working hours."
+                }
+              },
+              {
+                "icon": "fas fa-ban",
+                "text": {
+                  "tr": "Laboratuvar içinde, su haricinde yiyecek ve içecek tüketilemez.",
+                  "en": "No food or drinks, except water, may be consumed in the laboratory."
+                }
+              },
+              {
+                "icon": "fas fa-undo",
+                "text": {
+                  "tr": "Laboratuvar kullanımı sonunda, laboratuvara ait eşyalar, donanımlar vs. ilk bulundukları konumda bırakılmalıdır.",
+                  "en": "At the end of laboratory use, laboratory items, equipment, etc. must be left in their original position."
+                }
+              },
+              {
+                "icon": "fas fa-shield-alt",
+                "text": {
+                  "tr": "Laboratuvardaki eşyalara, donanıma vs. hiçbir şekilde zarar verilmez.",
+                  "en": "Laboratory items, equipment, etc. must not be damaged in any way."
+                }
+              },
+              {
+                "icon": "fas fa-volume-mute",
+                "text": {
+                  "tr": "Laboratuvarda sessiz olunmalıdır.",
+                  "en": "Silence must be maintained in the laboratory."
+                }
+              },
+              {
+                "icon": "fas fa-print",
+                "text": {
+                  "tr": "Yazıcı hizmetimiz yoktur.",
+                  "en": "We do not have a printer service."
+                }
+              },
+              {
+                "icon": "fas fa-video",
+                "text": {
+                  "tr": "NOT: Kütüphanemiz 7/24 kamera sistemi ile izlenmektedir.",
+                  "en": "NOTE: Our library is monitored 24/7 by camera system."
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "helpSection": {
+    "title": {
+      "tr": "Daha fazla yardıma mı ihtiyacınız var?",
+      "en": "Need more help?"
+    },
+    "description": {
+      "tr": "Bilgisayar laboratuvarı hakkında daha detaylı bilgi almak veya özel sorularınızı sormak için bizimle iletişime geçin.",
+      "en": "Contact us for more detailed information about the computer laboratory or to ask your specific questions."
+    },
+    "buttons": [
+      {
+        "icon": "fas fa-phone",
+        "text": {
+          "tr": "Hemen Ara",
+          "en": "Call Now"
+        },
+        "link": "tel:+902223350580"
+      },
+      {
+        "icon": "fas fa-envelope",
+        "text": {
+          "tr": "E-posta Gönder",
+          "en": "Send Email"
+        },
+        "link": "mailto:library@anadolu.edu.tr"
+      },
+      {
+        "icon": "fas fa-home",
+        "text": {
+          "tr": "Ana Sayfa",
+          "en": "Home"
+        },
+        "link": "index.html"
+      }
+    ]
+  }
+}

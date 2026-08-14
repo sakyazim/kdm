@@ -385,7 +385,7 @@ export class DuyurularPage {
 
     // Çoklu dil desteği
     const title = Utils.getLocalizedText(announcement.title);
-    const content = Utils.getLocalizedText(announcement.content);
+    const content = Utils.mdToHtml(Utils.getLocalizedText(announcement.content));
 
     const modalContent = `
       <div class="news-modal">
@@ -638,7 +638,7 @@ export class DuyurularPage {
       // Localized text'leri al (çoklu dil desteği)
       const title = Utils.getLocalizedText(announcement.title);
       const summary = Utils.getLocalizedText(announcement.summary);
-      const content = Utils.getLocalizedText(announcement.content);
+      const content = Utils.mdToHtml(Utils.getLocalizedText(announcement.content));
       const category = Utils.getLocalizedText(announcement.category);
 
       // Arama filtresi (başlık, özet, içerik, kategori)

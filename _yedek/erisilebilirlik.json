@@ -1,0 +1,684 @@
+{
+  "hero": {
+    "title": {
+      "tr": "Erişilebilirlik Beyanı",
+      "en": "Accessibility Statement"
+    },
+    "description": {
+      "tr": "Anadolu Üniversitesi Kütüphanesi, tüm kullanıcılarının bilgi kaynaklarına eşit ve engelsiz erişimini sağlamaya kararlıdır.",
+      "en": "Anadolu University Library is committed to ensuring equal and barrier-free access to information resources for all users."
+    },
+    "icon": "bi bi-universal-access"
+  },
+  "content": [
+    {
+      "id": "taahhudumuz",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Erişilebilirlik Taahhüdümüz",
+              "en": "Our Accessibility Commitment"
+            },
+            "icon": "bi bi-heart",
+            "id": "taahhudumuz"
+          }
+        },
+        {
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Anadolu Üniversitesi Kütüphanesi, engelli kullanıcılarımız da dahil olmak üzere tüm topluluğumuza eşit hizmet sunma taahhüdündedir. Web sitemizin ve dijital kaynaklarımızın herkes tarafından erişilebilir olmasını sağlamak için sürekli çaba gösteriyoruz.",
+              "en": "Anadolu University Library is committed to providing equal service to all of our community, including users with disabilities. We continuously strive to ensure that our website and digital resources are accessible to everyone."
+            }
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "info",
+          "data": {
+            "icon": "bi bi-check-circle",
+            "title": {
+              "tr": "WCAG 2.1 AA Uyumluluğu",
+              "en": "WCAG 2.1 AA Compliance"
+            },
+            "content": {
+              "tr": "Web sitemiz, Web İçeriği Erişilebilirlik Kılavuzu (WCAG) 2.1 Level AA standartlarına uygun olarak tasarlanmıştır. Bu standartlar, web içeriğinin daha geniş bir engelli kullanıcı yelpazesi için erişilebilir hale getirilmesine yardımcı olur.",
+              "en": "Our website is designed in accordance with Web Content Accessibility Guidelines (WCAG) 2.1 Level AA standards. These standards help make web content accessible to a wider range of people with disabilities."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "erisilebilirlik-ozellikleri",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Web Sitemizin Erişilebilirlik Özellikleri",
+              "en": "Accessibility Features of Our Website"
+            },
+            "icon": "bi bi-gear",
+            "id": "erisilebilirlik-ozellikleri"
+          }
+        },
+        {
+          "type": "icon-list",
+          "data": {
+            "items": [
+              {
+                "icon": "bi bi-type",
+                "title": {
+                  "tr": "Metin Alternatifler",
+                  "en": "Text Alternatives"
+                },
+                "description": {
+                  "tr": "Tüm görsel içerik için uygun metin açıklamaları (alt text) sağlanmıştır.",
+                  "en": "Appropriate text descriptions (alt text) are provided for all visual content."
+                }
+              },
+              {
+                "icon": "bi bi-keyboard",
+                "title": {
+                  "tr": "Klavye Navigasyonu",
+                  "en": "Keyboard Navigation"
+                },
+                "description": {
+                  "tr": "Web sitemizdeki tüm işlevlere sadece klavye kullanarak erişilebilir.",
+                  "en": "All functions on our website are accessible using only a keyboard."
+                }
+              },
+              {
+                "icon": "bi bi-palette",
+                "title": {
+                  "tr": "Yüksek Kontrast",
+                  "en": "High Contrast"
+                },
+                "description": {
+                  "tr": "Metin ve arka plan renkleri arasında WCAG AA standartlarına uygun kontrast oranları sağlanmıştır.",
+                  "en": "Contrast ratios between text and background colors meet WCAG AA standards."
+                }
+              },
+              {
+                "icon": "bi bi-fonts",
+                "title": {
+                  "tr": "Ölçeklenebilir Metin",
+                  "en": "Scalable Text"
+                },
+                "description": {
+                  "tr": "Sayfa düzeni bozulmadan metin boyutu %200'e kadar büyütülebilir.",
+                  "en": "Text size can be enlarged up to 200% without disrupting page layout."
+                }
+              },
+              {
+                "icon": "bi bi-list-task",
+                "title": {
+                  "tr": "Anlamlı Başlıklar",
+                  "en": "Meaningful Headings"
+                },
+                "description": {
+                  "tr": "Sayfalar mantıksal bir başlık hiyerarşisi ile yapılandırılmıştır.",
+                  "en": "Pages are structured with a logical heading hierarchy."
+                }
+              },
+              {
+                "icon": "bi bi-link-45deg",
+                "title": {
+                  "tr": "Açıklayıcı Bağlantılar",
+                  "en": "Descriptive Links"
+                },
+                "description": {
+                  "tr": "Bağlantı metinleri hedefe ilişkin açık bilgi sağlar.",
+                  "en": "Link texts provide clear information about the destination."
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "yardimci-teknolojiler",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Desteklenen Yardımcı Teknolojiler",
+              "en": "Supported Assistive Technologies"
+            },
+            "icon": "bi bi-tools",
+            "id": "yardimci-teknolojiler"
+          }
+        },
+        {
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Web sitemiz aşağıdaki yardımcı teknolojilerle uyumlu çalışacak şekilde tasarlanmıştır:",
+              "en": "Our website is designed to work compatibly with the following assistive technologies:"
+            }
+          }
+        },
+        {
+          "type": "step-cards",
+          "data": {
+            "items": [
+              {
+                "number": 1,
+                "title": {
+                  "tr": "Ekran Okuyucular",
+                  "en": "Screen Readers"
+                },
+                "icon": "bi bi-soundwave",
+                "content": {
+                  "tr": "NVDA, JAWS, VoiceOver ve TalkBack gibi popüler ekran okuyucularla uyumludur. Tüm içerik ve işlevsellik bu araçlarla erişilebilir.",
+                  "en": "Compatible with popular screen readers such as NVDA, JAWS, VoiceOver, and TalkBack. All content and functionality is accessible with these tools."
+                }
+              },
+              {
+                "number": 2,
+                "title": {
+                  "tr": "Sesli Komut Yazılımları",
+                  "en": "Voice Command Software"
+                },
+                "icon": "bi bi-mic",
+                "content": {
+                  "tr": "Dragon NaturallySpeaking gibi sesli komut yazılımlarıyla web sitesinde gezinebilir ve işlem yapabilirsiniz.",
+                  "en": "You can navigate and perform actions on the website with voice command software such as Dragon NaturallySpeaking."
+                }
+              },
+              {
+                "number": 3,
+                "title": {
+                  "tr": "Ekran Büyütücüler",
+                  "en": "Screen Magnifiers"
+                },
+                "icon": "bi bi-zoom-in",
+                "content": {
+                  "tr": "ZoomText ve MAGic gibi ekran büyütme yazılımları ile site içeriği net ve okunabilir şekilde büyütülebilir.",
+                  "en": "Site content can be magnified clearly and readably with screen magnification software such as ZoomText and MAGic."
+                }
+              },
+              {
+                "number": 4,
+                "title": {
+                  "tr": "Alternatif Giriş Cihazları",
+                  "en": "Alternative Input Devices"
+                },
+                "icon": "bi bi-cursor",
+                "content": {
+                  "tr": "Ağız çubuğu, baş işaretçisi ve göz izleme cihazları gibi alternatif giriş araçlarıyla web sitesi kullanılabilir.",
+                  "en": "The website can be used with alternative input tools such as mouth sticks, head pointers, and eye tracking devices."
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fiziksel-erisilebilirlik",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Fiziksel Erişilebilirlik",
+              "en": "Physical Accessibility"
+            },
+            "icon": "bi bi-building",
+            "id": "fiziksel-erisilebilirlik"
+          }
+        },
+        {
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Kütüphane binamız da engelli kullanıcılarımız için erişilebilir olacak şekilde tasarlanmıştır:",
+              "en": "Our library building is also designed to be accessible for users with disabilities:"
+            }
+          }
+        },
+        {
+          "type": "icon-list",
+          "data": {
+            "items": [
+              {
+                "icon": "bi bi-door-open",
+                "title": {
+                  "tr": "Engelli Girişi",
+                  "en": "Accessible Entrance"
+                },
+                "description": {
+                  "tr": "Ana giriş ve tüm katlar için rampa ve asansör erişimi mevcuttur.",
+                  "en": "Ramp and elevator access is available for the main entrance and all floors."
+                }
+              },
+              {
+                "icon": "bi bi-p-circle",
+                "title": {
+                  "tr": "Otopark",
+                  "en": "Parking"
+                },
+                "description": {
+                  "tr": "Kütüphane yakınında engelli otopark yeri ayrılmıştır.",
+                  "en": "Accessible parking spaces are designated near the library."
+                }
+              },
+              {
+                "icon": "bi bi-people",
+                "title": {
+                  "tr": "Erişilebilir Tuvaletler",
+                  "en": "Accessible Restrooms"
+                },
+                "description": {
+                  "tr": "Her katta erişilebilir tuvalet bulunmaktadır.",
+                  "en": "Accessible restrooms are available on each floor."
+                }
+              },
+              {
+                "icon": "bi bi-pc-display",
+                "title": {
+                  "tr": "Özel Donanım",
+                  "en": "Special Equipment"
+                },
+                "description": {
+                  "tr": "Görme engelliler için ekran okuyucu, büyütme yazılımı ve ergonomik klavyeler gibi yardımcı teknolojiler sağlanmıştır.",
+                  "en": "Assistive technologies such as screen readers, magnification software, and ergonomic keyboards are provided for the visually impaired."
+                }
+              },
+              {
+                "icon": "bi bi-book",
+                "title": {
+                  "tr": "Ayarlanabilir Mobilyalar",
+                  "en": "Adjustable Furniture"
+                },
+                "description": {
+                  "tr": "Tekerlekli sandalye kullanıcıları için yüksekliği ayarlanabilir masalar mevcuttur.",
+                  "en": "Height-adjustable tables are available for wheelchair users."
+                }
+              },
+              {
+                "icon": "bi bi-sign-turn-right",
+                "title": {
+                  "tr": "İşaret ve Yönlendirme",
+                  "en": "Signs and Wayfinding"
+                },
+                "description": {
+                  "tr": "Görme engelliler için kabartma ve Braille alfabeli yönlendirme tabelaları kullanılmaktadır.",
+                  "en": "Raised and Braille wayfinding signs are used for the visually impaired."
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "alternatif-format",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Alternatif Format Hizmetleri",
+              "en": "Alternative Format Services"
+            },
+            "icon": "bi bi-file-earmark-text",
+            "id": "alternatif-format"
+          }
+        },
+        {
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Engelli kullanıcılarımıza kütüphane materyallerini alternatif formatlarda sunuyoruz:",
+              "en": "We offer library materials in alternative formats for users with disabilities:"
+            }
+          }
+        },
+        {
+          "type": "icon-list",
+          "data": {
+            "items": [
+              {
+                "icon": "bi bi-book",
+                "title": {
+                  "tr": "Sesli Kitaplar",
+                  "en": "Audiobooks"
+                },
+                "description": {
+                  "tr": "Görme engelliler için sesli kitap koleksiyonumuz ve sesli kitap platformlarına erişim mevcuttur.",
+                  "en": "Our audiobook collection and access to audiobook platforms are available for the visually impaired."
+                }
+              },
+              {
+                "icon": "bi bi-file-pdf",
+                "title": {
+                  "tr": "Erişilebilir PDF ve E-Kitaplar",
+                  "en": "Accessible PDFs and E-books"
+                },
+                "description": {
+                  "tr": "Ekran okuyucularla uyumlu, etiketlenmiş PDF ve EPUB formatında e-kitaplar sağlanır.",
+                  "en": "Screen reader-compatible, tagged PDFs and e-books in EPUB format are provided."
+                }
+              },
+              {
+                "icon": "bi bi-fonts",
+                "title": {
+                  "tr": "Büyük Baskı Materyaller",
+                  "en": "Large Print Materials"
+                },
+                "description": {
+                  "tr": "Görme zorluğu çeken kullanıcılar için büyük baskılı kitaplar bulunmaktadır.",
+                  "en": "Large print books are available for users with visual difficulties."
+                }
+              },
+              {
+                "icon": "bi bi-translate",
+                "title": {
+                  "tr": "Format Dönüştürme",
+                  "en": "Format Conversion"
+                },
+                "description": {
+                  "tr": "Talep üzerine, kütüphane materyalleri erişilebilir dijital formatlara dönüştürülebilir.",
+                  "en": "Upon request, library materials can be converted to accessible digital formats."
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "info",
+          "data": {
+            "icon": "bi bi-info-circle",
+            "title": {
+              "tr": "Alternatif Format Talebi",
+              "en": "Alternative Format Request"
+            },
+            "content": {
+              "tr": "Belirli bir materyali alternatif bir formatta almak istiyorsanız, lütfen kütüphane erişilebilirlik koordinatörümüzle iletişime geçin. İhtiyaçlarınızı karşılamak için elimizden geleni yapacağız.",
+              "en": "If you would like to receive a specific material in an alternative format, please contact our library accessibility coordinator. We will do our best to meet your needs."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "yardimci-hizmetler",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Yardımcı Hizmetler",
+              "en": "Support Services"
+            },
+            "icon": "bi bi-hand-thumbs-up",
+            "id": "yardimci-hizmetler"
+          }
+        },
+        {
+          "type": "icon-list",
+          "data": {
+            "items": [
+              {
+                "icon": "bi bi-person-raised-hand",
+                "title": {
+                  "tr": "Kişisel Yardım",
+                  "en": "Personal Assistance"
+                },
+                "description": {
+                  "tr": "Kütüphane personeli, engelli kullanıcılarımıza kaynak bulmada ve hizmetlere erişimde yardımcı olmak için eğitilmiştir.",
+                  "en": "Library staff are trained to assist users with disabilities in finding resources and accessing services."
+                }
+              },
+              {
+                "icon": "bi bi-laptop",
+                "title": {
+                  "tr": "Bireysel Eğitim",
+                  "en": "Individual Training"
+                },
+                "description": {
+                  "tr": "Yardımcı teknolojilerin kullanımı konusunda birebir eğitim oturumları düzenlenebilir.",
+                  "en": "One-on-one training sessions on the use of assistive technologies can be arranged."
+                }
+              },
+              {
+                "icon": "bi bi-house-door",
+                "title": {
+                  "tr": "Evden Kullanım Hizmeti",
+                  "en": "Home Delivery Service"
+                },
+                "description": {
+                  "tr": "Kütüphaneye fiziksel olarak gelemeyenler için evden kullanım ve materyal teslimat hizmeti sunulur.",
+                  "en": "Home use and material delivery services are provided for those who cannot physically come to the library."
+                }
+              },
+              {
+                "icon": "bi bi-clock",
+                "title": {
+                  "tr": "Öncelikli Erişim",
+                  "en": "Priority Access"
+                },
+                "description": {
+                  "tr": "Engelli kullanıcılar için kaynak rezervasyonu ve kullanım süresinde esneklik sağlanır.",
+                  "en": "Flexibility is provided for resource reservation and usage time for users with disabilities."
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "geri-bildirim",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Geri Bildirim ve Şikayetler",
+              "en": "Feedback and Complaints"
+            },
+            "icon": "bi bi-chat-dots",
+            "id": "geri-bildirim"
+          }
+        },
+        {
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Erişilebilirlik konusundaki görüş ve önerilerinizi memnuniyetle karşılıyoruz. Web sitemizde veya hizmetlerimizde erişilebilirlik engeliyle karşılaşırsanız, lütfen bize bildirin:",
+              "en": "We welcome your comments and suggestions on accessibility. If you encounter an accessibility barrier on our website or in our services, please let us know:"
+            }
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "success",
+          "data": {
+            "icon": "bi bi-envelope",
+            "title": {
+              "tr": "Bizimle İletişime Geçin",
+              "en": "Contact Us"
+            },
+            "content": {
+              "tr": "E-posta: erisilebilirlik@anadolu.edu.tr | Telefon: +90 222 335 0580 (dahili: 5432) | Tüm geri bildirimler değerlendirilir ve erişilebilirliği artırmak için çalışmalarımıza dahil edilir.",
+              "en": "Email: erisilebilirlik@anadolu.edu.tr | Phone: +90 222 335 0580 (ext: 5432) | All feedback is evaluated and incorporated into our efforts to improve accessibility."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "surekli-iyilestirme",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Sürekli İyileştirme",
+              "en": "Continuous Improvement"
+            },
+            "icon": "bi bi-arrow-clockwise",
+            "id": "surekli-iyilestirme"
+          }
+        },
+        {
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Erişilebilirlik sürekli bir yolculuktur ve biz de bu konuda gelişmeye devam ediyoruz:",
+              "en": "Accessibility is an ongoing journey and we continue to improve in this regard:"
+            }
+          }
+        },
+        {
+          "type": "icon-list",
+          "data": {
+            "items": [
+              {
+                "icon": "bi bi-clipboard-check",
+                "title": {
+                  "tr": "Düzenli Denetimler",
+                  "en": "Regular Audits"
+                },
+                "description": {
+                  "tr": "Web sitemiz ve dijital kaynaklarımız düzenli erişilebilirlik denetimlerinden geçmektedir.",
+                  "en": "Our website and digital resources undergo regular accessibility audits."
+                }
+              },
+              {
+                "icon": "bi bi-people-fill",
+                "title": {
+                  "tr": "Kullanıcı Testleri",
+                  "en": "User Testing"
+                },
+                "description": {
+                  "tr": "Engelli kullanıcılarla gerçek kullanım senaryolarında testler yapılmaktadır.",
+                  "en": "Testing is conducted with users with disabilities in real-world usage scenarios."
+                }
+              },
+              {
+                "icon": "bi bi-mortarboard",
+                "title": {
+                  "tr": "Personel Eğitimi",
+                  "en": "Staff Training"
+                },
+                "description": {
+                  "tr": "Kütüphane personeli erişilebilirlik konusunda düzenli eğitim almaktadır.",
+                  "en": "Library staff receive regular training on accessibility."
+                }
+              },
+              {
+                "icon": "bi bi-arrow-up-circle",
+                "title": {
+                  "tr": "Teknoloji Güncellemeleri",
+                  "en": "Technology Updates"
+                },
+                "description": {
+                  "tr": "Yeni erişilebilirlik standartları ve teknolojileri yakından takip edilmekte ve uygulanmaktadır.",
+                  "en": "New accessibility standards and technologies are closely monitored and implemented."
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "uyumluluk-durumu",
+      "components": [
+        {
+          "type": "heading",
+          "variant": "single-icon",
+          "data": {
+            "title": {
+              "tr": "Mevcut Uyumluluk Durumu",
+              "en": "Current Compliance Status"
+            },
+            "icon": "bi bi-shield-check",
+            "id": "uyumluluk-durumu"
+          }
+        },
+        {
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Bu erişilebilirlik beyanı Ocak 2025 tarihinde güncellenmiştir. Web sitemiz WCAG 2.1 Level AA standartlarıyla kısmen uyumludur.",
+              "en": "This accessibility statement was updated in January 2025. Our website is partially compliant with WCAG 2.1 Level AA standards."
+            }
+          }
+        },
+        {
+          "type": "alert",
+          "variant": "warning",
+          "data": {
+            "icon": "bi bi-exclamation-triangle",
+            "title": {
+              "tr": "Bilinen Sınırlamalar",
+              "en": "Known Limitations"
+            },
+            "content": {
+              "tr": "Bazı eski PDF belgeler ve üçüncü taraf veritabanlarında tam erişilebilirlik sağlanamayabilir. Bu sorunları gidermek için satıcılarımızla aktif olarak çalışmaktayız.",
+              "en": "Full accessibility may not be achievable for some older PDF documents and third-party databases. We are actively working with our vendors to address these issues."
+            }
+          }
+        },
+        {
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Tam erişilebilirlik hedefimize ulaşmak için çalışmalarımızı sürdürüyoruz ve bu süreçte desteğinize ve geri bildiriminize ihtiyacımız var.",
+              "en": "We continue our efforts to achieve our full accessibility goal and we need your support and feedback in this process."
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "helpSection": {
+    "title": {
+      "tr": "Erişilebilirlik konusunda yardıma mı ihtiyacınız var?",
+      "en": "Do you need help with accessibility?"
+    },
+    "description": {
+      "tr": "Erişilebilirlik koordinatörümüz size yardımcı olmaktan memnuniyet duyacaktır. Özel ihtiyaçlarınızı karşılamak için birlikte çalışalım.",
+      "en": "Our accessibility coordinator will be happy to assist you. Let's work together to meet your specific needs."
+    },
+    "buttons": [
+      {
+        "text": {
+          "tr": "Bize Ulaşın",
+          "en": "Contact Us"
+        },
+        "link": "iletisim.html",
+        "variant": "primary",
+        "icon": "bi bi-envelope"
+      },
+      {
+        "text": {
+          "tr": "SSS",
+          "en": "FAQ"
+        },
+        "link": "sss.html",
+        "variant": "outline",
+        "icon": "bi bi-question-circle"
+      }
+    ]
+  }
+}

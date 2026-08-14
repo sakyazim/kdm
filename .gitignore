@@ -18,3 +18,5 @@ data/_backups/
 # Yönetim aracı yerel ayarları (SFTP bilgileri burada — repo'ya girmez)
 manager/config.json
 manager/server.log
+manager-v2/server.log
+manager-v2/config.json

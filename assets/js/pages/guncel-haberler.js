@@ -406,7 +406,7 @@ export class GuncelHaberlerPage {
 
     // Çoklu dil desteği
     const title = Utils.getLocalizedText(news.title);
-    const content = Utils.getLocalizedText(news.content);
+    const content = Utils.mdToHtml(Utils.getLocalizedText(news.content));
 
     const modalContent = `
       <div class="news-modal">
@@ -659,7 +659,7 @@ export class GuncelHaberlerPage {
       // Localized text'leri al (çoklu dil desteği)
       const title = Utils.getLocalizedText(news.title);
       const summary = Utils.getLocalizedText(news.summary);
-      const content = Utils.getLocalizedText(news.content);
+      const content = Utils.mdToHtml(Utils.getLocalizedText(news.content));
       const category = Utils.getLocalizedText(news.category);
 
       // Arama filtresi (başlık, özet, içerik, kategori)
