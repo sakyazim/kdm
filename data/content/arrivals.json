@@ -52,7 +52,7 @@
       },
       "callNumber": "658.4038 P96v",
       "image": "assets/images/nopic.jpeg",
-      "active": true
+      "active": false
     },
     {
       "id": 3,
@@ -70,7 +70,7 @@
       },
       "callNumber": "005.133 S59m",
       "image": "assets/images/nopic.jpeg",
-      "active": true
+      "active": false
     },
     {
       "id": 4,
@@ -88,7 +88,7 @@
       },
       "callNumber": "005.824 B33b",
       "image": "assets/images/nopic.jpeg",
-      "active": true
+      "active": false
     },
     {
       "id": 5,
@@ -106,7 +106,7 @@
       },
       "callNumber": "004.678 S47b",
       "image": "assets/images/nopic.jpeg",
-      "active": true
+      "active": false
     },
     {
       "id": 6,
@@ -124,7 +124,7 @@
       },
       "callNumber": "005.133 M15p",
       "image": "assets/images/nopic.jpeg",
-      "active": true
+      "active": false
     },
     {
       "id": 7,
@@ -142,7 +142,7 @@
       },
       "callNumber": "005.8 B79s",
       "image": "assets/images/nopic.jpeg",
-      "active": true
+      "active": false
     },
     {
       "id": 8,
@@ -160,7 +160,7 @@
       },
       "callNumber": "005.258 S66m",
       "image": "assets/images/nopic.jpeg",
-      "active": true
+      "active": false
     }
   ]
 }
