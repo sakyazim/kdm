@@ -124,7 +124,7 @@
       },
       "callNumber": "005.133 M15p",
       "image": "assets/images/nopic.jpeg",
-      "active": false
+      "active": true
     },
     {
       "id": 7,
@@ -142,7 +142,7 @@
       },
       "callNumber": "005.8 B79s",
       "image": "assets/images/nopic.jpeg",
-      "active": false
+      "active": true
     },
     {
       "id": 8,
@@ -160,7 +160,7 @@
       },
       "callNumber": "005.258 S66m",
       "image": "assets/images/nopic.jpeg",
-      "active": false
+      "active": true
     }
   ]
 }
