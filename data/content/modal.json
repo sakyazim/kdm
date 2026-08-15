@@ -69,7 +69,7 @@
         "en": "Go to Database"
       },
       "buttonUrl": "veritabanlari.html",
-      "active": false,
+      "active": true,
       "showOnce": true,
       "startDate": "2026-08-01",
       "endDate": "2027-03-31"
@@ -99,7 +99,7 @@
       "endDate": "2026-09-27"
     },
     {
-      "id": "",
+      "id": "erwe-test",
       "title": {
         "tr": "erwe",
         "en": "rwer"
@@ -114,12 +114,12 @@
         "en": "rwe"
       },
       "buttonUrl": "rewr",
-      "active": true,
+      "active": false,
       "showOnce": false,
       "startDate": "",
       "endDate": "",
       "announcementId": ""
     }
   ],
-  "lastModified": "2026-08-15 10:21"
+  "lastModified": "2026-08-15 10:37"
 }
