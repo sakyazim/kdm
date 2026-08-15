@@ -24,8 +24,7 @@
       "active": false,
       "showOnce": false,
       "startDate": "2026-09-01",
-      "endDate": "2027-01-31",
-      "announcementId": 11
+      "endDate": "2027-01-31"
     },
     {
       "id": "maintenance-notice",
@@ -98,7 +97,29 @@
       "showOnce": true,
       "startDate": "2026-09-20",
       "endDate": "2026-09-27"
+    },
+    {
+      "id": "",
+      "title": {
+        "tr": "erwe",
+        "en": "rwer"
+      },
+      "description": {
+        "tr": "rwer",
+        "en": "ewre"
+      },
+      "image": {},
+      "buttonText": {
+        "tr": "rwe",
+        "en": "rwe"
+      },
+      "buttonUrl": "rewr",
+      "active": true,
+      "showOnce": false,
+      "startDate": "",
+      "endDate": "",
+      "announcementId": ""
     }
   ],
-  "lastModified": "2026-08-15 10:15"
+  "lastModified": "2026-08-15 10:20"
 }
