@@ -1,15 +1,15 @@
 {
-  "_comment": "GÃ¶sterilecek modalÄ± 'active: true' ile seÃ§in (yalnÄ±zca biri aktif olmalÄ±). Tarih aralÄ±ÄŸÄ±ndaysa otomatik aÃ§Ä±lÄ±r; 'showOnce: true' ise bir kez gÃ¶sterilir. SÃ¼resi dolan modalÄ± manager'daki 'Duyuruya Aktar' ile duyurular bÃ¶lÃ¼mÃ¼ne taÅŸÄ±yabilirsiniz.",
+  "_comment": "Gösterilecek modalı 'active: true' ile seçin (yalnızca biri aktif olmalı). Tarih aralığındaysa otomatik açılır; 'showOnce: true' ise bir kez gösterilir. Süresi dolan modalı manager'daki 'Duyuruya Aktar' ile duyurular bölümüne taşıyabilirsiniz.",
   "enabled": true,
   "modals": [
     {
       "id": "new-semester-2026",
       "title": {
-        "tr": "Yeni DÃ¶nem KÃ¼tÃ¼phane Hizmetleri",
+        "tr": "Yeni Dönem Kütüphane Hizmetleri",
         "en": "New Semester Library Services"
       },
       "description": {
-        "tr": "Sevgili Ã¶ÄŸrenciler ve akademisyenler, 2025 bahar dÃ¶nemi ile birlikte kÃ¼tÃ¼phane hizmetlerimiz gÃ¼ncellenmiÅŸtir. Uzaktan eriÅŸim, grup Ã§alÄ±ÅŸma odalarÄ± ve yeni veritabanlarÄ± hakkÄ±nda detaylarÄ± Ã¶ÄŸrenmek iÃ§in tÄ±klayÄ±n.",
+        "tr": "Sevgili öğrenciler ve akademisyenler, 2025 bahar dönemi ile birlikte kütüphane hizmetlerimiz güncellenmiştir. Uzaktan erişim, grup çalışma odaları ve yeni veritabanları hakkında detayları öğrenmek için tıklayın.",
         "en": "Dear students and academics, our library services have been updated for the 2025 spring semester. Click to learn more about remote access, group study rooms, and new databases."
       },
       "image": {
@@ -17,23 +17,24 @@
         "en": "assets/images/modal-new-semester.jpg"
       },
       "buttonText": {
-        "tr": "DetaylÄ± Bilgi",
+        "tr": "Detaylı Bilgi",
         "en": "Detailed Information"
       },
       "buttonUrl": "duyurular.html",
       "active": false,
       "showOnce": false,
       "startDate": "2026-09-01",
-      "endDate": "2027-01-31"
+      "endDate": "2027-01-31",
+      "announcementId": 11
     },
     {
       "id": "maintenance-notice",
       "title": {
-        "tr": "Sistem BakÄ±mÄ± Duyurusu",
+        "tr": "Sistem Bakımı Duyurusu",
         "en": "System Maintenance Notice"
       },
       "description": {
-        "tr": "KÃ¼tÃ¼phane sistemimizde planlÄ± bakÄ±m Ã§alÄ±ÅŸmasÄ± yapÄ±lacaktÄ±r. Bu sÃ¼rede bazÄ± hizmetlerde kesinti yaÅŸanabilir.",
+        "tr": "Kütüphane sistemimizde planlı bakım çalışması yapılacaktır. Bu sürede bazı hizmetlerde kesinti yaşanabilir.",
         "en": "Scheduled maintenance will be performed on the library system. Some services may be interrupted during this time."
       },
       "image": {
@@ -41,7 +42,7 @@
         "en": "assets/images/modal-maintenance-en.jpg"
       },
       "buttonText": {
-        "tr": "AyrÄ±ntÄ±lar",
+        "tr": "Ayrıntılar",
         "en": "Details"
       },
       "buttonUrl": "duyurular.html",
@@ -53,11 +54,11 @@
     {
       "id": "new-database",
       "title": {
-        "tr": "Yeni VeritabanÄ±: Academic Research Plus",
+        "tr": "Yeni Veritabanı: Academic Research Plus",
         "en": "New Database: Academic Research Plus"
       },
       "description": {
-        "tr": "KÃ¼tÃ¼phanemize yeni eklenen Academic Research Plus veritabanÄ± ile 5000'den fazla akademik dergiye eriÅŸim saÄŸlayabilirsiniz.",
+        "tr": "Kütüphanemize yeni eklenen Academic Research Plus veritabanı ile 5000'den fazla akademik dergiye erişim sağlayabilirsiniz.",
         "en": "Access over 5000 academic journals with the newly added Academic Research Plus database in our library."
       },
       "image": {
@@ -65,7 +66,7 @@
         "en": "assets/images/nopic.jpeg"
       },
       "buttonText": {
-        "tr": "VeritabanÄ±na Git",
+        "tr": "Veritabanına Git",
         "en": "Go to Database"
       },
       "buttonUrl": "veritabanlari.html",
@@ -77,11 +78,11 @@
     {
       "id": "holiday-notice",
       "title": {
-        "tr": "Bayram Tatili Ã‡alÄ±ÅŸma Saatleri",
+        "tr": "Bayram Tatili Çalışma Saatleri",
         "en": "Holiday Working Hours"
       },
       "description": {
-        "tr": "Bayram tatili sÃ¼resince kÃ¼tÃ¼phanemiz 10:00-16:00 saatleri arasÄ±nda hizmet verecektir. TÃ¼m Ã¶ÄŸrencilerimize ve akademisyenlerimize iyi bayramlar dileriz.",
+        "tr": "Bayram tatili süresince kütüphanemiz 10:00-16:00 saatleri arasında hizmet verecektir. Tüm öğrencilerimize ve akademisyenlerimize iyi bayramlar dileriz.",
         "en": "During the holiday period, our library will serve between 10:00-16:00. We wish all our students and academics a happy holiday."
       },
       "image": {
@@ -89,16 +90,15 @@
         "en": "assets/images/modal-holiday-en.jpg"
       },
       "buttonText": {
-        "tr": "Ã‡alÄ±ÅŸma Saatleri",
+        "tr": "Çalışma Saatleri",
         "en": "Working Hours"
       },
       "buttonUrl": "calisma-saatleri.html",
       "active": false,
       "showOnce": true,
       "startDate": "2026-09-20",
-      "endDate": "2026-09-27",
-      "announcementId": 11
+      "endDate": "2026-09-27"
     }
   ],
-  "lastModified": "2026-08-14 17:11"
+  "lastModified": "2026-08-15 10:15"
 }
