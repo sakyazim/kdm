@@ -164,7 +164,7 @@
       "category": "Duyuru",
       "categoryColor": "#C03221",
       "actionType": "modal",
-      "modalId": 2,
+      "modalId": "2",
       "featured": true
     },
     {
@@ -208,7 +208,8 @@
       "category": "Etkinlik",
       "categoryColor": "#fd7e14",
       "url": "#",
-      "featured": false
+      "featured": false,
+      "actionType": "modal"
     },
     {
       "id": 5,
@@ -251,7 +252,8 @@
       "category": "Eğitim",
       "categoryColor": "#198754",
       "url": "#",
-      "featured": true
+      "featured": true,
+      "actionType": "modal"
     },
     {
       "id": 7,
@@ -272,7 +274,8 @@
       "category": "Duyuru",
       "categoryColor": "#C03221",
       "url": "#",
-      "featured": true
+      "featured": true,
+      "actionType": "modal"
     },
     {
       "id": 8,
@@ -293,7 +296,8 @@
       "category": "Etkinlik",
       "categoryColor": "#fd7e14",
       "url": "#",
-      "featured": true
+      "featured": true,
+      "actionType": "modal"
     }
   ],
   "helpSection": {
@@ -313,7 +317,18 @@
         },
         "icon": "bi bi-envelope",
         "variant": "primary",
-        "action": "mailto:kutuphane@anadolu.edu.tr"
+        "link": "mailto:kutuphane@anadolu.edu.tr",
+        "modal": {
+          "title": {
+            "tr": "fd",
+            "en": "fd"
+          },
+          "body": {
+            "tr": "fdfd",
+            "en": "fdfd"
+          }
+        },
+        "type": "modal"
       },
       {
         "text": {
@@ -322,19 +337,47 @@
         },
         "icon": "bi bi-question-circle",
         "variant": "secondary",
-        "action": "/sss.html"
+        "link": "/sss.html",
+        "modal": {
+          "title": {
+            "tr": "",
+            "en": ""
+          },
+          "body": {
+            "tr": "",
+            "en": ""
+          }
+        }
       }
     ]
   },
   "meta": {
     "title": {
       "tr": "Güncel Haberler",
-      "en": ""
+      "en": "Latest News"
     },
     "description": {
       "tr": "Anadolu Üniversitesi Kütüphane - Güncel Haberler, Duyurular ve Etkinlikler",
-      "en": ""
+      "en": "Anadolu University Library - Latest News, Announcements and Events"
     }
   },
-  "lastModified": "2026-08-14 15:25"
+  "lastModified": "2026-08-15 14:46",
+  "labels": {
+    "viewDetails": {
+      "tr": "Detayları Gör",
+      "en": "View Details"
+    },
+    "close": {
+      "tr": "Kapat",
+      "en": "Close"
+    },
+    "goToPage": {
+      "tr": "Sayfaya Git",
+      "en": "Go to Page"
+    },
+    "featuredBadge": {
+      "tr": "Öne Çıkan",
+      "en": "Featured"
+    }
+  }
 }
