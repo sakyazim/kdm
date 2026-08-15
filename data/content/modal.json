@@ -69,7 +69,7 @@
         "en": "Go to Database"
       },
       "buttonUrl": "veritabanlari.html",
-      "active": true,
+      "active": false,
       "showOnce": true,
       "startDate": "2026-08-01",
       "endDate": "2027-03-31"
@@ -121,5 +121,5 @@
       "announcementId": ""
     }
   ],
-  "lastModified": "2026-08-15 10:20"
+  "lastModified": "2026-08-15 10:21"
 }
