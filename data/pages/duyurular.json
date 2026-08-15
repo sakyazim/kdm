@@ -366,22 +366,22 @@
     {
       "id": 11,
       "title": {
-        "tr": "Bayram Tatili Ã‡alÄ±ÅŸma Saatleri",
-        "en": "Holiday Working Hours"
+        "tr": "Yeni Dönem Kütüphane Hizmetleri",
+        "en": "New Semester Library Services"
       },
       "summary": {
-        "tr": "Bayram tatili sÃ¼resince kÃ¼tÃ¼phanemiz 10:00-16:00 saatleri arasÄ±nda hizmet verecektir. TÃ¼m Ã¶ÄŸrencilerimize ve akademisyenlerimize iyi bayramlar dileriz.",
-        "en": "During the holiday period, our library will serve between 10:00-16:00. We wish all our students and academics a happy holiday."
+        "tr": "Sevgili öğrenciler ve akademisyenler, 2025 bahar dönemi ile birlikte kütüphane hizmetlerimiz güncellenmiştir. Uzaktan erişim, grup çalışma odaları ve yeni veritabanları hakkında detayları öğrenmek için tıklayın.",
+        "en": "Dear students and academics, our library services have been updated for the 2025 spring semester. Click to learn more about remote access, group study rooms, and new databases."
       },
       "content": {
-        "tr": "Bayram tatili sÃ¼resince kÃ¼tÃ¼phanemiz 10:00-16:00 saatleri arasÄ±nda hizmet verecektir. TÃ¼m Ã¶ÄŸrencilerimize ve akademisyenlerimize iyi bayramlar dileriz.",
-        "en": "During the holiday period, our library will serve between 10:00-16:00. We wish all our students and academics a happy holiday."
+        "tr": "Sevgili öğrenciler ve akademisyenler, 2025 bahar dönemi ile birlikte kütüphane hizmetlerimiz güncellenmiştir. Uzaktan erişim, grup çalışma odaları ve yeni veritabanları hakkında detayları öğrenmek için tıklayın.",
+        "en": "Dear students and academics, our library services have been updated for the 2025 spring semester. Click to learn more about remote access, group study rooms, and new databases."
       },
-      "image": "assets/images/modal-holiday.jpg",
-      "date": "2026-08-14",
-      "category": "Tatil/Kapanış",
-      "categoryColor": "#fd7e14",
-      "url": "calisma-saatleri.html",
+      "image": "assets/images/modal-new-semester.jpg",
+      "date": "2026-08-15",
+      "category": "Genel Duyuru",
+      "categoryColor": "#1F4C8A",
+      "url": "duyurular.html",
       "featured": false,
       "actionType": "page"
     }
@@ -426,5 +426,5 @@
       "en": ""
     }
   },
-  "lastModified": "2026-08-14 17:11"
+  "lastModified": "2026-08-15 10:15"
 }
