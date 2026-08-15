@@ -389,6 +389,28 @@
       "url": "uzaktan-erisim.html",
       "featured": false,
       "actionType": "page"
+    },
+    {
+      "id": 12,
+      "title": {
+        "tr": "Modal Tipi Aktarım Testi",
+        "en": "Modal Type Transfer Test"
+      },
+      "summary": {
+        "tr": "Bu modal '#' butonlu — duyurularda popup olarak açılmalı. İçerik eşleşmesi kontrol edilecek.",
+        "en": "This modal has a '#' button — should open as popup in announcements. Content matching will be checked."
+      },
+      "content": {
+        "tr": "Bu modal '#' butonlu — duyurularda popup olarak açılmalı. İçerik eşleşmesi kontrol edilecek.",
+        "en": "This modal has a '#' button — should open as popup in announcements. Content matching will be checked."
+      },
+      "image": "assets/images/nopic.jpeg",
+      "date": "2026-08-15",
+      "category": "Sistem Bildirimi",
+      "categoryColor": "#6c757d",
+      "url": "#",
+      "featured": false,
+      "actionType": "modal"
     }
   ],
   "helpSection": {
@@ -431,5 +453,5 @@
       "en": ""
     }
   },
-  "lastModified": "2026-08-15 11:04"
+  "lastModified": "2026-08-15 11:05"
 }
