@@ -69,7 +69,7 @@
         "en": "Go to Database"
       },
       "buttonUrl": "veritabanlari.html",
-      "active": true,
+      "active": false,
       "showOnce": true,
       "startDate": "2026-08-01",
       "endDate": "2027-03-31"
@@ -119,7 +119,32 @@
       "startDate": "",
       "endDate": "",
       "announcementId": ""
+    },
+    {
+      "id": "modal-20260815-test",
+      "title": {
+        "tr": "Aktarım Testi: Yeni E-Kaynak Erişimi",
+        "en": "Transfer Test: New E-Resource Access"
+      },
+      "description": {
+        "tr": "Bu modal bir aktarım testi için üretildi. Tüm özellikleri dolu: başlık, açıklama, görsel, buton, tarih aralığı.",
+        "en": "This modal was created for a transfer test. All fields are filled: title, description, image, button, date range."
+      },
+      "image": {
+        "tr": "assets/images/modal-test-erisim.jpg",
+        "en": "assets/images/modal-test-erisim.jpg"
+      },
+      "buttonText": {
+        "tr": "Detaylar için tıklayın",
+        "en": "Click for details"
+      },
+      "buttonUrl": "uzaktan-erisim.html",
+      "active": false,
+      "showOnce": false,
+      "startDate": "2026-08-15",
+      "endDate": "2026-12-31",
+      "announcementId": 11
     }
   ],
-  "lastModified": "2026-08-15 10:37"
+  "lastModified": "2026-08-15 11:04"
 }
