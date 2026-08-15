@@ -167,7 +167,8 @@
       "category": "Tatil/Kapanış",
       "categoryColor": "#fd7e14",
       "url": "#",
-      "featured": true
+      "featured": true,
+      "actionType": "modal"
     },
     {
       "id": 2,
@@ -210,7 +211,7 @@
       "category": "Genel Duyuru",
       "categoryColor": "#1F4C8A",
       "actionType": "modal",
-      "modalId": 3,
+      "modalId": "3",
       "featured": true
     },
     {
@@ -232,7 +233,8 @@
       "category": "Sistem Bildirimi",
       "categoryColor": "#6c757d",
       "url": "#",
-      "featured": false
+      "featured": false,
+      "actionType": "modal"
     },
     {
       "id": 5,
@@ -253,7 +255,8 @@
       "category": "Genel Duyuru",
       "categoryColor": "#1F4C8A",
       "url": "#",
-      "featured": false
+      "featured": false,
+      "actionType": "modal"
     },
     {
       "id": 6,
@@ -296,7 +299,8 @@
       "category": "Genel Duyuru",
       "categoryColor": "#1F4C8A",
       "url": "#",
-      "featured": false
+      "featured": false,
+      "actionType": "modal"
     },
     {
       "id": 8,
@@ -317,7 +321,8 @@
       "category": "Acil Duyuru",
       "categoryColor": "#C03221",
       "url": "#",
-      "featured": true
+      "featured": true,
+      "actionType": "modal"
     },
     {
       "id": 9,
@@ -366,22 +371,22 @@
     {
       "id": 11,
       "title": {
-        "tr": "Yeni Dönem Kütüphane Hizmetleri",
-        "en": "New Semester Library Services"
+        "tr": "Aktarım Testi: Yeni E-Kaynak Erişimi",
+        "en": "Transfer Test: New E-Resource Access"
       },
       "summary": {
-        "tr": "Sevgili öğrenciler ve akademisyenler, 2025 bahar dönemi ile birlikte kütüphane hizmetlerimiz güncellenmiştir. Uzaktan erişim, grup çalışma odaları ve yeni veritabanları hakkında detayları öğrenmek için tıklayın.",
-        "en": "Dear students and academics, our library services have been updated for the 2025 spring semester. Click to learn more about remote access, group study rooms, and new databases."
+        "tr": "Bu modal bir aktarım testi için üretildi. Tüm özellikleri dolu: başlık, açıklama, görsel, buton, tarih aralığı.",
+        "en": "This modal was created for a transfer test. All fields are filled: title, description, image, button, date range."
       },
       "content": {
-        "tr": "Sevgili öğrenciler ve akademisyenler, 2025 bahar dönemi ile birlikte kütüphane hizmetlerimiz güncellenmiştir. Uzaktan erişim, grup çalışma odaları ve yeni veritabanları hakkında detayları öğrenmek için tıklayın.",
-        "en": "Dear students and academics, our library services have been updated for the 2025 spring semester. Click to learn more about remote access, group study rooms, and new databases."
+        "tr": "Bu modal bir aktarım testi için üretildi. Tüm özellikleri dolu: başlık, açıklama, görsel, buton, tarih aralığı.",
+        "en": "This modal was created for a transfer test. All fields are filled: title, description, image, button, date range."
       },
-      "image": "assets/images/modal-new-semester.jpg",
+      "image": "assets/images/modal-test-erisim.jpg",
       "date": "2026-08-15",
       "category": "Genel Duyuru",
       "categoryColor": "#1F4C8A",
-      "url": "duyurular.html",
+      "url": "uzaktan-erisim.html",
       "featured": false,
       "actionType": "page"
     }
@@ -426,5 +431,5 @@
       "en": ""
     }
   },
-  "lastModified": "2026-08-15 10:15"
+  "lastModified": "2026-08-15 11:04"
 }
