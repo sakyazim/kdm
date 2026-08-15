@@ -117,8 +117,7 @@
       "active": false,
       "showOnce": false,
       "startDate": "",
-      "endDate": "",
-      "announcementId": ""
+      "endDate": ""
     },
     {
       "id": "modal-20260815-test",
@@ -144,7 +143,32 @@
       "startDate": "2026-08-15",
       "endDate": "2026-12-31",
       "announcementId": 11
+    },
+    {
+      "id": "modal-20260815-modal-test",
+      "title": {
+        "tr": "Modal Tipi Aktarım Testi",
+        "en": "Modal Type Transfer Test"
+      },
+      "description": {
+        "tr": "Bu modal '#' butonlu — duyurularda popup olarak açılmalı. İçerik eşleşmesi kontrol edilecek.",
+        "en": "This modal has a '#' button — should open as popup in announcements. Content matching will be checked."
+      },
+      "image": {
+        "tr": "assets/images/nopic.jpeg",
+        "en": "assets/images/nopic.jpeg"
+      },
+      "buttonText": {
+        "tr": "Kapat",
+        "en": "Close"
+      },
+      "buttonUrl": "#",
+      "active": false,
+      "showOnce": false,
+      "startDate": "2026-08-15",
+      "endDate": "2026-12-31",
+      "announcementId": 12
     }
   ],
-  "lastModified": "2026-08-15 11:04"
+  "lastModified": "2026-08-15 11:05"
 }
