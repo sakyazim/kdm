@@ -1,0 +1,142 @@
+{
+ "file": "data/pages/databases.json",
+ "label": "Veritabanları (İçerik)",
+ "description": "Veritabanı kataloğu — 75 veritabanı: logo, kategoriler, erişim bilgileri ve kaynak linkleri.",
+ "fields": [
+  {
+   "key": "databases",
+   "label": "Veritabanları",
+   "type": "array",
+   "itemLabel": "Veritabanı",
+   "itemFields": [
+    {
+     "key": "id",
+     "label": "Kimlik",
+     "type": "text",
+     "readonly": true,
+     "hint": "🔒 Otomatik — örn. abi-inform"
+    },
+    {
+     "key": "title",
+     "label": "Ad",
+     "type": "text",
+     "required": true
+    },
+    {
+     "key": "categories",
+     "label": "Kategoriler",
+     "type": "array",
+     "itemLabel": "Kategori",
+     "itemFields": [
+      {
+       "key": "tr",
+       "label": "Türkçe",
+       "type": "text",
+       "required": true,
+       "hint": "Filtre kimliğiyle birebir eşleşmeli (veritabanlari.json)"
+      },
+      {
+       "key": "en",
+       "label": "İngilizce",
+       "type": "text",
+       "required": true
+      }
+     ]
+    },
+    {
+     "key": "logo",
+     "label": "Logo",
+     "type": "image",
+     "hint": "🖼 Seç ile assets/images/databases/logos klasöründen seçilir"
+    },
+    {
+     "key": "url",
+     "label": "Erişim Adresi",
+     "type": "url",
+     "required": true
+    },
+    {
+     "key": "description",
+     "label": "Açıklama",
+     "type": "lang",
+     "required": true
+    },
+    {
+     "key": "accessType",
+     "label": "Erişim Tipi",
+     "type": "select",
+     "options": [
+      "remote",
+      "campus"
+     ],
+     "hint": "remote: kampüs dışı · campus: sadece kampüs içi"
+    },
+    {
+     "key": "apcSupport",
+     "label": "APC Desteği",
+     "type": "boolean",
+     "hint": "true = APC rozeti gösterilir"
+    },
+    {
+     "key": "userGuide",
+     "label": "Kullanım Kılavuzu",
+     "type": "url"
+    },
+    {
+     "key": "mobileGuide",
+     "label": "Mobil Uygulama Kılavuzu",
+     "type": "url"
+    },
+    {
+     "key": "videoTutorials",
+     "label": "Kullanım Videoları",
+     "type": "url"
+    },
+    {
+     "key": "journalList",
+     "label": "Dergi Listesi",
+     "type": "url"
+    },
+    {
+     "key": "bookList",
+     "label": "Kitap Listesi",
+     "type": "url"
+    },
+    {
+     "key": "contentList",
+     "label": "İçerik Listesi",
+     "type": "url"
+    },
+    {
+     "key": "note",
+     "label": "Not",
+     "type": "lang"
+    }
+   ]
+  },
+  {
+   "key": "meta",
+   "label": "SEO Bilgileri",
+   "type": "object",
+   "fields": [
+    {
+     "key": "title",
+     "label": "Sayfa Başlığı",
+     "type": "lang"
+    },
+    {
+     "key": "description",
+     "label": "Açıklama",
+     "type": "lang"
+    }
+   ]
+  },
+  {
+   "key": "lastModified",
+   "label": "Son Güncelleme",
+   "type": "text",
+   "readonly": true,
+   "hint": "🔒 Kayıtta otomatik güncellenir"
+  }
+ ]
+}

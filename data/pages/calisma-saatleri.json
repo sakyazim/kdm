@@ -26,6 +26,17 @@
       }
     ]
   },
+  "scheduleConfig": {
+    "holidays": [
+      "2026-01-01",
+      "2026-04-23",
+      "2026-05-01",
+      "2026-05-19",
+      "2026-07-15",
+      "2026-08-30",
+      "2026-10-29"
+    ]
+  },
   "content": [
     {
       "id": "alert-section",
@@ -66,114 +77,103 @@
             "icon": "fas fa-building",
             "id": "main-library-heading",
             "statusBadge": {
-              "variant": "auto",
-              "data": {
-                "hours": [
+              "variant": "from-table",
+              "tableRef": "main-library-hours-table"
+            }
+          }
+        },
+        {
+          "type": "hours-table",
+          "data": {
+            "id": "main-library-hours-table",
+            "title": {
+              "tr": "Haftalık Çalışma Programı",
+              "en": "Weekly Working Schedule"
+            },
+            "columns": [
+              {
+                "kind": "name",
+                "label": {
+                  "tr": "Gün",
+                  "en": "Day"
+                }
+              },
+              {
+                "kind": "schedule",
+                "label": {
+                  "tr": "Saat",
+                  "en": "Hours"
+                }
+              },
+              {
+                "kind": "status",
+                "label": {
+                  "tr": "Durum",
+                  "en": "Status"
+                }
+              }
+            ],
+            "rows": [
+              {
+                "name": {
+                  "tr": "Pazartesi - Cuma",
+                  "en": "Monday - Friday"
+                },
+                "icon": "bi bi-calendar-week",
+                "schedules": [
                   {
-                    "day": {
-                      "tr": "Pazartesi - Cuma",
-                      "en": "Monday - Friday"
-                    },
-                    "time": "08:00 - 23:00",
-                    "isWeekend": false,
-                    "openTime": "08:00",
-                    "closeTime": "23:00",
-                    "dayNumbers": [
+                    "days": [
                       1,
                       2,
                       3,
                       4,
                       5
-                    ]
-                  },
-                  {
-                    "day": {
-                      "tr": "Cumartesi",
-                      "en": "Saturday"
-                    },
-                    "time": "09:00 - 18:00",
-                    "isWeekend": false,
-                    "openTime": "09:00",
-                    "closeTime": "18:00",
-                    "dayNumbers": [
-                      6
-                    ]
-                  },
-                  {
-                    "day": {
-                      "tr": "Pazar",
-                      "en": "Sunday"
-                    },
-                    "time": {
-                      "tr": "Kapalı",
-                      "en": "Closed"
-                    },
-                    "isWeekend": true,
-                    "dayNumbers": [
-                      0
+                    ],
+                    "periods": [
+                      {
+                        "open": "08:00",
+                        "close": "23:00"
+                      }
                     ]
                   }
                 ]
-              }
-            }
-          }
-        },
-        {
-          "type": "table",
-          "data": {
-            "title": {
-              "tr": "Haftalık Çalışma Programı",
-              "en": "Weekly Working Schedule"
-            },
-            "headers": [
-              {
-                "tr": "Gün",
-                "en": "Day"
               },
               {
-                "tr": "Saat",
-                "en": "Hours"
-              }
-            ],
-            "rows": [
-              {
-                "icon": "bi bi-calendar-week",
-                "cells": [
-                  {
-                    "tr": "Pazartesi - Cuma",
-                    "en": "Monday - Friday"
-                  },
-                  "08:00 - 23:00"
-                ],
-                "highlightColumns": []
-              },
-              {
+                "name": {
+                  "tr": "Cumartesi",
+                  "en": "Saturday"
+                },
                 "icon": "bi bi-calendar-day",
-                "cells": [
+                "schedules": [
                   {
-                    "tr": "Cumartesi",
-                    "en": "Saturday"
-                  },
-                  "09:00 - 18:00"
-                ],
-                "highlightColumns": []
+                    "days": [
+                      6
+                    ],
+                    "periods": [
+                      {
+                        "open": "09:00",
+                        "close": "18:00"
+                      }
+                    ]
+                  }
+                ]
               },
               {
+                "name": {
+                  "tr": "Pazar",
+                  "en": "Sunday"
+                },
                 "icon": "bi bi-calendar-x",
-                "cells": [
+                "schedules": [
                   {
-                    "tr": "Pazar",
-                    "en": "Sunday"
-                  },
-                  {
-                    "tr": "Kapalı",
-                    "en": "Closed"
+                    "days": [
+                      0
+                    ],
+                    "closed": true
                   }
-                ],
-                "highlightColumns": []
+                ]
               }
-            ],
-            "id": "main-library-hours-table"
+            ]
           }
         },
         {
@@ -212,214 +212,497 @@
               "en": "Library Services Working Hours"
             },
             "icon": "fas fa-concierge-bell",
-            "id": "services-heading",
-            "statusBadge": {
-              "data": {}
-            }
+            "id": "services-heading"
           }
         },
         {
-          "type": "table",
+          "type": "hours-table",
           "data": {
+            "id": "services-table",
             "title": "",
-            "headers": [
+            "columns": [
               {
-                "tr": "Bölümler & Hizmetler",
-                "en": "Departments & Services"
+                "kind": "name",
+                "label": {
+                  "tr": "Bölümler & Hizmetler",
+                  "en": "Departments & Services"
+                }
               },
               {
-                "tr": "Hafta İçi",
-                "en": "Weekdays"
+                "kind": "schedule",
+                "label": {
+                  "tr": "Hafta İçi",
+                  "en": "Weekdays"
+                }
               },
               {
-                "tr": "Cumartesi",
-                "en": "Saturday"
+                "kind": "schedule",
+                "label": {
+                  "tr": "Cumartesi",
+                  "en": "Saturday"
+                }
               },
               {
-                "tr": "Pazar",
-                "en": "Sunday"
+                "kind": "schedule",
+                "label": {
+                  "tr": "Pazar",
+                  "en": "Sunday"
+                }
+              },
+              {
+                "kind": "status",
+                "label": {
+                  "tr": "Durum",
+                  "en": "Status"
+                }
               }
             ],
             "rows": [
               {
+                "name": {
+                  "tr": "Okuma Salonları",
+                  "en": "Reading Halls"
+                },
                 "icon": "bi bi-book",
-                "cells": [
+                "schedules": [
                   {
-                    "tr": "Okuma Salonları",
-                    "en": "Reading Halls"
+                    "days": [
+                      1,
+                      2,
+                      3,
+                      4,
+                      5
+                    ],
+                    "periods": [
+                      {
+                        "open": "00:00",
+                        "close": "23:59"
+                      }
+                    ]
                   },
-                  "7/24",
-                  "7/24",
-                  "7/24"
+                  {
+                    "days": [
+                      6
+                    ],
+                    "periods": [
+                      {
+                        "open": "00:00",
+                        "close": "23:59"
+                      }
+                    ]
+                  },
+                  {
+                    "days": [
+                      0
+                    ],
+                    "periods": [
+                      {
+                        "open": "00:00",
+                        "close": "23:59"
+                      }
+                    ]
+                  }
+                ],
+                "exceptions": [
+                  {
+                    "date": "2026-10-29",
+                    "open": true
+                  }
                 ]
               },
               {
+                "name": {
+                  "tr": "Ödünç Bölümü",
+                  "en": "Loan Department"
+                },
                 "icon": "bi bi-arrow-repeat",
-                "cells": [
+                "schedules": [
                   {
-                    "tr": "Ödünç Bölümü",
-                    "en": "Loan Department"
+                    "days": [
+                      1,
+                      2,
+                      3,
+                      4,
+                      5
+                    ],
+                    "periods": [
+                      {
+                        "open": "00:00",
+                        "close": "23:59"
+                      }
+                    ]
                   },
-                  "7/24",
-                  "7/24",
-                  "7/24"
+                  {
+                    "days": [
+                      6
+                    ],
+                    "periods": [
+                      {
+                        "open": "00:00",
+                        "close": "23:59"
+                      }
+                    ]
+                  },
+                  {
+                    "days": [
+                      0
+                    ],
+                    "periods": [
+                      {
+                        "open": "00:00",
+                        "close": "23:59"
+                      }
+                    ]
+                  }
                 ]
               },
               {
+                "name": {
+                  "tr": "Fotokopi",
+                  "en": "Photocopy"
+                },
                 "icon": "bi bi-printer",
-                "cells": [
+                "schedules": [
                   {
-                    "tr": "Fotokopi",
-                    "en": "Photocopy"
+                    "days": [
+                      1,
+                      2,
+                      3,
+                      4,
+                      5
+                    ],
+                    "periods": [
+                      {
+                        "open": "00:00",
+                        "close": "23:59"
+                      }
+                    ]
                   },
-                  "7/24",
-                  "7/24",
-                  "7/24"
+                  {
+                    "days": [
+                      6
+                    ],
+                    "periods": [
+                      {
+                        "open": "00:00",
+                        "close": "23:59"
+                      }
+                    ]
+                  },
+                  {
+                    "days": [
+                      0
+                    ],
+                    "periods": [
+                      {
+                        "open": "00:00",
+                        "close": "23:59"
+                      }
+                    ]
+                  }
                 ]
               },
               {
+                "name": {
+                  "tr": "Rezerve",
+                  "en": "Reserve"
+                },
                 "icon": "bi bi-calendar-check",
-                "cells": [
+                "schedules": [
                   {
-                    "tr": "Rezerve",
-                    "en": "Reserve"
+                    "days": [
+                      1,
+                      2,
+                      3,
+                      4,
+                      5
+                    ],
+                    "periods": [
+                      {
+                        "open": "08:30",
+                        "close": "18:00"
+                      }
+                    ]
                   },
-                  "08:30-18:00",
                   {
-                    "tr": "Kapalı",
-                    "en": "Closed"
+                    "days": [
+                      6
+                    ],
+                    "closed": true
                   },
                   {
-                    "tr": "Kapalı",
-                    "en": "Closed"
+                    "days": [
+                      0
+                    ],
+                    "closed": true
                   }
                 ]
               },
               {
+                "name": {
+                  "tr": "Danışma Bölümü",
+                  "en": "Reference Department"
+                },
                 "icon": "bi bi-info-circle",
-                "cells": [
+                "schedules": [
                   {
-                    "tr": "Danışma Bölümü",
-                    "en": "Reference Department"
+                    "days": [
+                      1,
+                      2,
+                      3,
+                      4,
+                      5
+                    ],
+                    "periods": [
+                      {
+                        "open": "08:30",
+                        "close": "18:00"
+                      }
+                    ]
                   },
-                  "08:30-18:00",
                   {
-                    "tr": "Kapalı",
-                    "en": "Closed"
+                    "days": [
+                      6
+                    ],
+                    "closed": true
                   },
                   {
-                    "tr": "Kapalı",
-                    "en": "Closed"
+                    "days": [
+                      0
+                    ],
+                    "closed": true
                   }
                 ]
               },
               {
+                "name": {
+                  "tr": "ILL",
+                  "en": "ILL"
+                },
                 "icon": "bi bi-arrow-left-right",
-                "cells": [
-                  "ILL",
-                  "08:30-18:00",
+                "schedules": [
                   {
-                    "tr": "Kapalı",
-                    "en": "Closed"
+                    "days": [
+                      1,
+                      2,
+                      3,
+                      4,
+                      5
+                    ],
+                    "periods": [
+                      {
+                        "open": "08:30",
+                        "close": "18:00"
+                      }
+                    ]
                   },
                   {
-                    "tr": "Kapalı",
-                    "en": "Closed"
+                    "days": [
+                      6
+                    ],
+                    "closed": true
+                  },
+                  {
+                    "days": [
+                      0
+                    ],
+                    "closed": true
                   }
                 ]
               },
               {
+                "name": {
+                  "tr": "Süreli Yayınlar",
+                  "en": "Periodicals"
+                },
                 "icon": "bi bi-journal-text",
-                "cells": [
+                "schedules": [
                   {
-                    "tr": "Süreli Yayınlar",
-                    "en": "Periodicals"
+                    "days": [
+                      1,
+                      2,
+                      3,
+                      4,
+                      5
+                    ],
+                    "periods": [
+                      {
+                        "open": "08:30",
+                        "close": "18:00"
+                      }
+                    ]
                   },
-                  "08:30-18:00",
                   {
-                    "tr": "Kapalı",
-                    "en": "Closed"
+                    "days": [
+                      6
+                    ],
+                    "closed": true
                   },
                   {
-                    "tr": "Kapalı",
-                    "en": "Closed"
+                    "days": [
+                      0
+                    ],
+                    "closed": true
                   }
                 ]
               },
               {
+                "name": {
+                  "tr": "Mikrofilm Bölümü",
+                  "en": "Microfilm Department"
+                },
                 "icon": "bi bi-film",
-                "cells": [
+                "schedules": [
                   {
-                    "tr": "Mikrofilm Bölümü",
-                    "en": "Microfilm Department"
+                    "days": [
+                      1,
+                      2,
+                      3,
+                      4,
+                      5
+                    ],
+                    "periods": [
+                      {
+                        "open": "08:30",
+                        "close": "16:30"
+                      }
+                    ]
                   },
-                  "08:30-16:30",
                   {
-                    "tr": "Kapalı",
-                    "en": "Closed"
+                    "days": [
+                      6
+                    ],
+                    "closed": true
                   },
                   {
-                    "tr": "Kapalı",
-                    "en": "Closed"
+                    "days": [
+                      0
+                    ],
+                    "closed": true
                   }
                 ]
               },
               {
+                "name": {
+                  "tr": "Görsel Bölüm",
+                  "en": "Visual Department"
+                },
                 "icon": "bi bi-image",
-                "cells": [
+                "schedules": [
                   {
-                    "tr": "Görsel Bölüm",
-                    "en": "Visual Department"
+                    "days": [
+                      1,
+                      2,
+                      3,
+                      4,
+                      5
+                    ],
+                    "periods": [
+                      {
+                        "open": "08:30",
+                        "close": "12:00"
+                      },
+                      {
+                        "open": "13:30",
+                        "close": "18:00"
+                      }
+                    ]
                   },
-                  "08:30-12:00 / 13:30-18:00",
                   {
-                    "tr": "Kapalı",
-                    "en": "Closed"
+                    "days": [
+                      6
+                    ],
+                    "closed": true
                   },
                   {
-                    "tr": "Kapalı",
-                    "en": "Closed"
+                    "days": [
+                      0
+                    ],
+                    "closed": true
                   }
                 ]
               },
               {
+                "name": {
+                  "tr": "İşitsel Bölüm",
+                  "en": "Audio Department"
+                },
                 "icon": "bi bi-volume-up",
-                "cells": [
+                "schedules": [
                   {
-                    "tr": "İşitsel Bölüm",
-                    "en": "Audio Department"
+                    "days": [
+                      1,
+                      2,
+                      3,
+                      4,
+                      5
+                    ],
+                    "periods": [
+                      {
+                        "open": "08:30",
+                        "close": "12:00"
+                      },
+                      {
+                        "open": "13:30",
+                        "close": "18:00"
+                      }
+                    ]
                   },
-                  "08:30-12:00 / 13:30-18:00",
                   {
-                    "tr": "Kapalı",
-                    "en": "Closed"
+                    "days": [
+                      6
+                    ],
+                    "closed": true
                   },
                   {
-                    "tr": "Kapalı",
-                    "en": "Closed"
+                    "days": [
+                      0
+                    ],
+                    "closed": true
                   }
                 ]
               },
               {
+                "name": {
+                  "tr": "Özel Koleksiyonlar",
+                  "en": "Special Collections"
+                },
                 "icon": "bi bi-star",
-                "cells": [
+                "schedules": [
                   {
-                    "tr": "Özel Koleksiyonlar",
-                    "en": "Special Collections"
+                    "days": [
+                      1,
+                      2,
+                      3,
+                      4,
+                      5
+                    ],
+                    "periods": [
+                      {
+                        "open": "08:30",
+                        "close": "12:00"
+                      },
+                      {
+                        "open": "13:30",
+                        "close": "18:00"
+                      }
+                    ]
                   },
-                  "08:30-12:00 / 13:30-18:00",
                   {
-                    "tr": "Kapalı",
-                    "en": "Closed"
+                    "days": [
+                      6
+                    ],
+                    "closed": true
                   },
                   {
-                    "tr": "Kapalı",
-                    "en": "Closed"
+                    "days": [
+                      0
+                    ],
+                    "closed": true
                   }
                 ]
               }
-            ],
-            "id": "services-table"
+            ]
           }
         }
       ]
@@ -436,10 +719,7 @@
               "en": "Special Cases and Holidays"
             },
             "icon": "fas fa-calendar-alt",
-            "id": "special-hours-heading",
-            "statusBadge": {
-              "data": {}
-            }
+            "id": "special-hours-heading"
           }
         },
         {
@@ -513,13 +793,13 @@
   },
   "meta": {
     "title": {
-      "tr": "Çalışma Saatleri",
-      "en": ""
+      "tr": "Çalışma Saatleri | Anadolu Üniversitesi Kütüphane",
+      "en": "Working Hours | Anadolu University Library"
     },
     "description": {
-      "tr": "Anadolu Üniversitesi Kütüphane",
-      "en": ""
+      "tr": "Anadolu Üniversitesi Kütüphane çalışma saatleri: merkez kütüphane, bölüm ve hizmetlerin güncel açılış-kapanış saatleri ile resmi tatil bilgileri.",
+      "en": "Anadolu University Library working hours: current opening and closing times of the central library, departments and services, plus official holiday information."
     }
   },
-  "lastModified": "2026-08-17 10:36"
+  "lastModified": "2026-08-17 10:43"
 }

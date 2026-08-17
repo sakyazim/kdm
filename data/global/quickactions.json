@@ -418,6 +418,18 @@
         "tr": "Sayfa linki kopyalandı!",
         "en": "Page link copied!"
       }
+    },
+    "title": {
+      "tr": "Hızlı İşlemler",
+      "en": "Quick Actions"
+    },
+    "ariaLabel": {
+      "tr": "Hızlı İşlemler",
+      "en": "Quick Actions"
+    },
+    "close": {
+      "tr": "Kapat",
+      "en": "Close"
     }
   }
 }

@@ -146,12 +146,13 @@ export class EgitimProgramlariPage {
   }
 
   async setupHelpSection() {
-    if (!this.pageData.help) {
+    const helpData = this.pageData.helpSection || this.pageData.help;
+    if (!helpData) {
       console.warn('Help section data not found');
       return;
     }
 
-    await this.helpSectionManager.init(this.pageData.help);
+    await this.helpSectionManager.init(helpData);
   }
 }
 

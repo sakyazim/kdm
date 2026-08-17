@@ -31,7 +31,8 @@
         },
         "url": "bilgisayar-laboratuvari.html"
       }
-    ]
+    ],
+    "showIcon": true
   },
   "content": [
     {
@@ -252,11 +253,11 @@
   "meta": {
     "title": {
       "tr": "Bilgisayar Laboratuvarı",
-      "en": ""
+      "en": "Computer Laboratory"
     },
     "description": {
       "tr": "Anadolu Üniversitesi Kütüphane - Bilgisayar Laboratuvarı",
-      "en": ""
+      "en": "Anadolu University Library - Computer Laboratory"
     }
   },
   "lastModified": "2026-08-14 15:25"

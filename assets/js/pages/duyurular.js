@@ -314,6 +314,7 @@ export class DuyurularPage {
       }
     });
 
+    const detailBtnText = Utils.getLocalizedText({ tr: 'Detayları Gör', en: 'View Details' });
     let html = '';
     sortedAnnouncements.forEach(announcement => {
       const formattedDate = Utils.formatDate(announcement.date);
@@ -328,7 +329,7 @@ export class DuyurularPage {
           <img src="${announcement.image}" alt="${title}" class="news-card-image" loading="lazy">
           <div class="news-card-content">
             <div class="news-card-header">
-              <span class="news-card-category" style="background-color: ${announcement.categoryColor}">
+              <span class="news-card-category" style="background-color: ${this.getCategoryColor(announcement.category)}">
                 ${announcement.category}
               </span>
               <span class="news-card-date">
@@ -339,8 +340,8 @@ export class DuyurularPage {
             <h3 class="news-card-title">${title}</h3>
             <p class="news-card-description">${summary}</p>
             <div class="news-card-footer">
-              <button class="news-card-btn" style="background-color: ${announcement.categoryColor}" data-news-id="${announcement.id}">
-                Detayları Gör
+              <button class="news-card-btn" style="background-color: ${this.getCategoryColor(announcement.category)}" data-news-id="${announcement.id}">
+                ${detailBtnText}
                 <i class="bi bi-arrow-right"></i>
               </button>
             </div>
@@ -359,6 +360,8 @@ export class DuyurularPage {
 
   /**
    * Duyuru kart butonlarına event listener ekle
+   * actionType desteği: page/external → doğrudan linke git, modal/değil → modal aç
+   * (Anasayfa slider'ıyla aynı mantık — tutarlı davranış)
    */
   setupCardButtonListeners() {
     const cardButtons = document.querySelectorAll('.news-card-btn');
@@ -367,10 +370,53 @@ export class DuyurularPage {
         const newsId = parseInt(e.currentTarget.dataset.newsId);
         const announcement = this.announcementData.find(n => n.id === newsId);
         if (announcement) {
-          this.openAnnouncementModal(announcement);
+          const target = this.getActionUrl(announcement);
+          if (target) {
+            // Gerçek hedef varsa sayfaya/dış linke git
+            window.open(target, announcement.actionType === 'external' ? '_blank' : '_self');
+          } else {
+            this.openAnnouncementModal(announcement);
+          }
         }
       });
     });
+  }
+
+  /**
+   * Action type'a göre URL üret (anasayfa announcements.js ile aynı mantık)
+   * - actionType yoksa: url gerçek bir hedefse sayfa davran; yoksa/# ise modal
+   * - page: doğrudan sayfa linki (örn. calisma-saatleri.html)
+   * - external: dış link
+   * - modal / default: null → modal açılır
+   */
+  getActionUrl(item) {
+    const u = item.url;
+    if (!item.actionType) {
+      if (u && u !== '#' && !u.startsWith('#')) return u;
+      return null;
+    }
+    switch (item.actionType) {
+      case 'page':
+        return (u && u !== '#') ? u : null;
+      case 'external':
+        return (u && u !== '#') ? u : null;
+      case 'modal':
+        return null;
+      default:
+        return (u && u !== '#' && !u.startsWith('#')) ? u : null;
+    }
+  }
+
+  /**
+   * Kategori rengi — kategori tanımından (tek kaynak), düşerse varsayılan lacivert
+   */
+  getCategoryColor(categoryId) {
+    try {
+      const categories = this.pageData.content[0].components[0].data.categories;
+      const found = categories.find(c => c.id === categoryId);
+      if (found && found.color) return found.color;
+    } catch (e) { /* kategori listesi yoksa varsayılan */ }
+    return '#1F4C8A';
   }
 
   /**
@@ -396,7 +442,7 @@ export class DuyurularPage {
           </button>
           <h2 class="news-modal-title">${title}</h2>
           <div class="news-modal-meta">
-            <span class="news-modal-category" style="background-color: ${announcement.categoryColor}">
+            <span class="news-modal-category" style="background-color: ${this.getCategoryColor(announcement.category)}">
               ${announcement.category}
             </span>
             <span class="news-modal-date">
@@ -412,11 +458,11 @@ export class DuyurularPage {
           <div class="news-modal-footer">
             <button class="news-modal-btn secondary" id="modal-close-btn">
               <i class="bi bi-x-circle"></i>
-              Kapat
+              ${Utils.getLocalizedText({ tr: 'Kapat', en: 'Close' })}
             </button>
             <a href="${announcement.url}" class="news-modal-btn primary" target="${announcement.url.startsWith('http') ? '_blank' : '_self'}">
               <i class="bi bi-box-arrow-up-right"></i>
-              Sayfaya Git
+              ${Utils.getLocalizedText({ tr: 'Sayfaya Git', en: 'Go to Page' })}
             </a>
           </div>
         ` : ''}

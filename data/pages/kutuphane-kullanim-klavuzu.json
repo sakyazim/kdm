@@ -41,7 +41,8 @@
         },
         "link": "#"
       }
-    ]
+    ],
+    "showIcon": true
   },
   "content": [
     {
@@ -822,14 +823,15 @@
       ]
     }
   ],
-  "help": {
+  "lastModified": "2026-08-15 17:39",
+  "helpSection": {
     "title": {
-      "tr": "Kütüphane kullanımı hakkında sorularınız mı var?",
-      "en": "Do you have questions about library usage?"
+      "tr": "Yardıma mı ihtiyacınız var?",
+      "en": "Do you need help?"
     },
     "description": {
-      "tr": "Kütüphane kaynaklarını etkili kullanma, katalog araması, materyal bulma ve araştırma genişletme konularında yardıma ihtiyacınız varsa bizimle iletişime geçin.",
-      "en": "If you need help with effective use of library resources, catalog search, finding materials, and expanding research, please contact us."
+      "tr": "Kütüphane kullanımı hakkında sorularınız için destek alabilirsiniz.",
+      "en": "Kütüphane kullanımı hakkında sorularınız için destek alabilirsiniz."
     },
     "buttons": [
       {
@@ -838,8 +840,7 @@
           "tr": "Hemen Ara",
           "en": "Call Now"
         },
-        "link": "tel:+902223350580",
-        "variant": "primary"
+        "link": "tel:+902223350580"
       },
       {
         "icon": "fas fa-envelope",
@@ -847,8 +848,7 @@
           "tr": "E-posta Gönder",
           "en": "Send Email"
         },
-        "link": "mailto:library@anadolu.edu.tr",
-        "variant": "primary"
+        "link": "mailto:library@anadolu.edu.tr"
       },
       {
         "icon": "fas fa-home",
@@ -856,10 +856,8 @@
           "tr": "Ana Sayfa",
           "en": "Home"
         },
-        "link": "index.html",
-        "variant": "outline"
+        "link": "index.html"
       }
     ]
-  },
-  "lastModified": "2026-08-14 15:25"
+  }
 }

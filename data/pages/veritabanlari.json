@@ -24,7 +24,8 @@
         },
         "url": "veritabanlari.html"
       }
-    ]
+    ],
+    "showIcon": true
   },
   "content": [
     {
@@ -50,12 +51,12 @@
             "sort": {
               "enabled": true,
               "icon": {
-                "desc": "bi bi-sort-down",
-                "asc": "bi bi-sort-up",
-                "default": "bi bi-sort-down"
+                "default": "bi bi-sort-down",
+                "asc": "bi bi-sort-alpha-down",
+                "desc": "bi bi-sort-alpha-up"
               },
               "text": {
-                "desc": {
+                "default": {
                   "tr": "Varsayılan",
                   "en": "Default"
                 },
@@ -63,7 +64,7 @@
                   "tr": "A-Z",
                   "en": "A-Z"
                 },
-                "default": {
+                "desc": {
                   "tr": "Z-A",
                   "en": "Z-A"
                 }
@@ -171,6 +172,22 @@
                   "en": "e-Book"
                 },
                 "icon": "bi bi-journal-text"
+              },
+              {
+                "id": "Müzik",
+                "label": {
+                  "tr": "Müzik",
+                  "en": "Music"
+                },
+                "icon": "bi bi-music-note-beamed"
+              },
+              {
+                "id": "Referans",
+                "label": {
+                  "tr": "Referans",
+                  "en": "Reference"
+                },
+                "icon": "bi bi-journal-bookmark"
               }
             ],
             "noResults": {
@@ -318,12 +335,12 @@
   "meta": {
     "title": {
       "tr": "Veritabanları",
-      "en": ""
+      "en": "Databases"
     },
     "description": {
       "tr": "Anadolu Üniversitesi Kütüphane - Veritabanları sayfası, elektronik veritabanlarına erişim",
-      "en": ""
+      "en": "Anadolu University Library - Databases page, access electronic databases and strengthen your research"
     }
   },
-  "lastModified": "2026-08-14 15:25"
+  "lastModified": "2026-08-15 17:39"
 }

@@ -8,7 +8,8 @@
       "tr": "Kütüphane duyuruları, önemli bildirimler ve resmi açıklamalar",
       "en": "Library announcements, important notices and official statements"
     },
-    "icon": "bi bi-megaphone-fill"
+    "icon": "bi bi-megaphone-fill",
+    "showIcon": true
   },
   "content": [
     {
@@ -80,7 +81,8 @@
                   "tr": "Acil Duyuru",
                   "en": "Urgent Notice"
                 },
-                "icon": "bi bi-exclamation-triangle-fill"
+                "icon": "bi bi-exclamation-triangle-fill",
+                "color": "#C03221"
               },
               {
                 "id": "Genel Duyuru",
@@ -88,7 +90,8 @@
                   "tr": "Genel Duyuru",
                   "en": "General Notice"
                 },
-                "icon": "bi bi-info-circle-fill"
+                "icon": "bi bi-info-circle-fill",
+                "color": "#1F4C8A"
               },
               {
                 "id": "Etkinlik Duyurusu",
@@ -96,7 +99,8 @@
                   "tr": "Etkinlik",
                   "en": "Event"
                 },
-                "icon": "bi bi-calendar-event-fill"
+                "icon": "bi bi-calendar-event-fill",
+                "color": "#198754"
               },
               {
                 "id": "Sistem Bildirimi",
@@ -104,7 +108,8 @@
                   "tr": "Sistem",
                   "en": "System"
                 },
-                "icon": "bi bi-gear-fill"
+                "icon": "bi bi-gear-fill",
+                "color": "#6c757d"
               },
               {
                 "id": "Tatil/Kapanış",
@@ -112,7 +117,8 @@
                   "tr": "Tatil/Kapanış",
                   "en": "Holiday/Closure"
                 },
-                "icon": "bi bi-door-closed-fill"
+                "icon": "bi bi-door-closed-fill",
+                "color": "#fd7e14"
               }
             ],
             "noResults": {
@@ -367,50 +373,6 @@
       "url": "calisma-saatleri.html",
       "featured": true,
       "actionType": "page"
-    },
-    {
-      "id": 11,
-      "title": {
-        "tr": "Aktarım Testi: Yeni E-Kaynak Erişimi",
-        "en": "Transfer Test: New E-Resource Access"
-      },
-      "summary": {
-        "tr": "Bu modal bir aktarım testi için üretildi. Tüm özellikleri dolu: başlık, açıklama, görsel, buton, tarih aralığı.",
-        "en": "This modal was created for a transfer test. All fields are filled: title, description, image, button, date range."
-      },
-      "content": {
-        "tr": "Bu modal bir aktarım testi için üretildi. Tüm özellikleri dolu: başlık, açıklama, görsel, buton, tarih aralığı.",
-        "en": "This modal was created for a transfer test. All fields are filled: title, description, image, button, date range."
-      },
-      "image": "assets/images/modal-test-erisim.jpg",
-      "date": "2026-08-15",
-      "category": "Genel Duyuru",
-      "categoryColor": "#1F4C8A",
-      "url": "uzaktan-erisim.html",
-      "featured": false,
-      "actionType": "page"
-    },
-    {
-      "id": 12,
-      "title": {
-        "tr": "Modal Tipi Aktarım Testi",
-        "en": "Modal Type Transfer Test"
-      },
-      "summary": {
-        "tr": "Bu modal '#' butonlu — duyurularda popup olarak açılmalı. İçerik eşleşmesi kontrol edilecek.",
-        "en": "This modal has a '#' button — should open as popup in announcements. Content matching will be checked."
-      },
-      "content": {
-        "tr": "Bu modal '#' butonlu — duyurularda popup olarak açılmalı. İçerik eşleşmesi kontrol edilecek.",
-        "en": "This modal has a '#' button — should open as popup in announcements. Content matching will be checked."
-      },
-      "image": "assets/images/nopic.jpeg",
-      "date": "2026-08-15",
-      "category": "Sistem Bildirimi",
-      "categoryColor": "#6c757d",
-      "url": "#",
-      "featured": false,
-      "actionType": "modal"
     }
   ],
   "helpSection": {
@@ -430,7 +392,7 @@
         },
         "icon": "bi bi-envelope",
         "variant": "primary",
-        "action": "mailto:kutuphane@anadolu.edu.tr"
+        "link": "mailto:kutuphane@anadolu.edu.tr"
       },
       {
         "text": {
@@ -439,19 +401,19 @@
         },
         "icon": "bi bi-question-circle",
         "variant": "secondary",
-        "action": "/sss.html"
+        "link": "/sss.html"
       }
     ]
   },
   "meta": {
     "title": {
       "tr": "Duyurular",
-      "en": ""
+      "en": "Announcements"
     },
     "description": {
       "tr": "Kütüphane duyuruları, önemli bildirimler ve resmi açıklamalar",
-      "en": ""
+      "en": "Library announcements, important notices and official statements"
     }
   },
-  "lastModified": "2026-08-15 11:05"
+  "lastModified": "2026-08-15 17:39"
 }

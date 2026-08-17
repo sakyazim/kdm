@@ -8,7 +8,8 @@
       "tr": "Ödünç aldığınız materyallerin iade süresini online olarak uzatabilirsiniz",
       "en": "You can extend the return period of borrowed materials online"
     },
-    "icon": "bi bi-clock-history"
+    "icon": "bi bi-clock-history",
+    "showIcon": true
   },
   "content": [
     {
@@ -68,10 +69,7 @@
                   "tr": "Yukarıdaki butona tıklayarak **\"Ödünç Kayıtları\"** sayfasına gidin. T.C. Kimlik No alanına **11 haneli T.C. Kimlik numaranızı** girin. Güvenlik Kodu kısmına **resimde gördüğünüz güvenlik kodunu** girin. **\"Ödünç Listele\"** butonuna tıklayarak üzerinizdeki materyalleri görüntüleyin.",
                   "en": "Click the button above to go to the **\"Borrowing Records\"** page. Enter your **11-digit Turkish ID number** in the TC ID No field. Enter the **security code shown in the image** in the Security Code field. Click the **\"List Loans\"** button to view your borrowed materials."
                 },
-                "image": {
-                  "tr": "assets/images/sure-uzatma/sure-uzatma-1-tr.png",
-                  "en": "assets/images/sure-uzatma/sure-uzatma-1-en.png"
-                },
+                "image": "assets/images/sure-uzatma-1.png",
                 "imageAlt": {
                   "tr": "LIBRA Ödünç Kayıtları Giriş Ekranı",
                   "en": "LIBRA Borrowing Records Login Screen"
@@ -91,10 +89,7 @@
                   "tr": "Üzerinizdeki materyaller görüntülendiğinde, her materyalin **iade tarihini** ve **durumunu** görebilirsiniz. Rezerve edilmemiş materyallerin iade tarihi bölümünde **\"Süre Uzat\"** linki bulunur.",
                   "en": "When your borrowed materials are displayed, you can see the **return date** and **status** of each material. The **\"Extend Loan\"** link is available in the return date section for materials that are not reserved."
                 },
-                "image": {
-                  "tr": "assets/images/sure-uzatma/sure-uzatma-2-tr.png",
-                  "en": "assets/images/sure-uzatma/sure-uzatma-2-en.png"
-                },
+                "image": "assets/images/sure-uzatma-2.png",
                 "imageAlt": {
                   "tr": "LIBRA Ödünç Listesi ve Süre Uzatma",
                   "en": "LIBRA Loan List and Extension"
@@ -384,12 +379,12 @@
   "meta": {
     "title": {
       "tr": "Ödünç Süre Uzatma",
-      "en": ""
+      "en": "Loan Renewal"
     },
     "description": {
       "tr": "Anadolu Üniversitesi Kütüphane - Ödünç Aldığınız Kitapların Süresini Nasıl Uzatırsınız? Adım Adım Rehber",
-      "en": ""
+      "en": "Anadolu University Library - How to Renew Your Books? Step by Step Guide"
     }
   },
-  "lastModified": "2026-08-14 15:25"
+  "lastModified": "2026-08-15 17:39"
 }

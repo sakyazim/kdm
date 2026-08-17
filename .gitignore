@@ -18,8 +18,20 @@ data/_backups/
 # Yönetim aracı yerel ayarları (SFTP bilgileri burada — repo'ya girmez)
 manager/config.json
 manager/server.log
+manager/server-v*.log
 manager-v2/server.log
+manager-v2/server-v*.log
 manager-v2/config.json
+server-v*.log
 
 # Anasayfa/diger duzeltmeler oncesi klasor yedekleri
 _yedek/
+backups/
+
+# Sunucu logları (alternatif isimler)
+server.out.log
+server.err.log
+manager/server.out.log
+manager/server.err.log
+manager-v2/server.out.log
+manager-v2/server.err.log

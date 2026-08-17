@@ -1,0 +1,73 @@
+{
+  "id": "modal-builder",
+  "file": "data/global/modals.json",
+  "label": "Genel Modallar",
+  "description": "Genel Modal Kütüphanesi: burada üretilen modallar herhangi bir sayfada kullanılabilir (helpSection butonu, duyuru kartı vb.). Sayfa JSON'larına yalnızca modalId yazılır — HTML tek yerde tutulur.",
+  "fields": [
+    {
+      "key": "_comment",
+      "label": "Kullanım Notu",
+      "type": "textarea",
+      "hint": "Dosya hakkında ekip notu — site tarafından okunmaz"
+    },
+    {
+      "key": "categories",
+      "label": "Kategoriler",
+      "type": "array",
+      "itemType": "text",
+      "hint": "help, anasayfa, duyurular, genel gibi — modal butonlarında filtreleme için"
+    },
+    {
+      "key": "modals",
+      "label": "Modal Listesi",
+      "type": "array",
+      "itemLabel": "Modal",
+      "itemFields": [
+        {
+          "key": "id",
+          "label": "Kimlik",
+          "type": "text",
+          "auto": true,
+          "readonly": true,
+          "hint": "🔒 Otomatik üretilir — sayfa JSON'larında bu id'ye referans verilir"
+        },
+        {
+          "key": "category",
+          "label": "Kategori",
+          "type": "text",
+          "hint": "help / anasayfa / duyurular / genel (üstteki kategorilerden biri)"
+        },
+        { "key": "label", "label": "Modal Adı", "type": "lang", "required": true },
+        {
+          "key": "html",
+          "label": "Modal İçeriği (HTML)",
+          "type": "object",
+          "hint": "Serbest HTML: iletişim formu, duyuru detayı, değerlendirme vb.",
+          "fields": [
+            {
+              "key": "tr",
+              "label": "HTML (TR)",
+              "type": "code",
+              "placeholder": "<form>…</form>",
+              "hint": "Türkçe modal içeriği — serbest HTML kodu"
+            },
+            {
+              "key": "en",
+              "label": "HTML (EN)",
+              "type": "code",
+              "placeholder": "<form>…</form>",
+              "hint": "İngilizce içerik — boşsa TR gösterilir"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "lastModified",
+      "label": "Son Güncelleme",
+      "type": "text",
+      "readonly": true,
+      "hint": "🔒 Kayıtta otomatik güncellenir"
+    }
+  ]
+}

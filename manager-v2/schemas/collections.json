@@ -1,0 +1,35 @@
+{
+  "file": "data/content/collections.json",
+  "label": "Koleksiyon Arama (Servis Kodları)",
+  "description": "Bu dosya servis sağlayıcılardan (EBSCO, TO-KAT vb.) alınan arama adreslerini/parametrelerini taşır — yıllık değişebilir. 'Hazır Widget Kodu' alanına servisin verdiği HTML'i yapıştırabilirsiniz (doluysa alanlardan üretilen form yerine bu kod kullanılır). Kaydetmeden önce canlı önizlemede test edin; geçmişten eski sürüme dönebilirsiniz.",
+  "root": "array",
+  "itemLabel": "Koleksiyon",
+  "itemFields": [
+    { "key": "id", "label": "Kimlik", "type": "text", "hint": "Benzersiz — kart eşleştirmede kullanılır, değiştirmeyin" },
+    { "key": "title", "label": "Koleksiyon Adı", "type": "lang" },
+    { "key": "icon", "label": "İkon", "type": "icon", "hint": "Bootstrap veya FontAwesome ikonu" },
+    { "key": "description", "label": "Açıklama", "type": "lang" },
+    { "key": "active", "label": "Varsayılan Seçili", "type": "boolean", "hint": "Açılışta bu arama seçili gelir — yalnızca biri aktif olmalı" },
+    { "key": "formAction", "label": "Arama Adresi (formAction)", "type": "url", "hint": "Servis sağlayıcıdan alınır, yıllık değişebilir. Katalog (libra) sabittir" },
+    { "key": "formMethod", "label": "Yöntem", "type": "select", "options": ["GET", "POST"] },
+    { "key": "searchParam", "label": "Arama Parametresi", "type": "text", "hint": "Sorgu parametresinin adı (örn: q, keyword)" },
+    { "key": "placeholder", "label": "Yer Tutucu Metin", "type": "lang" },
+    { "key": "ariaLabel", "label": "Erişilebilirlik Etiketi", "type": "lang" },
+    {
+      "key": "hiddenFields",
+      "label": "Gizli Alanlar",
+      "type": "array",
+      "itemLabel": "Alan",
+      "itemFields": [
+        { "key": "name", "label": "Ad", "type": "text" },
+        { "key": "value", "label": "Değer", "type": "text" }
+      ]
+    },
+    {
+      "key": "customCode",
+      "label": "Hazır Widget Kodu (customCode)",
+      "type": "code",
+      "hint": "Servis sağlayıcının verdiği hazır HTML kodu — doluysa yukarıdaki form alanları yerine bu kod kullanılır. Yıllık değişebilir; dengesiz etiket uyarıları kaydetmeden önce görünür."
+    }
+  ]
+}

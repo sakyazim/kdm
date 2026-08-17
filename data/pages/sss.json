@@ -8,43 +8,8 @@
       "tr": "Kütüphane hizmetleri hakkında merak ettiğiniz her şey burada! Aradığınız sorunun cevabını bulamazsanız bizimle iletişime geçin.",
       "en": "Everything you want to know about library services is here! If you can't find the answer to your question, please contact us."
     },
-    "icon": "bi bi-question-circle"
-  },
-  "help": {
-    "title": {
-      "tr": "Aradığınız soruyu bulamadınız mı?",
-      "en": "Can't find the question you're looking for?"
-    },
-    "description": {
-      "tr": "Kütüphane hizmetleri hakkında daha detaylı bilgi almak veya özel sorularınızı sormak için bizimle iletişime geçin.",
-      "en": "Contact us for more detailed information about library services or to ask your specific questions."
-    },
-    "buttons": [
-      {
-        "text": {
-          "tr": "Hemen Ara",
-          "en": "Call Now"
-        },
-        "url": "tel:+902223350580",
-        "icon": "fas fa-phone"
-      },
-      {
-        "text": {
-          "tr": "E-posta Gönder",
-          "en": "Send Email"
-        },
-        "url": "mailto:library@anadolu.edu.tr",
-        "icon": "fas fa-envelope"
-      },
-      {
-        "text": {
-          "tr": "Ana Sayfa",
-          "en": "Home"
-        },
-        "url": "index.html",
-        "icon": "fas fa-home"
-      }
-    ]
+    "icon": "bi bi-question-circle",
+    "showIcon": true
   },
   "search": {
     "icon": "fas fa-search",
@@ -1133,12 +1098,48 @@
   "meta": {
     "title": {
       "tr": "S.S.S. - Sıkça Sorulan Sorular",
-      "en": ""
+      "en": "FAQ - Frequently Asked Questions"
     },
     "description": {
       "tr": "Anadolu Üniversitesi Kütüphane - Sıkça Sorulan Sorular ve Cevapları",
-      "en": ""
+      "en": "Anadolu University Library - Frequently Asked Questions and Answers"
     }
   },
-  "lastModified": "2026-08-14 15:25"
+  "lastModified": "2026-08-15 17:39",
+  "helpSection": {
+    "title": {
+      "tr": "Yardıma mı ihtiyacınız var?",
+      "en": "Do you need help?"
+    },
+    "description": {
+      "tr": "Sorunuzun cevabını bulamadıysanız bizimle iletişime geçmekten çekinmeyin.",
+      "en": "Sorunuzun cevabını bulamadıysanız bizimle iletişime geçmekten çekinmeyin."
+    },
+    "buttons": [
+      {
+        "icon": "fas fa-phone",
+        "text": {
+          "tr": "Hemen Ara",
+          "en": "Call Now"
+        },
+        "link": "tel:+902223350580"
+      },
+      {
+        "icon": "fas fa-envelope",
+        "text": {
+          "tr": "E-posta Gönder",
+          "en": "Send Email"
+        },
+        "link": "mailto:library@anadolu.edu.tr"
+      },
+      {
+        "icon": "fas fa-home",
+        "text": {
+          "tr": "Ana Sayfa",
+          "en": "Home"
+        },
+        "link": "index.html"
+      }
+    ]
+  }
 }

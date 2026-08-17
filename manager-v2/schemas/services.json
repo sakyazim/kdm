@@ -1,0 +1,27 @@
+{
+  "file": "data/content/services.json",
+  "label": "Kütüphane Hizmetleri",
+  "description": "Ana sayfadaki hizmet kartları. İkonu Galeri butonuyla seçebilirsiniz. url '#' olursa kart tıklanmaz (div olarak görünür). 'Kimlik' alanları kilitlidir — sayfa eşleştirmesini bozmamak için değiştirmeyin.",
+  "fields": [
+    {
+      "key": "title",
+      "label": "Bölüm Başlığı",
+      "type": "lang",
+      "hint": "Not: Görünen başlık home.json → sections.services.title'dan gelir; bu alan şu an kullanılmıyor"
+    },
+    {
+      "key": "services",
+      "label": "Hizmet Kartları",
+      "type": "array",
+      "itemLabel": "Hizmet",
+      "itemFields": [
+        { "key": "id", "label": "Kimlik", "type": "text", "readonly": true, "hint": "🔒 Kilitli — değiştirmeyin" },
+        { "key": "title", "label": "Hizmet Adı", "type": "lang" },
+        { "key": "description", "label": "Açıklama", "type": "lang", "hint": "Kartın tooltip'inde görünür" },
+        { "key": "icon", "label": "İkon", "type": "icon", "hint": "Galeri butonuyla seçin veya bi-xxx yazın" },
+        { "key": "url", "label": "Bağlantı", "type": "url", "hint": "İç sayfa (örn: veritabanlari.html), dış link veya # (tıklanmaz kart)" },
+        { "key": "active", "label": "Etkin", "type": "boolean", "hint": "Kapalıysa kart gösterilmez" }
+      ]
+    }
+  ]
+}

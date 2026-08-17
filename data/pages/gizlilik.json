@@ -8,7 +8,8 @@
       "tr": "Kütüphanemiz kullanıcı gizliliğini koruma taahhüdünü en üst düzeyde tutar.",
       "en": "Our library maintains the highest level of commitment to protecting user privacy."
     },
-    "icon": "bi bi-shield-lock"
+    "icon": "bi bi-shield-lock",
+    "showIcon": true
   },
   "content": [
     {
@@ -559,12 +560,12 @@
   "meta": {
     "title": {
       "tr": "Gizlilik",
-      "en": ""
+      "en": "Privacy Policy"
     },
     "description": {
       "tr": "Anadolu Üniversitesi Kütüphane",
-      "en": ""
+      "en": "Anadolu University Library"
     }
   },
-  "lastModified": "2026-08-14 15:25"
+  "lastModified": "2026-08-15 17:39"
 }

@@ -40,14 +40,25 @@
       }
     ]
   },
-  "help": {
+  "meta": {
     "title": {
-      "tr": "Daha fazla bilgi mi gerekiyor?",
-      "en": "Need more information?"
+      "tr": "Araştırma Mevzuatı",
+      "en": ""
     },
     "description": {
-      "tr": "Araştırma mevzuatı hakkında detaylı bilgi için bizimle iletişime geçebilirsiniz.",
-      "en": "You can contact us for detailed information about research regulations."
+      "tr": "Anadolu Üniversitesi Araştırma Mevzuatı",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-14 15:25",
+  "helpSection": {
+    "title": {
+      "tr": "Yardıma mı ihtiyacınız var?",
+      "en": "Do you need help?"
+    },
+    "description": {
+      "tr": "Araştırma mevzuatı hakkında sorularınız için destek alabilirsiniz.",
+      "en": "Araştırma mevzuatı hakkında sorularınız için destek alabilirsiniz."
     },
     "buttons": [
       {
@@ -65,26 +76,7 @@
           "en": "Send Email"
         },
         "link": "mailto:library@anadolu.edu.tr"
-      },
-      {
-        "icon": "fas fa-home",
-        "text": {
-          "tr": "Ana Sayfa",
-          "en": "Home"
-        },
-        "link": "index.html"
       }
     ]
-  },
-  "meta": {
-    "title": {
-      "tr": "Araştırma Mevzuatı",
-      "en": ""
-    },
-    "description": {
-      "tr": "Anadolu Üniversitesi Araştırma Mevzuatı",
-      "en": ""
-    }
-  },
-  "lastModified": "2026-08-14 15:25"
+  }
 }

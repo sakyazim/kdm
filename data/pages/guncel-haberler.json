@@ -8,7 +8,8 @@
       "tr": "Kütüphanemizden haberler, duyurular ve etkinlikler",
       "en": "News, announcements and events from our library"
     },
-    "icon": "bi bi-newspaper"
+    "icon": "bi bi-newspaper",
+    "showIcon": true
   },
   "content": [
     {
@@ -80,7 +81,8 @@
                   "tr": "Veritabanları",
                   "en": "Databases"
                 },
-                "icon": "bi bi-database"
+                "icon": "bi bi-database",
+                "color": "#1F4C8A"
               },
               {
                 "id": "Duyuru",
@@ -88,7 +90,8 @@
                   "tr": "Duyuru",
                   "en": "Announcement"
                 },
-                "icon": "bi bi-megaphone"
+                "icon": "bi bi-megaphone",
+                "color": "#C03221"
               },
               {
                 "id": "Eğitim",
@@ -96,7 +99,8 @@
                   "tr": "Eğitim",
                   "en": "Training"
                 },
-                "icon": "bi bi-mortarboard"
+                "icon": "bi bi-mortarboard",
+                "color": "#198754"
               },
               {
                 "id": "Etkinlik",
@@ -104,7 +108,8 @@
                   "tr": "Etkinlik",
                   "en": "Event"
                 },
-                "icon": "bi bi-calendar-event"
+                "icon": "bi bi-calendar-event",
+                "color": "#fd7e14"
               }
             ],
             "noResults": {
@@ -361,7 +366,7 @@
       "en": "Anadolu University Library - Latest News, Announcements and Events"
     }
   },
-  "lastModified": "2026-08-15 14:46",
+  "lastModified": "2026-08-15 17:39",
   "labels": {
     "viewDetails": {
       "tr": "Detayları Gör",
@@ -374,10 +379,6 @@
     "goToPage": {
       "tr": "Sayfaya Git",
       "en": "Go to Page"
-    },
-    "featuredBadge": {
-      "tr": "Öne Çıkan",
-      "en": "Featured"
     }
   }
 }

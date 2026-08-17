@@ -1,0 +1,254 @@
+{
+ "file": "data/pages/guncel-haberler.json",
+ "label": "Güncel Haberler",
+ "description": "Güncel haberler sayfası: arama/araç çubuğu, haber listesi, yardım bölümü, etiketler ve SEO meta.",
+ "fields": [
+  {
+   "key": "hero",
+   "label": "Üst Başlık (Hero)",
+   "type": "object",
+   "fields": [
+    {
+     "key": "title",
+     "label": "Başlık",
+     "type": "lang"
+    },
+    {
+     "key": "description",
+     "label": "Açıklama",
+     "type": "lang"
+    },
+    {
+     "key": "icon",
+     "label": "İkon",
+     "type": "icon"
+    }
+   ]
+  },
+  {
+   "key": "content",
+   "label": "Sayfa Bölümleri",
+   "type": "array",
+   "itemLabel": "Bölüm",
+   "itemFields": [
+    {
+     "key": "id",
+     "label": "Bölüm Kimliği",
+     "type": "text",
+     "readonly": true
+    },
+    {
+     "key": "components",
+     "label": "Bileşenler",
+     "type": "components",
+     "registry": "components"
+    }
+   ]
+  },
+  {
+   "key": "newsItems",
+   "label": "Haber Listesi",
+   "type": "array",
+   "itemLabel": "Haber",
+   "itemFields": [
+    {
+     "key": "id",
+     "label": "Numara",
+     "type": "number",
+     "readonly": true,
+     "hint": "🔒 Otomatik — elle değiştirilmez"
+    },
+    {
+     "key": "title",
+     "label": "Başlık",
+     "type": "lang",
+     "required": true
+    },
+    {
+     "key": "summary",
+     "label": "Özet (Kartta)",
+     "type": "lang",
+     "hint": "Kartta görünen kısa metin"
+    },
+    {
+     "key": "content",
+     "label": "İçerik (Modalda)",
+     "type": "lang",
+     "hint": "Modalda görünen detay — markdown desteklenir",
+     "required": true
+    },
+    {
+     "key": "image",
+     "label": "Görsel",
+     "type": "image",
+     "hint": "🖼 Seç butonuyla assets/images klasöründen seçilir"
+    },
+    {
+     "key": "date",
+     "label": "Tarih",
+     "type": "date"
+    },
+    {
+     "key": "category",
+     "label": "Kategori",
+     "type": "select",
+     "options": [
+      "Veritabanları",
+      "Duyuru",
+      "Eğitim",
+      "Etkinlik"
+     ],
+     "hint": "Arama filtresi kategorileriyle eşleşmeli"
+    },
+    {
+     "key": "actionType",
+     "label": "Tıklama Davranışı",
+     "type": "select",
+     "options": [
+      "modal",
+      "page",
+      "external"
+     ],
+     "hint": "modal: popup açar · page: iç sayfaya gider · external: dış link"
+    },
+    {
+     "key": "url",
+     "label": "Bağlantı",
+     "type": "url",
+     "hint": "page: sayfa adı (örn. egitim-programlari.html) · external: https://... · modal/#: kullanılmaz"
+    },
+    {
+     "key": "featured",
+     "label": "Öne Çıkan",
+     "type": "boolean",
+     "hint": "true = kartta 'Öne Çıkan' rozeti gösterilir"
+    }
+   ]
+  },
+  {
+   "key": "labels",
+   "label": "Sayfa Etiketleri (Buton/Rozet)",
+   "type": "object",
+   "description": "Hardcoded metin olmamalı — tüm buton/rozet metinleri buradan okunur",
+   "fields": [
+    {
+     "key": "viewDetails",
+     "label": "Detay Butonu",
+     "type": "lang"
+    },
+    {
+     "key": "close",
+     "label": "Kapat Butonu",
+     "type": "lang"
+    },
+    {
+     "key": "goToPage",
+     "label": "Sayfaya Git Butonu",
+     "type": "lang"
+    }
+   ]
+  },
+  {
+   "key": "helpSection",
+   "label": "Yardım Bölümü",
+   "type": "object",
+   "fields": [
+    {
+     "key": "title",
+     "label": "Başlık",
+     "type": "lang"
+    },
+    {
+     "key": "description",
+     "label": "Açıklama",
+     "type": "lang"
+    },
+    {
+     "key": "buttons",
+     "label": "Butonlar",
+     "type": "array",
+     "itemLabel": "Buton",
+     "itemFields": [
+      {
+       "key": "text",
+       "label": "Metin",
+       "type": "lang"
+      },
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      },
+      {
+       "key": "variant",
+       "label": "Stil",
+       "type": "select",
+       "options": [
+        "primary",
+        "secondary",
+        "outline"
+       ]
+      },
+      {
+       "key": "link",
+       "label": "Bağlantı",
+       "type": "url",
+       "hint": "mailto:..., /sayfa.html veya https://... — modal açmak için type: modal + modal alanı"
+      },
+      {
+       "key": "type",
+       "label": "Buton Tipi",
+       "type": "select",
+       "options": [
+        "link",
+        "modal"
+       ],
+       "hint": "link: sayfaya/bağlantıya gider · modal: tıklayınca modal açar"
+      },
+      {
+       "key": "modal",
+       "label": "Modal İçeriği",
+       "type": "object",
+       "fields": [
+        {
+         "key": "title",
+         "label": "Modal Başlığı",
+         "type": "lang"
+        },
+        {
+         "key": "body",
+         "label": "Modal İçeriği",
+         "type": "lang"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "meta",
+   "label": "SEO Bilgileri",
+   "type": "object",
+   "fields": [
+    {
+     "key": "title",
+     "label": "Sayfa Başlığı",
+     "type": "lang"
+    },
+    {
+     "key": "description",
+     "label": "Açıklama",
+     "type": "lang"
+    }
+   ]
+  },
+  {
+   "key": "lastModified",
+   "label": "Son Güncelleme",
+   "type": "text",
+   "readonly": true,
+   "hint": "🔒 Kayıtta otomatik güncellenir (Türkiye saati, 24 saat)"
+  }
+ ]
+}

@@ -8,7 +8,8 @@
       "tr": "Kampüs dışından e-kaynaklara nasıl erişeceğinizi öğrenin",
       "en": "Learn how to access e-resources from off-campus"
     },
-    "icon": "bi bi-shield-lock"
+    "icon": "bi bi-shield-lock",
+    "showIcon": true
   },
   "content": [
     {
@@ -59,10 +60,7 @@
                   "tr": "Kütüphane web sitesinden **Veritabanları** menüsüne gidin veya arama kutusunu kullanın.",
                   "en": "Go to the **Databases** menu from the library website or use the search box."
                 },
-                "image": {
-                  "tr": "assets/images/remote-access/off-kampus-1-tr.png",
-                  "en": "assets/images/remote-access/off-kampus-1-en.png"
-                },
+                "image": "assets/images/remote-access/off-kampus-1.png",
                 "imageAlt": {
                   "tr": "Veritabanları menüsü ekran görüntüsü",
                   "en": "Databases menu screenshot"
@@ -82,10 +80,7 @@
                   "tr": "Ulaşmak istediğiniz veritabanını bulun ve **\"Erişim Adresi\"** butonuna tıklayın.",
                   "en": "Find the database you want to access and click the **\"Access Link\"** button."
                 },
-                "image": {
-                  "tr": "assets/images/remote-access/off-kampus-2-tr.png",
-                  "en": "assets/images/remote-access/off-kampus-2-en.png"
-                },
+                "image": "assets/images/remote-access/off-kampus-2.png",
                 "imageAlt": {
                   "tr": "Erişim Adresi butonu ekran görüntüsü",
                   "en": "Access Link button screenshot"
@@ -105,10 +100,7 @@
                   "tr": "Açılan **\"Kampüs Dışı Erişim\"** sayfasında Anadolu Üniversitesi mail adresinizi (`kullaniciadi@anadolu.edu.tr`) ve şifrenizi girin.",
                   "en": "On the **\"Off-Campus Access\"** page that opens, enter your Anadolu University email address (`username@anadolu.edu.tr`) and password."
                 },
-                "image": {
-                  "tr": "assets/images/remote-access/off-kampus-3-tr.png",
-                  "en": "assets/images/remote-access/off-kampus-3-en.png"
-                },
+                "image": "assets/images/remote-access/off-kampus-3.png",
                 "imageAlt": {
                   "tr": "Kimlik doğrulama ekranı",
                   "en": "Authentication screen"
@@ -127,10 +119,6 @@
                 "description": {
                   "tr": "**\"Giriş Yap\"** butonuna tıkladıktan sonra otomatik olarak veritabanına yönlendirileceksiniz. Artık kampüs dışından tüm kaynaklara erişebilirsiniz.",
                   "en": "After clicking the **\"Login\"** button, you will be automatically redirected to the database. Now you can access all resources from off-campus."
-                },
-                "image": {
-                  "tr": "assets/images/remote-access/off-kampus-4-tr.png",
-                  "en": "assets/images/remote-access/off-kampus-4-en.png"
                 },
                 "imageAlt": {
                   "tr": "Başarılı giriş sonrası veritabanı anasayfası",
@@ -187,17 +175,6 @@
                     "en": "Login with your email address and password"
                   }
                 ]
-              },
-              {
-                "type": "image",
-                "src": {
-                  "tr": "assets/images/remote-access/summon-search-tr.png",
-                  "en": "assets/images/remote-access/summon-search-en.png"
-                },
-                "alt": {
-                  "tr": "EDS arama sistemi ekran görüntüsü",
-                  "en": "EDS search system screenshot"
-                }
               }
             ]
           }
@@ -443,12 +420,12 @@
   "meta": {
     "title": {
       "tr": "Uzaktan Erişim Rehberi",
-      "en": ""
+      "en": "Remote Access Guide"
     },
     "description": {
       "tr": "Anadolu Üniversitesi Kütüphane - Uzaktan Erişim Nasıl Yapılır? Adım Adım Rehber",
-      "en": ""
+      "en": "Anadolu University Library - How to Access Remotely? Step by Step Guide"
     }
   },
-  "lastModified": "2026-08-14 15:25"
+  "lastModified": "2026-08-15 17:39"
 }

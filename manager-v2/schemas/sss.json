@@ -1,0 +1,138 @@
+{
+  "file": "data/pages/sss.json",
+  "label": "Sıkça Sorulan Sorular",
+  "description": "SSS akordeonları, arama ve yardım bölümü.",
+  "fields": [
+    {
+      "key": "hero",
+      "label": "Üst Başlık (Hero)",
+      "type": "object",
+      "fields": [
+        {
+          "key": "title",
+          "label": "Başlık",
+          "type": "lang",
+          "required": true
+        },
+        {
+          "key": "description",
+          "label": "Açıklama",
+          "type": "lang"
+        },
+        {
+          "key": "icon",
+          "label": "İkon",
+          "type": "icon"
+        },
+        {
+          "key": "showIcon",
+          "label": "İkonu Göster",
+          "type": "boolean",
+          "hint": "Açıksa hero'da büyük ikon görünür"
+        },
+        {
+          "key": "breadcrumb",
+          "label": "Sayfa Yolu (Breadcrumb)",
+          "type": "array",
+          "itemLabel": "Adım",
+          "itemFields": [
+            {
+              "key": "text",
+              "label": "Metin",
+              "type": "lang"
+            },
+            {
+              "key": "url",
+              "label": "Bağlantı",
+              "type": "text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "content",
+      "label": "Sayfa Bölümleri",
+      "type": "array",
+      "itemLabel": "Bölüm",
+      "itemFields": [
+        {
+          "key": "id",
+          "label": "Bölüm Kimliği",
+          "type": "text",
+          "readonly": true,
+          "hint": "🔒 Otomatik — bölüm çapa kimliği"
+        },
+        {
+          "key": "components",
+          "label": "Bileşenler",
+          "type": "components",
+          "registry": "components"
+        }
+      ]
+    },
+        {
+      "key": "search",
+      "label": "Arama Ayarları",
+      "type": "object",
+      "fields": [
+        {
+          "key": "icon",
+          "label": "İkon",
+          "type": "icon"
+        },
+        {
+          "key": "placeholder",
+          "label": "Yer Tutucu",
+          "type": "lang"
+        },
+        {
+          "key": "clearButtonIcon",
+          "label": "Temizleme İkonu",
+          "type": "icon"
+        },
+        {
+          "key": "noResults",
+          "label": "Sonuç Yok Mesajı",
+          "type": "object",
+          "fields": [
+            {
+              "key": "title",
+              "label": "Başlık",
+              "type": "lang"
+            },
+            {
+              "key": "description",
+              "label": "Açıklama",
+              "type": "lang"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "meta",
+      "label": "SEO Bilgileri",
+      "type": "object",
+      "fields": [
+        {
+          "key": "title",
+          "label": "Başlık",
+          "type": "lang"
+        },
+        {
+          "key": "description",
+          "label": "Açıklama",
+          "type": "lang"
+        }
+      ]
+    },
+    {
+      "key": "lastModified",
+      "label": "Son Güncelleme",
+      "type": "text",
+      "readonly": true,
+      "hint": "🔒 Otomatik — kayıtta güncellenir"
+    }
+  ]
+}

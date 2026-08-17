@@ -8,7 +8,8 @@
       "tr": "Kütüphane ve Dokümantasyon Daire Başkanlığı organizasyon yapısı",
       "en": "Library and Documentation Department Organizational Structure"
     },
-    "icon": "bi bi-diagram-3"
+    "icon": "bi bi-diagram-3",
+    "showIcon": true
   },
   "content": [
     {
@@ -378,12 +379,12 @@
   "meta": {
     "title": {
       "tr": "Organizasyon Şeması",
-      "en": ""
+      "en": "Organization Chart"
     },
     "description": {
       "tr": "Anadolu Üniversitesi Kütüphane",
-      "en": ""
+      "en": "Anadolu University Library"
     }
   },
-  "lastModified": "2026-08-14 15:25"
+  "lastModified": "2026-08-15 17:39"
 }

@@ -1,0 +1,315 @@
+{
+ "file": "data/global/quickactions.json",
+ "label": "Hızlı İşlemler",
+ "description": "Tüm sayfalarda sol altta görünen hızlı işlemler menüsü — sayfa gruplarına göre işlemler, ikonlar ve çeviriler.",
+ "fields": [
+  {
+   "key": "global",
+   "label": "Global İşlemler (Tüm Sayfalar)",
+   "type": "array",
+   "itemLabel": "İşlem",
+   "itemFields": [
+    {
+     "key": "id",
+     "label": "Kimlik",
+     "type": "text",
+     "readonly": true,
+     "hint": "🔒 Otomatik — örn. toggle-theme"
+    },
+    {
+     "key": "title",
+     "label": "Başlık",
+     "type": "lang",
+     "required": true
+    },
+    {
+     "key": "description",
+     "label": "Açıklama",
+     "type": "lang"
+    },
+    {
+     "key": "icon",
+     "label": "İkon",
+     "type": "icon"
+    },
+    {
+     "key": "action",
+     "label": "Eylem",
+     "type": "text",
+     "hint": "toggleTheme · resetModals · refreshDatabases · printPage · sharePage · resetAgreement:<anahtar>"
+    },
+    {
+     "key": "url",
+     "label": "Bağlantı",
+     "type": "url",
+     "hint": "action yerine kullanılır — örn. sure-uzatma.html"
+    },
+    {
+     "key": "enabled",
+     "label": "Etkin",
+     "type": "boolean"
+    }
+   ]
+  },
+  {
+   "key": "pages",
+   "label": "Sayfa Grupları",
+   "type": "object",
+   "description": "Sayfaya özel işlemler — sayfanın kendi linki otomatik gizlenir",
+   "fields": [
+    {
+     "key": "uzaktan-erisim",
+     "label": "Uzaktan Erişim Sayfası",
+     "type": "array",
+     "itemLabel": "İşlem",
+     "itemFields": [
+      {
+       "key": "id",
+       "label": "Kimlik",
+       "type": "text",
+       "readonly": true
+      },
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang",
+       "required": true
+      },
+      {
+       "key": "description",
+       "label": "Açıklama",
+       "type": "lang"
+      },
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      },
+      {
+       "key": "action",
+       "label": "Eylem",
+       "type": "text",
+       "hint": "toggleTheme · resetModals · refreshDatabases · printPage · sharePage · resetAgreement:<anahtar>"
+      },
+      {
+       "key": "url",
+       "label": "Bağlantı",
+       "type": "url",
+       "hint": "action yerine kullanılır"
+      },
+      {
+       "key": "enabled",
+       "label": "Etkin",
+       "type": "boolean"
+      }
+     ]
+    },
+    {
+     "key": "veritabanlari",
+     "label": "Veritabanları Sayfası",
+     "type": "array",
+     "itemLabel": "İşlem",
+     "itemFields": [
+      {
+       "key": "id",
+       "label": "Kimlik",
+       "type": "text",
+       "readonly": true
+      },
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang",
+       "required": true
+      },
+      {
+       "key": "description",
+       "label": "Açıklama",
+       "type": "lang"
+      },
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      },
+      {
+       "key": "action",
+       "label": "Eylem",
+       "type": "text",
+       "hint": "toggleTheme · resetModals · refreshDatabases · printPage · sharePage · resetAgreement:<anahtar>"
+      },
+      {
+       "key": "url",
+       "label": "Bağlantı",
+       "type": "url",
+       "hint": "action yerine kullanılır"
+      },
+      {
+       "key": "enabled",
+       "label": "Etkin",
+       "type": "boolean"
+      }
+     ]
+    },
+    {
+     "key": "home",
+     "label": "Anasayfa",
+     "type": "array",
+     "itemLabel": "İşlem",
+     "itemFields": [
+      {
+       "key": "id",
+       "label": "Kimlik",
+       "type": "text",
+       "readonly": true
+      },
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang",
+       "required": true
+      },
+      {
+       "key": "description",
+       "label": "Açıklama",
+       "type": "lang"
+      },
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      },
+      {
+       "key": "action",
+       "label": "Eylem",
+       "type": "text",
+       "hint": "toggleTheme · resetModals · refreshDatabases · printPage · sharePage · resetAgreement:<anahtar>"
+      },
+      {
+       "key": "url",
+       "label": "Bağlantı",
+       "type": "url",
+       "hint": "action yerine kullanılır"
+      },
+      {
+       "key": "enabled",
+       "label": "Etkin",
+       "type": "boolean"
+      }
+     ]
+    },
+    {
+     "key": "inner",
+     "label": "Diğer Tüm Sayfalar",
+     "type": "array",
+     "itemLabel": "İşlem",
+     "itemFields": [
+      {
+       "key": "id",
+       "label": "Kimlik",
+       "type": "text",
+       "readonly": true
+      },
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang",
+       "required": true
+      },
+      {
+       "key": "description",
+       "label": "Açıklama",
+       "type": "lang"
+      },
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      },
+      {
+       "key": "action",
+       "label": "Eylem",
+       "type": "text",
+       "hint": "toggleTheme · resetModals · refreshDatabases · printPage · sharePage · resetAgreement:<anahtar>"
+      },
+      {
+       "key": "url",
+       "label": "Bağlantı",
+       "type": "url",
+       "hint": "action yerine kullanılır"
+      },
+      {
+       "key": "enabled",
+       "label": "Etkin",
+       "type": "boolean"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "translations",
+   "label": "Çeviriler",
+   "type": "object",
+   "fields": [
+    {
+     "key": "title",
+     "label": "Panel Başlığı",
+     "type": "lang"
+    },
+    {
+     "key": "ariaLabel",
+     "label": "Buton Erişilebilirlik Etiketi",
+     "type": "lang"
+    },
+    {
+     "key": "close",
+     "label": "Kapat Etiketi",
+     "type": "lang"
+    },
+    {
+     "key": "notifications",
+     "label": "Bildirim Metinleri",
+     "type": "object",
+     "fields": [
+      {
+       "key": "modalsReset",
+       "label": "Duyurular Sıfırlandı",
+       "type": "lang"
+      },
+      {
+       "key": "agreementReset",
+       "label": "Kullanım Şartları Sıfırlandı ({title})",
+       "type": "lang"
+      },
+      {
+       "key": "cacheCleared",
+       "label": "Önbellek Temizlendi",
+       "type": "lang"
+      },
+      {
+       "key": "databasesRefreshing",
+       "label": "Veritabanları Yenileniyor",
+       "type": "lang"
+      },
+      {
+       "key": "themeChanged",
+       "label": "Tema Değiştirildi",
+       "type": "lang"
+      },
+      {
+       "key": "pageShared",
+       "label": "Sayfa Paylaşıldı",
+       "type": "lang"
+      },
+      {
+       "key": "linkCopied",
+       "label": "Sayfa Linki Kopyalandı",
+       "type": "lang"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

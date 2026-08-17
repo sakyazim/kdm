@@ -190,6 +190,7 @@ export class LanguageManager {
             tr: {
                 open: 'Açık',
                 closed: 'Kapalı',
+                lunchBreak: 'Öğle Arası',
                 loading: 'Yükleniyor...',
                 error: 'Hata',
                 noData: 'Veri bulunamadı',
@@ -203,6 +204,7 @@ export class LanguageManager {
             en: {
                 open: 'Open',
                 closed: 'Closed',
+                lunchBreak: 'Lunch Break',
                 loading: 'Loading...',
                 error: 'Error',
                 noData: 'No data found',

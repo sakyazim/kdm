@@ -24,7 +24,8 @@
         },
         "url": "tarihce-genel-bilgiler.html"
       }
-    ]
+    ],
+    "showIcon": true
   },
   "content": [
     {
@@ -145,12 +146,12 @@
   "meta": {
     "title": {
       "tr": "Tarihçe ve Genel Bilgiler",
-      "en": ""
+      "en": "History and General Information"
     },
     "description": {
       "tr": "Anadolu Üniversitesi Kütüphane - Tarihçe ve Genel Bilgiler",
-      "en": ""
+      "en": "Anadolu University Library - History and General Information"
     }
   },
-  "lastModified": "2026-08-14 15:25"
+  "lastModified": "2026-08-15 17:39"
 }

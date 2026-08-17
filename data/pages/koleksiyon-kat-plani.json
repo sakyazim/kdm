@@ -882,14 +882,25 @@
       ]
     }
   ],
-  "help": {
+  "meta": {
     "title": {
-      "tr": "Koleksiyon hakkında daha fazla bilgi mi almak istiyorsunuz?",
-      "en": "Would you like more information about the collection?"
+      "tr": "Koleksiyon & Kat Planı",
+      "en": ""
     },
     "description": {
-      "tr": "Kütüphane koleksiyonları, kat planları ve hizmetler hakkında detaylı bilgi almak için bizimle iletişime geçin.",
-      "en": "Contact us for detailed information about library collections, floor plans, and services."
+      "tr": "Anadolu Üniversitesi Kütüphane Koleksiyon ve Kat Planı",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-14 15:25",
+  "helpSection": {
+    "title": {
+      "tr": "Yardıma mı ihtiyacınız var?",
+      "en": "Do you need help?"
+    },
+    "description": {
+      "tr": "Koleksiyon ve kat planı hakkında sorularınız için bilgi masasından destek alabilirsiniz.",
+      "en": "Koleksiyon ve kat planı hakkında sorularınız için bilgi masasından destek alabilirsiniz."
     },
     "buttons": [
       {
@@ -906,27 +917,16 @@
           "tr": "E-posta Gönder",
           "en": "Send Email"
         },
-        "link": "mailto:kutuphane@anadolu.edu.tr"
+        "link": "mailto:library@anadolu.edu.tr"
       },
       {
-        "icon": "fas fa-map-marker-alt",
+        "icon": "fas fa-home",
         "text": {
-          "tr": "Konum",
-          "en": "Location"
+          "tr": "Ana Sayfa",
+          "en": "Home"
         },
-        "link": "iletisim.html"
+        "link": "index.html"
       }
     ]
-  },
-  "meta": {
-    "title": {
-      "tr": "Koleksiyon & Kat Planı",
-      "en": ""
-    },
-    "description": {
-      "tr": "Anadolu Üniversitesi Kütüphane Koleksiyon ve Kat Planı",
-      "en": ""
-    }
-  },
-  "lastModified": "2026-08-14 15:25"
+  }
 }

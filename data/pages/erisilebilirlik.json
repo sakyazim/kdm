@@ -8,7 +8,8 @@
       "tr": "Anadolu Üniversitesi Kütüphanesi, tüm kullanıcılarının bilgi kaynaklarına eşit ve engelsiz erişimini sağlamaya kararlıdır.",
       "en": "Anadolu University Library is committed to ensuring equal and barrier-free access to information resources for all users."
     },
-    "icon": "bi bi-universal-access"
+    "icon": "bi bi-universal-access",
+    "showIcon": true
   },
   "content": [
     {
@@ -684,12 +685,12 @@
   "meta": {
     "title": {
       "tr": "Erişilebilirlik",
-      "en": ""
+      "en": "Accessibility"
     },
     "description": {
       "tr": "Anadolu Üniversitesi Kütüphane",
-      "en": ""
+      "en": "Anadolu University Library"
     }
   },
-  "lastModified": "2026-08-14 15:25"
+  "lastModified": "2026-08-15 17:39"
 }

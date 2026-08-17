@@ -320,3 +320,150 @@ html[data-theme="dark"] .help-section {
 html[data-theme="dark"] .content-section h2 {
   background-color: var(--primary-dark);
 }
+/* Help Section Modal butonu (değerlendirme / sorun bildir gibi içerikler için) */
+.help-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.help-modal {
+  background: var(--surface, #fff);
+  color: var(--text, #1e293b);
+  border-radius: 12px;
+  max-width: 560px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 1.5rem 1.75rem;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+.help-modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--text-muted, #64748b);
+}
+.help-modal-close:hover { color: var(--text, #1e293b); }
+.help-modal h3 { margin: 0 0 0.75rem; font-size: 1.15rem; }
+.help-modal-body { font-size: 0.95rem; line-height: 1.6; }
+
+/* Genel Modal Kütüphanesi içerik stilleri */
+.help-modal-body .modal-lead { margin: 0 0 1rem; color: var(--text-muted, #475569); }
+.help-modal-body .modal-note { margin: 1rem 0 0; font-size: 0.85rem; color: var(--text-muted, #64748b); }
+.help-modal-body .modal-micro { margin: 0.75rem 0 0; font-size: 0.8rem; color: var(--text-muted, #64748b); }
+.help-modal-body a { color: var(--primary, #1F4C8A); }
+
+/* Özellik ızgarası */
+.modal-feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; margin: 0 0 1rem; }
+.modal-feature { background: var(--surface-alt, #f1f5f9); border-radius: 10px; padding: 0.9rem; text-align: center; }
+.modal-feature i { font-size: 1.5rem; color: var(--primary, #1F4C8A); }
+.modal-feature h4 { margin: 0.5rem 0 0.25rem; font-size: 0.9rem; }
+.modal-feature p { margin: 0; font-size: 0.78rem; color: var(--text-muted, #475569); }
+
+/* Uyarı kutusu */
+.modal-alert { display: flex; gap: 0.75rem; align-items: flex-start; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 10px; padding: 0.9rem 1rem; margin: 0 0 1rem; }
+.modal-alert i { font-size: 1.25rem; color: #f97316; margin-top: 0.1rem; }
+.modal-alert strong { display: block; margin-bottom: 0.15rem; }
+.modal-alert p { margin: 0; font-size: 0.85rem; }
+
+/* Liste */
+.modal-list { list-style: none; margin: 0; padding: 0; }
+.modal-list li { display: flex; gap: 0.6rem; align-items: flex-start; padding: 0.45rem 0; font-size: 0.9rem; border-bottom: 1px dashed var(--border, #e2e8f0); }
+.modal-list li:last-child { border-bottom: none; }
+.modal-list i { color: var(--primary, #1F4C8A); margin-top: 0.15rem; }
+
+/* Form */
+.modal-form { display: flex; flex-direction: column; gap: 0.85rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.3rem; }
+.form-group label { font-size: 0.8rem; font-weight: 600; color: var(--text, #1e293b); }
+.form-group input, .form-group select, .form-group textarea {
+  border: 1px solid var(--border, #cbd5e1); border-radius: 8px; padding: 0.55rem 0.7rem;
+  font-size: 0.88rem; background: var(--surface, #fff); color: var(--text, #1e293b); width: 100%;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  outline: none; border-color: var(--primary, #1F4C8A); box-shadow: 0 0 0 3px rgba(31, 76, 138, 0.15);
+}
+.form-check { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
+.modal-form-btn { align-self: flex-start; }
+
+/* Yıldız değerlendirme */
+.star-rating { display: inline-flex; gap: 0.2rem; font-size: 1.6rem; color: #cbd5e1; cursor: pointer; }
+.star-rating span:hover, .star-rating span.active { color: #f59e0b; }
+
+/* Modal hero */
+.modal-hero { text-align: center; margin: 0 0 1rem; }
+.modal-hero img { max-width: 100%; max-height: 140px; border-radius: 10px; object-fit: cover; margin-bottom: 0.5rem; }
+.modal-hero h4 { margin: 0; }
+
+html[data-theme="dark"] .modal-feature { background: #1e293b; }
+html[data-theme="dark"] .modal-alert { background: #3b2f1f; border-color: #7c5a2a; }
+html[data-theme="dark"] .form-group input, html[data-theme="dark"] .form-group select,
+html[data-theme="dark"] .form-group textarea { background: #1e293b; border-color: #334155; color: #e2e8f0; }
+
+/* ---- Modal Üretici şablon blokları (data/global/modals.json) ---- */
+.help-modal-body .modal-tpl-title { font-size: 1.05rem; font-weight: 700; color: var(--text, #0f172a); margin: 0 0 0.6rem; }
+.help-modal-body .modal-tpl-banner { background: linear-gradient(135deg, #0d2341, #1F4C8A); color: #fff; padding: 12px 14px; border-radius: 8px; font-weight: 700; margin: 0 0 0.8rem; text-align: center; font-size: 0.95rem; }
+.help-modal-body .modal-tpl-banner i { margin-right: 6px; }
+.help-modal-body .modal-tpl-steps { display: grid; gap: 0.5rem; margin: 0 0 0.9rem; }
+.help-modal-body .modal-tpl-step { display: flex; gap: 10px; align-items: center; background: var(--surface-alt, #f1f5f9); padding: 8px 12px; border-radius: 8px; font-size: 0.85rem; }
+.help-modal-body .modal-tpl-step-n { background: #1F4C8A; color: #fff; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex: none; }
+.help-modal-body .modal-tpl-divider { border: none; border-top: 1px dashed #cbd5e1; margin: 12px 0; }
+.help-modal-body .modal-tpl-desc { line-height: 1.6; margin: 0 0 0.8rem; }
+
+/* Uyarı varyantları (danger / success / info) */
+.modal-alert.modal-alert-danger { background: #fef2f2; border-color: #fecaca; }
+.modal-alert.modal-alert-danger i { color: #dc2626; }
+.modal-alert.modal-alert-success { background: #f0fdf4; border-color: #bbf7d0; }
+.modal-alert.modal-alert-success i { color: #16a34a; }
+.modal-alert.modal-alert-info { background: #eff6ff; border-color: #bfdbfe; }
+.modal-alert.modal-alert-info i { color: #2563eb; }
+
+/* Ayırıcı varyantları */
+.modal-tpl-divider.divider-solid { border-top-style: solid; }
+.modal-tpl-divider.divider-dotted { border-top-style: dotted; }
+
+/* Görsel bloğu */
+.help-modal-body .modal-tpl-img { width: 100%; max-height: 180px; object-fit: cover; border-radius: 10px; margin: 0 0 0.8rem; }
+
+/* ---- Modal Üretici blok geliştirmeleri ---- */
+.help-modal-body .modal-tpl-title.ta-center, .help-modal-body .modal-lead.ta-center { text-align: center; }
+.help-modal-body .modal-tpl-title.ta-right, .help-modal-body .modal-lead.ta-right { text-align: right; }
+.help-modal-body .modal-tpl-banner.banner-blue { background: linear-gradient(135deg, #1d4ed8, #3b82f6); }
+.help-modal-body .modal-tpl-banner.banner-green { background: linear-gradient(135deg, #15803d, #22c55e); }
+.help-modal-body .modal-tpl-banner.banner-orange { background: linear-gradient(135deg, #c2410c, #f97316); }
+.help-modal-body .modal-tpl-banner.banner-red { background: linear-gradient(135deg, #b91c1c, #ef4444); }
+.help-modal-body .modal-feature-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.help-modal-body .modal-feature-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+.help-modal-body .modal-list-ordered { counter-reset: ml; }
+.help-modal-body .modal-list-ordered li { counter-increment: ml; }
+.help-modal-body .modal-list-ordered li::before { content: counter(ml) "."; font-weight: 700; color: var(--primary, #1F4C8A); }
+.help-modal-body .btn-sm { padding: 6px 12px; font-size: 0.8rem; }
+.help-modal-body .btn-lg { padding: 12px 22px; font-size: 0.95rem; }
+.help-modal-body .modal-alert { position: relative; }
+.help-modal-body .modal-alert-close { position: absolute; top: 6px; right: 8px; background: none; border: none; font-size: 13px; cursor: pointer; color: #94a3b8; padding: 2px 6px; border-radius: 4px; }
+.help-modal-body .modal-alert-close:hover { background: #e2e8f0; color: #334155; }
+.help-modal-body .modal-tpl-divider.divider-color-blue { border-top-color: #3b82f6; }
+.help-modal-body .modal-tpl-divider.divider-color-orange { border-top-color: #f97316; }
+.help-modal-body .modal-tpl-divider.divider-color-red { border-top-color: #ef4444; }
+
+/* Anasayfa modalı başlık bandı (data/global/modals.json → new-database aktarımı) */
+.help-modal-body .modal-tpl-title.hm-title {
+  background: linear-gradient(135deg, #0d2341, #1F4C8A);
+  color: #fff;
+  padding: 14px 16px;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 0.8rem;
+}

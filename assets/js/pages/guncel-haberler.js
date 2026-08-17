@@ -20,6 +20,7 @@ export class GuncelHaberlerPage {
     this.searchQuery = '';
     this.currentView = 'list'; // 'grid' or 'list' - Default: list
     this.sortOrder = 'desc'; // 'desc' (yeni->eski) or 'asc' (eski->yeni)
+    this.labels = {}; // sayfa etiketleri (JSON'dan)
 
     // Component managers
     this.heroManager = new HeroManager();
@@ -66,6 +67,9 @@ export class GuncelHaberlerPage {
   }
 
   async loadNewsData() {
+    // Sayfa etiketleri (buton/rozet metinleri) — JSON'dan, düşerse TR sabit
+    this.labels = (this.pageData && this.pageData.labels) || {};
+
     // Haber verileri pageData içinde newsItems olarak geliyor
     if (this.pageData && this.pageData.newsItems) {
       this.newsData = this.pageData.newsItems;
@@ -261,45 +265,50 @@ export class GuncelHaberlerPage {
   }
 
   /**
-   * Kategori filtre butonlarını oluştur
+   * Kategori ID'sini çevrilebilir etikete eşle (JSON kategorilerinden)
    */
-  renderFilterButtons() {
-    const filterContainer = document.getElementById('news-filters');
-    if (!filterContainer) {
-      console.warn('Filter container not found');
-      return;
+  getCategoryLabel(categoryId) {
+    if (!categoryId) return '';
+    try {
+      const categories = this.pageData.content[0].components[0].data.categories;
+      const found = categories.find(c => c.id === categoryId);
+      if (found && found.label) return Utils.getLocalizedText(found.label);
+    } catch (e) { /* kategori listesi yoksa ham ID'yi göster */ }
+    return categoryId;
+  }
+
+  /**
+   * Kategori rengi — kategori tanımından (tek kaynak), düşerse varsayılan lacivert
+   */
+  getCategoryColor(categoryId) {
+    try {
+      const categories = this.pageData.content[0].components[0].data.categories;
+      const found = categories.find(c => c.id === categoryId);
+      if (found && found.color) return found.color;
+    } catch (e) { /* kategori listesi yoksa varsayılan */ }
+    return '#1F4C8A';
+  }
+
+  /**
+   * actionType'a göre doğrudan gidilecek adres (yoksa modal açılır)
+   * - page / external: gerçek url varsa doğrudan git
+   * - modal / default: null → modal açılır
+   */
+  getActionUrl(item) {
+    const u = item.url;
+    if (!item.actionType) {
+      if (u && u !== '#' && !u.startsWith('#')) return u;
+      return null;
     }
-
-    // Benzersiz kategorileri al
-    const categories = ['all', ...new Set(this.newsData.map(news => news.category))];
-
-    const categoryIcons = {
-      'all': 'bi bi-grid-3x3-gap',
-      'Veritabanları': 'bi bi-database',
-      'Duyuru': 'bi bi-megaphone',
-      'Eğitim': 'bi bi-mortarboard',
-      'Etkinlik': 'bi bi-calendar-event'
-    };
-
-    const categoryLabels = {
-      'all': 'Tümü'
-    };
-
-    let html = '';
-    categories.forEach(category => {
-      const icon = categoryIcons[category] || 'bi bi-tag';
-      const label = categoryLabels[category] || category;
-      const activeClass = category === this.currentCategory ? 'active' : '';
-
-      html += `
-        <button class="news-filter-btn ${activeClass}" data-category="${category}">
-          <i class="${icon}"></i>
-          ${label}
-        </button>
-      `;
-    });
-
-    filterContainer.innerHTML = html;
+    switch (item.actionType) {
+      case 'page':
+      case 'external':
+        return (u && u !== '#') ? u : null;
+      case 'modal':
+        return null;
+      default:
+        return (u && u !== '#' && !u.startsWith('#')) ? u : null;
+    }
   }
 
   /**
@@ -335,22 +344,26 @@ export class GuncelHaberlerPage {
       }
     });
 
+    const viewDetailsText = Utils.getLocalizedText(this.labels.viewDetails) || Utils.getLocalizedText({ tr: 'Detayları Gör', en: 'View Details' });
+
     let html = '';
     sortedNews.forEach(news => {
       const formattedDate = Utils.formatDate(news.date);
-      const hasRealLink = news.url && news.url !== '#';
 
       // Çoklu dil desteği
       const title = Utils.getLocalizedText(news.title);
       const summary = Utils.getLocalizedText(news.summary);
+
+      // Kategori rozeti: ham ID yerine çevrilebilir etiket (JSON kategorilerinden)
+      const categoryLabel = this.getCategoryLabel(news.category);
 
       html += `
         <article class="news-card">
           <img src="${news.image}" alt="${title}" class="news-card-image" loading="lazy">
           <div class="news-card-content">
             <div class="news-card-header">
-              <span class="news-card-category" style="background-color: ${news.categoryColor}">
-                ${news.category}
+              <span class="news-card-category" style="background-color: ${this.getCategoryColor(news.category)}">
+                ${categoryLabel}
               </span>
               <span class="news-card-date">
                 <i class="bi bi-calendar3"></i>
@@ -360,8 +373,8 @@ export class GuncelHaberlerPage {
             <h3 class="news-card-title">${title}</h3>
             <p class="news-card-description">${summary}</p>
             <div class="news-card-footer">
-              <button class="news-card-btn" style="background-color: ${news.categoryColor}" data-news-id="${news.id}">
-                Detayları Gör
+              <button class="news-card-btn" style="background-color: ${this.getCategoryColor(news.category)}" data-news-id="${news.id}">
+                ${viewDetailsText}
                 <i class="bi bi-arrow-right"></i>
               </button>
             </div>
@@ -380,6 +393,7 @@ export class GuncelHaberlerPage {
 
   /**
    * Haber kart butonlarına event listener ekle
+   * actionType page/external + gerçek url → doğrudan git, yoksa modal aç
    */
   setupCardButtonListeners() {
     const cardButtons = document.querySelectorAll('.news-card-btn');
@@ -387,7 +401,17 @@ export class GuncelHaberlerPage {
       btn.addEventListener('click', (e) => {
         const newsId = parseInt(e.currentTarget.dataset.newsId);
         const news = this.newsData.find(n => n.id === newsId);
-        if (news) {
+        if (!news) return;
+
+        // Doğrudan gidilecek adres varsa git, yoksa modal aç
+        const directUrl = this.getActionUrl(news);
+        if (directUrl) {
+          if (news.url.startsWith('http')) {
+            window.open(news.url, '_blank', 'noopener');
+          } else {
+            window.location.href = news.url;
+          }
+        } else {
           this.openNewsModal(news);
         }
       });
@@ -408,6 +432,11 @@ export class GuncelHaberlerPage {
     const title = Utils.getLocalizedText(news.title);
     const content = Utils.mdToHtml(Utils.getLocalizedText(news.content));
 
+    // Modal etiketleri JSON'dan (düşerse TR sabit)
+    const closeText = Utils.getLocalizedText(this.labels.close) || Utils.getLocalizedText({ tr: 'Kapat', en: 'Close' });
+    const goToPageText = Utils.getLocalizedText(this.labels.goToPage) || Utils.getLocalizedText({ tr: 'Sayfaya Git', en: 'Go to Page' });
+    const categoryLabel = this.getCategoryLabel(news.category);
+
     const modalContent = `
       <div class="news-modal">
         <img src="${news.image}" alt="${title}" class="news-modal-image" data-lightbox-trigger>
@@ -417,8 +446,8 @@ export class GuncelHaberlerPage {
           </button>
           <h2 class="news-modal-title">${title}</h2>
           <div class="news-modal-meta">
-            <span class="news-modal-category" style="background-color: ${news.categoryColor}">
-              ${news.category}
+            <span class="news-modal-category" style="background-color: ${this.getCategoryColor(news.category)}">
+              ${categoryLabel}
             </span>
             <span class="news-modal-date">
               <i class="bi bi-calendar3"></i>
@@ -433,11 +462,11 @@ export class GuncelHaberlerPage {
           <div class="news-modal-footer">
             <button class="news-modal-btn secondary" id="modal-close-btn">
               <i class="bi bi-x-circle"></i>
-              Kapat
+              ${closeText}
             </button>
             <a href="${news.url}" class="news-modal-btn primary" target="${news.url.startsWith('http') ? '_blank' : '_self'}">
               <i class="bi bi-box-arrow-up-right"></i>
-              Sayfaya Git
+              ${goToPageText}
             </a>
           </div>
         ` : ''}
@@ -627,19 +656,20 @@ export class GuncelHaberlerPage {
         // Sıralama yönünü değiştir
         this.sortOrder = this.sortOrder === 'desc' ? 'asc' : 'desc';
 
-        // Buton metnini ve ikonunu güncelle
+        // Buton metnini ve ikonunu güncelle — ikon da JSON'dan okunur
         const icon = sortBtn.querySelector('i');
         const textSpan = sortBtn.querySelector('.sort-text');
 
-        // JSON'dan sort text'lerini al
+        // JSON'dan sort text'lerini ve ikonlarını al
         const searchData = this.pageData.content[0].components[0].data;
+        const sort = searchData.controls.sort;
 
         if (this.sortOrder === 'desc') {
-          icon.className = 'bi bi-sort-down-alt';
-          if (textSpan) textSpan.textContent = Utils.getLocalizedText(searchData.controls.sort.text.desc);
+          icon.className = sort.icon.desc;
+          if (textSpan) textSpan.textContent = Utils.getLocalizedText(sort.text.desc);
         } else {
-          icon.className = 'bi bi-sort-up-alt';
-          if (textSpan) textSpan.textContent = Utils.getLocalizedText(searchData.controls.sort.text.asc);
+          icon.className = sort.icon.asc;
+          if (textSpan) textSpan.textContent = Utils.getLocalizedText(sort.text.asc);
         }
 
         // Haberleri yeniden render et
@@ -660,7 +690,7 @@ export class GuncelHaberlerPage {
       const title = Utils.getLocalizedText(news.title);
       const summary = Utils.getLocalizedText(news.summary);
       const content = Utils.mdToHtml(Utils.getLocalizedText(news.content));
-      const category = Utils.getLocalizedText(news.category);
+      const category = this.getCategoryLabel(news.category);
 
       // Arama filtresi (başlık, özet, içerik, kategori)
       const searchMatch = this.searchQuery === '' ||
@@ -673,14 +703,6 @@ export class GuncelHaberlerPage {
     });
 
     this.renderNews();
-
-    // Heading'i güncelle
-    const headingTitle = document.querySelector('#news-heading .heading-title');
-    if (headingTitle) {
-      const categoryText = this.currentCategory === 'all' ? 'Tüm Haberler' : this.currentCategory;
-      const countText = `(${this.filteredNews.length})`;
-      headingTitle.textContent = `${categoryText} ${countText}`;
-    }
   }
 
   async setupHelpSection() {

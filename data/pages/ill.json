@@ -7,35 +7,9 @@
     "description": {
       "tr": "Türkiye'deki üniversite kütüphanelerinden kitap ve makale ödünç alma hizmeti",
       "en": "Book and article borrowing service from university libraries in Turkey"
-    }
-  },
-  "help": {
-    "title": {
-      "tr": "ILL Hizmeti Hakkında Sorularınız mı Var?",
-      "en": "Do You Have Questions About ILL Service?"
     },
-    "description": {
-      "tr": "Kütüphanelerarası ödünç hizmeti hakkında detaylı bilgi almak ve başvuru yapmak için Ödünç Birimi ile iletişime geçebilirsiniz.",
-      "en": "You can contact the Circulation Unit for detailed information about interlibrary loan service and to apply."
-    },
-    "buttons": [
-      {
-        "text": {
-          "tr": "Hemen Ara",
-          "en": "Call Now"
-        },
-        "url": "tel:+902223350580",
-        "icon": "fas fa-phone"
-      },
-      {
-        "text": {
-          "tr": "E-posta Gönder",
-          "en": "Send Email"
-        },
-        "url": "mailto:kutuphane@anadolu.edu.tr",
-        "icon": "fas fa-envelope"
-      }
-    ]
+    "showIcon": true,
+    "icon": "fas fa-exchange-alt"
   },
   "content": [
     {
@@ -309,12 +283,48 @@
   "meta": {
     "title": {
       "tr": "Kütüphanelerarası Ödünç (ILL)",
-      "en": ""
+      "en": "Interlibrary Loan (ILL)"
     },
     "description": {
       "tr": "Anadolu Üniversitesi Kütüphane - Kütüphanelerarası Ödünç Yayın Sağlama Hizmeti",
-      "en": ""
+      "en": "Anadolu University Library - Interlibrary Loan Service"
     }
   },
-  "lastModified": "2026-08-14 15:25"
+  "lastModified": "2026-08-15 17:39",
+  "helpSection": {
+    "title": {
+      "tr": "Yardıma mı ihtiyacınız var?",
+      "en": "Do you need help?"
+    },
+    "description": {
+      "tr": "Kütüphanelerarası ödünç (ILL) hakkında sorularınız için destek alabilirsiniz.",
+      "en": "Kütüphanelerarası ödünç (ILL) hakkında sorularınız için destek alabilirsiniz."
+    },
+    "buttons": [
+      {
+        "icon": "fas fa-phone",
+        "text": {
+          "tr": "Hemen Ara",
+          "en": "Call Now"
+        },
+        "link": "tel:+902223350580"
+      },
+      {
+        "icon": "fas fa-envelope",
+        "text": {
+          "tr": "E-posta Gönder",
+          "en": "Send Email"
+        },
+        "link": "mailto:library@anadolu.edu.tr"
+      },
+      {
+        "icon": "fas fa-book",
+        "text": {
+          "tr": "Sıkça Sorulan Sorular",
+          "en": "FAQ"
+        },
+        "link": "sss.html"
+      }
+    ]
+  }
 }

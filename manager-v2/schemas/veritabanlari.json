@@ -1,0 +1,571 @@
+{
+ "file": "data/pages/veritabanlari.json",
+ "label": "Veritabanları (Sayfa Ayarları)",
+ "description": "Veritabanları sayfası: hero, arama bileşeni, yardım bölümü, çeviriler ve SEO meta. (Veritabanı içeriği databases.json'da)",
+ "fields": [
+  {
+   "key": "hero",
+   "label": "Üst Başlık (Hero)",
+   "type": "object",
+   "fields": [
+    {
+     "key": "title",
+     "label": "Başlık",
+     "type": "lang"
+    },
+    {
+     "key": "description",
+     "label": "Açıklama",
+     "type": "lang"
+    },
+    {
+     "key": "icon",
+     "label": "İkon",
+     "type": "icon"
+    },
+    {
+     "key": "breadcrumb",
+     "label": "İçerik Yolu (Breadcrumb)",
+     "type": "array",
+     "itemLabel": "Adım",
+     "itemFields": [
+      {
+       "key": "text",
+       "label": "Metin",
+       "type": "lang"
+      },
+      {
+       "key": "url",
+       "label": "Bağlantı",
+       "type": "url"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "content",
+   "label": "Sayfa Bölümleri",
+   "type": "array",
+   "itemLabel": "Bölüm",
+   "itemFields": [
+    {
+     "key": "id",
+     "label": "Bölüm Kimliği",
+     "type": "text",
+     "readonly": true
+    },
+    {
+     "key": "components",
+     "label": "Bileşenler",
+     "type": "components",
+     "registry": "components"
+    }
+   ]
+  },
+  {
+   "key": "helpSection",
+   "label": "Yardım Bölümü",
+   "type": "object",
+   "fields": [
+    {
+     "key": "title",
+     "label": "Başlık",
+     "type": "lang"
+    },
+    {
+     "key": "description",
+     "label": "Açıklama",
+     "type": "lang"
+    },
+    {
+     "key": "buttons",
+     "label": "Butonlar",
+     "type": "array",
+     "itemLabel": "Buton",
+     "itemFields": [
+      {
+       "key": "text",
+       "label": "Metin",
+       "type": "lang"
+      },
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      },
+      {
+       "key": "variant",
+       "label": "Stil",
+       "type": "select",
+       "options": [
+        "primary",
+        "secondary",
+        "outline"
+       ]
+      },
+      {
+       "key": "link",
+       "label": "Bağlantı",
+       "type": "url",
+       "hint": "mailto:..., /sayfa.html veya https://... — modal açmak için type: modal + modal alanı"
+      },
+      {
+       "key": "type",
+       "label": "Buton Tipi",
+       "type": "select",
+       "options": [
+        "link",
+        "modal"
+       ]
+      },
+      {
+       "key": "modal",
+       "label": "Modal İçeriği",
+       "type": "object",
+       "fields": [
+        {
+         "key": "title",
+         "label": "Modal Başlığı",
+         "type": "lang"
+        },
+        {
+         "key": "body",
+         "label": "Modal İçeriği",
+         "type": "lang"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "translations",
+   "label": "Çeviriler",
+   "type": "object",
+   "fields": [
+    {
+     "key": "tr",
+     "label": "Türkçe",
+     "type": "object",
+     "fields": [
+      {
+       "key": "sort",
+       "label": "Sırala Etiketi",
+       "type": "lang"
+      },
+      {
+       "key": "accessBtn",
+       "label": "Erişim Sağla",
+       "type": "lang"
+      },
+      {
+       "key": "infoBtn",
+       "label": "Bilgi",
+       "type": "lang"
+      },
+      {
+       "key": "resultsCount",
+       "label": "Sonuç Sayısı ({count})",
+       "type": "lang"
+      },
+      {
+       "key": "backToFilters",
+       "label": "Filtrelere Dön",
+       "type": "lang"
+      },
+      {
+       "key": "mobileFiltersBtn",
+       "label": "Mobil Filtre Butonu",
+       "type": "lang"
+      },
+      {
+       "key": "tooltips",
+       "label": "Araç İpuçları",
+       "type": "object",
+       "fields": [
+        {
+         "key": "apc",
+         "label": "APC Rozeti",
+         "type": "lang"
+        },
+        {
+         "key": "remoteAccess",
+         "label": "Uzaktan Erişim",
+         "type": "lang"
+        },
+        {
+         "key": "campusAccess",
+         "label": "Kampüs İçi",
+         "type": "lang"
+        },
+        {
+         "key": "detailedInfo",
+         "label": "Detaylı Bilgi",
+         "type": "lang"
+        }
+       ]
+      },
+      {
+       "key": "filterModal",
+       "label": "Filtre Modali",
+       "type": "object",
+       "fields": [
+        {
+         "key": "title",
+         "label": "Başlık",
+         "type": "lang"
+        },
+        {
+         "key": "search",
+         "label": "Arama",
+         "type": "lang"
+        },
+        {
+         "key": "categories",
+         "label": "Kategoriler",
+         "type": "lang"
+        },
+        {
+         "key": "sortTitle",
+         "label": "Sıralama",
+         "type": "lang"
+        },
+        {
+         "key": "accessType",
+         "label": "Erişim Tipi",
+         "type": "lang"
+        },
+        {
+         "key": "remoteAccess",
+         "label": "Uzaktan Erişim",
+         "type": "lang"
+        },
+        {
+         "key": "campusOnly",
+         "label": "Kampüs İçi",
+         "type": "lang"
+        },
+        {
+         "key": "sortDefault",
+         "label": "Varsayılan Sıra",
+         "type": "lang"
+        },
+        {
+         "key": "sortAZ",
+         "label": "A-Z",
+         "type": "lang"
+        },
+        {
+         "key": "sortZA",
+         "label": "Z-A",
+         "type": "lang"
+        },
+        {
+         "key": "clear",
+         "label": "Temizle",
+         "type": "lang"
+        },
+        {
+         "key": "apply",
+         "label": "Uygula",
+         "type": "lang"
+        }
+       ]
+      },
+      {
+       "key": "modal",
+       "label": "Veritabanı Modali",
+       "type": "object",
+       "fields": [
+        {
+         "key": "accessAddress",
+         "label": "Erişim Adresi",
+         "type": "lang"
+        },
+        {
+         "key": "contentList",
+         "label": "İçerik Listesi",
+         "type": "lang"
+        },
+        {
+         "key": "userGuide",
+         "label": "Kullanım Kılavuzu",
+         "type": "lang"
+        },
+        {
+         "key": "mobileGuide",
+         "label": "Mobil Uygulama Kılavuzu",
+         "type": "lang"
+        },
+        {
+         "key": "videoTutorials",
+         "label": "Kullanım Videoları",
+         "type": "lang"
+        },
+        {
+         "key": "journalList",
+         "label": "Dergi Listesi",
+         "type": "lang"
+        },
+        {
+         "key": "bookList",
+         "label": "Kitap Listesi",
+         "type": "lang"
+        },
+        {
+         "key": "apcSupport",
+         "label": "APC Desteği",
+         "type": "lang"
+        },
+        {
+         "key": "apcDescription",
+         "label": "APC Açıklaması",
+         "type": "lang"
+        },
+        {
+         "key": "note",
+         "label": "Not",
+         "type": "lang"
+        },
+        {
+         "key": "closeBtn",
+         "label": "Kapat Butonu",
+         "type": "lang"
+        },
+        {
+         "key": "accessBtn",
+         "label": "Erişim Butonu",
+         "type": "lang"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "key": "en",
+     "label": "İngilizce",
+     "type": "object",
+     "fields": [
+      {
+       "key": "sort",
+       "label": "Sırala Etiketi",
+       "type": "lang"
+      },
+      {
+       "key": "accessBtn",
+       "label": "Erişim Sağla",
+       "type": "lang"
+      },
+      {
+       "key": "infoBtn",
+       "label": "Bilgi",
+       "type": "lang"
+      },
+      {
+       "key": "resultsCount",
+       "label": "Sonuç Sayısı ({count})",
+       "type": "lang"
+      },
+      {
+       "key": "backToFilters",
+       "label": "Filtrelere Dön",
+       "type": "lang"
+      },
+      {
+       "key": "mobileFiltersBtn",
+       "label": "Mobil Filtre Butonu",
+       "type": "lang"
+      },
+      {
+       "key": "tooltips",
+       "label": "Araç İpuçları",
+       "type": "object",
+       "fields": [
+        {
+         "key": "apc",
+         "label": "APC Rozeti",
+         "type": "lang"
+        },
+        {
+         "key": "remoteAccess",
+         "label": "Uzaktan Erişim",
+         "type": "lang"
+        },
+        {
+         "key": "campusAccess",
+         "label": "Kampüs İçi",
+         "type": "lang"
+        },
+        {
+         "key": "detailedInfo",
+         "label": "Detaylı Bilgi",
+         "type": "lang"
+        }
+       ]
+      },
+      {
+       "key": "filterModal",
+       "label": "Filtre Modali",
+       "type": "object",
+       "fields": [
+        {
+         "key": "title",
+         "label": "Başlık",
+         "type": "lang"
+        },
+        {
+         "key": "search",
+         "label": "Arama",
+         "type": "lang"
+        },
+        {
+         "key": "categories",
+         "label": "Kategoriler",
+         "type": "lang"
+        },
+        {
+         "key": "sortTitle",
+         "label": "Sıralama",
+         "type": "lang"
+        },
+        {
+         "key": "accessType",
+         "label": "Erişim Tipi",
+         "type": "lang"
+        },
+        {
+         "key": "remoteAccess",
+         "label": "Uzaktan Erişim",
+         "type": "lang"
+        },
+        {
+         "key": "campusOnly",
+         "label": "Kampüs İçi",
+         "type": "lang"
+        },
+        {
+         "key": "sortDefault",
+         "label": "Varsayılan Sıra",
+         "type": "lang"
+        },
+        {
+         "key": "sortAZ",
+         "label": "A-Z",
+         "type": "lang"
+        },
+        {
+         "key": "sortZA",
+         "label": "Z-A",
+         "type": "lang"
+        },
+        {
+         "key": "clear",
+         "label": "Temizle",
+         "type": "lang"
+        },
+        {
+         "key": "apply",
+         "label": "Uygula",
+         "type": "lang"
+        }
+       ]
+      },
+      {
+       "key": "modal",
+       "label": "Veritabanı Modali",
+       "type": "object",
+       "fields": [
+        {
+         "key": "accessAddress",
+         "label": "Erişim Adresi",
+         "type": "lang"
+        },
+        {
+         "key": "contentList",
+         "label": "İçerik Listesi",
+         "type": "lang"
+        },
+        {
+         "key": "userGuide",
+         "label": "Kullanım Kılavuzu",
+         "type": "lang"
+        },
+        {
+         "key": "mobileGuide",
+         "label": "Mobil Uygulama Kılavuzu",
+         "type": "lang"
+        },
+        {
+         "key": "videoTutorials",
+         "label": "Kullanım Videoları",
+         "type": "lang"
+        },
+        {
+         "key": "journalList",
+         "label": "Dergi Listesi",
+         "type": "lang"
+        },
+        {
+         "key": "bookList",
+         "label": "Kitap Listesi",
+         "type": "lang"
+        },
+        {
+         "key": "apcSupport",
+         "label": "APC Desteği",
+         "type": "lang"
+        },
+        {
+         "key": "apcDescription",
+         "label": "APC Açıklaması",
+         "type": "lang"
+        },
+        {
+         "key": "note",
+         "label": "Not",
+         "type": "lang"
+        },
+        {
+         "key": "closeBtn",
+         "label": "Kapat Butonu",
+         "type": "lang"
+        },
+        {
+         "key": "accessBtn",
+         "label": "Erişim Butonu",
+         "type": "lang"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "meta",
+   "label": "SEO Bilgileri",
+   "type": "object",
+   "fields": [
+    {
+     "key": "title",
+     "label": "Sayfa Başlığı",
+     "type": "lang"
+    },
+    {
+     "key": "description",
+     "label": "Açıklama",
+     "type": "lang"
+    }
+   ]
+  },
+  {
+   "key": "lastModified",
+   "label": "Son Güncelleme",
+   "type": "text",
+   "readonly": true,
+   "hint": "🔒 Kayıtta otomatik güncellenir"
+  }
+ ]
+}

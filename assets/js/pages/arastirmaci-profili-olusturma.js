@@ -24,6 +24,12 @@ export class ArastirmaciProfiliOlusturmaPage {
     Utils.log('ArastirmaciProfiliOlusturmaPage initializing...');
 
     await this.loadPageData();
+
+    // QuickNav (hızlı erişim) — sayfa kendi verisini yüklediği için buradan başlatılır
+    if (this.app && typeof this.app.initQuickAccess === 'function') {
+      this.app.initQuickAccess(this.pageData);
+    }
+
     await this.setupHeroSection();
 
     // TOC'yi başlat (hero sonrasında, content öncesinde)
@@ -137,7 +143,7 @@ export class ArastirmaciProfiliOlusturmaPage {
     let html = `
       <div id="${benefits.id}" class="info-card">
         <div class="card-header">
-          ${benefits.title}
+          ${Utils.getLocalizedText(benefits.title)}
         </div>
         <div class="card-body">
           <div class="benefits-list">
@@ -148,7 +154,7 @@ export class ArastirmaciProfiliOlusturmaPage {
         <div class="benefit-item">
           <div class="benefit-number">${item.number}</div>
           <div class="benefit-content">
-            <div class="benefit-title">${item.title}</div>
+            <div class="benefit-title">${Utils.getLocalizedText(item.title)}</div>
             <div class="benefit-description">${Utils.mdToHtml(Utils.getLocalizedText(item.description))}</div>
           </div>
         </div>
@@ -169,21 +175,21 @@ export class ArastirmaciProfiliOlusturmaPage {
     let html = `
       <div id="${basicSteps.id}" class="info-card">
         <div class="card-header">
-          ${basicSteps.title}
+          ${Utils.getLocalizedText(basicSteps.title)}
         </div>
         <div class="card-body">
-          <p>${basicSteps.intro}</p>
+          <p>${Utils.getLocalizedText(basicSteps.intro)}</p>
           <div class="basic-steps-list">
     `;
 
     basicSteps.platforms.forEach(platform => {
       html += `
         <div class="basic-step-card">
-          <h4>${platform.title}</h4>
+          <h4>${Utils.getLocalizedText(platform.title)}</h4>
           <ol>
       `;
       platform.steps.forEach(step => {
-        html += `<li>${step}</li>`;
+        html += `<li>${Utils.mdToHtml(Utils.getLocalizedText(step))}</li>`;
       });
       html += `
           </ol>
@@ -205,7 +211,7 @@ export class ArastirmaciProfiliOlusturmaPage {
     let html = `
       <div id="${tips.id}" class="info-card">
         <div class="card-header">
-          ${tips.title}
+          ${Utils.getLocalizedText(tips.title)}
         </div>
         <div class="card-body">
     `;
@@ -214,7 +220,7 @@ export class ArastirmaciProfiliOlusturmaPage {
       html += `
         <div class="tip-item">
           <i class="${item.icon}"></i>
-          <strong>${item.title}:</strong> ${Utils.mdToHtml(Utils.getLocalizedText(item.text))}
+          <strong>${Utils.getLocalizedText(item.title)}:</strong> ${Utils.mdToHtml(Utils.getLocalizedText(item.text))}
         </div>
       `;
     });
@@ -232,7 +238,7 @@ export class ArastirmaciProfiliOlusturmaPage {
     let html = `
       <div id="${comparison.id}" class="info-card">
         <div class="card-header">
-          ${comparison.title}
+          ${Utils.getLocalizedText(comparison.title)}
         </div>
         <div class="card-body">
           <table class="comparison-table">
@@ -241,7 +247,7 @@ export class ArastirmaciProfiliOlusturmaPage {
     `;
 
     comparison.table.headers.forEach(header => {
-      html += `<th>${header}</th>`;
+      html += `<th>${Utils.getLocalizedText(header)}</th>`;
     });
 
     html += `
@@ -253,7 +259,7 @@ export class ArastirmaciProfiliOlusturmaPage {
     comparison.table.rows.forEach(row => {
       html += `<tr>`;
       row.forEach(cell => {
-        html += `<td>${cell}</td>`;
+        html += `<td>${Utils.getLocalizedText(cell)}</td>`;
       });
       html += `</tr>`;
     });
@@ -301,8 +307,8 @@ export class ArastirmaciProfiliOlusturmaPage {
       <div id="${section.id}" class="platform-section ${section.platformClass} ${section.hasDivider ? 'has-divider' : ''}">
         <div class="platform-header">
           <div>
-            <h2>${section.title}</h2>
-            ${section.subtitle ? `<p>${section.subtitle}</p>` : ''}
+            <h2>${Utils.getLocalizedText(section.title)}</h2>
+            ${section.subtitle ? `<p>${Utils.getLocalizedText(section.subtitle)}</p>` : ''}
           </div>
         </div>
         <div class="platform-content">
@@ -320,7 +326,7 @@ export class ArastirmaciProfiliOlusturmaPage {
           <div class="info-box">
             <div class="info-title">
               <i class="${box.icon}"></i>
-              ${box.title}
+              ${Utils.getLocalizedText(box.title)}
             </div>
             <p>${Utils.mdToHtml(Utils.getLocalizedText(box.text))}</p>
           </div>
@@ -335,7 +341,7 @@ export class ArastirmaciProfiliOlusturmaPage {
           <div class="warning-box">
             <div class="warning-title">
               <i class="${warning.icon}"></i>
-              ${warning.title}
+              ${Utils.getLocalizedText(warning.title)}
             </div>
             <p>${Utils.mdToHtml(Utils.getLocalizedText(warning.text))}</p>
           </div>
@@ -351,7 +357,7 @@ export class ArastirmaciProfiliOlusturmaPage {
           <div class="benefit-item">
             <div class="benefit-number">${benefit.number}</div>
             <div class="benefit-content">
-              <div class="benefit-title">${benefit.title}</div>
+              <div class="benefit-title">${Utils.getLocalizedText(benefit.title)}</div>
               <div class="benefit-description">${Utils.mdToHtml(Utils.getLocalizedText(benefit.description))}</div>
             </div>
           </div>
@@ -367,7 +373,7 @@ export class ArastirmaciProfiliOlusturmaPage {
           <div class="step-card">
             <div class="step-header">
               <div class="step-number">${step.number}</div>
-              <span>${step.title}</span>
+              <span>${Utils.getLocalizedText(step.title)}</span>
               <i class="fas fa-chevron-down ms-auto"></i>
             </div>
             <div class="step-content">
@@ -423,7 +429,7 @@ export class ArastirmaciProfiliOlusturmaPage {
   renderContact(contact) {
     let html = `
       <div id="${contact.id}" class="contact-section">
-        <h4>${contact.title}</h4>
+        <h4>${Utils.getLocalizedText(contact.title)}</h4>
         <p>${Utils.mdToHtml(Utils.getLocalizedText(contact.description))}</p>
         <div class="contact-info">
     `;
@@ -433,7 +439,7 @@ export class ArastirmaciProfiliOlusturmaPage {
         <a href="${item.url}" class="contact-item">
           <i class="${item.icon}"></i>
           <div>
-            <strong>${item.name}</strong><br>
+            <strong>${Utils.getLocalizedText(item.name)}</strong><br>
             <small>${item.email || item.phone}</small>
           </div>
         </a>

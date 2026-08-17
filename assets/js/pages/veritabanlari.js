@@ -295,30 +295,55 @@ export class VeritabanlariPage {
     }
   }
 
+  /**
+   * Sort metin/ikonlarını tek kaynaktan al (search-filter component verisi)
+   */
+  getSortUi() {
+    const fallback = {
+      text: { default: 'Varsayılan', asc: 'A-Z', desc: 'Z-A' },
+      icon: { default: 'bi bi-sort-down', asc: 'bi bi-sort-alpha-down', desc: 'bi bi-sort-alpha-up' }
+    };
+    try {
+      const sort = this.pageData.content[0].components[0].data.sort || {};
+      return {
+        text: {
+          default: Utils.getLocalizedText(sort.text?.default) || fallback.text.default,
+          asc: Utils.getLocalizedText(sort.text?.asc) || fallback.text.asc,
+          desc: Utils.getLocalizedText(sort.text?.desc) || fallback.text.desc
+        },
+        icon: {
+          default: sort.icon?.default || fallback.icon.default,
+          asc: sort.icon?.asc || fallback.icon.asc,
+          desc: sort.icon?.desc || fallback.icon.desc
+        }
+      };
+    } catch (e) {
+      return fallback;
+    }
+  }
+
+  /**
+   * Sort butonunun metin/ikonunu mevcut sıralamaya göre güncelle (tek kaynak)
+   */
+  updateSortButton() {
+    const sortBtn = document.getElementById('sort-btn');
+    const sortText = sortBtn?.querySelector('.sort-text');
+    const sortIcon = sortBtn?.querySelector('i');
+    if (!sortText || !sortIcon) return;
+
+    const ui = this.getSortUi();
+    const labels = { default: ui.text.default, 'a-z': ui.text.asc, 'z-a': ui.text.desc };
+    const icons = { default: ui.icon.default, 'a-z': ui.icon.asc, 'z-a': ui.icon.desc };
+    sortText.textContent = labels[this.sortOrder] || ui.text.default;
+    sortIcon.className = icons[this.sortOrder] || ui.icon.default;
+  }
+
   cycleSortOrder() {
     const orders = ['default', 'a-z', 'z-a'];
     const currentIndex = orders.indexOf(this.sortOrder);
     this.sortOrder = orders[(currentIndex + 1) % orders.length];
 
-    const sortBtn = document.getElementById('sort-btn');
-    const sortText = sortBtn?.querySelector('.sort-text');
-    const sortIcon = sortBtn?.querySelector('i');
-
-    if (sortText && sortIcon) {
-      switch(this.sortOrder) {
-        case 'a-z':
-          sortText.textContent = 'A-Z';
-          sortIcon.className = 'bi bi-sort-alpha-down';
-          break;
-        case 'z-a':
-          sortText.textContent = 'Z-A';
-          sortIcon.className = 'bi bi-sort-alpha-up';
-          break;
-        default:
-          sortText.textContent = this.translations?.sort || 'Sırala';
-          sortIcon.className = 'bi bi-sort-down';
-      }
-    }
+    this.updateSortButton();
 
     this.filterDatabases();
   }
@@ -1131,28 +1156,8 @@ export class VeritabanlariPage {
       const categoryBtn = document.querySelector(`.category-btn[data-category="${selectedCategory}"]`);
       if (categoryBtn) categoryBtn.classList.add('active');
 
-      // Update sort button (eğer desktop'ta görünürse)
-      const sortBtn = document.getElementById('sort-btn');
-      if (sortBtn) {
-        const sortText = sortBtn.querySelector('.sort-text');
-        const sortIcon = sortBtn.querySelector('i');
-
-        if (sortText && sortIcon) {
-          switch(selectedSort) {
-            case 'a-z':
-              sortText.textContent = 'A-Z';
-              sortIcon.className = 'bi bi-sort-alpha-down';
-              break;
-            case 'z-a':
-              sortText.textContent = 'Z-A';
-              sortIcon.className = 'bi bi-sort-alpha-up';
-              break;
-            default:
-              sortText.textContent = this.translations?.sort || 'Sırala';
-              sortIcon.className = 'bi bi-sort-down';
-          }
-        }
-      }
+      // Update sort button (eğer desktop'ta görünürse) — tek kaynak: component verisi
+      this.updateSortButton();
 
       // Update desktop search input (eğer varsa)
       const desktopSearchInput = document.getElementById('search-input');

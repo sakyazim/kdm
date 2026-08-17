@@ -334,6 +334,7 @@ function defaultFor(f) {
     case "components": return [];
     case "number": return 0;
     case "boolean": return false;
+    case "day-multiselect": return [];
     default: return "";
   }
 }
@@ -423,6 +424,38 @@ function renderField(f, obj) {
       wrap.appendChild(holder);
       break;
     }
+    case "day-multiselect": {
+      if (!Array.isArray(obj[f.key])) obj[f.key] = [];
+      const holder = document.createElement("div");
+      holder.className = "day-multiselect";
+      const days = [["1", "Pzt"], ["2", "Sal"], ["3", "Çar"], ["4", "Per"], ["5", "Cum"], ["6", "Cmt"], ["0", "Paz"]];
+      for (const [num, label] of days) {
+        const lab = document.createElement("label");
+        lab.className = "day-chip";
+        const cb = document.createElement("input");
+        cb.type = "checkbox";
+        cb.checked = obj[f.key].includes(Number(num));
+        cb.addEventListener("change", () => {
+          const n = Number(num);
+          if (cb.checked) { if (!obj[f.key].includes(n)) obj[f.key].push(n); }
+          else obj[f.key] = obj[f.key].filter((v) => v !== n);
+          markDirty();
+        });
+        const span = document.createElement("span");
+        span.textContent = label;
+        lab.appendChild(cb);
+        lab.appendChild(span);
+        holder.appendChild(lab);
+      }
+      if (f.hint) {
+        const h = document.createElement("div");
+        h.className = "hint";
+        h.textContent = f.hint;
+        holder.appendChild(h);
+      }
+      wrap.appendChild(holder);
+      break;
+    }
     default:
       wrap.appendChild(renderScalar(f, obj[f.key], (v) => { obj[f.key] = v; markDirty(); }));
   }
@@ -483,6 +516,14 @@ function renderScalar(f, value, onchange) {
     case "date": {
       const inp = document.createElement("input");
       inp.type = "date";
+      inp.value = value || "";
+      inp.addEventListener("change", () => onchange(inp.value));
+      ctl = inp;
+      break;
+    }
+    case "time": {
+      const inp = document.createElement("input");
+      inp.type = "time";
       inp.value = value || "";
       inp.addEventListener("change", () => onchange(inp.value));
       ctl = inp;

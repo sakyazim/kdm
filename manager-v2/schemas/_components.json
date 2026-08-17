@@ -1,91 +1,1524 @@
 {
-  "label": "Ortak Bileşen Kayıt Defteri",
-  "components": {
-    "heading": {
-      "label": "Başlık",
-      "fields": [
-        { "key": "title", "label": "Başlık", "type": "lang", "required": true },
-        { "key": "icon", "label": "İkon", "type": "icon" },
-        { "key": "id", "label": "ID", "type": "text" }
-      ]
+ "label": "Ortak Bileşen Kayıt Defteri",
+ "components": {
+  "heading": {
+   "label": "Başlık",
+   "fields": [
+    {
+     "key": "title",
+     "label": "Başlık",
+     "type": "lang",
+     "required": true
     },
-    "icon-list": {
-      "label": "İkon Listesi",
-      "fields": [
+    {
+     "key": "subtitle",
+     "label": "Alt Başlık",
+     "type": "lang"
+    },
+    {
+     "key": "icon",
+     "label": "İkon",
+     "type": "icon"
+    },
+    {
+     "key": "id",
+     "label": "ID",
+     "type": "text"
+    },
+    {
+     "key": "statusBadge",
+     "label": "Açık/Kapalı Rozeti (Dinamik)",
+     "type": "object",
+     "fields": [
+      {
+       "key": "variant",
+       "label": "Mod",
+       "type": "select",
+       "options": [
+        "auto",
+        "manual"
+       ],
+       "hint": "auto: saate göre otomatik Açık/Kapalı · manual: elle seçim"
+      },
+      {
+       "key": "data",
+       "label": "Rozet Verisi",
+       "type": "object",
+       "fields": [
         {
-          "key": "items",
-          "label": "Öğeler",
-          "type": "array",
-          "itemLabel": "Öğe",
-          "itemFields": [
-            { "key": "icon", "label": "İkon", "type": "icon" },
-            { "key": "text", "label": "Metin", "type": "lang", "required": true }
-          ]
-        }
-      ]
-    },
-    "info-box": {
-      "label": "Bilgi Kutusu",
-      "fields": [
-        { "key": "title", "label": "Başlık", "type": "lang" },
-        { "key": "titleIcon", "label": "Başlık İkonu", "type": "icon" },
-        { "key": "content", "label": "İçerik", "type": "lang", "required": true }
-      ]
-    },
-    "map-embed": {
-      "label": "Harita",
-      "fields": [
-        { "key": "embedUrl", "label": "Harita Bağlantısı", "type": "url", "required": true },
-        { "key": "width", "label": "Genişlik", "type": "text" },
-        { "key": "height", "label": "Yükseklik", "type": "text" },
-        { "key": "borderRadius", "label": "Köşe Yuvarlaklığı", "type": "text" },
-        { "key": "allowFullscreen", "label": "Tam Ekran İzni", "type": "boolean" },
-        { "key": "loading", "label": "Yükleme", "type": "select", "options": ["lazy", "eager"] }
-      ]
-    },
-    "alert": {
-      "label": "Uyarı Kutusu",
-      "fields": [
-        { "key": "icon", "label": "İkon", "type": "icon" },
-        { "key": "content", "label": "İçerik", "type": "lang", "required": true }
-      ]
-    },
-    "table": {
-      "label": "Tablo",
-      "fields": [
-        {
-          "key": "headers",
-          "label": "Sütun Başlıkları",
-          "type": "array",
-          "itemLabel": "Sütun",
-          "itemFields": [
-            { "key": "tr", "label": "TR", "type": "text", "required": true },
-            { "key": "en", "label": "EN", "type": "text", "required": true }
-          ]
+         "key": "hours",
+         "label": "Çalışma Saatleri (auto mod)",
+         "type": "array",
+         "itemLabel": "Gün",
+         "itemFields": [
+          {
+           "key": "day",
+           "label": "Gün Adı",
+           "type": "lang"
+          },
+          {
+           "key": "time",
+           "label": "Saat (gösterim)",
+           "type": "lang",
+           "hint": "Örn: 08:00 - 23:00 veya Kapalı"
+          },
+          {
+           "key": "openTime",
+           "label": "Açılış (HH:MM)",
+           "type": "text",
+           "hint": "Örn: 08:00"
+          },
+          {
+           "key": "closeTime",
+           "label": "Kapanış (HH:MM)",
+           "type": "text",
+           "hint": "Örn: 23:00 — 24:00 yazılabilir"
+          },
+          {
+           "key": "dayNumbers",
+           "label": "Gün Numaraları",
+           "type": "array",
+           "itemType": "number",
+           "hint": "0=Pazar 1=Pzt 2=Sal 3=Çar 4=Per 5=Cum 6=Cmt"
+          },
+          {
+           "key": "isWeekend",
+           "label": "Hafta Sonu",
+           "type": "boolean"
+          }
+         ]
         },
         {
-          "key": "rows",
-          "label": "Satırlar",
-          "type": "array",
-          "itemLabel": "Satır",
-          "itemFields": [
-            { "key": "icon", "label": "İkon", "type": "icon" },
-            {
-              "key": "cells",
-              "label": "Hücreler (JSON)",
-              "type": "raw",
-              "hint": "Örn: [{\"tr\":\"Birim\",\"en\":\"Unit\"}, \"1728\"]"
-            },
-            {
-              "key": "highlightColumns",
-              "label": "Vurgulanacak Sütunlar",
-              "type": "array",
-              "itemType": "number",
-              "itemLabel": "Sütun No"
-            }
-          ]
+         "key": "status",
+         "label": "Durum (manuel mod)",
+         "type": "select",
+         "options": [
+          "open",
+          "closed"
+         ]
+        },
+        {
+         "key": "statusText",
+         "label": "Durum Metni",
+         "type": "lang",
+         "hint": "Boşsa Açık/Kapalı otomatik"
+        },
+        {
+         "key": "icon",
+         "label": "İkon",
+         "type": "icon",
+         "hint": "Boşsa nokta ikonu"
         }
-      ]
+       ]
+      }
+     ],
+     "hint": "Başlığın yanında saate göre otomatik güncellenen Açık/Kapalı rozeti"
     }
+   ]
+  },
+  "icon-list": {
+   "label": "İkon Listesi",
+   "fields": [
+    {
+     "key": "items",
+     "label": "Öğeler",
+     "type": "array",
+     "itemLabel": "Öğe",
+     "itemFields": [
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      },
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang",
+       "hint": "title veya text'ten biri dolu olmalı"
+      },
+      {
+       "key": "text",
+       "label": "Metin",
+       "type": "lang"
+      },
+      {
+       "key": "description",
+       "label": "Açıklama",
+       "type": "lang"
+      }
+     ]
+    }
+   ]
+  },
+  "info-box": {
+   "label": "Bilgi Kutusu",
+   "fields": [
+    {
+     "key": "title",
+     "label": "Başlık",
+     "type": "lang"
+    },
+    {
+     "key": "titleIcon",
+     "label": "Başlık İkonu",
+     "type": "icon"
+    },
+    {
+     "key": "content",
+     "label": "İçerik",
+     "type": "lang",
+     "required": true
+    }
+   ]
+  },
+  "map-embed": {
+   "label": "Harita",
+   "fields": [
+    {
+     "key": "embedUrl",
+     "label": "Harita Bağlantısı",
+     "type": "url",
+     "required": true
+    },
+    {
+     "key": "width",
+     "label": "Genişlik",
+     "type": "text"
+    },
+    {
+     "key": "height",
+     "label": "Yükseklik",
+     "type": "text"
+    },
+    {
+     "key": "borderRadius",
+     "label": "Köşe Yuvarlaklığı",
+     "type": "text"
+    },
+    {
+     "key": "allowFullscreen",
+     "label": "Tam Ekran İzni",
+     "type": "boolean"
+    },
+    {
+     "key": "loading",
+     "label": "Yükleme",
+     "type": "select",
+     "options": [
+      "lazy",
+      "eager"
+     ]
+    }
+   ]
+  },
+  "alert": {
+   "label": "Uyarı Kutusu",
+   "fields": [
+    {
+     "key": "icon",
+     "label": "İkon",
+     "type": "icon"
+    },
+    {
+     "key": "title",
+     "label": "Başlık",
+     "type": "lang"
+    },
+    {
+     "key": "content",
+     "label": "İçerik",
+     "type": "lang",
+     "hint": "list stili items kullanır — content veya items dolu olmalı"
+    },
+    {
+     "key": "items",
+     "label": "Madde Listesi (list stili)",
+     "type": "array",
+     "itemLabel": "Madde",
+     "itemFields": [
+      {
+       "key": "",
+       "label": "Madde",
+       "type": "lang"
+      }
+     ]
+    },
+    {
+     "key": "link",
+     "label": "Bağlantı URL",
+     "type": "lang",
+     "hint": "Tek URL veya TR/EN farklı URL"
+    },
+    {
+     "key": "linkText",
+     "label": "Bağlantı Metni",
+     "type": "lang"
+    },
+    {
+     "key": "linkIcon",
+     "label": "Bağlantı İkonu",
+     "type": "icon"
+    }
+   ]
+  },
+  "table": {
+   "label": "Tablo",
+   "fields": [
+    {
+     "key": "title",
+     "label": "Tablo Başlığı",
+     "type": "lang"
+    },
+    {
+     "key": "headers",
+     "label": "Sütun Başlıkları",
+     "type": "array",
+     "itemLabel": "Sütun",
+     "itemFields": [
+      {
+       "key": "tr",
+       "label": "TR",
+       "type": "text",
+       "required": true
+      },
+      {
+       "key": "en",
+       "label": "EN",
+       "type": "text",
+       "required": true
+      }
+     ]
+    },
+    {
+     "key": "rows",
+     "label": "Satırlar",
+     "type": "array",
+     "itemLabel": "Satır",
+     "itemFields": [
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      },
+      {
+       "key": "cells",
+       "label": "Hücreler (JSON)",
+       "type": "raw",
+       "hint": "Örn: [{\"tr\":\"Birim\",\"en\":\"Unit\"}, \"1728\"]"
+      },
+      {
+       "key": "highlightColumns",
+       "label": "Vurgulanacak Sütunlar",
+       "type": "array",
+       "itemType": "number",
+       "itemLabel": "Sütun No"
+      }
+     ]
+    },
+    {
+     "key": "id",
+     "label": "ID (çapa)",
+     "type": "text"
+    }
+   ]
+  },
+ "hours-table": {
+  "label": "Çalışma Saati Tablosu (Dinamik)",
+  "description": "Her satırın en sağında saate/tarihe göre canlı Açık/Kapalı rozeti gösteren çalışma saatleri tablosu. Günler, saat aralıkları, öğle arası ve tatil istisnaları destekler.",
+  "fields": [
+   {
+    "key": "id",
+    "label": "ID (çapa)",
+    "type": "text"
+   },
+   {
+    "key": "title",
+    "label": "Tablo Başlığı",
+    "type": "lang"
+   },
+   {
+    "key": "columns",
+    "label": "Sütunlar",
+    "type": "array",
+    "itemLabel": "Sütun",
+    "itemFields": [
+     {
+      "key": "label",
+      "label": "Sütun Başlığı",
+      "type": "lang"
+     },
+     {
+      "key": "kind",
+      "label": "Tür",
+      "type": "select",
+      "options": [
+       "name",
+       "schedule",
+       "status"
+      ],
+      "hint": "name = satır adı sütunu · schedule = saat sütunu (satırların programları sırayla eşleşir) · status = durum rozeti sütunu"
+     }
+    ]
+   },
+   {
+    "key": "holidays",
+    "label": "Resmi Tatiller",
+    "type": "array",
+    "itemType": "date",
+    "itemLabel": "Tarih",
+    "hint": "Bu tarihlerde tüm satırlar kapalı sayılır; 'tatil istisnası' eklenen satırlar açık kalır"
+   },
+   {
+    "key": "rows",
+    "label": "Satırlar (Günler / Bölümler)",
+    "type": "array",
+    "itemLabel": "Satır",
+    "itemFields": [
+     {
+      "key": "name",
+      "label": "Ad",
+      "type": "lang"
+     },
+     {
+      "key": "icon",
+      "label": "İkon",
+      "type": "icon"
+     },
+     {
+      "key": "schedules",
+      "label": "Zaman Programları (sütun sırasıyla)",
+      "type": "array",
+      "itemLabel": "Program",
+      "hint": "Her program tablodaki bir 'saat' sütununa karşılık gelir — sırası önemli",
+      "itemFields": [
+       {
+        "key": "label",
+        "label": "Program Etiketi (opsiyonel)",
+        "type": "lang",
+        "hint": "Boşsa gün seçimine göre otomatik: Hafta İçi / Cumartesi / Pazar"
+       },
+       {
+        "key": "days",
+        "label": "Geçerli Günler",
+        "type": "day-multiselect",
+        "hint": "Bu programın geçerli olduğu günleri işaretle (0=Pazar … 6=Cumartesi)"
+       },
+       {
+        "key": "periods",
+        "label": "Saat Aralıkları",
+        "type": "array",
+        "itemLabel": "Aralık",
+        "hint": "Birden fazla aralık eklenirse aralarındaki boşluk 'Öğle Arası' sayılır. 00:00-23:59 → 7/24 görünür",
+        "itemFields": [
+         {
+          "key": "open",
+          "label": "Açılış",
+          "type": "time"
+         },
+         {
+          "key": "close",
+          "label": "Kapanış",
+          "type": "time"
+         }
+        ]
+       },
+       {
+        "key": "closed",
+        "label": "Kapalı (tüm gün)",
+        "type": "boolean"
+       }
+      ]
+     },
+     {
+      "key": "exceptions",
+      "label": "Tatil İstisnaları",
+      "type": "array",
+      "itemLabel": "İstisna",
+      "hint": "Resmi tatilde bu satır açık kalsın: tarih seç + 'açık' işaretle (saat boşsa normal programa bakar)",
+      "itemFields": [
+       {
+        "key": "date",
+        "label": "Tarih",
+        "type": "date"
+       },
+       {
+        "key": "open",
+        "label": "Bu tarihte açık",
+        "type": "boolean"
+       },
+       {
+        "key": "openTime",
+        "label": "Açılış (opsiyonel)",
+        "type": "time"
+       },
+       {
+        "key": "closeTime",
+        "label": "Kapanış (opsiyonel)",
+        "type": "time"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+  "search-with-controls": {
+   "label": "Arama ve Kontroller",
+   "fields": [
+    {
+     "key": "icon",
+     "label": "Arama İkonu",
+     "type": "icon"
+    },
+    {
+     "key": "placeholder",
+     "label": "Yer Tutucu Metin",
+     "type": "lang"
+    },
+    {
+     "key": "clearButtonIcon",
+     "label": "Temizle Butonu İkonu",
+     "type": "icon"
+    },
+    {
+     "key": "controls",
+     "label": "Kontroller",
+     "type": "object",
+     "fields": [
+      {
+       "key": "sort",
+       "label": "Sıralama",
+       "type": "object",
+       "fields": [
+        {
+         "key": "enabled",
+         "label": "Etkin",
+         "type": "boolean"
+        },
+        {
+         "key": "defaultOrder",
+         "label": "Varsayılan Sıra",
+         "type": "select",
+         "options": [
+          "desc",
+          "asc"
+         ]
+        },
+        {
+         "key": "text",
+         "label": "Sıra Metinleri",
+         "type": "object",
+         "fields": [
+          {
+           "key": "desc",
+           "label": "En Yeni (desc)",
+           "type": "lang"
+          },
+          {
+           "key": "asc",
+           "label": "En Eski (asc)",
+           "type": "lang"
+          }
+         ]
+        },
+        {
+         "key": "icon",
+         "label": "Sıra İkonları",
+         "type": "object",
+         "fields": [
+          {
+           "key": "desc",
+           "label": "En Yeni İkonu",
+           "type": "icon"
+          },
+          {
+           "key": "asc",
+           "label": "En Eski İkonu",
+           "type": "icon"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "key": "viewToggle",
+       "label": "Görünüm Değiştirici",
+       "type": "object",
+       "fields": [
+        {
+         "key": "enabled",
+         "label": "Etkin",
+         "type": "boolean"
+        },
+        {
+         "key": "defaultView",
+         "label": "Varsayılan Görünüm",
+         "type": "select",
+         "options": [
+          "grid",
+          "list"
+         ]
+        },
+        {
+         "key": "options",
+         "label": "Görünüm Seçenekleri",
+         "type": "array",
+         "itemLabel": "Seçenek",
+         "itemFields": [
+          {
+           "key": "id",
+           "label": "Kimlik",
+           "type": "text"
+          },
+          {
+           "key": "icon",
+           "label": "İkon",
+           "type": "icon"
+          },
+          {
+           "key": "label",
+           "label": "Etiket",
+           "type": "lang"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "key": "categories",
+     "label": "Kategoriler",
+     "type": "array",
+     "itemLabel": "Kategori",
+     "itemFields": [
+      {
+       "key": "id",
+       "label": "Kimlik",
+       "type": "text",
+       "hint": "'all' = Tümü filtresi"
+      },
+      {
+       "key": "label",
+       "label": "Etiket",
+       "type": "lang"
+      },
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      },
+      {
+       "key": "color",
+       "label": "Kategori Rengi",
+       "type": "color",
+       "hint": "Bu kategorideki tüm içeriklerin rengi — tek yerde tanımlanır, öğelerden renk kodu istenmez"
+      }
+     ]
+    },
+    {
+     "key": "noResults",
+     "label": "Sonuç Yok Mesajı",
+     "type": "object",
+     "fields": [
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang"
+      },
+      {
+       "key": "description",
+       "label": "Açıklama",
+       "type": "lang"
+      }
+     ]
+    }
+   ]
+  },
+  "search-filter": {
+   "label": "Arama + Filtreler (Veritabanları)",
+   "fields": [
+    {
+     "key": "mode",
+     "label": "Mod",
+     "type": "select",
+     "options": [
+      "normal",
+      "compact"
+     ]
+    },
+    {
+     "key": "sticky",
+     "label": "Yapışkan",
+     "type": "boolean"
+    },
+    {
+     "key": "mobileFiltersText",
+     "label": "Mobil Filtre Butonu Metni",
+     "type": "lang"
+    },
+    {
+     "key": "search",
+     "label": "Arama",
+     "type": "object",
+     "fields": [
+      {
+       "key": "placeholder",
+       "label": "Yer Tutucu Metin",
+       "type": "lang"
+      },
+      {
+       "key": "icon",
+       "label": "Arama İkonu",
+       "type": "icon"
+      },
+      {
+       "key": "clearIcon",
+       "label": "Temizle İkonu",
+       "type": "icon"
+      }
+     ]
+    },
+    {
+     "key": "sort",
+     "label": "Sıralama",
+     "type": "object",
+     "fields": [
+      {
+       "key": "enabled",
+       "label": "Etkin",
+       "type": "boolean"
+      },
+      {
+       "key": "text",
+       "label": "Sıra Metinleri",
+       "type": "object",
+       "fields": [
+        {
+         "key": "default",
+         "label": "Varsayılan",
+         "type": "lang"
+        },
+        {
+         "key": "asc",
+         "label": "A-Z",
+         "type": "lang"
+        },
+        {
+         "key": "desc",
+         "label": "Z-A",
+         "type": "lang"
+        }
+       ]
+      },
+      {
+       "key": "icon",
+       "label": "Sıra İkonları",
+       "type": "object",
+       "fields": [
+        {
+         "key": "default",
+         "label": "Varsayılan İkonu",
+         "type": "icon"
+        },
+        {
+         "key": "asc",
+         "label": "A-Z İkonu",
+         "type": "icon"
+        },
+        {
+         "key": "desc",
+         "label": "Z-A İkonu",
+         "type": "icon"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "key": "viewToggle",
+     "label": "Görünüm Değiştirici",
+     "type": "object",
+     "fields": [
+      {
+       "key": "enabled",
+       "label": "Etkin",
+       "type": "boolean"
+      },
+      {
+       "key": "defaultView",
+       "label": "Varsayılan Görünüm",
+       "type": "select",
+       "options": [
+        "card",
+        "list"
+       ]
+      },
+      {
+       "key": "options",
+       "label": "Seçenekler",
+       "type": "array",
+       "itemLabel": "Görünüm",
+       "itemFields": [
+        {
+         "key": "id",
+         "label": "Kimlik",
+         "type": "text",
+         "readonly": true
+        },
+        {
+         "key": "label",
+         "label": "Etiket",
+         "type": "lang"
+        },
+        {
+         "key": "icon",
+         "label": "İkon",
+         "type": "icon"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "key": "categories",
+     "label": "Kategoriler",
+     "type": "array",
+     "itemLabel": "Kategori",
+     "itemFields": [
+      {
+       "key": "id",
+       "label": "Kimlik",
+       "type": "text",
+       "hint": "'all' = Tümü · Filtre kimliği DB kategorileriyle birebir eşleşmeli"
+      },
+      {
+       "key": "label",
+       "label": "Etiket",
+       "type": "lang"
+      },
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      }
+     ]
+    },
+    {
+     "key": "noResults",
+     "label": "Sonuç Yok",
+     "type": "object",
+     "fields": [
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      },
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang"
+      },
+      {
+       "key": "description",
+       "label": "Açıklama",
+       "type": "lang"
+      }
+     ]
+    }
+   ]
+  },
+  "accordion": {
+   "label": "Akordeon (SSS)",
+   "fields": [
+    {
+     "key": "parentId",
+     "label": "Grup Kimliği",
+     "type": "text",
+     "hint": "örn. faq-genel — kategoriyle eşleşir"
+    },
+    {
+     "key": "items",
+     "label": "Sorular",
+     "type": "array",
+     "itemLabel": "Soru",
+     "itemFields": [
+      {
+       "key": "id",
+       "label": "Kimlik",
+       "type": "text",
+       "readonly": true
+      },
+      {
+       "key": "question",
+       "label": "Soru (SSS formatı)",
+       "type": "lang",
+       "hint": "sss.json formatı — question/answer"
+      },
+      {
+       "key": "title",
+       "label": "Başlık (Genel format)",
+       "type": "lang",
+       "hint": "genel format — title/content"
+      },
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      },
+      {
+       "key": "content",
+       "label": "İçerik (Genel format)",
+       "type": "lang"
+      }
+     ]
+    }
+   ]
+  },
+  "circular-progress": {
+   "label": "Dairesel İlerleme",
+   "fields": [
+    {
+     "key": "items",
+     "label": "Kartlar",
+     "type": "array",
+     "itemLabel": "Kart",
+     "itemFields": [
+      {
+       "key": "percentage",
+       "label": "Yüzde",
+       "type": "number"
+      },
+      {
+       "key": "label",
+       "label": "Kısa Etiket",
+       "type": "lang"
+      },
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang"
+      },
+      {
+       "key": "description",
+       "label": "Açıklama",
+       "type": "lang"
+      },
+      {
+       "key": "color",
+       "label": "Renk",
+       "type": "select",
+       "options": [
+        "primary",
+        "secondary",
+        "accent",
+        "tertiary"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "collapsible-section": {
+   "label": "Açılır Kapanır Bölüm",
+   "fields": [
+    {
+     "key": "title",
+     "label": "Başlık",
+     "type": "lang",
+     "required": true
+    },
+    {
+     "key": "icon",
+     "label": "İkon",
+     "type": "icon"
+    },
+    {
+     "key": "expanded",
+     "label": "Varsayılan Açık",
+     "type": "boolean"
+    },
+    {
+     "key": "id",
+     "label": "Kimlik",
+     "type": "text",
+     "readonly": true
+    },
+    {
+     "key": "content",
+     "label": "İçerik Blokları (content formatı)",
+     "type": "array",
+     "itemLabel": "Blok",
+     "itemFields": [
+      {
+       "key": "type",
+       "label": "Tip",
+       "type": "select",
+       "options": [
+        "paragraph",
+        "ordered-list",
+        "unordered-list",
+        "image",
+        "video"
+       ]
+      },
+      {
+       "key": "text",
+       "label": "Metin",
+       "type": "lang"
+      },
+      {
+       "key": "items",
+       "label": "Liste Öğeleri",
+       "type": "array",
+       "itemLabel": "Öğe",
+       "itemType": "lang"
+      },
+      {
+       "key": "src",
+       "label": "Görsel/Video Adresi",
+       "type": "lang"
+      },
+      {
+       "key": "alt",
+       "label": "Açıklama",
+       "type": "lang"
+      },
+      {
+       "key": "note",
+       "label": "Not",
+       "type": "lang"
+      }
+     ]
+    },
+    {
+     "key": "sections",
+     "label": "İçerik Blokları (sections formatı)",
+     "type": "array",
+     "itemLabel": "Blok",
+     "itemFields": [
+      {
+       "key": "type",
+       "label": "Tip",
+       "type": "select",
+       "options": [
+        "paragraph",
+        "ordered-list",
+        "unordered-list",
+        "image",
+        "video"
+       ]
+      },
+      {
+       "key": "content",
+       "label": "İçerik",
+       "type": "lang"
+      }
+     ]
+    },
+    {
+     "key": "defaultOpen",
+     "label": "Varsayılan Açık (eski)",
+     "type": "boolean"
+    }
+   ]
+  },
+  "contact-box": {
+   "label": "İletişim Kutusu",
+   "fields": [
+    {
+     "key": "icon",
+     "label": "İkon",
+     "type": "icon"
+    },
+    {
+     "key": "title",
+     "label": "Başlık",
+     "type": "lang"
+    },
+    {
+     "key": "text",
+     "label": "Açıklama",
+     "type": "lang"
+    },
+    {
+     "key": "links",
+     "label": "Bağlantılar",
+     "type": "array",
+     "itemLabel": "Bağlantı",
+     "itemFields": [
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      },
+      {
+       "key": "text",
+       "label": "Metin",
+       "type": "lang"
+      },
+      {
+       "key": "url",
+       "label": "Adres",
+       "type": "url"
+      }
+     ]
+    }
+   ]
+  },
+  "contact-buttons": {
+   "label": "İletişim Butonları",
+   "fields": [
+    {
+     "key": "buttons",
+     "label": "Butonlar",
+     "type": "array",
+     "itemLabel": "Buton",
+     "itemFields": [
+      {
+       "key": "type",
+       "label": "Tip",
+       "type": "select",
+       "options": [
+        "phone",
+        "email",
+        "link"
+       ],
+       "hint": "phone: telefon · email: e-posta · link: harici bağlantı"
+      },
+      {
+       "key": "text",
+       "label": "Metin",
+       "type": "text"
+      },
+      {
+       "key": "href",
+       "label": "Bağlantı",
+       "type": "url"
+      },
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      }
+     ]
+    },
+    {
+     "key": "layout",
+     "label": "Düzen",
+     "type": "text"
+    },
+    {
+     "key": "gap",
+     "label": "Boşluk",
+     "type": "text"
+    },
+    {
+     "key": "justify",
+     "label": "Hizalama",
+     "type": "select",
+     "options": [
+      "center",
+      "start",
+      "end",
+      "space-between"
+     ]
+    }
+   ]
+  },
+  "content": {
+   "label": "Metin İçeriği",
+   "fields": [
+    {
+     "key": "content",
+     "label": "İçerik",
+     "type": "lang",
+     "required": true,
+     "hint": "Markdown desteklenir"
+    }
+   ]
+  },
+  "divider": {
+   "label": "Ayırıcı Çizgi",
+   "fields": []
+  },
+  "icon-list-grid": {
+   "label": "İkon Liste Grid",
+   "fields": [
+    {
+     "key": "gap",
+     "label": "Boşluk",
+     "type": "text"
+    },
+    {
+     "key": "columns",
+     "label": "Kolonlar",
+     "type": "array",
+     "itemLabel": "Kolon",
+     "itemFields": [
+      {
+       "key": "variant",
+       "label": "Varyant",
+       "type": "text"
+      },
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang"
+      },
+      {
+       "key": "titleIcon",
+       "label": "Başlık İkonu",
+       "type": "icon"
+      },
+      {
+       "key": "items",
+       "label": "Öğeler",
+       "type": "array",
+       "itemLabel": "Öğe",
+       "itemFields": [
+        {
+         "key": "icon",
+         "label": "İkon",
+         "type": "icon"
+        },
+        {
+         "key": "text",
+         "label": "Metin",
+         "type": "lang"
+        },
+        {
+         "key": "description",
+         "label": "Açıklama",
+         "type": "lang"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "link-cards": {
+   "label": "Bağlantı Kartları",
+   "fields": [
+    {
+     "key": "title",
+     "label": "Başlık",
+     "type": "lang"
+    },
+    {
+     "key": "cards",
+     "label": "Kartlar",
+     "type": "array",
+     "itemLabel": "Kart",
+     "itemFields": [
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang"
+      },
+      {
+       "key": "description",
+       "label": "Açıklama",
+       "type": "lang"
+      },
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      },
+      {
+       "key": "url",
+       "label": "Bağlantı",
+       "type": "url"
+      },
+      {
+       "key": "color",
+       "label": "Renk",
+       "type": "color"
+      }
+     ]
+    }
+   ]
+  },
+  "resource-links": {
+   "label": "Kaynak Bağlantıları",
+   "fields": [
+    {
+     "key": "resources",
+     "label": "Kaynaklar",
+     "type": "array",
+     "itemLabel": "Kaynak",
+     "itemFields": [
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang"
+      },
+      {
+       "key": "description",
+       "label": "Açıklama",
+       "type": "lang"
+      },
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      },
+      {
+       "key": "url",
+       "label": "Bağlantı",
+       "type": "url"
+      }
+     ]
+    }
+   ]
+  },
+  "staff-list": {
+   "label": "Personel Listesi",
+   "fields": [
+    {
+     "key": "staff",
+     "label": "Personeller",
+     "type": "array",
+     "itemLabel": "Personel",
+     "itemFields": [
+      {
+       "key": "name",
+       "label": "Ad Soyad",
+       "type": "text",
+       "required": true
+      },
+      {
+       "key": "title",
+       "label": "Ünvan",
+       "type": "lang"
+      },
+      {
+       "key": "email",
+       "label": "E-posta",
+       "type": "text",
+       "hint": "[at] → @ dönüşür"
+      },
+      {
+       "key": "phone",
+       "label": "Telefon",
+       "type": "text"
+      },
+      {
+       "key": "showName",
+       "label": "Adı Göster",
+       "type": "boolean"
+      },
+      {
+       "key": "showTitle",
+       "label": "Ünvanı Göster",
+       "type": "boolean"
+      },
+      {
+       "key": "showEmail",
+       "label": "E-postayı Göster",
+       "type": "boolean"
+      }
+     ]
+    }
+   ]
+  },
+  "stat-cards": {
+   "label": "İstatistik Kartları",
+   "fields": [
+    {
+     "key": "items",
+     "label": "Kartlar",
+     "type": "array",
+     "itemLabel": "Kart",
+     "itemFields": [
+      {
+       "key": "label",
+       "label": "Etiket",
+       "type": "lang"
+      },
+      {
+       "key": "value",
+       "label": "Değer",
+       "type": "lang"
+      },
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      }
+     ]
+    }
+   ]
+  },
+  "step-cards": {
+   "label": "Adım Kartları",
+   "fields": [
+    {
+     "key": "items",
+     "label": "Adımlar",
+     "type": "array",
+     "itemLabel": "Adım",
+     "itemFields": [
+      {
+       "key": "number",
+       "label": "Numara",
+       "type": "number"
+      },
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang",
+       "required": true
+      },
+      {
+       "key": "content",
+       "label": "İçerik",
+       "type": "lang"
+      },
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      },
+      {
+       "key": "defaultOpen",
+       "label": "Varsayılan Açık",
+       "type": "boolean"
+      }
+     ]
+    }
+   ]
+  },
+  "step-guide": {
+   "label": "Adım Rehberi (Görsel)",
+   "fields": [
+    {
+     "key": "steps",
+     "label": "Adımlar",
+     "type": "array",
+     "itemLabel": "Adım",
+     "itemFields": [
+      {
+       "key": "id",
+       "label": "Numara",
+       "type": "number"
+      },
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang"
+      },
+      {
+       "key": "description",
+       "label": "Açıklama",
+       "type": "lang"
+      },
+      {
+       "key": "image",
+       "label": "Görsel",
+       "type": "image"
+      },
+      {
+       "key": "imageAlt",
+       "label": "Görsel Açıklaması",
+       "type": "lang"
+      },
+      {
+       "key": "note",
+       "label": "Not",
+       "type": "lang"
+      }
+     ]
+    }
+   ]
+  },
+  "status-badge": {
+   "label": "Açık/Kapalı Rozeti",
+   "fields": [
+    {
+     "key": "variant",
+     "label": "Mod",
+     "type": "select",
+     "options": [
+      "auto",
+      "manual"
+     ],
+     "hint": "auto: saate göre otomatik Açık/Kapalı · manual: elle seçim"
+    },
+    {
+     "key": "data",
+     "label": "Rozet Verisi",
+     "type": "object",
+     "fields": [
+      {
+       "key": "hours",
+       "label": "Çalışma Saatleri (auto mod)",
+       "type": "array",
+       "itemLabel": "Gün",
+       "itemFields": [
+        {
+         "key": "day",
+         "label": "Gün Adı",
+         "type": "lang"
+        },
+        {
+         "key": "time",
+         "label": "Saat (gösterim)",
+         "type": "lang",
+         "hint": "Örn: 08:00 - 23:00 veya Kapalı"
+        },
+        {
+         "key": "openTime",
+         "label": "Açılış (HH:MM)",
+         "type": "text",
+         "hint": "Örn: 08:00"
+        },
+        {
+         "key": "closeTime",
+         "label": "Kapanış (HH:MM)",
+         "type": "text",
+         "hint": "Örn: 23:00 — 24:00 yazılabilir"
+        },
+        {
+         "key": "dayNumbers",
+         "label": "Gün Numaraları",
+         "type": "array",
+         "itemType": "number",
+         "hint": "0=Pazar 1=Pzt 2=Sal 3=Çar 4=Per 5=Cum 6=Cmt"
+        },
+        {
+         "key": "isWeekend",
+         "label": "Hafta Sonu",
+         "type": "boolean"
+        }
+       ]
+      },
+      {
+       "key": "status",
+       "label": "Durum (manuel mod)",
+       "type": "select",
+       "options": [
+        "open",
+        "closed"
+       ]
+      },
+      {
+       "key": "statusText",
+       "label": "Durum Metni",
+       "type": "lang",
+       "hint": "Boşsa Açık/Kapalı otomatik"
+      },
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon",
+       "hint": "Boşsa nokta ikonu"
+      }
+     ]
+    }
+   ]
   }
+ }
 }

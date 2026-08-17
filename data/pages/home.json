@@ -18,12 +18,36 @@
     "searchUrlTemplate": "https://libra.anadolu.edu.tr/libra.aspx?keyword={search_term_string}",
     "logo": "/assets/images/au-logo.png",
     "openingHours": [
-      { "dayOfWeek": "Monday", "opens": "08:00", "closes": "23:00" },
-      { "dayOfWeek": "Tuesday", "opens": "08:00", "closes": "23:00" },
-      { "dayOfWeek": "Wednesday", "opens": "08:00", "closes": "23:00" },
-      { "dayOfWeek": "Thursday", "opens": "08:00", "closes": "23:00" },
-      { "dayOfWeek": "Friday", "opens": "08:00", "closes": "23:00" },
-      { "dayOfWeek": "Saturday", "opens": "09:00", "closes": "18:00" }
+      {
+        "dayOfWeek": "Monday",
+        "opens": "08:00",
+        "closes": "23:00"
+      },
+      {
+        "dayOfWeek": "Tuesday",
+        "opens": "08:00",
+        "closes": "23:00"
+      },
+      {
+        "dayOfWeek": "Wednesday",
+        "opens": "08:00",
+        "closes": "23:00"
+      },
+      {
+        "dayOfWeek": "Thursday",
+        "opens": "08:00",
+        "closes": "23:00"
+      },
+      {
+        "dayOfWeek": "Friday",
+        "opens": "08:00",
+        "closes": "23:00"
+      },
+      {
+        "dayOfWeek": "Saturday",
+        "opens": "09:00",
+        "closes": "18:00"
+      }
     ]
   },
   "sliderSettings": {
@@ -39,6 +63,7 @@
         "tr": "Koleksiyon Arama",
         "en": "Collection Search"
       },
+      "showTitle": false,
       "dataSource": "data/content/collections.json"
     },
     "services": {
@@ -47,6 +72,7 @@
         "tr": "Kütüphane Hizmetleri",
         "en": "Library Services"
       },
+      "showTitle": false,
       "maxItems": 8,
       "dataSource": "data/content/services.json"
     },

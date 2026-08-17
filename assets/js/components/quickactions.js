@@ -18,23 +18,19 @@ export class QuickActionsManager {
   }
 
   /**
-   * Get translations for quick actions
+   * Get translations for quick actions — JSON'dan okunur (hardcoded metin yok)
    */
   getTranslations() {
     const currentLang = LanguageManager.getCurrentLanguage();
-    const translations = {
-      tr: {
-        title: 'Hızlı İşlemler',
-        ariaLabel: 'Hızlı İşlemler',
-        close: 'Kapat'
-      },
-      en: {
-        title: 'Quick Actions',
-        ariaLabel: 'Quick Actions',
-        close: 'Close'
-      }
+    const t = (this.data && this.data.translations) || {};
+    const fallback = currentLang === 'en'
+      ? { title: 'Quick Actions', ariaLabel: 'Quick Actions', close: 'Close' }
+      : { title: 'Hızlı İşlemler', ariaLabel: 'Hızlı İşlemler', close: 'Kapat' };
+    return {
+      title: Utils.getLocalizedText(t.title) || fallback.title,
+      ariaLabel: Utils.getLocalizedText(t.ariaLabel) || fallback.ariaLabel,
+      close: Utils.getLocalizedText(t.close) || fallback.close
     };
-    return translations[currentLang] || translations.tr;
   }
 
   /**

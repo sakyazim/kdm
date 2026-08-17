@@ -1,0 +1,137 @@
+{
+ "file": "data/pages/anadolu-universitesi-arastirma-birimleri.json",
+ "label": "Araştırma Birimleri",
+ "preview": "anadolu-universitesi-arastirma-birimleri.html",
+ "description": "Araştırma Birimleri sayfasının tüm içeriği.",
+ "fields": [
+  {
+   "key": "hero",
+   "label": "Üst Bant (Hero)",
+   "type": "object",
+   "required": true,
+   "fields": [
+    {
+     "key": "title",
+     "label": "Başlık",
+     "type": "lang",
+     "required": true
+    },
+    {
+     "key": "description",
+     "label": "Açıklama",
+     "type": "lang"
+    },
+    {
+     "key": "icon",
+     "label": "İkon (FontAwesome)",
+     "type": "icon",
+     "hint": "Örn: fas fa-phone"
+    }
+   ]
+  },
+  {
+   "key": "content",
+   "label": "İçerik",
+   "type": "object",
+   "fields": [
+    {
+     "key": "cards",
+     "label": "Kartlar",
+     "type": "array",
+     "itemLabel": "Kart",
+     "itemFields": [
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang"
+      },
+      {
+       "key": "content",
+       "label": "Bağlantılar",
+       "type": "array",
+       "itemLabel": "Bağlantı",
+       "itemFields": [
+        {
+         "key": "text",
+         "label": "Metin",
+         "type": "lang"
+        },
+        {
+         "key": "link",
+         "label": "URL",
+         "type": "url"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+    {
+   "key": "helpSection",
+   "label": "Yardım Bölümü",
+   "type": "object",
+   "fields": [
+    {
+     "key": "title",
+     "label": "Başlık",
+     "type": "lang"
+    },
+    {
+     "key": "description",
+     "label": "Açıklama",
+     "type": "lang"
+    },
+    {
+     "key": "buttons",
+     "label": "Butonlar",
+     "type": "array",
+     "itemLabel": "Buton",
+     "itemFields": [
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      },
+      {
+       "key": "text",
+       "label": "Metin",
+       "type": "lang",
+       "required": true
+      },
+      {
+       "key": "link",
+       "label": "Bağlantı",
+       "type": "url",
+       "required": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "meta",
+   "label": "SEO Bilgileri",
+   "type": "object",
+   "fields": [
+    {
+     "key": "title",
+     "label": "SEO Başlık",
+     "type": "lang"
+    },
+    {
+     "key": "description",
+     "label": "SEO Açıklama",
+     "type": "lang"
+    }
+   ]
+  },
+  {
+   "key": "lastModified",
+   "label": "Son Güncelleme",
+   "type": "text",
+   "readonly": true,
+   "hint": "🔒 Otomatik — kayıtta güncellenir"
+  }
+ ]
+}

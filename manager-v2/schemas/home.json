@@ -24,13 +24,13 @@
         { "key": "title", "label": "Sayfa Başlığı (title)", "type": "lang", "hint": "Sekme başlığı — iç sayfalarda otomatik \" | Anadolu Üniversitesi Kütüphane\" eklenir" },
         { "key": "description", "label": "Açıklama (description)", "type": "lang", "hint": "Google sonuçlarında görünen 150-160 karakterlik özet" },
         { "key": "keywords", "label": "Anahtar Kelimeler", "type": "lang", "hint": "Virgülle ayırın" },
-        { "key": "ogImage", "label": "Paylaşım Görseli (og:image)", "type": "text", "hint": "1200x630 önerilir. /assets/... veya tam URL" },
+        { "key": "ogImage", "label": "Paylaşım Görseli (og:image)", "type": "image", "hint": "1200x630 önerilir. 🖼 Seç ile assets/images klasöründen seçilebilir; tam URL de yazılabilir" },
         { "key": "ogType", "label": "İçerik Tipi (og:type)", "type": "text", "hint": "website (anasayfa) / article (iç sayfa) — boşsa otomatik" },
         { "key": "section", "label": "Bölüm (article:section)", "type": "lang" },
         { "key": "author", "label": "Yazar", "type": "lang" },
         { "key": "publishedTime", "label": "Yayın Tarihi", "type": "date", "hint": "article:published_time için" },
         { "key": "tags", "label": "Etiketler (article:tag)", "type": "array", "itemType": "text", "itemLabel": "Etiket" },
-        { "key": "searchUrlTemplate", "label": "Arama URL Şablonu", "type": "text", "hint": "SearchAction için — {search_term_string} yer tutucusu ile katalog arama adresi" },
+        { "key": "searchUrlTemplate", "label": "Arama URL Şablonu", "type": "text", "readonly": true, "hint": "🔒 Sabit — katalog (libra) arama adresi, değiştirmeyin" },
         { "key": "logo", "label": "Logo URL", "type": "text" },
         {
           "key": "openingHours",
@@ -82,46 +82,20 @@
           "key": "collections",
           "label": "Koleksiyon Arama",
           "type": "object",
-          "fields": [
-            {
-              "key": "enabled",
-              "label": "Etkin",
-              "type": "boolean"
-            },
-            {
-              "key": "title",
-              "label": "Başlık",
-              "type": "lang"
-            },
-            {
-              "key": "dataSource",
-              "label": "Veri Kaynağı (JSON)",
-              "type": "jsonfile",
-              "hint": "Koleksiyon kartlarının okunduğu JSON — tıklayınca açılır"
-            }
+          "fields": [            { "key": "enabled", "label": "Etkin", "type": "boolean" },
+            { "key": "title", "label": "Başlık", "type": "lang" },
+            { "key": "showTitle", "label": "Başlığı Göster", "type": "boolean", "hint": "Açılırsa bölüm başlığı ana sayfada görünür (varsayılan: gizli)" },
+            { "key": "dataSource", "label": "Veri Kaynağı (JSON)", "type": "jsonfile", "hint": "Koleksiyon kartlarının okunduğu JSON — tıklayınca açılır" }
           ]
         },
         {
           "key": "services",
           "label": "Kütüphane Hizmetleri",
           "type": "object",
-          "fields": [
-            {
-              "key": "enabled",
-              "label": "Etkin",
-              "type": "boolean"
-            },
-            {
-              "key": "title",
-              "label": "Başlık",
-              "type": "lang"
-            },
-            {
-              "key": "maxItems",
-              "label": "Maks. Gösterim",
-              "type": "number",
-              "hint": "En fazla kaç hizmet kartı gösterilsin"
-            },
+          "fields": [            { "key": "enabled", "label": "Etkin", "type": "boolean" },
+            { "key": "title", "label": "Başlık", "type": "lang" },
+            { "key": "showTitle", "label": "Başlığı Göster", "type": "boolean", "hint": "Açılırsa bölüm başlığı ana sayfada görünür (varsayılan: gizli)" },
+            { "key": "maxItems", "label": "Maks. Gösterim", "type": "number", "hint": "En fazla kaç hizmet kartı gösterilsin" },
             {
               "key": "dataSource",
               "label": "Veri Kaynağı (JSON)",

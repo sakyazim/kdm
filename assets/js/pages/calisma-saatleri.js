@@ -86,6 +86,9 @@ export class CalismaSaatleriPage {
       return;
     }
 
+    // hours-table rozet hesaplamaları (from-table) için sayfa verisini renderer'a ver
+    ComponentRenderer.registerPageData(this.pageData);
+
     // JSON'dan içeriği render et
     this.renderContent(this.pageData.content);
   }

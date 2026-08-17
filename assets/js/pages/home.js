@@ -144,6 +144,22 @@ export class HomePage {
 
     const sections = homeSettings.sections;
 
+    // Koleksiyon Arama başlığını güncelle
+    if (sections.collections && sections.collections.title) {
+      const collectionsTitle = document.querySelector('#collections-title');
+      if (collectionsTitle) {
+        collectionsTitle.textContent = Utils.getLocalizedText(sections.collections.title);
+      }
+    }
+
+    // Bölüm başlıklarını göster/gizle (sections.*.showTitle ayarı — varsayılan gizli)
+    const setTitleVisible = (selector, on) => {
+      const el = document.querySelector(selector);
+      if (el) el.classList.toggle('visually-hidden', !on);
+    };
+    setTitleVisible('#collections-title', sections.collections?.showTitle === true);
+    setTitleVisible('#services-title', sections.services?.showTitle === true);
+
     // Kütüphane Hizmetleri başlığını güncelle
     if (sections.services && sections.services.title) {
       const servicesTitle = document.querySelector('#services-title');
@@ -572,9 +588,12 @@ export class HomePage {
     const servicesData = this.data.services?.services || this.data.services;
     if (!servicesData || servicesData.length === 0) return;
 
+    // home.json sections.services.maxItems ayarını uygula (config fallback)
+    const maxServices = this.data.homeSettings?.sections?.services?.maxItems
+      || this.config.maxServices;
     const activeServices = servicesData
       .filter(service => service.active !== false)
-      .slice(0, this.config.maxServices);
+      .slice(0, maxServices);
 
     const servicesGrid = document.querySelector('.quick-services-grid');
     if (!servicesGrid) return;
@@ -677,17 +696,18 @@ export class HomePage {
     sliderContainer.innerHTML = featuredNews.map((news, index) => {
       const newsTitle = Utils.getLocalizedText(news.title);
       const newsSummary = Utils.getLocalizedText(news.summary);
-      const newsCategory = Utils.getLocalizedText(news.category);
+      const newsCategory = Utils.getLocalizedText(news.category);    // Action type'a göre link oluştur
+    const actionUrl = this.getActionUrl(news, 'guncel-haberler.html');
+    const actionTarget = news.actionType === 'external' ? '_blank' : '_self';
 
-      // Action type'a göre link oluştur
-      const actionUrl = this.getActionUrl(news, 'guncel-haberler.html');
-      const actionTarget = news.actionType === 'external' ? '_blank' : '_self';
+    // Kategori rengi — kategori tanımından (tek kaynak), düşerse varsayılan lacivert
+    const categoryColor = (this.data.newsCategories || []).find(c => c.id === news.category)?.color || '#1F4C8A';
 
-      return `
+    return `
       <div class="news-slide${index === 0 ? ' active' : ''}">
         <div class="slide-image">
           <img src="${news.image || 'assets/images/nopic.jpeg'}" alt="${newsTitle}" loading="lazy">
-          <div class="category-badge" style="background-color: ${news.categoryColor}">
+          <div class="category-badge" style="background-color: ${categoryColor}">
             ${newsCategory}
           </div>
         </div>
@@ -696,7 +716,7 @@ export class HomePage {
           <p class="slide-description">${newsSummary}</p>
           <div class="slide-footer">
             <span class="slide-date">${Utils.formatDate(news.date)}</span>
-            <a href="${actionUrl}" target="${actionTarget}" class="slide-button" style="background-color: ${news.categoryColor}; color: white;">
+            <a href="${actionUrl}" target="${actionTarget}" class="slide-button" style="background-color: ${categoryColor}; color: white;">
               ${detailsButtonText}
             </a>
           </div>
@@ -755,9 +775,12 @@ export class HomePage {
     const arrivalsArray = arrivalsData.arrivals || arrivalsData;
     if (!arrivalsArray || arrivalsArray.length === 0) return;
 
+    // home.json sections.arrivals.maxItems ayarını uygula (config fallback)
+    const maxItems = this.data.homeSettings?.sections?.arrivals?.maxItems
+      || this.config.maxArrivals;
     const activeArrivals = arrivalsArray
       .filter(arrival => arrival.active !== false)
-      .slice(0, this.config.maxArrivals);
+      .slice(0, maxItems);
 
     const arrivalsContainer = document.querySelector('.arrival-items');
     if (!arrivalsContainer) return;
@@ -1140,21 +1163,28 @@ export class HomePage {
    * Otomatik açılan modal kurulumu
    */
   async setupAutoModal() {
-    // Modal verisini modal.json'dan yükle
+    // Modal verisi app.js tarafından zaten yüklendi (this.data.modal); yoksa yedek fetch
+    let modalConfig = this.data.modal;
+    if (!modalConfig) {
+      try {
+        const response = await fetch('data/content/modal.json');
+        if (!response.ok) {
+          console.warn('modal.json could not be loaded');
+          return;
+        }
+        modalConfig = await response.json();
+      } catch (error) {
+        console.error('Error loading modal:', error);
+        return;
+      }
+    }
+
+    // Modal etkin mi kontrol et
+    if (!modalConfig.enabled || !modalConfig.modals?.length) {
+      return;
+    }
+
     try {
-      const response = await fetch('data/content/modal.json');
-      if (!response.ok) {
-        console.warn('modal.json could not be loaded');
-        return;
-      }
-
-      const modalConfig = await response.json();
-
-      // Modal etkin mi kontrol et
-      if (!modalConfig.enabled || !modalConfig.modals?.length) {
-        return;
-      }
-
       // Aktif modalı bul
       const activeModal = this.findActiveModal(modalConfig);
       if (!activeModal) return;
@@ -1170,26 +1200,27 @@ export class HomePage {
   }
 
   /**
-   * Aktif modalı bul
-   * 1. activeModal ID'si verilmişse o modalı bul (ve active kontrolü yap)
-   * 2. activeModal yoksa, active: true olan ilk modalı bul
+   * Aktif modalı bul — tek mekanizma: active: true olan ilk modal.
+   * (activeModal alanı kaldırıldı: karışıklık yaratıyordu.)
+   *
+   * Tarih otomasyonu: aktif modalın tarihi geçtiyse/başlamadıysa,
+   * tarih aralığında olan bir sonraki modal otomatik devreye girer.
+   * Böylece "yarın biten modal → planlanan modal" geçişi elle aktif
+   * değiştirmeye gerek kalmadan gerçekleşir.
    */
   findActiveModal(modalConfig) {
-    const { activeModal: activeId, modals } = modalConfig;
-
-    // activeModal ID'si verilmişse
-    if (typeof activeId === 'string' && activeId !== '') {
-      const modal = modals.find(m => m.id === activeId);
-      // Modal bulundu VE active ise döndür
-      if (modal && modal.active !== false) {
-        return modal;
-      }
-      // Modal bulunamadı veya active: false ise null döndür
-      return null;
-    }
-
-    // activeModal yoksa, active: true olan ilk modalı bul
-    return modals.find(m => m.active === true);
+    const { modals } = modalConfig;
+    const now = new Date();
+    const inRange = (m) => {
+      const s = m.startDate ? new Date(m.startDate) : null;
+      const e = m.endDate ? new Date(m.endDate) : null;
+      return (!s || now >= s) && (!e || now <= e);
+    };
+    // 1) Aktif + şu an gösterilebilir (tarih aralığında)
+    const live = modals.find(m => m.active === true && inRange(m));
+    if (live) return live;
+    // 2) Aktif olanın tarihi uygun değilse → planlanan otomatik devreye girer
+    return modals.find(m => inRange(m)) || null;
   }
 
   /**
@@ -1281,17 +1312,18 @@ export class HomePage {
       imageWrapper.style.display = 'none';
     }
 
-    // Buton (çoklu dil)
+    // Buton (çoklu dil) — link boş veya '#' ise buton gizlenir
     const button = modal.querySelector('#modalButton');
     if (button) {
-      const buttonText = Utils.getLocalizedText(data.buttonText) || Utils.getLocalizedText({ tr: 'Detaylı Bilgi', en: 'Detailed Information' });
-      button.textContent = buttonText;
-      button.href = data.buttonUrl || '#';
-    }
-
-    // Kategori sınıfı
-    if (data.category) {
-      modal.classList.add(`modal-category-${data.category}`);
+      const hasRealUrl = data.buttonUrl && data.buttonUrl !== '#';
+      if (!hasRealUrl) {
+        button.style.display = 'none';
+      } else {
+        const buttonText = Utils.getLocalizedText(data.buttonText) || Utils.getLocalizedText({ tr: 'Detaylı Bilgi', en: 'Detailed Information' });
+        button.textContent = buttonText;
+        button.href = data.buttonUrl;
+        button.style.display = '';
+      }
     }
   }
 
@@ -1355,10 +1387,5 @@ export class HomePage {
     modal.classList.remove('modal-open');
     modal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('modal-active');
-
-    // Kategori sınıfını kaldır
-    if (data.category) {
-      modal.classList.remove(`modal-category-${data.category}`);
-    }
   }
 }

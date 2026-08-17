@@ -31,7 +31,8 @@
         },
         "url": "iletisim.html"
       }
-    ]
+    ],
+    "showIcon": true
   },
   "content": [
     {
@@ -269,18 +270,28 @@
           "en": "Home"
         },
         "link": "index.html"
+      },
+      {
+        "icon": "bi bi-bug",
+        "text": {
+          "tr": "Sorun Bildir",
+          "en": "Report an Issue"
+        },
+        "type": "modal",
+        "modalId": "sorun-bildir",
+        "variant": "secondary"
       }
     ]
   },
   "meta": {
     "title": {
       "tr": "İletişim",
-      "en": ""
+      "en": "Contact"
     },
     "description": {
       "tr": "Anadolu Üniversitesi Kütüphane",
-      "en": ""
+      "en": "Anadolu University Library"
     }
   },
-  "lastModified": "2026-08-14 15:25"
+  "lastModified": "2026-08-15 17:39"
 }

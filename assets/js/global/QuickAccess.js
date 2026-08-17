@@ -7,6 +7,8 @@
  * @author Anadolu University Library
  */
 
+import Utils from '../core/utils.js';
+
 export class QuickAccess {
   constructor(config = {}) {
     // Configuration
@@ -169,7 +171,7 @@ export class QuickAccess {
           <i class="bi bi-list"></i>
         </div>
         <div class="quick-access-header">
-          <h6>${data.title || this.config.title}</h6>
+          <h6>${Utils.getLocalizedText(data.title || this.config.title)}</h6>
           <button class="quick-access-toggle" aria-label="${this.config.collapseText}">
             <i class="bi bi-x-lg"></i>
           </button>
@@ -181,12 +183,12 @@ export class QuickAccess {
       if (data.groups && this.config.categories) {
         data.groups.forEach(group => {
           html += `
-            <li class="quick-access-category" data-category="${group.title}">
-              ${group.title}
+            <li class="quick-access-category" data-category="${Utils.getLocalizedText(group.title)}">
+              ${Utils.getLocalizedText(group.title)}
             </li>
           `;
           group.items.forEach(item => {
-            html += this.renderLink(item, group.title);
+            html += this.renderLink(item, Utils.getLocalizedText(group.title));
           });
         });
       } else if (data.items) {
@@ -200,11 +202,10 @@ export class QuickAccess {
     // SIDEBAR MODE: Header + Nav (no toggle, no icon)
     else if (effectiveMode === 'sidebar') {
       html += `
-        <div class="quick-access-header">
-          <h5>
-            <i class="${this.config.icon}"></i>
-            ${data.title || this.config.title}
-          </h5>
+        <div class="quick-access-header">            <h5>
+              <i class="${this.config.icon}"></i>
+              ${Utils.getLocalizedText(data.title || this.config.title)}
+            </h5>
         </div>
         <nav class="quick-access-nav"><ul>
       `;
@@ -244,7 +245,7 @@ export class QuickAccess {
            data-anchor="${item.anchor}"
            ${dataCategory}>
           ${iconHtml}
-          <span class="nav-text">${item.text}</span>
+          <span class="nav-text">${Utils.getLocalizedText(item.text)}</span>
         </a>
       </li>
     `;
@@ -259,7 +260,7 @@ export class QuickAccess {
 
     // Collect all sections
     const items = data.groups
-      ? data.groups.flatMap(group => group.items.map(item => ({ ...item, category: group.title })))
+      ? data.groups.flatMap(group => group.items.map(item => ({ ...item, category: Utils.getLocalizedText(group.title) })))
       : data.items.map(item => ({ ...item, category: null }));
 
     items.forEach(item => {

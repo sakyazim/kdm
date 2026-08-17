@@ -3,9 +3,13 @@
 
 /* ---------- Durum ---------- */
 
+// Modal Üretici açıkken önizleme otomatik gizlendiğinde işaret (kullanıcının manuel tercihini bozmamak için)
+let builderPreviewForced = false;
+
 const state = {
   files: null,
   dirtyPaths: [],
+  locks: {},         // path -> {locked, reason}
   tabs: [],          // {path, schema, data, dirty, rawMode}
   activeIdx: -1,
 };
@@ -397,6 +401,10 @@ async function loadFiles() {
     const res = await api("/api/files");
     state.files = res.categories;
     state.dirtyPaths = res.dirty || [];
+    try {
+      const lres = await api("/api/locks");
+      state.locks = lres.locks || {};
+    } catch { /* kilit bilgisi alınamadı — kilit yok sayılır */ }
     renderTree();
     renderGit(res.git);
   } catch (e) {
@@ -447,7 +455,14 @@ function renderTree() {
         d.textContent = "•";
         item.appendChild(d);
       }
-      item.title = (f.hasSchema ? "Şema tabanlı editör" : "Ham JSON editörü") + (f.dirty ? " — kaydedilmemiş değişiklik" : "");
+      if (f.locked) {
+        const lk = document.createElement("span");
+        lk.className = "tree-lock";
+        lk.title = "🔒 Kilitli — kayıt engellendi";
+        lk.textContent = "🔒";
+        item.appendChild(lk);
+      }
+      item.title = (f.hasSchema ? "Şema tabanlı editör" : "Ham JSON editörü") + (f.dirty ? " — kaydedilmemiş değişiklik" : "") + (f.locked ? " — KİLİTLİ" : "");
       item.addEventListener("click", () => selectFile(f.path));
       list.appendChild(item);
     }
@@ -527,6 +542,7 @@ async function selectFile(path) {
       path,
       schema: res.schema || null,
       data: res.content,
+      original: JSON.parse(JSON.stringify(res.content)), // kayıt öncesi temizlikte karşılaştırma için
       dirty: false,
       rawMode: false,
     });
@@ -555,6 +571,7 @@ function renderEditor() {
   const tab = activeTab();
 
   if (!tab) {
+    document.body.classList.remove("builder-open");
     title.textContent = "Dosya seçin";
     desc.textContent = "Soldaki listeden bir JSON dosyası seçin (Ctrl+K ile de açabilirsiniz).";
     formArea.innerHTML = "";
@@ -566,6 +583,18 @@ function renderEditor() {
     $("errorCount").classList.add("hidden");
     return;
   }
+  // Modal Üretici (modals.json) açıkken sağdaki site önizlemesi otomatik gizlenir — "Önizleme: Gizle" butonuyla aynı iş
+  const isBuilder = tab.schema && tab.schema.id === "modal-builder";
+  if (isBuilder) {
+    if (!document.body.classList.contains("preview-hidden")) {
+      document.body.classList.add("preview-hidden");
+      builderPreviewForced = true;
+    }
+  } else if (builderPreviewForced) {
+    document.body.classList.remove("preview-hidden");
+    builderPreviewForced = false;
+  }
+  $("previewToggle").textContent = document.body.classList.contains("preview-hidden") ? "Önizleme: Göster" : "Önizleme: Gizle";
 
   title.textContent = tab.schema ? tab.schema.label : tab.path.split("/").pop();
   let mode = "— ham JSON düzenleme";
@@ -581,12 +610,41 @@ function renderEditor() {
     '<button id="rawToggleBtn" class="btn small" title="Form / ham JSON görünümü arasında geçiş">' + (tab.rawMode ? "Form Görünümü" : "Ham JSON") + "</button>",
     '<button id="historyBtn" class="btn small" title="Bu dosyanın sürüm geçmişi">Geçmiş</button>',
     page ? '<a href="/' + page + '" target="_blank" rel="noopener" class="btn small">Sayfayı Aç ↗</a>' : "",
+    lockMetaBtn(tab),
   ].join("");
 
   if (tab.schema && !tab.rawMode) {
     rawArea.classList.add("hidden");
     formArea.classList.remove("hidden");
     formArea.innerHTML = "";
+    // Kök dizi şeması (root: "array" — örn. collections.json)
+    if (tab.schema.id === "modal-builder") {
+      rawArea.classList.add("hidden");
+      formArea.classList.remove("hidden");
+      formArea.innerHTML = "";
+      tocBar.classList.add("hidden");
+      formArea.appendChild(renderModalBuilder(tab));
+      return;
+    }
+    if (tab.schema.root === "array" && Array.isArray(tab.data)) {
+      if (tab.schema.description) {
+        const note = document.createElement("div");
+        note.className = "root-array-note";
+        note.textContent = tab.schema.description;
+        formArea.appendChild(note);
+      }
+      const f = {
+        type: "array",
+        key: "",
+        label: tab.schema.itemLabel || "Öğe",
+        itemLabel: tab.schema.itemLabel || "Öğe",
+        itemFields: tab.schema.itemFields || [],
+        components: tab.schema.components,
+      };
+      formArea.appendChild(renderArray(f, tab.data, "$"));
+      tocBar.classList.add("hidden");
+      return;
+    }
     const fields = tab.schema.fields || [];
     const startCollapsed = defaultSectionsCollapsed(fields.length);
     const secs = fields.map((f) => renderSection(f, tab.data, startCollapsed, "$." + f.key));
@@ -609,6 +667,1485 @@ function setAllSections(open) {
   localStorage.setItem("mgr_sections", open ? "open" : "collapsed");
 }
 
+/* ================= Modal Üretici — blok tabanlı görsel düzenleyici ================= */
+
+/* Tuval paletindeki parça türleri */
+const BLOCK_TYPES = [
+  { type: "title", label: "Başlık" },
+  { type: "lead", label: "Paragraf" },
+  { type: "note", label: "Not (HTML)" },
+  { type: "image", label: "Görsel (Resim)" },
+  { type: "banner", label: "Banner (Renkli Şerit)" },
+  { type: "alert", label: "Uyarı Kutusu" },
+  { type: "features", label: "Özellikler" },
+  { type: "list", label: "Liste" },
+  { type: "steps", label: "Adımlar" },
+  { type: "button", label: "Buton" },
+  { type: "form", label: "Form" },
+  { type: "rating", label: "Değerlendirme" },
+  { type: "divider", label: "Ayırıcı" },
+  { type: "raw", label: "Ham HTML" },
+];
+
+/* Kategori renkleri — kartları ayırt etmek için */
+const CATEGORY_COLORS = {
+  help: "#1f4c8a",
+  anasayfa: "#198754",
+  duyurular: "#d97706",
+  genel: "#64748b",
+  veritabanlari: "#2563eb",
+  etkinlik: "#7c3aed",
+};
+function categoryColor(c) { return CATEGORY_COLORS[c] || "#64748b"; }
+
+/* Gerçek site modallarından türetilmiş şablonlar (blok listesi olarak) */
+const MODAL_TEMPLATES = {
+  anasayfa: {
+    label: "🏠 Anasayfa Duyurusu",
+    blocks: {
+      tr: [
+        { type: "title", data: { text: "Yeni Dönem Kütüphane Hizmetleri" } },
+        { type: "banner", data: { icon: "bi bi-stars", text: "📚 Yeni Dönem • Kütüphane" } },
+        { type: "lead", data: { text: "Sevgili öğrenciler ve akademisyenler, yeni dönemle birlikte kütüphane hizmetlerimizde birçok yenilik sizi bekliyor. Tüm detaylar için duyurular sayfamızı ziyaret edin." } },
+        { type: "features", data: { items: [
+          { icon: "bi bi-book", title: "Uzatılmış çalışma saatleri", text: "Dönem boyunca daha uzun hizmet" },
+          { icon: "bi bi-pc-display", title: "Yeni veritabanları", text: "Erişime açılan kaynaklar" },
+          { icon: "bi bi-people", title: "Rezervasyon imkânı", text: "Çalışma odaları" },
+        ] } },
+        { type: "button", data: { text: "Detaylı Bilgi", url: "duyurular.html", variant: "primary" } },
+      ],
+      en: [
+        { type: "title", data: { text: "New Semester Library Services" } },
+        { type: "banner", data: { icon: "bi bi-stars", text: "📚 New Semester • Library" } },
+        { type: "lead", data: { text: "Dear students and academics, many new services await you this semester. Visit our announcements page for all details." } },
+        { type: "features", data: { items: [
+          { icon: "bi bi-book", title: "Extended opening hours", text: "Longer service during the term" },
+          { icon: "bi bi-pc-display", title: "New databases", text: "Newly available resources" },
+          { icon: "bi bi-people", title: "Reservation options", text: "Study rooms" },
+        ] } },
+        { type: "button", data: { text: "Details", url: "duyurular.html", variant: "primary" } },
+      ],
+    },
+  },
+  duyurular: {
+    label: "📢 Duyuru / Sistem Bildirimi",
+    blocks: {
+      tr: [
+        { type: "alert", data: { icon: "bi bi-exclamation-triangle", title: "Sistem Bakımı Duyurusu", text: "Kütüphane sistemimizde planlı bakım çalışması yapılacaktır. Bu süre zarfında bazı hizmetlerde kesinti yaşanabilir.", variant: "warning" } },
+        { type: "list", data: { items: [
+          { icon: "bi bi-clock", text: "Tarih: Cumartesi 22:00 – Pazar 02:00" },
+          { icon: "bi bi-plug", text: "Etkilenen: Katalog arama, e-kaynak erişimi" },
+          { icon: "bi bi-check-circle", text: "Etkilenmeyen: Ödünç/iade, çalışma alanları" },
+        ] } },
+        { type: "button", data: { text: "Ayrıntılar", url: "duyurular.html", variant: "primary" } },
+      ],
+      en: [
+        { type: "alert", data: { icon: "bi bi-exclamation-triangle", title: "System Maintenance Notice", text: "Planned maintenance will be carried out on our library system. Some services may be interrupted during this period.", variant: "warning" } },
+        { type: "list", data: { items: [
+          { icon: "bi bi-clock", text: "When: Saturday 22:00 – Sunday 02:00" },
+          { icon: "bi bi-plug", text: "Affected: Catalog search, e-resource access" },
+          { icon: "bi bi-check-circle", text: "Unaffected: Loans/returns, study areas" },
+        ] } },
+        { type: "button", data: { text: "Details", url: "duyurular.html", variant: "primary" } },
+      ],
+    },
+  },
+  veritabanlari: {
+    label: "🗄️ Veritabanı Tanıtımı",
+    blocks: {
+      tr: [
+        { type: "title", data: { text: "Yeni Veritabanı: Academic Research Plus" } },
+        { type: "image", data: { src: "assets/images/nopic.jpeg", alt: "Veritabanı" } },
+        { type: "lead", data: { text: "Kütüphanemize yeni eklenen veritabanı ile 5000'den fazla akademik dergiye ve 40.000 e-kitaba erişebilirsiniz." } },
+        { type: "list", data: { items: [
+          { icon: "bi bi-journal", text: "5.000+ hakemli dergi" },
+          { icon: "bi bi-search", text: "Gelişmiş arama araçları" },
+          { icon: "bi bi-download", text: "PDF tam metin indirme" },
+        ] } },
+        { type: "button", data: { text: "Veritabanına Git", url: "veritabanlari.html", variant: "primary" } },
+      ],
+      en: [
+        { type: "title", data: { text: "New Database: Academic Research Plus" } },
+        { type: "image", data: { src: "assets/images/nopic.jpeg", alt: "Database" } },
+        { type: "lead", data: { text: "Access more than 5,000 academic journals and 40,000 e-books with our new database." } },
+        { type: "list", data: { items: [
+          { icon: "bi bi-journal", text: "5,000+ peer-reviewed journals" },
+          { icon: "bi bi-search", text: "Advanced search tools" },
+          { icon: "bi bi-download", text: "PDF full-text download" },
+        ] } },
+        { type: "button", data: { text: "Go to Database", url: "veritabanlari.html", variant: "primary" } },
+      ],
+    },
+  },
+  "uzaktan-erisim": {
+    label: "🔑 Uzaktan Erişim Rehberi",
+    blocks: {
+      tr: [
+        { type: "title", data: { text: "Uzaktan Erişim Nasıl Çalışır?" } },
+        { type: "lead", data: { text: "Kampüs dışından veritabanlarına erişim için 3 adım:" } },
+        { type: "steps", data: { items: ["Kütüphane web sitesine giriş yapın", "Veritabanları sayfasından kaynağı seçin", "Anadolu Üniversitesi kullanıcı adınızla bağlanın"] } },
+        { type: "button", data: { text: "Rehberi Aç", url: "uzaktan-erisim.html", variant: "primary" } },
+      ],
+      en: [
+        { type: "title", data: { text: "How Does Remote Access Work?" } },
+        { type: "lead", data: { text: "3 steps to access databases off-campus:" } },
+        { type: "steps", data: { items: ["Sign in to the library website", "Choose the resource from Databases", "Connect with your Anadolu University account"] } },
+        { type: "button", data: { text: "Open Guide", url: "uzaktan-erisim.html", variant: "primary" } },
+      ],
+    },
+  },
+};
+
+/* Önizleme + tuval için siteye benzer stiller */
+const MODAL_PREVIEW_CSS =
+  ".modal-template{font-size:14px}" +
+  ".modal-tpl-title{font-size:18px;font-weight:700;color:#0d2341;margin:0 0 10px}" +
+  ".modal-tpl-title.hm-title{background:linear-gradient(135deg,#0d2341,#1f4c8a);color:#fff;padding:14px 16px;border-radius:8px;text-align:center;margin-bottom:12px}" +
+  ".modal-tpl-title.ta-center{text-align:center}.modal-tpl-title.ta-right{text-align:right}" +
+  ".modal-lead.ta-center{text-align:center}.modal-lead.ta-right{text-align:right}" +
+  ".modal-tpl-img{width:100%;max-height:200px;object-fit:cover;border-radius:8px;margin:0 0 12px}" +
+  ".modal-tpl-banner{background:linear-gradient(135deg,#0d2341,#1f4c8a);color:#fff;padding:14px;border-radius:8px;font-size:15px;font-weight:700;margin:0 0 12px;text-align:center}" +
+  ".modal-tpl-banner.banner-blue{background:linear-gradient(135deg,#1d4ed8,#3b82f6)}" +
+  ".modal-tpl-banner.banner-green{background:linear-gradient(135deg,#15803d,#22c55e)}" +
+  ".modal-tpl-banner.banner-orange{background:linear-gradient(135deg,#c2410c,#f97316)}" +
+  ".modal-tpl-banner.banner-red{background:linear-gradient(135deg,#b91c1c,#ef4444)}" +
+  ".modal-tpl-banner i{margin-right:6px}" +
+  ".modal-tpl-steps{display:grid;gap:8px;margin-bottom:12px}" +
+  ".modal-tpl-step{display:flex;gap:10px;align-items:center;background:#f1f5f9;padding:8px 12px;border-radius:8px;font-size:13px}" +
+  ".modal-tpl-step-n{background:#1f4c8a;color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}" +
+  ".modal-tpl-divider{border:none;border-top:1px dashed #cbd5e1;margin:12px 0}" +
+  ".modal-tpl-divider.divider-solid{border-top-style:solid}" +
+  ".modal-tpl-divider.divider-dotted{border-top-style:dotted}" +
+  ".modal-tpl-divider.divider-color-blue{border-top-color:#3b82f6}" +
+  ".modal-tpl-divider.divider-color-orange{border-top-color:#f97316}" +
+  ".modal-tpl-divider.divider-color-red{border-top-color:#ef4444}" +
+  ".modal-lead{margin:0 0 12px;color:#475569;line-height:1.6}" +
+  ".modal-note{margin:12px 0 0;font-size:13px;color:#64748b}" +
+  ".modal-feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:12px}" +
+  ".modal-feature-grid.cols-2{grid-template-columns:repeat(2,1fr)}" +
+  ".modal-feature-grid.cols-4{grid-template-columns:repeat(4,1fr)}" +
+  ".modal-feature{background:#f1f5f9;border-radius:10px;padding:12px;text-align:center}" +
+  ".modal-feature i{font-size:20px;color:#1f4c8a}" +
+  ".modal-feature h4{margin:6px 0 4px;font-size:13px}" +
+  ".modal-feature p{margin:0;font-size:12px;color:#475569}" +
+  ".modal-alert{display:flex;gap:10px;align-items:flex-start;background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:12px;margin-bottom:12px;position:relative}" +
+  ".modal-alert i{font-size:18px;color:#f97316}" +
+  ".modal-alert strong{display:block;margin-bottom:2px}" +
+  ".modal-alert p{margin:0;font-size:13px}" +
+  ".modal-alert-close{position:absolute;top:6px;right:8px;background:none;border:none;font-size:13px;cursor:pointer;color:#94a3b8;padding:2px 6px;border-radius:4px}" +
+  ".modal-alert-close:hover{background:#e2e8f0;color:#334155}" +
+  ".modal-alert.modal-alert-danger{background:#fef2f2;border-color:#fecaca}.modal-alert.modal-alert-danger i{color:#dc2626}" +
+  ".modal-alert.modal-alert-success{background:#f0fdf4;border-color:#bbf7d0}.modal-alert.modal-alert-success i{color:#16a34a}" +
+  ".modal-alert.modal-alert-info{background:#eff6ff;border-color:#bfdbfe}.modal-alert.modal-alert-info i{color:#2563eb}" +
+  ".modal-list{list-style:none;margin:0 0 12px;padding:0}" +
+  ".modal-list li{display:flex;gap:8px;align-items:flex-start;padding:6px 0;font-size:13px;border-bottom:1px dashed #e2e8f0}" +
+  ".modal-list li:last-child{border-bottom:none}" +
+  ".modal-list i{color:#1f4c8a}" +
+  ".modal-list-ordered{counter-reset:ml}.modal-list-ordered li{counter-increment:ml}.modal-list-ordered li::before{content:counter(ml) \".\";font-weight:700;color:#1f4c8a}" +
+  ".modal-form{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}" +
+  ".form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}" +
+  ".form-group label{font-weight:600;font-size:13px;display:block;margin-bottom:4px}" +
+  ".form-group input,.form-group textarea,.form-group select{width:100%;padding:8px 10px;border:1px solid #cbd5e1;border-radius:6px;font-size:13px;box-sizing:border-box}" +
+  ".modal-form-btn{align-self:flex-start;margin-top:2px}" +
+  ".star-rating{display:inline-flex;gap:2px;font-size:22px;color:#cbd5e1;cursor:pointer}" +
+  ".star-rating span:hover,.star-rating span.active,.star-rating span.hover{color:#f59e0b}" +
+  ".modal-hero{text-align:center;margin-bottom:12px}" +
+  ".btn{display:inline-block;padding:9px 18px;border-radius:6px;text-decoration:none;font-size:14px;border:none;cursor:pointer}" +
+  ".btn-primary{background:#1f4c8a;color:#fff}" +
+  ".btn-outline-primary{border:1px solid #1f4c8a;color:#1f4c8a;background:#fff}" +
+  ".btn-sm{padding:6px 12px;font-size:12.5px}.btn-lg{padding:12px 22px;font-size:15px}";
+
+function applyModalPreview(el, html) {
+  let style = el.querySelector("style.mb-preview-style");
+  if (!style) {
+    style = document.createElement("style");
+    style.className = "mb-preview-style";
+    el.prepend(style);
+  }
+  style.textContent = MODAL_PREVIEW_CSS;
+  el.innerHTML = "<div class='mb-preview-scope'>" + (html || "<p style='color:#94a3b8'>İçerik boş — şablon seçin veya tuvalden parça ekleyin.</p>") + "</div>";
+}
+
+/* ---------- Blok modeli ---------- */
+
+function esc(s) {
+  return String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+function stripTags(s) {
+  return String(s ?? "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function defaultBlockData(type, tr) {
+  switch (type) {
+    case "title": return { text: tr ? "Yeni Başlık" : "New Title", level: "h3", align: "left", cls: "" };
+    case "lead": return { text: tr ? "Açıklama metni…" : "Description text…", align: "left" };
+    case "note": return { html: tr ? "<strong>Not:</strong> açıklama metni" : "<strong>Note:</strong> description" };
+    case "image": return { src: "assets/images/nopic.jpeg", alt: tr ? "Görsel" : "Image", width: 100 };
+    case "banner": return { icon: "bi bi-stars", text: tr ? "Görsel alanı" : "Image area", variant: "navy" };
+    case "alert": return { icon: "bi bi-exclamation-triangle", title: tr ? "Önemli duyuru" : "Important notice", text: tr ? "Açıklama metni." : "Description text.", variant: "warning", dismissible: false };
+    case "features": return { items: [{ icon: "bi bi-check", title: tr ? "Özellik" : "Feature", text: tr ? "Açıklama" : "Description" }], cols: 3 };
+    case "list": return { items: [{ icon: "bi bi-check", text: tr ? "Liste öğesi" : "List item" }], ordered: false };
+    case "steps": return { items: [tr ? "İlk adım" : "First step", tr ? "İkinci adım" : "Second step"] };
+    case "button": return { text: tr ? "Devamı" : "Read More", url: "duyurular.html", variant: "primary", icon: "", size: "", blank: false };
+    case "form": return { fields: [
+      { kind: "text", label: tr ? "Adınız Soyadınız" : "Full Name", placeholder: tr ? "Ad Soyad" : "First Last", required: true, options: [], name: "", sameRow: false },
+      { kind: "email", label: "E-posta", placeholder: "ornek@anadolu.edu.tr", required: true, options: [], name: "", sameRow: true },
+    ], submitText: tr ? "Gönder" : "Send", action: "", method: "post", submitVariant: "primary" };
+    case "rating": return { question: tr ? "Genel Memnuniyet" : "Overall Satisfaction", max: 5 };
+    case "divider": return { variant: "dashed", color: "slate" };
+    case "raw": return { html: tr ? "<p>Ham HTML</p>" : "<p>Raw HTML</p>" };
+    default: return {};
+  }
+}
+
+function blockToHtml(b) {
+  const d = b.data || {};
+  switch (b.type) {
+    case "title": {
+      const lvl = ["h2", "h3", "h4"].includes(d.level) ? d.level : "h3";
+      return "<" + lvl + ' class="modal-tpl-title' + (d.cls ? " " + d.cls : "") + (d.align && d.align !== "left" ? " ta-" + d.align : "") + '">' + (d.text || "") + "</" + lvl + ">";
+    }
+    case "lead": return '<p class="modal-lead' + (d.align && d.align !== "left" ? " ta-" + d.align : "") + '">' + (d.text || "") + "</p>";
+    case "note": return '<div class="modal-note">' + (d.html || "") + "</div>";
+    case "image": {
+      const w = Math.max(10, Math.min(100, parseInt(d.width, 10) || 100));
+      return '<img class="modal-tpl-img" src="' + esc(d.src) + '" alt="' + esc(d.alt) + '" style="width:' + w + '%" onerror="this.style.display=\'none\'">';
+    }
+    case "banner": return '<div class="modal-hero"><div class="modal-tpl-banner banner-' + esc(d.variant || "navy") + '">' + (d.icon ? '<i class="' + esc(d.icon) + '"></i> ' : "") + (d.text || "") + "</div></div>";
+    case "alert": return '<div class="modal-alert modal-alert-' + esc(d.variant || "warning") + '"><i class="' + esc(d.icon || "bi bi-exclamation-triangle") + '"></i><div><strong>' + (d.title || "") + "</strong><p>" + (d.text || "") + "</p></div>" + (d.dismissible ? '<button type="button" class="modal-alert-close" aria-label="Kapat">✕</button>' : "") + "</div>";
+    case "features": return '<div class="modal-feature-grid cols-' + (d.cols || 3) + '">\n' + (d.items || []).map((it) => '  <div class="modal-feature"><i class="' + esc(it.icon || "bi bi-check") + '"></i><h4>' + (it.title || "") + "</h4><p>" + (it.text || "") + "</p></div>").join("\n") + "\n</div>";
+    case "list": {
+      const tag = d.ordered ? "ol" : "ul";
+      return "<" + tag + ' class="modal-list' + (d.ordered ? " modal-list-ordered" : "") + '">\n' + (d.items || []).map((it) => '  <li><i class="' + esc(it.icon || "bi bi-check") + '"></i> ' + (it.text || "") + "</li>").join("\n") + "\n</" + tag + ">";
+    }
+    case "steps": return '<div class="modal-tpl-steps">\n' + (d.items || []).map((t, i) => '  <div class="modal-tpl-step"><span class="modal-tpl-step-n">' + (i + 1) + "</span> " + (t || "") + "</div>").join("\n") + "\n</div>";
+    case "button": {
+      const cls = d.variant === "outline" ? "btn-outline-primary" : "btn-primary";
+      const sz = d.size ? " btn-" + d.size : "";
+      const target = d.blank ? ' target="_blank" rel="noopener"' : "";
+      return '<a class="btn ' + cls + sz + '" href="' + esc(d.url || "#") + '"' + target + ">" + (d.icon ? '<i class="' + esc(d.icon) + '"></i> ' : "") + (d.text || "Devamı") + "</a>";
+    }
+    case "form": {
+      const out = [];
+      let pending = null;
+      (d.fields || []).forEach((f) => {
+        const fhtml = formFieldToHtml(f);
+        if (f.sameRow) {
+          // "Yan yana" işaretli alan bir ÖNCEKİ alanla aynı satıra girer
+          if (pending) {
+            out.push('<div class="form-row">\n' + pending + "\n" + fhtml + "\n</div>");
+            pending = null;
+          } else {
+            out.push(fhtml);
+          }
+        } else {
+          if (pending) out.push(pending);
+          pending = fhtml;
+        }
+      });
+      if (pending) out.push(pending);
+      const action = d.action ? ' action="' + esc(d.action) + '"' : "";
+      const method = d.method ? ' method="' + esc(d.method) + '"' : "";
+      const submit = '<button type="submit" class="modal-form-btn btn ' + (d.submitVariant === "outline" ? "btn-outline-primary" : "btn-primary") + '">' + (d.submitText || "Gönder") + "</button>";
+      const prevent = d.action ? "" : ' onsubmit="return false;"';
+      return '<form class="modal-form"' + prevent + action + method + ">\n" + out.join("\n") + "\n" + submit + "\n</form>";
+    }
+    case "rating": {
+      const max = d.max === 10 ? 10 : 5;
+      return '<div class="form-group"><label>' + (d.question || "Değerlendirin") + '</label><div class="star-rating">' + Array.from({ length: max }, () => "<span>★</span>").join("") + "</div></div>";
+    }
+    case "divider": return '<hr class="modal-tpl-divider divider-' + esc(d.variant || "dashed") + " divider-color-" + esc(d.color || "slate") + '">';
+    case "raw": return d.html || "";
+    default: return "";
+  }
+}
+
+function formFieldToHtml(f) {
+  const req = f.required ? " *" : "";
+  const label = "<label>" + (f.label || "") + req + "</label>";
+  const name = f.name ? ' name="' + esc(f.name) + '"' : "";
+  if (f.kind === "select") {
+    const opts = (f.options || []).map((o) => "<option>" + esc(o) + "</option>").join("");
+    return '<div class="form-group">' + label + '<select' + name + (f.required ? " required" : "") + '><option value="">' + esc(f.placeholder || "Seçin…") + "</option>" + opts + "</select></div>";
+  }
+  if (f.kind === "textarea") return '<div class="form-group">' + label + '<textarea' + name + ' placeholder="' + esc(f.placeholder || "") + '"' + (f.required ? " required" : "") + "></textarea></div>";
+  if (f.kind === "rating") return '<div class="form-group">' + label + '<div class="star-rating"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div></div>';
+  if (f.kind === "checkbox") return '<div class="form-group"><label><input type="checkbox"' + name + "> " + (f.label || "") + "</label></div>";
+  const type = f.kind === "email" ? "email" : f.kind === "number" ? "number" : f.kind === "tel" ? "tel" : f.kind === "url" ? "url" : f.kind === "date" ? "date" : "text";
+  return '<div class="form-group">' + label + '<input type="' + type + '"' + name + ' placeholder="' + esc(f.placeholder || "") + '"' + (f.required ? " required" : "") + "></div>";
+}
+
+function blocksToHtml(blocks) {
+  return (blocks || []).map(blockToHtml).join("\n");
+}
+
+/* Mevcut HTML'i blok listesine çevirir (site modal sınıflarına göre) */
+function htmlToBlocks(html) {
+  const s = (html || "").trim();
+  if (!s) return [];
+  const found = [];
+  const add = (m, block, openOnly) => { if (m && m.index >= 0) found.push({ pos: m.index, len: openOnly ? 0 : m[0].length, block }); };
+
+  let m = s.match(/<div class="modal-feature-grid(?: cols-(\d+))?">/);
+  if (m) {
+    const items = [];
+    const re = /<div class="modal-feature">\s*<i class="([^"]*)"><\/i><h4>([\s\S]*?)<\/h4><p>([\s\S]*?)<\/p><\/div>/g;
+    let x;
+    while ((x = re.exec(s))) items.push({ icon: x[1], title: stripTags(x[2]), text: stripTags(x[3]) });
+    add(m, { type: "features", data: { items, cols: parseInt(m[1], 10) || 3 } }, true);
+  }
+  m = s.match(/<div class="modal-alert(?: modal-alert-(\w+))?">\s*<i class="([^"]*)"><\/i><div><strong>([\s\S]*?)<\/strong><p>([\s\S]*?)<\/p><\/div>(<button type="button" class="modal-alert-close"[^>]*>✕<\/button>)?<\/div>/);
+  if (m) add(m, { type: "alert", data: { icon: m[2], title: stripTags(m[3]), text: stripTags(m[4]), variant: m[1] || "warning", dismissible: !!m[5] } });
+  m = s.match(/<div class="modal-hero">([\s\S]*?)<\/div>/);
+  if (m && !m[1].includes("modal-tpl-banner")) {
+    const h4 = m[1].match(/<h4>([\s\S]*?)<\/h4>/);
+    add(m, { type: "banner", data: { icon: "bi bi-stars", text: h4 ? stripTags(h4[1]) : "Görsel" } });
+  }
+  m = s.match(/<img class="modal-tpl-img" src="([^"]*)" alt="([^"]*)"([^>]*)>/);
+  if (m) {
+    const w = (m[3].match(/width:(\d+)%/) || [])[1];
+    add(m, { type: "image", data: { src: m[1], alt: m[2], width: w ? parseInt(w, 10) : 100 } });
+  }
+  m = s.match(/<(ul|ol) class="modal-list(?: modal-list-ordered)?">([\s\S]*?)<\/(?:ul|ol)>/);
+  if (m) {
+    const items = [];
+    const re = /<li>\s*<i class="([^"]*)"><\/i>([\s\S]*?)<\/li>/g;
+    let x;
+    while ((x = re.exec(m[2]))) items.push({ icon: x[1], text: stripTags(x[2]) });
+    add(m, { type: "list", data: { items, ordered: m[1] === "ol" } });
+  }
+  m = s.match(/<p class="modal-lead(?: ta-(\w+))?">([\s\S]*?)<\/p>/);
+  if (m) add(m, { type: "lead", data: { text: m[2], align: m[1] || "left" } });
+  m = s.match(/<(?:p|div) class="modal-note">([\s\S]*?)<\/(?:p|div)>/);
+  if (m) add(m, { type: "note", data: { html: m[1] } });
+  m = s.match(/<h([234]) class="modal-tpl-title([^"]*)">([\s\S]*?)<\/h\1>/);
+  if (m) add(m, { type: "title", data: { text: m[3], level: "h" + m[1], align: (m[2].match(/ta-(\w+)/) || [])[1] || "left", cls: m[2].includes("hm-title") ? "hm-title" : "" } });
+  m = s.match(/<div class="modal-hero">\s*<div class="modal-tpl-banner(?: banner-(\w+))?">(?:<i class="([^"]*)"><\/i>\s*)?([\s\S]*?)<\/div>\s*<\/div>|<div class="modal-tpl-banner(?: banner-(\w+))?">(?:<i class="([^"]*)"><\/i>\s*)?([\s\S]*?)<\/div>/);
+  if (m) add(m, { type: "banner", data: { icon: m[2] || m[5] || "", text: stripTags(m[3] || m[6] || ""), variant: m[1] || m[4] || "navy" } });
+  m = s.match(/<div class="modal-tpl-steps">/);
+  if (m) {
+    const items = [];
+    const re = /modal-tpl-step-n">\d+<\/span>([\s\S]*?)<\/div>/g;
+    let x;
+    while ((x = re.exec(s))) items.push(stripTags(x[1]));
+    add(m, { type: "steps", data: { items } }, true);
+  }
+  m = s.match(/<form class="modal-form"([\s\S]*?)>([\s\S]*?)<\/form>/);
+  if (m) {
+    const attrs = m[1];
+    const body = m[2];
+    const action = (attrs.match(/action="([^"]*)"/) || [])[1] || "";
+    const method = (attrs.match(/method="([^"]*)"/) || [])[1] || "";
+    const parseGroup = (g, sameRow) => {
+      const label = (g.match(/<label>([\s\S]*?)<\/label>/) || [])[1] || "";
+      let kind = "text", placeholder = "", options = [];
+      if (/<select/.test(g)) kind = "select";
+      else if (/<textarea/.test(g)) kind = "textarea";
+      else if (/class="star-rating"/.test(g)) kind = "rating";
+      else if (/type="email"/.test(g)) kind = "email";
+      else if (/type="tel"/.test(g)) kind = "tel";
+      else if (/type="url"/.test(g)) kind = "url";
+      else if (/type="date"/.test(g)) kind = "date";
+      else if (/type="number"/.test(g)) kind = "number";
+      const ph = (g.match(/placeholder="([^"]*)"/) || [])[1] || "";
+      const name = (g.match(/name="([^"]*)"/) || [])[1] || "";
+      if (kind === "select") options = Array.from(g.matchAll(/<option>([\s\S]*?)<\/option>/g)).map((y) => y[1]);
+      return { kind, label: stripTags(label).replace(/\s*\*$/, ""), placeholder: ph, required: /required/.test(g), options, name, sameRow: !!sameRow };
+    };
+    const fields = [];
+    const rowRe = /<div class="form-row">\s*(<div class="form-group">[\s\S]*?<\/div>)\s*(<div class="form-group">[\s\S]*?<\/div>)\s*<\/div>/g;
+    let x;
+    while ((x = rowRe.exec(body))) {
+      fields.push(parseGroup(x[1], false));
+      fields.push(parseGroup(x[2], true));
+    }
+    const rest = body.replace(rowRe, "");
+    const re = /<div class="form-group">([\s\S]*?)<\/div>/g;
+    while ((x = re.exec(rest))) fields.push(parseGroup(x[1], false));
+    const subM = rest.match(/class="modal-form-btn([^"]*)"([^>]*)>([\s\S]*?)<\/button>/);
+    const sub = (subM || [])[3] || "";
+    const submitVariant = subM && (subM[1] + subM[2]).includes("outline") ? "outline" : "primary";
+    add(m, { type: "form", data: { fields, submitText: stripTags(sub) || undefined, action, method, submitVariant } });
+  }
+  m = s.match(/<div class="form-group"><label>([^<]*)<\/label>\s*<div class="star-rating">((?:<span[^>]*>★<\/span>)+)<\/div><\/div>/);
+  if (m) {
+    const inForm = s.lastIndexOf("<form", m.index) > s.lastIndexOf("</form>", m.index);
+    if (!inForm) add(m, { type: "rating", data: { question: m[1].replace(/\s*\*$/, ""), max: (m[2].match(/★/g) || []).length > 5 ? 10 : 5 } });
+  }
+  m = s.match(/<a class="btn ([^"]*)" href="([^"]*)"([^>]*)>([\s\S]*?)<\/a>/);
+  if (m) {
+    const cls = m[1];
+    const icon = (m[4].match(/<i class="([^"]*)"><\/i>/) || [])[1] || "";
+    add(m, { type: "button", data: { text: stripTags(m[4]), url: m[2], variant: cls.includes("outline") ? "outline" : "primary", icon, size: (cls.match(/btn-(sm|lg)/) || [])[1] || "", blank: /target="_blank"/.test(m[3]) } });
+  }
+  m = s.match(/<hr class="modal-tpl-divider(?: divider-(\w+))?(?: divider-color-(\w+))?">/);
+  if (m) add(m, { type: "divider", data: { variant: m[1] || "dashed", color: m[2] || "slate" } });
+
+  found.sort((a, b) => a.pos - b.pos);
+  const blocks = [];
+  let cursor = 0;
+  for (let i = 0; i < found.length; i++) {
+    const f = found[i];
+    const end = f.len ? f.pos + f.len : (i + 1 < found.length ? found[i + 1].pos : s.length);
+    if (f.pos > cursor) {
+      const gap = s.slice(cursor, f.pos).trim();
+      if (gap) blocks.push({ type: "raw", data: { html: gap } });
+    }
+    blocks.push(f.block);
+    cursor = Math.max(cursor, end);
+  }
+  if (cursor < s.length) {
+    const tail = s.slice(cursor).trim();
+    if (tail) blocks.push({ type: "raw", data: { html: tail } });
+  }
+  if (!blocks.length) blocks.push({ type: "raw", data: { html: s } });
+  return blocks;
+}
+
+function syncHtml(m) {
+  m.html.tr = blocksToHtml(m.blocks.tr);
+  m.html.en = blocksToHtml(m.blocks.en);
+  markDirty();
+}
+
+/* Denetçi alanları için global onDataAll — html senkronu + seçili bloğun tuval görünümü */
+function globalOnDataAll(m, idx) {
+  m.html.tr = blocksToHtml(m.blocks.tr);
+  m.html.en = blocksToHtml(m.blocks.en);
+  markDirty();
+  const openBody = document.querySelector(".mb-card-body:not(.collapsed)");
+  const bodyEl = openBody ? openBody.querySelector(".mb-vblock.selected .mb-vblock-body") : null;
+  if (bodyEl && m.blocks[m._lang] && m.blocks[m._lang][idx]) bodyEl.innerHTML = blockToHtml(m.blocks[m._lang][idx]);
+}
+
+/* TR bloğu varsa EN bloğunu da aynı tiple hazırlar (ikisi birlikte düzenlenir) */
+function pairBlock(m, idx) {
+  const trB = m.blocks.tr[idx];
+  if (!trB) return null;
+  let enB = m.blocks.en[idx];
+  if (!enB || enB.type !== trB.type) {
+    enB = { type: trB.type, data: JSON.parse(JSON.stringify(trB.data)) };
+    m.blocks.en[idx] = enB;
+  }
+  return [trB, enB];
+}
+
+/* ---------- Zengin metin araç çubuğu (B/I/U/bağlantı) ---------- */
+
+function wrapSel(ta, pre, post) {
+  const s = ta.selectionStart ?? ta.value.length;
+  const e = ta.selectionEnd ?? s;
+  const v = ta.value;
+  ta.value = v.slice(0, s) + pre + v.slice(s, e) + post + v.slice(e);
+  ta.focus();
+  ta.selectionStart = s + pre.length;
+  ta.selectionEnd = e + pre.length;
+  ta.dispatchEvent(new Event("input"));
+}
+
+function richToolbar(ta) {
+  const bar = document.createElement("div");
+  bar.className = "mb-rich-bar";
+  const mk = (t, title, pre, post) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.textContent = t;
+    b.title = title;
+    b.addEventListener("click", (ev) => { ev.preventDefault(); ev.stopPropagation(); wrapSel(ta, pre, post); });
+    bar.appendChild(b);
+  };
+  mk("B", "Kalın", "<strong>", "</strong>");
+  mk("I", "İtalik", "<em>", "</em>");
+  mk("U", "Altı çizili", "<u>", "</u>");
+  mk("🔗", "Bağlantı ekle", '<a href="https://">', "</a>");
+  const clear = document.createElement("button");
+  clear.type = "button";
+  clear.textContent = "⌫";
+  clear.title = "Etiketleri temizle";
+  clear.addEventListener("click", (ev) => { ev.preventDefault(); ev.stopPropagation(); ta.value = ta.value.replace(/<[^>]+>/g, ""); ta.dispatchEvent(new Event("input")); });
+  bar.appendChild(clear);
+  return bar;
+}
+
+/* ---------- Alan yardımcıları ---------- */
+
+function fieldWrap(label) {
+  const w = document.createElement("div");
+  w.className = "mb-insp-field";
+  const l = document.createElement("label");
+  l.textContent = label;
+  w.appendChild(l);
+  return w;
+}
+
+/* TR/EN çift metin alanı (zengin metin desteğiyle) */
+function langText(m, idx, key, label, opts, onDataAll) {
+  const pair = pairBlock(m, idx);
+  if (!pair) return document.createElement("div");
+  const od = onDataAll || globalOnDataAll;
+  const wrap = fieldWrap(label);
+  const grid = document.createElement("div");
+  grid.className = "mb-lang-pair";
+  for (const [lang, blk] of [["TR", pair[0]], ["EN", pair[1]]]) {
+    const cell = document.createElement("div");
+    cell.className = "mb-lang-cell-mini";
+    const tag = document.createElement("span");
+    tag.className = "mb-lang-tag";
+    tag.textContent = lang;
+    cell.appendChild(tag);
+    const ta = document.createElement(opts && opts.rows ? "textarea" : "input");
+    if (opts && opts.rows) ta.rows = opts.rows; else ta.type = "text";
+    ta.value = blk.data[key] ?? "";
+    ta.addEventListener("input", () => { blk.data[key] = ta.value; od(m, idx); });
+    if (opts && opts.rich) cell.appendChild(richToolbar(ta));
+    cell.appendChild(ta);
+    grid.appendChild(cell);
+  }
+  wrap.appendChild(grid);
+  return wrap;
+}
+
+/* Tek değerli alan (her iki dile de yazılır) */
+function langSingle(m, idx, key, label, build, onDataAll) {
+  const pair = pairBlock(m, idx);
+  if (!pair) return document.createElement("div");
+  const od = onDataAll || globalOnDataAll;
+  const wrap = fieldWrap(label);
+  const holder = document.createElement("div");
+  holder.className = "mb-single";
+  const commit = (v) => { pair[0].data[key] = v; pair[1].data[key] = v; od(m, idx); };
+  build(holder, pair[0].data[key] ?? "", commit);
+  wrap.appendChild(holder);
+  return wrap;
+}
+
+/* Tek değerli açılır liste (TR/EN'e birlikte yazılır) */
+function langSelect(m, idx, key, label, options) {
+  return langSingle(m, idx, key, label, (holder, value, commit) => {
+    const v = document.createElement("select");
+    for (const [val, lbl] of options) { const o = document.createElement("option"); o.value = val; o.textContent = lbl; v.appendChild(o); }
+    v.value = options.some(([val]) => val === value) ? value : (options[0] ? options[0][0] : "");
+    v.addEventListener("change", () => commit(v.value));
+    holder.appendChild(v);
+  });
+}
+
+/* Tek değerli onay kutusu (TR/EN'e birlikte yazılır) */
+function langCheck(m, idx, key, label) {
+  return langSingle(m, idx, key, label, (holder, value, commit) => {
+    const l = document.createElement("label");
+    l.className = "mb-insp-req";
+    l.textContent = label;
+    const c = document.createElement("input");
+    c.type = "checkbox";
+    c.checked = !!value;
+    c.addEventListener("change", () => commit(c.checked));
+    l.prepend(c);
+    holder.appendChild(l);
+  });
+}
+
+/* İkon alanı (galeriyle) */
+function langIcon(m, idx, key, label, onDataAll) {
+  return langSingle(m, idx, key, label || "İkon", (holder, value, commit) => {
+    const row = document.createElement("div");
+    row.className = "mb-icon-row";
+    const preview = document.createElement("span");
+    preview.className = "icon-preview";
+    preview.innerHTML = '<i class="' + iconCls(value || "") + '"></i>';
+    const inp = document.createElement("input");
+    inp.type = "text";
+    inp.value = value || "";
+    inp.placeholder = "bi bi-…";
+    inp.addEventListener("input", () => { commit(inp.value); preview.innerHTML = '<i class="' + iconCls(inp.value) + '"></i>'; });
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "btn small";
+    btn.textContent = "Galeri";
+    btn.addEventListener("click", () => openIconGallery((icon) => { commit(icon); inp.value = icon; preview.innerHTML = '<i class="' + iconCls(icon) + '"></i>'; }));
+    row.appendChild(preview);
+    row.appendChild(inp);
+    row.appendChild(btn);
+    holder.appendChild(row);
+  });
+}
+
+/* Resim alanı (galeriyle) */
+function langImage(m, idx, key, label, onDataAll) {
+  return langSingle(m, idx, key, label || "Resim Yolu", (holder, value, commit) => {
+    const row = document.createElement("div");
+    row.className = "mb-img-row";
+    const preview = document.createElement("img");
+    preview.className = "mb-img-thumb";
+    if (value) { preview.src = value; preview.onerror = () => { preview.style.opacity = "0.2"; }; }
+    const inp = document.createElement("input");
+    inp.type = "text";
+    inp.value = value || "";
+    inp.placeholder = "assets/images/…";
+    inp.addEventListener("input", () => { commit(inp.value); preview.src = inp.value; preview.style.opacity = "1"; });
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "btn small";
+    btn.textContent = "Galeri";
+    btn.addEventListener("click", () => openImageGallery((src) => { commit(src); inp.value = src; preview.src = src; preview.style.opacity = "1"; }));
+    row.appendChild(preview);
+    row.appendChild(inp);
+    row.appendChild(btn);
+    holder.appendChild(row);
+  });
+}
+
+/* Resim galerisi (assets/images altından) */
+async function openImageGallery(onPick) {
+  let imgs = [];
+  try { imgs = ((await api("/api/images")).images) || []; } catch (e) { imgs = []; }
+  const grid = document.createElement("div");
+  grid.className = "mb-img-grid";
+  if (!imgs.length) {
+    const h = document.createElement("div");
+    h.className = "hint";
+    h.textContent = "Görsel bulunamadı — assets/images klasörüne ekleyin.";
+    grid.appendChild(h);
+  }
+  for (const src of imgs) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "mb-img-cell";
+    const img = document.createElement("img");
+    img.src = "/" + src;
+    img.loading = "lazy";
+    img.onerror = () => { b.style.display = "none"; };
+    const cap = document.createElement("span");
+    cap.textContent = src.replace("assets/images/", "");
+    b.appendChild(img);
+    b.appendChild(cap);
+    b.addEventListener("click", () => { onPick(src); closeModal(); });
+    grid.appendChild(b);
+  }
+  openModal(
+    '<div class="modal-head"><h3>🖼 Görsel Galerisi</h3><button id="imgClose" class="icon-btn">✕</button></div>' +
+    '<div class="mb-img-grid-wrap"></div>'
+  );
+  $("modalBox").querySelector(".mb-img-grid-wrap").appendChild(grid);
+  $("imgClose").addEventListener("click", closeModal);
+}
+
+/* ---------- Öğe listeleri (TR/EN ayrı ama yan yana) ---------- */
+
+function itemsEditorLang(m, idx, key, specs, addDefault, label, onDataAll) {
+  const pair = pairBlock(m, idx);
+  if (!pair) return document.createElement("div");
+  const wrap = fieldWrap(label);
+  const cols = document.createElement("div");
+  cols.className = "mb-items-cols";
+  for (const [lang, blk] of [["TR", pair[0]], ["EN", pair[1]]]) {
+    const col = document.createElement("div");
+    col.className = "mb-items-col";
+    const head = document.createElement("div");
+    head.className = "mb-items-col-head";
+    const tag = document.createElement("span");
+    tag.className = "mb-lang-tag";
+    tag.textContent = lang;
+    const addBtn = document.createElement("button");
+    addBtn.type = "button";
+    addBtn.className = "btn small";
+    addBtn.textContent = "+ Öğe Ekle";
+    addBtn.addEventListener("click", () => {
+      (blk.data[key] || (blk.data[key] = [])).push(JSON.parse(JSON.stringify(addDefault())));
+      syncHtml(m);
+      rerender();
+    });
+    head.appendChild(tag);
+    head.appendChild(addBtn);
+    col.appendChild(head);
+    const items = blk.data[key] || (blk.data[key] = []);
+    items.forEach((it, i) => {
+      const row = document.createElement("div");
+      row.className = "mb-insp-item-row";
+      const num = document.createElement("span");
+      num.className = "mb-item-num";
+      num.textContent = String(i + 1);
+      row.appendChild(num);
+      for (const spec of specs) {
+        const cell = document.createElement("div");
+        cell.className = "mb-item-cell";
+        const lab = document.createElement("label");
+        lab.textContent = spec.label;
+        cell.appendChild(lab);
+        if (spec.kind === "icon") {
+          const ctl = document.createElement("div");
+          ctl.className = "mb-icon-row";
+          const pv = document.createElement("span");
+          pv.className = "icon-preview";
+          pv.innerHTML = '<i class="' + iconCls(it[spec.key] || "") + '"></i>';
+          const inp = document.createElement("input");
+          inp.type = "text";
+          inp.value = it[spec.key] || "";
+          inp.addEventListener("input", () => { it[spec.key] = inp.value; pv.innerHTML = '<i class="' + iconCls(inp.value) + '"></i>'; onDataAll(m, idx); });
+          const gb = document.createElement("button");
+          gb.type = "button";
+          gb.className = "btn small";
+          gb.textContent = "Galeri";
+          gb.addEventListener("click", () => openIconGallery((icon) => { it[spec.key] = icon; inp.value = icon; pv.innerHTML = '<i class="' + iconCls(icon) + '"></i>'; onDataAll(m, idx); }));
+          ctl.appendChild(pv);
+          ctl.appendChild(inp);
+          ctl.appendChild(gb);
+          cell.appendChild(ctl);
+        } else {
+          const inp = document.createElement(spec.rows ? "textarea" : "input");
+          if (spec.rows) inp.rows = spec.rows; else inp.type = "text";
+          inp.value = it[spec.key] || "";
+          inp.addEventListener("input", () => { it[spec.key] = inp.value; onDataAll(m, idx); });
+          if (spec.rich) cell.appendChild(richToolbar(inp));
+          cell.appendChild(inp);
+        }
+        row.appendChild(cell);
+      }
+      const rm = document.createElement("button");
+      rm.type = "button";
+      rm.className = "btn small danger";
+      rm.textContent = "✕";
+      rm.addEventListener("click", () => { items.splice(i, 1); syncHtml(m); rerender(); });
+      row.appendChild(rm);
+      col.appendChild(row);
+    });
+    cols.appendChild(col);
+  }
+  wrap.appendChild(cols);
+  return wrap;
+}
+
+/* ---------- Modal Üretici ---------- */
+
+function renderModalBuilder(tab) {
+  const root = document.createElement("div");
+  root.className = "modal-builder";
+  const data = tab.data;
+  if (!Array.isArray(data.modals)) data.modals = [];
+  if (!Array.isArray(data.categories)) data.categories = ["help", "anasayfa", "duyurular", "genel"];
+
+  const rerender = () => {
+    const formArea = $("formArea");
+    formArea.innerHTML = "";
+    formArea.appendChild(renderModalBuilder(tab));
+  };
+
+  const head = document.createElement("div");
+  head.className = "mb-head";
+  const h = document.createElement("h3");
+  h.textContent = "🧩 Modal Üretici";
+  const hsub = document.createElement("p");
+  hsub.className = "mb-sub";
+  hsub.textContent = "Görsel düzenleyici: parçaları tuvalin içine sürükleyin, parçaya tıklayınca sağda TR/EN birlikte düzenlenir. HTML otomatik üretilir, sayfalarda id ile referans verilir.";
+  head.appendChild(h);
+  head.appendChild(hsub);
+  const addBtn = document.createElement("button");
+  addBtn.className = "btn";
+  addBtn.textContent = "+ Yeni Modal";
+  addBtn.addEventListener("click", () => {
+    const n = data.modals.length + 1;
+    data.modals.push({ id: "modal-" + Date.now().toString(36), category: "genel", label: { tr: "Yeni Modal " + n, en: "New Modal " + n }, html: { tr: "", en: "" }, blocks: { tr: [], en: [] } });
+    markDirty();
+    rerender();
+  });
+  head.appendChild(addBtn);
+  root.appendChild(head);
+
+  data.modals.forEach((m, mi) => {
+    if (!m.html || typeof m.html !== "object") m.html = { tr: "", en: "" };
+    if (!m.label || typeof m.label !== "object") m.label = { tr: "", en: "" };
+    if (!m.blocks || typeof m.blocks !== "object") m.blocks = { tr: htmlToBlocks(m.html.tr), en: htmlToBlocks(m.html.en) };
+    if (!m._lang) m._lang = "tr";
+    if (!m._mode) m._mode = "visual";
+    if (typeof m._sel !== "number") m._sel = -1;
+    if (typeof m._open !== "boolean") m._open = mi === 0;
+    const cColor = categoryColor(m.category);
+
+    const card = document.createElement("div");
+    card.className = "mb-card" + (m._open ? "" : " collapsed");
+    card.style.borderLeft = "4px solid " + cColor;
+
+    const cardHead = document.createElement("div");
+    cardHead.className = "mb-card-head";
+    const chevron = document.createElement("button");
+    chevron.type = "button";
+    chevron.className = "mb-collapse";
+    chevron.textContent = m._open ? "▾" : "▸";
+    chevron.title = m._open ? "Bu modalın editörünü kapat" : "Bu modalın editörünü aç";
+    chevron.addEventListener("click", () => {
+      data.modals.forEach((o) => { o._open = o === m ? !o._open : false; });
+      rerender();
+    });
+    const title = document.createElement("input");
+    title.className = "mb-title-input";
+    title.value = m.label.tr || "";
+    title.placeholder = "Modal adı (TR)";
+    title.addEventListener("input", () => { m.label.tr = title.value; markDirty(); });
+    const idSpan = document.createElement("code");
+    idSpan.className = "mb-id";
+    idSpan.textContent = m.id || "(id yok)";
+    const catSel = document.createElement("select");
+    catSel.className = "mb-cat";
+    for (const c of data.categories) { const o = document.createElement("option"); o.value = c; o.textContent = c; catSel.appendChild(o); }
+    catSel.value = m.category || "genel";
+    catSel.addEventListener("change", () => { m.category = catSel.value; markDirty(); rerender(); });
+    const catChip = document.createElement("span");
+    catChip.className = "mb-cat-chip";
+    catChip.textContent = (m.category || "genel").toUpperCase();
+    catChip.style.background = cColor;
+    catChip.title = "Kategori rengi — karta da uygulanır";
+
+    const langWrap = document.createElement("div");
+    langWrap.className = "mb-lang-switch";
+    for (const l of ["tr", "en"]) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "btn small" + (m._lang === l ? " active" : "");
+      b.textContent = l.toUpperCase();
+      b.title = "Tuvalde gösterilecek dil (düzenleme TR/EN birlikte)";
+      b.addEventListener("click", () => { m._lang = l; m._sel = -1; rerender(); });
+      langWrap.appendChild(b);
+    }
+    const modeWrap = document.createElement("div");
+    modeWrap.className = "mb-mode-switch";
+    for (const [key, label] of [["visual", "👁 Görsel"], ["html", "</> HTML"]]) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "btn small" + (m._mode === key ? " active" : "");
+      b.textContent = label;
+      b.addEventListener("click", () => {
+        if (key === "visual" && m._mode === "html") { m.blocks.tr = htmlToBlocks(m.html.tr); m.blocks.en = htmlToBlocks(m.html.en); }
+        if (key === "html" && m._mode === "visual") syncHtml(m);
+        m._mode = key;
+        m._sel = -1;
+        rerender();
+      });
+      modeWrap.appendChild(b);
+    }
+    const prevBtn = document.createElement("button");
+    prevBtn.className = "btn small mb-prev-btn";
+    prevBtn.textContent = "👁";
+    prevBtn.title = "Bu modalı sitedeki gibi önizle";
+    prevBtn.addEventListener("click", () => openModalPreview(m));
+    const delBtn = document.createElement("button");
+    delBtn.className = "btn small danger";
+    delBtn.textContent = "🗑";
+    delBtn.title = "Bu modalı sil";
+    delBtn.addEventListener("click", async () => {
+      if (await confirmDialog("“" + (m.label.tr || m.id) + "” silinsin mi? Referans veren sayfalar boş kalır.")) {
+        data.modals.splice(mi, 1);
+        markDirty();
+        rerender();
+      }
+    });
+    cardHead.append(chevron, title, idSpan, catSel, catChip, langWrap, modeWrap, prevBtn, delBtn);
+    card.appendChild(cardHead);
+
+    const cardBody = document.createElement("div");
+    cardBody.className = "mb-card-body" + (m._open ? "" : " collapsed");
+
+    const tplRow = document.createElement("div");
+    tplRow.className = "mb-tpl-row";
+    const tplSel = document.createElement("select");
+    tplSel.className = "mb-tpl-sel";
+    const tplEmpty = document.createElement("option");
+    tplEmpty.value = "";
+    tplEmpty.textContent = "— Şablon seç (TR+EN blokları doldurur) —";
+    tplSel.appendChild(tplEmpty);
+    for (const [k, t] of Object.entries(MODAL_TEMPLATES)) {
+      const o = document.createElement("option");
+      o.value = k;
+      o.textContent = t.label;
+      tplSel.appendChild(o);
+    }
+    tplSel.addEventListener("change", async () => {
+      const t = MODAL_TEMPLATES[tplSel.value];
+      if (!t) return;
+      if (await confirmDialog("“" + t.label + "” şablonu bu modalın TR ve EN içeriğini değiştirecek. Devam?")) {
+        m.blocks = { tr: JSON.parse(JSON.stringify(t.blocks.tr)), en: JSON.parse(JSON.stringify(t.blocks.en)) };
+        m.html = { tr: blocksToHtml(m.blocks.tr), en: blocksToHtml(m.blocks.en) };
+        m._sel = -1;
+        markDirty();
+        rerender();
+      } else {
+        tplSel.value = "";
+      }
+    });
+    tplRow.appendChild(tplSel);
+    cardBody.appendChild(tplRow);
+
+    if (m._mode === "visual") {
+      cardBody.appendChild(renderVisualEditor(m, rerender));
+    } else {
+      cardBody.appendChild(renderHtmlMode(m));
+    }
+    card.appendChild(cardBody);
+    root.appendChild(card);
+  });
+  return root;
+}
+
+/* HTML modu: TR/EN textarea + canlı önizleme */
+function renderHtmlMode(m) {
+  const cols = document.createElement("div");
+  cols.className = "mb-cols";
+  const left = document.createElement("div");
+  left.className = "mb-left";
+  const right = document.createElement("div");
+  right.className = "mb-right";
+  const preTitle = document.createElement("div");
+  preTitle.className = "mb-preview-title";
+  preTitle.textContent = "👁 Önizleme (" + m._lang.toUpperCase() + ")";
+  const pv = document.createElement("div");
+  pv.className = "mb-preview-frame mb-preview-div";
+  applyModalPreview(pv, m.html[m._lang] || "");
+  right.appendChild(preTitle);
+  right.appendChild(pv);
+  for (const lang of ["tr", "en"]) {
+    const cell = document.createElement("div");
+    cell.className = "mb-lang-cell";
+    const lbl = document.createElement("label");
+    lbl.className = "mb-lang-label";
+    lbl.textContent = "HTML (" + lang.toUpperCase() + ")";
+    const ta = document.createElement("textarea");
+    ta.className = "code-ta mb-ta";
+    ta.rows = 14;
+    ta.spellcheck = false;
+    ta.value = m.html[lang] || "";
+    ta.addEventListener("input", () => {
+      m.html[lang] = ta.value;
+      markDirty();
+      checkHtmlBalance(ta);
+      if (lang === m._lang) applyModalPreview(pv, m.html[lang] || "");
+    });
+    cell.appendChild(lbl);
+    cell.appendChild(ta);
+    left.appendChild(cell);
+  }
+  cols.appendChild(left);
+  cols.appendChild(right);
+  return cols;
+}
+
+/* Görsel mod: palet + tuval + denetçi */
+function renderVisualEditor(m, rerender) {
+  const wrap = document.createElement("div");
+  wrap.className = "mb-vis";
+  const lang = m._lang;
+  if (!Array.isArray(m.blocks.tr)) m.blocks.tr = [];
+  if (!Array.isArray(m.blocks.en)) m.blocks.en = [];
+  const blocks = m.blocks[lang];
+  const sel = m._sel;
+
+  const onDataAll = (idx) => {
+    m.html.tr = blocksToHtml(m.blocks.tr);
+    m.html.en = blocksToHtml(m.blocks.en);
+    markDirty();
+    const bodyEl = wrap.querySelector('.mb-vblock[data-idx="' + idx + '"] .mb-vblock-body');
+    if (bodyEl && m.blocks[lang][idx]) bodyEl.innerHTML = blockToHtml(m.blocks[lang][idx]);
+  };
+
+  const palette = document.createElement("div");
+  palette.className = "mb-vis-palette";
+  const pHint = document.createElement("div");
+  pHint.className = "mb-vis-hint";
+  pHint.textContent = "Parçayı sürükleyip tuvalin içine bırak:";
+  palette.appendChild(pHint);
+  for (const bt of BLOCK_TYPES) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "btn small mb-palette-item";
+    b.textContent = "+ " + bt.label;
+    b.draggable = true;
+    b.dataset.type = bt.type;
+    b.addEventListener("dragstart", (e) => {
+      e.dataTransfer.setData("application/x-mb-type", bt.type);
+      e.dataTransfer.effectAllowed = "copy";
+    });
+    palette.appendChild(b);
+  }
+  wrap.appendChild(palette);
+
+  const body = document.createElement("div");
+  body.className = "mb-vis-body";
+  const canvas = document.createElement("div");
+  canvas.className = "mb-canvas";
+  canvas.dataset.dropIdx = String(blocks.length);
+  const dropMarker = document.createElement("div");
+  dropMarker.className = "mb-drop-marker";
+  canvas.appendChild(dropMarker);
+
+  const drawCanvas = () => {
+    canvas.querySelectorAll(".mb-vblock").forEach((n) => n.remove());
+    canvas.querySelectorAll(".mb-canvas-empty").forEach((n) => n.remove());
+    if (!blocks.length) {
+      const empty = document.createElement("div");
+      empty.className = "mb-canvas-empty";
+      empty.textContent = "Tuval boş — yukarıdan bir parça sürükleyin veya şablon seçin.";
+      canvas.insertBefore(empty, dropMarker);
+    }
+    blocks.forEach((b, idx) => {
+      const el = document.createElement("div");
+      el.className = "mb-vblock" + (idx === sel ? " selected" : "");
+      el.dataset.idx = String(idx);
+      el.draggable = true;
+      const label = document.createElement("div");
+      label.className = "mb-vblock-label";
+      label.textContent = ((BLOCK_TYPES.find((x) => x.type === b.type) || {}).label || b.type).toUpperCase();
+      const bodyEl = document.createElement("div");
+      bodyEl.className = "mb-vblock-body";
+      bodyEl.innerHTML = blockToHtml(b);
+      el.appendChild(label);
+      el.appendChild(bodyEl);
+      el.addEventListener("click", () => { m._sel = idx; rerender(); });
+      el.addEventListener("dragstart", (e) => {
+        e.dataTransfer.setData("application/x-mb-type", "__reorder:" + idx);
+        e.dataTransfer.effectAllowed = "move";
+      });
+      canvas.insertBefore(el, dropMarker);
+    });
+  };
+  drawCanvas();
+
+  const computeDropIdx = (e) => {
+    const items = Array.from(canvas.querySelectorAll(".mb-vblock"));
+    if (!items.length) return 0;
+    const y = e.clientY;
+    for (let i = 0; i < items.length; i++) {
+      const r = items[i].getBoundingClientRect();
+      if (y < r.top + r.height / 2) return i;
+    }
+    return items.length;
+  };
+  canvas.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    const idx = computeDropIdx(e);
+    canvas.dataset.dropIdx = String(idx);
+    canvas.querySelectorAll(".mb-vblock").forEach((el, i) => el.classList.toggle("drop-target", i === idx));
+  });
+  canvas.addEventListener("dragleave", (e) => {
+    if (!canvas.contains(e.relatedTarget)) canvas.querySelectorAll(".mb-vblock").forEach((el) => el.classList.remove("drop-target"));
+  });
+  canvas.addEventListener("drop", (e) => {
+    e.preventDefault();
+    const idx = parseInt(canvas.dataset.dropIdx || "0", 10);
+    const type = e.dataTransfer.getData("application/x-mb-type");
+    canvas.querySelectorAll(".mb-vblock").forEach((el) => el.classList.remove("drop-target"));
+    if (!type) return;
+    if (type.startsWith("__reorder:")) {
+      const from = parseInt(type.split(":")[1], 10);
+      if (from === idx) return;
+      const item = blocks.splice(from, 1)[0];
+      blocks.splice(idx > from ? idx - 1 : idx, 0, item);
+      // EN tarafını da senkron tut (yeni blok yoksa eşle)
+      if (m.blocks.en[from] && m.blocks.en[from].type === item.type) {
+        const eitem = m.blocks.en.splice(from, 1)[0];
+        m.blocks.en.splice(idx > from ? idx - 1 : idx, 0, eitem);
+      }
+    } else {
+      blocks.splice(idx, 0, { type, data: defaultBlockData(type, lang === "tr") });
+      // EN'e de aynı bloğu ekle (TR/EN eşleşsin)
+      if (lang === "tr") m.blocks.en.splice(idx, 0, { type, data: defaultBlockData(type, false) });
+      else m.blocks.tr.splice(idx, 0, { type, data: defaultBlockData(type, true) });
+    }
+    m.html.tr = blocksToHtml(m.blocks.tr);
+    m.html.en = blocksToHtml(m.blocks.en);
+    markDirty();
+    m._sel = -1;
+    rerender();
+  });
+
+  body.appendChild(canvas);
+
+  const inspector = document.createElement("div");
+  inspector.className = "mb-inspector";
+  if (sel >= 0 && blocks[sel]) {
+    inspector.appendChild(renderInspector(m, sel, onDataAll, rerender));
+  } else {
+    const hint = document.createElement("div");
+    hint.className = "mb-inspector-hint";
+    hint.textContent = "Tuvale parça ekleyin, sonra düzenlemek için bir parçaya tıklayın. Metinler TR/EN birlikte düzenlenir.";
+    inspector.appendChild(hint);
+  }
+  body.appendChild(inspector);
+  wrap.appendChild(body);
+  return wrap;
+}
+
+/* Seçili bloğun denetçi paneli */
+function renderInspector(m, idx, onDataAll, rerender) {
+  const lang = m._lang;
+  const b = m.blocks[lang][idx];
+  const box = document.createElement("div");
+  box.className = "mb-inspector-box";
+  const head = document.createElement("div");
+  head.className = "mb-inspector-head";
+  head.textContent = ((BLOCK_TYPES.find((x) => x.type === b.type) || {}).label || b.type) + " — Düzenle";
+
+  const tools = document.createElement("div");
+  tools.className = "mb-inspector-tools";
+  const up = document.createElement("button");
+  up.type = "button"; up.className = "btn small"; up.textContent = "↑";
+  up.disabled = idx === 0;
+  up.addEventListener("click", () => {
+    for (const l of ["tr", "en"]) {
+      const arr = m.blocks[l];
+      if (arr[idx]) { const it = arr.splice(idx, 1)[0]; arr.splice(idx - 1, 0, it); }
+    }
+    m._sel = idx - 1;
+    syncHtml(m);
+    rerender();
+  });
+  const down = document.createElement("button");
+  down.type = "button"; down.className = "btn small"; down.textContent = "↓";
+  down.disabled = idx >= m.blocks[lang].length - 1;
+  down.addEventListener("click", () => {
+    for (const l of ["tr", "en"]) {
+      const arr = m.blocks[l];
+      if (arr[idx]) { const it = arr.splice(idx, 1)[0]; arr.splice(idx + 1, 0, it); }
+    }
+    m._sel = idx + 1;
+    syncHtml(m);
+    rerender();
+  });
+  const del = document.createElement("button");
+  del.type = "button"; del.className = "btn small danger"; del.textContent = "✕";
+  del.addEventListener("click", () => {
+    for (const l of ["tr", "en"]) m.blocks[l].splice(idx, 1);
+    m._sel = -1;
+    syncHtml(m);
+    rerender();
+  });
+  tools.append(up, down, del);
+  head.appendChild(tools);
+  box.appendChild(head);
+
+  switch (b.type) {
+    case "title":
+      box.appendChild(langText(m, idx, "text", "Metin", { rich: true, rows: 2 }));
+      box.appendChild(langSelect(m, idx, "level", "Başlık Boyutu", [["h2", "H2 — büyük"], ["h3", "H3 — orta"], ["h4", "H4 — küçük"]]));
+      box.appendChild(langSelect(m, idx, "align", "Hizalama", [["left", "Sol"], ["center", "Orta"], ["right", "Sağ"]]));
+      box.appendChild(langSingle(m, idx, "cls", "Başlık Bandı (gradient)", (holder, value, commit) => {
+        const l = document.createElement("label");
+        l.className = "mb-insp-req";
+        l.textContent = "Gradient bant (anasayfa modalı görünümü)";
+        const c = document.createElement("input");
+        c.type = "checkbox";
+        c.checked = value === "hm-title";
+        c.addEventListener("change", () => commit(c.checked ? "hm-title" : ""));
+        l.prepend(c);
+        holder.appendChild(l);
+      }));
+      break;
+    case "lead":
+      box.appendChild(langText(m, idx, "text", "Paragraf", { rich: true, rows: 3 }));
+      box.appendChild(langSelect(m, idx, "align", "Hizalama", [["left", "Sol"], ["center", "Orta"], ["right", "Sağ"]]));
+      break;
+    case "note":
+    case "raw":
+      box.appendChild(langText(m, idx, "html", "HTML (serbest — B/I/U destekler)", { rich: true, rows: 6 }));
+      break;
+    case "image":
+      box.appendChild(langImage(m, idx, "src", "Resim Yolu"));
+      box.appendChild(langText(m, idx, "alt", "Açıklama (alt metin)"));
+      box.appendChild(langSingle(m, idx, "width", "Genişlik", (holder, value, commit) => {
+        const row = document.createElement("div");
+        row.className = "mb-range-row";
+        const r = document.createElement("input");
+        r.type = "range";
+        r.min = 25; r.max = 100; r.step = 5;
+        r.value = value || 100;
+        const out = document.createElement("span");
+        out.className = "mb-range-out";
+        out.textContent = (value || 100) + "%";
+        r.addEventListener("input", () => { out.textContent = r.value + "%"; commit(parseInt(r.value, 10)); });
+        row.appendChild(r);
+        row.appendChild(out);
+        holder.appendChild(row);
+      }));
+      break;
+    case "banner":
+      box.appendChild(langIcon(m, idx, "icon", "İkon"));
+      box.appendChild(langText(m, idx, "text", "Metin", { rich: true }));
+      box.appendChild(langSelect(m, idx, "variant", "Renk", [["navy", "Lacivert (varsayılan)"], ["blue", "Mavi"], ["green", "Yeşil"], ["orange", "Turuncu"], ["red", "Kırmızı"]]));
+      break;
+    case "alert":
+      box.appendChild(langSingle(m, idx, "variant", "Renk / Tip", (holder, value, commit) => {
+        const v = document.createElement("select");
+        for (const [val, lbl] of [["warning", "⚠ Uyarı (turuncu)"], ["danger", "✕ Tehlike (kırmızı)"], ["success", "✓ Başarı (yeşil)"], ["info", "ℹ Bilgi (mavi)"]]) {
+          const o = document.createElement("option");
+          o.value = val;
+          o.textContent = lbl;
+          v.appendChild(o);
+        }
+        v.value = value || "warning";
+        v.addEventListener("change", () => commit(v.value));
+        holder.appendChild(v);
+      }));
+      box.appendChild(langCheck(m, idx, "dismissible", "Kapatılabilir (✕)"));
+      box.appendChild(langIcon(m, idx, "icon", "İkon"));
+      box.appendChild(langText(m, idx, "title", "Başlık", { rich: true }));
+      box.appendChild(langText(m, idx, "text", "Metin", { rich: true, rows: 2 }));
+      break;
+    case "button":
+      box.appendChild(langText(m, idx, "text", "Buton Metni", { rich: true }));
+      box.appendChild(langSingle(m, idx, "url", "Link (iç sayfa / dış adres / #)", (holder, value, commit) => {
+        const inp = document.createElement("input");
+        inp.type = "text";
+        inp.value = value || "";
+        inp.placeholder = "duyurular.html / https://…";
+        inp.addEventListener("input", () => commit(inp.value));
+        holder.appendChild(inp);
+      }));
+      box.appendChild(langSingle(m, idx, "variant", "Görünüm", (holder, value, commit) => {
+        const v = document.createElement("select");
+        for (const [val, lbl] of [["primary", "Dolu (primary)"], ["outline", "Çerçeve (outline)"]]) {
+          const o = document.createElement("option");
+          o.value = val;
+          o.textContent = lbl;
+          v.appendChild(o);
+        }
+        v.value = value || "primary";
+        v.addEventListener("change", () => commit(v.value));
+        holder.appendChild(v);
+      }));
+      box.appendChild(langIcon(m, idx, "icon", "İkon (isteğe bağlı)"));
+      box.appendChild(langSelect(m, idx, "size", "Boyut", [["", "Normal"], ["sm", "Küçük"], ["lg", "Büyük"]]));
+      box.appendChild(langCheck(m, idx, "blank", "Yeni sekmede aç"));
+      break;
+    case "features":
+      box.appendChild(itemsEditorLang(m, idx, "items", [
+        { key: "icon", label: "İkon", kind: "icon" },
+        { key: "title", label: "Başlık", rich: true },
+        { key: "text", label: "Açıklama", rich: true },
+      ], () => ({ icon: "bi bi-check", title: "Yeni", text: "" }), "Özellikler (TR / EN)", onDataAll));
+      box.appendChild(langSelect(m, idx, "cols", "Sütun Sayısı", [["2", "2 sütun"], ["3", "3 sütun"], ["4", "4 sütun"]]));
+      break;
+    case "list":
+      box.appendChild(itemsEditorLang(m, idx, "items", [
+        { key: "icon", label: "İkon", kind: "icon" },
+        { key: "text", label: "Metin", rich: true },
+      ], () => ({ icon: "bi bi-check", text: "Yeni öğe" }), "Liste (TR / EN)", onDataAll));
+      box.appendChild(langCheck(m, idx, "ordered", "Numaralı liste (1. 2. 3.)"));
+      break;
+    case "steps":
+      box.appendChild(itemsEditorLang(m, idx, "items", [
+        { key: "_", label: "Adım", rich: true, string: true },
+      ], () => "Yeni adım", "Adımlar (TR / EN)", onDataAll));
+      break;
+    case "divider":
+      box.appendChild(langSingle(m, idx, "variant", "Çizgi Tipi", (holder, value, commit) => {
+        const v = document.createElement("select");
+        for (const [val, lbl] of [["dashed", "Kesik çizgi (---)"], ["solid", "Düz çizgi (───)"], ["dotted", "Noktalı (···)"]]) {
+          const o = document.createElement("option");
+          o.value = val;
+          o.textContent = lbl;
+          v.appendChild(o);
+        }
+        v.value = value || "dashed";
+        v.addEventListener("change", () => commit(v.value));
+        holder.appendChild(v);
+      }));
+      box.appendChild(langSelect(m, idx, "color", "Renk", [["slate", "Gri"], ["blue", "Mavi"], ["orange", "Turuncu"], ["red", "Kırmızı"]]));
+      break;
+    case "form":
+      box.appendChild(renderFormInspector(m, idx, onDataAll, rerender));
+      break;
+    case "rating":
+      box.appendChild(langText(m, idx, "question", "Soru", { rich: true }));
+      box.appendChild(langSelect(m, idx, "max", "Yıldız Sayısı", [["5", "5 yıldız"], ["10", "10 yıldız"]]));
+      break;
+    default:
+      break;
+  }
+  return box;
+}
+
+/* Form bloğu denetçisi: alanlar (TR/EN etiket) + form ayarları */
+function renderFormInspector(m, idx, onDataAll, rerender) {
+  const pair = pairBlock(m, idx);
+  const wrap = document.createElement("div");
+  wrap.className = "mb-insp-fields";
+  if (!pair) return wrap;
+  const trB = pair[0], enB = pair[1];
+  const fields = trB.data.fields || (trB.data.fields = []);
+  if (!Array.isArray(enB.data.fields)) enB.data.fields = [];
+  const enFields = enB.data.fields;
+  while (enFields.length < fields.length) enFields.push({ kind: "text", label: "", placeholder: "", required: false, options: [], name: "", sameRow: false });
+  while (enFields.length > fields.length) enFields.pop();
+
+  const secTitle = document.createElement("div");
+  secTitle.className = "mb-insp-sec";
+  secTitle.textContent = "Alanlar";
+  wrap.appendChild(secTitle);
+
+  fields.forEach((f, fi) => {
+    const ef = enFields[fi];
+    const row = document.createElement("div");
+    row.className = "mb-insp-field-row";
+    const top = document.createElement("div");
+    top.className = "mb-field-top";
+    const kindSel = document.createElement("select");
+    for (const [val, lbl] of [["text", "Metin"], ["email", "E-posta"], ["tel", "Telefon"], ["url", "Web adresi"], ["date", "Tarih"], ["number", "Sayı"], ["textarea", "Uzun metin"], ["select", "Açılır liste"], ["rating", "Yıldız"], ["checkbox", "Onay kutusu"]]) {
+      const o = document.createElement("option");
+      o.value = val;
+      o.textContent = lbl;
+      kindSel.appendChild(o);
+    }
+    kindSel.value = f.kind || "text";
+    kindSel.addEventListener("change", () => { f.kind = kindSel.value; ef.kind = kindSel.value; syncHtml(m); rerender(); });
+    const nameInp = document.createElement("input");
+    nameInp.type = "text";
+    nameInp.value = f.name || "";
+    nameInp.placeholder = "name (backend)";
+    nameInp.title = "PHP vb. backend için alan adı";
+    nameInp.addEventListener("input", () => { f.name = nameInp.value; ef.name = nameInp.value; onDataAll(idx); });
+    top.appendChild(kindSel);
+    top.appendChild(nameInp);
+    const reqLab = document.createElement("label");
+    reqLab.className = "mb-insp-req";
+    reqLab.textContent = "Zorunlu";
+    const reqChk = document.createElement("input");
+    reqChk.type = "checkbox";
+    reqChk.checked = !!f.required;
+    reqChk.addEventListener("change", () => { f.required = reqChk.checked; ef.required = reqChk.checked; onDataAll(idx); });
+    reqLab.appendChild(reqChk);
+    top.appendChild(reqLab);
+    if (fi > 0) {
+      const srLab = document.createElement("label");
+      srLab.className = "mb-insp-req";
+      srLab.textContent = "Yan yana";
+      const srChk = document.createElement("input");
+      srChk.type = "checkbox";
+      srChk.checked = !!f.sameRow;
+      srChk.addEventListener("change", () => { f.sameRow = srChk.checked; ef.sameRow = srChk.checked; onDataAll(idx); });
+      srLab.appendChild(srChk);
+      top.appendChild(srLab);
+    }
+    const rm = document.createElement("button");
+    rm.type = "button";
+    rm.className = "btn small danger";
+    rm.textContent = "✕";
+    rm.addEventListener("click", () => { fields.splice(fi, 1); enFields.splice(fi, 1); syncHtml(m); rerender(); });
+    top.appendChild(rm);
+    row.appendChild(top);
+
+    const langs = document.createElement("div");
+    langs.className = "mb-lang-pair";
+    for (const [tag, blk] of [["TR", f], ["EN", ef]]) {
+      const cell = document.createElement("div");
+      cell.className = "mb-lang-cell-mini";
+      const t = document.createElement("span");
+      t.className = "mb-lang-tag";
+      t.textContent = tag;
+      cell.appendChild(t);
+      const lbl = document.createElement("input");
+      lbl.type = "text";
+      lbl.value = blk.label || "";
+      lbl.placeholder = "Etiket";
+      lbl.addEventListener("input", () => { blk.label = lbl.value; onDataAll(idx); });
+      const ph = document.createElement("input");
+      ph.type = "text";
+      ph.value = blk.placeholder || "";
+      ph.placeholder = "Yer tutucu";
+      ph.addEventListener("input", () => { blk.placeholder = ph.value; onDataAll(idx); });
+      cell.appendChild(lbl);
+      cell.appendChild(ph);
+      langs.appendChild(cell);
+    }
+    row.appendChild(langs);
+    if (f.kind === "select") {
+      const opts = document.createElement("input");
+      opts.type = "text";
+      opts.value = (f.options || []).join(", ");
+      opts.placeholder = "Seçenekler (virgülle)";
+      opts.addEventListener("input", () => {
+        f.options = opts.value.split(",").map((s) => s.trim()).filter(Boolean);
+        ef.options = f.options.slice();
+        onDataAll(idx);
+      });
+      const optsWrap = document.createElement("div");
+      optsWrap.className = "mb-field-opt";
+      optsWrap.appendChild(opts);
+      row.appendChild(optsWrap);
+    }
+    wrap.appendChild(row);
+  });
+
+  const add = document.createElement("button");
+  add.type = "button";
+  add.className = "btn small";
+  add.textContent = "+ Alan Ekle";
+  add.addEventListener("click", () => {
+    fields.push({ kind: "text", label: "Yeni Alan", placeholder: "", required: false, options: [], name: "", sameRow: false });
+    enFields.push({ kind: "text", label: "New Field", placeholder: "", required: false, options: [], name: "", sameRow: false });
+    syncHtml(m);
+    rerender();
+  });
+  wrap.appendChild(add);
+
+  const sec2 = document.createElement("div");
+  sec2.className = "mb-insp-sec";
+  sec2.textContent = "Form Ayarları";
+  wrap.appendChild(sec2);
+
+  const stWrap = langText(m, idx, "submitText", "Gönder Butonu Metni");
+  wrap.appendChild(stWrap);
+  wrap.appendChild(langSelect(m, idx, "submitVariant", "Gönder Butonu Görünümü", [["primary", "Dolu"], ["outline", "Çerçeve"]]));
+  wrap.appendChild(langSingle(m, idx, "action", "Formun gönderileceği adres (PHP vb. backend)", (holder, value, commit) => {
+    const inp = document.createElement("input");
+    inp.type = "text";
+    inp.value = value || "";
+    inp.placeholder = "ornek.php / https://… (boşsa form gönderilmez)";
+    inp.addEventListener("input", () => commit(inp.value));
+    holder.appendChild(inp);
+  }));
+  wrap.appendChild(langSingle(m, idx, "method", "Gönderim Yöntemi", (holder, value, commit) => {
+    const v = document.createElement("select");
+    for (const [val, lbl] of [["post", "POST (form gönderimi)"], ["get", "GET (URL parametreleri)"]]) {
+      const o = document.createElement("option");
+      o.value = val;
+      o.textContent = lbl;
+      v.appendChild(o);
+    }
+    v.value = value || "post";
+    v.addEventListener("change", () => commit(v.value));
+    holder.appendChild(v);
+  }));
+  return wrap;
+}
+
+/* Modalı sitedeki gibi popup olarak önizle */
+function openModalPreview(m) {
+  const lang = m._lang || "tr";
+  const html = m.html[lang] || "";
+  let ov = document.getElementById("mgrModalPreview");
+  if (!ov) {
+    ov = document.createElement("div");
+    ov.id = "mgrModalPreview";
+    ov.className = "mgr-modal-preview-overlay";
+    ov.innerHTML =
+      '<div class="mgr-modal-preview-pop">' +
+      '<div class="mgr-modal-preview-head"><span>👁 Modal Önizleme</span><button type="button" class="btn small" id="mgrModalPreviewClose">✕ Kapat</button></div>' +
+      '<div class="mgr-modal-preview-body"></div></div>';
+    ov.addEventListener("click", (e) => { if (e.target === ov) ov.classList.remove("open"); });
+    ov.querySelector("#mgrModalPreviewClose").addEventListener("click", () => ov.classList.remove("open"));
+    document.addEventListener("keydown", function esc(e) { if (e.key === "Escape") { ov.classList.remove("open"); document.removeEventListener("keydown", esc); } });
+    document.body.appendChild(ov);
+  }
+  const body = ov.querySelector(".mgr-modal-preview-body");
+  let style = ov.querySelector("style.mb-preview-style");
+  if (!style) {
+    style = document.createElement("style");
+    style.className = "mb-preview-style";
+    ov.querySelector(".mgr-modal-preview-pop").prepend(style);
+  }
+  style.textContent = MODAL_PREVIEW_CSS + ".mgr-modal-preview-body{padding:18px;font-size:14px}";
+  body.innerHTML = html || "<p style='color:#94a3b8'>İçerik boş — tuvalden parça ekleyin veya şablon seçin.</p>";
+  ov.querySelector(".mgr-modal-preview-head span").textContent = "👁 Modal Önizleme (" + lang.toUpperCase() + ") — " + (m.label.tr || m.id || "");
+  ov.classList.add("open");
+}
 /* ---------- Form bölümleri (akordeon) + TOC ---------- */
 
 function defaultSectionsCollapsed(fieldCount) {
@@ -705,7 +2242,8 @@ function defaultFor(f) {
     case "lang": return { tr: "", en: "" };
     case "object": return {};
     case "array":
-    case "components": return [];
+    case "components":
+    case "day-multiselect": return [];
     case "number": return 0;
     case "boolean": return false;
     default: return "";
@@ -719,9 +2257,28 @@ function defaultItem(f) {
     return { type: first, data: componentDefaults((f.components || {})[first]) };
   }
   if (f.itemType) return f.itemType === "number" ? 0 : "";
+  if (f.itemFields && f.itemFields.length === 1 && f.itemFields[0].type === "lang") {
+    return { tr: "", en: "" }; // lang öğeli dizi — öğe doğrudan {tr,en}
+  }
   const item = {};
-  if (f.itemFields) for (const sf of f.itemFields) item[sf.key] = defaultFor(sf);
+  if (f.itemFields) for (const sf of f.itemFields) {
+    if (sf.type === "transfer") continue; // sanal buton alanı — veriye yazılmaz
+    if (sf.key === "id" && sf.auto) {
+      item[sf.key] = autoId(f.itemLabel || sf.label || "item"); // otomatik benzersiz id
+      continue;
+    }
+    item[sf.key] = defaultFor(sf);
+  }
   return item;
+}
+
+function autoId(label) {
+  // modal-20260815-1020 gibi benzersiz slug — başlıktan temizlenir
+  const d = new Date();
+  const p = (n) => String(n).padStart(2, "0");
+  const base = String(label || "item").toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 20) || "item";
+  return base + "-" + d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate()) + "-" + p(d.getHours()) + p(d.getMinutes()) + p(d.getSeconds());
 }
 
 function componentDefaults(comp) {
@@ -751,6 +2308,7 @@ function renderField(f, obj, path) {
   const wrap = document.createElement("div");
   wrap.className = "field";
   if (path) wrap.dataset.path = path;
+  wrap.dataset.key = f.key || "";
   const label = document.createElement("label");
   label.className = "field-label";
   label.textContent = f.label || f.key;
@@ -794,6 +2352,38 @@ function renderField(f, obj, path) {
       const holder = document.createElement("div");
       holder.className = "control";
       holder.appendChild(cb);
+      if (f.hint) {
+        const h = document.createElement("div");
+        h.className = "hint";
+        h.textContent = f.hint;
+        holder.appendChild(h);
+      }
+      wrap.appendChild(holder);
+      break;
+    }
+    case "day-multiselect": {
+      if (!Array.isArray(obj[f.key])) obj[f.key] = [];
+      const holder = document.createElement("div");
+      holder.className = "day-multiselect";
+      const days = [["1", "Pzt"], ["2", "Sal"], ["3", "Çar"], ["4", "Per"], ["5", "Cum"], ["6", "Cmt"], ["0", "Paz"]];
+      for (const [num, label] of days) {
+        const lab = document.createElement("label");
+        lab.className = "day-chip";
+        const cb = document.createElement("input");
+        cb.type = "checkbox";
+        cb.checked = obj[f.key].includes(Number(num));
+        cb.addEventListener("change", () => {
+          const n = Number(num);
+          if (cb.checked) { if (!obj[f.key].includes(n)) obj[f.key].push(n); }
+          else obj[f.key] = obj[f.key].filter((v) => v !== n);
+          markDirty();
+        });
+        const span = document.createElement("span");
+        span.textContent = label;
+        lab.appendChild(cb);
+        lab.appendChild(span);
+        holder.appendChild(lab);
+      }
       if (f.hint) {
         const h = document.createElement("div");
         h.className = "hint";
@@ -877,8 +2467,95 @@ function renderJsonFileField(f, value, onchange) {
   return holder;
 }
 
+const VOID_TAGS = new Set(["br", "img", "input", "hr", "meta", "link", "area", "base", "col", "embed", "source", "track", "wbr"]);
+
+function checkHtmlBalance(ta) {
+  const code = ta.value || "";
+  const stack = [];
+  const re = /<\/?([a-zA-Z][a-zA-Z0-9-]*)((?:\s[^<>]*?)?)\/?>/g;
+  let m, issues = [];
+  while ((m = re.exec(code))) {
+    const full = m[0], tag = m[1].toLowerCase();
+    if (full.startsWith("</")) {
+      if (VOID_TAGS.has(tag)) continue;
+      const idx = stack.lastIndexOf(tag);
+      if (idx === -1) issues.push("</" + tag + "> için açılış yok");
+      else stack.splice(idx, 1);
+    } else if (!full.endsWith("/>") && !VOID_TAGS.has(tag)) {
+      stack.push(tag);
+    }
+  }
+  if (stack.length) issues.push("Kapanmamış: " + stack.join(", "));
+  let warn = ta.parentElement.querySelector(".code-warn");
+  if (!warn) {
+    warn = document.createElement("div");
+    warn.className = "code-warn";
+    ta.parentElement.appendChild(warn);
+  }
+  if (issues.length) {
+    warn.textContent = "⚠ " + issues.slice(0, 3).join(" · ");
+    warn.style.display = "";
+  } else {
+    warn.style.display = "none";
+  }
+}
+
+/* Onay diyaloğu — native confirm() ana thread'i bloke ediyor (özellikle önizleme ortamında). */
+function confirmDialog(msg, okText) {
+  return new Promise((resolve) => {
+    let dlg = document.getElementById("mgrConfirmDlg");
+    if (!dlg) {
+      dlg = document.createElement("div");
+      dlg.id = "mgrConfirmDlg";
+      dlg.className = "mgr-confirm-dlg";
+      dlg.innerHTML =
+        '<div class="mgr-confirm-panel">' +
+        '<p class="mgr-confirm-msg"></p>' +
+        '<div class="mgr-confirm-btns">' +
+        '<button type="button" class="btn" id="mgrConfirmOk">Onayla</button>' +
+        '<button type="button" class="btn small" id="mgrConfirmCancel">Vazgeç</button>' +
+        '</div></div>';
+      dlg.querySelector("#mgrConfirmOk").addEventListener("click", () => { dlg.classList.remove("open"); resolve(true); });
+      dlg.querySelector("#mgrConfirmCancel").addEventListener("click", () => { dlg.classList.remove("open"); resolve(false); });
+      dlg.addEventListener("click", (e) => { if (e.target === dlg) { dlg.classList.remove("open"); resolve(false); } });
+      document.body.appendChild(dlg);
+    }
+    dlg.querySelector(".mgr-confirm-msg").textContent = msg;
+    dlg.querySelector("#mgrConfirmOk").textContent = okText || "Onayla";
+    dlg.classList.add("open");
+  });
+}
+
+/* HTML kod alanı önizlemesi: div içinde gerçek render (iframe bu ortamda ana thread'i kilitliyor) */
+function previewHtmlCode(html) {
+  let dlg = document.getElementById("htmlPreviewDlg");
+  if (!dlg) {
+    dlg = document.createElement("div");
+    dlg.id = "htmlPreviewDlg";
+    dlg.className = "html-preview-dlg";
+    dlg.innerHTML =
+      '<div class="html-preview-panel">' +
+      '<div class="html-preview-head"><span>👁 HTML Önizleme</span><button type="button" class="btn small" id="htmlPreviewClose">✕ Kapat</button></div>' +
+      '<div class="html-preview-body"></div></div>';
+    dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.classList.remove("open"); });
+    dlg.querySelector("#htmlPreviewClose").addEventListener("click", () => dlg.classList.remove("open"));
+    document.body.appendChild(dlg);
+  }
+  const body = dlg.querySelector(".html-preview-body");
+  let style = dlg.querySelector("style.mb-preview-style");
+  if (!style) {
+    style = document.createElement("style");
+    style.className = "mb-preview-style";
+    dlg.querySelector(".html-preview-panel").prepend(style);
+  }
+  style.textContent = MODAL_PREVIEW_CSS + "body{font-family:system-ui,sans-serif;padding:16px;color:#1e293b}";
+  body.innerHTML = html || "<p style='color:#94a3b8'>Boş içerik</p>";
+  dlg.classList.add("open");
+}
+
 function renderScalar(f, value, onchange) {
   if (f.type === "icon") return renderIconField(f, value, onchange);
+  if (f.type === "image") return renderImageField(f, value, onchange);
   const holder = document.createElement("div");
   holder.className = "control";
   let ctl;
@@ -902,6 +2579,28 @@ function renderScalar(f, value, onchange) {
     return holder;
   }
   switch (f.type) {
+    case "code": {
+      const row = document.createElement("div");
+      row.className = "code-row";
+      const ta = document.createElement("textarea");
+      ta.rows = 6;
+      ta.spellcheck = false;
+      ta.className = "code-ta";
+      ta.placeholder = f.placeholder || "<form>…</form>";
+      ta.value = value ?? "";
+      ta.addEventListener("input", () => { onchange(ta.value); checkHtmlBalance(ta); });
+      ctl = ta;
+      const pv = document.createElement("button");
+      pv.type = "button";
+      pv.className = "btn small html-preview-btn";
+      pv.textContent = "👁 Önizle";
+      pv.title = "Bu HTML'i canlı önizle";
+      pv.addEventListener("click", (e) => { e.preventDefault(); e.stopPropagation(); previewHtmlCode(ta.value); });
+      row.appendChild(ta);
+      row.appendChild(pv);
+      ctl = row; // switch sonrası wrap'e eklenir
+      break;
+    }
     case "textarea": {
       const ta = document.createElement("textarea");
       ta.rows = 4;
@@ -919,6 +2618,34 @@ function renderScalar(f, value, onchange) {
         sel.appendChild(o);
       }
       sel.value = value ?? "";
+      sel.addEventListener("change", () => onchange(sel.value));
+      ctl = sel;
+      break;
+    }
+    case "modalref": {
+      // Genel modal kütüphanesinden beslenen select (id + kategori + etiket)
+      const sel = document.createElement("select");
+      const empty = document.createElement("option");
+      empty.value = "";
+      empty.textContent = "— Modal seçin —";
+      sel.appendChild(empty);
+      api("/api/modals").then((res) => {
+        if (!res || !res.ok) return;
+        for (const m of res.modals || []) {
+          const o = document.createElement("option");
+          o.value = m.id || "";
+          const lbl = (m.label && (m.label.tr || m.label.en)) || m.id;
+          o.textContent = (m.category ? m.category + " · " : "") + lbl;
+          sel.appendChild(o);
+        }
+        if (value && !Array.from(sel.options).some((o) => o.value === value)) {
+          const o = document.createElement("option");
+          o.value = value;
+          o.textContent = value + " (kütüphanede yok)";
+          sel.appendChild(o);
+        }
+        sel.value = value ?? "";
+      });
       sel.addEventListener("change", () => onchange(sel.value));
       ctl = sel;
       break;
@@ -943,6 +2670,14 @@ function renderScalar(f, value, onchange) {
     case "date": {
       const inp = document.createElement("input");
       inp.type = "date";
+      inp.value = value || "";
+      inp.addEventListener("change", () => onchange(inp.value));
+      ctl = inp;
+      break;
+    }
+    case "time": {
+      const inp = document.createElement("input");
+      inp.type = "time";
       inp.value = value || "";
       inp.addEventListener("change", () => onchange(inp.value));
       ctl = inp;
@@ -1046,6 +2781,39 @@ function renderIconField(f, value, onchange) {
   return holder;
 }
 
+/* ---------- Görsel alanı + dosya seçtirici galeri ---------- */
+
+function renderImageField(f, value, onchange) {
+  const holder = document.createElement("div");
+  holder.className = "control img-control";
+  const row = document.createElement("div");
+  row.className = "img-pick-row";
+  const inp = document.createElement("input");
+  inp.type = "text";
+  inp.value = value ?? "";
+  inp.placeholder = f.placeholder || "assets/images/...";
+  inp.addEventListener("input", () => onchange(inp.value));
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "btn small";
+  btn.textContent = "🖼 Seç";
+  btn.title = "assets/images klasöründen dosya seç — yolu sistem yazar";
+  btn.addEventListener("click", () => openImageGallery((src) => {
+    onchange(src);
+    inp.value = src;
+  }));
+  row.appendChild(inp);
+  row.appendChild(btn);
+  holder.appendChild(row);
+  if (f.hint) {
+    const h = document.createElement("div");
+    h.className = "hint";
+    h.textContent = f.hint;
+    holder.appendChild(h);
+  }
+  return holder;
+}
+
 async function openIconGallery(onPick) {
   if (!ICONS) {
     try {
@@ -1123,6 +2891,12 @@ function itemTitle(f, item) {
   // 2) İlk çoklu dil (lang) alanı
   for (const sf of f.itemFields || []) {
     if (sf.type === "lang") {
+      if (!sf.key) {
+        // lang öğeli dizi — öğenin kendisi {tr,en}
+        const t = val(item);
+        if (t) return t;
+        break;
+      }
       const t = val(item[sf.key]);
       if (t) return t;
     }
@@ -1169,6 +2943,10 @@ function renderArrayItem(f, arr, i, rerender, path) {
 
   const head = document.createElement("div");
   head.className = "card-head";
+  head.title = "Aç/kapat";
+  const chev = document.createElement("span");
+  chev.className = "card-chev";
+  chev.textContent = "▸";
   const idx = document.createElement("span");
   idx.className = "card-index";
   idx.textContent = "#" + (i + 1);
@@ -1180,9 +2958,16 @@ function renderArrayItem(f, arr, i, rerender, path) {
   actions.appendChild(iconBtn("↑", "Yukarı taşı", () => { move(arr, i, -1); rerender(); markDirty(); }));
   actions.appendChild(iconBtn("↓", "Aşağı taşı", () => { move(arr, i, 1); rerender(); markDirty(); }));
   actions.appendChild(iconBtn("✕", "Sil", () => { arr.splice(i, 1); rerender(); markDirty(); }));
+  head.appendChild(chev);
   head.appendChild(idx);
   head.appendChild(title);
   head.appendChild(actions);
+  for (const b of statusBadges(f, arr[i])) {
+    const sp = document.createElement("span");
+    sp.className = "badge " + b.cls;
+    sp.textContent = b.text;
+    head.insertBefore(sp, actions);
+  }
   card.appendChild(head);
 
   card.addEventListener("dragstart", (e) => {
@@ -1212,6 +2997,15 @@ function renderArrayItem(f, arr, i, rerender, path) {
 
   const body = document.createElement("div");
   body.className = "card-body";
+  // Çok öğeli dizilerde kartlar kapalı gelir (karışıklığı önler); başlığa tıklayınca açılır
+  const startCollapsed = arr.length > 2;
+  body.hidden = startCollapsed;
+  if (startCollapsed) card.classList.add("collapsed");
+  head.addEventListener("click", (e) => {
+    if (e.target.closest(".card-actions")) return;
+    body.hidden = !body.hidden;
+    card.classList.toggle("collapsed", body.hidden);
+  });
 
   if (f.type === "components") {
     const comp = arr[i];
@@ -1243,19 +3037,269 @@ function renderArrayItem(f, arr, i, rerender, path) {
     if (compDef && compDef.fields) renderFields(body, compDef.fields, comp.data, itemPath + ".data");
   } else if (f.itemType) {
     const inp = document.createElement("input");
-    inp.type = f.itemType === "number" ? "number" : "text";
+    inp.type = f.itemType === "number" ? "number" : (f.itemType === "date" ? "date" : "text");
     inp.value = arr[i];
     inp.addEventListener("input", () => {
       arr[i] = f.itemType === "number" ? (inp.value === "" ? 0 : Number(inp.value)) : inp.value;
       markDirty();
     });
     body.appendChild(inp);
+  } else if (f.itemFields && f.itemFields.length === 1 && f.itemFields[0].type === "lang") {
+    // Lang öğeli dizi — öğe ya {tr,en} nesnesi ya da düz metin (örn. konu listeleri, tablo hücreleri)
+    const langField = f.itemFields[0];
+    const holder = document.createElement("div");
+    holder.className = "lang-pair";
+    const isStr = typeof arr[i] === "string";
+    if (isStr) {
+      // Düz metin öğe — tek alan, tip korunur (veri bozulmaz)
+      const cell = document.createElement("div");
+      cell.className = "lang-cell";
+      const badge = document.createElement("span");
+      badge.className = "lang-badge tr";
+      badge.textContent = "TEXT";
+      const inp = document.createElement("input");
+      inp.type = "text";
+      inp.value = arr[i];
+      inp.addEventListener("input", () => {
+        arr[i] = inp.value;
+        markDirty();
+      });
+      cell.appendChild(badge);
+      cell.appendChild(inp);
+      holder.appendChild(cell);
+    } else {
+      let value = arr[i];
+      if (!value || typeof value !== "object") value = arr[i] = { tr: "", en: "" };
+      for (const lang of ["tr", "en"]) {
+        const cell = document.createElement("div");
+        cell.className = "lang-cell";
+        const badge = document.createElement("span");
+        badge.className = "lang-badge " + lang;
+        badge.textContent = lang.toUpperCase();
+        const ta = document.createElement("textarea");
+        ta.rows = 1;
+        ta.value = value[lang] ?? "";
+        ta.placeholder = langField.placeholder || "";
+        ta.addEventListener("input", () => {
+          value[lang] = ta.value;
+          ta.style.height = "auto";
+          ta.style.height = ta.scrollHeight + "px";
+          markDirty();
+        });
+        ta.style.height = "auto";
+        ta.style.height = ta.scrollHeight + "px";
+        cell.appendChild(badge);
+        cell.appendChild(ta);
+        holder.appendChild(cell);
+      }
+    }
+    body.appendChild(holder);
+  } else if (Array.isArray(arr[i]) && f.itemFields) {
+    // Dizi öğesi (örn. karşılaştırma tablosu satırı): itemFields sırayla hücrelerle eşleşir
+    f.itemFields.forEach((sf, idx) => {
+      const wrap = document.createElement("div");
+      wrap.className = "field-group";
+      const lab = document.createElement("span");
+      lab.className = "field-label";
+      lab.textContent = sf.label || ("Sütun " + (idx + 1));
+      wrap.appendChild(lab);
+      if (sf.type === "lang") {
+        // tr/en ikili — hücreyi doğrudan mutasyona uğrat
+        let val = arr[i][idx];
+        if (!val || typeof val !== "object") val = arr[i][idx] = { tr: "", en: "" };
+        const holder = document.createElement("div");
+        holder.className = "lang-pair";
+        for (const lang of ["tr", "en"]) {
+          const cell = document.createElement("div");
+          cell.className = "lang-cell";
+          const badge = document.createElement("span");
+          badge.className = "lang-badge " + lang;
+          badge.textContent = lang.toUpperCase();
+          const ta = document.createElement("textarea");
+          ta.rows = 1;
+          ta.value = val[lang] ?? "";
+          ta.addEventListener("input", () => { val[lang] = ta.value; markDirty(); });
+          cell.appendChild(badge);
+          cell.appendChild(ta);
+          holder.appendChild(cell);
+        }
+        wrap.appendChild(holder);
+      } else {
+        wrap.appendChild(renderScalar(sf, arr[i][idx], (v) => { arr[i][idx] = v; markDirty(); }));
+      }
+      body.appendChild(wrap);
+    });
   } else if (f.itemFields) {
-    renderFields(body, f.itemFields, arr[i], itemPath);
+    const realFields = f.itemFields.filter((sf) => sf.type !== "transfer");
+    const exFields = realFields.filter((sf) => sf.exclusive); // tek seçimli alanlar (örn. aktif)
+    const normalFields = realFields.filter((sf) => !sf.exclusive);
+    renderFields(body, normalFields, arr[i], itemPath);
+    for (const xf of exFields) body.appendChild(renderExclusiveField(xf, arr, i, itemPath, f));
+    const tsf = f.itemFields.find((sf) => sf.type === "transfer");
+    if (tsf) body.appendChild(renderTransferButton(tsf, arr[i]));
   }
 
   card.appendChild(body);
   return card;
+}
+
+/** Kart durum rozetleri: süresi doldu / aktif / pasif (itemFields'taki date + boolean alanlardan). */
+function statusBadges(f, item) {
+  const badges = [];
+  if (!item || typeof item !== "object") return badges;
+  const fields = f.itemFields || [];
+  const endF = fields.find((sf) => /^endDate$/i.test(sf.key));
+  const activeF = fields.find((sf) => sf.key === "active" && sf.type === "boolean");
+  if (endF && typeof item[endF.key] === "string" && item[endF.key]) {
+    const end = new Date(item[endF.key] + "T23:59:59");
+    if (!isNaN(end) && new Date() > end) {
+      badges.push({ text: "⏰ Süresi doldu", cls: "badge-expired" });
+    }
+  }
+  if (activeF) {
+    badges.push({ text: item[activeF.key] ? "Aktif" : "Pasif", cls: item[activeF.key] ? "badge-active" : "badge-inactive" });
+  }
+  return badges;
+}
+
+/* ---------- Modal → duyuru aktarma ---------- */
+
+const TRANSFER_CATEGORIES = [
+  { value: "Genel Duyuru", color: "#1F4C8A" },
+  { value: "Acil Duyuru", color: "#C03221" },
+  { value: "Sistem Bildirimi", color: "#6c757d" },
+  { value: "Tatil/Kapanış", color: "#fd7e14" },
+  { value: "Etkinlik Duyurusu", color: "#198754" },
+];
+
+function renderExclusiveField(f, arr, i, path, arrayF) {
+  // Tek seçimli alan: biri açılınca dizideki diğerleri otomatik kapanır (örn. modallarda "Aktif")
+  const wrap = document.createElement("div");
+  wrap.className = "field";
+  if (path) wrap.dataset.path = path + "." + f.key;
+  const label = document.createElement("label");
+  label.className = "field-label";
+  label.textContent = f.label || f.key;
+  wrap.appendChild(label);
+  const cb = document.createElement("input");
+  cb.type = "checkbox";
+  cb.checked = !!arr[i][f.key];
+  const refreshBadges = () => {
+    // Kart başlıklarındaki rozetleri kaydetmeden canlı güncelle (Aktif/Pasif/⏰ Süresi doldu).
+    // Exclusive bir alan değişince TÜM kartların rozeti yenilenir — biri kapanırken diğeri
+    // eski halde kalmamalı (örn. iki kart birden "Aktif" görünmemeli).
+    if (!arrayF) return;
+    const widget = wrap.closest(".array-widget");
+    const cards = widget ? Array.from(widget.querySelectorAll(".array-card")) : [wrap.closest(".array-card")].filter(Boolean);
+    cards.forEach((card) => {
+      const head = card.querySelector(".card-head");
+      const actions = head && head.querySelector(".card-actions");
+      if (!head) return;
+      // Bu kart hangi dizi öğesi? başlık sırasıyla eşleştir
+      const idx = Array.from(cards).indexOf(card);
+      const item = arr[idx] || arr[i];
+      head.querySelectorAll(".badge").forEach((b) => b.remove());
+      for (const b of statusBadges(arrayF, item)) {
+        const sp = document.createElement("span");
+        sp.className = "badge " + b.cls;
+        sp.textContent = b.text;
+        if (actions) head.insertBefore(sp, actions);
+        else head.appendChild(sp);
+      }
+    });
+  };
+  cb.addEventListener("change", () => {
+    arr.forEach((o, j) => { if (o[f.key] === true || j === i) o[f.key] = (j === i) && cb.checked; });
+    markDirty();
+    refreshBadges(); // kaydetmeden rozet anında güncellensin
+  });
+  const holder = document.createElement("div");
+  holder.className = "control";
+  holder.appendChild(cb);
+  if (f.hint) {
+    const h = document.createElement("div");
+    h.className = "hint";
+    h.textContent = f.hint;
+    holder.appendChild(h);
+  }
+  wrap.appendChild(holder);
+  return wrap;
+}
+
+function renderTransferButton(tsf, item) {
+  const holder = document.createElement("div");
+  holder.className = "control transfer-row";
+  const btn = document.createElement("button");
+  btn.className = "btn small transfer-btn";
+  btn.textContent = "📤 Duyuruya Aktar";
+  btn.title = "Bu modalı duyurular bölümüne taşı (modal pasifleşir, bağlantı kurulur)";
+  btn.addEventListener("click", () => openTransferDialog(tsf, item));
+  holder.appendChild(btn);
+  if (tsf.hint) {
+    const h = document.createElement("div");
+    h.className = "hint";
+    h.textContent = tsf.hint;
+    holder.appendChild(h);
+  }
+  return holder;
+}
+
+function openTransferDialog(tsf, item) {
+  const title = itemTitle({ itemFields: [{ key: "title", type: "lang" }, { key: "id", type: "text" }] }, item) || item.id || "Bu modal";
+  const opts = TRANSFER_CATEGORIES.map(
+    (c) => `<option value="${c.value}" data-color="${c.color}">${c.value}</option>`
+  ).join("");
+  openModal(`
+    <div class="dialog">
+      <h3>📤 Duyuruya Aktar</h3>
+      <p class="dialog-note"><strong>${escapeHtml(title)}</strong> modalı duyurular bölümüne aktarılacak.</p>
+      <p class="dialog-note">Aktarınca: duyuru listesine yeni kayıt eklenir, modal <strong>pasifleşir</strong> ve bağlantı kurulur (silinmez — geri dönüş kalır).</p>
+      <label class="field-label">Duyuru Kategorisi</label>
+      <select id="transferCategory">${opts}</select>
+      <div class="dialog-actions">
+        <button class="btn" id="transferCancel">Vazgeç</button>
+        <button class="btn primary" id="transferConfirm">Aktar</button>
+      </div>
+    </div>
+  `);
+  const catSel = $("transferCategory");
+  const colorOf = () => {
+    const opt = catSel.selectedOptions[0];
+    return (opt && opt.dataset.color) || "#1F4C8A";
+  };
+  $("transferCancel").addEventListener("click", closeModal);
+  $("transferConfirm").addEventListener("click", async () => {
+    const confirmBtn = $("transferConfirm");
+    confirmBtn.disabled = true;
+    confirmBtn.textContent = "Aktarılıyor…";
+    try {
+      const res = await api("/api/modal/transfer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ modalId: item.id, category: catSel.value, categoryColor: colorOf() }),
+      });
+      closeModal();
+      // Sunucudaki güncel veriyi al, formu ve ağacı yenile
+      const tab = activeTab();
+      if (tab) {
+        try {
+          const data = await api("/api/file?path=" + encodeURIComponent(tab.path));
+          tab.data = data.content;
+          tab.original = JSON.parse(JSON.stringify(data.content));
+          tab.dirty = false;
+          renderEditor();
+          renderTabs();
+        } catch (e) { /* form yenilenemezse ağaç yeter */ }
+      }
+      loadFiles();
+      reloadPreview();
+      showBanner(res.message || "Aktarıldı.", "success");
+    } catch (e) {
+      confirmBtn.disabled = false;
+      confirmBtn.textContent = "Aktar";
+      showBanner((e.errors && e.errors.join("\n")) || "Aktarma başarısız.", "error");
+    }
+  });
 }
 
 function renderRaw(f, obj) {
@@ -1530,6 +3574,62 @@ async function validate() {
   }
 }
 
+/* Kayıtta dokunulmamış boş varsayılanları temizle: şema render'ı sırasında eklenen
+   boş nesne/dizi/lang alanları (örn. boş statusBadge) orijinalde yoksa disk'e yazılmaz. */
+function isUntouchedDefault(f, value) {
+  if (f.type === "object") {
+    if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+    const sfs = f.fields || [];
+    for (const sf of sfs) {
+      if (!(sf.key in value)) return false;
+      if (!isUntouchedDefault(sf, value[sf.key])) return false;
+    }
+    const known = new Set(sfs.map((sf) => sf.key));
+    return Object.keys(value).every((k) => known.has(k));
+  }
+  if (f.type === "array" || f.type === "components") return Array.isArray(value) && value.length === 0;
+  if (f.type === "lang") return !!value && typeof value === "object" && value.tr === "" && value.en === "" && Object.keys(value).length === 2;
+  return JSON.stringify(defaultFor(f)) === JSON.stringify(value);
+}
+
+function stripUntouchedDefaults(data, schema, original) {
+  const clone = JSON.parse(JSON.stringify(data));
+  const walk = (node, fields, orig) => {
+    if (!fields || !node || typeof node !== "object") return;
+    for (const f of fields) {
+      const key = f.key;
+      if (!key || !(key in node)) continue;
+      const inOrig = orig && typeof orig === "object" && key in orig;
+      if (!inOrig && isUntouchedDefault(f, node[key])) {
+        delete node[key];
+        continue;
+      }
+      const sub = node[key];
+      if (f.type === "object" && sub && typeof sub === "object" && !Array.isArray(sub)) {
+        walk(sub, f.fields, orig && typeof orig === "object" ? orig[key] : undefined);
+      } else if (f.type === "array" && Array.isArray(sub) && f.itemFields) {
+        const origArr = orig && Array.isArray(orig[key]) ? orig[key] : [];
+        sub.forEach((item, i) => {
+          if (item && typeof item === "object" && !Array.isArray(item)) {
+            walk(item, f.itemFields, origArr[i]);
+          }
+        });
+      } else if (f.type === "components" && Array.isArray(sub)) {
+        const comps = f.components || {};
+        const origArr = orig && Array.isArray(orig[key]) ? orig[key] : [];
+        sub.forEach((comp, i) => {
+          const def = comps[comp && comp.type];
+          if (comp && comp.data && def && def.fields) {
+            walk(comp.data, def.fields, origArr[i] && origArr[i].data);
+          }
+        });
+      }
+    }
+  };
+  walk(clone, schema && schema.fields, original);
+  return clone;
+}
+
 async function save() {
   const tab = activeTab();
   if (!tab) return;
@@ -1539,7 +3639,7 @@ async function save() {
   }
   let content;
   try {
-    content = currentContent();
+    content = stripUntouchedDefaults(currentContent(), tab.schema, tab.original);
   } catch {
     showBanner("JSON geçersiz — ayrıştırılamıyor.");
     return;
@@ -1551,6 +3651,7 @@ async function save() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ path: tab.path, content, message, session: SID }),
     });
+    tab.original = JSON.parse(JSON.stringify(content)); // temizlenmiş hali orijinal olarak sakla
     tab.dirty = false;
     $("commitMessage").value = "";
     $("previewBadge").classList.add("hidden");
@@ -1572,6 +3673,40 @@ function refreshDiffBtn() {
   const btn = document.getElementById("diffBtn");
   if (!btn) return;
   btn.classList.toggle("hidden", !activeTab() || !activeTab().dirty);
+}
+
+function lockMetaBtn(tab) {
+  const info = state.locks?.[tab.path];
+  if (info && info.locked) {
+    const reason = info.reason ? " (" + info.reason + ")" : "";
+    return '<button id="unlockBtn" class="btn small warn" title="Bu dosya kilitli' + escapeHtml(reason) + ' — düzenlemek için kilidi açın">🔓 Kilidi Aç</button>';
+  }
+  return '<button id="lockBtn" class="btn small" title="Riskli dosya — diğer kullanıcılar yanlışlıkla bozmasın diye kilitler">🔒 Kilitle</button>';
+}
+
+async function toggleLock() {
+  const tab = activeTab();
+  if (!tab) return;
+  const info = state.locks?.[tab.path];
+  const willLock = !(info && info.locked);
+  const reason = tab.schema ? tab.schema.label : tab.path.split("/").pop();
+  if (willLock) {
+    if (!confirm("Bu dosyayı kilitlemek istediğinize emin misiniz?\n\nKilitliyken hiçbir kayıt yapılamaz (sunucu engeller) ve ağaçta 🔒 rozeti görünür. Kilit data/global/_locks.json içinde tutulur, git ile ekiple paylaşılır.")) return;
+  } else if (!confirm("Kilidi açıyorsunuz — dosya artık kaydedilebilir. Devam edilsin mi?")) return;
+  try {
+    await api("/api/locks", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ path: tab.path, locked: willLock, reason: willLock ? reason + " — riskli dosya" : "" }),
+    });
+    if (willLock) state.locks[tab.path] = { locked: true, reason: reason + " — riskli dosya" };
+    else delete state.locks[tab.path];
+    renderEditor();
+    await loadFiles();  // ağaçtaki 🔒 rozetini sunucudan tazele
+    showBanner(willLock ? "Dosya kilitlendi 🔒" : "Kilit açıldı 🔓", "success");
+  } catch (e) {
+    showBanner("Kilit işlemi başarısız: " + ((e.errors || []).join(" ") || e.error || "hata"));
+  }
 }
 
 function parseDiffSummary(diff) {
@@ -1835,5 +3970,6 @@ document.addEventListener("DOMContentLoaded", () => {
         renderEditor();
       }
     }
+    if (e.target && (e.target.id === "lockBtn" || e.target.id === "unlockBtn")) toggleLock();
   });
 });

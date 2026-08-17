@@ -1,10 +1,26 @@
 # -*- coding: utf-8 -*-
-"""Doğrulama: JSON geçerliliği, şema uyumu, eksik çeviri, kırık bağlantılar."""
+"""Doğrulama: JSON geçerliliği, şema uyumu, eksik çeviri, kırık bağlantılar, bozuk karakterler."""
 
+import json
 import os
 import re
 
-TEXT_TYPES = {"text", "textarea", "color", "date", "select", "icon", "url", "password"}
+TEXT_TYPES = {"text", "textarea", "color", "date", "time", "select", "icon", "url", "password"}
+
+# Mojibake (çift kodlama) tespiti: Türkçe/özel karakterlerin UTF-8 baytları
+# cp1252 gibi tek baytlık kodlamayla okunup tekrar UTF-8 yazılması sonucu oluşan
+# desenler. Her desen → olması gereken doğru karakter.
+MOJIBAKE_MAP = {
+    "Ã¶": "ö", "Ã¼": "ü", "Ã§": "ç", "Ã–": "Ö", "Ãœ": "Ü", "Ã‡": "Ç",
+    "Ä±": "ı", "ÅŸ": "ş", "ÄŸ": "ğ", "Ä°": "İ", "Äž": "Ğ",
+    "Ã±": "ñ", "Ã¡": "á", "Ã©": "é", "Ã¨": "è", "Ã®": "î", "Ã¯": "ï",
+    "Ã´": "ô", "Ã¹": "ù", "Ã»": "û", "Ãº": "ú", "Ã³": "ó", "Ã¦": "æ",
+    "Ã¸": "ø", "Ã¥": "å", "Ã¤": "ä", "Ã¶": "ö",
+    "â€™": "'", "â€œ": "\"", "â€\u009d": "\"", "â€“": "–", "â€”": "—",
+    "â€¦": "…", "â€¢": "•", "â€š": ",",
+    "Â°": "°", "Â»": "»", "Â«": "«", "Â±": "±",
+}
+_MOJIBAKE_PATTERN = re.compile("|".join(re.escape(p) for p in sorted(MOJIBAKE_MAP, key=len, reverse=True)))
 
 
 def validate(content, path, schema, root):
@@ -16,10 +32,68 @@ def validate(content, path, schema, root):
         validate_schema(content, schema, errors, "$")
     check_translations(content, errors, "$")
     check_links(content, root, errors, "$")
+    check_mojibake(content, errors, "$")
+    check_modal_refs(content, root, errors, "$")
     return errors
 
 
+def check_modal_refs(node, root, errors, loc):
+    """modalId referanslarını genel modal kütüphanesiyle doğrula (data/global/modals.json)."""
+    if isinstance(node, dict):
+        mid = node.get("modalId")
+        if isinstance(mid, str) and mid and node.get("type") == "modal":
+            ids = _modal_library_ids(root)
+            if mid not in ids:
+                errors.append("%s: '%s' modalı genel modal kütüphanesinde bulunamadı (data/global/modals.json)." % (loc, mid))
+        for k, v in node.items():
+            check_modal_refs(v, root, errors, "%s.%s" % (loc, k))
+    elif isinstance(node, list):
+        for i, v in enumerate(node):
+            check_modal_refs(v, root, errors, "%s[%d]" % (loc, i))
+
+
+def _modal_library_ids(root):
+    try:
+        with open(os.path.join(root, "data", "global", "modals.json"), encoding="utf-8") as f:
+            lib = json.load(f)
+        return set(m.get("id") for m in (lib.get("modals") or []) if isinstance(m, dict))
+    except Exception:
+        return set()
+
+
+def check_mojibake(node, errors, loc):
+    """Tüm metin değerlerinde bozuk karakter kodlaması (mojibake) ara."""
+    if isinstance(node, dict):
+        for k, v in node.items():
+            check_mojibake(v, errors, "%s.%s" % (loc, k))
+    elif isinstance(node, list):
+        for i, v in enumerate(node):
+            check_mojibake(v, errors, "%s[%d]" % (loc, i))
+    elif isinstance(node, str):
+        m = _MOJIBAKE_PATTERN.search(node)
+        if m:
+            bad = m.group(0)
+            good = MOJIBAKE_MAP.get(bad, "?")
+            snippet = node[max(0, m.start() - 12):m.end() + 12].replace("\n", " ")
+            errors.append(
+                "%s: bozuk karakter kodlaması (mojibake) — '%s' yerine '%s' olması gerekiyor. "
+                "Metin: …%s… (Dosya UTF-8 olarak kaydedilmeli.)" % (loc, bad, good, snippet))
+
+
 def validate_schema(node, schema, errors, loc):
+    # Kök dizi şeması (root: "array" — örn. collections.json)
+    if schema.get("root") == "array":
+        if not isinstance(node, list):
+            errors.append("%s: dizi olmalı." % loc)
+            return
+        item_fields = schema.get("itemFields") or []
+        for i, item in enumerate(node):
+            iloc = "%s[%d]" % (loc, i)
+            if not isinstance(item, dict):
+                errors.append("%s: her öğe nesne olmalı." % iloc)
+            elif item_fields:
+                validate_schema(item, {"fields": item_fields, "required": schema.get("itemRequired", [])}, errors, iloc)
+        return
     fields = schema.get("fields") or []
     if not isinstance(node, dict):
         return
@@ -53,7 +127,27 @@ def validate_schema(node, schema, errors, loc):
                 elif f.get("itemFields"):
                     for i, item in enumerate(value):
                         iloc = "%s[%d]" % (child, i)
-                        if not isinstance(item, dict):
+                        if isinstance(item, list):
+                            # Dizi öğesi (iç içe dizi — örn. karşılaştırma tablosu satırı): itemFields sırayla hücrelerle eşleşir
+                            for j, cell in enumerate(item):
+                                if j >= len(f["itemFields"]):
+                                    continue
+                                sf = f["itemFields"][j]
+                                vloc = "%s[%d]" % (iloc, j)
+                                st = sf.get("type", "text")
+                                if st == "lang":
+                                    if not isinstance(cell, (dict, str)):
+                                        errors.append("%s: çoklu dil alanı (TR/EN) veya metin olmalı." % vloc)
+                                elif st == "number":
+                                    if not isinstance(cell, (int, float)) or isinstance(cell, bool):
+                                        errors.append("%s: sayı olmalı." % vloc)
+                                elif st == "boolean":
+                                    if not isinstance(cell, bool):
+                                        errors.append("%s: doğru/yanlış olmalı." % vloc)
+                                elif st in TEXT_TYPES:
+                                    if not isinstance(cell, str):
+                                        errors.append("%s: metin olmalı." % vloc)
+                        elif not isinstance(item, dict):
                             errors.append("%s: her öğe nesne olmalı." % iloc)
                         else:
                             validate_schema(item, {"fields": f["itemFields"], "required": f.get("itemRequired", [])}, errors, iloc)
@@ -69,6 +163,10 @@ def validate_schema(node, schema, errors, loc):
         elif ftype == "boolean":
             if not isinstance(value, bool):
                 errors.append("%s: doğru/yanlış olmalı." % child)
+        elif ftype == "day-multiselect":
+            if (not isinstance(value, list)
+                    or not all(isinstance(n, int) and not isinstance(n, bool) and 0 <= n <= 6 for n in value)):
+                errors.append("%s: gün listesi olmalı (0-6 arası sayılar)." % child)
         elif ftype in TEXT_TYPES:
             if not isinstance(value, str):
                 errors.append("%s: metin olmalı." % child)

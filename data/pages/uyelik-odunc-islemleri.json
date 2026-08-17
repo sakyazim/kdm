@@ -7,7 +7,9 @@
     "description": {
       "tr": "Kütüphane kaynaklarından nasıl yararlanacağınızı öğrenin",
       "en": "Learn how to benefit from library resources"
-    }
+    },
+    "showIcon": true,
+    "icon": "fas fa-id-card"
   },
   "toc": {
     "enabled": true,
@@ -124,34 +126,6 @@
         },
         "anchor": "damages",
         "icon": "bi bi-exclamation-diamond"
-      }
-    ]
-  },
-  "help": {
-    "title": {
-      "tr": "Yardıma mı ihtiyacınız var?",
-      "en": "Need help?"
-    },
-    "description": {
-      "tr": "Üyelik ve ödünç işlemleri ile ilgili sorularınız için bizimle iletişime geçebilirsiniz.",
-      "en": "Contact us for questions about membership and borrowing procedures."
-    },
-    "buttons": [
-      {
-        "text": {
-          "tr": "Hemen Ara",
-          "en": "Call Now"
-        },
-        "url": "tel:+902223350580",
-        "icon": "fas fa-phone"
-      },
-      {
-        "text": {
-          "tr": "E-posta Gönder",
-          "en": "Send Email"
-        },
-        "url": "mailto:kutuphane@anadolu.edu.tr",
-        "icon": "fas fa-envelope"
       }
     ]
   },
@@ -1102,12 +1076,48 @@
   "meta": {
     "title": {
       "tr": "Üyelik & Ödünç İşlemleri",
-      "en": ""
+      "en": "Membership & Loan Transactions"
     },
     "description": {
       "tr": "Anadolu Üniversitesi Kütüphane - Üyelik ve Ödünç İşlemleri Rehberi",
-      "en": ""
+      "en": "Anadolu University Library - Membership and Loan Guide"
     }
   },
-  "lastModified": "2026-08-14 15:25"
+  "lastModified": "2026-08-15 17:39",
+  "helpSection": {
+    "title": {
+      "tr": "Yardıma mı ihtiyacınız var?",
+      "en": "Do you need help?"
+    },
+    "description": {
+      "tr": "Üyelik ve ödünç işlemleri hakkında sorularınız için destek alabilirsiniz.",
+      "en": "Üyelik ve ödünç işlemleri hakkında sorularınız için destek alabilirsiniz."
+    },
+    "buttons": [
+      {
+        "icon": "fas fa-phone",
+        "text": {
+          "tr": "Hemen Ara",
+          "en": "Call Now"
+        },
+        "link": "tel:+902223350580"
+      },
+      {
+        "icon": "fas fa-envelope",
+        "text": {
+          "tr": "E-posta Gönder",
+          "en": "Send Email"
+        },
+        "link": "mailto:library@anadolu.edu.tr"
+      },
+      {
+        "icon": "fas fa-book",
+        "text": {
+          "tr": "Sıkça Sorulan Sorular",
+          "en": "FAQ"
+        },
+        "link": "sss.html"
+      }
+    ]
+  }
 }

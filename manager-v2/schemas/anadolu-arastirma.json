@@ -1,0 +1,502 @@
+{
+ "file": "data/pages/anadolu-arastirma.json",
+ "label": "Anadolu Üniversitesi Araştırma (Hub)",
+ "description": "Araştırma ana sayfasının 4 alt bölümü: birimler, mevzuat, duyurular, haberler.",
+ "fields": [
+  {
+   "key": "arastirma_birimleri",
+   "label": "Araştırma Birimleri",
+   "type": "object",
+   "fields": [
+    {
+     "key": "meta",
+     "label": "SEO Bilgileri",
+     "type": "object",
+     "fields": [
+      {
+       "key": "title",
+       "label": "SEO Başlık",
+       "type": "lang"
+      },
+      {
+       "key": "description",
+       "label": "SEO Açıklama",
+       "type": "lang"
+      }
+     ]
+    },
+    {
+     "key": "hero",
+     "label": "Üst Bant (Hero)",
+     "type": "object",
+     "fields": [
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang",
+       "required": true
+      },
+      {
+       "key": "description",
+       "label": "Açıklama",
+       "type": "lang"
+      }
+     ]
+    },
+    {
+     "key": "content",
+     "label": "İçerik",
+     "type": "object",
+     "fields": [
+      {
+       "key": "cards",
+       "label": "Kartlar",
+       "type": "array",
+       "itemLabel": "Kart",
+       "itemFields": [
+        {
+         "key": "title",
+         "label": "Başlık",
+         "type": "lang"
+        },
+        {
+         "key": "content",
+         "label": "Bağlantılar",
+         "type": "array",
+         "itemLabel": "Bağlantı",
+         "itemFields": [
+          {
+           "key": "text",
+           "label": "Metin",
+           "type": "lang"
+          },
+          {
+           "key": "link",
+           "label": "URL",
+           "type": "url"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "key": "help",
+     "label": "Yardım Bölümü",
+     "type": "object",
+     "fields": [
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang"
+      },
+      {
+       "key": "description",
+       "label": "Açıklama",
+       "type": "lang"
+      },
+      {
+       "key": "buttons",
+       "label": "Butonlar",
+       "type": "array",
+       "itemLabel": "Buton",
+       "itemFields": [
+        {
+         "key": "icon",
+         "label": "İkon",
+         "type": "icon"
+        },
+        {
+         "key": "text",
+         "label": "Metin",
+         "type": "lang",
+         "required": true
+        },
+        {
+         "key": "link",
+         "label": "Bağlantı",
+         "type": "url",
+         "required": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "arastirma_mevzuati",
+   "label": "Araştırma Mevzuatı",
+   "type": "object",
+   "fields": [
+    {
+     "key": "meta",
+     "label": "SEO Bilgileri",
+     "type": "object",
+     "fields": [
+      {
+       "key": "title",
+       "label": "SEO Başlık",
+       "type": "lang"
+      },
+      {
+       "key": "description",
+       "label": "SEO Açıklama",
+       "type": "lang"
+      }
+     ]
+    },
+    {
+     "key": "hero",
+     "label": "Üst Bant (Hero)",
+     "type": "object",
+     "fields": [
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang",
+       "required": true
+      },
+      {
+       "key": "description",
+       "label": "Açıklama",
+       "type": "lang"
+      }
+     ]
+    },
+    {
+     "key": "content",
+     "label": "İçerik",
+     "type": "object",
+     "fields": [
+      {
+       "key": "cards",
+       "label": "Kartlar",
+       "type": "array",
+       "itemLabel": "Kart",
+       "itemFields": [
+        {
+         "key": "title",
+         "label": "Başlık",
+         "type": "lang"
+        },
+        {
+         "key": "content",
+         "label": "Bağlantılar",
+         "type": "array",
+         "itemLabel": "Bağlantı",
+         "itemFields": [
+          {
+           "key": "text",
+           "label": "Metin",
+           "type": "lang"
+          },
+          {
+           "key": "link",
+           "label": "URL",
+           "type": "url"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "key": "help",
+     "label": "Yardım Bölümü",
+     "type": "object",
+     "fields": [
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang"
+      },
+      {
+       "key": "description",
+       "label": "Açıklama",
+       "type": "lang"
+      },
+      {
+       "key": "buttons",
+       "label": "Butonlar",
+       "type": "array",
+       "itemLabel": "Buton",
+       "itemFields": [
+        {
+         "key": "icon",
+         "label": "İkon",
+         "type": "icon"
+        },
+        {
+         "key": "text",
+         "label": "Metin",
+         "type": "lang",
+         "required": true
+        },
+        {
+         "key": "link",
+         "label": "Bağlantı",
+         "type": "url",
+         "required": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "arastirma_duyurulari",
+   "label": "Araştırma Duyuruları",
+   "type": "object",
+   "fields": [
+    {
+     "key": "meta",
+     "label": "SEO Bilgileri",
+     "type": "object",
+     "fields": [
+      {
+       "key": "title",
+       "label": "SEO Başlık",
+       "type": "lang"
+      },
+      {
+       "key": "description",
+       "label": "SEO Açıklama",
+       "type": "lang"
+      }
+     ]
+    },
+    {
+     "key": "hero",
+     "label": "Üst Bant (Hero)",
+     "type": "object",
+     "fields": [
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang",
+       "required": true
+      },
+      {
+       "key": "description",
+       "label": "Açıklama",
+       "type": "lang"
+      }
+     ]
+    },
+    {
+     "key": "content",
+     "label": "İçerik",
+     "type": "object",
+     "fields": [
+      {
+       "key": "cards",
+       "label": "Kartlar",
+       "type": "array",
+       "itemLabel": "Kart",
+       "itemFields": [
+        {
+         "key": "title",
+         "label": "Başlık",
+         "type": "lang"
+        },
+        {
+         "key": "content",
+         "label": "Bağlantılar",
+         "type": "array",
+         "itemLabel": "Bağlantı",
+         "itemFields": [
+          {
+           "key": "text",
+           "label": "Metin",
+           "type": "lang"
+          },
+          {
+           "key": "link",
+           "label": "URL",
+           "type": "url"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "key": "help",
+     "label": "Yardım Bölümü",
+     "type": "object",
+     "fields": [
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang"
+      },
+      {
+       "key": "description",
+       "label": "Açıklama",
+       "type": "lang"
+      },
+      {
+       "key": "buttons",
+       "label": "Butonlar",
+       "type": "array",
+       "itemLabel": "Buton",
+       "itemFields": [
+        {
+         "key": "icon",
+         "label": "İkon",
+         "type": "icon"
+        },
+        {
+         "key": "text",
+         "label": "Metin",
+         "type": "lang",
+         "required": true
+        },
+        {
+         "key": "link",
+         "label": "Bağlantı",
+         "type": "url",
+         "required": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "arastirmalardan_haberler",
+   "label": "Araştırmalardan Haberler",
+   "type": "object",
+   "fields": [
+    {
+     "key": "meta",
+     "label": "SEO Bilgileri",
+     "type": "object",
+     "fields": [
+      {
+       "key": "title",
+       "label": "SEO Başlık",
+       "type": "lang"
+      },
+      {
+       "key": "description",
+       "label": "SEO Açıklama",
+       "type": "lang"
+      }
+     ]
+    },
+    {
+     "key": "hero",
+     "label": "Üst Bant (Hero)",
+     "type": "object",
+     "fields": [
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang",
+       "required": true
+      },
+      {
+       "key": "description",
+       "label": "Açıklama",
+       "type": "lang"
+      }
+     ]
+    },
+    {
+     "key": "content",
+     "label": "İçerik",
+     "type": "object",
+     "fields": [
+      {
+       "key": "cards",
+       "label": "Kartlar",
+       "type": "array",
+       "itemLabel": "Kart",
+       "itemFields": [
+        {
+         "key": "title",
+         "label": "Başlık",
+         "type": "lang"
+        },
+        {
+         "key": "content",
+         "label": "Bağlantılar",
+         "type": "array",
+         "itemLabel": "Bağlantı",
+         "itemFields": [
+          {
+           "key": "text",
+           "label": "Metin",
+           "type": "lang"
+          },
+          {
+           "key": "link",
+           "label": "URL",
+           "type": "url"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "key": "help",
+     "label": "Yardım Bölümü",
+     "type": "object",
+     "fields": [
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang"
+      },
+      {
+       "key": "description",
+       "label": "Açıklama",
+       "type": "lang"
+      },
+      {
+       "key": "buttons",
+       "label": "Butonlar",
+       "type": "array",
+       "itemLabel": "Buton",
+       "itemFields": [
+        {
+         "key": "icon",
+         "label": "İkon",
+         "type": "icon"
+        },
+        {
+         "key": "text",
+         "label": "Metin",
+         "type": "lang",
+         "required": true
+        },
+        {
+         "key": "link",
+         "label": "Bağlantı",
+         "type": "url",
+         "required": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "lastModified",
+   "label": "Son Güncelleme",
+   "type": "text",
+   "readonly": true,
+   "hint": "🔒 Otomatik — kayıtta güncellenir"
+  }
+ ]
+}

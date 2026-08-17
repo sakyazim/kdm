@@ -1,0 +1,242 @@
+{
+ "file": "data/pages/kime-sormaliyim.json",
+ "label": "Kime Sormalıyım?",
+ "preview": "kime-sormaliyim.html",
+ "description": "Kime Sormalıyım sayfası: arama, bölümler ve iletişim bilgileri.",
+ "fields": [
+  {
+   "key": "hero",
+   "label": "Üst Bant (Hero)",
+   "type": "object",
+   "required": true,
+   "fields": [
+    {
+     "key": "title",
+     "label": "Başlık",
+     "type": "lang",
+     "required": true
+    },
+    {
+     "key": "description",
+     "label": "Açıklama",
+     "type": "lang"
+    },
+    {
+     "key": "icon",
+     "label": "İkon (FontAwesome)",
+     "type": "icon",
+     "hint": "Örn: fas fa-phone"
+    },
+    {
+     "key": "breadcrumb",
+     "label": "Gezinti Yolu (Breadcrumb)",
+     "type": "array",
+     "itemLabel": "Adım",
+     "itemFields": [
+      {
+       "key": "text",
+       "label": "Metin",
+       "type": "lang",
+       "required": true
+      },
+      {
+       "key": "url",
+       "label": "Bağlantı",
+       "type": "url"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "searchSection",
+   "label": "Arama Bölümü",
+   "type": "object",
+   "fields": [
+    {
+     "key": "icon",
+     "label": "Arama İkonu",
+     "type": "icon"
+    },
+    {
+     "key": "placeholder",
+     "label": "Yer Tutucu Metin",
+     "type": "lang"
+    },
+    {
+     "key": "icon",
+     "label": "Temizle Butonu İkonu",
+     "type": "icon",
+     "hint": "Örn: bi bi-x-lg"
+    }
+   ]
+  },
+  {
+   "key": "noResults",
+   "label": "Sonuç Bulunamadı",
+   "type": "object",
+   "fields": [
+    {
+     "key": "icon",
+     "label": "İkon",
+     "type": "icon"
+    },
+    {
+     "key": "title",
+     "label": "Başlık",
+     "type": "lang"
+    },
+    {
+     "key": "description",
+     "label": "Açıklama",
+     "type": "lang"
+    }
+   ]
+  },
+  {
+   "key": "labels",
+   "label": "Etiketler",
+   "type": "object",
+   "fields": [
+    {
+     "key": "topicsTitle",
+     "label": "Konular Başlığı",
+     "type": "lang"
+    },
+    {
+     "key": "contactTitle",
+     "label": "İletişim Başlığı",
+     "type": "lang"
+    }
+   ]
+  },
+  {
+   "key": "departments",
+   "label": "Bölümler",
+   "type": "array",
+   "itemLabel": "Bölüm",
+   "itemFields": [
+    {
+     "key": "id",
+     "label": "Bölüm ID",
+     "type": "text"
+    },
+    {
+     "key": "icon",
+     "label": "Bölüm İkonu",
+     "type": "icon"
+    },
+    {
+     "key": "title",
+     "label": "Başlık",
+     "type": "lang",
+     "required": true
+    },
+    {
+     "key": "subtitle",
+     "label": "Alt Başlık",
+     "type": "lang"
+    },                {"key": "topics", "label": "Konular", "type": "array", "itemLabel": "Konu", "itemFields": [{"key": "", "label": "Konu", "type": "lang"}]},
+    {
+     "key": "contacts",
+     "label": "İletişim",
+     "type": "array",
+     "itemLabel": "İletişim",
+     "itemFields": [
+      {
+       "key": "type",
+       "label": "Tip",
+       "type": "select",
+       "options": [
+        "phone",
+        "email"
+       ],
+       "hint": "phone: telefon · email: e-posta"
+      },
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      },
+      {
+       "key": "text",
+       "label": "Metin",
+       "type": "text"
+      },
+      {
+       "key": "link",
+       "label": "Bağlantı",
+       "type": "url"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "helpSection",
+   "label": "Yardım Bölümü",
+   "type": "object",
+   "fields": [
+    {
+     "key": "title",
+     "label": "Başlık",
+     "type": "lang"
+    },
+    {
+     "key": "description",
+     "label": "Açıklama",
+     "type": "lang"
+    },
+    {
+     "key": "buttons",
+     "label": "Butonlar",
+     "type": "array",
+     "itemLabel": "Buton",
+     "itemFields": [
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      },
+      {
+       "key": "text",
+       "label": "Metin",
+       "type": "lang",
+       "required": true
+      },
+      {
+       "key": "link",
+       "label": "Bağlantı",
+       "type": "url",
+       "required": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "meta",
+   "label": "SEO Bilgileri",
+   "type": "object",
+   "fields": [
+    {
+     "key": "title",
+     "label": "SEO Başlık",
+     "type": "lang"
+    },
+    {
+     "key": "description",
+     "label": "SEO Açıklama",
+     "type": "lang"
+    }
+   ]
+  },
+  {
+   "key": "lastModified",
+   "label": "Son Güncelleme",
+   "type": "text",
+   "readonly": true,
+   "hint": "🔒 Otomatik — kayıtta güncellenir"
+  }
+ ]
+}

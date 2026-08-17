@@ -1,0 +1,83 @@
+{
+  "file": "data/content/modal.json",
+  "label": "Anlaşmalar / Modal'lar",
+  "description": "Site açılışında gösterilen popup (modal). Gösterilecek modalı 'Aktif' ile seçin (yalnızca biri aktif olmalı); tarih aralığındaysa otomatik açılır, 'Bir Kez Göster' ise kullanıcıya yalnızca bir kez görünür. Süresi dolan modalı 'Duyuruya Aktar' butonuyla duyurular bölümüne taşıyabilirsiniz.",
+  "fields": [
+    {
+      "key": "_comment",
+      "label": "Kullanım Notu",
+      "type": "textarea",
+      "hint": "Dosya hakkında ekip notu — site tarafından okunmaz"
+    },
+    {
+      "key": "enabled",
+      "label": "Modal Etkin",
+      "type": "boolean",
+      "hint": "Kapalıysa hiçbir modal gösterilmez"
+    },
+    {
+      "key": "modals",
+      "label": "Modal Listesi",
+      "type": "array",
+      "itemLabel": "Modal",
+      "itemFields": [
+        {
+          "key": "id",
+          "label": "Kimlik",
+          "type": "text",
+          "readonly": true,
+          "auto": true,
+          "hint": "🔒 Kilitli — yeni modal eklendiğinde otomatik üretilir"
+        },
+        { "key": "title", "label": "Başlık", "type": "lang" },
+        { "key": "description", "label": "Açıklama", "type": "lang", "hint": "Popup içeriği" },
+        {
+          "key": "image",
+          "label": "Görsel",
+          "type": "object",
+          "fields": [
+            {   "key": "tr",
+   "label": "Görsel (TR)",
+   "type": "image",
+   "hint": "🖼 Seç butonuyla assets/images klasöründen seçilir"
+  },
+  {
+   "key": "en",
+   "label": "Görsel (EN)",
+   "type": "image",
+   "hint": "Boşsa TR görseli kullanılır" }
+          ]
+        },
+        { "key": "buttonText", "label": "Buton Metni", "type": "lang" },
+        {
+          "key": "buttonUrl",
+          "label": "Buton Linki",
+          "type": "url",
+          "hint": "İç sayfa (örn: veritabanlari.html), dış link veya # (buton gizlenir)"
+        },
+        {
+          "key": "active",
+          "label": "Aktif (Yayında/Programda)",
+          "type": "boolean",
+          "exclusive": true,
+          "hint": "Tek seçim: biri açılınca diğerleri otomatik kapanır. Aktif + tarih aralığındaki modal gösterilir; süresi bitince sıradaki planlı modal otomatik devreye girer"
+        },
+        { "key": "showOnce", "label": "Bir Kez Göster", "type": "boolean", "hint": "Kullanıcı kapatınca bir daha gösterilmez" },
+        { "key": "startDate", "label": "Başlangıç", "type": "date" },
+        { "key": "endDate", "label": "Bitiş", "type": "date", "hint": "Bu tarihten sonra otomatik gizlenir" },
+        {
+          "key": "announcementId",
+          "label": "Bağlı Duyuru",
+          "type": "number",
+          "readonly": true,
+          "hint": "🔒 Duyuruya aktarıldıysa bağlı duyuru numarası — aktarma butonu otomatik yazar"
+        },
+        {
+          "key": "__transfer",
+          "type": "transfer",
+          "hint": "Popup dönemi bitince içeriği duyurular bölümüne taşıyın — aktarınca modal pasifleşir ve bağlanır"
+        }
+      ]
+    }
+  ]
+}

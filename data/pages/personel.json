@@ -8,7 +8,8 @@
       "tr": "Kütüphane ve Dokümantasyon Daire Başkanlığı",
       "en": "Library and Documentation Department"
     },
-    "icon": "bi bi-people-fill"
+    "icon": "bi bi-people-fill",
+    "showIcon": true
   },
   "content": [
     {
@@ -1473,12 +1474,12 @@
   "meta": {
     "title": {
       "tr": "Personel",
-      "en": ""
+      "en": "Staff"
     },
     "description": {
       "tr": "Anadolu Üniversitesi Kütüphane ve Dokümantasyon Daire Başkanlığı Personeli ve Bölümler",
-      "en": ""
+      "en": "Anadolu University Library and Documentation Department Staff and Units"
     }
   },
-  "lastModified": "2026-08-14 15:25"
+  "lastModified": "2026-08-15 17:39"
 }

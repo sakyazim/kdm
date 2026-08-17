@@ -31,7 +31,8 @@
         },
         "url": "calisma-odalari.html"
       }
-    ]
+    ],
+    "showIcon": true
   },
   "content": [
     {
@@ -419,12 +420,12 @@
   "meta": {
     "title": {
       "tr": "Çalışma Odaları",
-      "en": ""
+      "en": "Study Rooms"
     },
     "description": {
       "tr": "Anadolu Üniversitesi Kütüphane - Çalışma Odaları",
-      "en": ""
+      "en": "Anadolu University Library - Study Rooms"
     }
   },
-  "lastModified": "2026-08-14 15:25"
+  "lastModified": "2026-08-15 17:39"
 }

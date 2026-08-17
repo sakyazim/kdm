@@ -207,10 +207,10 @@ export class MakaleIslemUcretleriPage {
       <div id="${info.id}" class="info-card">
         <div class="card-header">
           <i class="${info.icon}"></i>
-          ${info.title}
+          ${Utils.getLocalizedText(info.title)}
         </div>
         <div class="card-body">
-          <p class="lead">${info.content.intro}</p>
+          <p class="lead">${Utils.mdToHtml(Utils.getLocalizedText(info.content.intro))}</p>
     `;
 
     // Info boxes
@@ -220,7 +220,7 @@ export class MakaleIslemUcretleriPage {
           <div class="info-box">
             <div class="info-title">
               <i class="${box.icon}"></i>
-              ${box.title}
+              ${Utils.getLocalizedText(box.title)}
             </div>
             <p>${Utils.mdToHtml(Utils.getLocalizedText(box.text))}</p>
           </div>
@@ -242,10 +242,10 @@ export class MakaleIslemUcretleriPage {
       <div id="${req.id}" class="info-card">
         <div class="card-header">
           <i class="${req.icon}"></i>
-          ${req.title}
+          ${Utils.getLocalizedText(req.title)}
         </div>
         <div class="card-body">
-          <p>${req.intro}</p>
+          <p>${Utils.getLocalizedText(req.intro)}</p>
           <ul class="requirements-list">
     `;
 
@@ -254,7 +254,7 @@ export class MakaleIslemUcretleriPage {
         <li>
           <i class="${item.icon}"></i>
           <div>
-            <strong>${item.title}</strong> ${Utils.mdToHtml(Utils.getLocalizedText(item.description))}
+            <strong>${Utils.getLocalizedText(item.title)}</strong> ${Utils.mdToHtml(Utils.getLocalizedText(item.description))}
           </div>
         </li>
       `;
@@ -273,14 +273,14 @@ export class MakaleIslemUcretleriPage {
     let html = `
       <div id="${pub.id}" class="publisher-card">
         <div class="publisher-header">
-          <h3 class="publisher-name">${pub.emoji} ${pub.name}</h3>
+          <h3 class="publisher-name">${pub.emoji} ${Utils.getLocalizedText(pub.name)}</h3>
           <div>
     `;
 
     // Badges
     if (pub.badges) {
       pub.badges.forEach(badge => {
-        html += `<span class="price-badge price-${badge.type}">${badge.text}</span>`;
+        html += `<span class="price-badge price-${badge.type}">${Utils.getLocalizedText(badge.text)}</span>`;
       });
     }
 
@@ -288,7 +288,7 @@ export class MakaleIslemUcretleriPage {
     if (pub.tokenInfo) {
       html += `
         <div class="token-counter mt-2">
-          <small>${pub.tokenInfo.label}</small>
+          <small>${Utils.getLocalizedText(pub.tokenInfo.label)}</small>
           <span class="token-number">${pub.tokenInfo.count.toLocaleString('tr-TR')}</span>
         </div>
       `;
@@ -308,12 +308,12 @@ export class MakaleIslemUcretleriPage {
           <div class="warning-box">
             <div class="warning-title">
               <i class="${warning.icon}"></i>
-              ${warning.title}
+              ${Utils.getLocalizedText(warning.title)}
             </div>
             <ul class="mb-0">
         `;
         warning.items.forEach(item => {
-          html += `<li>${item}</li>`;
+          html += `<li>${Utils.mdToHtml(Utils.getLocalizedText(item))}</li>`;
         });
         html += `
             </ul>
@@ -329,7 +329,7 @@ export class MakaleIslemUcretleriPage {
           <div class="info-box">
             <div class="info-title">
               <i class="${box.icon}"></i>
-              ${box.title}
+              ${Utils.getLocalizedText(box.title)}
             </div>
             <p>${Utils.mdToHtml(Utils.getLocalizedText(box.text))}</p>
           </div>
@@ -361,7 +361,7 @@ export class MakaleIslemUcretleriPage {
               <i class="${res.icon}"></i>
             </div>
             <div class="resource-content">
-              <h6>${res.title}</h6>
+              <h6>${Utils.getLocalizedText(res.title)}</h6>
               <small>${Utils.mdToHtml(Utils.getLocalizedText(res.description))}</small>
             </div>
           </a>
@@ -381,7 +381,7 @@ export class MakaleIslemUcretleriPage {
   renderContact(contact) {
     let html = `
       <div id="${contact.id}" class="contact-section">
-        <h4><i class="${contact.icon}"></i> ${contact.title}</h4>
+        <h4><i class="${contact.icon}"></i> ${Utils.getLocalizedText(contact.title)}</h4>
         <p>${Utils.mdToHtml(Utils.getLocalizedText(contact.description))}</p>
         <div class="contact-info">
     `;
@@ -391,7 +391,7 @@ export class MakaleIslemUcretleriPage {
         <a href="${item.url}" class="contact-item">
           <i class="${item.icon}"></i>
           <div>
-            <strong>${item.name}</strong><br>
+            <strong>${Utils.getLocalizedText(item.name)}</strong><br>
             <small>${item.email || item.phone}</small>
           </div>
         </a>

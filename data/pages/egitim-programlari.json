@@ -8,7 +8,8 @@
       "tr": "Kütüphanemiz, kullanıcıların bilgi kaynaklarından en etkin şekilde faydalanabilmeleri için eğitim programları sunmaktadır.",
       "en": "Our library offers training programs to help users make the most effective use of information resources."
     },
-    "icon": "fas fa-graduation-cap"
+    "icon": "fas fa-graduation-cap",
+    "showIcon": true
   },
   "helpSection": {
     "title": {
@@ -433,7 +434,7 @@
           "data": {
             "items": [
               {
-                "number": "1",
+                "number": 1,
                 "title": {
                   "tr": "Randevu Alın",
                   "en": "Make an Appointment"
@@ -445,7 +446,7 @@
                 "icon": "fas fa-clipboard-check"
               },
               {
-                "number": "2",
+                "number": 2,
                 "title": {
                   "tr": "Bilgi Verin",
                   "en": "Provide Information"
@@ -499,54 +500,15 @@
       ]
     }
   ],
-  "help": {
-    "title": {
-      "tr": "Eğitim programları hakkında sorularınız mı var?",
-      "en": "Do you have questions about training programs?"
-    },
-    "description": {
-      "tr": "Bilgi okuryazarlığı, elektronik kaynak kullanımı ve kütüphane hizmetleri eğitimleri hakkında detaylı bilgi almak için bizimle iletişime geçin.",
-      "en": "Contact us for detailed information about information literacy, electronic resource usage, and library services training."
-    },
-    "buttons": [
-      {
-        "icon": "fas fa-phone",
-        "text": {
-          "tr": "Hemen Ara",
-          "en": "Call Now"
-        },
-        "link": "tel:+902223350580",
-        "variant": "primary"
-      },
-      {
-        "icon": "fas fa-envelope",
-        "text": {
-          "tr": "E-posta Gönder",
-          "en": "Send Email"
-        },
-        "link": "mailto:library@anadolu.edu.tr",
-        "variant": "primary"
-      },
-      {
-        "icon": "fas fa-home",
-        "text": {
-          "tr": "Ana Sayfa",
-          "en": "Home"
-        },
-        "link": "index.html",
-        "variant": "outline"
-      }
-    ]
-  },
   "meta": {
     "title": {
       "tr": "Eğitim Programları",
-      "en": ""
+      "en": "Training Programs"
     },
     "description": {
       "tr": "Anadolu Üniversitesi Kütüphane",
-      "en": ""
+      "en": "Anadolu University Library"
     }
   },
-  "lastModified": "2026-08-14 15:25"
+  "lastModified": "2026-08-15 17:39"
 }

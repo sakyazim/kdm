@@ -394,9 +394,9 @@ export const Utils = {
       return '';
     }
 
-    // Eğer string ise direkt döndür
+    // Eğer string ise direkt döndür (görüntüleme kuralı uygulanır)
     if (typeof textObj === 'string') {
-      return textObj;
+      return this.localizeClockText(textObj);
     }
 
     // Eğer array ise her elemanı işle
@@ -406,7 +406,7 @@ export const Utils = {
 
     // Eğer object değilse string'e çevir
     if (typeof textObj !== 'object') {
-      return String(textObj);
+      return this.localizeClockText(String(textObj));
     }
 
     // Mevcut dili al (LanguageManager ile aynı storage key kullan!)
@@ -417,29 +417,39 @@ export const Utils = {
       console.log('[getLocalizedText] Lang:', currentLang, 'Keys:', Object.keys(textObj));
     }
 
-    // İstenen dilde varsa döndür
-    if (textObj[currentLang]) {
-      return textObj[currentLang];
+    // İstenen dilde varsa onu, yoksa sırayla fallback (TR → EN → ilk değer)
+    let result = textObj[currentLang] || textObj.tr || textObj.en;
+    if (result === undefined || result === null || result === '') {
+      const firstValue = Object.values(textObj)[0];
+      result = (firstValue === undefined || firstValue === null) ? '' : firstValue;
     }
+    return this.localizeClockText(result);
+  },
 
-    // Yoksa TR'ye fallback (default language)
-    if (textObj.tr) {
-      return textObj.tr;
-    }
-
-    // TR de yoksa EN'e fallback
-    if (textObj.en) {
-      return textObj.en;
-    }
-
-    // Hiçbiri yoksa ilk değeri döndür
-    const firstValue = Object.values(textObj)[0];
-    if (firstValue) {
-      return firstValue;
-    }
-
-    // Son çare: boş string
-    return '';
+  /**
+   * Görüntüleme kuralı: site dili İngilizce ise 24 saatlik saatleri (08:30, 22:00)
+   * AM/PM'e çevirir. Veri ve manager HER ZAMAN 24 saat kalır — bu yalnızca
+   * ekranda görüntüleme anında uygulanır. TR'de hiçbir şey değişmez.
+   * - '08:30 - 23:00' → '8:30 AM - 11:00 PM'
+   * - '24:00' → '12:00 AM' (gece yarısı)
+   * - Zaten AM/PM olan (örn. '8:00 AM') veya saniyeli ('10:30:00') saatler çevrilmez.
+   */
+  localizeClockText(text) {
+    if (typeof text !== 'string' || !text) return text;
+    const lang = (typeof localStorage !== 'undefined' && localStorage.getItem('library_language')) || 'tr';
+    if (lang !== 'en') return text;
+    return text
+      // EN'de '7/24' İngilizce karşılığı olan '24/7' olarak gösterilir (TR'de 7/24 kalır).
+      // '7/24/2026' gibi tarih formatlarını bozmamak için ardından /rakam gelmemeli
+      .replace(/\b7\/24\b(?!\/\d)/g, '24/7')
+      .replace(/\b(2[0-4]|1[0-9]|0?[0-9]):([0-5][0-9])\b(?!:)(?!\s*[AP]M\b)/g, (m, hh, mm) => {
+        const h = Number(hh);
+        if (h === 24) return '12:00 AM';
+        const suffix = h >= 12 ? 'PM' : 'AM';
+        let h12 = h % 12;
+        if (h12 === 0) h12 = 12;
+        return `${h12}:${mm} ${suffix}`;
+      });
   },
 
   /**

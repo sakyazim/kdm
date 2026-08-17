@@ -24,7 +24,8 @@
         },
         "url": "kurallar.html"
       }
-    ]
+    ],
+    "showIcon": true
   },
   "content": [
     {
@@ -371,12 +372,12 @@
   "meta": {
     "title": {
       "tr": "Kütüphane Kullanım Kuralları",
-      "en": ""
+      "en": "Library Usage Rules"
     },
     "description": {
       "tr": "Anadolu Üniversitesi Kütüphane - Kütüphane Kullanım Kuralları ve Düzenlemeler",
-      "en": ""
+      "en": "Anadolu University Library - Library Usage Rules and Regulations"
     }
   },
-  "lastModified": "2026-08-14 15:25"
+  "lastModified": "2026-08-15 17:39"
 }

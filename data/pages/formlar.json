@@ -8,7 +8,8 @@
       "tr": "Kütüphane hizmetleri için gerekli formlar, başvuru belgeleri ve kılavuzlar.",
       "en": "Required forms, application documents and guides for library services."
     },
-    "icon": "bi bi-file-earmark-text"
+    "icon": "bi bi-file-earmark-text",
+    "showIcon": true
   },
   "content": [
     {
@@ -407,12 +408,12 @@
   "meta": {
     "title": {
       "tr": "Formlar",
-      "en": ""
+      "en": "Forms"
     },
     "description": {
       "tr": "Anadolu Üniversitesi Kütüphane",
-      "en": ""
+      "en": "Anadolu University Library"
     }
   },
-  "lastModified": "2026-08-14 15:25"
+  "lastModified": "2026-08-15 17:39"
 }

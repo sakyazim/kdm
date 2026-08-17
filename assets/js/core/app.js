@@ -391,6 +391,8 @@ export class LibraryApp {
       if (response.ok) {
         const data = await response.json();
         this.data.news = data.newsItems || [];
+        // Kategori tanımları da saklanır — renkler tek kaynaktan (kategori rengi) türetilir
+        this.data.newsCategories = data.content?.[0]?.components?.[0]?.data?.categories || [];
         console.log('News loaded from guncel-haberler.json successfully');
       }
     } catch (error) {

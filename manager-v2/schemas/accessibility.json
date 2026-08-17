@@ -1,0 +1,274 @@
+{
+ "file": "data/global/accessibility.json",
+ "label": "Erişilebilirlik Menüsü",
+ "description": "Sol alttaki erişilebilirlik widget'ı — özellikler, ikonlar ve çeviriler (CTRL+U ile açılır).",
+ "fields": [
+  {
+   "key": "enabled",
+   "label": "Etkin",
+   "type": "boolean",
+   "hint": "false = widget hiç gösterilmez"
+  },
+  {
+   "key": "defaultLanguage",
+   "label": "Varsayılan Dil",
+   "type": "select",
+   "options": [
+    "tr",
+    "en"
+   ]
+  },
+  {
+   "key": "keyboardShortcut",
+   "label": "Klavye Kısayolu",
+   "type": "text",
+   "hint": "örn. CTRL+U"
+  },
+  {
+   "key": "translations",
+   "label": "Çeviriler",
+   "type": "object",
+   "fields": [
+    {
+     "key": "tr",
+     "label": "Türkçe",
+     "type": "object",
+     "fields": [
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang"
+      },
+      {
+       "key": "subtitle",
+       "label": "Alt Başlık (kısayol)",
+       "type": "lang"
+      },
+      {
+       "key": "closeLabel",
+       "label": "Kapat Etiketi",
+       "type": "lang"
+      },
+      {
+       "key": "resetButton",
+       "label": "Sıfırla Butonu",
+       "type": "lang"
+      },
+      {
+       "key": "resetSuccess",
+       "label": "Sıfırlandı Mesajı",
+       "type": "lang"
+      },
+      {
+       "key": "features",
+       "label": "Özellik Etiketleri",
+       "type": "object",
+       "fields": [
+        {
+         "key": "contrast",
+         "label": "Kontrast +",
+         "type": "lang"
+        },
+        {
+         "key": "highlightLinks",
+         "label": "Bağlantıları Vurgula",
+         "type": "lang"
+        },
+        {
+         "key": "bigText",
+         "label": "Büyük Metin",
+         "type": "lang"
+        },
+        {
+         "key": "textSpacing",
+         "label": "Metin Boşluğu",
+         "type": "lang"
+        },
+        {
+         "key": "stopAnimations",
+         "label": "Animasyonları Durdur",
+         "type": "lang"
+        },
+        {
+         "key": "hideImages",
+         "label": "Resimleri Gizle",
+         "type": "lang"
+        },
+        {
+         "key": "dyslexiaFont",
+         "label": "Disleksi Dostu",
+         "type": "lang"
+        },
+        {
+         "key": "bigCursor",
+         "label": "İmleç",
+         "type": "lang"
+        },
+        {
+         "key": "readingGuide",
+         "label": "Okuma Rehberi",
+         "type": "lang"
+        },
+        {
+         "key": "lineHeight",
+         "label": "Satır Yüksekliği",
+         "type": "lang"
+        },
+        {
+         "key": "textAlign",
+         "label": "Metin Hizalama",
+         "type": "lang"
+        },
+        {
+         "key": "saturation",
+         "label": "Doygunluk",
+         "type": "lang"
+        },
+        {
+         "key": "bigWidget",
+         "label": "Büyük Widget",
+         "type": "lang"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "key": "en",
+     "label": "İngilizce",
+     "type": "object",
+     "fields": [
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang"
+      },
+      {
+       "key": "subtitle",
+       "label": "Alt Başlık (kısayol)",
+       "type": "lang"
+      },
+      {
+       "key": "closeLabel",
+       "label": "Kapat Etiketi",
+       "type": "lang"
+      },
+      {
+       "key": "resetButton",
+       "label": "Sıfırla Butonu",
+       "type": "lang"
+      },
+      {
+       "key": "resetSuccess",
+       "label": "Sıfırlandı Mesajı",
+       "type": "lang"
+      },
+      {
+       "key": "features",
+       "label": "Özellik Etiketleri",
+       "type": "object",
+       "fields": [
+        {
+         "key": "contrast",
+         "label": "Kontrast +",
+         "type": "lang"
+        },
+        {
+         "key": "highlightLinks",
+         "label": "Bağlantıları Vurgula",
+         "type": "lang"
+        },
+        {
+         "key": "bigText",
+         "label": "Büyük Metin",
+         "type": "lang"
+        },
+        {
+         "key": "textSpacing",
+         "label": "Metin Boşluğu",
+         "type": "lang"
+        },
+        {
+         "key": "stopAnimations",
+         "label": "Animasyonları Durdur",
+         "type": "lang"
+        },
+        {
+         "key": "hideImages",
+         "label": "Resimleri Gizle",
+         "type": "lang"
+        },
+        {
+         "key": "dyslexiaFont",
+         "label": "Disleksi Dostu",
+         "type": "lang"
+        },
+        {
+         "key": "bigCursor",
+         "label": "İmleç",
+         "type": "lang"
+        },
+        {
+         "key": "readingGuide",
+         "label": "Okuma Rehberi",
+         "type": "lang"
+        },
+        {
+         "key": "lineHeight",
+         "label": "Satır Yüksekliği",
+         "type": "lang"
+        },
+        {
+         "key": "textAlign",
+         "label": "Metin Hizalama",
+         "type": "lang"
+        },
+        {
+         "key": "saturation",
+         "label": "Doygunluk",
+         "type": "lang"
+        },
+        {
+         "key": "bigWidget",
+         "label": "Büyük Widget",
+         "type": "lang"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "features",
+   "label": "Özellikler",
+   "type": "array",
+   "itemLabel": "Özellik",
+   "itemFields": [
+    {
+     "key": "id",
+     "label": "Kimlik",
+     "type": "text",
+     "readonly": true,
+     "hint": "🔒 Örn. contrast, big-text, big-widget"
+    },
+    {
+     "key": "icon",
+     "label": "İkon",
+     "type": "icon"
+    },
+    {
+     "key": "ariaLabel",
+     "label": "Erişilebilirlik Etiketi",
+     "type": "lang"
+    },
+    {
+     "key": "enabled",
+     "label": "Etkin",
+     "type": "boolean",
+     "hint": "false = menüde gösterilmez"
+    }
+   ]
+  }
+ ]
+}

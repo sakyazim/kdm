@@ -24,7 +24,8 @@
         },
         "url": "istatistikler-ve-raporlar.html"
       }
-    ]
+    ],
+    "showIcon": true
   },
   "content": [
     {
@@ -690,12 +691,12 @@
   "meta": {
     "title": {
       "tr": "İstatistikler ve Raporlar",
-      "en": ""
+      "en": "Statistics and Reports"
     },
     "description": {
       "tr": "Anadolu Üniversitesi Kütüphane",
-      "en": ""
+      "en": "Anadolu University Library"
     }
   },
-  "lastModified": "2026-08-14 15:25"
+  "lastModified": "2026-08-15 17:39"
 }

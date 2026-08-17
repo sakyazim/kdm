@@ -106,7 +106,7 @@ export class MendeleyReferansYonetimAraciPage {
     let html = `
       <div id="${section.id}" class="info-card">
         <div class="card-header ${section.headerClass || ''}">
-          ${section.title}
+          ${Utils.getLocalizedText(section.title)}
         </div>
         <div class="card-body">
     `;
@@ -174,7 +174,7 @@ export class MendeleyReferansYonetimAraciPage {
       html += `
         <div class="feature-item">
           <div class="feature-icon">${feature.icon}</div>
-          <div class="feature-title">${feature.title}</div>
+          <div class="feature-title">${Utils.getLocalizedText(feature.title)}</div>
           <div class="feature-description">${Utils.mdToHtml(Utils.getLocalizedText(feature.description))}</div>
         </div>
       `;
@@ -194,7 +194,7 @@ export class MendeleyReferansYonetimAraciPage {
       html += `          <div class="info-box">
           <div class="info-title">
             <i class="${box.icon}"></i>
-            ${box.title}
+            ${Utils.getLocalizedText(box.title)}
           </div>
           <p>${Utils.mdToHtml(Utils.getLocalizedText(box.text))}</p>
         </div>
@@ -214,7 +214,7 @@ export class MendeleyReferansYonetimAraciPage {
       html += `
         <div class="process-step">
           <div class="step-number">${index + 1}</div>            <div class="step-content">
-            <div class="step-title">${step.title}</div>
+            <div class="step-title">${Utils.getLocalizedText(step.title)}</div>
             <p>${Utils.mdToHtml(Utils.getLocalizedText(step.text))}</p>
           </div>
         </div>
@@ -231,7 +231,7 @@ export class MendeleyReferansYonetimAraciPage {
   renderCTA(cta) {
     let html = `
       <div class="cta-section">
-        <h3>${cta.title}</h3>          <p>${Utils.mdToHtml(Utils.getLocalizedText(cta.text))}</p>
+        <h3>${Utils.getLocalizedText(cta.title)}</h3>          <p>${Utils.mdToHtml(Utils.getLocalizedText(cta.text))}</p>
         <div class="cta-buttons">
     `;
 
@@ -239,7 +239,7 @@ export class MendeleyReferansYonetimAraciPage {
       html += `
         <a href="${button.url}" target="_blank" class="btn ${button.class}">
           <i class="${button.icon}"></i>
-          ${button.text}
+          ${Utils.getLocalizedText(button.text)}
         </a>
       `;
     });
@@ -263,7 +263,7 @@ export class MendeleyReferansYonetimAraciPage {
         <div class="warning-box">
           <div class="warning-title">
             <i class="${warning.icon}"></i>
-            ${warning.title}
+            ${Utils.getLocalizedText(warning.title)}
           </div>
           <p>${Utils.mdToHtml(Utils.getLocalizedText(warning.text))}</p>
         </div>
@@ -278,12 +278,12 @@ export class MendeleyReferansYonetimAraciPage {
    */
   renderBenefits(benefits) {
     let html = `
-      <h5 class="fw-bold mt-4 mb-3">${benefits.title}</h5>
+      <h5 class="fw-bold mt-4 mb-3">${Utils.getLocalizedText(benefits.title)}</h5>
       <ul class="benefits-list">
     `;
 
     benefits.items.forEach(item => {
-      html += `<li>${item}</li>`;
+      html += `<li>${Utils.getLocalizedText(item)}</li>`;
     });
 
     html += '</ul>';
@@ -311,7 +311,7 @@ export class MendeleyReferansYonetimAraciPage {
             <i class="${resource.icon}"></i>
           </div>
           <div class="resource-content">
-            <h5>${resource.title}</h5>
+            <h5>${Utils.getLocalizedText(resource.title)}</h5>
             <p>${Utils.mdToHtml(Utils.getLocalizedText(resource.description))}</p>
             ${resource.note ? `<small class="text-muted">${Utils.mdToHtml(Utils.getLocalizedText(resource.note))}</small>` : ''}
           </div>

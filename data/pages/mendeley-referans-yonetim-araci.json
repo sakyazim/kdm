@@ -1,351 +1,598 @@
 {
-  "hero": {
-    "title": "Mendeley Referans Yönetim Aracı",
-    "description": "Araştırmalarınızı düzenleyin, kaynaklarınızı yönetin ve akademik çalışmalarınızı kolaylaştırın",
-    "icon": "fas fa-quote-right",
-    "breadcrumb": [
-      {
-        "text": "Ana Sayfa",
-        "url": "index.html"
-      },
-      {
-        "text": "Mendeley",
-        "url": "mendeley-referans-yonetim-araci.html"
-      }
-    ]
+ "hero": {
+  "title": {
+   "tr": "Mendeley Referans Yönetim Aracı",
+   "en": "Mendeley Reference Management Tool"
   },
-  "toc": {
-    "enabled": true,
-    "mode": "hybrid",
-    "title": {
-      "tr": "İçindekiler",
-      "en": "Table of Contents"
-    },
-    "mobileTitle": {
-      "tr": "Hızlı Erişim",
-      "en": "Quick Access"
-    },
-    "progressLabel": {
-      "tr": "Okuma İlerlemeniz",
-      "en": "Reading Progress"
-    },
-    "closeButton": {
-      "tr": "Kapat",
-      "en": "Close"
-    },
-    "items": [
-      {
-        "text": {
-          "tr": "Referans Yönetim Nedir?",
-          "en": "What is Reference Management?"
-        },
-        "anchor": "what-is-reference-management",
-        "icon": "🔍"
-      },
-      {
-        "text": {
-          "tr": "Mendeley Nedir?",
-          "en": "What is Mendeley?"
-        },
-        "anchor": "what-is-mendeley",
-        "icon": "📖"
-      },
-      {
-        "text": {
-          "tr": "Mendeley'in Özellikleri",
-          "en": "Mendeley Features"
-        },
-        "anchor": "mendeley-features",
-        "icon": "⭐"
-      },
-      {
-        "text": {
-          "tr": "Başlangıç Adımları",
-          "en": "Getting Started"
-        },
-        "anchor": "getting-started",
-        "icon": "🚀"
-      },
-      {
-        "text": {
-          "tr": "Kurumsal Avantajlar",
-          "en": "Institutional Benefits"
-        },
-        "anchor": "institutional-benefits",
-        "icon": "🏛️"
-      },
-      {
-        "text": {
-          "tr": "Kaynaklar ve Yardım",
-          "en": "Resources & Help"
-        },
-        "anchor": "resources",
-        "icon": "📚"
-      }
-    ]
+  "description": {
+   "tr": "Araştırmalarınızı düzenleyin, kaynaklarınızı yönetin ve akademik çalışmalarınızı kolaylaştırın",
+   "en": "Organize your research, manage your references and strengthen your scholarly work."
   },
-  "sections": [
-    {
-      "id": "what-is-reference-management",
-      "title": "🔍 Referans Yönetim Araçları Nedir?",
-      "type": "info-card",
-      "headerClass": "default",
-      "content": {
-        "lead": "Referans Yönetim Araçları, araştırmacıların araştırma projeleri için referans listelerini oluşturmalarına ve yönetmelerine yardımcı olur.",
-        "text": "Çoğu araç, kaynakçaların hazırlanması için alıntıları belirli formatlarda düzenlemek üzere tasarlanmıştır. Bu araçlar sayesinde:",
-        "features": [
-          {
-            "icon": "📝",
-            "title": "Otomatik Alıntı",
-            "description": "Kaynaklarınızı otomatik olarak APA, MLA, Chicago gibi farklı formatlarda alıntılayabilirsiniz."
-          },
-          {
-            "icon": "📂",
-            "title": "Düzenli Arşivleme",
-            "description": "Tüm kaynaklarınızı kategoriler ve etiketler halinde düzenli şekilde saklayabilirsiniz."
-          },
-          {
-            "icon": "🤝",
-            "title": "İş Birliği",
-            "description": "Diğer araştırmacılarla kaynakları paylaşabilir ve ortak çalışmalar yapabilirsiniz."
-          },
-          {
-            "icon": "🔄",
-            "title": "Senkronizasyon",
-            "description": "Tüm cihazlarınızda kaynaklarınıza erişebilir ve güncel tutabilirsiniz."
-          }
-        ]
-      }
+  "icon": "fas fa-quote-right",
+  "breadcrumb": [
+   {
+    "text": {
+     "tr": "Ana Sayfa",
+     "en": "Home"
     },
-    {
-      "id": "what-is-mendeley",
-      "title": "📖 Mendeley Nedir?",
-      "type": "info-card",
-      "headerClass": "mendeley-header",
-      "content": {
-        "lead": "**Mendeley** ücretsiz bir Referans Yöneticisi ve bir Akademik sosyal ağdır.",
-        "text": "Mendeley, araştırmacıların araştırmalarını yönetmelerine ve geliştirmelerine, diğer araştırmacılar ile çevrimiçi işbirliği yapabilmelerine ve yapılmış olan son araştırmaları keşfetmelerine yardımcı olan güçlü bir araçtır.",
-        "infoBoxes": [
-          {
-            "title": "Önemli Bilgi",
-            "icon": "fas fa-info-circle",
-            "text": "Kişisel hesabınızı Mendeley'in [web sitesinden](https://www.mendeley.com/) oluşturabilirsiniz. Kayıt olmak için edu.tr uzantılı mail adresinizi kullanmak zorunda değilsiniz, kişisel mail adresinizi de kullanabilirsiniz."
-          }
-        ]
-      }
+    "url": "index.html"
+   },
+   {
+    "text": {
+     "tr": "Mendeley",
+     "en": "Mendeley"
     },
-    {
-      "id": "mendeley-features",
-      "title": "⭐ Mendeley'in Temel Özellikleri",
-      "type": "info-card",
-      "headerClass": "mendeley-header",
-      "content": {
-        "features": [
-          {
-            "icon": "💾",
-            "title": "PDF Yönetimi",
-            "description": "PDF dosyalarınızı organize edin, not alın ve vurgulayın. Güçlü PDF yönetim sistemi ile tüm belgelerinizi tek yerden kontrol edin."
-          },
-          {
-            "icon": "🌐",
-            "title": "Çevrimiçi/Çevrimdışı Erişim",
-            "description": "Farklı cihazlarda eşzamanlı kullanım olanağı. İnternet bağlantısı olmadığında bile çalışmaya devam edebilirsiniz."
-          },
-          {
-            "icon": "👥",
-            "title": "Akademik Sosyal Ağ",
-            "description": "Diğer araştırmacılarla bağlantı kurun, çalışmalarını takip edin ve akademik toplulukla etkileşime geçin."
-          },
-          {
-            "icon": "📊",
-            "title": "İstatistik ve Analiz",
-            "description": "Okuma alışkanlıklarınızı takip edin ve akademik etkileşimlerinizi analiz edin."
-          },
-          {
-            "icon": "🔗",
-            "title": "Web Alıcı Eklentisi",
-            "description": "Tarayıcınızdan direkt olarak kaynakları Mendeley kütüphanenize ekleyebilirsiniz."
-          },
-          {
-            "icon": "📄",
-            "title": "Word Entegrasyonu",
-            "description": "Microsoft Word ile entegre çalışarak otomatik alıntı ve kaynakça oluşturun."
-          }
-        ]
-      }
-    },
-    {
-      "id": "getting-started",
-      "title": "🚀 Mendeley ile Başlangıç Adımları",
-      "type": "info-card",
-      "headerClass": "default",
-      "content": {
-        "steps": [
-          {
-            "title": "Hesap Oluşturun",
-            "text": "[www.mendeley.com](https://www.mendeley.com/) adresinde ücretsiz hesap oluşturun. Kurumsal veya kişisel e-posta adresinizi kullanabilirsiniz."
-          },
-          {
-            "title": "Masaüstü Uygulamasını İndirin",
-            "text": "Windows, Mac OS ve Linux için [Masaüstü](https://www.mendeley.com/download-desktop/) sürümünü indirin ve kurulum yapın."
-          },
-          {
-            "title": "Web Alıcı Eklentisini Ekleyin",
-            "text": "Tarayıcınıza Web Importer/Alıntı Eklentisi araçlarını edinin. Bu sayede web sayfalarından direkt kaynak ekleyebilirsiniz."
-          },
-          {
-            "title": "Kaynaklarınızı Eklemeye Başlayın",
-            "text": "PDF dosyalarınızı sürükle-bırak ile ekleyin, veritabanlarından direkt içe aktarın veya manuel olarak kaynak bilgilerini girin."
-          },
-          {
-            "title": "Word Eklentisini Aktifleştirin",
-            "text": "Microsoft Word'de Mendeley eklentisini aktifleştirerek otomatik alıntı ve kaynakça oluşturma özelliğinden yararlanın."
-          }
-        ],
-        "cta": {
-          "title": "Hemen Başlayın!",
-          "text": "Mendeley ile akademik çalışmalarınızı bir üst seviyeye taşıyın.",
-          "buttons": [
-            {
-              "text": "Mendeley'e Kayıt Ol",
-              "icon": "fas fa-external-link-alt",
-              "url": "https://www.mendeley.com/",
-              "class": "btn-mendeley"
-            },
-            {
-              "text": "Masaüstü İndir",
-              "icon": "fas fa-download",
-              "url": "https://www.mendeley.com/download-desktop/",
-              "class": "btn btn-light"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "id": "institutional-benefits",
-      "title": "🏛️ Anadolu Üniversitesi için Kurumsal Avantajlar",
-      "type": "info-card",
-      "headerClass": "default",
-      "content": {
-        "infoBoxes": [
-          {
-            "title": "Grup Çalışmaları",
-            "icon": "fas fa-users",
-            "text": "Institutional Edition ile 25 kişilik araştırma grupları oluşturabilir ve ortak projeler yürütebilirsiniz."
-          },
-          {
-            "title": "Genişletilmiş Depolama",
-            "icon": "fas fa-cloud",
-            "text": "Standart 2 GB yerine 100 GB kişisel saklama alanından yararlanabilirsiniz."
-          }
-        ],
-        "warnings": [
-          {
-            "title": "Mezunlar İçin Özel Avantaj",
-            "icon": "fas fa-graduation-cap",
-            "text": "Anadolu Üniversitesi mezunları, Mendeley Institutional Edition'ın olanaklarından mezun olduktan sonra bir yıl daha yararlanabilirler."
-          }
-        ],
-        "benefits": {
-          "title": "Kurumsal Hesap Avantajları:",
-          "items": [
-            "Sınırsız özel grup oluşturma",
-            "Gelişmiş işbirliği araçları",
-            "Öncelikli teknik destek",
-            "Kurumsal istatistikler",
-            "Güvenli bulut senkronizasyonu"
-          ]
-        }
-      }
-    },
-    {
-      "id": "resources",
-      "title": " Kaynaklar ve Yardım Materyalleri",
-      "type": "info-card",
-      "headerClass": "default",
-      "content": {
-        "lead": "Mendeley'i etkili şekilde kullanabilmek için aşağıdaki kaynakları inceleyiniz:",
-        "resources": [
-          {
-            "title": "Mendeley Özellikleri",
-            "description": "Mendeley'in tüm özelliklerini detaylı olarak keşfedin",
-            "icon": "fas fa-info-circle",
-            "url": "http://www.mendeley.com/features/"
-          },
-          {
-            "title": "Yardımcı Videolar",
-            "description": "Adım adım video eğitimleri ile Mendeley'i öğrenin",
-            "icon": "fas fa-video",
-            "url": "http://www.mendeley.com/videos-tutorials/"
-          },
-          {
-            "title": "Kullanıcı Rehberi",
-            "description": "Kapsamlı Mendeley kullanım kılavuzu (PDF)",
-            "icon": "fas fa-book",
-            "url": "#",
-            "disabled": true,
-            "note": "Kütüphane kaynaklarımızda mevcuttur"
-          },
-          {
-            "title": "Diğer Araçlardan Geçiş",
-            "description": "EndNote, Zotero'dan Mendeley'e geçiş rehberi",
-            "icon": "fas fa-exchange-alt",
-            "url": "#",
-            "disabled": false,
-            "note": "Kütüphane kaynaklarımızda mevcuttur"
-          },
-          {
-            "title": "Webinar Kaydı",
-            "description": "\"Mendeley ile Atıf Yönetimine Giriş\" webinar kaydı",
-            "icon": "fas fa-presentation",
-            "url": "#",
-            "alert": "Webinar kaydı için kütüphane ile iletişime geçiniz."
-          },
-          {
-            "title": "Mendeley Konu Rehberi",
-            "description": "Mendeley kullanımı için detaylı konu rehberi",
-            "icon": "fas fa-map",
-            "url": "#",
-            "alert": "Konu rehberi için kütüphane ile iletişime geçiniz."
-          }
-        ]
-      }
-    }
+    "url": "mendeley-referans-yonetim-araci.html"
+   }
   ],
-  "helpSection": {
-    "title": "Mendeley kullanımı hakkında yardıma mı ihtiyacınız var?",
-    "description": "Referans yönetim araçları ve Mendeley kullanımı hakkında detaylı bilgi ve destek için kütüphane uzmanlarımızla iletişime geçebilirsiniz.",
-    "buttons": [
-      {
-        "icon": "fas fa-phone",
-        "text": "Hemen Ara",
-        "link": "tel:+902223350580",
-        "class": "btn-outline-primary"
-      },
-      {
-        "icon": "fas fa-envelope",
-        "text": "E-posta Gönder",
-        "link": "mailto:library@anadolu.edu.tr",
-        "class": "btn-outline-primary"
-      },
-      {
-        "icon": "fas fa-home",
-        "text": "Ana Sayfa",
-        "link": "index.html",
-        "class": "btn-outline-primary"
-      }
-    ]
+  "showIcon": true
+ },
+ "toc": {
+  "enabled": true,
+  "mode": "hybrid",
+  "title": {
+   "tr": "İçindekiler",
+   "en": "Table of Contents"
   },
-  "meta": {
-    "title": {
-      "tr": "Mendeley Referans Yönetim Aracı",
-      "en": ""
+  "mobileTitle": {
+   "tr": "Hızlı Erişim",
+   "en": "Quick Access"
+  },
+  "progressLabel": {
+   "tr": "Okuma İlerlemeniz",
+   "en": "Reading Progress"
+  },
+  "closeButton": {
+   "tr": "Kapat",
+   "en": "Close"
+  },
+  "items": [
+   {
+    "text": {
+     "tr": "Referans Yönetim Nedir?",
+     "en": "What is Reference Management?"
     },
-    "description": {
-      "tr": "Anadolu Üniversitesi Kütüphane - Mendeley Referans Yönetim Aracı Rehberi",
-      "en": ""
-    }
+    "anchor": "what-is-reference-management",
+    "icon": "🔍"
+   },
+   {
+    "text": {
+     "tr": "Mendeley Nedir?",
+     "en": "What is Mendeley?"
+    },
+    "anchor": "what-is-mendeley",
+    "icon": "📖"
+   },
+   {
+    "text": {
+     "tr": "Mendeley'in Özellikleri",
+     "en": "Mendeley Features"
+    },
+    "anchor": "mendeley-features",
+    "icon": "⭐"
+   },
+   {
+    "text": {
+     "tr": "Başlangıç Adımları",
+     "en": "Getting Started"
+    },
+    "anchor": "getting-started",
+    "icon": "🚀"
+   },
+   {
+    "text": {
+     "tr": "Kurumsal Avantajlar",
+     "en": "Institutional Benefits"
+    },
+    "anchor": "institutional-benefits",
+    "icon": "🏛️"
+   },
+   {
+    "text": {
+     "tr": "Kaynaklar ve Yardım",
+     "en": "Resources & Help"
+    },
+    "anchor": "resources",
+    "icon": "📚"
+   }
+  ]
+ },
+ "sections": [
+  {
+   "id": "what-is-reference-management",
+   "title": {
+    "tr": "🔍 Referans Yönetim Araçları Nedir?",
+    "en": "🔍 What Are Reference Management Tools?"
+   },
+   "type": "info-card",
+   "headerClass": "default",
+   "content": {
+    "lead": {
+     "tr": "Referans Yönetim Araçları, araştırmacıların araştırma projeleri için referans listelerini oluşturmalarına ve yönetmelerine yardımcı olur.",
+     "en": "Reference management tools help researchers create and manage reference lists for their research projects."
+    },
+    "text": {
+     "tr": "Çoğu araç, kaynakçaların hazırlanması için alıntıları belirli formatlarda düzenlemek üzere tasarlanmıştır. Bu araçlar sayesinde:",
+     "en": "Most tools are designed to format citations for bibliographies. With these tools you can:"
+    },
+    "features": [
+     {
+      "icon": "📝",
+      "title": {
+       "tr": "Otomatik Alıntı",
+       "en": "Automatic Citation"
+      },
+      "description": {
+       "tr": "Kaynaklarınızı otomatik olarak APA, MLA, Chicago gibi farklı formatlarda alıntılayabilirsiniz.",
+       "en": "Cite your sources automatically in formats such as APA, MLA and Chicago."
+      }
+     },
+     {
+      "icon": "📂",
+      "title": {
+       "tr": "Düzenli Arşivleme",
+       "en": "Organized Archiving"
+      },
+      "description": {
+       "tr": "Tüm kaynaklarınızı kategoriler ve etiketler halinde düzenli şekilde saklayabilirsiniz.",
+       "en": "Store all your references in an organized way with categories and tags."
+      }
+     },
+     {
+      "icon": "🤝",
+      "title": {
+       "tr": "İş Birliği",
+       "en": "Collaboration"
+      },
+      "description": {
+       "tr": "Diğer araştırmacılarla kaynakları paylaşabilir ve ortak çalışmalar yapabilirsiniz.",
+       "en": "Share references with other researchers and collaborate on joint work."
+      }
+     },
+     {
+      "icon": "🔄",
+      "title": {
+       "tr": "Senkronizasyon",
+       "en": "Synchronization"
+      },
+      "description": {
+       "tr": "Tüm cihazlarınızda kaynaklarınıza erişebilir ve güncel tutabilirsiniz.",
+       "en": "Access and keep your references up to date on all your devices."
+      }
+     }
+    ]
+   }
   },
-  "lastModified": "2026-08-14 15:25"
+  {
+   "id": "what-is-mendeley",
+   "title": {
+    "tr": "📖 Mendeley Nedir?",
+    "en": "📖 What Is Mendeley?"
+   },
+   "type": "info-card",
+   "headerClass": "mendeley-header",
+   "content": {
+    "lead": {
+     "tr": "**Mendeley** ücretsiz bir Referans Yöneticisi ve bir Akademik sosyal ağdır.",
+     "en": "**Mendeley** is a free reference manager and an academic social network."
+    },
+    "text": {
+     "tr": "Mendeley, araştırmacıların araştırmalarını yönetmelerine ve geliştirmelerine, diğer araştırmacılar ile çevrimiçi işbirliği yapabilmelerine ve yapılmış olan son araştırmaları keşfetmelerine yardımcı olan güçlü bir araçtır.",
+     "en": "Mendeley is a powerful tool that helps researchers manage and develop their research, collaborate online with other researchers and discover the latest research."
+    },
+    "infoBoxes": [
+     {
+      "title": {
+       "tr": "Önemli Bilgi",
+       "en": "Important Information"
+      },
+      "icon": "fas fa-info-circle",
+      "text": {
+       "tr": "Kişisel hesabınızı Mendeley'in [web sitesinden](https://www.mendeley.com/) oluşturabilirsiniz. Kayıt olmak için edu.tr uzantılı mail adresinizi kullanmak zorunda değilsiniz, kişisel mail adresinizi de kullanabilirsiniz.",
+       "en": "You can create your personal account from Mendeley's [website](https://www.mendeley.com/). You don't have to use an edu.tr email address to register; you can use your personal email address as well."
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "mendeley-features",
+   "title": {
+    "tr": "⭐ Mendeley'in Temel Özellikleri",
+    "en": "⭐ Mendeley's Core Features"
+   },
+   "type": "info-card",
+   "headerClass": "mendeley-header",
+   "content": {
+    "features": [
+     {
+      "icon": "💾",
+      "title": {
+       "tr": "PDF Yönetimi",
+       "en": "PDF Management"
+      },
+      "description": {
+       "tr": "PDF dosyalarınızı organize edin, not alın ve vurgulayın. Güçlü PDF yönetim sistemi ile tüm belgelerinizi tek yerden kontrol edin.",
+       "en": "Organize, annotate and highlight your PDF files. Control all your documents from one place with a powerful PDF management system."
+      }
+     },
+     {
+      "icon": "🌐",
+      "title": {
+       "tr": "Çevrimiçi/Çevrimdışı Erişim",
+       "en": "Online/Offline Access"
+      },
+      "description": {
+       "tr": "Farklı cihazlarda eşzamanlı kullanım olanağı. İnternet bağlantısı olmadığında bile çalışmaya devam edebilirsiniz.",
+       "en": "Use it synchronously across devices. You can keep working even without an internet connection."
+      }
+     },
+     {
+      "icon": "👥",
+      "title": {
+       "tr": "Akademik Sosyal Ağ",
+       "en": "Academic Social Network"
+      },
+      "description": {
+       "tr": "Diğer araştırmacılarla bağlantı kurun, çalışmalarını takip edin ve akademik toplulukla etkileşime geçin.",
+       "en": "Connect with other researchers, follow their work and engage with the academic community."
+      }
+     },
+     {
+      "icon": "📊",
+      "title": {
+       "tr": "İstatistik ve Analiz",
+       "en": "Statistics and Analytics"
+      },
+      "description": {
+       "tr": "Okuma alışkanlıklarınızı takip edin ve akademik etkileşimlerinizi analiz edin.",
+       "en": "Track your reading habits and analyze your academic interactions."
+      }
+     },
+     {
+      "icon": "🔗",
+      "title": {
+       "tr": "Web Alıcı Eklentisi",
+       "en": "Web Importer"
+      },
+      "description": {
+       "tr": "Tarayıcınızdan direkt olarak kaynakları Mendeley kütüphanenize ekleyebilirsiniz.",
+       "en": "Add references directly to your Mendeley library from your browser."
+      }
+     },
+     {
+      "icon": "📄",
+      "title": {
+       "tr": "Word Entegrasyonu",
+       "en": "Word Integration"
+      },
+      "description": {
+       "tr": "Microsoft Word ile entegre çalışarak otomatik alıntı ve kaynakça oluşturun.",
+       "en": "Work integrated with Microsoft Word to create automatic citations and bibliographies."
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "getting-started",
+   "title": {
+    "tr": "🚀 Mendeley ile Başlangıç Adımları",
+    "en": "🚀 Getting Started with Mendeley"
+   },
+   "type": "info-card",
+   "headerClass": "default",
+   "content": {
+    "steps": [
+     {
+      "title": {
+       "tr": "Hesap Oluşturun",
+       "en": "Create an Account"
+      },
+      "text": {
+       "tr": "[www.mendeley.com](https://www.mendeley.com/) adresinde ücretsiz hesap oluşturun. Kurumsal veya kişisel e-posta adresinizi kullanabilirsiniz.",
+       "en": "Create a free account at [www.mendeley.com](https://www.mendeley.com/). You can use your institutional or personal email address."
+      }
+     },
+     {
+      "title": {
+       "tr": "Masaüstü Uygulamasını İndirin",
+       "en": "Download the Desktop App"
+      },
+      "text": {
+       "tr": "Windows, Mac OS ve Linux için [Masaüstü](https://www.mendeley.com/download-desktop/) sürümünü indirin ve kurulum yapın.",
+       "en": "Download and install the [Desktop](https://www.mendeley.com/download-desktop/) version for Windows, Mac OS and Linux."
+      }
+     },
+     {
+      "title": {
+       "tr": "Web Alıcı Eklentisini Ekleyin",
+       "en": "Install the Web Importer"
+      },
+      "text": {
+       "tr": "Tarayıcınıza Web Importer/Alıntı Eklentisi araçlarını edinin. Bu sayede web sayfalarından direkt kaynak ekleyebilirsiniz.",
+       "en": "Install the Web Importer browser extension. This lets you add references directly from web pages."
+      }
+     },
+     {
+      "title": {
+       "tr": "Kaynaklarınızı Eklemeye Başlayın",
+       "en": "Start Adding Your References"
+      },
+      "text": {
+       "tr": "PDF dosyalarınızı sürükle-bırak ile ekleyin, veritabanlarından direkt içe aktarın veya manuel olarak kaynak bilgilerini girin.",
+       "en": "Add your PDF files by drag-and-drop, import directly from databases or enter reference details manually."
+      }
+     },
+     {
+      "title": {
+       "tr": "Word Eklentisini Aktifleştirin",
+       "en": "Activate the Word Plugin"
+      },
+      "text": {
+       "tr": "Microsoft Word'de Mendeley eklentisini aktifleştirerek otomatik alıntı ve kaynakça oluşturma özelliğinden yararlanın.",
+       "en": "Activate the Mendeley plugin in Microsoft Word to benefit from automatic citation and bibliography creation."
+      }
+     }
+    ],
+    "cta": {
+     "title": {
+      "tr": "Hemen Başlayın!",
+      "en": "Get Started Now!"
+     },
+     "text": {
+      "tr": "Mendeley ile akademik çalışmalarınızı bir üst seviyeye taşıyın.",
+      "en": "Take your academic work to the next level with Mendeley."
+     },
+     "buttons": [
+      {
+       "text": {
+        "tr": "Mendeley'e Kayıt Ol",
+        "en": "Sign Up for Mendeley"
+       },
+       "icon": "fas fa-external-link-alt",
+       "url": "https://www.mendeley.com/",
+       "class": "btn-mendeley"
+      },
+      {
+       "text": {
+        "tr": "Masaüstü İndir",
+        "en": "Download Desktop"
+       },
+       "icon": "fas fa-download",
+       "url": "https://www.mendeley.com/download-desktop/",
+       "class": "btn btn-light"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "institutional-benefits",
+   "title": {
+    "tr": "🏛️ Anadolu Üniversitesi için Kurumsal Avantajlar",
+    "en": "🏛️ Institutional Benefits for Anadolu University"
+   },
+   "type": "info-card",
+   "headerClass": "default",
+   "content": {
+    "infoBoxes": [
+     {
+      "title": {
+       "tr": "Grup Çalışmaları",
+       "en": "Group Collaboration"
+      },
+      "icon": "fas fa-users",
+      "text": {
+       "tr": "Institutional Edition ile 25 kişilik araştırma grupları oluşturabilir ve ortak projeler yürütebilirsiniz.",
+       "en": "With the Institutional Edition you can create research groups of up to 25 people and run joint projects."
+      }
+     },
+     {
+      "title": {
+       "tr": "Genişletilmiş Depolama",
+       "en": "Extended Storage"
+      },
+      "icon": "fas fa-cloud",
+      "text": {
+       "tr": "Standart 2 GB yerine 100 GB kişisel saklama alanından yararlanabilirsiniz.",
+       "en": "Benefit from 100 GB of personal storage instead of the standard 2 GB."
+      }
+     }
+    ],
+    "warnings": [
+     {
+      "title": {
+       "tr": "Mezunlar İçin Özel Avantaj",
+       "en": "Special Benefit for Alumni"
+      },
+      "icon": "fas fa-graduation-cap",
+      "text": {
+       "tr": "Anadolu Üniversitesi mezunları, Mendeley Institutional Edition'ın olanaklarından mezun olduktan sonra bir yıl daha yararlanabilirler.",
+       "en": "Anadolu University alumni can benefit from the Mendeley Institutional Edition for one more year after graduation."
+      }
+     }
+    ],
+    "benefits": {
+     "title": {
+      "tr": "Kurumsal Hesap Avantajları:",
+      "en": "Institutional Account Benefits:"
+     },
+     "items": [
+      {
+       "tr": "Sınırsız özel grup oluşturma",
+       "en": "Unlimited private group creation"
+      },
+      {
+       "tr": "Gelişmiş işbirliği araçları",
+       "en": "Advanced collaboration tools"
+      },
+      {
+       "tr": "Öncelikli teknik destek",
+       "en": "Priority technical support"
+      },
+      {
+       "tr": "Kurumsal istatistikler",
+       "en": "Institutional statistics"
+      },
+      {
+       "tr": "Güvenli bulut senkronizasyonu",
+       "en": "Secure cloud synchronization"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "resources",
+   "title": {
+    "tr": "📚 Kaynaklar ve Yardım Materyalleri",
+    "en": "📚 Resources and Help Materials"
+   },
+   "type": "info-card",
+   "headerClass": "default",
+   "content": {
+    "lead": {
+     "tr": "Mendeley'i etkili şekilde kullanabilmek için aşağıdaki kaynakları inceleyiniz:",
+     "en": "Explore the resources below to use Mendeley effectively:"
+    },
+    "resources": [
+     {
+      "title": {
+       "tr": "Mendeley Özellikleri",
+       "en": "Mendeley Features"
+      },
+      "description": {
+       "tr": "Mendeley'in tüm özelliklerini detaylı olarak keşfedin",
+       "en": "Discover all of Mendeley's features in detail"
+      },
+      "icon": "fas fa-info-circle",
+      "url": "http://www.mendeley.com/features/"
+     },
+     {
+      "title": {
+       "tr": "Yardımcı Videolar",
+       "en": "Help Videos"
+      },
+      "description": {
+       "tr": "Adım adım video eğitimleri ile Mendeley'i öğrenin",
+       "en": "Learn Mendeley with step-by-step video tutorials"
+      },
+      "icon": "fas fa-video",
+      "url": "http://www.mendeley.com/videos-tutorials/"
+     },
+     {
+      "title": {
+       "tr": "Kullanıcı Rehberi",
+       "en": "User Guide"
+      },
+      "description": {
+       "tr": "Kapsamlı Mendeley kullanım kılavuzu (PDF)",
+       "en": "Comprehensive Mendeley user manual (PDF)"
+      },
+      "icon": "fas fa-book",
+      "url": "#",
+      "disabled": true,
+      "note": {
+       "tr": "Kütüphane kaynaklarımızda mevcuttur",
+       "en": "Available in our library resources"
+      }
+     },
+     {
+      "title": {
+       "tr": "Diğer Araçlardan Geçiş",
+       "en": "Switching from Other Tools"
+      },
+      "description": {
+       "tr": "EndNote, Zotero'dan Mendeley'e geçiş rehberi",
+       "en": "Guide for migrating from EndNote, Zotero to Mendeley"
+      },
+      "icon": "fas fa-exchange-alt",
+      "url": "#",
+      "disabled": true,
+      "note": {
+       "tr": "Kütüphane kaynaklarımızda mevcuttur",
+       "en": "Available in our library resources"
+      }
+     },
+     {
+      "title": {
+       "tr": "Webinar Kaydı",
+       "en": "Webinar Recording"
+      },
+      "description": {
+       "tr": "\"Mendeley ile Atıf Yönetimine Giriş\" webinar kaydı",
+       "en": "Recording of the \"Introduction to Citation Management with Mendeley\" webinar"
+      },
+      "icon": "fas fa-presentation",
+      "url": "#",
+      "alert": "Webinar kaydı için kütüphane ile iletişime geçiniz."
+     },
+     {
+      "title": {
+       "tr": "Mendeley Konu Rehberi",
+       "en": "Mendeley Subject Guide"
+      },
+      "description": {
+       "tr": "Mendeley kullanımı için detaylı konu rehberi",
+       "en": "Detailed subject guide for using Mendeley"
+      },
+      "icon": "fas fa-map",
+      "url": "#",
+      "alert": "Konu rehberi için kütüphane ile iletişime geçiniz."
+     }
+    ]
+   }
+  }
+ ],
+ "helpSection": {
+  "title": {
+   "tr": "Mendeley kullanımı hakkında yardıma mı ihtiyacınız var?",
+   "en": "Need help with Mendeley?"
+  },
+  "description": {
+   "tr": "Referans yönetim araçları ve Mendeley kullanımı hakkında detaylı bilgi ve destek için kütüphane uzmanlarımızla iletişime geçebilirsiniz.",
+   "en": "You can contact our library experts for detailed information and support about reference management tools and Mendeley."
+  },
+  "buttons": [
+   {
+    "icon": "fas fa-phone",
+    "text": {
+     "tr": "Hemen Ara",
+     "en": "Call Now"
+    },
+    "link": "tel:+902223350580",
+    "class": "btn-outline-primary"
+   },
+   {
+    "icon": "fas fa-envelope",
+    "text": {
+     "tr": "E-posta Gönder",
+     "en": "Send Email"
+    },
+    "link": "mailto:library@anadolu.edu.tr",
+    "class": "btn-outline-primary"
+   },
+   {
+    "icon": "fas fa-home",
+    "text": {
+     "tr": "Ana Sayfa",
+     "en": "Home"
+    },
+    "link": "index.html",
+    "class": "btn-outline-primary"
+   }
+  ]
+ },
+ "meta": {
+  "title": {
+   "tr": "Mendeley Referans Yönetim Aracı",
+   "en": "Mendeley Reference Management Tool"
+  },
+  "description": {
+   "tr": "Anadolu Üniversitesi Kütüphane - Mendeley Referans Yönetim Aracı Rehberi",
+   "en": "Anadolu University Library - Mendeley Reference Management Tool"
+  }
+ },
+ "lastModified": "2026-08-14 15:25"
 }

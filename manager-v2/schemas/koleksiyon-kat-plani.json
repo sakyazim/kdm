@@ -1,0 +1,162 @@
+{
+ "file": "data/pages/koleksiyon-kat-plani.json",
+ "label": "Koleksiyon & Kat Planı",
+ "preview": "koleksiyon-kat-plani.html",
+ "description": "Kat planı: katlar, bölümler ve detay bilgileri.",
+ "fields": [
+  {
+   "key": "hero",
+   "label": "Üst Bant (Hero)",
+   "type": "object",
+   "required": true,
+   "fields": [
+    {
+     "key": "title",
+     "label": "Başlık",
+     "type": "lang",
+     "required": true
+    },
+    {
+     "key": "description",
+     "label": "Açıklama",
+     "type": "lang"
+    }
+   ]
+  },
+  {
+   "key": "floors",
+   "label": "Katlar",
+   "type": "array",
+   "itemLabel": "Kat",
+   "itemFields": [
+    {
+     "key": "id",
+     "label": "Kat ID",
+     "type": "text"
+    },
+    {
+     "key": "number",
+     "label": "Kat Numarası",
+     "type": "text"
+    },
+    {
+     "key": "name",
+     "label": "Kat Adı",
+     "type": "lang"
+    },
+    {
+     "key": "description",
+     "label": "Kat Açıklaması",
+     "type": "lang"
+    },
+    {
+     "key": "sections",
+     "label": "Bölümler",
+     "type": "array",
+     "itemLabel": "Bölüm",
+     "itemFields": [
+      {
+       "key": "id",
+       "label": "Bölüm ID",
+       "type": "text"
+      },
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang"
+      },
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      },
+      {
+       "key": "description",
+       "label": "Açıklama",
+       "type": "lang"
+      },
+      {
+       "key": "details",
+       "label": "Detaylar",
+       "type": "array",
+       "itemLabel": "Detay",
+       "itemFields": [
+        {
+         "key": "",
+         "label": "Detay",
+         "type": "lang"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+    {
+   "key": "helpSection",
+   "label": "Yardım Bölümü",
+   "type": "object",
+   "fields": [
+    {
+     "key": "title",
+     "label": "Başlık",
+     "type": "lang"
+    },
+    {
+     "key": "description",
+     "label": "Açıklama",
+     "type": "lang"
+    },
+    {
+     "key": "buttons",
+     "label": "Butonlar",
+     "type": "array",
+     "itemLabel": "Buton",
+     "itemFields": [
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      },
+      {
+       "key": "text",
+       "label": "Metin",
+       "type": "lang",
+       "required": true
+      },
+      {
+       "key": "link",
+       "label": "Bağlantı",
+       "type": "url",
+       "required": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "meta",
+   "label": "SEO Bilgileri",
+   "type": "object",
+   "fields": [
+    {
+     "key": "title",
+     "label": "SEO Başlık",
+     "type": "lang"
+    },
+    {
+     "key": "description",
+     "label": "SEO Açıklama",
+     "type": "lang"
+    }
+   ]
+  },
+  {
+   "key": "lastModified",
+   "label": "Son Güncelleme",
+   "type": "text",
+   "readonly": true,
+   "hint": "🔒 Otomatik — kayıtta güncellenir"
+  }
+ ]
+}
