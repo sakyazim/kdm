@@ -109,8 +109,6 @@
                       "en": "Closed"
                     },
                     "isWeekend": true,
-                    "openTime": null,
-                    "closeTime": null,
                     "dayNumbers": [
                       0
                     ]
@@ -214,7 +212,10 @@
               "en": "Library Services Working Hours"
             },
             "icon": "fas fa-concierge-bell",
-            "id": "services-heading"
+            "id": "services-heading",
+            "statusBadge": {
+              "data": {}
+            }
           }
         },
         {
@@ -435,7 +436,10 @@
               "en": "Special Cases and Holidays"
             },
             "icon": "fas fa-calendar-alt",
-            "id": "special-hours-heading"
+            "id": "special-hours-heading",
+            "statusBadge": {
+              "data": {}
+            }
           }
         },
         {
@@ -517,5 +521,5 @@
       "en": ""
     }
   },
-  "lastModified": "2026-08-14 15:25"
+  "lastModified": "2026-08-17 10:36"
 }
