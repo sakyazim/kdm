@@ -35,7 +35,11 @@
     "showIcon": true,
     "iconPosition": "left",
     "breadcrumbMode": "auto",
-    "textAlign": "center"
+    "textAlign": "center",
+    "iconColor": "#C03221",
+    "showBreadcrumb": true,
+    "borderColor": "#C03221",
+    "layout": "split"
   },
   "content": [
     {
@@ -302,5 +306,5 @@
       "hizmetleri"
     ]
   },
-  "lastModified": "2026-08-17 14:49"
+  "lastModified": "2026-08-17 15:18"
 }
