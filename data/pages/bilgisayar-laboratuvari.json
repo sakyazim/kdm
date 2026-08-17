@@ -32,7 +32,10 @@
         "url": "bilgisayar-laboratuvari.html"
       }
     ],
-    "showIcon": true
+    "showIcon": true,
+    "iconPosition": "left",
+    "breadcrumbMode": "auto",
+    "textAlign": "center"
   },
   "content": [
     {
@@ -47,7 +50,10 @@
               "en": "Computer Laboratory"
             },
             "icon": "fas fa-laptop",
-            "id": "lab-info-heading"
+            "id": "lab-info-heading",
+            "statusBadge": {
+              "data": {}
+            }
           }
         },
         {
@@ -79,7 +85,10 @@
               "en": "Services Offered"
             },
             "icon": "fas fa-cogs",
-            "id": "services-heading"
+            "id": "services-heading",
+            "statusBadge": {
+              "data": {}
+            }
           }
         },
         {
@@ -139,7 +148,10 @@
               "en": "Usage Rules"
             },
             "icon": "fas fa-clipboard-list",
-            "id": "rules-heading"
+            "id": "rules-heading",
+            "statusBadge": {
+              "data": {}
+            }
           }
         },
         {
@@ -247,6 +259,16 @@
           "en": "Home"
         },
         "link": "index.html"
+      },
+      {
+        "type": "modal",
+        "icon": "bi bi-bug",
+        "text": {
+          "tr": "Sorun Bildir",
+          "en": "Report an Issue"
+        },
+        "variant": "outline-danger",
+        "modalId": "sorun-bildir"
       }
     ]
   },
@@ -258,7 +280,27 @@
     "description": {
       "tr": "Anadolu Üniversitesi Kütüphane - Bilgisayar Laboratuvarı",
       "en": "Anadolu University Library - Computer Laboratory"
-    }
+    },
+    "keywords": {
+      "tr": "bilgisayar laboratuvarı, kütüphane bilgisayarları, internet erişimi, araştırma desteği, Anadolu Üniversitesi",
+      "en": "computer laboratory, library computers, internet access, research support, Anadolu University"
+    },
+    "ogImage": "/assets/images/og/library-og.png",
+    "ogType": "article",
+    "section": {
+      "tr": "Araştırma ve Hizmetler",
+      "en": "Research and Services"
+    },
+    "author": {
+      "tr": "Anadolu Üniversitesi Kütüphane",
+      "en": "Anadolu University Library"
+    },
+    "publishedTime": "2026-08-14",
+    "tags": [
+      "bilgisayar laboratuvarı",
+      "computer laboratory",
+      "hizmetleri"
+    ]
   },
-  "lastModified": "2026-08-14 15:25"
+  "lastModified": "2026-08-17 14:49"
 }
