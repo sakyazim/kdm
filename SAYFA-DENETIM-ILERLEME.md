@@ -1096,3 +1096,17 @@ Proje `:has()` kullanıyor (hybrid-toc + veritabanlari zaten), uyumlu.
 | — | Renkler (#123456, #ffcc00, #fff, #ffaa00) | Hepsi uygulandı ✓ |
 
 **Not:** Hero'nun `enabled:false` ayarı (kullanıcı) duruyor; help global açık + sayfa boş → help görünüyor. Test verileri temizlendi.
+
+### 8.17 Hero + Help Section — Tüm site genelinde zengin şema (32 sayfa)
+
+**Yapılan:**
+- Bilgisayar-laboratuvari'deki zengin hero şablonu (28 alan: enabled 3'lü select, layout, ikon/renk/boşluk/breadcrumb grupları) tüm sayfa şemalarına kopyalandı (32 sayfa)
+- Aynı şekilde zengin helpSection şablonu (10 alan: enabled + 5 renk) — 5 sayfaya YENİDEN eklendi: egitim-programlari, ill, kutuphane-kullanim-klavuzu, sss, uyelik-odunc-islemleri
+- Hariç tutulanlar: home, databases, anadolu-arastirma, component-showcase.old (özel yapılar)
+- Veri tarafına dokunulmadı — boş alanlar = global/CSS varsayılanı (3 katmanlı sistem zaten çalışıyor)
+
+**Doğrulama:**
+- 36 sayfa /api/validate → 0 hata (tek istisna: organizasyon-semasi.json'da eski PDF sorunu — assets/documents/organizasyon-semasi.pdf yok, şema ile ilgisi yok)
+- Şema API: sss/egitim/ill/mendeley'de hero 28 alan + help 10 alan ✓
+
+**Bekleyen:** organizasyon-semasi PDF'i (kullanıcı yüklemeli) · SEO zenginleştirme (sonraki adım)
