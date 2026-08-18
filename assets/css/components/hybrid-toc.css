@@ -36,7 +36,7 @@
 .toc-desktop-sidebar {
   position: fixed;
   left: 20px;
-  top: 20px; /* JS ile dinamik ayarlanacak - hero sonrası */
+  top: calc(var(--header-height) + 20px); /* Sabit menünün altı — JS ile dinamik ayarlanır */
   width: 280px;
   max-height: calc(100vh - 140px);
   background: white;
@@ -269,9 +269,9 @@
 .toc-mobile-drawer {
   position: fixed;
   left: -280px;
-  top: 0;
+  top: var(--header-height); /* Sabit menünün altından başlar — başlığı menü arkasında kalmasın */
   width: 280px;
-  height: 100vh;
+  height: calc(100vh - var(--header-height));
   background: white;
   box-shadow: 4px 0 16px rgba(0, 0, 0, 0.2);
   z-index: 999;

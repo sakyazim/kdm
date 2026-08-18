@@ -27,6 +27,8 @@
 
 .page-container {
   padding: 40px 20px;
+  /* Sabit menü (fixed header) için: hero gizlense bile içerik menünün altında kalır */
+  margin-top: var(--header-height);
 }
 
 /* Sayfa Container */

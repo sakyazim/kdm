@@ -158,7 +158,10 @@ def validate_schema(node, schema, errors, loc):
             if not isinstance(value, (dict, str)):
                 errors.append("%s: çoklu dil alanı (TR/EN) veya metin olmalı." % child)
         elif ftype == "number":
-            if not isinstance(value, (int, float)) or isinstance(value, bool):
+            # Boş ("" / null) = ayarlanmamış → varsayılan kullanılır, hata değil
+            if value is None or value == "":
+                pass
+            elif not isinstance(value, (int, float)) or isinstance(value, bool):
                 errors.append("%s: sayı olmalı." % child)
         elif ftype == "boolean":
             if not isinstance(value, bool):

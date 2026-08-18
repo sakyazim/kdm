@@ -448,6 +448,36 @@ body.sidebar-hidden.preview-hidden .layout { grid-template-columns: 0 1fr 0; }
 .control > input[type="date"], .control > textarea, .control > select { width: 100%; }
 .hint { font-size: 11.5px; color: var(--text-muted); }
 
+/* Alan grupları (görsel bölüm başlıkları) */
+.field-group {
+  margin: 12px 0 2px;
+  padding: 8px 10px;
+  background: var(--bg-soft, rgba(128,128,128,.07));
+  border-left: 3px solid var(--primary, #1F4C8A);
+  border-radius: 6px;
+}
+.field-group-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text, #1e293b);
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+/* Global ayar bağlantı butonu */
+.globallink-btn { align-self: flex-start; }
+
+/* Renk seçici + sıfırla */
+.color-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.color-row input[type="color"] { width: 46px; height: 30px; padding: 1px; }
+.color-reset { flex: none; }
+.color-global-badge { font-size: 0.72rem; color: #888; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; padding: 1px 6px; }
+html[data-theme="dark"] .color-global-badge { color: #aaa; background: #2a2a2a; border-color: #444; }
+.color-palette { display: flex; gap: 4px; flex-basis: 100%; margin-top: 4px; }
+.color-swatch { width: 22px; height: 22px; border-radius: 4px; border: 1px solid #ccc; cursor: pointer; padding: 0; transition: transform 0.1s; }
+.color-swatch:hover { transform: scale(1.15); border-color: #888; }
+html[data-theme="dark"] .color-swatch { border-color: #555; }
+
 /* Kilitli / salt-okunur alanlar */
 .locked-value {
   display: flex;

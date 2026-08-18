@@ -2302,9 +2302,53 @@ function renderFields(container, fields, obj, path) {
   for (const f of fields) {
     container.appendChild(renderField(f, obj, path ? path + "." + f.key : f.key));
   }
+  applyVisibleWhen(container, fields);
+}
+
+/**
+ * Koşullu görünürlük: visibleWhen: { key: "breadcrumbMode", value: "manual" }
+ * Kaynak alan değişince hedef alan gösterilir/gizlenir. value dizi olabilir.
+ */
+function applyVisibleWhen(container, fields) {
+  for (const f of fields) {
+    if (!f.visibleWhen) continue;
+    const target = container.querySelector(`.field[data-key="${f.key}"]`);
+    if (!target) continue;
+    const vw = f.visibleWhen;
+    const srcEl = container.querySelector(`.field[data-key="${vw.key}"]`);
+    const input = srcEl ? srcEl.querySelector("select, input[type=checkbox], input[type=text], input[type=number], input[type=color], input[type=date], input[type=time], input:not([type]), textarea") : null;
+    const update = () => {
+      let val = null;
+      if (input) val = input.type === "checkbox" ? input.checked : input.value;
+      const match = Array.isArray(vw.value)
+        ? vw.value.includes(val)
+        : String(val) === String(vw.value);
+      target.style.display = match ? "" : "none";
+    };
+    if (input) input.addEventListener("change", update);
+    update();
+  }
 }
 
 function renderField(f, obj, path) {
+  // Saf görsel grup başlığı — veriye yazılmaz
+  if (f.type === "group") {
+    const g = document.createElement("div");
+    g.className = "field-group";
+    if (f.label) {
+      const t = document.createElement("div");
+      t.className = "field-group-title";
+      t.textContent = f.label;
+      g.appendChild(t);
+    }
+    if (f.hint) {
+      const h = document.createElement("div");
+      h.className = "hint";
+      h.textContent = f.hint;
+      g.appendChild(h);
+    }
+    return g;
+  }
   const wrap = document.createElement("div");
   wrap.className = "field";
   if (path) wrap.dataset.path = path;
@@ -2344,6 +2388,30 @@ function renderField(f, obj, path) {
     case "jsonfile":
       wrap.appendChild(renderJsonFileField(f, obj[f.key], (v) => { obj[f.key] = v; markDirty(); }));
       break;
+    case "globallink": {
+      // Başka bir JSON dosyasını editörde açan buton (örn. sayfa hero'sundan settings.json)
+      const holder = document.createElement("div");
+      holder.className = "control";
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "btn small globallink-btn";
+      btn.textContent = f.buttonText || "⚙ Global Ayarları Aç";
+      btn.title = "Global ayar dosyasını ayrı sekmede aç";
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        selectFile(f.path || "settings.json");
+      });
+      holder.appendChild(btn);
+      if (f.hint) {
+        const h = document.createElement("div");
+        h.className = "hint";
+        h.textContent = f.hint;
+        holder.appendChild(h);
+      }
+      wrap.appendChild(holder);
+      break;
+    }
     case "boolean": {
       const cb = document.createElement("input");
       cb.type = "checkbox";
@@ -2660,11 +2728,76 @@ function renderScalar(f, value, onchange) {
       break;
     }
     case "color": {
+      // Boş değer siyah gibi görünmesin diye nötr gri + "Global" rozeti gösterilir.
+      // Sayfa değeri boşken settings.json'daki global renk geçerlidir.
+      // Ayrıca sitenin ana renkleri (variables.css) hazır swatch olarak sunulur.
+      const PLACEHOLDER = "#d9d9d9";
+      const PALETTE = [
+        { name: "Sarı (accent)", value: "#FFC43D" },
+        { name: "Mavi (primary)", value: "#1F4C8A" },
+        { name: "Koyu Mavi (primary-dark)", value: "#153a6d" },
+        { name: "Açık Mavi (tertiary)", value: "#EEF9FC" },
+        { name: "Açık Mavi koyu (tertiary-dark)", value: "#d5eef5" },
+        { name: "Beyaz", value: "#ffffff" },
+        { name: "Kırmızı (secondary)", value: "#C03221" }
+      ];
+      let current = value || "";
+      const badge = document.createElement("span");
+      badge.className = "color-global-badge";
       const inp = document.createElement("input");
       inp.type = "color";
-      inp.value = value || "#000000";
-      inp.addEventListener("input", () => onchange(inp.value));
-      ctl = inp;
+      inp.value = current || PLACEHOLDER;
+      const syncBadge = () => {
+        badge.textContent = "Global";
+        badge.style.display = current ? "none" : "";
+        inp.title = current ? "" : "Boş — global ayar (settings.json) geçerli";
+      };
+      inp.addEventListener("input", () => {
+        current = inp.value;
+        onchange(current);
+        syncBadge();
+      });
+      // Sıfırla: değeri temizler → global ayar (settings.json) geçerli olur
+      const resetBtn = document.createElement("button");
+      resetBtn.type = "button";
+      resetBtn.className = "btn tiny color-reset";
+      resetBtn.textContent = "✕";
+      resetBtn.title = "Sıfırla — global ayar kullanılsın (kayıtta boş yazılır, global renk geçerli olur)";
+      resetBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        current = "";
+        inp.value = PLACEHOLDER;
+        onchange("");
+        syncBadge();
+      });
+      // Hazır palet — sitenin ana renkleri, tek tıkla seç
+      const palette = document.createElement("div");
+      palette.className = "color-palette";
+      PALETTE.forEach((p) => {
+        const sw = document.createElement("button");
+        sw.type = "button";
+        sw.className = "color-swatch";
+        sw.style.background = p.value;
+        sw.title = p.name + " " + p.value;
+        sw.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          current = p.value;
+          inp.value = p.value;
+          onchange(p.value);
+          syncBadge();
+        });
+        palette.appendChild(sw);
+      });
+      const row = document.createElement("div");
+      row.className = "color-row";
+      row.appendChild(inp);
+      row.appendChild(resetBtn);
+      row.appendChild(badge);
+      row.appendChild(palette);
+      ctl = row;
+      syncBadge();
       break;
     }
     case "date": {

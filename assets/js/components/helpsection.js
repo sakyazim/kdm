@@ -9,6 +9,49 @@ export class HelpSectionManager {
   constructor() {
     this.container = null;
     this.modalLibrary = null; // data/global/modals.json önbelleği
+    this._cache = { settings: null };
+  }
+
+  /**
+   * Global verileri bir kez yükle (önbellekli): settings.json → help bloğu
+   */
+  async _loadGlobals() {
+    if (!this._cache.settings) {
+      try {
+        const r = await fetch('data/global/settings.json');
+        this._cache.settings = await r.json();
+      } catch (e) {
+        this._cache.settings = {};
+      }
+    }
+  }
+
+  /**
+   * Global varsayılan + sayfa override birleştir (global > sayfa)
+   */
+  mergeConfig(helpData) {
+    const g = (this._cache.settings && this._cache.settings.help) || {};
+    const d = helpData || {};
+    return {
+      enabled: this._resolveEnabled(d.enabled, g.enabled),
+      backgroundColor: d.backgroundColor || g.backgroundColor || '',
+      borderColor: d.borderColor || g.borderColor || '',
+      titleColor: d.titleColor || g.titleColor || '',
+      textColor: d.textColor || g.textColor || '',
+      iconColor: d.iconColor || g.iconColor || ''
+    };
+  }
+
+  /**
+   * enabled değerini çöz: "" / null → global (varsayılan true),
+   * true/"true" → açık, false/"false" → kapalı (hero ile aynı mantık)
+   */
+  _resolveEnabled(pageVal, globalVal) {
+    const norm = (v) => (v === true || v === 'true');
+    if (pageVal === '' || pageVal === null || pageVal === undefined) {
+      return (globalVal === '' || globalVal === null || globalVal === undefined) ? true : norm(globalVal);
+    }
+    return norm(pageVal);
   }
 
   /**
@@ -23,11 +66,7 @@ export class HelpSectionManager {
       return;
     }
 
-    if (!helpData) {
-      console.warn('Help data is empty');
-      return;
-    }
-
+    await this._loadGlobals();
     this.render(helpData);
   }
 
@@ -36,18 +75,37 @@ export class HelpSectionManager {
    * @param {Object} helpData - Help section verisi
    */
   render(helpData) {
-    const { title, description, cards, buttons, variant = 'default' } = helpData;
+    const cfg = this.mergeConfig(helpData);
+
+    // Kapalıysa (global veya sayfa) hiç render etme
+    if (cfg.enabled === false) {
+      this.container.style.display = 'none';
+      this.container.innerHTML = '';
+      return;
+    }
+    this.container.style.display = '';
+
+    const { title, description, cards, buttons, variant = 'default' } = helpData || {};
 
     // Çoklu dil desteği
     const localizedTitle = title ? Utils.getLocalizedText(title) : '';
     const localizedDescription = description ? Utils.getLocalizedText(description) : '';
 
+    // Renkler — inline style, boşsa CSS fallback
+    let sectionCss = '';
+    if (cfg.backgroundColor) sectionCss += `background:${cfg.backgroundColor};`;
+    if (cfg.borderColor) sectionCss += `border-top-color:${cfg.borderColor};`;
+    const sectionStyle = sectionCss ? ` style="${sectionCss}"` : '';
+    const titleStyle = cfg.titleColor ? ` style="color:${cfg.titleColor};"` : '';
+    const iconStyle = cfg.iconColor ? ` style="color:${cfg.iconColor};"` : '';
+    const descStyle = cfg.textColor ? ` style="color:${cfg.textColor};"` : '';
+
     const helpHTML = `
-      <div class="help-section help-section-${variant}">
+      <div class="help-section help-section-${variant}"${sectionStyle}>
         <div class="container">
           <div class="help-header">
-            ${localizedTitle ? `<h3><i class="fas fa-headset"></i> ${localizedTitle}</h3>` : ''}
-            ${localizedDescription ? `<p>${localizedDescription}</p>` : ''}
+            ${localizedTitle ? `<h3${titleStyle}><i class="fas fa-headset"${iconStyle}></i> ${localizedTitle}</h3>` : ''}
+            ${localizedDescription ? `<p${descStyle}>${localizedDescription}</p>` : ''}
           </div>
           ${buttons && buttons.length > 0 ? this.renderButtons(buttons) : ''}
           ${cards && cards.length > 0 ? this.renderCards(cards) : ''}

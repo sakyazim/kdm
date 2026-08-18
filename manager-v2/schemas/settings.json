@@ -1,0 +1,433 @@
+{
+ "file": "data/global/settings.json",
+ "label": "Genel Ayarlar",
+ "description": "Site geneli ayarlar: tema, dil, düzen, özellikler ve hero (global) varsayılanları.",
+ "fields": [
+  {
+   "key": "app",
+   "label": "Uygulama",
+   "type": "object",
+   "fields": [
+    {
+     "key": "name",
+     "label": "Site Adı",
+     "type": "text"
+    },
+    {
+     "key": "version",
+     "label": "Sürüm",
+     "type": "text"
+    },
+    {
+     "key": "debug",
+     "label": "Hata Ayıklama",
+     "type": "boolean"
+    }
+   ]
+  },
+  {
+   "key": "theme",
+   "label": "Tema",
+   "type": "object",
+   "fields": [
+    {
+     "key": "default",
+     "label": "Varsayılan Tema",
+     "type": "select",
+     "options": [
+      "light",
+      "dark"
+     ]
+    },
+    {
+     "key": "persistence",
+     "label": "Kalıcılık",
+     "type": "boolean"
+    }
+   ]
+  },
+  {
+   "key": "language",
+   "label": "Dil",
+   "type": "object",
+   "fields": [
+    {
+     "key": "default",
+     "label": "Varsayılan Dil",
+     "type": "select",
+     "options": [
+      "tr",
+      "en"
+     ]
+    },
+    {
+     "key": "persistence",
+     "label": "Kalıcılık",
+     "type": "boolean"
+    }
+   ]
+  },
+  {
+   "key": "layout",
+   "label": "Düzen",
+   "type": "object",
+   "fields": [
+    {
+     "key": "header",
+     "label": "Üst Menü",
+     "type": "object",
+     "fields": [
+      {
+       "key": "sticky",
+       "label": "Yapışkan",
+       "type": "boolean"
+      },
+      {
+       "key": "height",
+       "label": "Yükseklik",
+       "type": "number"
+      }
+     ]
+    },
+    {
+     "key": "footer",
+     "label": "Alt Bilgi",
+     "type": "object",
+     "fields": [
+      {
+       "key": "enabled",
+       "label": "Aktif",
+       "type": "boolean"
+      },
+      {
+       "key": "helpSection",
+       "label": "Yardım Bölümü",
+       "type": "boolean"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "features",
+   "label": "Özellikler",
+   "type": "object",
+   "fields": [
+    {
+     "key": "modal",
+     "label": "Modal",
+     "type": "object",
+     "fields": [
+      {
+       "key": "enabled",
+       "label": "Aktif",
+       "type": "boolean"
+      },
+      {
+       "key": "autoShow",
+       "label": "Otomatik Göster",
+       "type": "boolean"
+      },
+      {
+       "key": "showOnce",
+       "label": "Bir Kez Göster",
+       "type": "boolean"
+      },
+      {
+       "key": "delay",
+       "label": "Gecikme (ms)",
+       "type": "number"
+      }
+     ]
+    },
+    {
+     "key": "tooltips",
+     "label": "İpucu",
+     "type": "object",
+     "fields": [
+      {
+       "key": "enabled",
+       "label": "Aktif",
+       "type": "boolean"
+      },
+      {
+       "key": "delay",
+       "label": "Gecikme (ms)",
+       "type": "number"
+      },
+      {
+       "key": "duration",
+       "label": "Süre (ms)",
+       "type": "number"
+      }
+     ]
+    },
+    {
+     "key": "animations",
+     "label": "Animasyonlar",
+     "type": "object",
+     "fields": [
+      {
+       "key": "enabled",
+       "label": "Aktif",
+       "type": "boolean"
+      },
+      {
+       "key": "duration",
+       "label": "Süre (ms)",
+       "type": "number"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "content",
+   "label": "İçerik",
+   "type": "object",
+   "fields": [
+    {
+     "key": "maxItems",
+     "label": "Maksimum Öğe",
+     "type": "object",
+     "fields": [
+      {
+       "key": "news",
+       "label": "Haberler",
+       "type": "number"
+      },
+      {
+       "key": "announcements",
+       "label": "Duyurular",
+       "type": "number"
+      },
+      {
+       "key": "services",
+       "label": "Hizmetler",
+       "type": "number"
+      },
+      {
+       "key": "arrivals",
+       "label": "Yeni Gelenler",
+       "type": "number"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "hero",
+   "label": "Hero (Global Varsayılanlar)",
+   "type": "object",
+   "description": "Sayfa hero'sunun global varsayılanları — sayfa şemasında alan boşsa buradaki değer kullanılır.",
+   "fields": [
+    {
+     "key": "enabled",
+     "label": "Hero'yu Göster (Global)",
+     "type": "boolean",
+     "hint": "Sitenin anahtarı: kapalıysa tüm sayfalarda hero gizlenir. Sayfalar kendi ayarında boş bırakılırsa bu değer geçerli olur; bir sayfa 'Göster/Gizle' seçerse o sayfada bu ayarı geçersiz kılar."
+    },
+    {
+     "key": "showBreadcrumb",
+     "label": "Breadcrumb Göster",
+     "type": "boolean",
+     "hint": "Global aç/kapa — sayfa bazında kapatılabilir"
+    },
+    {
+     "key": "breadcrumbMode",
+     "label": "Breadcrumb Modu",
+     "type": "select",
+     "options": [
+      {
+       "value": "auto",
+       "label": "Otomatik (menüden)"
+      },
+      {
+       "value": "manual",
+       "label": "Elle liste"
+      },
+      {
+       "value": "hidden",
+       "label": "Gizli"
+      }
+     ],
+     "hint": "auto: menüden otomatik · manual: sayfadaki liste · hidden: gizli"
+    },
+    {
+     "key": "showIcon",
+     "label": "İkonu Göster",
+     "type": "boolean"
+    },
+    {
+     "key": "iconPosition",
+     "label": "İkon Konumu",
+     "type": "select",
+     "options": [
+      {
+       "value": "top",
+       "label": "Üst"
+      },
+      {
+       "value": "left",
+       "label": "Sol"
+      },
+      {
+       "value": "right",
+       "label": "Sağ"
+      }
+     ]
+    },
+    {
+     "key": "textAlign",
+     "label": "Metin Hizalaması",
+     "type": "select",
+     "options": [
+      {
+       "value": "left",
+       "label": "Sol"
+      },
+      {
+       "value": "center",
+       "label": "Orta"
+      },
+      {
+       "value": "right",
+       "label": "Sağ"
+      }
+     ],
+     "hint": "Stack düzeninde geçerlidir (boşsa orta). Split düzenlerde metin otomatik kenara hizalanır."
+    },
+    {
+     "key": "layout",
+     "label": "Yerleşim Düzeni",
+     "type": "select",
+     "options": [
+      {
+       "value": "stack",
+       "label": "Stack — metin ortada, breadcrumb altta"
+      },
+      {
+       "value": "split-left",
+       "label": "Split Sol — metin/ikon solda, breadcrumb sağda"
+      },
+      {
+       "value": "split-right",
+       "label": "Split Sağ — breadcrumb solda, metin/ikon sağda"
+      }
+     ],
+     "hint": "stack: metin ortada, breadcrumb altta · split-sol: metin/ikon solda, breadcrumb sağda (aynı satır) · split-sağ: tam tersi — breadcrumb solda, metin sağda"
+    },
+    {
+     "key": "backgroundColor",
+     "label": "Arka Plan Rengi",
+     "type": "color"
+    },
+    {
+     "key": "boxColor",
+     "label": "Kutucuk Rengi",
+     "type": "color"
+    },
+    {
+     "key": "borderColor",
+     "label": "Üst Çizgi Rengi (Sarı Şerit)",
+     "type": "color",
+     "hint": "Kutucuğun üstündeki ince şerit rengi — varsayılan sarı"
+    },
+    {
+     "key": "iconColor",
+     "label": "İkon Rengi",
+     "type": "color"
+    },
+    {
+     "key": "titleColor",
+     "label": "Başlık Rengi",
+     "type": "color"
+    },
+    {
+     "key": "textColor",
+     "label": "Metin Rengi",
+     "type": "color"
+    },
+    {
+     "key": "boxPaddingTop",
+     "label": "Kutu Üst İç Boşluk (Padding)",
+     "type": "number",
+     "hint": "rem cinsinden — boşsa CSS varsayılanı (1.25rem)"
+    },
+    {
+     "key": "boxPaddingBottom",
+     "label": "Kutu Alt İç Boşluk (Padding)",
+     "type": "number",
+     "hint": "rem cinsinden — boşsa CSS varsayılanı (1.25rem)"
+    },
+    {
+     "key": "boxMarginTop",
+     "label": "Kutu Üst Dış Boşluk (Margin)",
+     "type": "number",
+     "hint": "rem cinsinden — boşsa 0"
+    },
+    {
+     "key": "boxMarginBottom",
+     "label": "Kutu Alt Dış Boşluk (Margin)",
+     "type": "number",
+     "hint": "rem cinsinden — boşsa 0"
+    },
+    {
+     "key": "hiddenSpacing",
+     "label": "Gizliyken Üst Boşluk",
+     "type": "number",
+     "hint": "Hero kapatıldığında (Hero'yu Göster kapalı) menü ile içerik arasında bırakılacak boşluk — rem cinsinden, boşsa 0 (içerik menünün hemen altından başlar)"
+    }
+   ]
+  },
+  {
+   "key": "help",
+   "label": "Yardım Bölümü (Global Varsayılanlar)",
+   "type": "object",
+   "description": "Sayfa yardım bölümünün global varsayılanları — sayfada alan boşsa buradaki değer kullanılır.",
+   "fields": [
+    {
+     "key": "enabled",
+     "label": "Yardım Bölümünü Göster (Global)",
+     "type": "boolean",
+     "hint": "Sitenin anahtarı: kapalıysa tüm sayfalarda yardım bölümü gizlenir. Sayfalar boş bırakılırsa bu değer geçerli olur; bir sayfa kendi seçimini yaparsa o sayfada geçersiz kılar."
+    },
+    {
+     "key": "backgroundColor",
+     "label": "Arka Plan Rengi",
+     "type": "color",
+     "hint": "Boşsa CSS varsayılanı (açık mavi degrade)"
+    },
+    {
+     "key": "borderColor",
+     "label": "Üst Çizgi Rengi",
+     "type": "color",
+     "hint": "Bölümün üstündeki ince şerit rengi — boşsa CSS varsayılanı (lacivert)"
+    },
+    {
+     "key": "titleColor",
+     "label": "Başlık Rengi",
+     "type": "color"
+    },
+    {
+     "key": "textColor",
+     "label": "Metin Rengi",
+     "type": "color"
+    },
+    {
+     "key": "iconColor",
+     "label": "İkon Rengi",
+     "type": "color",
+     "hint": "Başlıktaki kulaklık ikonu rengi"
+    }
+   ]
+  },
+  {
+   "key": "lastModified",
+   "label": "Son Güncelleme",
+   "type": "text",
+   "readonly": true,
+   "hint": "🔒 Otomatik"
+  }
+ ]
+}

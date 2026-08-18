@@ -65,7 +65,15 @@
     "boxPaddingBottom": "",
     "boxMarginTop": "",
     "boxMarginBottom": "",
-    "hiddenSpacing": 2
+    "hiddenSpacing": 0
+  },
+  "help": {
+    "enabled": true,
+    "backgroundColor": "",
+    "borderColor": "",
+    "titleColor": "",
+    "textColor": "",
+    "iconColor": ""
   },
   "lastModified": "2026-08-18 10:41"
 }

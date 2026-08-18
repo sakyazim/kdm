@@ -69,12 +69,10 @@ export class BilgisayarLaboratuvariPage {
   }
 
   async setupHeroSection() {
-    if (!this.pageData.hero) {
-      console.warn('Hero data not found');
-      return;
-    }
-
-    await this.heroManager.init(this.pageData.hero);
+    // Hero verisi yoksa da init çağrılır — HeroManager gizliyken ayarlanabilir
+    // üst boşluk (hero-hidden-spacer) bırakır. Böylece menü ile içerik arası
+    // boşluk, hero silinse bile kontrol edilebilir kalır.
+    await this.heroManager.init(this.pageData.hero || null);
   }
 
   async setupContent() {
@@ -146,12 +144,9 @@ export class BilgisayarLaboratuvariPage {
   }
 
   async setupHelpSection() {
-    if (!this.pageData.helpSection) {
-      console.warn('Help section data not found');
-      return;
-    }
-
-    await this.helpSectionManager.init(this.pageData.helpSection);
+    // Veri yoksa da init çağrılır — HelpSectionManager global ayara göre
+    // bölümü gösterir veya gizler.
+    await this.helpSectionManager.init(this.pageData.helpSection || null);
   }
 }
 

@@ -857,3 +857,242 @@ Kullanıcı v1 manager'da (8123, `python manager/server.py`) calisma-saatleri.js
 - 8123 sunucusu yeniden başlatıldı (şemalar başlangıçta yükleniyor)
 
 **Doğrulama:** v1 manager artık Türkçe şema gösteriyor — Hero, Çalışma Saati Ayarları, Resmi Tatiller, Sayfa Bölümleri, 46 saat alanı + 252 gün seçici aktif. Site 8123+8124'te 200 ✓.
+
+---
+
+### 8.4 HERO PİLOTU GERİ GETİRİLDİ (2026-08-17)
+
+**Sebep:** Kullanıcının "her şey bozuldu" şikayeti, 8123'teki v1 manager'ın şemasız render'ından kaynaklanıyordu — hero pilotunun kendisi sağlamdı (v2'de). Kullanıcı onayıyla **8 + 8.1'in tamamı geri getirildi.**
+
+**Geri getirilenler (8.2'nin tersi):**
+- `data/global/settings.json` → hero bloğu (showBreadcrumb=true, auto, showIcon=true, iconPosition=top, textAlign="", 5 renk)
+- `manager-v2/schemas/settings.json` → yeniden oluşturuldu (10 hero alanı + diğer bloklar + lastModified kilitli)
+- `manager-v2/schemas/bilgisayar-laboratuvari.json` → hero 19 alan (globallink + 4 grup + visibleWhen) + helpSection modal kalıbı (6 alan) + meta 9 alan
+- `manager-v2/ui/assets/app.js` → applyVisibleWhen + group + globallink + renk ✕ sıfırla
+- `manager-v2/ui/assets/style.css` → field-group/globallink-btn/color-row/color-reset stilleri
+- `data/pages/bilgisayar-laboratuvari.json` → "Sorun Bildir" modal butonu + SEO meta (keywords/ogImage/ogType/section/author/publishedTime/tags)
+- `assets/css/global/inner-pages.css` → ikon konumu (top/left/right) + breadcrumb kutu içi stilleri + koyu tema
+- `assets/js/components/hero.js` → 3 katmanlı sistem yeniden yazıldı (MD 8+8.1'den)
+
+**hero.js notu:** Başlık dönüşümü (titleCase) geliştirildi — dil başlık bazında tespit edilir (İ/Ğ/Ü/Ş/Ö/Ç içeriyorsa tr-TR, yoksa en-US). Böylece 'ARACI' → 'Aracı' (tr) ve 'INTEGRATED' → 'Integrated' (en) aynı anda doğru; ASCII 'I' belirsizliği bağlamdan çözülür. 22/22 test ✓. Parantezli kelimeler ilk harften büyütülür: "(mendeley)" → "(Mendeley)".
+
+**Doğrulama (canlı 8124):**
+- TR: "Ana Sayfa > Araştırma > Bilgisayar Laboratuvarı" · EN: "Home > Research > Computer Laboratory" ✓
+- manual: "Ana Sayfa > Hizmetler > Bilgisayar Laboratuvarı" (sayfanın dizisi) ✓ · hidden: yok ✓
+- Global renkler (#e6f2fb arkaplan, #11325d başlık/ikon), ikon, "Sorun Bildir" ✓
+- Manager: 4 grup, globallink → settings.json açılıyor, koşullu görünürlük (auto gizli/manual görünür), 5 renk sıfırlama ✓
+- Şema doğrulama 0 hata ✓ · titleCase 22/22 ✓
+
+**Yedek:** Commit `2904e40` + tag `hero-geri-getirme-oncesi` (geri getirmeden önceki durum — gerekirse geri dönülebilir).
+
+### 8.5 HERO İNCE AYAR — METİN HER ZAMAN ORTADA (2026-08-17)
+
+**Kullanıcı istekleri:**
+1. Metin hizalaması ikon konumundan BAĞIMSIZ olmalı — ikon sol/sağda olsa bile başlık+açıklama ortada kalmalı (önceden sol ikon → metni sola kaydırıyordu).
+2. Breadcrumb açılınca kutu çok büyüyordu — boşluklar daraltıldı.
+3. Manager'da renk alanları boşken SİYAH görünüyordu — "renkler siyah olmuş" şikayetinin gerçek sebebi buydu (veri değil!).
+
+**Yapılanlar:**
+- `hero.js`: otomatik hizalama kaldırıldı → `textAlign = cfg.textAlign || 'center'` (ikon konumu metni etkilemez)
+- `inner-pages.css`: sol/sağ ikon düzeni flex'ten **grid (1fr | auto | 1fr)**'e geçti — orta sütun (metin) tam ortada, ikon yan sütunda metne yaslı, breadcrumb `grid-column: 1/-1` satır 2'de
+- Breadcrumb: font 0.875→0.8125rem, margin 1rem→0.8rem, padding 0.75→0.55rem, wrap + row-gap; kutu padding 2rem/3rem → 1.75rem/2.5rem
+- `app.js` (color case): boş değer `#000000` yerine **nötr gri `#d9d9d9` + "Global" rozeti** — boş alan siyah görünmüyor, "global ayar geçerli" net
+- `style.css`: `.color-global-badge` stili (+ koyu tema)
+- Şema hint güncellendi: "İkondan bağımsızdır — boşsa her zaman orta"
+
+**Doğrulama (canlı 8124):**
+- İkon sol: metin tam ortada (offset 0), ikon solda ✓ · İkon sağ: metin ortada ✓ · İkon üst: ikon üstte, metin ortada ✓
+- Breadcrumb altta ortalanmış, kompakt ✓ · EN: "Home > Research > Computer Laboratory" ✓
+- Global renkler: #e6f2fb / #ffffff / #11325d / #11325d / #555555 (mavi ailesi) ✓
+- Manager: boş renkler gri + "Global" rozeti, siyah yok ✓ · settings.json renkleri mavi ✓
+
+**Not (süreç):** v2 sunucusu aslında `MANAGER_PORT=8124` ortam değişkeniyle çalışıyormuş — düz `python manager-v2/server.py` 8123'e bağlanmaya çalışıp takılıyor. Zombie süreçler temizlendi, v2 `MANAGER_PORT=8124` ile, v1 normal şekilde yeniden başlatıldı (8123 v1, 8124 v2 — ikisi de ayakta).
+
+### 8.6 HERO: ÜST ÇİZGİ RENGİ + HAZIR RENK PALETİ + SPLIT DÜZEN (2026-08-17)
+
+**Kullanıcı istekleri:**
+1. Kutucuğun üstündeki sarı şeridin (border-top) rengi ayarlanabilir olsun — global + sayfa bazlı.
+2. Manager'da renk seçicilerin yanında sitenin ana renkleri hazır swatch olarak gelsin (sarı/mavi/açık mavi ~3 ana renk).
+3. Yeni düzen: metin/ikon solda, breadcrumb aynı satırda sağda (split).
+4. Hero'nun gereksiz yüksekliği azaltılsın.
+
+**Yapılanlar:**
+- `hero.js`: `layout` (stack/split) + `borderColor` mergeConfig'e eklendi; boxStyle artık border-top-color da yazıyor; split'te boş textAlign → sol
+- `settings.json` (data): hero bloğuna `layout: stack`, `borderColor: #FFC43D`
+- `settings` şeması: +`layout` (stack/split) + `borderColor` ("Üst Çizgi Rengi (Sarı Şerit)") → hero 12 alan; textAlign hint düzeltildi
+- `bilgisayar-laboratuvari` şeması: Başlık grubuna `layout`, Renkler grubuna `borderColor`
+- `inner-pages.css`: `.page-hero-layout-split` stilleri (flex, metin `margin-right:auto`, breadcrumb sağda `max-width:45%` + flex-end, mobilde alt alta); `.page-hero` padding 1.5/2 → 1.1/1.5rem, `.page-hero-content` padding 1.75/2.5 → 1.25/2rem → hero ~250px → ~193px
+- `app.js` (color case): **hazır palet** — variables.css'ten 7 ana renk (Sarı #FFC43D, Mavi #1F4C8A, Koyu Mavi #153a6d, Açık Mavi #EEF9FC, Açık Mavi koyu #d5eef5, Beyaz, Kırmızı #C03221) her renk alanının altında tek tıkla seçilebilir swatch
+- `style.css`: `.color-palette` / `.color-swatch` stilleri
+
+**Doğrulama (canlı 8124):**
+- Split düzen: metin solda (sola hizalı), breadcrumb sağda aynı satırda (45% genişlik, flex-end) ✓ · mobilde alt alta ✓
+- borderColor sayfa bazlı (#1F4C8A test) ve global (#FFC43D sarı) ✓
+- Hero yüksekliği 193px ✓ · Manager: settings 12 alan, palet 42 swatch (6×7), layout stack/split ✓
+- Test verisi geri alındı (sayfa: iconPosition left, textAlign center, layout yok → global stack)
+
+**Not:** Şema değişiklikleri sunucu yeniden başlatılınca yükleniyor — v2 restart edildi (8123 v1, 8124 v2 ayakta).
+
+### 8.7 SPLIT ÖN AYARLARI + KART GENİŞLİĞİ + TÜRKÇE SEÇENEKLER (2026-08-17)
+
+**Kullanıcı istekleri:**
+1. Split düzeninde kart header ile aynı genişlikte olsun (container'ı doldursun).
+2. Split için ön ayarlar: metin/ikon solda + breadcrumb sağda VEYA tam tersi.
+
+**Yapılanlar:**
+- `hero.js`: `layout` artık `stack | split-left | split-right`. Split'te metin otomatik o kenara hizalanır (textAlign ezilir); stack'te textAlign geçerli
+- `inner-pages.css`: split stilleri iki yöne ayrıldı — `split-left` (metin solda, breadcrumb sağda, `margin-right:auto`) ve `split-right` (breadcrumb `order:-1` solda, metin sağda `margin-left:auto` + sağa hizalı). Kart `max-width: 100%` → header/container ile aynı genişlik. Mobilde ikisi de alt alta
+- Şemalar (settings + bilgisayar-laboratuvari): layout 3 seçenek + **tüm select'ler Türkçe etiketli** (Yerleşim Düzeni açıklamalı, İkon Konumu Üst/Sol/Sağ, Metin Hizalaması Sol/Orta/Sağ, Breadcrumb Modu Otomatik/Elle/Gizli)
+
+**Doğrulama (canlı 8124):**
+- split-left: metin solda (114px), breadcrumb sağda (707px), aynı satır ✓
+- split-right: breadcrumb solda (30px), metin sağda (707px), metin sağa hizalı ✓
+- Kart genişliği 741px = container içeriği (eski durumda geniş ekranda 1000px'e takılıyordu) ✓
+- Manager: 4 select Türkçe etiketli ✓ · şemalar restart sonrası yüklendi ✓
+- Test verisi geri alındı (sayfa: iconPosition left, textAlign center, layout yok → global stack)
+
+### 8.8 Hero: kutu boşlukları + tamamen kapatma + split-left düzeltmesi (12.08.2026)
+
+**İstenen:** Kutucuk alt/üst padding ve margin ayarı · hero'yu tamamen kapatma ayarı.
+
+**Yapılan:**
+- **`enabled` (Hero'yu Göster)** — global (settings.json → hero.enabled, varsayılan `true`) + sayfa bazlı (hero.enabled `false` → o sayfada hero tamamen gizlenir, container display:none). Kapalıysa başlık/ikon/breadcrumb/çizgi dahil hiçbir şey render edilmez.
+- **Kutu Boşlukları** — global + sayfa bazlı 4 alan (rem): `boxPaddingTop`, `boxPaddingBottom` (üst/alt iç boşluk), `boxMarginTop`, `boxMarginBottom` (üst/alt dış boşluk). Boşsa CSS varsayılanı: padding 1.25rem, margin 0. Sayfa şemasında "Kutu Boşlukları" grubu, settings şemasında hero sonuna eklendi.
+- **Split düzeltmesi:** bilgisayar-laboratuvari.json'da `layout: "split"` (eski 2'li şema) kalmıştı → 8.7'nin 3'lü şemasına göre `split-left` yapıldı. (Yoksa `page-hero-layout-split` CSS'siz sınıfı üretip split stili uygulanmıyordu.)
+
+**Doğrulama (canlı 8124):**
+- Test: boxPaddingTop 2.5 / bottom 1 / marginTop 1.5 / bottom 0.5 → 40px / 16px / 24px / 8px uygulandı ✓
+- enabled=false → hero-container display:none, hero öğeleri tamamen yok ✓ (sonra geri alındı)
+- split-left: ikon x=30, metin x=114, breadcrumb x=402–707 aynı satır, kart 741px = container ✓
+- Manager: settings.json "Hero'yu Göster (Global)" + 4 boşluk alanı ✓ · bilgisayar-laboratuvari "Hero'yu Göster" + "Kutu Boşlukları" grubu (4 alan) ✓
+- Test verisi temizlendi; sayfa HEAD'ten geri yüklendi + layout split-left (kullanıcının ekran görüntüsündeki düzen)
+
+**Not:** 8124 v2 sunucusu şema değişikliği için yeniden başlatıldı. 8123 v1 ve 8124 v2 ayakta.
+
+### 8.9 Hero gizliyken üst boşluk + önizleme oturumu keşfi (12.08.2026)
+
+**Sorun:** "Hero'yu Göster" kapatılınca kutucuğun margin ayarları işe yaramıyor (kutucuk gizli olduğu için görünmez etki) ve menü ile içerik arasında nefes payı kalmıyor.
+
+**Kök neden — önizleme oturumu (önemli keşif):** manager `preview_session` çerezi koyar; bu çerezli tarayıcıda site `/data/*.json` isteklerine **diskteki dosyayı değil, manager'daki kaydedilmemiş önizleme verisini** servis eder (server.py 671-672, 710-713). Yani manager'da yaptığın düzenlemeler Kaydet'e basmasan bile sitede görünür. "Margin ayarlanamadı" hissinin sebebi: hero gizliyken margin, görünmeyen kutuya uygulanıyordu.
+
+**Yapılan:**
+- **`hiddenSpacing` (Gizliyken Üst Boşluk)** — global (settings.json) + sayfa (bilgisayar-laboratuvari): hero `enabled:false` iken menü ile içerik arasına bırakılacak boşluk (rem). Boşsa CSS varsayılanı **2rem**.
+- hero.js: gizliyken `display:none` yerine `<div class="hero-hidden-spacer">` render eder; yüksekliği hiddenSpacing'den gelir.
+- inner-pages.css: `.hero-hidden-spacer { height: 2rem; }`
+- Manager şemalarına "Gizliyken Üst Boşluk" alanı (number, rem).
+
+**Doğrulama (canlı 8124):**
+- hiddenSpacing boş → içerik header'dan 32px (2rem) aşağıda; 4rem → 64px ✓
+- Manager kaydetme akışı test edildi: "Üst Dış Boşluk" 1.5 girildi → JSON'a yazıldı → sitede 24px margin ✓ (sonra temizlendi)
+- Hero görünürken margin alanları çalışıyor ✓
+
+**Not:** Test kaydı manager'ın otomatik commit'iyle git'e girmişti (e9a054a, e3a1e89 — "İçerik güncellemesi"); çalışma kopyasından test değeri temizlendi, 1 satırlık diff kaldı (sonraki kayıtta kapanır). Geçmiş yeniden yazılmadı. 8123 v1 + 8124 v2 ayakta.
+
+### 8.10 Boşluk düzeltmesi tamamlama (12.08.2026)
+
+- **Sayfa JS düzeltmesi:** `bilgisayar-laboratuvari.js` → `setupHeroSection`, hero nesnesi yoksa `init`'i çağırmıyordu; artık `init(this.pageData.hero || null)` çağrılıyor. Böylece **hero nesnesi tamamen silinse bile** (enabled:false dışında) HeroManager gizli boşluğu render eder.
+- hero.js `init`: hero verisi yoksa da global `hiddenSpacing` ile spacer bırakır.
+- Global varsayılan `hiddenSpacing` artık **explicit 2** (2rem = 32px) — manager'da "Gizliyken Üst Boşluk" alanında görünür.
+- Doğrulama: hero nesnesi silindi → spacer 32px render edildi ✓ · geri yüklendi → hero görünür, spacer yok ✓
+- Özet mekanizma: hero gizliyken menü-altı boşluk = **"Gizliyken Üst Boşluk"** (rem) — sayfa veya global. 0 → içerik header'a yapışır, 2 → 32px, 4 → 64px.
+
+### 8.11 Doğrulama düzeltmesi: boş sayı alanları (12.08.2026)
+
+**Sorun:** Manager'da kaydetmede hata: `$.hero.boxPaddingTop: sayı olmalı` vb. — settings.json'daki boş string (`""`) değerler, şemadaki `number` tipi tarafından reddediliyordu.
+
+**Yapılan:** `manager-v2/validation.py` → `number` tipi için boş değer (`""` / `null`) artık "ayarlanmamış" kabul edilir (varsayılan kullanılır), hata değil. Dizi içindeki sayı öğeleri sıkı kalmaya devam eder.
+
+**Doğrulama:** `/api/validate` — settings.json ve bilgisayar-laboratuvari.json → 200, 0 hata ✓. v2 yeniden başlatıldı.
+
+### 8.12 Hero göster/gizle tutarlılığı (12.08.2026)
+
+**Sorun:** Global "Hero'yu Göster" ile sayfadaki "Hero'yu Göster" birbirini eziyor gibi görünüyordu. Kök neden: sayfadaki alan **checkbox**'tı — boşken (yani "global kullan" anlamındayken) işaretsiz görünüyor, kullanıcı "kapalı" sanıyordu. İşaretleyince global'i geçersiz kılan sayfa değeri yazılıyor, global kapalı olsa bile hero açılıyordu.
+
+**Yapılan:**
+- Sayfa şemasında "Hero'yu Göster" **checkbox → 3 durumlu select**: `"" Global'i Kullan (settings.json)` / `"true" Göster` / `"false" Gizle`. Boş = global geçerli artık açıkça seçenek olarak görünüyor.
+- hero.js `_resolveEnabled`: `""`/null → global (varsayılan true); `true/"true"` → açık; `false/"false"` → kapalı. Hem boolean hem string değerler çözülüyor.
+- Global "Hero'yu Göster (Global)" ipucu netleştirildi: "Sitenin anahtarı — sayfa boş bırakılırsa bu geçerli; sayfa kendi seçimini yaparsa o sayfada geçersiz kılar."
+
+**Semantik (doğrulandı):**
+- Global kapalı + sayfa boş → hero gizli ✓
+- Global açık + sayfa boş → hero görünür ✓
+- Global kapalı + sayfa "Göster" → o sayfada görünür (sayfa kazanır) ✓
+- Global açık + sayfa "Gizle" → o sayfada gizli (sayfa kazanır) ✓
+
+**Not:** Önizleme oturumu da araya girebilir — manager'da kaydedilmemiş eski düzenleme sitede görünmeye devam eder; "Kaydet ve Commit Et" ile temizlenir. v2 yeniden başlatıldı.
+
+### 8.13 Hero gizliyken TOC sayfalarında içerik menünün altına kaçıyordu (12.08.2026)
+
+**Sorun:** Hero global kapatılınca TOC'lu sayfalarda (mendeley-referans-yonetim-araci, makale-islem-ucretleri) içerik sabit menünün (0-80px) **altına kayıyordu** — sayfa başlangıcı menünün arkasında kalıyordu. "hem üstten boşluk hem menü altına kaçma" hissinin sebebi buydu.
+
+**Kök neden:** Çoğu sayfa `main.main-container` kullanır (CSS'te `margin-top: var(--header-height)` var → hero gizlense bile içerik menünün altında). Ama TOC sayfaları `div.page-container > main.main-content` yapısı kullanıyor ve bu yapıda **header offset margin'i yoktu** — offset'i hero'nun kendi margin'i sağlıyordu; hero gizlenince içerik yukarı fırlıyordu.
+
+**Yapılan:** `assets/css/pages/mendeley-referans-yonetim-araci.css` ve `makale-islem-ucretleri.css` → `.page-container`'e `margin-top: var(--header-height)` eklendi (main-container ile aynı davranış).
+
+**Doğrulama (canlı 8124, hero gizli):**
+- mendeley: pageContainer 112px'te (menü altı), içerik 136px — örtüşme yok ✓
+- makale: aynı ✓ · sss (arama): 32px boşluk, örtüşme yok ✓
+- Hero açıkken TOC sayfaları artık diğer sayfalarla tutarlı: hero → içerik 80px boşluk ✓
+- "Üstten boşluk" hissi = `Gizliyken Üst Boşluk` (varsayılan 2rem=32px) — istenirse 0 yapılabilir.
+
+### 8.14 TOC üst kısmı menü arkasında + gizliyken boşluk (12.08.2026)
+
+**Sorun:** (1) TOC'lu sayfalarda (mendeley, makale) TOC'nin üst kısmı görünmüyordu, (2) hero gizliyken menü ile içerik arasında fazla boşluk vardı (sss dahil).
+
+**Kök nedenler:**
+- **Desktop TOC sidebar** `position: fixed; top: 20px` ile yapışıyordu → 80px'lik sabit menünün ARKASINDA kalıyordu (başlık `<h3>` + ilk maddeler gizli).
+- **Mobil TOC çekmecesi** `top: 0` → açılınca başlığı menünün arkasında.
+- **Gizliyken Üst Boşluk** varsayılanı 2rem (32px) → menü ile içerik arasında görünen boşluk.
+
+**Yapılan:**
+- `hybrid-toc.css`: desktop sidebar varsayılan top → `calc(var(--header-height) + 20px)` (100px); mobil çekmece → `top: var(--header-height); height: calc(100vh - var(--header-height))`.
+- `hybrid-toc.js`: iki pozisyonlayıcıdaki sticky `20px` → `calc(var(--header-height) + 20px)`; minimum `20` → `100`.
+- `Gizliyken Üst Boşluk` varsayılanı **0** (global + CSS fallback) — içerik menünün hemen altından başlar; istenirse rem ile artırılır. Şema ipuçları güncellendi.
+
+**Doğrulama (canlı 8124, hero gizli):**
+- mendeley + makale: içerik 80px'te (menü altı, boşluk yok) ✓ · mobil çekmece 80'den açılıyor, başlık görünür ✓
+- sss: içerik 80px'te ✓
+- Desktop sidebar: kod seviyesinde doğrulandı (100px) — webview mobil genişlikte olduğundan masaüstünde görsel teyit kullanıcıdan.
+
+### 8.15 Diğer sayfalarda hero üzerine bindirme margin'leri (12.08.2026)
+
+**Sorun:** veritabanlari, arastirmaci-profili, uyelik-odunc, kime-sormaliyim sayfalarında da içerik menünün altına kaçıyordu.
+
+**Kök neden:** Bu sayfalarda içerik, hero bandının ÜZERİNE çekilecek şekilde **negatif margin** kullanıyordu:
+- `.databases-page .content-wrapper` → `margin-top: -5rem` (veritabanlari)
+- `.search-section` (arama kutusu bileşeni — sss, kime-sormaliyim) → `margin-top: -3rem` (mobil -2rem)
+
+Hero görünürken bu, "arama alanı hero'nun alt kısmına otursun" tasarımıydı. Hero GİZLİYKEN negatif margin içeriği sabit menünün ARKASINA (80px üstüne) çekiyordu.
+
+**Yapılan:** `inner-pages.css` — hero gizliyken (`body:not(:has(.page-hero))`) bu negatif margin'ler 0'a çekiliyor:
+```css
+body:not(:has(.page-hero)) .search-section,
+body:not(:has(.page-hero)) .databases-page .content-wrapper { margin-top: 0; }
+```
+Proje `:has()` kullanıyor (hybrid-toc + veritabanlari zaten), uyumlu.
+
+**Doğrulama (canlı 8124, hero gizli):**
+- veritabanlari: content-wrapper 112px (margin 0) ✓
+- sss: search-section 80px (margin 0) ✓ · kime-sormaliyim: 80px ✓
+- arastirmaci-profili + uyelik-odunc: içerik 80px, çekmece 80px ✓
+- Tümü menünün altında, örtüşme yok ✓
+
+### 8.16 Help Section — Hero ile aynı 3 katmanlı sistem (pilot: bilgisayar-laboratuvari)
+
+**İstenen:** Help section'ın hero gibi gizle/göster + renk ayarlarıyla zenginleştirilmesi.
+
+**Yapılan:**
+- `helpsection.js` → 3 katmanlı çözüm: **global (settings.json → help) > sayfa (helpSection override) > CSS varsayılanı**
+- Global bloğa eklendi: `enabled` + 5 renk (backgroundColor, borderColor, titleColor, textColor, iconColor) — boş = CSS varsayılanı
+- Sayfa şemasına eklendi: **"Yardım Bölümünü Göster"** 3 durumlu select (Global'i Kullan / Göster / Gizle) + "Renkler" grubu (5 renk) + global link butonu ("⚙ Global Ayarları Aç")
+- `bilgisayar-laboratuvari.js` düzeltildi: helpSection nesnesi silinse bile init çağrılıyor (hero'daki aynı hata)
+
+**Doğrulanan kombinasyonlar (canlı 8124):**
+| Global help | Sayfa | Sonuç |
+|---|---|---|
+| Açık | Boş | Görünür (CSS varsayılanı: mavi şerit #1F4C8A) ✓ |
+| Açık | "Gizle" | Gizli (sayfa kazanır) ✓ |
+| Kapalı | "Göster" | Görünür (sayfa kazanır) ✓ |
+| — | Renkler (#123456, #ffcc00, #fff, #ffaa00) | Hepsi uygulandı ✓ |
+
+**Not:** Hero'nun `enabled:false` ayarı (kullanıcı) duruyor; help global açık + sayfa boş → help görünüyor. Test verileri temizlendi.

@@ -3,10 +3,25 @@
    Hero ve Help Section stilleri
    ==================================== */
 
+/* Hero gizliyken bırakılan boşluk (hero.js enabled=false) — yükseklik rem ile ayarlanır.
+   Varsayılan 0: içerik sabit menünün hemen altından başlar (Gizliyken Üst Boşluk ile artırılabilir). */
+.hero-hidden-spacer {
+  height: 0;
+}
+
+/* ---- Hero gizliyken: hero üzerine bindirme amaçlı negatif margin'ler iptal edilir.
+   .search-section (arama kutuları) ve veritabanlari content-wrapper, hero görünürken
+   -3rem/-5rem ile hero bandının üzerine çekiliyordu; hero gizliyken bu onları sabit
+   menünün ALTINA sokuyordu. ---- */
+body:not(:has(.page-hero)) .search-section,
+body:not(:has(.page-hero)) .databases-page .content-wrapper {
+  margin-top: 0;
+}
+
 /* Page Hero - Card Elevated Style - Full Width (Footer gibi) */
 .page-hero {
   background: linear-gradient(135deg, var(--tertiary-color), var(--tertiary-dark));
-  padding: 1.5rem 0 2rem 0;
+  padding: 1.1rem 0 1.5rem 0;
   margin-bottom: 0;
   margin-top: var(--header-height);
   border-bottom: 3px solid var(--primary-color);
@@ -69,12 +84,169 @@
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
 
-/* Breadcrumb */
+/* ---- İkon konumu: üst (varsayılan) ---- */
+.page-hero-icon-top .page-hero-content {
+  text-align: center;
+}
+
+/* ---- İkon konumu: sol / sağ — metin ortada kalır, ikon yanındadır ----
+   Grid: 1fr | auto | 1fr — orta sütun (metin) her zaman sayfanın
+   tam ortasında; ikon sol sütunda metne yaslı, sağ sütunda metne
+   yaslı. Metin hizalaması ikon konumundan BAĞIMSIZDıR. */
+.page-hero-icon-left .page-hero-content,
+.page-hero-icon-right .page-hero-content {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  column-gap: 1.5rem;
+  max-width: min(880px, 100%);
+}
+
+.page-hero-icon-left .page-hero-icon {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: end;
+  margin-bottom: 0;
+}
+
+.page-hero-icon-right .page-hero-icon {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: start;
+  margin-bottom: 0;
+}
+
+.page-hero-icon-left .page-hero-text,
+.page-hero-icon-right .page-hero-text {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+}
+
+/* Mobilde sol/sağ ikon üste döner */
+@media (max-width: 768px) {
+  .page-hero-icon-left .page-hero-content,
+  .page-hero-icon-right .page-hero-content {
+    display: block;
+    text-align: center;
+  }
+
+  .page-hero-icon-left .page-hero-icon,
+  .page-hero-icon-right .page-hero-icon {
+    margin-bottom: 1rem;
+  }
+}
+
+/* ---- Yerleşim: split — metin/ikon bir yanda, breadcrumb aynı satırda öbür yanda.
+   Kart, header ile aynı genişlikte olur (container'ı doldurur).
+   split-left: metin solda / breadcrumb sağda · split-right: tam tersi ---- */
+.page-hero-layout-split-left .page-hero-content,
+.page-hero-layout-split-right .page-hero-content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 100%;
+  text-align: left;
+}
+
+.page-hero-layout-split-left .page-hero-icon,
+.page-hero-layout-split-right .page-hero-icon {
+  margin-bottom: 0;
+  flex: none;
+}
+
+.page-hero-layout-split-left .page-hero-text,
+.page-hero-layout-split-right .page-hero-text {
+  min-width: 0;
+}
+
+.page-hero-layout-split-left .page-hero-content .hero-breadcrumb,
+.page-hero-layout-split-right .page-hero-content .hero-breadcrumb {
+  flex: none;
+  max-width: 45%;
+  border-top: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* split-left: metin bloğu solda, breadcrumb sağa yaslı */
+.page-hero-layout-split-left .page-hero-text {
+  margin-right: auto;
+}
+
+.page-hero-layout-split-left .hero-breadcrumb .breadcrumb {
+  justify-content: flex-end;
+  border-top: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* split-right: breadcrumb solda (order -1), metin bloğu sağda */
+.page-hero-layout-split-right .hero-breadcrumb {
+  order: -1;
+}
+
+.page-hero-layout-split-right .page-hero-text {
+  margin-left: auto;
+  text-align: right;
+}
+
+.page-hero-layout-split-right .hero-breadcrumb .breadcrumb {
+  justify-content: flex-start;
+  border-top: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .page-hero-layout-split-left .page-hero-content,
+  .page-hero-layout-split-right .page-hero-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .page-hero-layout-split-left .page-hero-text,
+  .page-hero-layout-split-right .page-hero-text {
+    margin-right: 0;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .page-hero-layout-split-left .hero-breadcrumb,
+  .page-hero-layout-split-right .hero-breadcrumb {
+    order: 0;
+    max-width: 100%;
+    border-top: 1px dashed rgba(31, 76, 138, 0.18);
+    padding-top: 0.55rem;
+    margin-top: 0.5rem;
+  }
+
+  .page-hero-layout-split-left .hero-breadcrumb .breadcrumb,
+  .page-hero-layout-split-right .hero-breadcrumb .breadcrumb {
+    justify-content: center;
+    border-top: none;
+  }
+}
+
+/* Breadcrumb — hero kutusunun içinde, açıklamanın altında.
+   Sıkı tutulur ki kutu aşırı büyümesin: küçük font, dar boşluklar,
+   gerekirse satır kaydırma (wrap). */
 .breadcrumb {
   background: transparent;
-  padding: 0.5rem 0;
-  margin-bottom: 1rem;
-  font-size: 0.875rem;
+  padding: 0.55rem 0 0;
+  margin: 0.8rem 0 0;
+  font-size: 0.8125rem;
+  justify-content: center;
+  border-top: 1px dashed rgba(31, 76, 138, 0.18);
+  flex-wrap: wrap;
+  row-gap: 0.15rem;
+}
+
+.page-hero-content .hero-breadcrumb {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  max-width: 100%;
 }
 
 .breadcrumb-item {
@@ -84,7 +256,7 @@
 .breadcrumb-item + .breadcrumb-item::before {
   content: "›";
   color: rgba(255, 255, 255, 0.6);
-  padding: 0 0.5rem;
+  padding: 0 0.4rem;
 }
 
 .breadcrumb-item a {
@@ -123,7 +295,7 @@
 .page-hero-content {
   background: white;
   border-radius: 16px;
-  padding: 2rem 3rem;
+  padding: 1.25rem 2rem;
   max-width: fit-content;
   margin: 0 auto;
   box-shadow: 0 8px 24px rgba(0,0,0,0.12);
@@ -302,6 +474,12 @@ html[data-theme="dark"] .page-hero {
 
 html[data-theme="dark"] .page-hero-content {
   background: var(--bg-card-dark);
+}
+
+html[data-theme="dark"] .page-hero:not(.page-hero-bg) .breadcrumb-item,
+html[data-theme="dark"] .page-hero:not(.page-hero-bg) .breadcrumb-item a,
+html[data-theme="dark"] .page-hero:not(.page-hero-bg) .breadcrumb-item.active {
+  color: var(--primary-light);
 }
 
 html[data-theme="dark"] .page-title {

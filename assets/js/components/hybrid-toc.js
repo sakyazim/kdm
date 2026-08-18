@@ -191,12 +191,12 @@ export class HybridTOC {
 
       // Hero tamamen geçildiyse (scroll > hero bottom - header)
       if (scrollY > (this.heroTop + this.heroHeight - headerHeight)) {
-        // Sticky pozisyon - ekranın üstünden 20px
-        this.sidebar.style.top = '20px';
+        // Sticky pozisyon - sabit menünün ALTINDAN (header yüksekliği + 20px)
+        this.sidebar.style.top = 'calc(var(--header-height) + 20px)';
       } else {
         // Hero görünürken - page container ile aynı hizada
-        // Scroll'a göre pozisyonu ayarla
-        const newTop = Math.max(20, this.initialTocTop - scrollY);
+        // Scroll'a göre pozisyonu ayarla (min: header altı)
+        const newTop = Math.max(100, this.initialTocTop - scrollY);
         this.sidebar.style.top = `${newTop}px`;
       }
     };
@@ -409,12 +409,12 @@ export class HybridTOC {
     const heroBottom = heroContainer.getBoundingClientRect().bottom + scrollY;
     const pageTop = pageContainer.getBoundingClientRect().top + scrollY;
 
-    // Hero'nun altına geçtiyse TOC sticky olsun (top: 20px)
+    // Hero'nun altına geçtiyse TOC sticky olsun (sabit menünün altı)
     if (scrollY >= pageTop - 20) {
-      this.sidebar.style.top = '20px';
+      this.sidebar.style.top = 'calc(var(--header-height) + 20px)';
     } else {
-      // Hero görünürken TOC'u hero sonrasında tut
-      const tocTop = Math.max(pageTop - scrollY + 20, 20);
+      // Hero görünürken TOC'u hero sonrasında tut (min: header altı)
+      const tocTop = Math.max(pageTop - scrollY + 20, 100);
       this.sidebar.style.top = `${tocTop}px`;
     }
   }
