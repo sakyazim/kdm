@@ -39,7 +39,8 @@
     "iconColor": "#C03221",
     "showBreadcrumb": true,
     "borderColor": "#C03221",
-    "layout": "split-left"
+    "layout": "split-left",
+    "enabled": "true"
   },
   "content": [
     {
@@ -306,5 +307,5 @@
       "hizmetleri"
     ]
   },
-  "lastModified": "2026-08-18 10:33"
+  "lastModified": "2026-08-18 10:39"
 }
