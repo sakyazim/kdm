@@ -1110,3 +1110,23 @@ Proje `:has()` kullanıyor (hybrid-toc + veritabanlari zaten), uyumlu.
 - Şema API: sss/egitim/ill/mendeley'de hero 28 alan + help 10 alan ✓
 
 **Bekleyen:** organizasyon-semasi PDF'i (kullanıcı yüklemeli) · SEO zenginleştirme (sonraki adım)
+
+### 8.18 Çalışma Saatleri — Görsel Editör + 24 saat zorunlu
+
+**Yapılan:**
+- Manager'da saat girişleri artık 24 saat zorunlu (AM/PM yok): native input[type=time] yerine
+  otomatik ":" ekleyen metin kontrolü ("830" → "08:30", "25:99" → "23:59", blur'da tamamlama)
+- calisma-saatleri.json için **özel görsel editör** (schema.id="hours-editor"):
+  - Resmi Tatiller kartı (scheduleConfig.holidays — tarih ekle/sil)
+  - Her saat tablosu için kart: tablo başlığı TR/EN + satırlar
+  - Her satır: ad TR/EN, ikon, programlar (gün rozetleri + Hafta İçi/Cmt/Paz ön ayarları,
+    saat aralıkları + öğle arası için aralık ekle, 7/24 hızlı buton, "Kapalı" toggle)
+  - Tatil istisnaları (tarih + açık checkbox)
+  - Satır/program/istisna ekle-sil
+- Değişiklikler canlı önizlemeye anında yansıyor (markDirty → preview)
+
+**Doğrulama (canlı 8124):**
+- Editör açıldı: 3 tablo, 14 satır, 36 program, 44 saat alanı, 7 tatil, native time input 0 ✓
+- Saat girişi: "0730" → "07:30" ✓ · önizlemede anında göründü ("Pazartesi - Cuma 07:30 - 23:00 Açık") ✓
+- Kaydet ve Commit Et → diske yazıldı ✓ (test değeri geri alındı, dosya orijinal formata döndü)
+- Form/Ham JSON geçişi korundu (Ham JSON butonu aktif) ✓

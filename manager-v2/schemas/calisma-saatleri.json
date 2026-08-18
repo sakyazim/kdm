@@ -452,5 +452,6 @@
    "readonly": true,
    "hint": "🔒 Otomatik — kayıtta güncellenir"
   }
- ]
+ ],
+ "id": "hours-editor"
 }

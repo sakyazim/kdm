@@ -626,6 +626,14 @@ function renderEditor() {
       formArea.appendChild(renderModalBuilder(tab));
       return;
     }
+    if (tab.schema.id === "hours-editor") {
+      rawArea.classList.add("hidden");
+      formArea.classList.remove("hidden");
+      formArea.innerHTML = "";
+      tocBar.classList.add("hidden");
+      formArea.appendChild(renderHoursEditor(tab));
+      return;
+    }
     if (tab.schema.root === "array" && Array.isArray(tab.data)) {
       if (tab.schema.description) {
         const note = document.createElement("div");
@@ -1414,6 +1422,463 @@ function itemsEditorLang(m, idx, key, specs, addDefault, label, onDataAll) {
   }
   wrap.appendChild(cols);
   return wrap;
+}
+
+/* ---------- Çalışma Saatleri Görsel Editörü ---------- */
+
+// Hafta içi / Cmt / Paz standart gruplarının gün numaraları (0=Pazar)
+const HOURS_DAY_NAMES = ["Paz", "Pzt", "Sal", "Çar", "Per", "Cum", "Cmt"];
+const HOURS_GROUP_PRESETS = [
+  { label: "Hafta İçi", days: [1, 2, 3, 4, 5] },
+  { label: "Cumartesi", days: [6] },
+  { label: "Pazar", days: [0] },
+];
+
+function hoursTimeInput(value, onchange, placeholder) {
+  // 24 saat zorunlu (AM/PM yok) — native time input yerine metin kontrolü
+  const inp = document.createElement("input");
+  inp.type = "text";
+  inp.inputMode = "numeric";
+  inp.maxLength = 5;
+  inp.placeholder = placeholder || "08:30";
+  inp.value = value || "";
+  const normalize = (raw) => {
+    let d = raw.replace(/\D/g, "").slice(0, 4);
+    if (d.length === 3) return d[0] + ":" + d.slice(1);
+    if (d.length === 4) return d.slice(0, 2) + ":" + d.slice(2);
+    return d;
+  };
+  inp.addEventListener("input", () => {
+    inp.value = normalize(inp.value);
+    onchange(inp.value);
+  });
+  inp.addEventListener("blur", () => {
+    if (inp.value) {
+      const parts = inp.value.split(":");
+      let hh = (parts[0] || "").padStart(2, "0");
+      let mm = (parts[1] || "").padStart(2, "0");
+      hh = String(Math.min(parseInt(hh, 10) || 0, 23)).padStart(2, "0");
+      mm = String(Math.min(parseInt(mm, 10) || 0, 59)).padStart(2, "0");
+      inp.value = hh + ":" + mm;
+      onchange(inp.value);
+    }
+  });
+  return inp;
+}
+
+// Gün çoklu seçim rozetleri
+function hoursDayPicker(schedule, rerender) {
+  const wrap = document.createElement("div");
+  wrap.className = "he-days";
+  if (!Array.isArray(schedule.days)) schedule.days = [];
+  const toggle = (d) => {
+    const i = schedule.days.indexOf(d);
+    if (i >= 0) schedule.days.splice(i, 1);
+    else schedule.days.push(d);
+    schedule.days.sort((a, b) => a - b);
+    markDirty();
+    rerender();
+  };
+  HOURS_DAY_NAMES.forEach((name, d) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "he-day" + (schedule.days.includes(d) ? " on" : "");
+    b.textContent = name;
+    b.title = (d === 0 ? "Pazar" : d === 6 ? "Cumartesi" : HOURS_DAY_NAMES[d] + " (gün " + d + ")") + " — tıkla: aç/kapa";
+    b.addEventListener("click", () => toggle(d));
+    wrap.appendChild(b);
+  });
+  // Hızlı ön ayarlar
+  const presets = document.createElement("div");
+  presets.className = "he-day-presets";
+  HOURS_GROUP_PRESETS.forEach((p) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "he-day-preset";
+    b.textContent = p.label;
+    const same = p.days.length === schedule.days.length && p.days.every((d) => schedule.days.includes(d));
+    if (same) b.classList.add("on");
+    b.addEventListener("click", () => {
+      schedule.days = p.days.slice();
+      markDirty();
+      rerender();
+    });
+    presets.appendChild(b);
+  });
+  wrap.appendChild(presets);
+  return wrap;
+}
+
+// Bir saat aralığı (period) satırı: açılış - kapanış
+function hoursPeriodRow(period, rerender) {
+  const row = document.createElement("div");
+  row.className = "he-period";
+  const open = hoursTimeInput(period.open, (v) => { period.open = v; markDirty(); }, "08:00");
+  const close = hoursTimeInput(period.close, (v) => { period.close = v; markDirty(); }, "17:00");
+  const dash = document.createElement("span");
+  dash.className = "he-dash";
+  dash.textContent = "–";
+  const rm = document.createElement("button");
+  rm.type = "button";
+  rm.className = "btn tiny danger";
+  rm.textContent = "✕";
+  rm.title = "Bu aralığı sil";
+  rm.addEventListener("click", () => { /* üst katman silmeyi yönetir */ });
+  row.appendChild(open);
+  row.appendChild(dash);
+  row.appendChild(close);
+  row.appendChild(rm);
+  return { row, open, close, rm };
+}
+
+// Bir zaman programı (schedule) kartı
+function hoursScheduleCard(schedule, rerender) {
+  const card = document.createElement("div");
+  card.className = "he-schedule";
+
+  const head = document.createElement("div");
+  head.className = "he-schedule-head";
+  const lbl = document.createElement("span");
+  lbl.className = "he-schedule-label";
+  lbl.textContent = "🕐 Program";
+  head.appendChild(lbl);
+
+  const closedWrap = document.createElement("label");
+  closedWrap.className = "he-closed";
+  const closedChk = document.createElement("input");
+  closedChk.type = "checkbox";
+  closedChk.checked = !!schedule.closed;
+  closedChk.title = "Kapalı (tüm gün)";
+  closedChk.addEventListener("change", () => {
+    schedule.closed = closedChk.checked;
+    if (closedChk.checked) delete schedule.periods;
+    else if (!Array.isArray(schedule.periods)) schedule.periods = [{ open: "08:00", close: "17:00" }];
+    markDirty();
+    rerender();
+  });
+  closedWrap.appendChild(closedChk);
+  const closedTxt = document.createElement("span");
+  closedTxt.textContent = "Kapalı (tüm gün)";
+  closedWrap.appendChild(closedTxt);
+  head.appendChild(closedWrap);
+  card.appendChild(head);
+
+  // Günler
+  card.appendChild(hoursDayPicker(schedule, rerender));
+
+  // Saat aralıkları
+  if (!Array.isArray(schedule.periods)) schedule.periods = [];
+  const periodsBox = document.createElement("div");
+  periodsBox.className = "he-periods";
+  const renderPeriods = () => {
+    periodsBox.innerHTML = "";
+    schedule.periods.forEach((p, pi) => {
+      const pr = hoursPeriodRow(p, rerender);
+      pr.rm.addEventListener("click", () => {
+        schedule.periods.splice(pi, 1);
+        if (!schedule.periods.length) schedule.periods.push({ open: "08:00", close: "17:00" });
+        markDirty();
+        rerender();
+      });
+      periodsBox.appendChild(pr.row);
+    });
+    const add = document.createElement("button");
+    add.type = "button";
+    add.className = "btn tiny";
+    add.textContent = "+ Aralık Ekle (öğle arası için)";
+    add.title = "İki aralık arasındaki boşluk öğle arası sayılır";
+    add.addEventListener("click", () => {
+      schedule.periods.push({ open: "12:00", close: "13:00" });
+      markDirty();
+      rerender();
+    });
+    periodsBox.appendChild(add);
+  };
+  renderPeriods();
+  card.appendChild(periodsBox);
+
+  // 7/24 hızlı buton
+  const q = document.createElement("button");
+  q.type = "button";
+  q.className = "btn tiny he-q24";
+  q.textContent = "7/24";
+  q.title = "00:00 – 23:59 (kesintisiz)";
+  q.addEventListener("click", () => {
+    schedule.closed = false;
+    schedule.periods = [{ open: "00:00", close: "23:59" }];
+    markDirty();
+    rerender();
+  });
+  periodsBox.appendChild(q);
+
+  return card;
+}
+
+// Bir satır (bölüm) kartı — ad + ikon + programlar + tatil istisnaları
+function hoursRowCard(row, rerender) {
+  const card = document.createElement("div");
+  card.className = "he-row";
+
+  const head = document.createElement("div");
+  head.className = "he-row-head";
+  const nameTr = document.createElement("input");
+  nameTr.type = "text";
+  nameTr.className = "he-row-name";
+  nameTr.value = (row.name && row.name.tr) || "";
+  nameTr.placeholder = "Bölüm adı (TR)";
+  nameTr.addEventListener("input", () => { if (!row.name) row.name = {}; row.name.tr = nameTr.value; markDirty(); });
+  const nameEn = document.createElement("input");
+  nameEn.type = "text";
+  nameEn.className = "he-row-name en";
+  nameEn.value = (row.name && row.name.en) || "";
+  nameEn.placeholder = "Name (EN)";
+  nameEn.addEventListener("input", () => { if (!row.name) row.name = {}; row.name.en = nameEn.value; markDirty(); });
+  head.appendChild(nameTr);
+  head.appendChild(nameEn);
+
+  const icon = document.createElement("input");
+  icon.type = "text";
+  icon.className = "he-row-icon";
+  icon.value = row.icon || "";
+  icon.placeholder = "ikon sınıfı (örn. bi bi-book)";
+  icon.title = "Bootstrap ikon sınıfı";
+  icon.addEventListener("input", () => { row.icon = icon.value; markDirty(); });
+  head.appendChild(icon);
+  card.appendChild(head);
+
+  // Programlar
+  if (!Array.isArray(row.schedules)) row.schedules = [];
+  const schedBox = document.createElement("div");
+  schedBox.className = "he-schedules";
+  row.schedules.forEach((s) => schedBox.appendChild(hoursScheduleCard(s, rerender)));
+  const addSched = document.createElement("button");
+  addSched.type = "button";
+  addSched.className = "btn tiny";
+  addSched.textContent = "+ Program Ekle";
+  addSched.addEventListener("click", () => {
+    row.schedules.push({ days: [1, 2, 3, 4, 5], periods: [{ open: "08:00", close: "17:00" }] });
+    markDirty();
+    rerender();
+  });
+  schedBox.appendChild(addSched);
+  card.appendChild(schedBox);
+
+  // Tatil istisnaları
+  if (!Array.isArray(row.exceptions)) row.exceptions = [];
+  const excBox = document.createElement("div");
+  excBox.className = "he-exceptions";
+  const excHead = document.createElement("div");
+  excHead.className = "he-exc-head";
+  excHead.textContent = "🏖 Tatil İstisnaları (resmi tatilde bu bölüm açık kalsın)";
+  excBox.appendChild(excHead);
+  row.exceptions.forEach((ex, xi) => {
+    const er = document.createElement("div");
+    er.className = "he-exc";
+    const date = document.createElement("input");
+    date.type = "date";
+    date.value = ex.date || "";
+    date.addEventListener("change", () => { ex.date = date.value; markDirty(); });
+    const open = document.createElement("label");
+    open.className = "he-closed small";
+    const chk = document.createElement("input");
+    chk.type = "checkbox";
+    chk.checked = ex.open !== false;
+    chk.addEventListener("change", () => { ex.open = chk.checked; markDirty(); });
+    open.appendChild(chk);
+    open.appendChild(document.createTextNode("açık"));
+    const rm = document.createElement("button");
+    rm.type = "button";
+    rm.className = "btn tiny danger";
+    rm.textContent = "✕";
+    rm.addEventListener("click", () => { row.exceptions.splice(xi, 1); markDirty(); rerender(); });
+    er.appendChild(date);
+    er.appendChild(open);
+    er.appendChild(rm);
+    excBox.appendChild(er);
+  });
+  const addExc = document.createElement("button");
+  addExc.type = "button";
+  addExc.className = "btn tiny";
+  addExc.textContent = "+ İstisna Ekle";
+  addExc.addEventListener("click", () => {
+    row.exceptions.push({ date: "2026-01-01", open: true });
+    markDirty();
+    rerender();
+  });
+  excBox.appendChild(addExc);
+  card.appendChild(excBox);
+
+  return card;
+}
+
+// Bir hours-table component'i için kart
+function hoursTableCard(ht, rerender) {
+  const card = document.createElement("div");
+  card.className = "he-table";
+  const d = ht.data || {};
+
+  const head = document.createElement("div");
+  head.className = "he-table-head";
+  const title = document.createElement("input");
+  title.type = "text";
+  title.className = "he-table-title";
+  title.value = (d.title && d.title.tr) || "";
+  title.placeholder = "Tablo başlığı (TR)";
+  title.addEventListener("input", () => { if (!d.title) d.title = {}; d.title.tr = title.value; markDirty(); });
+  const titleEn = document.createElement("input");
+  titleEn.type = "text";
+  titleEn.className = "he-table-title en";
+  titleEn.value = (d.title && d.title.en) || "";
+  titleEn.placeholder = "Table title (EN)";
+  titleEn.addEventListener("input", () => { if (!d.title) d.title = {}; d.title.en = titleEn.value; markDirty(); });
+  head.appendChild(title);
+  head.appendChild(titleEn);
+  card.appendChild(head);
+
+  const hint = document.createElement("p");
+  hint.className = "he-hint";
+  hint.textContent = "Satırlar: bölüm/gün adı + programları. Sütun yapısı (Gün/Saat/Durum) ve sıralama alttaki 'Sütunlar' bölümünde değil, tablo render'ında otomatik belirlenir.";
+  card.appendChild(hint);
+
+  if (!Array.isArray(d.rows)) d.rows = [];
+  const rowsBox = document.createElement("div");
+  rowsBox.className = "he-rows";
+  d.rows.forEach((row) => {
+    const rc = hoursRowCard(row, rerender);
+    const del = document.createElement("button");
+    del.type = "button";
+    del.className = "btn tiny danger he-del-row";
+    del.textContent = "🗑 Satırı Sil";
+    del.addEventListener("click", () => {
+      if (confirm("Bu satır silinsin mi?")) {
+        d.rows.splice(d.rows.indexOf(row), 1);
+        markDirty();
+        rerender();
+      }
+    });
+    rc.appendChild(del);
+    rowsBox.appendChild(rc);
+  });
+  const addRow = document.createElement("button");
+  addRow.type = "button";
+  addRow.className = "btn";
+  addRow.textContent = "+ Satır Ekle";
+  addRow.addEventListener("click", () => {
+    d.rows.push({
+      name: { tr: "Yeni Bölüm", en: "New Section" },
+      icon: "bi bi-building",
+      schedules: [{ days: [1, 2, 3, 4, 5], periods: [{ open: "08:00", close: "17:00" }] }],
+    });
+    markDirty();
+    rerender();
+  });
+  rowsBox.appendChild(addRow);
+  card.appendChild(rowsBox);
+
+  return card;
+}
+
+// Resmi tatiller bölümü (scheduleConfig.holidays)
+function hoursHolidaysCard(holidays, rerender) {
+  const card = document.createElement("div");
+  card.className = "he-table he-holidays";
+  const head = document.createElement("div");
+  head.className = "he-table-head";
+  const t = document.createElement("h4");
+  t.textContent = "🎌 Resmi Tatiller (tüm sayfa)";
+  head.appendChild(t);
+  card.appendChild(head);
+  const hint = document.createElement("p");
+  hint.className = "he-hint";
+  hint.textContent = "Bu tarihlerde tüm tablolar kapalı sayılır; bölüm bazlı 'Tatil İstisnası' eklenen satırlar açık kalır.";
+  card.appendChild(hint);
+  const list = document.createElement("div");
+  list.className = "he-holiday-list";
+  holidays.forEach((h, i) => {
+    const row = document.createElement("div");
+    row.className = "he-holiday";
+    const inp = document.createElement("input");
+    inp.type = "date";
+    inp.value = h;
+    inp.addEventListener("change", () => { holidays[i] = inp.value; markDirty(); });
+    const rm = document.createElement("button");
+    rm.type = "button";
+    rm.className = "btn tiny danger";
+    rm.textContent = "✕";
+    rm.addEventListener("click", () => { holidays.splice(i, 1); markDirty(); rerender(); });
+    row.appendChild(inp);
+    row.appendChild(rm);
+    list.appendChild(row);
+  });
+  const add = document.createElement("button");
+  add.type = "button";
+  add.className = "btn tiny";
+  add.textContent = "+ Tatil Ekle";
+  add.addEventListener("click", () => {
+    holidays.push("2026-01-01");
+    markDirty();
+    rerender();
+  });
+  list.appendChild(add);
+  card.appendChild(list);
+  return card;
+}
+
+function renderHoursEditor(tab) {
+  const root = document.createElement("div");
+  root.className = "hours-editor";
+  const data = tab.data;
+
+  const rerender = () => {
+    const formArea = $("formArea");
+    formArea.innerHTML = "";
+    formArea.appendChild(renderHoursEditor(tab));
+  };
+
+  const head = document.createElement("div");
+  head.className = "he-head";
+  const h = document.createElement("h3");
+  h.textContent = "🗓 Çalışma Saatleri Editörü";
+  const sub = document.createElement("p");
+  sub.className = "he-sub";
+  sub.textContent = "Görsel düzenleyici: bölümleri ve gün gruplarını tablo kartlarıyla yönet. Tüm saatler 24 saat formatında (AM/PM yok). Değişiklikler canlı önizlemeye anında yansır.";
+  head.appendChild(h);
+  head.appendChild(sub);
+  root.appendChild(head);
+
+  // scheduleConfig
+  if (!data.scheduleConfig) data.scheduleConfig = {};
+  if (!Array.isArray(data.scheduleConfig.holidays)) data.scheduleConfig.holidays = [];
+  root.appendChild(hoursHolidaysCard(data.scheduleConfig.holidays, rerender));
+
+  // content içindeki hours-table component'lerini bul
+  let tableCount = 0;
+  const tables = [];
+  (data.content || []).forEach((sec) => {
+    (sec.components || []).forEach((comp) => {
+      if (comp.type === "hours-table") {
+        if (!comp.data) comp.data = {};
+        tables.push(comp.data);
+      }
+    });
+  });
+  if (!tables.length) {
+    const none = document.createElement("p");
+    none.className = "he-hint";
+    none.textContent = "⚠ content içinde hours-table component'i bulunamadı. Ham JSON'dan ekleyebilir veya 'Sayfa Bölümleri' bölümünü kullanabilirsiniz.";
+    root.appendChild(none);
+    return root;
+  }
+  tables.forEach((ht) => {
+    tableCount++;
+    root.appendChild(hoursTableCard({ data: ht }, rerender));
+  });
+  const tnote = document.createElement("p");
+  tnote.className = "he-hint";
+  tnote.textContent = tableCount + " saat tablosu düzenleniyor. Başlıklar, sütunlar ve diğer bölümler (hero, yardım, SEO) için 'Form Görünümü'ne geçebilirsiniz.";
+  root.appendChild(tnote);
+
+  return root;
 }
 
 /* ---------- Modal Üretici ---------- */
