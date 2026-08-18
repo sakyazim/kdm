@@ -40,7 +40,7 @@
     "showBreadcrumb": true,
     "borderColor": "#C03221",
     "layout": "split-left",
-    "enabled": "false"
+    "enabled": "true"
   },
   "content": [
     {
@@ -307,5 +307,5 @@
       "hizmetleri"
     ]
   },
-  "lastModified": "2026-08-18 10:40"
+  "lastModified": "2026-08-18 10:41"
 }
