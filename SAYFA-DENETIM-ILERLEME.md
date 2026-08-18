@@ -1,4 +1,4 @@
-# Sayfa Denetim İlerleme Takibi
+﻿# Sayfa Denetim İlerleme Takibi
 
 Her sayfa iki aşamada denetlenir: **(1) Önyüz → JSON → render kodu** uyuşmazlık analizi, **(2) Bulguları düzeltme + canlı doğrulama**. Bu dosya ilerlemeyi ve anasayfadan çıkarılan dersleri tutar — yeni sayfaya geçerken **önce "İlk Bakışta Kontrol Listesi"ni** uygula, tekrar tekrar aynı hataları arama.
 
@@ -54,7 +54,7 @@ Anasayfada çıkan sorunların tekrarını önlemek için her sayfaya geçerken 
 - [ ] `enabled: false` yapınca section gerçekten gizleniyor mu? (home.js `applySectionVisibility` örneği)
 
 ### 3. Manager / şema
-- [ ] Dosyanın elle şeması var mı? (`manager-v2/schemas/`) — yoksa otomatik şemaya düşer, etiketler İngilizce kalır
+- [ ] Dosyanın elle şeması var mı? (`manager/schemas/`) — yoksa otomatik şemaya düşer, etiketler İngilizce kalır
 - [ ] `{tr,en}` içeren karma nesneler (`viewAllButton` gibi) yapılandırılmış alanlara açılıyor mu? (derinlik >2 olanlar `raw`'a düşebilir)
 - [ ] `lastModified` alanı varsa kayıtta otomatik güncelleniyor mu? (Türkiye saati 24s)
 - [ ] Bileşen tipleri şema kayıt defterinde tanımlı mı? (step-guide, collapsible-section, icon-list-grid, contact-buttons, note → **eksik, bilinen hata**)
@@ -212,7 +212,7 @@ Anasayfada çıkan sorunların tekrarını önlemek için her sayfaya geçerken 
 2. **url '#' olan 5 duyuruya (#1,4,5,7,8) `actionType: 'modal'` eklendi** — davranış netleşti (gizli fallback yerine açık niyet).
 3. **Buton metinleri sabitti** — "Detayları Gör"/"Kapat"/"Sayfaya Git" TR'ye kilitliydi. → `Utils.getLocalizedText({tr,en})` ile çevirilebilir yapıldı (EN testi: "View Details" ✓).
 4. **Manager'da "Data (code)" alanları** — kök neden: `search-with-controls` bileşeni şema kayıt defterinde yoktu → otomatik şema data'yı ham JSON textarea'ya düşürüyordu. → `_components.json`'a eksiksiz şema eklendi (Arama İkonu, Yer Tutucu, Sıralama, Görünüm, Kategoriler, Sonuç Yok) — 0 raw alan kaldı.
-5. **Elle şema yazıldı** (`manager-v2/schemas/duyurular.json`) — otomatik şemanın İngilizce etiketleri yerine Türkçe, kilitli id, select'ler (kategori, actionType, stil), tarih/renk alanları.
+5. **Elle şema yazıldı** (`manager/schemas/duyurular.json`) — otomatik şemanın İngilizce etiketleri yerine Türkçe, kilitli id, select'ler (kategori, actionType, stil), tarih/renk alanları.
 6. **`modalId` int'ten string'e** (#3) — şema metin bekliyordu; veri tutarlı hale getirildi.
 
 ### MD kural taraması (hepsi temiz)
@@ -438,7 +438,7 @@ Builder'da **4 blok** olarak tanınıyor (Başlık / Görsel / Paragraf / Buton)
 
 ### 2. Her sayfa için elle şema zorunlu
 - Otomatik şema: ham anahtar adlarını gösterir, ikon galerisi/görsel seçtirici ÇALIŞMAZ, derin {tr,en} alanlar raw'a düşer.
-- Şema dosyası: `manager-v2/schemas/<dosya-adı>.json` → `file` alanı JSON yolunu gösterir.
+- Şema dosyası: `manager/schemas/<dosya-adı>.json` → `file` alanı JSON yolunu gösterir.
 
 ### 3. İkon alanları: `type: "icon"`
 - Her ikon alanı şemada `type: "icon"` olmalı → Galeri butonu gelir (FA + Bootstrap, 327 ikon).
@@ -525,7 +525,7 @@ Builder'da **4 blok** olarak tanınıyor (Başlık / Görsel / Paragraf / Buton)
 3. **hero.icon + showIcon eklendi** — Hero ikonu `bi bi-cash-coin` + `showIcon: true`. **hero.js güncellendi:** `showIcon`/`showBreadcrumb` artık sayfa verisinden okunabiliyor (yoksa config default'u kullanılır) — bu sayfa ve ileride başka sayfalar kullanabilir. Canlı: hero başlığının yanında ikon görünüyor ✓
 4. **meta.en dolduruldu** — title.en "Article Processing Charges (APC)", description.en İngilizce. Canlı: EN'de document.title + meta açıklama İngilizce ✓
 5. **Tüm içerik `{tr,en}` yapıldı** — hero, generalInfo (intro + 3 infoBox + description), requirements (4 şart), 6 yayıncının tamamı (açıklama, rozetler, uyarılar, infoBox'lar, guidelines, kaynak başlıkları/açıklamaları), tokenInfo etiketleri, iletişim, helpSection (başlık/açıklama/3 buton). Yayıncı adları, isimler, e-postalar, url'ler, ikonlar, emoji'ler str kaldı (çevrilmez). **JS güncellendi:** render fonksiyonları getLocalizedText sarmalandı (badges, warnings title/items, tokenInfo label, resource title, başlıklar). Canlı EN testi: rozetler "Free / Free for Hybrid Journals", uyarılar "Important Limitations", şartlar "Corresponding Author:", tokenlar "Remaining Token Count / 2025 Country Quota", helpSection "Call Now / Send Email / Home" ✓ — hiçbir yerde `[object Object]` yok ✓
-6. **Elle şema oluşturuldu** — `manager-v2/schemas/makale-islem-ucretleri.json`: hero (icon galerisi + showIcon), TOC (9 başlık, emoji alanı), genel bilgi (infoBox listesi), şartlar, yayıncı kartları (badges type select free/discount/warning, tokenInfo sayı, warnings maddeleri TR/EN ikili, guidelines, resources), iletişim (kişi listesi), yardım bölümü, SEO Bilgileri, son güncelleme 🔒. Canlı: manager'da Türkçe bölüm etiketleri + ikon galerileri ✓
+6. **Elle şema oluşturuldu** — `manager/schemas/makale-islem-ucretleri.json`: hero (icon galerisi + showIcon), TOC (9 başlık, emoji alanı), genel bilgi (infoBox listesi), şartlar, yayıncı kartları (badges type select free/discount/warning, tokenInfo sayı, warnings maddeleri TR/EN ikili, guidelines, resources), iletişim (kişi listesi), yardım bölümü, SEO Bilgileri, son güncelleme 🔒. Canlı: manager'da Türkçe bölüm etiketleri + ikon galerileri ✓
 
 ### Temiz çıkanlar
 - Mojibake / HTML sızıntısı / `---` / " - Copy" kalıntısı yok ✓ · TOC anchor ↔ bölüm id birebir eşleşiyor ✓ · **4/4 dış link canlı (200)** ✓ · lastModified güncel ✓ · helpSection 3 buton (iletişim kuralı) ✓
@@ -544,7 +544,7 @@ Builder'da **4 blok** olarak tanınıyor (Başlık / Görsel / Paragraf / Buton)
 2. **Resources bölüm başlığı düzeltildi** — `" Kaynaklar ve Yardım Materyalleri"` (başta çift boşluk, emoji yok) → `"📚 Kaynaklar ve Yardım Materyalleri"` (diğer 5 bölümle tutarlı emoji).
 3. **meta.en dolduruldu** — title.en "Mendeley Reference Management Tool", description.en İngilizce. Canlı: EN'de document.title EN ✓
 4. **Tüm içerik `{tr,en}` yapıldı** — hero (başlık/açıklama/breadcrumb), 6 bölüm başlığı, lead/text, 10 özellik, infoBox'lar, 5 adım, CTA (başlık + 2 buton), uyarılar, avantajlar (başlık + 5 madde), 6 kaynağın başlık/açıklama/not, helpSection (3 buton). Alert metinleri (yer tutucu uyarıları) bilinçli sabit str kaldı. **JS güncellendi:** section.title, feature.title, infoBox.title, step.title, cta.title, cta buton metinleri, warning.title, benefits.title/items, resource.title getLocalizedText ile sarıldı. Canlı EN testi: "Automatic Citation", "Create an Account", "Get Started Now!", "Sign Up for Mendeley", "Special Benefit for Alumni", "Unlimited private group creation", "Available in our library resources" ✓ — `[object Object]` yok ✓
-5. **Elle şema oluşturuldu** — `manager-v2/schemas/mendeley-referans-yonetim-araci.json`: hero (showIcon), TOC, **Sayfa Bölümleri (6)** — content içinde bölüm tipine göre tüm alanlar (lead/text/features/infoBoxes/steps/cta+warnings/benefits/resources), disabled + alert alanları, helpSection, SEO Bilgileri, son güncelleme 🔒. Canlı: manager'da "şema tabanlı düzenleme" + ikon galerileri ✓
+5. **Elle şema oluşturuldu** — `manager/schemas/mendeley-referans-yonetim-araci.json`: hero (showIcon), TOC, **Sayfa Bölümleri (6)** — content içinde bölüm tipine göre tüm alanlar (lead/text/features/infoBoxes/steps/cta+warnings/benefits/resources), disabled + alert alanları, helpSection, SEO Bilgileri, son güncelleme 🔒. Canlı: manager'da "şema tabanlı düzenleme" + ikon galerileri ✓
 
 ### Bonus
 - **hero.showIcon açıldı** (`fas fa-quote-right`) — makale sayfasıyla tutarlı. Canlı: hero başlığının yanında ikon ✓
@@ -564,7 +564,7 @@ Builder'da **4 blok** olarak tanınıyor (Başlık / Görsel / Paragraf / Buton)
 ## 👤 arastirmaci-profili-olusturma — denetim tamamlandı (2026-08-15) ✅
 
 ### Yapılanlar (7 bulgu — hepsi uygulandı, canlı test edildi)
-1. **Elle şema + 15 doğrulama hatası kapatıldı** — `manager-v2/schemas/arastirmaci-profili-olusturma.json`: hero (showIcon), grouped TOC, quickNav, benefits, basicSteps, tips, **Özet Tablo (headers + nested rows)**, **Platform Bölümleri** (orcid/wos/scopus/googleScholar — her biri id/platformClass/icon/title/subtitle/content/infoBoxes/warnings/benefits/steps + step içinde infoBoxes/warnings), iletişim, yardım, SEO. Doğrula: **hata 0** ✓ (15 → 0).
+1. **Elle şema + 15 doğrulama hatası kapatıldı** — `manager/schemas/arastirmaci-profili-olusturma.json`: hero (showIcon), grouped TOC, quickNav, benefits, basicSteps, tips, **Özet Tablo (headers + nested rows)**, **Platform Bölümleri** (orcid/wos/scopus/googleScholar — her biri id/platformClass/icon/title/subtitle/content/infoBoxes/warnings/benefits/steps + step içinde infoBoxes/warnings), iletişim, yardım, SEO. Doğrula: **hata 0** ✓ (15 → 0).
 2. **meta.en dolduruldu** + **hero.showIcon açıldı** (`fas fa-user-graduate`).
 3. **Tüm içerik `{tr,en}`** — hero, breadcrumb, benefits (4), basicSteps (4 platform + 17 adım), tips (4), **comparison tablosu (5 sütun başlığı + 20 hücre)** — burada iç içe liste dönüşümü özel işlendi, platforms (18 bölüm: başlık/alt başlık/içerik/adımlar/infoBox'lar/uyarılar/avantajlar), contact, helpSection (3 buton), quickNav (başlık + 5 grup + 23 öğe — iletisim dahil).
 4. **basicSteps ham URL'leri markdown link yapıldı** — "https://orcid.org/register adresine gidin" → "[orcid.org/register](https://orcid.org/register) adresine gidin" (2 adım) + render mdToHtml'den geçiyor. Canlı: TR'de de EN'de de tıklanabilir link ✓
@@ -593,7 +593,7 @@ Builder'da **4 blok** olarak tanınıyor (Başlık / Görsel / Paragraf / Buton)
 1. **meta.en dolduruldu** — title: "Computer Laboratory", description: "Anadolu University Library - Computer Laboratory". EN modda `document.title` + meta açıklama artık İngilizce ✓
 2. **hero.showIcon açıldı** — `fas fa-laptop` ikonu hero'da görünüyor (diğer denetlenen sayfalarla tutarlı) ✓
 3. **Hreflang çift seti temizlendi** — bu sayfada kdm + kutuphane domain seti yineleniyordu (6 satır), diğer 46 sayfada yalnız kdm (3 satır). Kutuphane seti kaldırıldı → 3 satır ✓
-4. **Elle şema oluşturuldu** — `manager-v2/schemas/bilgisayar-laboratuvari.json`: hero (Başlık/Açıklama/İkon galerisi/İkonu Göster/Breadcrumb), Sayfa Bölümleri (content registry — `registry: "components"`, Bölüm Kimliği 🔒), Yardım Bölümü (3 buton + ikon galerileri), SEO Bilgileri, Son Güncelleme 🔒. Doğrula: **hata 0** ✓
+4. **Elle şema oluşturuldu** — `manager/schemas/bilgisayar-laboratuvari.json`: hero (Başlık/Açıklama/İkon galerisi/İkonu Göster/Breadcrumb), Sayfa Bölümleri (content registry — `registry: "components"`, Bölüm Kimliği 🔒), Yardım Bölümü (3 buton + ikon galerileri), SEO Bilgileri, Son Güncelleme 🔒. Doğrula: **hata 0** ✓
 
 ### Content-registry sayfası — temiz çıkanlar
 - Tüm içerik zaten `{tr,en}` (başlık/info-box/ikon listeleri/uyarı) — EN modda her şey İngilizce render, `[object Object]` yok ✓
@@ -792,7 +792,7 @@ Kullanıcı isteği: "calisma-saatleri dışındaki sayfalarda saat gösteren t�
 - **Menü başlığı dönüşümü:** BÜYÜK HARF menü başlıkları breadcrumb'da başlık biçimine çevrilir (Türkçe yerel ayar: I→ı, i→İ; APC/ILL/SSS gibi 2-3 harfli kısaltmalar korunur; tireli kelimeler korunur).
 - **hero.js:** settings.json + header.json bir kez yüklenir (önbellek), mergeConfig global>sayfa birleştirir, renkler inline style, ikon konumu CSS sınıfı (top/left/right + mobilde üste döner).
 - **CSS:** inner-pages.css'e .page-hero-icon-left/right (flex satır, ikon yanında) + mobil düşüşü eklendi.
-- **settings.json şeması:** manager-v2/schemas/settings.json oluşturuldu (9 hero alanı + tüm diğer bloklar düzenlenebilir, lastModified kilitli).
+- **settings.json şeması:** manager/schemas/settings.json oluşturuldu (9 hero alanı + tüm diğer bloklar düzenlenebilir, lastModified kilitli).
 - **Doğrulama:** TR + EN canlı (auto: "Ana Sayfa > Araştırma > Bilgisayar Laboratuvarı" / "Home > Research > Computer Laboratory"; manual: "Ana Sayfa > Hizmetler > ..."; hidden: yok) ✓ · sayfa override (iconPosition left/right, renkler) ✓ · global renkler uygulanıyor (#e6f2fb arka plan) ✓ · şema doğrulama 0 hata ✓ · manager render 13 hero alanı + settings 9 hero alanı ✓
 - **Ders:** Sitede settings.json hiç yüklenmiyormuş — HeroManager kendi fetch'i ile yükledi (önbellekli). Breadcrumb'ı her sayfaya elle doldurmak yerine menüden otomatik türetmek daha sürdürülebilir; elle dizi yalnızca istisna sayfalarda.
 - **Kural:** Yeni bir hero alanı eklenecekse 3 yere birlikte dokun: settings.json (global default) → sayfa şeması (override) → hero.js render (fallback zinciri).
@@ -833,10 +833,10 @@ Kullanıcı kararı: **hero pilotu (3 katmanlı sistem + 8 maddelik geliştirmel
 **Geri alınanlar:**
 - `assets/js/components/hero.js` → orijinal commit haline döndürüldü (git restore)
 - `data/global/settings.json` → hero bloğu kaldırıldı (orijinal hal)
-- `manager-v2/schemas/settings.json` → silindi (sadece hero global içindi)
-- `manager-v2/schemas/bilgisayar-laboratuvari.json` → hero/helpSection/meta standart kalıba döndü (diğer sayfalardaki gibi: hero = başlık/açıklama/ikon/showIcon/breadcrumb; helpSection = icon/text/link; meta = title/description)
-- `manager-v2/ui/assets/app.js` → `group`, `globallink`, `visibleWhen`, renk ✕ sıfırla kodları çıkarıldı (orijinal davranış)
-- `manager-v2/ui/assets/style.css` → bu özelliklerin stilleri kaldırıldı
+- `manager/schemas/settings.json` → silindi (sadece hero global içindi)
+- `manager/schemas/bilgisayar-laboratuvari.json` → hero/helpSection/meta standart kalıba döndü (diğer sayfalardaki gibi: hero = başlık/açıklama/ikon/showIcon/breadcrumb; helpSection = icon/text/link; meta = title/description)
+- `manager/ui/assets/app.js` → `group`, `globallink`, `visibleWhen`, renk ✕ sıfırla kodları çıkarıldı (orijinal davranış)
+- `manager/ui/assets/style.css` → bu özelliklerin stilleri kaldırıldı
 - `data/pages/bilgisayar-laboratuvari.json` → "Sorun Bildir" modal butonu + zengin SEO alanları (keywords/ogImage/ogType/section/author/publishedTime/tags) çıkarıldı. **Korunanlar:** showIcon, meta.en (önceki turlardan)
 - `assets/css/global/inner-pages.css` → hero ikon konumu + breadcrumb CSS'i kaldırıldı, orijinal breadcrumb CSS'i geri geldi. **Korunanlar:** modal kütüphanesi CSS'i (help-modal, modal-feature vb.)
 
@@ -851,7 +851,7 @@ Kullanıcı kararı: **hero pilotu (3 katmanlı sistem + 8 maddelik geliştirmel
 Kullanıcı v1 manager'da (8123, `python manager/server.py`) calisma-saatleri.json'u açınca **şemasız/auto** görünüyordu ("Id: special-hours" + ham Components — İngilizce alan adları). Sebep: v1'in `manager/schemas/` klasöründe sadece 4 şema vardı (footer/header/iletisim/_components), calisma-saatleri şeması yoktu — güzel şemaların tamamı v2'deydi.
 
 **Yapılan:**
-- `manager-v2/schemas/calisma-saatleri.json` → `manager/schemas/calisma-saatleri.json` kopyalandı (v1 formatı: LF + indent=2 + `preview` anahtarı)
+- `manager/schemas/calisma-saatleri.json` → `manager/schemas/calisma-saatleri.json` kopyalandı (v1 formatı: LF + indent=2 + `preview` anahtarı)
 - v1 `_components.json`'a `hours-table` + `contact-buttons` bileşen şemaları eklendi (v2'den)
 - v1 `app.js`'e `time` (renderScalar) + `day-multiselect` (renderField + defaultFor) alan tipleri eklendi
 - 8123 sunucusu yeniden başlatıldı (şemalar başlangıçta yükleniyor)
@@ -866,10 +866,10 @@ Kullanıcı v1 manager'da (8123, `python manager/server.py`) calisma-saatleri.js
 
 **Geri getirilenler (8.2'nin tersi):**
 - `data/global/settings.json` → hero bloğu (showBreadcrumb=true, auto, showIcon=true, iconPosition=top, textAlign="", 5 renk)
-- `manager-v2/schemas/settings.json` → yeniden oluşturuldu (10 hero alanı + diğer bloklar + lastModified kilitli)
-- `manager-v2/schemas/bilgisayar-laboratuvari.json` → hero 19 alan (globallink + 4 grup + visibleWhen) + helpSection modal kalıbı (6 alan) + meta 9 alan
-- `manager-v2/ui/assets/app.js` → applyVisibleWhen + group + globallink + renk ✕ sıfırla
-- `manager-v2/ui/assets/style.css` → field-group/globallink-btn/color-row/color-reset stilleri
+- `manager/schemas/settings.json` → yeniden oluşturuldu (10 hero alanı + diğer bloklar + lastModified kilitli)
+- `manager/schemas/bilgisayar-laboratuvari.json` → hero 19 alan (globallink + 4 grup + visibleWhen) + helpSection modal kalıbı (6 alan) + meta 9 alan
+- `manager/ui/assets/app.js` → applyVisibleWhen + group + globallink + renk ✕ sıfırla
+- `manager/ui/assets/style.css` → field-group/globallink-btn/color-row/color-reset stilleri
 - `data/pages/bilgisayar-laboratuvari.json` → "Sorun Bildir" modal butonu + SEO meta (keywords/ogImage/ogType/section/author/publishedTime/tags)
 - `assets/css/global/inner-pages.css` → ikon konumu (top/left/right) + breadcrumb kutu içi stilleri + koyu tema
 - `assets/js/components/hero.js` → 3 katmanlı sistem yeniden yazıldı (MD 8+8.1'den)
@@ -906,7 +906,7 @@ Kullanıcı v1 manager'da (8123, `python manager/server.py`) calisma-saatleri.js
 - Global renkler: #e6f2fb / #ffffff / #11325d / #11325d / #555555 (mavi ailesi) ✓
 - Manager: boş renkler gri + "Global" rozeti, siyah yok ✓ · settings.json renkleri mavi ✓
 
-**Not (süreç):** v2 sunucusu aslında `MANAGER_PORT=8124` ortam değişkeniyle çalışıyormuş — düz `python manager-v2/server.py` 8123'e bağlanmaya çalışıp takılıyor. Zombie süreçler temizlendi, v2 `MANAGER_PORT=8124` ile, v1 normal şekilde yeniden başlatıldı (8123 v1, 8124 v2 — ikisi de ayakta).
+**Not (süreç):** v2 sunucusu aslında `MANAGER_PORT=8124` ortam değişkeniyle çalışıyormuş — düz `python manager/server.py` 8123'e bağlanmaya çalışıp takılıyor. Zombie süreçler temizlendi, v2 `MANAGER_PORT=8124` ile, v1 normal şekilde yeniden başlatıldı (8123 v1, 8124 v2 — ikisi de ayakta).
 
 ### 8.6 HERO: ÜST ÇİZGİ RENGİ + HAZIR RENK PALETİ + SPLIT DÜZEN (2026-08-17)
 
@@ -1000,7 +1000,7 @@ Kullanıcı v1 manager'da (8123, `python manager/server.py`) calisma-saatleri.js
 
 **Sorun:** Manager'da kaydetmede hata: `$.hero.boxPaddingTop: sayı olmalı` vb. — settings.json'daki boş string (`""`) değerler, şemadaki `number` tipi tarafından reddediliyordu.
 
-**Yapılan:** `manager-v2/validation.py` → `number` tipi için boş değer (`""` / `null`) artık "ayarlanmamış" kabul edilir (varsayılan kullanılır), hata değil. Dizi içindeki sayı öğeleri sıkı kalmaya devam eder.
+**Yapılan:** `manager/validation.py` → `number` tipi için boş değer (`""` / `null`) artık "ayarlanmamış" kabul edilir (varsayılan kullanılır), hata değil. Dizi içindeki sayı öğeleri sıkı kalmaya devam eder.
 
 **Doğrulama:** `/api/validate` — settings.json ve bilgisayar-laboratuvari.json → 200, 0 hata ✓. v2 yeniden başlatıldı.
 

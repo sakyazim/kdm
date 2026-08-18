@@ -13,6 +13,6 @@ echo   tarayici mevcut sunucuya acilir.)
 echo ============================================================
 echo.
 
-start "" /b cmd /c "set MANAGER_PORT=8124&& python manager-v2/server.py"
+start "" /b cmd /c "set MANAGER_PORT=8124&& python manager/server.py"
 timeout /t 3 /nobreak >nul
 start "" http://127.0.0.1:8124/manager/
