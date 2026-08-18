@@ -47,5 +47,25 @@
       "arrivals": 5
     }
   },
-  "lastModified": "2024-01-20T10:00:00Z"
+  "hero": {
+    "showBreadcrumb": true,
+    "breadcrumbMode": "auto",
+    "showIcon": true,
+    "iconPosition": "top",
+    "textAlign": "",
+    "layout": "stack",
+    "backgroundColor": "#e6f2fb",
+    "boxColor": "#ffffff",
+    "borderColor": "#FFC43D",
+    "iconColor": "#11325d",
+    "titleColor": "#11325d",
+    "textColor": "#555555",
+    "enabled": false,
+    "boxPaddingTop": "",
+    "boxPaddingBottom": "",
+    "boxMarginTop": "",
+    "boxMarginBottom": "",
+    "hiddenSpacing": 2
+  },
+  "lastModified": "2026-08-18 10:33"
 }
