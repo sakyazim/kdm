@@ -2809,10 +2809,43 @@ function renderScalar(f, value, onchange) {
       break;
     }
     case "time": {
+      // 24 saat zorunlu (AM/PM yerine): tarayıcının native time input'u
+      // OS saat formatına göre AM/PM gösterebildiği için metin kontrolü kullanılır.
+      // Değer daima HH:MM (00:00-23:59) olarak saklanır.
       const inp = document.createElement("input");
-      inp.type = "time";
+      inp.type = "text";
+      inp.inputMode = "numeric";
+      inp.maxLength = 5;
+      inp.placeholder = "08:30";
       inp.value = value || "";
-      inp.addEventListener("change", () => onchange(inp.value));
+      const normalize = (raw) => {
+        // Rakam dışı karakterleri at, ilk 4 rakamı al: HHMM
+        let d = raw.replace(/\D/g, "").slice(0, 4);
+        // 3 hane = kullanıcı "8:30" yazdı (iki nokta silindi) → "8:30" göster
+        if (d.length === 3) return d[0] + ":" + d.slice(1);
+        // 4 hane = "0830" → "08:30" göster
+        if (d.length === 4) return d.slice(0, 2) + ":" + d.slice(2);
+        return d; // 0-2 hane: yazım devam ediyor
+      };
+      inp.addEventListener("input", () => {
+        const pos = inp.selectionStart;
+        inp.value = normalize(inp.value);
+        // İmleci koru
+        try { inp.setSelectionRange(Math.min(pos, inp.value.length), Math.min(pos, inp.value.length)); } catch (e) {}
+        onchange(inp.value);
+      });
+      inp.addEventListener("blur", () => {
+        // Eksik girişi tamamla ve sınırla: "8" → "08:00", "830" → "08:30", "25:99" → "23:59"
+        if (inp.value) {
+          const parts = inp.value.split(":");
+          let hh = (parts[0] || "").padStart(2, "0");
+          let mm = (parts[1] || "").padStart(2, "0");
+          hh = String(Math.min(parseInt(hh, 10) || 0, 23)).padStart(2, "0");
+          mm = String(Math.min(parseInt(mm, 10) || 0, 59)).padStart(2, "0");
+          inp.value = hh + ":" + mm;
+          onchange(inp.value);
+        }
+      });
       ctl = inp;
       break;
     }
