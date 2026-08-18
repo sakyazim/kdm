@@ -275,7 +275,8 @@
         "variant": "outline-danger",
         "modalId": "sorun-bildir"
       }
-    ]
+    ],
+    "enabled": "false"
   },
   "meta": {
     "title": {
@@ -307,5 +308,5 @@
       "hizmetleri"
     ]
   },
-  "lastModified": "2026-08-18 10:41"
+  "lastModified": "2026-08-18 11:25"
 }
