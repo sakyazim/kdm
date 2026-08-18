@@ -521,5 +521,10 @@
       "en": ""
     }
   },
-  "lastModified": "2026-08-17 10:36"
+  "lastModified": "2026-08-18 15:17",
+  "scheduleConfig": {
+    "holidays": [
+      "2026-08-18"
+    ]
+  }
 }
