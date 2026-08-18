@@ -131,7 +131,7 @@
                     ],
                     "periods": [
                       {
-                        "open": "08:00",
+                        "open": "09:00",
                         "close": "23:00"
                       }
                     ]
@@ -801,5 +801,5 @@
       "en": "Anadolu University Library working hours: current opening and closing times of the central library, departments and services, plus official holiday information."
     }
   },
-  "lastModified": "2026-08-17 10:43"
+  "lastModified": "2026-08-18 12:05"
 }
