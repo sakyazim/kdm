@@ -51,6 +51,8 @@ export class ComponentRenderer {
         return this.renderResourceLinks(component);
       case 'tag-list':
         return this.renderTagList(component);
+      case 'numbered-list':
+        return this.renderNumberedList(component);
       case 'search':
         return this.renderSearch(component);
       case 'divider':
@@ -399,6 +401,11 @@ export class ComponentRenderer {
       const localizedTitle = Utils.getLocalizedText(step.title);
       const localizedContent = Utils.mdToHtml(Utils.getLocalizedText(step.content));
 
+      // Adım içi alt bileşenler (info-box, alert vb.)
+      const blocksHTML = Array.isArray(step.blocks)
+        ? this.renderMultiple(step.blocks)
+        : '';
+
       return `
         <div class="component-step-card ${openClass}" data-step="${index}">
           <div class="step-header">
@@ -408,6 +415,7 @@ export class ComponentRenderer {
           </div>
           <div class="step-content">
             ${localizedContent}
+            ${blocksHTML}
           </div>
         </div>
       `;
@@ -509,6 +517,36 @@ export class ComponentRenderer {
     }).join('');
 
     return `<div class="component-resource-links">${linksHTML}</div>`;
+  }
+
+  /**
+   * 7B. NUMARALI LİSTE BİLEŞENİ (Numbered List Component)
+   * Numara rozeti + başlık + açıklama satırları
+   */
+  static renderNumberedList(component) {
+    const { data } = component;
+    const { items } = data;
+
+    if (!items || items.length === 0) return '';
+
+    const itemsHTML = items.map(item => {
+      const localizedTitle = Utils.getLocalizedText(item.title);
+      const localizedDescription = item.description
+        ? Utils.mdToHtml(Utils.getLocalizedText(item.description))
+        : '';
+
+      return `
+        <div class="numbered-item">
+          <div class="numbered-badge">${item.number || ''}</div>
+          <div class="numbered-content">
+            <div class="numbered-title">${localizedTitle}</div>
+            ${localizedDescription ? `<div class="numbered-description">${localizedDescription}</div>` : ''}
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    return `<div class="component-numbered-list">${itemsHTML}</div>`;
   }
 
   /**

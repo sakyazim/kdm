@@ -1167,7 +1167,35 @@
     }
    ]
   },
-  "tag-list": {
+    "numbered-list": {
+   "label": "Numaralı Liste",
+   "fields": [
+    {
+     "key": "items",
+     "label": "Öğeler",
+     "type": "array",
+     "itemLabel": "Öğe",
+     "itemFields": [
+      {
+       "key": "number",
+       "label": "Numara",
+       "type": "number"
+      },
+      {
+       "key": "title",
+       "label": "Başlık",
+       "type": "lang"
+      },
+      {
+       "key": "description",
+       "label": "Açıklama",
+       "type": "lang"
+      }
+     ]
+    }
+   ]
+  },
+"tag-list": {
    "label": "Etiketler (Rozetler)",
    "fields": [
     {
@@ -1311,6 +1339,12 @@
        "key": "defaultOpen",
        "label": "Varsayılan Açık",
        "type": "boolean"
+      },
+      {
+       "key": "blocks",
+       "label": "Adım İçi Alt Bileşenler (info-box/alert...)",
+       "type": "raw",
+       "hint": "Opsiyonel bileşen dizisi (JSON). Örn: [{\"type\":\"info-box\",\"variant\":\"default\",\"data\":{...}}]"
       }
      ]
     }

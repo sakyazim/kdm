@@ -717,6 +717,62 @@
   background: var(--primary-color);
 }
 
+.component-numbered-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.component-numbered-list .numbered-item {
+  background: var(--tertiary-color);
+  padding: 1.25rem;
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--primary-color);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.component-numbered-list .numbered-item:hover {
+  transform: translateX(5px);
+  box-shadow: var(--shadow-soft);
+}
+
+.component-numbered-list .numbered-badge {
+  background: var(--primary-color);
+  color: white;
+  min-width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.component-numbered-list .numbered-content {
+  flex: 1;
+}
+
+.component-numbered-list .numbered-title {
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+}
+
+.component-numbered-list .numbered-description {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
 /* Grid sütun sayıları */
 .component-icon-list-grid.grid-cols-2 {
   grid-template-columns: repeat(2, 1fr);
