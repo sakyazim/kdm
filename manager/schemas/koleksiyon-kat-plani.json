@@ -274,9 +274,11 @@
    ]
   },
   {
-   "key": "floors",
-   "label": "Katlar",
+   "key": "content",
+   "label": "İçerik Bölümleri (Katlar)",
    "type": "array",
+   "hierarchy": "sections",
+   "defaultOpen": true,
    "itemLabel": "Kat",
    "itemFields": [
     {
@@ -285,60 +287,30 @@
      "type": "text"
     },
     {
-     "key": "number",
-     "label": "Kat Numarası",
-     "type": "text"
+     "key": "layout",
+     "label": "Düzen",
+     "type": "select",
+     "options": [
+      "column",
+      "row",
+      "grid-2",
+      "grid-3",
+      "cell"
+     ],
+     "hint": "column: üst üste (varsayılan) · row: yan yana · grid-2/3: sabit sütun · cell: eşit hücre"
     },
     {
-     "key": "name",
-     "label": "Kat Adı",
-     "type": "lang"
+     "key": "className",
+     "label": "Ek Sınıf (CSS)",
+     "type": "text",
+     "hint": "İsteğe bağlı özel CSS sınıf adı"
     },
     {
-     "key": "description",
-     "label": "Kat Açıklaması",
-     "type": "lang"
-    },
-    {
-     "key": "sections",
-     "label": "Bölümler",
-     "type": "array",
-     "itemLabel": "Bölüm",
-     "itemFields": [
-      {
-       "key": "id",
-       "label": "Bölüm ID",
-       "type": "text"
-      },
-      {
-       "key": "title",
-       "label": "Başlık",
-       "type": "lang"
-      },
-      {
-       "key": "icon",
-       "label": "İkon",
-       "type": "icon"
-      },
-      {
-       "key": "description",
-       "label": "Açıklama",
-       "type": "lang"
-      },
-      {
-       "key": "details",
-       "label": "Detaylar",
-       "type": "array",
-       "itemLabel": "Detay",
-       "itemFields": [
-        {
-         "key": "",
-         "label": "Detay",
-         "type": "lang"
-        }
-       ]
-      }
-     ]
+     "key": "components",
+     "label": "Bileşenler",
+     "type": "components",
+     "soloOpen": true,
+     "registry": "components"
     }
    ]
   },

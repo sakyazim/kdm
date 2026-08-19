@@ -91,7 +91,7 @@ export class InnerPage {
 
     // Skip content rendering if page handles it with custom script
     // Check if page has custom content structure (like makale-islem-ucretleri, kime-sormaliyim, koleksiyon-kat-plani)
-    if (!this.pageData.content && (this.pageData.quickNav || this.pageData.generalInfo || this.pageData.publishers || this.pageData.departments || this.pageData.floors)) {
+    if (!this.pageData.content && (this.pageData.quickNav || this.pageData.generalInfo || this.pageData.publishers)) {
       // Page has custom rendering logic in the HTML file
       return;
     }

@@ -9,890 +9,1337 @@
       "en": "Discover our library floors and collections"
     }
   },
-  "content": {},
-  "floors": [
+  "content": [
     {
       "id": "floor-1",
-      "number": "1",
-      "name": {
-        "tr": "Giriş Katı",
-        "en": "Ground Floor"
-      },
-      "description": {
-        "tr": "Kütüphanenin ana giriş katında temel hizmet bölümleri bulunmaktadır.",
-        "en": "The main entrance floor houses essential service departments."
-      },
-      "sections": [
+      "components": [
         {
-          "id": "odunc-ill",
-          "title": {
-            "tr": "Ödünç ve ILL Bölümü",
-            "en": "Circulation and ILL Department"
-          },
-          "icon": "bi-book-half",
-          "description": {
-            "tr": "Kitap ödünç alma, iade ve kütüphaneler arası ödünç verme işlemleri burada yapılmaktadır.",
-            "en": "Book borrowing, returns, and interlibrary loan services are provided here."
-          },
-          "details": [
-            {
-              "tr": "Çalışma Saatleri: 08:30 - 22:00",
-              "en": "Working Hours: 08:30 - 22:00"
+          "type": "heading",
+          "variant": "double-icon",
+          "data": {
+            "icon": "bi bi-building",
+            "title": {
+              "tr": "Giriş Katı",
+              "en": "Ground Floor"
             },
-            {
-              "tr": "Ödünç Alma Süresi: 15 gün (Öğrenciler için)",
-              "en": "Loan Period: 15 days (For Students)"
-            },
-            {
-              "tr": "Uzatma Hakkı: 2 kez",
-              "en": "Renewal Rights: 2 times"
-            },
-            {
-              "tr": "Maksimum Kitap Sayısı: 5 adet",
-              "en": "Maximum Books: 5 items"
+            "subtitle": {
+              "tr": "Kat 1",
+              "en": "Floor 1"
             }
-          ]
+          }
         },
         {
-          "id": "danisma",
-          "title": {
-            "tr": "Danışma Bölümü",
-            "en": "Reference Department"
-          },
-          "icon": "bi-question-circle",
-          "description": {
-            "tr": "Bilgi ve araştırma desteği burada sağlanmaktadır.",
-            "en": "Information and research support services are provided here."
-          },
-          "details": [
-            {
-              "tr": "Danışma Kütüphanecisi: Her zaman hizmetinizde",
-              "en": "Reference Librarian: Always at your service"
-            },
-            {
-              "tr": "Araştırma Desteği: Literatür taraması, kaynak bulma",
-              "en": "Research Support: Literature review, resource discovery"
-            },
-            {
-              "tr": "Kaynak Yönlendirme: Kütüphane içi ve dışı kaynaklar",
-              "en": "Resource Referral: Internal and external resources"
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Kütüphanenin ana giriş katında temel hizmet bölümleri bulunmaktadır.",
+              "en": "The main entrance floor houses essential service departments."
             }
-          ]
+          }
         },
         {
-          "id": "rezerve",
-          "title": {
-            "tr": "Rezerve (Ön Danışma) Bölümü",
-            "en": "Reserve Department"
-          },
-          "icon": "bi-bookmark-check",
-          "description": {
-            "tr": "Öğretim üyeleri tarafından ders için ayrılan kaynaklar ve sınırlı süreli ödünç verilen materyaller burada bulunur.",
-            "en": "Course materials reserved by faculty and limited-time loan materials are located here."
-          },
-          "details": [
-            {
-              "tr": "Ödünç Alma Süresi: 3 saat (Kütüphane içi kullanım)",
-              "en": "Loan Period: 3 hours (In-library use)"
+          "type": "collapsible-section",
+          "data": {
+            "id": "odunc-ill",
+            "title": {
+              "tr": "Ödünç ve ILL Bölümü",
+              "en": "Circulation and ILL Department"
             },
-            {
-              "tr": "Rezervasyon: Online yapılabilir",
-              "en": "Reservation: Available online"
-            },
-            {
-              "tr": "Ders Kitapları: Tüm fakültelerin zorunlu okuma listeleri",
-              "en": "Course Books: Required reading lists for all faculties"
-            }
-          ]
+            "icon": "bi-book-half",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "Kitap ödünç alma, iade ve kütüphaneler arası ödünç verme işlemleri burada yapılmaktadır.",
+                  "en": "Book borrowing, returns, and interlibrary loan services are provided here."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "Çalışma Saatleri: 08:30 - 22:00",
+                    "en": "Working Hours: 08:30 - 22:00"
+                  },
+                  {
+                    "tr": "Ödünç Alma Süresi: 15 gün (Öğrenciler için)",
+                    "en": "Loan Period: 15 days (For Students)"
+                  },
+                  {
+                    "tr": "Uzatma Hakkı: 2 kez",
+                    "en": "Renewal Rights: 2 times"
+                  },
+                  {
+                    "tr": "Maksimum Kitap Sayısı: 5 adet",
+                    "en": "Maximum Books: 5 items"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
-          "id": "mikrofilm",
-          "title": {
-            "tr": "Mikrofilm Bölümü",
-            "en": "Microfilm Department"
-          },
-          "icon": "bi-film",
-          "description": {
-            "tr": "Nadir eserler, eski gazeteler ve arşiv belgeleri mikrofilm formatında burada bulunmaktadır.",
-            "en": "Rare works, old newspapers, and archival documents are available in microfilm format."
-          },
-          "details": [
-            {
-              "tr": "Mikrofilm Okuyucu: 5 adet",
-              "en": "Microfilm Readers: 5 units"
+          "type": "collapsible-section",
+          "data": {
+            "id": "danisma",
+            "title": {
+              "tr": "Danışma Bölümü",
+              "en": "Reference Department"
             },
-            {
-              "tr": "Dijitalleştirme Hizmeti: Mevcut",
-              "en": "Digitization Service: Available"
-            },
-            {
-              "tr": "Koleksiyon: 1800'lerden itibaren gazeteler",
-              "en": "Collection: Newspapers from the 1800s onwards"
-            }
-          ]
+            "icon": "bi-question-circle",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "Bilgi ve araştırma desteği burada sağlanmaktadır.",
+                  "en": "Information and research support services are provided here."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "Danışma Kütüphanecisi: Her zaman hizmetinizde",
+                    "en": "Reference Librarian: Always at your service"
+                  },
+                  {
+                    "tr": "Araştırma Desteği: Literatür taraması, kaynak bulma",
+                    "en": "Research Support: Literature review, resource discovery"
+                  },
+                  {
+                    "tr": "Kaynak Yönlendirme: Kütüphane içi ve dışı kaynaklar",
+                    "en": "Resource Referral: Internal and external resources"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
-          "id": "gorsel",
-          "title": {
-            "tr": "Görsel Bölüm",
-            "en": "Audio-Visual Department"
-          },
-          "icon": "bi-camera-video",
-          "description": {
-            "tr": "DVD, CD ve diğer görsel-işitsel materyaller burada bulunmaktadır.",
-            "en": "DVDs, CDs, and other audio-visual materials are located here."
-          },
-          "details": [
-            {
-              "tr": "Film Koleksiyonu: 2000+ belgesel ve sanat filmi",
-              "en": "Film Collection: 2000+ documentaries and art films"
+          "type": "collapsible-section",
+          "data": {
+            "id": "rezerve",
+            "title": {
+              "tr": "Rezerve (Ön Danışma) Bölümü",
+              "en": "Reserve Department"
             },
-            {
-              "tr": "Müzik CD'leri: 1500+ klasik ve dünya müziği",
-              "en": "Music CDs: 1500+ classical and world music"
-            },
-            {
-              "tr": "İzleme Kabinleri: 10 adet özel kabin",
-              "en": "Viewing Booths: 10 private booths"
-            }
-          ]
+            "icon": "bi-bookmark-check",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "Öğretim üyeleri tarafından ders için ayrılan kaynaklar ve sınırlı süreli ödünç verilen materyaller burada bulunur.",
+                  "en": "Course materials reserved by faculty and limited-time loan materials are located here."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "Ödünç Alma Süresi: 3 saat (Kütüphane içi kullanım)",
+                    "en": "Loan Period: 3 hours (In-library use)"
+                  },
+                  {
+                    "tr": "Rezervasyon: Online yapılabilir",
+                    "en": "Reservation: Available online"
+                  },
+                  {
+                    "tr": "Ders Kitapları: Tüm fakültelerin zorunlu okuma listeleri",
+                    "en": "Course Books: Required reading lists for all faculties"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
-          "id": "danisma-kaynaklari",
-          "title": {
-            "tr": "Danışma Kaynakları",
-            "en": "Reference Resources"
-          },
-          "icon": "bi-journal-text",
-          "description": {
-            "tr": "Ansiklopediler, sözlükler, bibliyografyalar ve diğer başvuru kaynakları burada bulunmaktadır.",
-            "en": "Encyclopedias, dictionaries, bibliographies, and other reference sources are located here."
-          },
-          "details": [
-            {
-              "tr": "Başvuru Kaynakları: 2000+ basılı kaynak",
-              "en": "Reference Sources: 2000+ print resources"
+          "type": "collapsible-section",
+          "data": {
+            "id": "mikrofilm",
+            "title": {
+              "tr": "Mikrofilm Bölümü",
+              "en": "Microfilm Department"
             },
-            {
-              "tr": "Elektronik Başvuru Kaynakları: Erişim mevcut",
-              "en": "Electronic Reference Sources: Access available"
-            },
-            {
-              "tr": "Kopyalama: Sadece sınırlı bölümler için izinli",
-              "en": "Copying: Permitted for limited sections only"
-            }
-          ]
+            "icon": "bi-film",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "Nadir eserler, eski gazeteler ve arşiv belgeleri mikrofilm formatında burada bulunmaktadır.",
+                  "en": "Rare works, old newspapers, and archival documents are available in microfilm format."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "Mikrofilm Okuyucu: 5 adet",
+                    "en": "Microfilm Readers: 5 units"
+                  },
+                  {
+                    "tr": "Dijitalleştirme Hizmeti: Mevcut",
+                    "en": "Digitization Service: Available"
+                  },
+                  {
+                    "tr": "Koleksiyon: 1800'lerden itibaren gazeteler",
+                    "en": "Collection: Newspapers from the 1800s onwards"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
-          "id": "yonetim",
-          "title": {
-            "tr": "Yönetim",
-            "en": "Administration"
-          },
-          "icon": "bi-person-badge",
-          "description": {
-            "tr": "Kütüphane müdürü ve idari personel ofisleri burada bulunmaktadır.",
-            "en": "Library director and administrative staff offices are located here."
-          },
-          "details": [
-            {
-              "tr": "Görüşme Saatleri: 09:00 - 17:00",
-              "en": "Office Hours: 09:00 - 17:00"
+          "type": "collapsible-section",
+          "data": {
+            "id": "gorsel",
+            "title": {
+              "tr": "Görsel Bölüm",
+              "en": "Audio-Visual Department"
             },
-            {
-              "tr": "Randevu: E-posta ile alınabilir",
-              "en": "Appointments: Available via email"
-            },
-            {
-              "tr": "Personel: Kütüphane müdürü ve yardımcı personel",
-              "en": "Staff: Library director and support staff"
-            }
-          ]
+            "icon": "bi-camera-video",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "DVD, CD ve diğer görsel-işitsel materyaller burada bulunmaktadır.",
+                  "en": "DVDs, CDs, and other audio-visual materials are located here."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "Film Koleksiyonu: 2000+ belgesel ve sanat filmi",
+                    "en": "Film Collection: 2000+ documentaries and art films"
+                  },
+                  {
+                    "tr": "Müzik CD'leri: 1500+ klasik ve dünya müziği",
+                    "en": "Music CDs: 1500+ classical and world music"
+                  },
+                  {
+                    "tr": "İzleme Kabinleri: 10 adet özel kabin",
+                    "en": "Viewing Booths: 10 private booths"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
-          "id": "fotokopi",
-          "title": {
-            "tr": "Fotokopi",
-            "en": "Photocopy"
-          },
-          "icon": "bi-printer",
-          "description": {
-            "tr": "Self-servis fotokopi ve tarama hizmetleri burada sunulmaktadır.",
-            "en": "Self-service photocopy and scanning services are provided here."
-          },
-          "details": [
-            {
-              "tr": "Fotokopi Ücreti: Sayfa başına 0.50 TL",
-              "en": "Photocopy Fee: 0.50 TL per page"
+          "type": "collapsible-section",
+          "data": {
+            "id": "danisma-kaynaklari",
+            "title": {
+              "tr": "Danışma Kaynakları",
+              "en": "Reference Resources"
             },
-            {
-              "tr": "Renkli Baskı: Sayfa başına 2.00 TL",
-              "en": "Color Printing: 2.00 TL per page"
-            },
-            {
-              "tr": "Tarama: Ücretsiz",
-              "en": "Scanning: Free"
-            }
-          ]
+            "icon": "bi-journal-text",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "Ansiklopediler, sözlükler, bibliyografyalar ve diğer başvuru kaynakları burada bulunmaktadır.",
+                  "en": "Encyclopedias, dictionaries, bibliographies, and other reference sources are located here."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "Başvuru Kaynakları: 2000+ basılı kaynak",
+                    "en": "Reference Sources: 2000+ print resources"
+                  },
+                  {
+                    "tr": "Elektronik Başvuru Kaynakları: Erişim mevcut",
+                    "en": "Electronic Reference Sources: Access available"
+                  },
+                  {
+                    "tr": "Kopyalama: Sadece sınırlı bölümler için izinli",
+                    "en": "Copying: Permitted for limited sections only"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
-          "id": "bilgisayar-lab",
-          "title": {
-            "tr": "Bilgisayar Laboratuvarı",
-            "en": "Computer Laboratory"
-          },
-          "icon": "bi-pc-display",
-          "description": {
-            "tr": "İnternet erişimi ve elektronik kaynaklara ulaşım için bilgisayarlar.",
-            "en": "Computers for internet access and electronic resource access."
-          },
-          "details": [
-            {
-              "tr": "Bilgisayar Sayısı: 30",
-              "en": "Number of Computers: 30"
+          "type": "collapsible-section",
+          "data": {
+            "id": "yonetim",
+            "title": {
+              "tr": "Yönetim",
+              "en": "Administration"
             },
-            {
-              "tr": "Yazıcı: 2 adet",
-              "en": "Printers: 2 units"
+            "icon": "bi-person-badge",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "Kütüphane müdürü ve idari personel ofisleri burada bulunmaktadır.",
+                  "en": "Library director and administrative staff offices are located here."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "Görüşme Saatleri: 09:00 - 17:00",
+                    "en": "Office Hours: 09:00 - 17:00"
+                  },
+                  {
+                    "tr": "Randevu: E-posta ile alınabilir",
+                    "en": "Appointments: Available via email"
+                  },
+                  {
+                    "tr": "Personel: Kütüphane müdürü ve yardımcı personel",
+                    "en": "Staff: Library director and support staff"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "collapsible-section",
+          "data": {
+            "id": "fotokopi",
+            "title": {
+              "tr": "Fotokopi",
+              "en": "Photocopy"
             },
-            {
-              "tr": "İnternet Erişimi: Yüksek hızlı",
-              "en": "Internet Access: High-speed"
-            }
-          ]
+            "icon": "bi-printer",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "Self-servis fotokopi ve tarama hizmetleri burada sunulmaktadır.",
+                  "en": "Self-service photocopy and scanning services are provided here."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "Fotokopi Ücreti: Sayfa başına 0.50 TL",
+                    "en": "Photocopy Fee: 0.50 TL per page"
+                  },
+                  {
+                    "tr": "Renkli Baskı: Sayfa başına 2.00 TL",
+                    "en": "Color Printing: 2.00 TL per page"
+                  },
+                  {
+                    "tr": "Tarama: Ücretsiz",
+                    "en": "Scanning: Free"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "collapsible-section",
+          "data": {
+            "id": "bilgisayar-lab",
+            "title": {
+              "tr": "Bilgisayar Laboratuvarı",
+              "en": "Computer Laboratory"
+            },
+            "icon": "bi-pc-display",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "İnternet erişimi ve elektronik kaynaklara ulaşım için bilgisayarlar.",
+                  "en": "Computers for internet access and electronic resource access."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "Bilgisayar Sayısı: 30",
+                    "en": "Number of Computers: 30"
+                  },
+                  {
+                    "tr": "Yazıcı: 2 adet",
+                    "en": "Printers: 2 units"
+                  },
+                  {
+                    "tr": "İnternet Erişimi: Yüksek hızlı",
+                    "en": "Internet Access: High-speed"
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     },
     {
       "id": "floor-2a",
-      "number": "2A",
-      "name": {
-        "tr": "Kitap Koleksiyonu",
-        "en": "Book Collection"
-      },
-      "description": {
-        "tr": "Bu bölümde A'dan M'ye kadar olan raf gruplarında kitap koleksiyonu bulunmaktadır.",
-        "en": "This section houses book collections from shelf groups A to M."
-      },
-      "sections": [
+      "components": [
         {
-          "id": "raf-ac",
-          "title": {
-            "tr": "A-C Raf Bölümü",
-            "en": "A-C Shelf Section"
-          },
-          "icon": "bi-bookshelf",
-          "description": {
-            "tr": "A, B ve C yer numaralı kitaplar burada bulunmaktadır.",
-            "en": "Books with call numbers A, B, and C are located here."
-          },
-          "details": [
-            {
-              "tr": "A - GENEL YAPITLAR: Ansiklopediler, genel konular",
-              "en": "A - GENERAL WORKS: Encyclopedias, general topics"
+          "type": "heading",
+          "variant": "double-icon",
+          "data": {
+            "icon": "bi bi-building",
+            "title": {
+              "tr": "Kitap Koleksiyonu",
+              "en": "Book Collection"
             },
-            {
-              "tr": "B - FELSEFE. PSİKOLOJİ. DİN: Felsefe ve din çalışmaları",
-              "en": "B - PHILOSOPHY. PSYCHOLOGY. RELIGION: Philosophy and religious studies"
-            },
-            {
-              "tr": "C - TARİHE YARDIMCI BİLİMLER: Arkeoloji, tarih metodolojisi",
-              "en": "C - AUXILIARY SCIENCES OF HISTORY: Archaeology, historical methodology"
+            "subtitle": {
+              "tr": "Kat 2A",
+              "en": "Floor 2A"
             }
-          ]
+          }
         },
         {
-          "id": "raf-def",
-          "title": {
-            "tr": "D, E-F Raf Bölümü",
-            "en": "D, E-F Shelf Section"
-          },
-          "icon": "bi-bookshelf",
-          "description": {
-            "tr": "D, E ve F yer numaralı kitaplar burada bulunmaktadır.",
-            "en": "Books with call numbers D, E, and F are located here."
-          },
-          "details": [
-            {
-              "tr": "D, E, F - TARİH: Dünya tarihi, Türkiye tarihi, bölgesel tarih",
-              "en": "D, E, F - HISTORY: World history, Turkish history, regional history"
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Bu bölümde A'dan M'ye kadar olan raf gruplarında kitap koleksiyonu bulunmaktadır.",
+              "en": "This section houses book collections from shelf groups A to M."
             }
-          ]
+          }
         },
         {
-          "id": "raf-gh",
-          "title": {
-            "tr": "G-H Raf Bölümü",
-            "en": "G-H Shelf Section"
-          },
-          "icon": "bi-bookshelf",
-          "description": {
-            "tr": "G ve H yer numaralı kitaplar burada bulunmaktadır.",
-            "en": "Books with call numbers G and H are located here."
-          },
-          "details": [
-            {
-              "tr": "G - COĞRAFYA. ANTROPOLOJİ. REKREASYON. SPOR: Bölgesel çalışmalar, aktiviteler",
-              "en": "G - GEOGRAPHY. ANTHROPOLOGY. RECREATION. SPORTS: Regional studies, activities"
+          "type": "collapsible-section",
+          "data": {
+            "id": "raf-ac",
+            "title": {
+              "tr": "A-C Raf Bölümü",
+              "en": "A-C Shelf Section"
             },
-            {
-              "tr": "H - SOSYAL BİLİMLER: Sosyoloji, toplumbilim",
-              "en": "H - SOCIAL SCIENCES: Sociology, social sciences"
-            }
-          ]
+            "icon": "bi-bookshelf",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "A, B ve C yer numaralı kitaplar burada bulunmaktadır.",
+                  "en": "Books with call numbers A, B, and C are located here."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "A - GENEL YAPITLAR: Ansiklopediler, genel konular",
+                    "en": "A - GENERAL WORKS: Encyclopedias, general topics"
+                  },
+                  {
+                    "tr": "B - FELSEFE. PSİKOLOJİ. DİN: Felsefe ve din çalışmaları",
+                    "en": "B - PHILOSOPHY. PSYCHOLOGY. RELIGION: Philosophy and religious studies"
+                  },
+                  {
+                    "tr": "C - TARİHE YARDIMCI BİLİMLER: Arkeoloji, tarih metodolojisi",
+                    "en": "C - AUXILIARY SCIENCES OF HISTORY: Archaeology, historical methodology"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
-          "id": "raf-jk",
-          "title": {
-            "tr": "J-K Raf Bölümü",
-            "en": "J-K Shelf Section"
-          },
-          "icon": "bi-bookshelf",
-          "description": {
-            "tr": "J ve K yer numaralı kitaplar burada bulunmaktadır.",
-            "en": "Books with call numbers J and K are located here."
-          },
-          "details": [
-            {
-              "tr": "J - SİYASET BİLİMİ: Politika, siyaset teorisi",
-              "en": "J - POLITICAL SCIENCE: Politics, political theory"
+          "type": "collapsible-section",
+          "data": {
+            "id": "raf-def",
+            "title": {
+              "tr": "D, E-F Raf Bölümü",
+              "en": "D, E-F Shelf Section"
             },
-            {
-              "tr": "K - HUKUK: Türk hukuku, uluslararası hukuk",
-              "en": "K - LAW: Turkish law, international law"
-            }
-          ]
+            "icon": "bi-bookshelf",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "D, E ve F yer numaralı kitaplar burada bulunmaktadır.",
+                  "en": "Books with call numbers D, E, and F are located here."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "D, E, F - TARİH: Dünya tarihi, Türkiye tarihi, bölgesel tarih",
+                    "en": "D, E, F - HISTORY: World history, Turkish history, regional history"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
-          "id": "raf-lm",
-          "title": {
-            "tr": "L-M Raf Bölümü",
-            "en": "L-M Shelf Section"
-          },
-          "icon": "bi-bookshelf",
-          "description": {
-            "tr": "L ve M yer numaralı kitaplar burada bulunmaktadır.",
-            "en": "Books with call numbers L and M are located here."
-          },
-          "details": [
-            {
-              "tr": "L - EĞİTİM: Eğitim teorisi, öğretim metodları",
-              "en": "L - EDUCATION: Educational theory, teaching methods"
+          "type": "collapsible-section",
+          "data": {
+            "id": "raf-gh",
+            "title": {
+              "tr": "G-H Raf Bölümü",
+              "en": "G-H Shelf Section"
             },
-            {
-              "tr": "M - MÜZİK: Müzik teorisi, enstrümanlar",
-              "en": "M - MUSIC: Music theory, instruments"
-            }
-          ]
+            "icon": "bi-bookshelf",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "G ve H yer numaralı kitaplar burada bulunmaktadır.",
+                  "en": "Books with call numbers G and H are located here."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "G - COĞRAFYA. ANTROPOLOJİ. REKREASYON. SPOR: Bölgesel çalışmalar, aktiviteler",
+                    "en": "G - GEOGRAPHY. ANTHROPOLOGY. RECREATION. SPORTS: Regional studies, activities"
+                  },
+                  {
+                    "tr": "H - SOSYAL BİLİMLER: Sosyoloji, toplumbilim",
+                    "en": "H - SOCIAL SCIENCES: Sociology, social sciences"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "collapsible-section",
+          "data": {
+            "id": "raf-jk",
+            "title": {
+              "tr": "J-K Raf Bölümü",
+              "en": "J-K Shelf Section"
+            },
+            "icon": "bi-bookshelf",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "J ve K yer numaralı kitaplar burada bulunmaktadır.",
+                  "en": "Books with call numbers J and K are located here."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "J - SİYASET BİLİMİ: Politika, siyaset teorisi",
+                    "en": "J - POLITICAL SCIENCE: Politics, political theory"
+                  },
+                  {
+                    "tr": "K - HUKUK: Türk hukuku, uluslararası hukuk",
+                    "en": "K - LAW: Turkish law, international law"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "collapsible-section",
+          "data": {
+            "id": "raf-lm",
+            "title": {
+              "tr": "L-M Raf Bölümü",
+              "en": "L-M Shelf Section"
+            },
+            "icon": "bi-bookshelf",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "L ve M yer numaralı kitaplar burada bulunmaktadır.",
+                  "en": "Books with call numbers L and M are located here."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "L - EĞİTİM: Eğitim teorisi, öğretim metodları",
+                    "en": "L - EDUCATION: Educational theory, teaching methods"
+                  },
+                  {
+                    "tr": "M - MÜZİK: Müzik teorisi, enstrümanlar",
+                    "en": "M - MUSIC: Music theory, instruments"
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     },
     {
       "id": "floor-2b",
-      "number": "2B",
-      "name": {
-        "tr": "İdari Birimler ve Teknik Hizmetler",
-        "en": "Administrative Units and Technical Services"
-      },
-      "description": {
-        "tr": "Bu bölümde kütüphanenin idari birimleri ve teknik hizmetleri yer almaktadır.",
-        "en": "This section houses the library's administrative units and technical services."
-      },
-      "sections": [
+      "components": [
         {
-          "id": "ozel-koleksiyonlar",
-          "title": {
-            "tr": "Özel Koleksiyonlar ve Nadir Eserler",
-            "en": "Special Collections and Rare Books"
-          },
-          "icon": "bi-gem",
-          "description": {
-            "tr": "Özel koruma altındaki nadir ve değerli kitaplar burada muhafaza edilmektedir.",
-            "en": "Rare and valuable books under special protection are preserved here."
-          },
-          "details": [
-            {
-              "tr": "El Yazmaları: 300+",
-              "en": "Manuscripts: 300+"
+          "type": "heading",
+          "variant": "double-icon",
+          "data": {
+            "icon": "bi bi-building",
+            "title": {
+              "tr": "İdari Birimler ve Teknik Hizmetler",
+              "en": "Administrative Units and Technical Services"
             },
-            {
-              "tr": "Eski Basım Kitaplar: 1000+",
-              "en": "Rare Books: 1000+"
-            },
-            {
-              "tr": "Erişim: Özel izinle",
-              "en": "Access: By special permission"
+            "subtitle": {
+              "tr": "Kat 2B",
+              "en": "Floor 2B"
             }
-          ]
+          }
         },
         {
-          "id": "tasinir",
-          "title": {
-            "tr": "Taşınır İşleri",
-            "en": "Inventory Management"
-          },
-          "icon": "bi-box-seam",
-          "description": {
-            "tr": "Kütüphane demirbaş ve taşınır mallarının takip ve yönetimi burada yapılmaktadır.",
-            "en": "Library asset and inventory tracking and management are conducted here."
-          },
-          "details": [
-            {
-              "tr": "Envanter Yönetimi: Katalog bazlı",
-              "en": "Inventory Management: Catalog-based"
-            },
-            {
-              "tr": "Taşınır Kayıt Sistemi: Elektronik",
-              "en": "Inventory Recording System: Electronic"
-            },
-            {
-              "tr": "Zimmet İşlemleri: Burada yapılır",
-              "en": "Accountability Procedures: Conducted here"
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Bu bölümde kütüphanenin idari birimleri ve teknik hizmetleri yer almaktadır.",
+              "en": "This section houses the library's administrative units and technical services."
             }
-          ]
+          }
         },
         {
-          "id": "satin-alma",
-          "title": {
-            "tr": "Satın Alma",
-            "en": "Acquisitions"
-          },
-          "icon": "bi-cart-check",
-          "description": {
-            "tr": "Kütüphane için kitap ve diğer materyallerin satın alma süreçleri burada yürütülür.",
-            "en": "Book and material acquisition processes for the library are conducted here."
-          },
-          "details": [
-            {
-              "tr": "İhale Süreci: Elektronik",
-              "en": "Procurement Process: Electronic"
+          "type": "collapsible-section",
+          "data": {
+            "id": "ozel-koleksiyonlar",
+            "title": {
+              "tr": "Özel Koleksiyonlar ve Nadir Eserler",
+              "en": "Special Collections and Rare Books"
             },
-            {
-              "tr": "Bütçe Takibi: Yıllık olarak",
-              "en": "Budget Tracking: Annually"
-            },
-            {
-              "tr": "Tedarikçi İlişkileri: Uluslararası",
-              "en": "Vendor Relations: International"
-            }
-          ]
+            "icon": "bi-gem",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "Özel koruma altındaki nadir ve değerli kitaplar burada muhafaza edilmektedir.",
+                  "en": "Rare and valuable books under special protection are preserved here."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "El Yazmaları: 300+",
+                    "en": "Manuscripts: 300+"
+                  },
+                  {
+                    "tr": "Eski Basım Kitaplar: 1000+",
+                    "en": "Rare Books: 1000+"
+                  },
+                  {
+                    "tr": "Erişim: Özel izinle",
+                    "en": "Access: By special permission"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
-          "id": "idari-amirlik",
-          "title": {
-            "tr": "İdari Amirliği",
-            "en": "Administrative Management"
-          },
-          "icon": "bi-building",
-          "description": {
-            "tr": "Kütüphane idari işlerinin yönetildiği birimdir.",
-            "en": "The unit where library administrative affairs are managed."
-          },
-          "details": [
-            {
-              "tr": "Personel İşleri: Vardiya, izin planlaması",
-              "en": "Personnel Affairs: Shift scheduling, leave planning"
+          "type": "collapsible-section",
+          "data": {
+            "id": "tasinir",
+            "title": {
+              "tr": "Taşınır İşleri",
+              "en": "Inventory Management"
             },
-            {
-              "tr": "Bütçe Yönetimi: Genel koordinasyon",
-              "en": "Budget Management: General coordination"
-            },
-            {
-              "tr": "Stratejik Planlama: Uzun vadeli projeler",
-              "en": "Strategic Planning: Long-term projects"
-            }
-          ]
+            "icon": "bi-box-seam",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "Kütüphane demirbaş ve taşınır mallarının takip ve yönetimi burada yapılmaktadır.",
+                  "en": "Library asset and inventory tracking and management are conducted here."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "Envanter Yönetimi: Katalog bazlı",
+                    "en": "Inventory Management: Catalog-based"
+                  },
+                  {
+                    "tr": "Taşınır Kayıt Sistemi: Elektronik",
+                    "en": "Inventory Recording System: Electronic"
+                  },
+                  {
+                    "tr": "Zimmet İşlemleri: Burada yapılır",
+                    "en": "Accountability Procedures: Conducted here"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
-          "id": "saglama",
-          "title": {
-            "tr": "Sağlama",
-            "en": "Collection Development"
-          },
-          "icon": "bi-inbox",
-          "description": {
-            "tr": "Kütüphane koleksiyonunu geliştirmek için gerekli kaynakların temini.",
-            "en": "Procuring necessary resources to develop the library collection."
-          },
-          "details": [
-            {
-              "tr": "Seçim Kriterleri: Akademik standartlar",
-              "en": "Selection Criteria: Academic standards"
+          "type": "collapsible-section",
+          "data": {
+            "id": "satin-alma",
+            "title": {
+              "tr": "Satın Alma",
+              "en": "Acquisitions"
             },
-            {
-              "tr": "Bağış Yönetimi: Kataloglama ve işleme",
-              "en": "Donation Management: Cataloging and processing"
-            },
-            {
-              "tr": "Koleksiyon Geliştirme: Stratejik plan",
-              "en": "Collection Development: Strategic plan"
-            }
-          ]
+            "icon": "bi-cart-check",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "Kütüphane için kitap ve diğer materyallerin satın alma süreçleri burada yürütülür.",
+                  "en": "Book and material acquisition processes for the library are conducted here."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "İhale Süreci: Elektronik",
+                    "en": "Procurement Process: Electronic"
+                  },
+                  {
+                    "tr": "Bütçe Takibi: Yıllık olarak",
+                    "en": "Budget Tracking: Annually"
+                  },
+                  {
+                    "tr": "Tedarikçi İlişkileri: Uluslararası",
+                    "en": "Vendor Relations: International"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
-          "id": "kataloglama",
-          "title": {
-            "tr": "Kataloglama",
-            "en": "Cataloging"
-          },
-          "icon": "bi-tags",
-          "description": {
-            "tr": "Kitap ve diğer materyallerin kataloglama ve sınıflandırma işlemleri burada yapılır.",
-            "en": "Cataloging and classification of books and other materials are conducted here."
-          },
-          "details": [
-            {
-              "tr": "Sınıflama Sistemi: LC (Library of Congress)",
-              "en": "Classification System: LC (Library of Congress)"
+          "type": "collapsible-section",
+          "data": {
+            "id": "idari-amirlik",
+            "title": {
+              "tr": "İdari Amirliği",
+              "en": "Administrative Management"
             },
-            {
-              "tr": "Metadata Standartları: MARC21",
-              "en": "Metadata Standards: MARC21"
-            },
-            {
-              "tr": "Dijital Katalog: Entegre kütüphane sistemi",
-              "en": "Digital Catalog: Integrated library system"
-            }
-          ]
+            "icon": "bi-building",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "Kütüphane idari işlerinin yönetildiği birimdir.",
+                  "en": "The unit where library administrative affairs are managed."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "Personel İşleri: Vardiya, izin planlaması",
+                    "en": "Personnel Affairs: Shift scheduling, leave planning"
+                  },
+                  {
+                    "tr": "Bütçe Yönetimi: Genel koordinasyon",
+                    "en": "Budget Management: General coordination"
+                  },
+                  {
+                    "tr": "Stratejik Planlama: Uzun vadeli projeler",
+                    "en": "Strategic Planning: Long-term projects"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
-          "id": "e-kaynaklar",
-          "title": {
-            "tr": "E-Kaynaklar",
-            "en": "E-Resources"
-          },
-          "icon": "bi-laptop",
-          "description": {
-            "tr": "Elektronik kitap, dergi ve veritabanları yönetimi burada yapılır.",
-            "en": "Electronic book, journal, and database management is conducted here."
-          },
-          "details": [
-            {
-              "tr": "E-Kitap Koleksiyonu: 100,000+",
-              "en": "E-Book Collection: 100,000+"
+          "type": "collapsible-section",
+          "data": {
+            "id": "saglama",
+            "title": {
+              "tr": "Sağlama",
+              "en": "Collection Development"
             },
-            {
-              "tr": "Veritabanları: 50+ araştırma veritabanı",
-              "en": "Databases: 50+ research databases"
-            },
-            {
-              "tr": "Erişim Yönetimi: Kampüs içi ve VPN",
-              "en": "Access Management: On-campus and VPN"
-            }
-          ]
+            "icon": "bi-inbox",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "Kütüphane koleksiyonunu geliştirmek için gerekli kaynakların temini.",
+                  "en": "Procuring necessary resources to develop the library collection."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "Seçim Kriterleri: Akademik standartlar",
+                    "en": "Selection Criteria: Academic standards"
+                  },
+                  {
+                    "tr": "Bağış Yönetimi: Kataloglama ve işleme",
+                    "en": "Donation Management: Cataloging and processing"
+                  },
+                  {
+                    "tr": "Koleksiyon Geliştirme: Stratejik plan",
+                    "en": "Collection Development: Strategic plan"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
-          "id": "acik-erisim",
-          "title": {
-            "tr": "Açık Erişim",
-            "en": "Open Access"
-          },
-          "icon": "bi-unlock",
-          "description": {
-            "tr": "Üniversite bünyesinde üretilen akademik içeriğin açık erişim platformunda paylaşımı.",
-            "en": "Sharing academic content produced within the university on open access platforms."
-          },
-          "details": [
-            {
-              "tr": "Kurumsal Arşiv: Tüm akademik yayınlar",
-              "en": "Institutional Repository: All academic publications"
+          "type": "collapsible-section",
+          "data": {
+            "id": "kataloglama",
+            "title": {
+              "tr": "Kataloglama",
+              "en": "Cataloging"
             },
-            {
-              "tr": "Tez Arşivi: Lisansüstü tezler",
-              "en": "Thesis Archive: Graduate theses"
-            },
-            {
-              "tr": "Yayın Politikası: Uluslararası standartlar",
-              "en": "Publication Policy: International standards"
-            }
-          ]
+            "icon": "bi-tags",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "Kitap ve diğer materyallerin kataloglama ve sınıflandırma işlemleri burada yapılır.",
+                  "en": "Cataloging and classification of books and other materials are conducted here."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "Sınıflama Sistemi: LC (Library of Congress)",
+                    "en": "Classification System: LC (Library of Congress)"
+                  },
+                  {
+                    "tr": "Metadata Standartları: MARC21",
+                    "en": "Metadata Standards: MARC21"
+                  },
+                  {
+                    "tr": "Dijital Katalog: Entegre kütüphane sistemi",
+                    "en": "Digital Catalog: Integrated library system"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
-          "id": "isitsel",
-          "title": {
-            "tr": "İşitsel Bölümü",
-            "en": "Audio Department"
-          },
-          "icon": "bi-volume-up",
-          "description": {
-            "tr": "Sesli kitaplar ve işitsel materyallerin yönetimi.",
-            "en": "Management of audiobooks and audio materials."
-          },
-          "details": [
-            {
-              "tr": "Sesli Kitap Koleksiyonu: 5000+",
-              "en": "Audiobook Collection: 5000+"
+          "type": "collapsible-section",
+          "data": {
+            "id": "e-kaynaklar",
+            "title": {
+              "tr": "E-Kaynaklar",
+              "en": "E-Resources"
             },
-            {
-              "tr": "Ses Kayıt Stüdyosu: Mevcuttur",
-              "en": "Audio Recording Studio: Available"
-            },
-            {
-              "tr": "Özel Dinleme Alanları: 5 kabin",
-              "en": "Private Listening Areas: 5 booths"
-            }
-          ]
+            "icon": "bi-laptop",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "Elektronik kitap, dergi ve veritabanları yönetimi burada yapılır.",
+                  "en": "Electronic book, journal, and database management is conducted here."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "E-Kitap Koleksiyonu: 100,000+",
+                    "en": "E-Book Collection: 100,000+"
+                  },
+                  {
+                    "tr": "Veritabanları: 50+ araştırma veritabanı",
+                    "en": "Databases: 50+ research databases"
+                  },
+                  {
+                    "tr": "Erişim Yönetimi: Kampüs içi ve VPN",
+                    "en": "Access Management: On-campus and VPN"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
-          "id": "dijitallestirme",
-          "title": {
-            "tr": "Dijitalleştirme Bölümü",
-            "en": "Digitization Department"
-          },
-          "icon": "bi-camera",
-          "description": {
-            "tr": "Fiziksel koleksiyonun dijital ortama aktarılması çalışmaları burada yürütülür.",
-            "en": "Digitization of physical collections is conducted here."
-          },
-          "details": [
-            {
-              "tr": "Tarama Ekipmanı: Yüksek çözünürlüklü tarayıcılar",
-              "en": "Scanning Equipment: High-resolution scanners"
+          "type": "collapsible-section",
+          "data": {
+            "id": "acik-erisim",
+            "title": {
+              "tr": "Açık Erişim",
+              "en": "Open Access"
             },
-            {
-              "tr": "OCR Teknolojisi: Metin tanıma",
-              "en": "OCR Technology: Text recognition"
+            "icon": "bi-unlock",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "Üniversite bünyesinde üretilen akademik içeriğin açık erişim platformunda paylaşımı.",
+                  "en": "Sharing academic content produced within the university on open access platforms."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "Kurumsal Arşiv: Tüm akademik yayınlar",
+                    "en": "Institutional Repository: All academic publications"
+                  },
+                  {
+                    "tr": "Tez Arşivi: Lisansüstü tezler",
+                    "en": "Thesis Archive: Graduate theses"
+                  },
+                  {
+                    "tr": "Yayın Politikası: Uluslararası standartlar",
+                    "en": "Publication Policy: International standards"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "collapsible-section",
+          "data": {
+            "id": "isitsel",
+            "title": {
+              "tr": "İşitsel Bölümü",
+              "en": "Audio Department"
             },
-            {
-              "tr": "Dijital Koruma: Uluslararası standartlar",
-              "en": "Digital Preservation: International standards"
-            }
-          ]
+            "icon": "bi-volume-up",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "Sesli kitaplar ve işitsel materyallerin yönetimi.",
+                  "en": "Management of audiobooks and audio materials."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "Sesli Kitap Koleksiyonu: 5000+",
+                    "en": "Audiobook Collection: 5000+"
+                  },
+                  {
+                    "tr": "Ses Kayıt Stüdyosu: Mevcuttur",
+                    "en": "Audio Recording Studio: Available"
+                  },
+                  {
+                    "tr": "Özel Dinleme Alanları: 5 kabin",
+                    "en": "Private Listening Areas: 5 booths"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "collapsible-section",
+          "data": {
+            "id": "dijitallestirme",
+            "title": {
+              "tr": "Dijitalleştirme Bölümü",
+              "en": "Digitization Department"
+            },
+            "icon": "bi-camera",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "Fiziksel koleksiyonun dijital ortama aktarılması çalışmaları burada yürütülür.",
+                  "en": "Digitization of physical collections is conducted here."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "Tarama Ekipmanı: Yüksek çözünürlüklü tarayıcılar",
+                    "en": "Scanning Equipment: High-resolution scanners"
+                  },
+                  {
+                    "tr": "OCR Teknolojisi: Metin tanıma",
+                    "en": "OCR Technology: Text recognition"
+                  },
+                  {
+                    "tr": "Dijital Koruma: Uluslararası standartlar",
+                    "en": "Digital Preservation: International standards"
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     },
     {
       "id": "floor-3",
-      "number": "3",
-      "name": {
-        "tr": "N-T Koleksiyonu",
-        "en": "N-T Collection"
-      },
-      "description": {
-        "tr": "Bu katta N'den T'ye kadar olan yer numaralı kitaplar ve çalışma odaları bulunmaktadır.",
-        "en": "This floor houses books with call numbers from N to T and study rooms."
-      },
-      "sections": [
+      "components": [
         {
-          "id": "raf-np",
-          "title": {
-            "tr": "N-P Raf Bölümü",
-            "en": "N-P Shelf Section"
-          },
-          "icon": "bi-bookshelf",
-          "description": {
-            "tr": "N ve P yer numaralı kitaplar burada bulunmaktadır.",
-            "en": "Books with call numbers N and P are located here."
-          },
-          "details": [
-            {
-              "tr": "N - GÜZEL SANATLAR: Resim, heykel, mimari",
-              "en": "N - FINE ARTS: Painting, sculpture, architecture"
+          "type": "heading",
+          "variant": "double-icon",
+          "data": {
+            "icon": "bi bi-building",
+            "title": {
+              "tr": "N-T Koleksiyonu",
+              "en": "N-T Collection"
             },
-            {
-              "tr": "P - DİL VE DİLBİLİM: Dil çalışmaları, filoloji",
-              "en": "P - LANGUAGE AND LINGUISTICS: Language studies, philology"
+            "subtitle": {
+              "tr": "Kat 3",
+              "en": "Floor 3"
             }
-          ]
+          }
         },
         {
-          "id": "raf-qr",
-          "title": {
-            "tr": "Q-R Raf Bölümü",
-            "en": "Q-R Shelf Section"
-          },
-          "icon": "bi-bookshelf",
-          "description": {
-            "tr": "Q ve R yer numaralı kitaplar burada bulunmaktadır.",
-            "en": "Books with call numbers Q and R are located here."
-          },
-          "details": [
-            {
-              "tr": "Q - BİLİM: Temel bilimler, fizik, kimya",
-              "en": "Q - SCIENCE: Basic sciences, physics, chemistry"
-            },
-            {
-              "tr": "R - TIP: Tıp ve sağlık bilimleri",
-              "en": "R - MEDICINE: Medicine and health sciences"
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Bu katta N'den T'ye kadar olan yer numaralı kitaplar ve çalışma odaları bulunmaktadır.",
+              "en": "This floor houses books with call numbers from N to T and study rooms."
             }
-          ]
+          }
         },
         {
-          "id": "raf-st",
-          "title": {
-            "tr": "S-T Raf Bölümü",
-            "en": "S-T Shelf Section"
-          },
-          "icon": "bi-bookshelf",
-          "description": {
-            "tr": "S ve T yer numaralı kitaplar burada bulunmaktadır.",
-            "en": "Books with call numbers S and T are located here."
-          },
-          "details": [
-            {
-              "tr": "S - TARIM: Tarım, hayvancılık, çevre",
-              "en": "S - AGRICULTURE: Agriculture, livestock, environment"
+          "type": "collapsible-section",
+          "data": {
+            "id": "raf-np",
+            "title": {
+              "tr": "N-P Raf Bölümü",
+              "en": "N-P Shelf Section"
             },
-            {
-              "tr": "T - TEKNOLOJİ: Mühendislik, teknoloji",
-              "en": "T - TECHNOLOGY: Engineering, technology"
-            }
-          ]
+            "icon": "bi-bookshelf",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "N ve P yer numaralı kitaplar burada bulunmaktadır.",
+                  "en": "Books with call numbers N and P are located here."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "N - GÜZEL SANATLAR: Resim, heykel, mimari",
+                    "en": "N - FINE ARTS: Painting, sculpture, architecture"
+                  },
+                  {
+                    "tr": "P - DİL VE DİLBİLİM: Dil çalışmaları, filoloji",
+                    "en": "P - LANGUAGE AND LINGUISTICS: Language studies, philology"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
-          "id": "calisma-odalari",
-          "title": {
-            "tr": "Çalışma Odaları (Karel)",
-            "en": "Study Rooms (Carrel)"
-          },
-          "icon": "bi-door-closed",
-          "description": {
-            "tr": "Uzun süreli ve özel çalışmalar için rezerve edilebilen odalar.",
-            "en": "Rooms that can be reserved for extended and private study."
-          },
-          "details": [
-            {
-              "tr": "Oda Sayısı: 15",
-              "en": "Number of Rooms: 15"
+          "type": "collapsible-section",
+          "data": {
+            "id": "raf-qr",
+            "title": {
+              "tr": "Q-R Raf Bölümü",
+              "en": "Q-R Shelf Section"
             },
-            {
-              "tr": "Rezervasyon: Online yapılabilir",
-              "en": "Reservation: Available online"
+            "icon": "bi-bookshelf",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "Q ve R yer numaralı kitaplar burada bulunmaktadır.",
+                  "en": "Books with call numbers Q and R are located here."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "Q - BİLİM: Temel bilimler, fizik, kimya",
+                    "en": "Q - SCIENCE: Basic sciences, physics, chemistry"
+                  },
+                  {
+                    "tr": "R - TIP: Tıp ve sağlık bilimleri",
+                    "en": "R - MEDICINE: Medicine and health sciences"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "collapsible-section",
+          "data": {
+            "id": "raf-st",
+            "title": {
+              "tr": "S-T Raf Bölümü",
+              "en": "S-T Shelf Section"
             },
-            {
-              "tr": "Kullanım Süresi: Günlük 4 saat",
-              "en": "Usage Duration: 4 hours daily"
+            "icon": "bi-bookshelf",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "S ve T yer numaralı kitaplar burada bulunmaktadır.",
+                  "en": "Books with call numbers S and T are located here."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "S - TARIM: Tarım, hayvancılık, çevre",
+                    "en": "S - AGRICULTURE: Agriculture, livestock, environment"
+                  },
+                  {
+                    "tr": "T - TEKNOLOJİ: Mühendislik, teknoloji",
+                    "en": "T - TECHNOLOGY: Engineering, technology"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "collapsible-section",
+          "data": {
+            "id": "calisma-odalari",
+            "title": {
+              "tr": "Çalışma Odaları (Karel)",
+              "en": "Study Rooms (Carrel)"
             },
-            {
-              "tr": "Özellikler: İnternet bağlantısı, çalışma masası",
-              "en": "Features: Internet connection, study desk"
-            }
-          ]
+            "icon": "bi-door-closed",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "Uzun süreli ve özel çalışmalar için rezerve edilebilen odalar.",
+                  "en": "Rooms that can be reserved for extended and private study."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "Oda Sayısı: 15",
+                    "en": "Number of Rooms: 15"
+                  },
+                  {
+                    "tr": "Rezervasyon: Online yapılabilir",
+                    "en": "Reservation: Available online"
+                  },
+                  {
+                    "tr": "Kullanım Süresi: Günlük 4 saat",
+                    "en": "Usage Duration: 4 hours daily"
+                  },
+                  {
+                    "tr": "Özellikler: İnternet bağlantısı, çalışma masası",
+                    "en": "Features: Internet connection, study desk"
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     },
     {
       "id": "floor-4",
-      "number": "4",
-      "name": {
-        "tr": "Arşiv ve Koleksiyon",
-        "en": "Archive and Collection"
-      },
-      "description": {
-        "tr": "Bu katta T-Z raf bölümü, gazeteler ve ciltli dergiler bulunmaktadır.",
-        "en": "This floor houses the T-Z shelf section, newspapers, and bound journals."
-      },
-      "sections": [
+      "components": [
         {
-          "id": "raf-tu",
-          "title": {
-            "tr": "T-U Raf Bölümü",
-            "en": "T-U Shelf Section"
-          },
-          "icon": "bi-bookshelf",
-          "description": {
-            "tr": "T ve U yer numaralı kitaplar burada bulunmaktadır.",
-            "en": "Books with call numbers T and U are located here."
-          },
-          "details": [
-            {
-              "tr": "T - TEKNOLOJİ: Devam eden teknoloji koleksiyonu",
-              "en": "T - TECHNOLOGY: Ongoing technology collection"
+          "type": "heading",
+          "variant": "double-icon",
+          "data": {
+            "icon": "bi bi-building",
+            "title": {
+              "tr": "Arşiv ve Koleksiyon",
+              "en": "Archive and Collection"
             },
-            {
-              "tr": "U - ASKERLİK BİLİMİ: Askeri tarih ve strateji",
-              "en": "U - MILITARY SCIENCE: Military history and strategy"
+            "subtitle": {
+              "tr": "Kat 4",
+              "en": "Floor 4"
             }
-          ]
+          }
         },
         {
-          "id": "raf-vz",
-          "title": {
-            "tr": "V-Z Raf Bölümü",
-            "en": "V-Z Shelf Section"
-          },
-          "icon": "bi-bookshelf",
-          "description": {
-            "tr": "V, W, X, Y ve Z yer numaralı kitaplar burada bulunmaktadır.",
-            "en": "Books with call numbers V, W, X, Y, and Z are located here."
-          },
-          "details": [
-            {
-              "tr": "V - DENİZCİLİK: Deniz bilimleri, denizcilik",
-              "en": "V - NAVAL SCIENCE: Marine sciences, seafaring"
-            },
-            {
-              "tr": "Z - KAYNAKÇALAR. KÜTÜPHANECİLİK: Bibliyografya, kütüphanecilik",
-              "en": "Z - BIBLIOGRAPHY. LIBRARY SCIENCE: Bibliography, librarianship"
+          "type": "content",
+          "data": {
+            "content": {
+              "tr": "Bu katta T-Z raf bölümü, gazeteler ve ciltli dergiler bulunmaktadır.",
+              "en": "This floor houses the T-Z shelf section, newspapers, and bound journals."
             }
-          ]
+          }
         },
         {
-          "id": "gazeteler",
-          "title": {
-            "tr": "Gazeteler",
-            "en": "Newspapers"
-          },
-          "icon": "bi-newspaper",
-          "description": {
-            "tr": "Güncel ve arşiv gazeteler burada bulunmaktadır.",
-            "en": "Current and archived newspapers are located here."
-          },
-          "details": [
-            {
-              "tr": "Günlük Gazeteler: Ulusal ve uluslararası",
-              "en": "Daily Newspapers: National and international"
+          "type": "collapsible-section",
+          "data": {
+            "id": "raf-tu",
+            "title": {
+              "tr": "T-U Raf Bölümü",
+              "en": "T-U Shelf Section"
             },
-            {
-              "tr": "Arşiv Gazeteleri: Mikrofilm ve dijital format",
-              "en": "Archived Newspapers: Microfilm and digital format"
-            },
-            {
-              "tr": "Erişim: Açık raf ve talep bazlı",
-              "en": "Access: Open shelf and on-demand"
-            }
-          ]
+            "icon": "bi-bookshelf",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "T ve U yer numaralı kitaplar burada bulunmaktadır.",
+                  "en": "Books with call numbers T and U are located here."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "T - TEKNOLOJİ: Devam eden teknoloji koleksiyonu",
+                    "en": "T - TECHNOLOGY: Ongoing technology collection"
+                  },
+                  {
+                    "tr": "U - ASKERLİK BİLİMİ: Askeri tarih ve strateji",
+                    "en": "U - MILITARY SCIENCE: Military history and strategy"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
-          "id": "dergiler",
-          "title": {
-            "tr": "Dergiler (Ciltli)",
-            "en": "Journals (Bound)"
-          },
-          "icon": "bi-journals",
-          "description": {
-            "tr": "Akademik ve popüler dergilerin ciltlenmiş koleksiyonu.",
-            "en": "Bound collection of academic and popular journals."
-          },
-          "details": [
-            {
-              "tr": "Akademik Dergiler: Alanında önde gelen dergiler",
-              "en": "Academic Journals: Leading journals in their field"
+          "type": "collapsible-section",
+          "data": {
+            "id": "raf-vz",
+            "title": {
+              "tr": "V-Z Raf Bölümü",
+              "en": "V-Z Shelf Section"
             },
-            {
-              "tr": "Popüler Dergiler: Kültür, sanat, bilim",
-              "en": "Popular Journals: Culture, arts, science"
+            "icon": "bi-bookshelf",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "V, W, X, Y ve Z yer numaralı kitaplar burada bulunmaktadır.",
+                  "en": "Books with call numbers V, W, X, Y, and Z are located here."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "V - DENİZCİLİK: Deniz bilimleri, denizcilik",
+                    "en": "V - NAVAL SCIENCE: Marine sciences, seafaring"
+                  },
+                  {
+                    "tr": "Z - KAYNAKÇALAR. KÜTÜPHANECİLİK: Bibliyografya, kütüphanecilik",
+                    "en": "Z - BIBLIOGRAPHY. LIBRARY SCIENCE: Bibliography, librarianship"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "collapsible-section",
+          "data": {
+            "id": "gazeteler",
+            "title": {
+              "tr": "Gazeteler",
+              "en": "Newspapers"
             },
-            {
-              "tr": "Ciltleme: Yıllık veya dönemsel",
-              "en": "Binding: Annual or periodic"
-            }
-          ]
+            "icon": "bi-newspaper",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "Güncel ve arşiv gazeteler burada bulunmaktadır.",
+                  "en": "Current and archived newspapers are located here."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "Günlük Gazeteler: Ulusal ve uluslararası",
+                    "en": "Daily Newspapers: National and international"
+                  },
+                  {
+                    "tr": "Arşiv Gazeteleri: Mikrofilm ve dijital format",
+                    "en": "Archived Newspapers: Microfilm and digital format"
+                  },
+                  {
+                    "tr": "Erişim: Açık raf ve talep bazlı",
+                    "en": "Access: Open shelf and on-demand"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "collapsible-section",
+          "data": {
+            "id": "dergiler",
+            "title": {
+              "tr": "Dergiler (Ciltli)",
+              "en": "Journals (Bound)"
+            },
+            "icon": "bi-journals",
+            "expanded": true,
+            "content": [
+              {
+                "type": "paragraph",
+                "text": {
+                  "tr": "Akademik ve popüler dergilerin ciltlenmiş koleksiyonu.",
+                  "en": "Bound collection of academic and popular journals."
+                }
+              },
+              {
+                "type": "unordered-list",
+                "items": [
+                  {
+                    "tr": "Akademik Dergiler: Alanında önde gelen dergiler",
+                    "en": "Academic Journals: Leading journals in their field"
+                  },
+                  {
+                    "tr": "Popüler Dergiler: Kültür, sanat, bilim",
+                    "en": "Popular Journals: Culture, arts, science"
+                  },
+                  {
+                    "tr": "Ciltleme: Yıllık veya dönemsel",
+                    "en": "Binding: Annual or periodic"
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     }
   ],
-  "meta": {
-    "title": {
-      "tr": "Koleksiyon & Kat Planı",
-      "en": ""
-    },
-    "description": {
-      "tr": "Anadolu Üniversitesi Kütüphane Koleksiyon ve Kat Planı",
-      "en": ""
-    }
-  },
-  "lastModified": "2026-08-14 15:25",
   "helpSection": {
     "title": {
       "tr": "Yardıma mı ihtiyacınız var?",
@@ -928,5 +1375,16 @@
         "link": "index.html"
       }
     ]
-  }
+  },
+  "meta": {
+    "title": {
+      "tr": "Koleksiyon & Kat Planı",
+      "en": ""
+    },
+    "description": {
+      "tr": "Anadolu Üniversitesi Kütüphane Koleksiyon ve Kat Planı",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-14 15:25"
 }

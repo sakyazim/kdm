@@ -32,7 +32,7 @@
 | Sayfa & yapı | Mevcut | Önerilen bileşen | Zorluk |
 |---|---|---|---|
 | `kime-sormaliyim` → `departments` (5) ✅ | bölüm + temas + iletişim | **`heading double-icon` + `icon-list` + `heading double-plain` + `contact-buttons`** (2026-08-19 pilot) | düşük |
-| `koleksiyon-kat-plani` → `floors` (5) | kat → bölüm → detay | `collapsible-section` + `info-box`/`table` | düşük |
+| `koleksiyon-kat-plani` → `floors` (5) ✅ | kat → bölüm → detay | **`content` + `collapsible-section`** (+ `content` paragraf) — saf içerik sayfası, interaktif nav kaldırıldı | düşük |
 | `mendeley` → `sections` (6) | `info-card`, `features` | `content` + `icon-list-grid` + `info-box` | düşük |
 | `arastirmaci-profili` → `quickNav` | floating hızlı erişim | `resource-links` / `link-cards` | orta |
 | `makale` → `generalInfo` | metin bloğu | `content` / `info-box` | düşük |
@@ -77,7 +77,11 @@
   - Ölü CSS temizliği: `.topics-*`, `.topic-*`, `.variant-kime-sormaliyim`, `.contact-section/.contact-title` kaldırıldı; `.contact-item/.contact-info/.btn-contact` korundu (makale/arastirmaci kullanıyor)
   - Arama filtresi `card.textContent` üzerinden çalışıyor (başlık+konular+iletişim aranır)
   - ✅ Doğrulama: node --check temiz, validation 0 yeni hata (mevcut 5 var), node render smoke test OK
-- [ ] `koleksiyon-kat-plani.floors` → `collapsible-section`/`info-box` + test
+- [x] `koleksiyon-kat-plani.floors` → `content` + `collapsible-section` (2026-08-19)
+  - Karar: **saf içerik sayfası** — interaktif sol kat navigasyonu kaldırıldı; 5 kat → 5 içerik section'ı (heading double-icon + content paragraf + 32 collapsible-section, expanded=true)
+  - Şema: `floors` alanı → standart `content`; `FloorPlanManager` (özel JS) + özel sayfa CSS'i silindi, HTML temizlendi, `InnerPage` standard render kullanıyor
+  - `inner.js` legacy kontrol listesinden `departments`/`floors` çıkarıldı (artık hiçbir sayfada yok)
+  - ✅ Doğrulama: node --check temiz, validation 0 yeni hata, render smoke test (32 collapsible, id çakışması yok)
 - [ ] `mendeley.sections` → `content`/`icon-list-grid`/`info-box` + test
 - [ ] `makale-islem-ucretleri` (`generalInfo` + `publishers`) + test
 - [ ] `arastirmaci-profili.quickNav` → `resource-links`/`link-cards` + test
