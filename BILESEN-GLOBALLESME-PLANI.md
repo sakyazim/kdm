@@ -33,7 +33,7 @@
 |---|---|---|---|
 | `kime-sormaliyim` → `departments` (5) ✅ | bölüm + temas + iletişim | **`heading double-icon` + `icon-list` + `heading double-plain` + `contact-buttons`** (2026-08-19 pilot) | düşük |
 | `koleksiyon-kat-plani` → `floors` (5) ✅ | kat → bölüm → detay | **`content` + `collapsible-section`** (+ `content` paragraf) — saf içerik sayfası, interaktif nav kaldırıldı | düşük |
-| `mendeley` → `sections` (6) | `info-card`, `features` | `content` + `icon-list-grid` + `info-box` | düşük |
+| `mendeley` → `sections` (6) ✅ | `info-card`, `features` | **`content` + `icon-list` + `info-box` + `step-cards` + `alert` + `resource-links` + `contact-buttons`** (2026-08-19 pilot) | düşük |
 | `arastirmaci-profili` → `quickNav` | floating hızlı erişim | `resource-links` / `link-cards` | orta |
 | `makale` → `generalInfo` | metin bloğu | `content` / `info-box` | düşük |
 | `makale` → `publishers` (6) | zengin yayıncı kartı | `icon-list-grid` + `info-box`; yeni bileşen gerekebilir | yüksek |
@@ -82,7 +82,12 @@
   - Şema: `floors` alanı → standart `content`; `FloorPlanManager` (özel JS) + özel sayfa CSS'i silindi, HTML temizlendi, `InnerPage` standard render kullanıyor
   - `inner.js` legacy kontrol listesinden `departments`/`floors` çıkarıldı (artık hiçbir sayfada yok)
   - ✅ Doğrulama: node --check temiz, validation 0 yeni hata, render smoke test (32 collapsible, id çakışması yok)
-- [ ] `mendeley.sections` → `content`/`icon-list-grid`/`info-box` + test
+- [x] `mendeley.sections` → `content`/`icon-list`/`info-box`/`step-cards`/`alert`/`resource-links`/`contact-buttons` (2026-08-19)
+  - 6 info-card section → 6 standart `content` section; eşleme: lead/text→`content`, features→`icon-list`, infoBoxes→`info-box`, steps→`step-cards` (defaultOpen), cta→heading `single-icon`+`content`+`contact-buttons`, warnings→`alert` warning, benefits→`icon-list` (check), resources→`resource-links`; `toc` + hero `showIcon` korundu
+  - Şema: özel `sections` (info-card) alanı → standart `content` (hierarchy sections + components registry); `toc` üst seviye kaldı
+  - `_components.json` + renderer: `resource-links` bileşenine `disabled`/`note`/`alert` alanları; `contact-buttons` buton metni `Utils.getLocalizedText` ile dil desteği; paylaşılan `component-resource-links` CSS `inner-page-components.css`'e eklendi (organizasyon-semasi de kazanıyor)
+  - Özel sayfa JS 385 satırdan 62 satıra: `renderFeatures/InfoBoxes/Steps/CTA/Warnings/Benefits/Resources` deterministik renderer'ları silindi → `ComponentRenderer.buildSectionCards`; 472 satır bespoke sayfa CSS'i silindi (`.page-container`/`.main-content` düzeni `hybrid-toc.css`'ten geliyor)
+  - ✅ Doğrulama: node --check temiz, validation 0 yeni hata, render smoke test (6 TOC anchor = 6 section id, çakışma yok, tüm bileşenler render, disabled/note çalışıyor)
 - [ ] `makale-islem-ucretleri` (`generalInfo` + `publishers`) + test
 - [ ] `arastirmaci-profili.quickNav` → `resource-links`/`link-cards` + test
 - [ ] `home.sections` dinamik blok kararı + test

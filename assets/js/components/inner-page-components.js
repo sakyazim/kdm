@@ -480,15 +480,22 @@ export class ComponentRenderer {
       // Çoklu dil desteği
       const localizedTitle = Utils.getLocalizedText(resource.title);
       const localizedDescription = Utils.mdToHtml(Utils.getLocalizedText(resource.description));
+      const noteHTML = resource.note ? `<small class="text-muted">${Utils.mdToHtml(Utils.getLocalizedText(resource.note))}</small>` : '';
+
+      // disabled: normal bağlantı davranışını kapatır; alert: tıklandığında uyarı gösterir
+      const isDisabled = !!resource.disabled;
+      const targetAttr = isDisabled ? '' : ' target="_blank" rel="noopener"';
+      const alertAttr = resource.alert ? ` onclick="alert('${Utils.getLocalizedText(resource.alert)}'); return false;"` : '';
 
       return `
-        <a href="${resource.url}" class="component-resource-link" target="_blank" rel="noopener">
+        <a href="${resource.url}" class="component-resource-link ${isDisabled ? 'disabled' : ''}"${targetAttr}${alertAttr}>
           <div class="resource-icon">
             <i class="${resource.icon}"></i>
           </div>
           <div class="resource-content">
             <h6>${localizedTitle}</h6>
             <p>${localizedDescription}</p>
+            ${noteHTML}
           </div>
         </a>
       `;
@@ -955,10 +962,11 @@ export class ComponentRenderer {
 
     const buttonsHTML = buttons.map(button => {
       const iconHTML = button.icon ? `<i class="${button.icon}"></i>` : '';
+      const localizedText = Utils.getLocalizedText(button.text);
       return `
         <a href="${button.href}" class="btn-contact">
           ${iconHTML}
-          ${button.text}
+          ${localizedText}
         </a>
       `;
     }).join('');

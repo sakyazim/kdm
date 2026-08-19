@@ -1144,6 +1144,24 @@
        "key": "url",
        "label": "Bağlantı",
        "type": "url"
+      },
+      {
+       "key": "disabled",
+       "label": "Pasif (çalışmayan bağlantı)",
+       "type": "boolean",
+       "hint": "Açıksa bağlantı tıklanamaz ve soluk görünür"
+      },
+      {
+       "key": "note",
+       "label": "Not",
+       "type": "lang",
+       "hint": "Kullanıcı rehberi gibi pasif kaynaklarda açıklayıcı not"
+      },
+      {
+       "key": "alert",
+       "label": "Tıklama Uyarısı",
+       "type": "lang",
+       "hint": "Doluysa bağlantıya tıklanınca bu uyarı gösterilir"
       }
      ]
     }
