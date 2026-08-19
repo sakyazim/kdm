@@ -24,12 +24,20 @@
               "en": "tests"
             },
             "subtitle": {
-              "tr": "",
-              "en": ""
+              "tr": "fgdf",
+              "en": "gfdg"
             },
-            "icon": "",
+            "icon": "bi-archive",
             "id": "",
-            "statusBadge": {}
+            "statusBadge": {
+              "data": {
+                "statusText": {
+                  "tr": "gdf",
+                  "en": "gdf"
+                }
+              },
+              "variant": "auto"
+            }
           }
         },
         {
@@ -57,7 +65,58 @@
         {
           "type": "stat-cards",
           "data": {
-            "items": []
+            "items": [
+              {
+                "label": {
+                  "tr": "gerhtrh",
+                  "en": "ger"
+                },
+                "value": {
+                  "tr": "ger",
+                  "en": "ger"
+                },
+                "icon": "bi-book-half"
+              }
+            ]
+          }
+        },
+        {
+          "type": "heading",
+          "data": {
+            "title": {
+              "tr": "rbere",
+              "en": "rber"
+            },
+            "subtitle": {
+              "tr": "berberber",
+              "en": "ber"
+            },
+            "statusBadge": {
+              "data": {}
+            }
+          }
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "staff-list",
+          "data": {
+            "staff": [
+              {
+                "name": "vsd",
+                "title": {
+                  "tr": "vsdv",
+                  "en": "vsdsdv"
+                },
+                "email": "vv",
+                "phone": "vewe",
+                "showName": true,
+                "showTitle": true,
+                "showEmail": true
+              }
+            ]
           }
         }
       ]
@@ -109,5 +168,5 @@
       "en": ""
     }
   },
-  "lastModified": "2026-08-19 18:45"
+  "lastModified": "2026-08-19 18:47"
 }
