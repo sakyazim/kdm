@@ -1,10 +1,7 @@
 {
  "file": "data/pages/calisma-saatleri.json",
-
  "label": "Çalışma Saatleri",
-
  "description": "Kütüphane çalışma saatleri, bölüm saatleri ve iletişim bilgileri.",
-
  "settingsGroup": {
   "label": "Sayfa Ayarları",
   "fields": [
@@ -14,9 +11,7 @@
    "lastModified"
   ]
  },
-
  "fields": [
-
   {
    "key": "hero",
    "label": "Üst Başlık (Hero)",
@@ -277,7 +272,6 @@
     }
    ]
   },
-
   {
    "key": "scheduleConfig",
    "label": "Saat Takvimi",
@@ -294,7 +288,6 @@
     }
    ]
   },
-
   {
    "key": "helpSection",
    "label": "Yardım Bölümü",
@@ -425,7 +418,6 @@
     }
    ]
   },
-
   {
    "key": "content",
    "label": "Sayfa Bölümleri",
@@ -442,6 +434,25 @@
      "hint": "🔒 Otomatik — bölüm çapa kimliği"
     },
     {
+     "key": "layout",
+     "label": "Düzen",
+     "type": "select",
+     "options": [
+      "column",
+      "row",
+      "grid-2",
+      "grid-3",
+      "cell"
+     ],
+     "hint": "column: üst üste (varsayılan) · row: yan yana · grid-2/3: sabit sütun · cell: eşit hücre"
+    },
+    {
+     "key": "className",
+     "label": "Ek Sınıf (CSS)",
+     "type": "text",
+     "hint": "İsteğe bağlı özel CSS sınıf adı"
+    },
+    {
      "key": "components",
      "label": "Bileşenler",
      "type": "components",
@@ -450,7 +461,6 @@
     }
    ]
   },
-
   {
    "key": "meta",
    "label": "SEO Bilgileri",
@@ -512,7 +522,6 @@
     }
    ]
   },
-
   {
    "key": "lastModified",
    "label": "Son Güncelleme",
@@ -521,6 +530,5 @@
    "defaultCollapsed": true,
    "hint": "🔒 Otomatik — kayıtta güncellenir"
   }
-
  ]
 }

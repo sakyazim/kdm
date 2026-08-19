@@ -3284,6 +3284,34 @@ function renderArrayItem(f, arr, i, rerender, path, openIdx) {
     row.appendChild(sel);
     body.appendChild(row);
     const compDef = f.components[comp.type];
+    if (compDef && compDef.variants && Array.isArray(compDef.variants) && compDef.variants.length) {
+      const vrow = document.createElement("div");
+      vrow.className = "component-type-row";
+      const vlab = document.createElement("span");
+      vlab.className = "field-label";
+      vlab.textContent = "Varyant";
+      const vsel = document.createElement("select");
+      vsel.className = "component-variant";
+      const vempty = document.createElement("option");
+      vempty.value = "";
+      vempty.textContent = "Varsayılan";
+      vsel.appendChild(vempty);
+      for (const v of compDef.variants) {
+        const vo = document.createElement("option");
+        vo.value = v;
+        vo.textContent = v.split("-").join(" ").replace(/\b\w/g, (c) => c.toUpperCase());
+        vsel.appendChild(vo);
+      }
+      vsel.value = comp.variant || "";
+      vsel.addEventListener("change", () => {
+        if (vsel.value) comp.variant = vsel.value;
+        else delete comp.variant;
+        markDirty();
+      });
+      vrow.appendChild(vlab);
+      vrow.appendChild(vsel);
+      body.appendChild(vrow);
+    }
     if (compDef && compDef.fields) renderFields(body, compDef.fields, comp.data, itemPath + ".data");
   } else if (f.itemType) {
     const inp = document.createElement("input");

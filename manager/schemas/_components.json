@@ -1,9 +1,10 @@
 {
  "label": "Ortak Bileşen Kayıt Defteri",
  "components": {
-  "heading": {
-   "label": "Başlık",
-   "fields": [
+"heading": {
+    "label": "Başlık",
+    "variants": ["single-icon", "single-plain", "double-icon", "double-plain"],
+    "fields": [
     {
      "key": "title",
      "label": "Başlık",
@@ -116,8 +117,9 @@
     }
    ]
   },
-  "icon-list": {
-   "label": "İkon Listesi",
+"icon-list": {
+   "label": "Ikon Listesi",
+   "variants": ["horizontal", "warning", "rules", "rules-horizontal", "contact-grid"],
    "fields": [
     {
      "key": "items",
@@ -211,9 +213,10 @@
     }
    ]
   },
-  "alert": {
-   "label": "Uyarı Kutusu",
-   "fields": [
+"alert": {
+    "label": "Uyarı Kutusu",
+    "variants": ["info", "warning", "success", "danger", "primary"],
+    "fields": [
     {
      "key": "icon",
      "label": "İkon",

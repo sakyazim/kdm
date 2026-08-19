@@ -19,14 +19,14 @@
 ## 2. Analiz Bulguları (2026-08-19)
 
 ### 2.1 Bileşen sorunları
-- **`search-with-controls`**: veride 2 kullanım (`duyurular`, `guncel-haberler`), **jenerik renderer'ı yok** (yalnız sayfa-özel JS'te işleniyor). Diğer sayfaya eklenirse boş kalır.
-- **4 boş alert** (`sure-uzatma` ×2, `uzaktan-erisim` ×2): `data`'sız, `variant`'sız → `component-alert undefined` class'ı basar.
-- **2 varyantsız heading** (`data/pages/test.json`): `renderHeading` `''` döner → site görünmez.
-- **heading şemasında `variant` select yok** → editörde başlık stilini değiştirmek imkânsız (şu an sadece wizard varsayılan atıyor).
-- **Ölü renderer case'leri** (registry'de yok ama kodda var): `custom-html`, `image`, `news-display`, `ordered-list`, `paragraph`, `search`, `unordered-list`, `video` → kaldır veya belgele.
-- **`status-badge`** ayrı bileşen olarak hiç kullanılmıyor (0); sadece heading içindeki gömülü alan çalışıyor.
-- **Bölüm şemasında `className`/`layout` alanı yok** ama renderer `section.className`'i zaten okuyor → düzenlenebilir yapılmalı.
-- Eski wizard bileşenlerinde `id` çoğunlukla yok → çapa/ID özellikleri kullanılamıyor.
+- **`search-with-controls`**: veride 2 kullanım (`duyurular`, `guncel-haberler`), **jenerik renderer'ı yoktu** (yalnız sayfa-özel JS'te işleniyor). ✅ 2026-08-19 jenerik `renderSearchWithControls` eklendi.
+- **Variant'sız alert'ler** (`sure-uzatma` ×2, `uzaktan-erisim` ×2): boş değiller — `component.variant` yerine **`data.style`** renk bilgisi taşıyorlar (legacy kalıntısı) ve renderer onu yok sayıyordu. ✅ Renderer artık `variant || data.style || 'default'` okuyor; `default` CSS eklendi. Kaldırma gereksiz çıktı.
+- **2 varyantsız heading** (`data/pages/test.json`): ✅ renderer artık `variant || 'single-icon'` fallback'i ile boş kalmıyor (AŞAMA 2'de veri de temizlenecek).
+- **heading şemasında `variant` select yoktu** → ✅ `variants` meta bilgisi eklendi (heading/alert/icon-list) + editöre Varyant seçici.
+- **Ölü renderer case'leri** (registry'de yok ama kodda var): `custom-html`, `news-display`, `search` → **karar: kod korunur** (escape hatch + yeni sayfa adayı), durum belgelemesi MD'de tutulur. `paragraph/ordered-list/unordered-list/image/video` ölü değil — `collapsible-section` içerik blokları.
+- **`status-badge`** ayrı bileşen olarak hiç kullanılmıyor (0) → **karar: registry'de kalsın + belgelensin** (heading içindeki gömülü alan çalışıyor).
+- **Bölüm şemasında `className`/`layout` alanı yoktu** → ✅ server.py kalıbına + 24 sayfa şemasına `layout` select + `className` eklendi; `inner.js` + 15 sayfa JS `section-card-body` layout sınıfı basıyor; CSS utility'leri eklendi.
+- Eski wizard bileşenlerinde `id` çoğunlukla yok → çapa/ID özellikleri kullanılamıyor (devam: kademeli).
 
 ### 2.2 Bileşene dönüştürülebilir legacy içerik
 | Sayfa & yapı | Mevcut | Önerilen bileşen | Zorluk |
@@ -54,12 +54,12 @@
 - [ ] Git/GitHub yedeği: remote yok → özel repo oluştur + ilk commit/push (secrets taraması ile)
 
 ### AŞAMA 1 — Bileşen Sistemi Sertleştirme
-- [ ] `heading` şemasına `variant` select (`single-icon`/`single-plain`/`double-icon`/`double-plain`) + editör/wizard uyumu
-- [ ] Boş alert'lerin temizliği (`sure-uzatma`, `uzaktan-erisim`) — kaldır veya veri doldur
-- [ ] `search-with-controls` jenerik renderer'ı (veya sayfa-özel kodu registry'ye kazandır)
-- [ ] Ölü case'lerin kararı: kaldır veya belgele (`custom-html`, `image`, `news-display`, `paragraph`, `search`, `unordered-list`, `video`)
-- [ ] `status-badge` standalone kararı (kullan kaldır veya sadece heading içinde tut)
-- [ ] Bölüm şemasına `className` + `layout` alanı
+- [x] `heading`/`alert`/`icon-list` şemalarına `variants` meta bilgisi + editörde Varyant seçici (2026-08-19)
+- [x] Renderer fallback'leri: `heading` → `single-icon`, `alert` → `variant || data.style || 'default'` + `default` CSS
+- [x] `search-with-controls` jenerik renderer'ı (2026-08-19)
+- [x] Ölü case'ler kararı: `custom-html`, `news-display`, `search` korunur + belgelendi; `paragraph/...` = collapsible iç blok
+- [x] `status-badge` kararı: registry'de kalır, bağımsız kullanım 0 (belgelendi)
+- [x] Bölüm şeması: `layout` select + `className` (server.py kalıbı + 24 sayfa şeması + inner.js + 15 sayfa JS + CSS)
 - [ ] ✅ Doğrulama: `validation.py` 0 hata + render smoke test
 
 ### AŞAMA 2 — test.json kararları

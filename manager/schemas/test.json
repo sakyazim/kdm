@@ -288,6 +288,25 @@
           "hint": "🔒 Otomatik — bölüm çapa kimliği"
         },
         {
+          "key": "layout",
+          "label": "Düzen",
+          "type": "select",
+          "options": [
+            "column",
+            "row",
+            "grid-2",
+            "grid-3",
+            "cell"
+          ],
+          "hint": "column: üst üste (varsayılan) · row: yan yana · grid-2/3: sabit sütun · cell: eşit hücre"
+        },
+        {
+          "key": "className",
+          "label": "Ek Sınıf (CSS)",
+          "type": "text",
+          "hint": "İsteğe bağlı özel CSS sınıf adı"
+        },
+        {
           "key": "components",
           "label": "Bileşenler",
           "type": "components",

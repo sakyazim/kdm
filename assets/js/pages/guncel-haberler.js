@@ -172,7 +172,7 @@ export class GuncelHaberlerPage {
         // Geri kalan componentleri section-card-body içine al
         if (section.components.length > 1 || !hasHeading) {
           const bodyContainer = document.createElement('div');
-          bodyContainer.className = 'section-card-body';
+          bodyContainer.className = 'section-card-body' + (section.layout ? ' layout-' + section.layout : '');
           bodyContainer.id = `${section.id}-body`;
           sectionContainer.appendChild(bodyContainer);
 

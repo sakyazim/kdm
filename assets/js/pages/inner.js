@@ -121,6 +121,7 @@ export class InnerPage {
         if (section.components && Array.isArray(section.components)) {
           const sectionId = section.id || '';
           const sectionClass = section.className || '';
+          const layoutClass = section.layout ? ' layout-' + section.layout : '';
 
           // Find the first heading component (if any)
           let headingComponent = null;
@@ -139,7 +140,7 @@ export class InnerPage {
             <section class="section-card ${sectionClass}" ${sectionId ? `id="${sectionId}"` : ''}>
               ${headingComponent ? ComponentRenderer.render(headingComponent) : ''}
               ${otherComponents.length > 0 ? `
-                <div class="section-card-body">
+                <div class="section-card-body${layoutClass}">
                   ${ComponentRenderer.renderMultiple(otherComponents)}
                 </div>
               ` : ''}

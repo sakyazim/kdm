@@ -81,6 +81,8 @@ export class ComponentRenderer {
         return this.renderLinkCards(component);
       case 'search-filter':
         return this.renderSearchFilter(component);
+      case 'search-with-controls':
+        return this.renderSearchWithControls(component);
       case 'circular-progress':
         return this.renderCircularProgress(component);
       default:
@@ -95,6 +97,7 @@ export class ComponentRenderer {
    */
   static renderHeading(component) {
     const { variant, data } = component;
+    const v = variant || 'single-icon';
     const { title, subtitle, icon, id, statusBadge } = data;
 
     // Çoklu dil desteği
@@ -110,7 +113,7 @@ export class ComponentRenderer {
       statusBadgeHTML = this.renderStatusBadge(statusBadge);
     }
 
-    switch (variant) {
+    switch (v) {
       case 'single-icon':
         return `
           <div class="component-heading single-icon" ${idAttr}>
@@ -161,6 +164,7 @@ export class ComponentRenderer {
    */
   static renderAlert(component) {
     const { variant, style, data } = component;
+    const v = variant || (data && data.style) || 'default';
     const { icon, title, content, items, link, linkText, linkIcon } = data;
 
     // Çoklu dil desteği
@@ -204,7 +208,7 @@ export class ComponentRenderer {
     }
 
     return `
-      <div class="component-alert ${variant}">
+      <div class="component-alert ${v}">
         ${iconHTML}
         ${contentHTML}
         ${linkHTML}
@@ -535,6 +539,66 @@ export class ComponentRenderer {
     }
 
     return html;
+  }
+
+  /**
+   * Arama + kategoriler + kontroller (search-with-controls)
+   * duyurular / guncel-haberler sayfalarının işlevsel render'ına paralel statik çıktı.
+   * Davranış (arama/filtre olayları) sayfa JS'ine aittir; başka sayfada görsel yerleşim sağlar.
+   */
+  static renderSearchWithControls(component) {
+    const { data } = component;
+    if (!data) return '';
+
+    const noResults = data.noResults || {};
+    const categoriesHTML = (data.categories || []).map(cat => `
+      <button class="category-btn ${cat.id === 'all' ? 'active' : ''}" data-category="${cat.id}">
+        ${cat.icon ? `<i class="${cat.icon}"></i>` : ''}
+        ${Utils.getLocalizedText(cat.label)}
+      </button>
+    `).join('');
+
+    const sortCfg = (data.controls || {}).sort || {};
+    const sortControl = sortCfg.enabled ? `
+      <button class="control-btn" id="sort-btn" title="Sıralama">
+        <i class="${(sortCfg.icon || {}).desc || 'bi bi-sort-down-alt'}"></i>
+        <span class="sort-text">${Utils.getLocalizedText((sortCfg.text || {}).desc)}</span>
+      </button>
+    ` : '';
+
+    const viewCfg = (data.controls || {}).viewToggle || {};
+    const viewToggleHTML = viewCfg.enabled ? `
+      <div class="view-toggle-group">
+        ${(viewCfg.options || []).map(option => `
+          <button class="view-toggle-btn ${option.id === viewCfg.defaultView ? 'active' : ''}"
+                  data-view="${option.id}"
+                  title="${Utils.getLocalizedText(option.label)}">
+            <i class="${option.icon}"></i>
+          </button>
+        `).join('')}
+      </div>
+    ` : '';
+
+    return `
+      <div class="search-section">
+        <div class="search-and-controls">
+          <div class="search-wrapper">
+            <div class="search-input-group">
+              <i class="${data.icon || 'bi bi-search'} search-icon"></i>
+              <input type="text" id="news-search" class="search-input" placeholder="${Utils.getLocalizedText(data.placeholder)}">
+              <button type="button" id="clear-search" class="clear-search-btn" style="display:none;">
+                <i class="${data.clearButtonIcon || 'bi bi-x-lg'}"></i>
+              </button>
+            </div>
+          </div>
+          ${sortControl}
+          ${viewToggleHTML}
+        </div>
+        <div class="category-filters">
+          ${categoriesHTML}
+        </div>
+      </div>
+    `;
   }
 
   /**

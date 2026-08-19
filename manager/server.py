@@ -615,7 +615,8 @@ def _nav_insert(header, parent, item, position):
 def api_components():
     _reload_schemas_if_changed()
     comps = [
-        {"type": t, "label": c.get("label") or t, "hint": c.get("hint", ""), "fields": c.get("fields") or []}
+        {"type": t, "label": c.get("label") or t, "hint": c.get("hint", ""),
+         "variants": c.get("variants") or [], "fields": c.get("fields") or []}
         for t, c in sorted(GLOBAL_COMPONENTS.items())
     ]
     return {"ok": True, "components": comps}
@@ -704,6 +705,11 @@ def api_page_create(payload):
         "itemFields": [
             {"key": "id", "label": "Bölüm Kimliği", "type": "text", "readonly": True, "auto": True,
              "hint": "🔒 Otomatik — bölüm çapa kimliği"},
+            {"key": "layout", "label": "Düzen", "type": "select",
+             "options": ["column", "row", "grid-2", "grid-3", "cell"],
+             "hint": "column: üst üste (varsayılan) · row: yan yana · grid-2/3: sabit sütun · cell: eşit hücre"},
+            {"key": "className", "label": "Ek Sınıf (CSS)", "type": "text",
+             "hint": "İsteğe bağlı özel CSS sınıf adı"},
             {"key": "components", "label": "Bileşenler", "type": "components",
              "soloOpen": True, "registry": "components"},
         ],
