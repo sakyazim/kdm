@@ -30,6 +30,14 @@
       "dropdown": [
         {
           "title": {
+            "tr": "test",
+            "en": "tests"
+          },
+          "icon": "bi-file-text",
+          "url": "test.html"
+        },
+        {
+          "title": {
             "tr": "VERİTABANLARI",
             "en": "DATABASES"
           },
@@ -313,5 +321,5 @@
       }
     ]
   },
-  "lastModified": "2025-11-05T10:00:00Z"
+  "lastModified": "2026-08-19 18:45"
 }
