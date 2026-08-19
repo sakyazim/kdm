@@ -31,7 +31,7 @@
 ### 2.2 Bileşene dönüştürülebilir legacy içerik
 | Sayfa & yapı | Mevcut | Önerilen bileşen | Zorluk |
 |---|---|---|---|
-| `kime-sormaliyim` → `departments` (5) | bölüm + temas + iletişim | `staff-list` + `contact-box`/`info-box` | düşük |
+| `kime-sormaliyim` → `departments` (5) ✅ | bölüm + temas + iletişim | **`heading double-icon` + `icon-list` + `heading double-plain` + `contact-buttons`** (2026-08-19 pilot) | düşük |
 | `koleksiyon-kat-plani` → `floors` (5) | kat → bölüm → detay | `collapsible-section` + `info-box`/`table` | düşük |
 | `mendeley` → `sections` (6) | `info-card`, `features` | `content` + `icon-list-grid` + `info-box` | düşük |
 | `arastirmaci-profili` → `quickNav` | floating hızlı erişim | `resource-links` / `link-cards` | orta |
@@ -69,7 +69,14 @@
 - [x] ✅ Doğrulama: JSON valid + validation 0 yeni hata
 
 ### AŞAMA 3 — Legacy Dönüşüm (pilottan genişe, teker teker)
-- [ ] **Pilot:** `kime-sormaliyim.departments` → `staff-list`/`contact-box` + test
+- [x] **Pilot:** `kime-sormaliyim.departments` → `heading double-icon` + `icon-list` (konular) + `heading double-plain` + `contact-buttons` (2026-08-19)
+  - Şema: `departments`/`labels` kaldırıldı → standart `content` (sections/components) eklendi; `searchSection.icon` çift anahtar → `clearButtonIcon` düzeltildi
+  - `_components.json`: `icon-list`'e `title` + `titleIcon` alanları eklendi (renderer zaten destekliyordu, şema eksikti)
+  - `ComponentRenderer`: `buildSectionCard`/`buildSectionCards` eklendi; `inner.js` ile ortak kullanılıyor (%100 aynı section-card kalıbı)
+  - Hata düzeltmesi: bölümde **birden fazla heading** varsa renderer son heading'i bölüm başlığı yapıyor, ilkini yutuyordu → yalnızca ilk heading başlık, geri kalanlar gövdeye
+  - Ölü CSS temizliği: `.topics-*`, `.topic-*`, `.variant-kime-sormaliyim`, `.contact-section/.contact-title` kaldırıldı; `.contact-item/.contact-info/.btn-contact` korundu (makale/arastirmaci kullanıyor)
+  - Arama filtresi `card.textContent` üzerinden çalışıyor (başlık+konular+iletişim aranır)
+  - ✅ Doğrulama: node --check temiz, validation 0 yeni hata (mevcut 5 var), node render smoke test OK
 - [ ] `koleksiyon-kat-plani.floors` → `collapsible-section`/`info-box` + test
 - [ ] `mendeley.sections` → `content`/`icon-list-grid`/`info-box` + test
 - [ ] `makale-islem-ucretleri` (`generalInfo` + `publishers`) + test

@@ -122,6 +122,18 @@
    "variants": ["horizontal", "warning", "rules", "rules-horizontal", "contact-grid"],
    "fields": [
     {
+     "key": "title",
+     "label": "Liste Başlığı",
+     "type": "lang",
+     "hint": "Konu listesinin üstündeki başlık (örn: 'Yardım Alabileceğiniz Konular')"
+    },
+    {
+     "key": "titleIcon",
+     "label": "Başlık İkonu",
+     "type": "icon",
+     "hint": "Başlığın solundaki ikon (örn: fas fa-list-ul)"
+    },
+    {
      "key": "items",
      "label": "Öğeler",
      "type": "array",

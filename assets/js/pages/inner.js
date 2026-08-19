@@ -115,41 +115,7 @@ export class InnerPage {
     // Check if contentData is using the new component-based structure
     if (Array.isArray(contentData)) {
       // New component-based structure
-      let contentHtml = '';
-
-      contentData.forEach(section => {
-        if (section.components && Array.isArray(section.components)) {
-          const sectionId = section.id || '';
-          const sectionClass = section.className || '';
-          const layoutClass = section.layout ? ' layout-' + section.layout : '';
-
-          // Find the first heading component (if any)
-          let headingComponent = null;
-          let otherComponents = [];
-
-          section.components.forEach(comp => {
-            if (comp.type === 'heading') {
-              headingComponent = comp;
-            } else {
-              otherComponents.push(comp);
-            }
-          });
-
-          // Wrap in section-card structure for integrated header+body look
-          contentHtml += `
-            <section class="section-card ${sectionClass}" ${sectionId ? `id="${sectionId}"` : ''}>
-              ${headingComponent ? ComponentRenderer.render(headingComponent) : ''}
-              ${otherComponents.length > 0 ? `
-                <div class="section-card-body${layoutClass}">
-                  ${ComponentRenderer.renderMultiple(otherComponents)}
-                </div>
-              ` : ''}
-            </section>
-          `;
-        }
-      });
-
-      container.innerHTML = contentHtml;
+      container.innerHTML = ComponentRenderer.buildSectionCards(contentData);
       return;
     }
 

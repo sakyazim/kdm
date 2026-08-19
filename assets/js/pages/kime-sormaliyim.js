@@ -7,6 +7,7 @@ import Utils from '../core/utils.js';
 import { HeroManager } from '../components/hero.js';
 import { HelpSectionManager } from '../components/helpsection.js';
 import { SearchFilterManager } from '../components/search-filter-manager.js';
+import { ComponentRenderer } from '../components/inner-page-components.js';
 
 export class KimeSormaliyimPage {
   constructor(app) {
@@ -37,9 +38,9 @@ export class KimeSormaliyimPage {
         this.renderSearchSection(this.pageData.searchSection);
       }
 
-      // Departmanları render et
-      if (this.pageData.departments) {
-        this.renderDepartments(this.pageData.departments);
+      // İçerik bölümlerini render et (bileşen tabanlı)
+      if (this.pageData.content) {
+        this.renderContent(this.pageData.content);
       }
 
       // Help section'ı render et
@@ -92,74 +93,13 @@ export class KimeSormaliyimPage {
   }
 
   /**
-   * Departmanları render et
+   * İçerik bölümlerini render et — ortak bileşen sistemiyle (ComponentRenderer)
    */
-  renderDepartments(departments) {
+  renderContent(contentSections) {
     const container = document.getElementById('departments-container');
     if (!container) return;
 
-    // Labels'ları al
-    const labels = this.pageData.labels || {};
-    const topicsTitle = Utils.getLocalizedText(labels.topicsTitle || { tr: 'Bu Birimden Yardım Alabileceğiniz Konular', en: 'Topics You Can Get Help With' });
-    const contactTitle = Utils.getLocalizedText(labels.contactTitle || { tr: 'İletişim Bilgileri', en: 'Contact Information' });
-
-    departments.forEach(dept => {
-      const card = document.createElement('section');
-      card.className = 'section-card';
-      card.setAttribute('data-department', dept.id);
-
-      // Çoklu dil desteği
-      const deptTitle = Utils.getLocalizedText(dept.title);
-      const deptSubtitle = Utils.getLocalizedText(dept.subtitle);
-
-      // Topics HTML
-      const topicsHTML = dept.topics.map(topic => {
-        const localizedTopic = Utils.getLocalizedText(topic);
-        return `
-          <div class="topic-item">
-            <i class="fas fa-chevron-right topic-bullet"></i>
-            <span>${localizedTopic}</span>
-          </div>
-        `;
-      }).join('');
-
-      // Contacts HTML
-      const contactsHTML = dept.contacts.map(contact => `
-        <a href="${contact.link}" class="contact-item btn-contact">
-          <i class="${contact.icon}"></i>
-          ${contact.text}
-        </a>
-      `).join('');
-
-      card.innerHTML = `
-        <div class="component-heading double-icon">
-          <i class="${dept.icon} heading-icon"></i>
-          <div class="heading-text">
-            <h3>${deptTitle}</h3>
-            <p>${deptSubtitle}</p>
-          </div>
-        </div>
-        <div class="section-card-body">
-          <div class="topics-section">
-            <div class="topics-title">
-              <i class="fas fa-list-ul"></i>
-              ${topicsTitle}
-            </div>
-            <div class="topics-list variant-kime-sormaliyim">
-              ${topicsHTML}
-            </div>
-          </div>
-          <div class="contact-section">
-            <div class="contact-title">${contactTitle}</div>
-            <div class="contact-info">
-              ${contactsHTML}
-            </div>
-          </div>
-        </div>
-      `;
-
-      container.appendChild(card);
-    });
+    container.innerHTML = ComponentRenderer.buildSectionCards(contentSections);
 
     // Arama işlevini başlat
     this.initializeSearch();
@@ -193,16 +133,15 @@ export class KimeSormaliyimPage {
   }
 
   /**
-   * Departmanları filtrele
+   * Bölüm kartlarını filtrele — başlık, konular ve iletişim metni aranır
    */
   filterDepartments(searchTerm, cards, noResults) {
     let visibleCount = 0;
 
     cards.forEach(card => {
-      const headerText = card.querySelector('.header-text')?.textContent.toLowerCase() || '';
-      const topicsText = card.querySelector('.topics-list')?.textContent.toLowerCase() || '';
+      const cardText = card.textContent.toLowerCase();
 
-      if (searchTerm === '' || headerText.includes(searchTerm) || topicsText.includes(searchTerm)) {
+      if (searchTerm === '' || cardText.includes(searchTerm)) {
         card.style.display = 'block';
         visibleCount++;
       } else {

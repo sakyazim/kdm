@@ -289,7 +289,7 @@
      "type": "lang"
     },
     {
-     "key": "icon",
+     "key": "clearButtonIcon",
      "label": "Temizle Butonu İkonu",
      "type": "icon",
      "hint": "Örn: bi bi-x-lg"
@@ -319,26 +319,11 @@
    ]
   },
   {
-   "key": "labels",
-   "label": "Etiketler",
-   "type": "object",
-   "fields": [
-    {
-     "key": "topicsTitle",
-     "label": "Konular Başlığı",
-     "type": "lang"
-    },
-    {
-     "key": "contactTitle",
-     "label": "İletişim Başlığı",
-     "type": "lang"
-    }
-   ]
-  },
-  {
-   "key": "departments",
-   "label": "Bölümler",
+   "key": "content",
+   "label": "İçerik Bölümleri",
    "type": "array",
+   "hierarchy": "sections",
+   "defaultOpen": true,
    "itemLabel": "Bölüm",
    "itemFields": [
     {
@@ -347,66 +332,30 @@
      "type": "text"
     },
     {
-     "key": "icon",
-     "label": "Bölüm İkonu",
-     "type": "icon"
+     "key": "layout",
+     "label": "Düzen",
+     "type": "select",
+     "options": [
+      "column",
+      "row",
+      "grid-2",
+      "grid-3",
+      "cell"
+     ],
+     "hint": "column: üst üste (varsayılan) · row: yan yana · grid-2/3: sabit sütun · cell: eşit hücre"
     },
     {
-     "key": "title",
-     "label": "Başlık",
-     "type": "lang",
-     "required": true
+     "key": "className",
+     "label": "Ek Sınıf (CSS)",
+     "type": "text",
+     "hint": "İsteğe bağlı özel CSS sınıf adı"
     },
     {
-     "key": "subtitle",
-     "label": "Alt Başlık",
-     "type": "lang"
-    },
-    {
-     "key": "topics",
-     "label": "Konular",
-     "type": "array",
-     "itemLabel": "Konu",
-     "itemFields": [
-      {
-       "key": "",
-       "label": "Konu",
-       "type": "lang"
-      }
-     ]
-    },
-    {
-     "key": "contacts",
-     "label": "İletişim",
-     "type": "array",
-     "itemLabel": "İletişim",
-     "itemFields": [
-      {
-       "key": "type",
-       "label": "Tip",
-       "type": "select",
-       "options": [
-        "phone",
-        "email"
-       ],
-       "hint": "phone: telefon · email: e-posta"
-      },
-      {
-       "key": "icon",
-       "label": "İkon",
-       "type": "icon"
-      },
-      {
-       "key": "text",
-       "label": "Metin",
-       "type": "text"
-      },
-      {
-       "key": "link",
-       "label": "Bağlantı",
-       "type": "url"
-      }
-     ]
+     "key": "components",
+     "label": "Bileşenler",
+     "type": "components",
+     "soloOpen": true,
+     "registry": "components"
     }
    ]
   },

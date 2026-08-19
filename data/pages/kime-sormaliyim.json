@@ -45,256 +45,493 @@
       "en": "You can try different keywords or use general contact information."
     }
   },
-  "labels": {
-    "topicsTitle": {
-      "tr": "Bu Birimden Yardım Alabileceğiniz Konular",
-      "en": "Topics You Can Get Help With From This Department"
-    },
-    "contactTitle": {
-      "tr": "İletişim Bilgileri",
-      "en": "Contact Information"
-    }
-  },
-  "departments": [
+  "content": [
     {
       "id": "danisma",
-      "icon": "fas fa-compass",
-      "title": {
-        "tr": "Genel Danışma & Kullanıcı Eğitimi",
-        "en": "General Reference & User Training"
-      },
-      "subtitle": {
-        "tr": "Danışma Bölümü (Okuyucu Hizmetleri)",
-        "en": "Reference Department (Reader Services)"
-      },
-      "topics": [
+      "components": [
         {
-          "tr": "Basılı/elektronik kaynak kullanımı",
-          "en": "Print/electronic resource usage"
+          "type": "heading",
+          "variant": "double-icon",
+          "data": {
+            "title": {
+              "tr": "Genel Danışma & Kullanıcı Eğitimi",
+              "en": "General Reference & User Training"
+            },
+            "subtitle": {
+              "tr": "Danışma Bölümü (Okuyucu Hizmetleri)",
+              "en": "Reference Department (Reader Services)"
+            },
+            "icon": "fas fa-compass"
+          }
         },
         {
-          "tr": "Danışma hizmetleri",
-          "en": "Reference services"
+          "type": "icon-list",
+          "data": {
+            "title": {
+              "tr": "Bu Birimden Yardım Alabileceğiniz Konular",
+              "en": "Topics You Can Get Help With From This Department"
+            },
+            "titleIcon": "fas fa-list-ul",
+            "items": [
+              {
+                "icon": "fas fa-chevron-right",
+                "text": {
+                  "tr": "Basılı/elektronik kaynak kullanımı",
+                  "en": "Print/electronic resource usage"
+                }
+              },
+              {
+                "icon": "fas fa-chevron-right",
+                "text": {
+                  "tr": "Danışma hizmetleri",
+                  "en": "Reference services"
+                }
+              },
+              {
+                "icon": "fas fa-chevron-right",
+                "text": {
+                  "tr": "Oryantasyon programları",
+                  "en": "Orientation programs"
+                }
+              },
+              {
+                "icon": "fas fa-chevron-right",
+                "text": {
+                  "tr": "Kullanıcı eğitimi",
+                  "en": "User training"
+                }
+              },
+              {
+                "icon": "fas fa-chevron-right",
+                "text": {
+                  "tr": "Tanıtım etkinlikleri",
+                  "en": "Promotional activities"
+                }
+              },
+              {
+                "icon": "fas fa-chevron-right",
+                "text": {
+                  "tr": "Randevu talepleri",
+                  "en": "Appointment requests"
+                }
+              }
+            ]
+          }
         },
         {
-          "tr": "Oryantasyon programları",
-          "en": "Orientation programs"
+          "type": "heading",
+          "variant": "double-plain",
+          "data": {
+            "title": {
+              "tr": "İletişim Bilgileri",
+              "en": "Contact Information"
+            }
+          }
         },
         {
-          "tr": "Kullanıcı eğitimi",
-          "en": "User training"
-        },
-        {
-          "tr": "Tanıtım etkinlikleri",
-          "en": "Promotional activities"
-        },
-        {
-          "tr": "Randevu talepleri",
-          "en": "Appointment requests"
-        }
-      ],
-      "contacts": [
-        {
-          "type": "phone",
-          "icon": "fas fa-phone",
-          "text": "0 (222) 335 05 80 / 1733",
-          "link": "tel:+902223350580"
-        },
-        {
-          "type": "email",
-          "icon": "fas fa-envelope",
-          "text": "library@anadolu.edu.tr",
-          "link": "mailto:library@anadolu.edu.tr"
+          "type": "contact-buttons",
+          "data": {
+            "buttons": [
+              {
+                "type": "phone",
+                "icon": "fas fa-phone",
+                "text": "0 (222) 335 05 80 / 1733",
+                "href": "tel:+902223350580"
+              },
+              {
+                "type": "email",
+                "icon": "fas fa-envelope",
+                "text": "library@anadolu.edu.tr",
+                "href": "mailto:library@anadolu.edu.tr"
+              }
+            ],
+            "justify": "start",
+            "gap": "0.6rem"
+          }
         }
       ]
     },
     {
       "id": "ekaynaklar",
-      "icon": "fas fa-laptop-code",
-      "title": {
-        "tr": "Elektronik Kaynaklar & Web Sorunları",
-        "en": "Electronic Resources & Web Issues"
-      },
-      "subtitle": {
-        "tr": "eKaynaklar Birimi",
-        "en": "eResources Unit"
-      },
-      "topics": [
+      "components": [
         {
-          "tr": "Kütüphane web sitesi sorunları",
-          "en": "Library website issues"
+          "type": "heading",
+          "variant": "double-icon",
+          "data": {
+            "title": {
+              "tr": "Elektronik Kaynaklar & Web Sorunları",
+              "en": "Electronic Resources & Web Issues"
+            },
+            "subtitle": {
+              "tr": "eKaynaklar Birimi",
+              "en": "eResources Unit"
+            },
+            "icon": "fas fa-laptop-code"
+          }
         },
         {
-          "tr": "Veritabanları erişim sorunları",
-          "en": "Database access issues"
+          "type": "icon-list",
+          "data": {
+            "title": {
+              "tr": "Bu Birimden Yardım Alabileceğiniz Konular",
+              "en": "Topics You Can Get Help With From This Department"
+            },
+            "titleIcon": "fas fa-list-ul",
+            "items": [
+              {
+                "icon": "fas fa-chevron-right",
+                "text": {
+                  "tr": "Kütüphane web sitesi sorunları",
+                  "en": "Library website issues"
+                }
+              },
+              {
+                "icon": "fas fa-chevron-right",
+                "text": {
+                  "tr": "Veritabanları erişim sorunları",
+                  "en": "Database access issues"
+                }
+              },
+              {
+                "icon": "fas fa-chevron-right",
+                "text": {
+                  "tr": "E-dergiler ve elektronik kaynaklar",
+                  "en": "E-journals and electronic resources"
+                }
+              },
+              {
+                "icon": "fas fa-chevron-right",
+                "text": {
+                  "tr": "Proxy bağlantısı ve uzaktan erişim",
+                  "en": "Proxy connection and remote access"
+                }
+              },
+              {
+                "icon": "fas fa-chevron-right",
+                "text": {
+                  "tr": "Sosyal medya üzerinden gelen bilgi talepleri",
+                  "en": "Information requests via social media"
+                }
+              }
+            ]
+          }
         },
         {
-          "tr": "E-dergiler ve elektronik kaynaklar",
-          "en": "E-journals and electronic resources"
+          "type": "heading",
+          "variant": "double-plain",
+          "data": {
+            "title": {
+              "tr": "İletişim Bilgileri",
+              "en": "Contact Information"
+            }
+          }
         },
         {
-          "tr": "Proxy bağlantısı ve uzaktan erişim",
-          "en": "Proxy connection and remote access"
-        },
-        {
-          "tr": "Sosyal medya üzerinden gelen bilgi talepleri",
-          "en": "Information requests via social media"
-        }
-      ],
-      "contacts": [
-        {
-          "type": "phone",
-          "icon": "fas fa-phone",
-          "text": "0 (222) 335 05 80 / 1737",
-          "link": "tel:+902223350580"
-        },
-        {
-          "type": "email",
-          "icon": "fas fa-envelope",
-          "text": "library@anadolu.edu.tr",
-          "link": "mailto:library@anadolu.edu.tr"
+          "type": "contact-buttons",
+          "data": {
+            "buttons": [
+              {
+                "type": "phone",
+                "icon": "fas fa-phone",
+                "text": "0 (222) 335 05 80 / 1737",
+                "href": "tel:+902223350580"
+              },
+              {
+                "type": "email",
+                "icon": "fas fa-envelope",
+                "text": "library@anadolu.edu.tr",
+                "href": "mailto:library@anadolu.edu.tr"
+              }
+            ],
+            "justify": "start",
+            "gap": "0.6rem"
+          }
         }
       ]
     },
     {
       "id": "odunc",
-      "icon": "fas fa-book-open",
-      "title": {
-        "tr": "Ödünç Verme Hizmetleri",
-        "en": "Circulation Services"
-      },
-      "subtitle": {
-        "tr": "Ödünç Verme Bölümü",
-        "en": "Circulation Department"
-      },
-      "topics": [
+      "components": [
         {
-          "tr": "Kitap/materyal ödünç alma ve iade işlemleri",
-          "en": "Book/material borrowing and return procedures"
+          "type": "heading",
+          "variant": "double-icon",
+          "data": {
+            "title": {
+              "tr": "Ödünç Verme Hizmetleri",
+              "en": "Circulation Services"
+            },
+            "subtitle": {
+              "tr": "Ödünç Verme Bölümü",
+              "en": "Circulation Department"
+            },
+            "icon": "fas fa-book-open"
+          }
         },
         {
-          "tr": "Süre uzatma işlemleri",
-          "en": "Renewal procedures"
+          "type": "icon-list",
+          "data": {
+            "title": {
+              "tr": "Bu Birimden Yardım Alabileceğiniz Konular",
+              "en": "Topics You Can Get Help With From This Department"
+            },
+            "titleIcon": "fas fa-list-ul",
+            "items": [
+              {
+                "icon": "fas fa-chevron-right",
+                "text": {
+                  "tr": "Kitap/materyal ödünç alma ve iade işlemleri",
+                  "en": "Book/material borrowing and return procedures"
+                }
+              },
+              {
+                "icon": "fas fa-chevron-right",
+                "text": {
+                  "tr": "Süre uzatma işlemleri",
+                  "en": "Renewal procedures"
+                }
+              },
+              {
+                "icon": "fas fa-chevron-right",
+                "text": {
+                  "tr": "Gecikme cezaları ve sorunları",
+                  "en": "Overdue penalties and issues"
+                }
+              },
+              {
+                "icon": "fas fa-chevron-right",
+                "text": {
+                  "tr": "Üyelik işlemleri",
+                  "en": "Membership procedures"
+                }
+              },
+              {
+                "icon": "fas fa-chevron-right",
+                "text": {
+                  "tr": "Kütüphanelerarası belge sağlama (ILL & TÜBESS)",
+                  "en": "Interlibrary loan (ILL & TÜBESS)"
+                }
+              }
+            ]
+          }
         },
         {
-          "tr": "Gecikme cezaları ve sorunları",
-          "en": "Overdue penalties and issues"
+          "type": "heading",
+          "variant": "double-plain",
+          "data": {
+            "title": {
+              "tr": "İletişim Bilgileri",
+              "en": "Contact Information"
+            }
+          }
         },
         {
-          "tr": "Üyelik işlemleri",
-          "en": "Membership procedures"
-        },
-        {
-          "tr": "Kütüphanelerarası belge sağlama (ILL & TÜBESS)",
-          "en": "Interlibrary loan (ILL & TÜBESS)"
-        }
-      ],
-      "contacts": [
-        {
-          "type": "phone",
-          "icon": "fas fa-phone",
-          "text": "0 (222) 335 05 80 / 1731",
-          "link": "tel:+902223350580"
-        },
-        {
-          "type": "phone",
-          "icon": "fas fa-phone",
-          "text": "0 (222) 335 05 80 / 1705",
-          "link": "tel:+902223350580"
-        },
-        {
-          "type": "email",
-          "icon": "fas fa-envelope",
-          "text": "library@anadolu.edu.tr",
-          "link": "mailto:library@anadolu.edu.tr"
+          "type": "contact-buttons",
+          "data": {
+            "buttons": [
+              {
+                "type": "phone",
+                "icon": "fas fa-phone",
+                "text": "0 (222) 335 05 80 / 1731",
+                "href": "tel:+902223350580"
+              },
+              {
+                "type": "phone",
+                "icon": "fas fa-phone",
+                "text": "0 (222) 335 05 80 / 1705",
+                "href": "tel:+902223350580"
+              },
+              {
+                "type": "email",
+                "icon": "fas fa-envelope",
+                "text": "library@anadolu.edu.tr",
+                "href": "mailto:library@anadolu.edu.tr"
+              }
+            ],
+            "justify": "start",
+            "gap": "0.6rem"
+          }
         }
       ]
     },
     {
       "id": "saglama",
-      "icon": "fas fa-box-open",
-      "title": {
-        "tr": "Materyal Bağışı",
-        "en": "Material Donation"
-      },
-      "subtitle": {
-        "tr": "Sağlama Birimi",
-        "en": "Acquisition Unit"
-      },
-      "topics": [
+      "components": [
         {
-          "tr": "Kütüphaneye kitap/materyal bağışı",
-          "en": "Book/material donation to library"
+          "type": "heading",
+          "variant": "double-icon",
+          "data": {
+            "title": {
+              "tr": "Materyal Bağışı",
+              "en": "Material Donation"
+            },
+            "subtitle": {
+              "tr": "Sağlama Birimi",
+              "en": "Acquisition Unit"
+            },
+            "icon": "fas fa-box-open"
+          }
         },
         {
-          "tr": "Bağış işlemleri ve prosedürleri",
-          "en": "Donation procedures and processes"
+          "type": "icon-list",
+          "data": {
+            "title": {
+              "tr": "Bu Birimden Yardım Alabileceğiniz Konular",
+              "en": "Topics You Can Get Help With From This Department"
+            },
+            "titleIcon": "fas fa-list-ul",
+            "items": [
+              {
+                "icon": "fas fa-chevron-right",
+                "text": {
+                  "tr": "Kütüphaneye kitap/materyal bağışı",
+                  "en": "Book/material donation to library"
+                }
+              },
+              {
+                "icon": "fas fa-chevron-right",
+                "text": {
+                  "tr": "Bağış işlemleri ve prosedürleri",
+                  "en": "Donation procedures and processes"
+                }
+              },
+              {
+                "icon": "fas fa-chevron-right",
+                "text": {
+                  "tr": "Bağış değerlendirme süreci",
+                  "en": "Donation evaluation process"
+                }
+              },
+              {
+                "icon": "fas fa-chevron-right",
+                "text": {
+                  "tr": "Materyal bağışıyla ilgili tüm bilgi ve işlemler",
+                  "en": "All information and procedures related to material donation"
+                }
+              }
+            ]
+          }
         },
         {
-          "tr": "Bağış değerlendirme süreci",
-          "en": "Donation evaluation process"
+          "type": "heading",
+          "variant": "double-plain",
+          "data": {
+            "title": {
+              "tr": "İletişim Bilgileri",
+              "en": "Contact Information"
+            }
+          }
         },
         {
-          "tr": "Materyal bağışıyla ilgili tüm bilgi ve işlemler",
-          "en": "All information and procedures related to material donation"
-        }
-      ],
-      "contacts": [
-        {
-          "type": "phone",
-          "icon": "fas fa-phone",
-          "text": "0 (222) 335 05 80 / 1735",
-          "link": "tel:+902223350580"
-        },
-        {
-          "type": "email",
-          "icon": "fas fa-envelope",
-          "text": "library@anadolu.edu.tr",
-          "link": "mailto:library@anadolu.edu.tr"
+          "type": "contact-buttons",
+          "data": {
+            "buttons": [
+              {
+                "type": "phone",
+                "icon": "fas fa-phone",
+                "text": "0 (222) 335 05 80 / 1735",
+                "href": "tel:+902223350580"
+              },
+              {
+                "type": "email",
+                "icon": "fas fa-envelope",
+                "text": "library@anadolu.edu.tr",
+                "href": "mailto:library@anadolu.edu.tr"
+              }
+            ],
+            "justify": "start",
+            "gap": "0.6rem"
+          }
         }
       ]
     },
     {
       "id": "acik-erisim",
-      "icon": "fas fa-unlock-alt",
-      "title": {
-        "tr": "Açık Erişim & Akademik Arşiv",
-        "en": "Open Access & Academic Archive"
-      },
-      "subtitle": {
-        "tr": "Açık Erişim Birimi",
-        "en": "Open Access Unit"
-      },
-      "topics": [
+      "components": [
         {
-          "tr": "Kurumsal akademik arşiv",
-          "en": "Institutional academic archive"
+          "type": "heading",
+          "variant": "double-icon",
+          "data": {
+            "title": {
+              "tr": "Açık Erişim & Akademik Arşiv",
+              "en": "Open Access & Academic Archive"
+            },
+            "subtitle": {
+              "tr": "Açık Erişim Birimi",
+              "en": "Open Access Unit"
+            },
+            "icon": "fas fa-unlock-alt"
+          }
         },
         {
-          "tr": "Açık erişim uygulamaları",
-          "en": "Open access practices"
+          "type": "icon-list",
+          "data": {
+            "title": {
+              "tr": "Bu Birimden Yardım Alabileceğiniz Konular",
+              "en": "Topics You Can Get Help With From This Department"
+            },
+            "titleIcon": "fas fa-list-ul",
+            "items": [
+              {
+                "icon": "fas fa-chevron-right",
+                "text": {
+                  "tr": "Kurumsal akademik arşiv",
+                  "en": "Institutional academic archive"
+                }
+              },
+              {
+                "icon": "fas fa-chevron-right",
+                "text": {
+                  "tr": "Açık erişim uygulamaları",
+                  "en": "Open access practices"
+                }
+              },
+              {
+                "icon": "fas fa-chevron-right",
+                "text": {
+                  "tr": "Tez ve makale arşivleme",
+                  "en": "Thesis and article archiving"
+                }
+              },
+              {
+                "icon": "fas fa-chevron-right",
+                "text": {
+                  "tr": "Açık erişim politikaları",
+                  "en": "Open access policies"
+                }
+              }
+            ]
+          }
         },
         {
-          "tr": "Tez ve makale arşivleme",
-          "en": "Thesis and article archiving"
+          "type": "heading",
+          "variant": "double-plain",
+          "data": {
+            "title": {
+              "tr": "İletişim Bilgileri",
+              "en": "Contact Information"
+            }
+          }
         },
         {
-          "tr": "Açık erişim politikaları",
-          "en": "Open access policies"
-        }
-      ],
-      "contacts": [
-        {
-          "type": "phone",
-          "icon": "fas fa-phone",
-          "text": "0 (222) 335 05 80 / 1749",
-          "link": "tel:+902223350580"
-        },
-        {
-          "type": "email",
-          "icon": "fas fa-envelope",
-          "text": "library@anadolu.edu.tr",
-          "link": "mailto:library@anadolu.edu.tr"
+          "type": "contact-buttons",
+          "data": {
+            "buttons": [
+              {
+                "type": "phone",
+                "icon": "fas fa-phone",
+                "text": "0 (222) 335 05 80 / 1749",
+                "href": "tel:+902223350580"
+              },
+              {
+                "type": "email",
+                "icon": "fas fa-envelope",
+                "text": "library@anadolu.edu.tr",
+                "href": "mailto:library@anadolu.edu.tr"
+              }
+            ],
+            "justify": "start",
+            "gap": "0.6rem"
+          }
         }
       ]
     }

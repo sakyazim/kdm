@@ -1088,6 +1088,58 @@ export class ComponentRenderer {
   }
 
   /**
+   * İçerik bölümünü (section) section-card yapısında render et
+   * İlk heading bileşeni kartın üstünde, diğer bileşenler section-card-body içinde render edilir.
+   * @param {Object} section - { id, layout, className, components[] }
+   * @returns {string} - Section HTML
+   */
+  static buildSectionCard(section) {
+    if (!section || !Array.isArray(section.components) || section.components.length === 0) {
+      return '';
+    }
+
+    const sectionId = section.id || '';
+    const sectionClass = section.className || '';
+    const layoutClass = section.layout ? ' layout-' + section.layout : '';
+
+    let headingComponent = null;
+    const otherComponents = [];
+
+    section.components.forEach(comp => {
+      if (comp.type === 'heading' && !headingComponent) {
+        headingComponent = comp;
+      } else {
+        otherComponents.push(comp);
+      }
+    });
+
+    return `
+      <section class="section-card ${sectionClass}" ${sectionId ? `id="${sectionId}"` : ''}>
+        ${headingComponent ? this.render(headingComponent) : ''}
+        ${otherComponents.length > 0 ? `
+          <div class="section-card-body${layoutClass}">
+            ${this.renderMultiple(otherComponents)}
+          </div>
+        ` : ''}
+      </section>
+    `;
+  }
+
+  /**
+   * Birden fazla içerik bölümünü section-card yapısında render et
+   * @param {Array} sections - Bölümler dizisi
+   * @returns {string} - Birleştirilmiş section HTML
+   */
+  static buildSectionCards(sections) {
+    if (!Array.isArray(sections)) {
+      console.warn('buildSectionCards expects an array');
+      return '';
+    }
+
+    return sections.map(section => this.buildSectionCard(section)).join('');
+  }
+
+  /**
    * Bileşeni container'a render et
    * @param {string} containerId - Container ID
    * @param {Object|Array} component - Tek bileşen veya bileşen dizisi
