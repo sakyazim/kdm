@@ -1354,7 +1354,8 @@ export class ComponentRenderer {
       content.forEach(item => {
         switch (item.type) {
           case 'paragraph':
-            const localizedText = Utils.mdToHtml(Utils.getLocalizedText(item.text));
+            // Eski format content, yeni format text (çoklu dil destekli)
+            const localizedText = Utils.mdToHtml(Utils.getLocalizedText(item.text || item.content));
             contentHtml += localizedText;
             break;
           case 'ordered-list':
@@ -1392,6 +1393,13 @@ export class ComponentRenderer {
               </div>
               ${localizedNote ? `<p class="text-muted small mt-2">${localizedNote}</p>` : ''}
             `;
+            break;
+          default:
+            // Bileşen şekilli bloklar (info-box, alert, icon-list, link-cards vb.) ortak renderer ile
+            const nestedHTML = ComponentRenderer.render(item);
+            if (nestedHTML) {
+              contentHtml += nestedHTML;
+            }
             break;
         }
       });

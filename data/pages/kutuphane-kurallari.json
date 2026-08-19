@@ -39,8 +39,7 @@
               "tr": "Materyal Güvenliği",
               "en": "Material Security"
             },
-            "icon": "bi bi-shield-check",
-            "id": "material-security"
+            "icon": "bi bi-shield-check"
           }
         },
         {
@@ -102,8 +101,7 @@
               "tr": "Yasaklar ve Sorumluluklar",
               "en": "Prohibitions and Responsibilities"
             },
-            "icon": "bi bi-slash-circle",
-            "id": "prohibitions"
+            "icon": "bi bi-slash-circle"
           }
         },
         {
@@ -162,8 +160,7 @@
               "tr": "Üyelik ve Materyal İade",
               "en": "Membership and Material Return"
             },
-            "icon": "bi bi-file-earmark-check",
-            "id": "membership-returns"
+            "icon": "bi bi-file-earmark-check"
           }
         },
         {
@@ -216,8 +213,7 @@
               "tr": "İletişim ve Geri Bildirim",
               "en": "Communication and Feedback"
             },
-            "icon": "bi bi-chat-left-text",
-            "id": "communication"
+            "icon": "bi bi-chat-left-text"
           }
         },
         {
@@ -264,8 +260,7 @@
               "tr": "Çalışma Odaları Kullanımı",
               "en": "Study Rooms Usage"
             },
-            "icon": "bi bi-door-open",
-            "id": "study-rooms"
+            "icon": "bi bi-door-open"
           }
         },
         {
@@ -311,8 +306,7 @@
               "tr": "Genel Kural",
               "en": "General Rule"
             },
-            "icon": "bi bi-bookmark-check",
-            "id": "general-rule"
+            "icon": "bi bi-bookmark-check"
           }
         },
         {

@@ -94,6 +94,15 @@
   - Özel sayfa JS 446 satırdan 62 satıra (renderFeature/Requirement/Publisher/Contact + adaptive-layout legacy TOC observer + IntersectionObserver animasyonları silindi → `ComponentRenderer.buildSectionCards`); 500 satır bespoke CSS silindi (`.main-content`, `.publisher-card`, `.price-badge`, `.requirements-list`, `.contact-section`… — arastirmaci-profili'nin kendi CSS kopyası korunuyor)
   - **Ortak renderer düzeltmesi:** `renderAlert` + `renderIconList` başlıklarında `<strong><p>…`/`<span><p>…` geçersiz iç içe blok sarmalayıcı temizlendi (site geneli `<strong><p>` artık yok)
   - ✅ Doğrulama: node --check temiz, validation 0 yeni hata, render smoke test (9 section, 9 TOC anchor eksiksiz, çakışma yok, tag/stat/staff/alert/resource doğrulandı), site çapı scan'de makale çakışmasız
+- [x] **Site çapı duplicate-id taraması + temizliği** (2026-08-19)
+  - Tarama: 28 content sayfası `buildSectionCards` ile render edilip `id="..."` çakışmaları/`undefined` id'ler kontrol edildi
+  - Bulgu: 7 sayfada eski id devralınımı vardı, temizlendi:
+    - 5 sihirbaz kalıbı sayfa (`erisilebilirlik`, `formlar`, `gizlilik`, `kosullar`, `kutuphane-kurallari`): heading `data.id` == bölüm `id` → **38 redundant heading id veriden silindi** (heading `id` attr artık sadece TOC/bağlantı gerektirenlerde)
+    - `kutuphane-kullanim-klavuzu` (8 legacy `collapsible-section`): `sections`→`content`, `defaultOpen`→`expanded`, bölüm bazlı benzersiz `id` (`{sectionId}-col-{index}`) verildi; abonelik/erişim bölümündeki `link-cards`/`info-box`/`alert`/`icon-list` blokları ortak renderer'ın default-case'i ile render ediliyor
+    - `test.json`: boş legacy accordion kaldırıldı
+  - **Ortak renderer düzeltmesi:** `renderCollapsibleSection` legacy `sections[]` formatında `paragraph` bloğu için `text || content` + bileşen şekilli bloklar (`info-box`, `alert`, `icon-list`, `link-cards`) için `ComponentRenderer.render` fallback (önceden boş kalıyordu)
+  - Not: `sss.json` accordion'ları ortak `renderAccordion` şeklinde değil (`{parentId, items}`), sss.js'in **kendi** `renderAccordionComponent`'i ile render ediliyor (arama filtresi `data-category`/`faq-id`'ye bağlı) → canlı sayfada bozuk/kırık id yok, ortak tarayıcıda görünen uyarı tarama artefaktıdır, veriye dokunulmadı
+  - ✅ Doğrulama: tarama yeniden çalıştırıldı → sss artefaktı dışında 28/28 sayfa temiz; duplikasyon/undefined yok; validation exit 0
 - [ ] `arastirmaci-profili.quickNav` → `resource-links`/`link-cards` + test
 - [ ] `home.sections` dinamik blok kararı + test
 - [ ] ✅ Her sayfa için: JSON validation + node --check + tarayıcı render + id/bağlantı korunumu

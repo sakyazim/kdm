@@ -23,8 +23,7 @@
               "tr": "Nereden Başlamalı?",
               "en": "Where to Start?"
             },
-            "icon": "bi bi-info-circle",
-            "id": "nereden-baslamali"
+            "icon": "bi bi-info-circle"
           }
         },
         {
@@ -64,8 +63,7 @@
               "tr": "Ödünç ve İşbirliği Formları",
               "en": "Borrowing and Cooperation Forms"
             },
-            "icon": "bi bi-file-earmark-arrow-down",
-            "id": "odunc-formlar"
+            "icon": "bi bi-file-earmark-arrow-down"
           }
         },
         {
@@ -162,8 +160,7 @@
               "tr": "Kurumsal Dökümanlar",
               "en": "Institutional Documents"
             },
-            "icon": "bi bi-building",
-            "id": "kurum-dokumanlari"
+            "icon": "bi bi-building"
           }
         },
         {
@@ -236,8 +233,7 @@
               "tr": "Form Kullanım İpuçları",
               "en": "Form Usage Tips"
             },
-            "icon": "bi bi-lightbulb",
-            "id": "kullanim-ipuclari"
+            "icon": "bi bi-lightbulb"
           }
         },
         {
@@ -304,8 +300,7 @@
               "tr": "Dijital Form Hizmetleri",
               "en": "Digital Form Services"
             },
-            "icon": "bi bi-globe",
-            "id": "dijital-hizmetler"
+            "icon": "bi bi-globe"
           }
         },
         {

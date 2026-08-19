@@ -41,13 +41,6 @@
         {
           "type": "divider",
           "data": {}
-        },
-        {
-          "type": "accordion",
-          "data": {
-            "parentId": "",
-            "items": []
-          }
         }
       ]
     },

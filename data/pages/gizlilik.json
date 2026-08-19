@@ -23,8 +23,7 @@
               "tr": "Temel İlkelerimiz",
               "en": "Our Core Principles"
             },
-            "icon": "bi bi-compass",
-            "id": "temel-ilkeler"
+            "icon": "bi bi-compass"
           }
         },
         {
@@ -64,8 +63,7 @@
               "tr": "Veri Toplama ve Saklama",
               "en": "Data Collection and Storage"
             },
-            "icon": "bi bi-database",
-            "id": "veri-toplama"
+            "icon": "bi bi-database"
           }
         },
         {
@@ -132,8 +130,7 @@
               "tr": "Toplanan Bilgiler",
               "en": "Information Collected"
             },
-            "icon": "bi bi-list-check",
-            "id": "toplanan-bilgiler"
+            "icon": "bi bi-list-check"
           }
         },
         {
@@ -203,8 +200,7 @@
               "tr": "Üçüncü Taraf Hizmet Sağlayıcılar",
               "en": "Third-Party Service Providers"
             },
-            "icon": "bi bi-people",
-            "id": "ucuncu-taraf"
+            "icon": "bi bi-people"
           }
         },
         {
@@ -244,8 +240,7 @@
               "tr": "Güvenlik Önlemleri",
               "en": "Security Measures"
             },
-            "icon": "bi bi-lock",
-            "id": "guvenlik"
+            "icon": "bi bi-lock"
           }
         },
         {
@@ -312,8 +307,7 @@
               "tr": "Kullanıcı Hakları",
               "en": "User Rights"
             },
-            "icon": "bi bi-person-check",
-            "id": "haklariniz"
+            "icon": "bi bi-person-check"
           }
         },
         {
@@ -389,8 +383,7 @@
               "tr": "Yasal Talepler ve İstisnaları",
               "en": "Legal Requests and Exceptions"
             },
-            "icon": "bi bi-file-earmark-text",
-            "id": "yasal-talepler"
+            "icon": "bi bi-file-earmark-text"
           }
         },
         {
@@ -430,8 +423,7 @@
               "tr": "Gizlilik Eğitimi ve Farkındalık",
               "en": "Privacy Education and Awareness"
             },
-            "icon": "bi bi-mortarboard",
-            "id": "egitim"
+            "icon": "bi bi-mortarboard"
           }
         },
         {
@@ -496,8 +488,7 @@
               "tr": "Politika Güncellemeleri",
               "en": "Policy Updates"
             },
-            "icon": "bi bi-arrow-repeat",
-            "id": "politika-degisiklikleri"
+            "icon": "bi bi-arrow-repeat"
           }
         },
         {

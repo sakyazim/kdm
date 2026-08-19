@@ -23,8 +23,7 @@
               "tr": "Genel Kabul ve Onay",
               "en": "General Acceptance and Approval"
             },
-            "icon": "bi bi-check-circle",
-            "id": "genel-kabul"
+            "icon": "bi bi-check-circle"
           }
         },
         {
@@ -64,8 +63,7 @@
               "tr": "Kabul Edilebilir Kullanım Politikası",
               "en": "Acceptable Use Policy"
             },
-            "icon": "bi bi-shield-check",
-            "id": "kabul-edilebilir-kullanim"
+            "icon": "bi bi-shield-check"
           }
         },
         {
@@ -141,8 +139,7 @@
               "tr": "Yasaklanan Faaliyetler",
               "en": "Prohibited Activities"
             },
-            "icon": "bi bi-x-circle",
-            "id": "yasaklanan-faaliyetler"
+            "icon": "bi bi-x-circle"
           }
         },
         {
@@ -252,8 +249,7 @@
               "tr": "Elektronik Kaynaklar İçin Özel Koşullar",
               "en": "Special Conditions for Electronic Resources"
             },
-            "icon": "bi bi-laptop",
-            "id": "elektronik-kaynaklar"
+            "icon": "bi bi-laptop"
           }
         },
         {
@@ -329,8 +325,7 @@
               "tr": "Ödünç Alma ve İade Kuralları",
               "en": "Borrowing and Return Rules"
             },
-            "icon": "bi bi-arrow-left-right",
-            "id": "odunc-alma"
+            "icon": "bi bi-arrow-left-right"
           }
         },
         {
@@ -397,8 +392,7 @@
               "tr": "Kütüphane Alanlarının Kullanımı",
               "en": "Use of Library Spaces"
             },
-            "icon": "bi bi-building",
-            "id": "kutuphane-alanlari"
+            "icon": "bi bi-building"
           }
         },
         {
@@ -474,8 +468,7 @@
               "tr": "İhlal Sonuçları",
               "en": "Consequences of Violations"
             },
-            "icon": "bi bi-exclamation-octagon",
-            "id": "ihlal-sonuclari"
+            "icon": "bi bi-exclamation-octagon"
           }
         },
         {
@@ -566,8 +559,7 @@
               "tr": "Sorumluluk Sınırlaması",
               "en": "Limitation of Liability"
             },
-            "icon": "bi bi-shield",
-            "id": "sorumluluk-siniri"
+            "icon": "bi bi-shield"
           }
         },
         {
@@ -632,8 +624,7 @@
               "tr": "Koşullarda Değişiklikler",
               "en": "Changes to Terms"
             },
-            "icon": "bi bi-arrow-repeat",
-            "id": "degisiklikler"
+            "icon": "bi bi-arrow-repeat"
           }
         },
         {

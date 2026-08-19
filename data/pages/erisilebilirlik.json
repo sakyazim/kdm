@@ -23,8 +23,7 @@
               "tr": "Erişilebilirlik Taahhüdümüz",
               "en": "Our Accessibility Commitment"
             },
-            "icon": "bi bi-heart",
-            "id": "taahhudumuz"
+            "icon": "bi bi-heart"
           }
         },
         {
@@ -64,8 +63,7 @@
               "tr": "Web Sitemizin Erişilebilirlik Özellikleri",
               "en": "Accessibility Features of Our Website"
             },
-            "icon": "bi bi-gear",
-            "id": "erisilebilirlik-ozellikleri"
+            "icon": "bi bi-gear"
           }
         },
         {
@@ -154,8 +152,7 @@
               "tr": "Desteklenen Yardımcı Teknolojiler",
               "en": "Supported Assistive Technologies"
             },
-            "icon": "bi bi-tools",
-            "id": "yardimci-teknolojiler"
+            "icon": "bi bi-tools"
           }
         },
         {
@@ -235,8 +232,7 @@
               "tr": "Fiziksel Erişilebilirlik",
               "en": "Physical Accessibility"
             },
-            "icon": "bi bi-building",
-            "id": "fiziksel-erisilebilirlik"
+            "icon": "bi bi-building"
           }
         },
         {
@@ -334,8 +330,7 @@
               "tr": "Alternatif Format Hizmetleri",
               "en": "Alternative Format Services"
             },
-            "icon": "bi bi-file-earmark-text",
-            "id": "alternatif-format"
+            "icon": "bi bi-file-earmark-text"
           }
         },
         {
@@ -426,8 +421,7 @@
               "tr": "Yardımcı Hizmetler",
               "en": "Support Services"
             },
-            "icon": "bi bi-hand-thumbs-up",
-            "id": "yardimci-hizmetler"
+            "icon": "bi bi-hand-thumbs-up"
           }
         },
         {
@@ -494,8 +488,7 @@
               "tr": "Geri Bildirim ve Şikayetler",
               "en": "Feedback and Complaints"
             },
-            "icon": "bi bi-chat-dots",
-            "id": "geri-bildirim"
+            "icon": "bi bi-chat-dots"
           }
         },
         {
@@ -535,8 +528,7 @@
               "tr": "Sürekli İyileştirme",
               "en": "Continuous Improvement"
             },
-            "icon": "bi bi-arrow-clockwise",
-            "id": "surekli-iyilestirme"
+            "icon": "bi bi-arrow-clockwise"
           }
         },
         {
@@ -612,8 +604,7 @@
               "tr": "Mevcut Uyumluluk Durumu",
               "en": "Current Compliance Status"
             },
-            "icon": "bi bi-shield-check",
-            "id": "uyumluluk-durumu"
+            "icon": "bi bi-shield-check"
           }
         },
         {
