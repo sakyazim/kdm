@@ -1,0 +1,113 @@
+{
+  "hero": {
+    "title": {
+      "tr": "test",
+      "en": "tests"
+    },
+    "description": {
+      "tr": "",
+      "en": ""
+    },
+    "showBreadcrumb": true,
+    "breadcrumbMode": "auto",
+    "showIcon": true
+  },
+  "content": [
+    {
+      "id": "ana-bolum",
+      "components": [
+        {
+          "type": "heading",
+          "data": {
+            "title": {
+              "tr": "test",
+              "en": "tests"
+            },
+            "subtitle": {
+              "tr": "",
+              "en": ""
+            },
+            "icon": "",
+            "id": "",
+            "statusBadge": {}
+          }
+        },
+        {
+          "type": "step-guide",
+          "data": {
+            "steps": []
+          }
+        },
+        {
+          "type": "divider",
+          "data": {}
+        },
+        {
+          "type": "accordion",
+          "data": {
+            "parentId": "",
+            "items": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "bolum",
+      "components": [
+        {
+          "type": "stat-cards",
+          "data": {
+            "items": []
+          }
+        }
+      ]
+    }
+  ],
+  "helpSection": {
+    "title": {
+      "tr": "Daha fazla yardıma mı ihtiyacınız var?",
+      "en": "Need more help?"
+    },
+    "description": {
+      "tr": "Bu sayfa hakkında daha detaylı bilgi almak veya özel sorularınızı sormak için bizimle iletişime geçin.",
+      "en": "Contact us for more detailed information about this page or to ask your specific questions."
+    },
+    "buttons": [
+      {
+        "icon": "fas fa-phone",
+        "text": {
+          "tr": "Hemen Ara",
+          "en": "Call Now"
+        },
+        "link": "tel:+902223350580"
+      },
+      {
+        "icon": "fas fa-envelope",
+        "text": {
+          "tr": "E-posta Gönder",
+          "en": "Send Email"
+        },
+        "link": "mailto:library@anadolu.edu.tr"
+      },
+      {
+        "icon": "fas fa-home",
+        "text": {
+          "tr": "Ana Sayfa",
+          "en": "Home"
+        },
+        "link": "index.html"
+      }
+    ]
+  },
+  "meta": {
+    "title": {
+      "tr": "test",
+      "en": "tests"
+    },
+    "description": {
+      "tr": "",
+      "en": ""
+    }
+  },
+  "lastModified": "2026-08-19 18:45"
+}
