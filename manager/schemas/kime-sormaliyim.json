@@ -1,557 +1,570 @@
-{
- "file": "data/pages/kime-sormaliyim.json",
- "label": "Kime Sormalıyım?",
- "preview": "kime-sormaliyim.html",
- "description": "Kime Sormalıyım sayfası: arama, bölümler ve iletişim bilgileri.",
- "fields": [
-  {
-   "key": "hero",
-   "label": "Üst Başlık (Hero)",
-   "type": "object",
-   "fields": [
-    {
-     "key": "_global",
-     "label": "Global Ayarlar",
-     "type": "globallink",
-     "path": "data/global/settings.json",
-     "buttonText": "⚙ Global Ayarları Aç (settings.json)",
-     "hint": "Aşağıdaki alanlar boşsa global ayar geçerli olur. Global değerleri değiştirmek için buraya tıkla — settings.json ayrı sekmede açılır."
-    },
-    {
-     "key": "enabled",
-     "label": "Hero'yu Göster",
-     "type": "select",
-     "options": [
-      {
-       "value": "",
-       "label": "Global'i Kullan (settings.json ayarı)"
-      },
-      {
-       "value": "true",
-       "label": "Göster — bu sayfada açık"
-      },
-      {
-       "value": "false",
-       "label": "Gizle — bu sayfada kapalı"
-      }
-     ],
-     "hint": "Boş = global ayar geçerli (Genel Ayarlar → Hero'yu Göster). Burada 'Göster/Gizle' seçersen bu sayfaya özel global'i geçersiz kılarsın — iki ayar birbirini 'değiştirmez', sayfa boşken global kazanır."
-    },
-    {
-     "key": "g-baslik",
-     "label": "Başlık ve Açıklama",
-     "type": "group"
-    },
-    {
-     "key": "layout",
-     "label": "Yerleşim Düzeni",
-     "type": "select",
-     "options": [
-      {
-       "value": "stack",
-       "label": "Stack — metin ortada, breadcrumb altta"
-      },
-      {
-       "value": "split-left",
-       "label": "Split Sol — metin/ikon solda, breadcrumb sağda"
-      },
-      {
-       "value": "split-right",
-       "label": "Split Sağ — breadcrumb solda, metin/ikon sağda"
-      }
-     ],
-     "hint": "stack: metin ortada, breadcrumb altta · split-sol: metin/ikon solda, breadcrumb sağda (aynı satır) · split-sağ: tam tersi — breadcrumb solda, metin sağda"
-    },
-    {
-     "key": "title",
-     "label": "Başlık",
-     "type": "lang",
-     "required": true
-    },
-    {
-     "key": "description",
-     "label": "Açıklama",
-     "type": "lang"
-    },
-    {
-     "key": "g-icon",
-     "label": "İkon Ayarları",
-     "type": "group",
-     "hint": "İkon, konumu, metin hizalaması ve ikon rengi"
-    },
-    {
-     "key": "icon",
-     "label": "İkon",
-     "type": "icon"
-    },
-    {
-     "key": "showIcon",
-     "label": "İkonu Göster",
-     "type": "boolean",
-     "hint": "Açıksa hero'da büyük ikon görünür"
-    },
-    {
-     "key": "iconPosition",
-     "label": "İkon Konumu",
-     "type": "select",
-     "options": [
-      {
-       "value": "top",
-       "label": "Üst"
-      },
-      {
-       "value": "left",
-       "label": "Sol"
-      },
-      {
-       "value": "right",
-       "label": "Sağ"
-      }
-     ],
-     "hint": "İkonun kutu içindeki yeri — üst, sol veya sağ"
-    },
-    {
-     "key": "textAlign",
-     "label": "Metin Hizalaması",
-     "type": "select",
-     "options": [
-      {
-       "value": "left",
-       "label": "Sol"
-      },
-      {
-       "value": "center",
-       "label": "Orta"
-      },
-      {
-       "value": "right",
-       "label": "Sağ"
-      }
-     ],
-     "hint": "Stack düzeninde geçerlidir (boşsa orta). Split düzenlerde metin otomatik kenara hizalanır."
-    },
-    {
-     "key": "iconColor",
-     "label": "İkon Rengi",
-     "type": "color",
-     "hint": "✕ ile sıfırlanabilir → global renk kullanılır"
-    },
-    {
-     "key": "g-breadcrumb",
-     "label": "Breadcrumb Ayarları",
-     "type": "group",
-     "hint": "Sayfa yolu — otomatik (menüden), elle veya gizli. Manuel listede ayarlar açılır."
-    },
-    {
-     "key": "showBreadcrumb",
-     "label": "Breadcrumb Göster",
-     "type": "boolean",
-     "hint": "Açıksa sayfa yolu görünür — global ayar, burada sayfa bazlı kapatılabilir"
-    },
-    {
-     "key": "breadcrumbMode",
-     "label": "Breadcrumb Modu",
-     "type": "select",
-     "options": [
-      {
-       "value": "auto",
-       "label": "Otomatik (menüden)"
-      },
-      {
-       "value": "manual",
-       "label": "Elle liste"
-      },
-      {
-       "value": "hidden",
-       "label": "Gizli"
-      }
-     ],
-     "hint": "auto: menüden otomatik · manual: aşağıdaki listeyi kullanır · hidden: gizler. Listeye sadece manual'de düzenlenir."
-    },
-    {
-     "key": "breadcrumb",
-     "label": "Sayfa Yolu Listesi",
-     "type": "array",
-     "itemLabel": "Adım",
-     "visibleWhen": {
-      "key": "breadcrumbMode",
-      "value": "manual"
-     },
-     "hint": "Sadece breadcrumb modu 'manual' iken düzenlenir",
-     "itemFields": [
-      {
-       "key": "text",
-       "label": "Metin",
-       "type": "lang"
-      },
-      {
-       "key": "url",
-       "label": "Bağlantı",
-       "type": "text"
-      }
-     ]
-    },
-    {
-     "key": "g-colors",
-     "label": "Renkler",
-     "type": "group",
-     "hint": "Kutucuk ve yazı renkleri — ✕ ile sıfırlanırsa global renk geçerli olur"
-    },
-    {
-     "key": "backgroundColor",
-     "label": "Arka Plan Rengi",
-     "type": "color",
-     "hint": "Hero bandı rengi"
-    },
-    {
-     "key": "boxColor",
-     "label": "Kutucuk Rengi",
-     "type": "color",
-     "hint": "İçerik kartı rengi"
-    },
-    {
-     "key": "borderColor",
-     "label": "Üst Çizgi Rengi (Sarı Şerit)",
-     "type": "color",
-     "hint": "Kutucuğun üstündeki ince şerit rengi — boşsa global (varsayılan sarı)"
-    },
-    {
-     "key": "titleColor",
-     "label": "Başlık Rengi",
-     "type": "color"
-    },
-    {
-     "key": "textColor",
-     "label": "Metin Rengi",
-     "type": "color"
-    },
-    {
-     "key": "g-spacing",
-     "label": "Kutu Boşlukları",
-     "type": "group",
-     "hint": "Kartın alt/üst iç (padding) ve dış (margin) boşlukları — rem cinsinden, boşsa global/CSS varsayılanı geçerli"
-    },
-    {
-     "key": "boxPaddingTop",
-     "label": "Üst İç Boşluk (Padding)",
-     "type": "number",
-     "hint": "rem — boşsa global (varsayılan 1.25rem)"
-    },
-    {
-     "key": "boxPaddingBottom",
-     "label": "Alt İç Boşluk (Padding)",
-     "type": "number",
-     "hint": "rem — boşsa global (varsayılan 1.25rem)"
-    },
-    {
-     "key": "boxMarginTop",
-     "label": "Üst Dış Boşluk (Margin)",
-     "type": "number",
-     "hint": "rem — boşsa 0"
-    },
-    {
-     "key": "boxMarginBottom",
-     "label": "Alt Dış Boşluk (Margin)",
-     "type": "number",
-     "hint": "rem — boşsa 0"
-    },
-    {
-     "key": "hiddenSpacing",
-     "label": "Gizliyken Üst Boşluk",
-     "type": "number",
-     "hint": "Hero bu sayfada kapatıldığında menü ile içerik arasında bırakılacak boşluk — rem, boşsa global (varsayılan 0)"
-    }
-   ]
-  },
-  {
-   "key": "searchSection",
-   "label": "Arama Bölümü",
-   "type": "object",
-   "fields": [
-    {
-     "key": "icon",
-     "label": "Arama İkonu",
-     "type": "icon"
-    },
-    {
-     "key": "placeholder",
-     "label": "Yer Tutucu Metin",
-     "type": "lang"
-    },
-    {
-     "key": "icon",
-     "label": "Temizle Butonu İkonu",
-     "type": "icon",
-     "hint": "Örn: bi bi-x-lg"
-    }
-   ]
-  },
-  {
-   "key": "noResults",
-   "label": "Sonuç Bulunamadı",
-   "type": "object",
-   "fields": [
-    {
-     "key": "icon",
-     "label": "İkon",
-     "type": "icon"
-    },
-    {
-     "key": "title",
-     "label": "Başlık",
-     "type": "lang"
-    },
-    {
-     "key": "description",
-     "label": "Açıklama",
-     "type": "lang"
-    }
-   ]
-  },
-  {
-   "key": "labels",
-   "label": "Etiketler",
-   "type": "object",
-   "fields": [
-    {
-     "key": "topicsTitle",
-     "label": "Konular Başlığı",
-     "type": "lang"
-    },
-    {
-     "key": "contactTitle",
-     "label": "İletişim Başlığı",
-     "type": "lang"
-    }
-   ]
-  },
-  {
-   "key": "departments",
-   "label": "Bölümler",
-   "type": "array",
-   "itemLabel": "Bölüm",
-   "itemFields": [
-    {
-     "key": "id",
-     "label": "Bölüm ID",
-     "type": "text"
-    },
-    {
-     "key": "icon",
-     "label": "Bölüm İkonu",
-     "type": "icon"
-    },
-    {
-     "key": "title",
-     "label": "Başlık",
-     "type": "lang",
-     "required": true
-    },
-    {
-     "key": "subtitle",
-     "label": "Alt Başlık",
-     "type": "lang"
-    },
-    {
-     "key": "topics",
-     "label": "Konular",
-     "type": "array",
-     "itemLabel": "Konu",
-     "itemFields": [
-      {
-       "key": "",
-       "label": "Konu",
-       "type": "lang"
-      }
-     ]
-    },
-    {
-     "key": "contacts",
-     "label": "İletişim",
-     "type": "array",
-     "itemLabel": "İletişim",
-     "itemFields": [
-      {
-       "key": "type",
-       "label": "Tip",
-       "type": "select",
-       "options": [
-        "phone",
-        "email"
-       ],
-       "hint": "phone: telefon · email: e-posta"
-      },
-      {
-       "key": "icon",
-       "label": "İkon",
-       "type": "icon"
-      },
-      {
-       "key": "text",
-       "label": "Metin",
-       "type": "text"
-      },
-      {
-       "key": "link",
-       "label": "Bağlantı",
-       "type": "url"
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "key": "helpSection",
-   "label": "Yardım Bölümü",
-   "type": "object",
-   "fields": [
-    {
-     "key": "enabled",
-     "label": "Yardım Bölümünü Göster",
-     "type": "select",
-     "options": [
-      {
-       "value": "",
-       "label": "Global'i Kullan (settings.json ayarı)"
-      },
-      {
-       "value": "true",
-       "label": "Göster — bu sayfada açık"
-      },
-      {
-       "value": "false",
-       "label": "Gizle — bu sayfada kapalı"
-      }
-     ],
-     "hint": "Boş = global ayar geçerli (Genel Ayarlar → Yardım Bölümü). Burada 'Göster/Gizle' seçersen bu sayfaya özel global'i geçersiz kılarsın."
-    },
-    {
-     "key": "g-colors",
-     "label": "Renkler",
-     "type": "group",
-     "hint": "Bölüm renkleri — ✕ ile sıfırlanırsa global/CSS varsayılanı kullanılır"
-    },
-    {
-     "key": "backgroundColor",
-     "label": "Arka Plan Rengi",
-     "type": "color"
-    },
-    {
-     "key": "borderColor",
-     "label": "Üst Çizgi Rengi",
-     "type": "color",
-     "hint": "Bölümün üstündeki ince şerit"
-    },
-    {
-     "key": "titleColor",
-     "label": "Başlık Rengi",
-     "type": "color"
-    },
-    {
-     "key": "textColor",
-     "label": "Metin Rengi",
-     "type": "color"
-    },
-    {
-     "key": "iconColor",
-     "label": "İkon Rengi",
-     "type": "color",
-     "hint": "Başlıktaki kulaklık ikonu"
-    },
-    {
-     "key": "title",
-     "label": "Başlık",
-     "type": "lang"
-    },
-    {
-     "key": "description",
-     "label": "Açıklama",
-     "type": "lang"
-    },
-    {
-     "key": "buttons",
-     "label": "Butonlar",
-     "type": "array",
-     "itemLabel": "Buton",
-     "itemFields": [
-      {
-       "key": "type",
-       "label": "Buton Tipi",
-       "type": "select",
-       "options": [
-        "link",
-        "modal"
-       ],
-       "hint": "link: normal bağlantı · modal: modal kütüphanesinden modal açar"
-      },
-      {
-       "key": "icon",
-       "label": "İkon",
-       "type": "icon"
-      },
-      {
-       "key": "text",
-       "label": "Metin",
-       "type": "lang",
-       "required": true
-      },
-      {
-       "key": "variant",
-       "label": "Stil",
-       "type": "select",
-       "options": [
-        "default",
-        "primary",
-        "secondary",
-        "outline",
-        "outline-secondary",
-        "outline-danger"
-       ],
-       "hint": "Buton görünümü — boşsa varsayılan (outline)"
-      },
-      {
-       "key": "link",
-       "label": "Bağlantı",
-       "type": "url",
-       "hint": "Modal butonlarında boş olabilir"
-      },
-      {
-       "key": "modalId",
-       "label": "Modal",
-       "type": "modalref",
-       "visibleWhen": {
-        "key": "type",
-        "value": "modal"
-       },
-       "hint": "Genel modal kütüphanesinden (modals.json) seçilir"
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "key": "meta",
-   "label": "SEO Bilgileri",
-   "type": "object",
-   "fields": [
-    {
-     "key": "title",
-     "label": "SEO Başlık",
-     "type": "lang"
-    },
-    {
-     "key": "description",
-     "label": "SEO Açıklama",
-     "type": "lang"
-    }
-   ]
-  },
-  {
-   "key": "lastModified",
-   "label": "Son Güncelleme",
-   "type": "text",
-   "readonly": true,
-   "hint": "🔒 Otomatik — kayıtta güncellenir"
-  }
- ]
-}
+{
+ "file": "data/pages/kime-sormaliyim.json",
+ "label": "Kime Sormalıyım?",
+ "preview": "kime-sormaliyim.html",
+ "description": "Kime Sormalıyım sayfası: arama, bölümler ve iletişim bilgileri.",
+ "settingsGroup": {
+  "label": "Sayfa Ayarları",
+  "fields": [
+   "hero",
+   "helpSection",
+   "meta",
+   "lastModified"
+  ]
+ },
+ "fields": [
+  {
+   "key": "hero",
+   "label": "Üst Başlık (Hero)",
+   "type": "object",
+   "defaultCollapsed": true,
+   "fields": [
+    {
+     "key": "_global",
+     "label": "Global Ayarlar",
+     "type": "globallink",
+     "path": "data/global/settings.json",
+     "buttonText": "⚙ Global Ayarları Aç (settings.json)",
+     "hint": "Aşağıdaki alanlar boşsa global ayar geçerli olur. Global değerleri değiştirmek için buraya tıkla — settings.json ayrı sekmede açılır."
+    },
+    {
+     "key": "enabled",
+     "label": "Hero'yu Göster",
+     "type": "select",
+     "options": [
+      {
+       "value": "",
+       "label": "Global'i Kullan (settings.json ayarı)"
+      },
+      {
+       "value": "true",
+       "label": "Göster — bu sayfada açık"
+      },
+      {
+       "value": "false",
+       "label": "Gizle — bu sayfada kapalı"
+      }
+     ],
+     "hint": "Boş = global ayar geçerli (Genel Ayarlar → Hero'yu Göster). Burada 'Göster/Gizle' seçersen bu sayfaya özel global'i geçersiz kılarsın — iki ayar birbirini 'değiştirmez', sayfa boşken global kazanır."
+    },
+    {
+     "key": "g-baslik",
+     "label": "Başlık ve Açıklama",
+     "type": "group"
+    },
+    {
+     "key": "layout",
+     "label": "Yerleşim Düzeni",
+     "type": "select",
+     "options": [
+      {
+       "value": "stack",
+       "label": "Stack — metin ortada, breadcrumb altta"
+      },
+      {
+       "value": "split-left",
+       "label": "Split Sol — metin/ikon solda, breadcrumb sağda"
+      },
+      {
+       "value": "split-right",
+       "label": "Split Sağ — breadcrumb solda, metin/ikon sağda"
+      }
+     ],
+     "hint": "stack: metin ortada, breadcrumb altta · split-sol: metin/ikon solda, breadcrumb sağda (aynı satır) · split-sağ: tam tersi — breadcrumb solda, metin sağda"
+    },
+    {
+     "key": "title",
+     "label": "Başlık",
+     "type": "lang",
+     "required": true
+    },
+    {
+     "key": "description",
+     "label": "Açıklama",
+     "type": "lang"
+    },
+    {
+     "key": "g-icon",
+     "label": "İkon Ayarları",
+     "type": "group",
+     "hint": "İkon, konumu, metin hizalaması ve ikon rengi"
+    },
+    {
+     "key": "icon",
+     "label": "İkon",
+     "type": "icon"
+    },
+    {
+     "key": "showIcon",
+     "label": "İkonu Göster",
+     "type": "boolean",
+     "hint": "Açıksa hero'da büyük ikon görünür"
+    },
+    {
+     "key": "iconPosition",
+     "label": "İkon Konumu",
+     "type": "select",
+     "options": [
+      {
+       "value": "top",
+       "label": "Üst"
+      },
+      {
+       "value": "left",
+       "label": "Sol"
+      },
+      {
+       "value": "right",
+       "label": "Sağ"
+      }
+     ],
+     "hint": "İkonun kutu içindeki yeri — üst, sol veya sağ"
+    },
+    {
+     "key": "textAlign",
+     "label": "Metin Hizalaması",
+     "type": "select",
+     "options": [
+      {
+       "value": "left",
+       "label": "Sol"
+      },
+      {
+       "value": "center",
+       "label": "Orta"
+      },
+      {
+       "value": "right",
+       "label": "Sağ"
+      }
+     ],
+     "hint": "Stack düzeninde geçerlidir (boşsa orta). Split düzenlerde metin otomatik kenara hizalanır."
+    },
+    {
+     "key": "iconColor",
+     "label": "İkon Rengi",
+     "type": "color",
+     "hint": "✕ ile sıfırlanabilir → global renk kullanılır"
+    },
+    {
+     "key": "g-breadcrumb",
+     "label": "Breadcrumb Ayarları",
+     "type": "group",
+     "hint": "Sayfa yolu — otomatik (menüden), elle veya gizli. Manuel listede ayarlar açılır."
+    },
+    {
+     "key": "showBreadcrumb",
+     "label": "Breadcrumb Göster",
+     "type": "boolean",
+     "hint": "Açıksa sayfa yolu görünür — global ayar, burada sayfa bazlı kapatılabilir"
+    },
+    {
+     "key": "breadcrumbMode",
+     "label": "Breadcrumb Modu",
+     "type": "select",
+     "options": [
+      {
+       "value": "auto",
+       "label": "Otomatik (menüden)"
+      },
+      {
+       "value": "manual",
+       "label": "Elle liste"
+      },
+      {
+       "value": "hidden",
+       "label": "Gizli"
+      }
+     ],
+     "hint": "auto: menüden otomatik · manual: aşağıdaki listeyi kullanır · hidden: gizler. Listeye sadece manual'de düzenlenir."
+    },
+    {
+     "key": "breadcrumb",
+     "label": "Sayfa Yolu Listesi",
+     "type": "array",
+     "itemLabel": "Adım",
+     "visibleWhen": {
+      "key": "breadcrumbMode",
+      "value": "manual"
+     },
+     "hint": "Sadece breadcrumb modu 'manual' iken düzenlenir",
+     "itemFields": [
+      {
+       "key": "text",
+       "label": "Metin",
+       "type": "lang"
+      },
+      {
+       "key": "url",
+       "label": "Bağlantı",
+       "type": "text"
+      }
+     ]
+    },
+    {
+     "key": "g-colors",
+     "label": "Renkler",
+     "type": "group",
+     "hint": "Kutucuk ve yazı renkleri — ✕ ile sıfırlanırsa global renk geçerli olur"
+    },
+    {
+     "key": "backgroundColor",
+     "label": "Arka Plan Rengi",
+     "type": "color",
+     "hint": "Hero bandı rengi"
+    },
+    {
+     "key": "boxColor",
+     "label": "Kutucuk Rengi",
+     "type": "color",
+     "hint": "İçerik kartı rengi"
+    },
+    {
+     "key": "borderColor",
+     "label": "Üst Çizgi Rengi (Sarı Şerit)",
+     "type": "color",
+     "hint": "Kutucuğun üstündeki ince şerit rengi — boşsa global (varsayılan sarı)"
+    },
+    {
+     "key": "titleColor",
+     "label": "Başlık Rengi",
+     "type": "color"
+    },
+    {
+     "key": "textColor",
+     "label": "Metin Rengi",
+     "type": "color"
+    },
+    {
+     "key": "g-spacing",
+     "label": "Kutu Boşlukları",
+     "type": "group",
+     "hint": "Kartın alt/üst iç (padding) ve dış (margin) boşlukları — rem cinsinden, boşsa global/CSS varsayılanı geçerli"
+    },
+    {
+     "key": "boxPaddingTop",
+     "label": "Üst İç Boşluk (Padding)",
+     "type": "number",
+     "hint": "rem — boşsa global (varsayılan 1.25rem)"
+    },
+    {
+     "key": "boxPaddingBottom",
+     "label": "Alt İç Boşluk (Padding)",
+     "type": "number",
+     "hint": "rem — boşsa global (varsayılan 1.25rem)"
+    },
+    {
+     "key": "boxMarginTop",
+     "label": "Üst Dış Boşluk (Margin)",
+     "type": "number",
+     "hint": "rem — boşsa 0"
+    },
+    {
+     "key": "boxMarginBottom",
+     "label": "Alt Dış Boşluk (Margin)",
+     "type": "number",
+     "hint": "rem — boşsa 0"
+    },
+    {
+     "key": "hiddenSpacing",
+     "label": "Gizliyken Üst Boşluk",
+     "type": "number",
+     "hint": "Hero bu sayfada kapatıldığında menü ile içerik arasında bırakılacak boşluk — rem, boşsa global (varsayılan 0)"
+    }
+   ]
+  },
+  {
+   "key": "searchSection",
+   "label": "Arama Bölümü",
+   "type": "object",
+   "fields": [
+    {
+     "key": "icon",
+     "label": "Arama İkonu",
+     "type": "icon"
+    },
+    {
+     "key": "placeholder",
+     "label": "Yer Tutucu Metin",
+     "type": "lang"
+    },
+    {
+     "key": "icon",
+     "label": "Temizle Butonu İkonu",
+     "type": "icon",
+     "hint": "Örn: bi bi-x-lg"
+    }
+   ]
+  },
+  {
+   "key": "noResults",
+   "label": "Sonuç Bulunamadı",
+   "type": "object",
+   "fields": [
+    {
+     "key": "icon",
+     "label": "İkon",
+     "type": "icon"
+    },
+    {
+     "key": "title",
+     "label": "Başlık",
+     "type": "lang"
+    },
+    {
+     "key": "description",
+     "label": "Açıklama",
+     "type": "lang"
+    }
+   ]
+  },
+  {
+   "key": "labels",
+   "label": "Etiketler",
+   "type": "object",
+   "fields": [
+    {
+     "key": "topicsTitle",
+     "label": "Konular Başlığı",
+     "type": "lang"
+    },
+    {
+     "key": "contactTitle",
+     "label": "İletişim Başlığı",
+     "type": "lang"
+    }
+   ]
+  },
+  {
+   "key": "departments",
+   "label": "Bölümler",
+   "type": "array",
+   "itemLabel": "Bölüm",
+   "itemFields": [
+    {
+     "key": "id",
+     "label": "Bölüm ID",
+     "type": "text"
+    },
+    {
+     "key": "icon",
+     "label": "Bölüm İkonu",
+     "type": "icon"
+    },
+    {
+     "key": "title",
+     "label": "Başlık",
+     "type": "lang",
+     "required": true
+    },
+    {
+     "key": "subtitle",
+     "label": "Alt Başlık",
+     "type": "lang"
+    },
+    {
+     "key": "topics",
+     "label": "Konular",
+     "type": "array",
+     "itemLabel": "Konu",
+     "itemFields": [
+      {
+       "key": "",
+       "label": "Konu",
+       "type": "lang"
+      }
+     ]
+    },
+    {
+     "key": "contacts",
+     "label": "İletişim",
+     "type": "array",
+     "itemLabel": "İletişim",
+     "itemFields": [
+      {
+       "key": "type",
+       "label": "Tip",
+       "type": "select",
+       "options": [
+        "phone",
+        "email"
+       ],
+       "hint": "phone: telefon · email: e-posta"
+      },
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      },
+      {
+       "key": "text",
+       "label": "Metin",
+       "type": "text"
+      },
+      {
+       "key": "link",
+       "label": "Bağlantı",
+       "type": "url"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "helpSection",
+   "label": "Yardım Bölümü",
+   "type": "object",
+   "defaultCollapsed": true,
+   "fields": [
+    {
+     "key": "enabled",
+     "label": "Yardım Bölümünü Göster",
+     "type": "select",
+     "options": [
+      {
+       "value": "",
+       "label": "Global'i Kullan (settings.json ayarı)"
+      },
+      {
+       "value": "true",
+       "label": "Göster — bu sayfada açık"
+      },
+      {
+       "value": "false",
+       "label": "Gizle — bu sayfada kapalı"
+      }
+     ],
+     "hint": "Boş = global ayar geçerli (Genel Ayarlar → Yardım Bölümü). Burada 'Göster/Gizle' seçersen bu sayfaya özel global'i geçersiz kılarsın."
+    },
+    {
+     "key": "g-colors",
+     "label": "Renkler",
+     "type": "group",
+     "hint": "Bölüm renkleri — ✕ ile sıfırlanırsa global/CSS varsayılanı kullanılır"
+    },
+    {
+     "key": "backgroundColor",
+     "label": "Arka Plan Rengi",
+     "type": "color"
+    },
+    {
+     "key": "borderColor",
+     "label": "Üst Çizgi Rengi",
+     "type": "color",
+     "hint": "Bölümün üstündeki ince şerit"
+    },
+    {
+     "key": "titleColor",
+     "label": "Başlık Rengi",
+     "type": "color"
+    },
+    {
+     "key": "textColor",
+     "label": "Metin Rengi",
+     "type": "color"
+    },
+    {
+     "key": "iconColor",
+     "label": "İkon Rengi",
+     "type": "color",
+     "hint": "Başlıktaki kulaklık ikonu"
+    },
+    {
+     "key": "title",
+     "label": "Başlık",
+     "type": "lang"
+    },
+    {
+     "key": "description",
+     "label": "Açıklama",
+     "type": "lang"
+    },
+    {
+     "key": "buttons",
+     "label": "Butonlar",
+     "type": "array",
+     "itemLabel": "Buton",
+     "itemFields": [
+      {
+       "key": "type",
+       "label": "Buton Tipi",
+       "type": "select",
+       "options": [
+        "link",
+        "modal"
+       ],
+       "hint": "link: normal bağlantı · modal: modal kütüphanesinden modal açar"
+      },
+      {
+       "key": "icon",
+       "label": "İkon",
+       "type": "icon"
+      },
+      {
+       "key": "text",
+       "label": "Metin",
+       "type": "lang",
+       "required": true
+      },
+      {
+       "key": "variant",
+       "label": "Stil",
+       "type": "select",
+       "options": [
+        "default",
+        "primary",
+        "secondary",
+        "outline",
+        "outline-secondary",
+        "outline-danger"
+       ],
+       "hint": "Buton görünümü — boşsa varsayılan (outline)"
+      },
+      {
+       "key": "link",
+       "label": "Bağlantı",
+       "type": "url",
+       "hint": "Modal butonlarında boş olabilir"
+      },
+      {
+       "key": "modalId",
+       "label": "Modal",
+       "type": "modalref",
+       "visibleWhen": {
+        "key": "type",
+        "value": "modal"
+       },
+       "hint": "Genel modal kütüphanesinden (modals.json) seçilir"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "meta",
+   "label": "SEO Bilgileri",
+   "type": "object",
+   "defaultCollapsed": true,
+   "fields": [
+    {
+     "key": "title",
+     "label": "SEO Başlık",
+     "type": "lang"
+    },
+    {
+     "key": "description",
+     "label": "SEO Açıklama",
+     "type": "lang"
+    }
+   ]
+  },
+  {
+   "key": "lastModified",
+   "label": "Son Güncelleme",
+   "type": "text",
+   "readonly": true,
+   "defaultCollapsed": true,
+   "hint": "🔒 Otomatik — kayıtta güncellenir"
+  }
+ ]
+}

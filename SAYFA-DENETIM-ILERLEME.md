@@ -57,6 +57,7 @@ Anasayfada çıkan sorunların tekrarını önlemek için her sayfaya geçerken 
 - [ ] Dosyanın elle şeması var mı? (`manager/schemas/`) — yoksa otomatik şemaya düşer, etiketler İngilizce kalır
 - [ ] `{tr,en}` içeren karma nesneler (`viewAllButton` gibi) yapılandırılmış alanlara açılıyor mu? (derinlik >2 olanlar `raw`'a düşebilir)
 - [ ] `lastModified` alanı varsa kayıtta otomatik güncelleniyor mu? (Türkiye saati 24s)
+- [ ] **Sayfa Ayarları kalıbı var mı?** (2026-08-19 standardı) — `settingsGroup` (hero/helpSection/meta/lastModified) + hero/helpSection/meta/lastModified `defaultCollapsed` + content `hierarchy:"sections"` + `defaultOpen` + components `soloOpen`. Detay: "Sayfa Ayarları Standardı" bölümü.
 - [ ] Bileşen tipleri şema kayıt defterinde tanımlı mı? (step-guide, collapsible-section, icon-list-grid, contact-buttons, note → **eksik, bilinen hata**)
 
 ### 4. Özel durumlar
@@ -187,6 +188,7 @@ Anasayfada çıkan sorunların tekrarını önlemek için her sayfaya geçerken 
 | 3 | `steps` şemada dizi olarak tanımlı değil | arastirmaci-profili | 15 doğrulama hatası (HEAD'de de vardı) |
 | 4 | 12 eksik ekran görüntüsü | sure-uzatma (2), uzaktan-erisim (10) | Kırık görsel; gerçek ekran görüntüsü gerekir |
 | 5 | `kutuphane-kullanim-klavuzu` dosya adı typo | tüm site tutarlı | Görünen metin düzeldi; URL taşınmadı (SEO) |
+| 6 | **Yapılacak:** Manager "Senkronize Et" + "Yayımla (SFTP)" ayarları boş | `manager/config.json` — `remote` ve `sftp` boş; ayrıca `git remote origin` tanımlı değil; `paramiko` kurulu değil (PYTHON) | Uzak repo yoksa senkronizasyon yapılamaz; SFTP yayımlama kapalı (ZIP indir çalışır). Yapılacaklar: (1) `config.json` → `remote` doldur + `git remote add origin`, (2) SFTP bilgileri istenecek, (3) `pip install paramiko` |
 
 ---
 
@@ -452,6 +454,10 @@ Builder'da **4 blok** olarak tanınıyor (Başlık / Görsel / Paragraf / Buton)
 ### 5. Buton/rozet metinleri asla hardcoded olmamalı
 - Kart/buton/rozet metinleri sayfa JSON'undaki `labels` nesnesinden okunur (`{tr,en}`).
 - Örn: guncel-haberler `labels.viewDetails/close/goToPage/featuredBadge`.
+
+### 6. Sayfa Ayarları (settingsGroup) kalıbı zorunlu (2026-08-19)
+- Her sayfa şeması, "Sayfa Ayarları Standardı" bölümündeki kalıba uyar: `settingsGroup` + hero/helpSection/meta/lastModified `defaultCollapsed` + content `hierarchy:"sections"`/`defaultOpen` + components `soloOpen`.
+- Referans kalıp: `calisma-saatleri.json` ile `bilgisayar-laboratuvari.json` (birebir aynı).
 
 ### Denetim akışı hatırlatması
 Önce önyüz → sonra JSON → uyuşmazlık/eksik/hatalar → "İlk Bakışta Kontrol Listesi" (veri/içerik, kod bağlantısı, manager/şema, özel durumlar) → düzelt → dersleri MD'ye işle → sonraki sayfa.
@@ -1130,3 +1136,126 @@ Proje `:has()` kullanıyor (hybrid-toc + veritabanlari zaten), uyumlu.
 - Saat girişi: "0730" → "07:30" ✓ · önizlemede anında göründü ("Pazartesi - Cuma 07:30 - 23:00 Açık") ✓
 - Kaydet ve Commit Et → diske yazıldı ✓ (test değeri geri alındı, dosya orijinal formata döndü)
 - Form/Ham JSON geçişi korundu (Ham JSON butonu aktif) ✓
+
+---
+
+## 🔄 Çalışma Saatleri — saat sistemi temizliği + editör hiyerarşisi (2026-08-19)
+
+**Önceki "özel saat editörü" (yukarıdaki notlar) rafa kaldırıldı** — kullanıcı kararıyla tam temizlik:
+- `hours-editor` (465 satır görsel editör), `hours-table` renderer bileşeni, `from-table` + saat yardımcıları (parseSlotString, padClock, computeStatusForRow, statusBadgeHTML, scheduleDisplay …) silindi.
+- `_components.json` kaydından `hours-table` kaldırıldı; `table.cells` `raw`'a döndü (veri düz metin hücre).
+- Manager `day-multiselect` alan tipi + `validation.py`daki dalı silindi; `render-onizleme-calisma-saatleri.html` silindi.
+- Yeni `manager/schemas/calisma-saatleri.json` genel şema kalıbıyla yeniden yazıldı: hero (globallink/layout/renkler/boşluklar/breadcrumb) + `scheduleConfig` (tatiller) + helpSection + content (registry) + meta + lastModified.
+- **Korunan özellik:** Merkez Kütüphane başlığındaki **Açık/Kapalı rozeti** — `renderStatusBadge` auto mod + `timeToMinutes` + tatil takvimi (`scheduleConfig.holidays`) çalışmaya devam ediyor (head.js koşullu kayıt, sayfa verisi bileşen).
+- **`SAYFA-DENETIM-ILERLEME.md` ve `_arsiv/` dokunulmadı.**
+
+**Yedek:** `_arsiv/_backup_saat-temizlik_2026-08-19\` (9 dosya) ve `_arsiv/_backup_edit-sistem_2026-08-19\` (app.js, style.css, calisma-saatleri.json).
+
+### Editör iyileştirmeleri (hepsi schema bayraklarıyla kapsamlanıyor — şimdilik yalnız çalışma saatleri)
+
+1. **Sürükleme tutamacı (⋮⋮)** — kartın tamamı `draggable` değildi; yalnız başlıktaki `⋮⋮` sürüklenir. Gövdede metin seçimi (table hücresi/içerik) artık kartı oynatmıyor, sıralama bozulmuyor. Drag `dragstart` guard ile yalnız tutamaktan başlatılır.
+2. **Taşıma sonrası açık kart korunuyor** — `renderArray` artık `openIdx` tutar; ↑/↓ ok veya sürükleme sonrası yeniden render'da açık kartlar kapalıya dönmüyor (eskiden 3+ öğeli listelerde her taşımada tüm kartlar çöküyor, taşıma "çalışmıyor" gibi görünüyordu).
+3. **Tek-açık akordeon (solo)** — `f.hierarchy === "sections"` (Sayfa Bölümleri) veya `f.soloOpen` (bileşen listeleri) olan dizilerde biri açılınca diğer kardeşler otomatik kapanır. Kapsam: yalnız çalışma saatleri.
+4. **`settingsGroup` ("Sayfa Ayarları")** — şema üst düzey `settingsGroup: {label, fields}` → o alanlar (hero, helpSection, meta, lastModified) formun altında **kesikli çerçeveli, kapalı gelen** bir gruba toplanır. Grup başlığına ya da TOC'taki **"⚙ Sayfa Ayarları (N)"** çipine tıklayınca açılır; iç bölümler tembel render (açılana kadar DOM'da yok). "Tümünü Aç/Kapat" da grubu kapsar.
+5. **`defaultOpen` / `defaultCollapsed`** — bölümlerin ilk açık/kapalı durumu şemadan yönetilir. Çalışma saatlerinde "Saat Takvimi" + "Sayfa Bölümleri" baştan açık; hero/yardım/SEO/son-güncelleme kapalı.
+
+### Şema gelişmişlik taraması (2026-08-19)
+
+Özellik zenginliği sıralaması (özel alan tipleri + bayraklar):
+- **En gelişmiş: `calisma-saatleri.json`** — tüm yeni editör sistemini taşıyan şema (settingsGroup + hierarchy:sections + soloOpen + defaultOpen/Collapsed + globallink + modalref + auto id + visibleWhen + kilitli readonly + registry).
+- **`bilgisayar-laboratuvari.json` — aynı seviyeye getirildi (2026-08-19):** settingsGroup + 4 defaultCollapsed (hero/helpSection/meta/lastModified) + content hierarchy:sections + defaultOpen + components soloOpen eklendi. **settingsGroup'un işaret ettiği 4 blok (hero, helpSection, meta, lastModified) artık çalışma saatleriyle yapısal olarak birebir aynı** (karşılaştırma: 0/4 fark). Meta = 9 alan (title/description/keywords/ogImage/ogType/section/author/publishedTime/tags).
+- **Kalıp TÜM sayfa şemalarına uygulandı (2026-08-19):** settingsGroup + bayraklar 26 şemaya toplu script ile yazıldı (aşağıdaki "Sayfa Ayarları Standardı" bölümü). İstisnalar: home, databases, anadolu-arastirma.
+- **En büyük şema (alan sayısı):** `arastirmaci-profili-olusturma` (160 alan — çok sayıda {tr,en} adım alanı sayılır), `makale-islem-ucretleri` (97).
+- Kullanıcı tahmini doğru çıktı: çalışma saatleri + bilgisayar laboratuvarı artık **aynı iskelette, aynı seviyede** — ikisi de yeni editör sistemini taşıyor.
+
+### Genel kural (yeni)
+- Editör iyileştirmeleri **bayrakla kapsamlanan ortak koddur**: bir sayfaya yaymak = o sayfanın şemasına bayrağı yazmak (settingsGroup/hierarchy/defaultOpen/soloOpen). "Hepsine uygula" = script ile tüm şemalara bayrak ya da bayrağı varsayılan yapmak.
+- Kart gövdesi metin seçimi asla sürükleme tetiklememeli — taşıma yalnız `⋮⋮` tutamacından (ve ↑/↓ oklarından).
+
+---
+
+## 📌 SAYFA AYARLARI STANDARDI — bundan sonra her sayfa şemasında geçerli (2026-08-19)
+
+**Karar:** Çalışma saatleri + bilgisayar laboratuvarındaki yapı **hedef kalıptır.** Bir sonraki turda tüm sayfa şemalarına aynen uygulanacak (script ile). İki referans şema `manager/schemas/calisma-saatleri.json` ve `manager/schemas/bilgisayar-laboratuvari.json` — bunlar yapısal olarak birebir aynıdır.
+
+### Uygulanacak kalıp (her şemaya)
+
+1. **`settingsGroup`** (üst düzey, `fields` listesinden önce) — formun altında kesikli çerçeveli "Sayfa Ayarları" grubu + TOC çipi oluşturur, kapalı gelir:
+```json
+"settingsGroup": { "label": "Sayfa Ayarları", "fields": ["hero", "helpSection", "meta", "lastModified"] }
+```
+
+2. **Blok bayrakları** (ilgili bloklarda):
+```json
+"hero":         { ..., "defaultCollapsed": true }
+"helpSection":  { ..., "defaultCollapsed": true }
+"meta":         { ..., "defaultCollapsed": true }
+"lastModified": { ..., "readonly": true, "defaultCollapsed": true }
+```
+`meta` bloğu **9 alanlı** olmalı: title, description, keywords, ogImage, ogType, section, author, publishedTime, tags (hepsi TR hint'li; label "SEO Bilgileri").
+
+3. **İçerik dizisi** (`content`, `type: "array"`):
+```json
+"content": { ..., "hierarchy": "sections", "defaultOpen": true, "itemFields": [...] }
+```
+
+4. **Bileşen listesi** (content `itemFields` içindeki `components`, `type: "components"`):
+```json
+"components": { ..., "soloOpen": true }
+```
+
+5. **Sayfa için giriş alanı** (`scheduleConfig` gibi birinci sıradaki ayar bloğu): `"defaultOpen": true` → ilk açılışta açık gelir.
+
+### Doğrulama (şema bittikten sonra)
+- `json.loads` her iki şemada: settingsGroup alan adları (`hero/helpSection/meta/lastModified`) şemada **gerçekten var mı** (sahte referans doğrulama hatası üretir).
+- Yapısal karşılaştırma: 4 bloğun `struct()` eşitliği (kalıbı kopyalamak yerine `calisma-saatleri.json`'dan al).
+- `node --check manager/ui/assets/app.js` + `/api/validate` → 0 hata.
+
+### Sıradaki tur: bu kalıbın uygulanacağı şemalar
+> **✅ UYGULANDI (2026-08-19)** — aşağıdaki liste ve kalan tüm sayfa şemalarına kalıp script ile toplu uygulandı (26 şema: settingsGroup + defaultCollapsed + hierarchy/defaultOpen + soloOpen). Yalnız istisnalar kalıpsız: home, databases, anadolu-arastirma (özel yapılar). `iletisim` yalnız hero+helpSection içerir (meta/lastModified blokları şemasında yok). Doğrulama: tüm şemalar `json.loads` ✓, settingsGroup referansları gerçek bloklara işaret ediyor ✓, 31 sayfa `validation.py` → 0 yeni hata (tek bilinen: organizasyon-semasi eksik PDF), `node --check app.js` ✓. Yedek: `_arsiv\_backup_full_2026-08-19\` (310 dosya).
+
+`kutuphane-kurallari`, `kosullar`, `duyurular`, `guncel-haberler` + kalan tüm sayfa şemaları (hero+content/registry+helpSection+meta+lastModified iskeleti olanlar). İstisna: home, databases, anadolu-arastirma, component-showcase.old (özel yapılar — kalıp uygulanmaz).
+
+### Yedek
+`_arsiv\_backup_seo-sync_2026-08-19\` (bilgisayar-laboratuvari.json + calisma-saatleri.json) — yaymadan önce tüm şemaların yedeği alınmalı.
+
+---
+
+## ➕ YENİ SAYFA SİHİRBAZI (yeni özellik — 2026-08-19)
+
+**Karar:** Manager'a tek tıkla *tam yeni sayfa* üreten çok adımlı sihirbaz eklendi. Kullanıcı yalnızca içeriği doldurur; şema/veri/HTML/menü/footer sistem tarafından üretilir ve her kayıt git commit'i olur.
+
+### Erişim
+- Topbar **"➕ Yeni Sayfa"** butonu
+- Komut paleti `Ctrl+K` → **"Yeni Sayfa Sihirbazı"**
+
+### Adımlar (5)
+1. **Bilgiler** — TR/EN ad, otomatik slug (Türkçe → a-z0-9-), ikon sınıfı (datalist: `/api/icons`)
+2. **Menü** — ekle/yok, konum (üst düzey veya `id`'li üst menünün dropdown'ına), sıra
+3. **Footer** — ekle/yok, mevcut sütun (endeks) veya yeni sütun
+4. **İçerik** — bölüm ekle/sil, her bölüme bileşen tipi (23 tip, `/api/components`) + opsiyonel varyant
+5. **Özet** — oluşturulacak dosyalar + menü/footer özeti, "Oluştur"
+
+### Ürettikleri (oluşturma anında commit'li)
+| Dosya | İçerik |
+|---|---|
+| `data/pages/SLUG.json` | hero (title{tr,en}+description empty+showBreadcrumb+breadcrumbMode:auto+showIcon+icon), content (seçilen bölüm/bileşen; heading başlığı = sayfa adı), helpSection (3 standart buton: tel/mailto/index.html), meta(title{tr,en}+description), lastModified(TR saati) |
+| `manager/schemas/SLUG.json` | bilgisayar-laboratuvari referansından hero/helpSection/meta/lastModified blokları kopyalanır; content = hierarchy:"sections"+defaultOpen, components soloOpen+registry:"components"; settingsGroup (Sayfa Ayarları) — **Sayfa Ayarları Standardı'na tam uyumlu** |
+| `SLUG.html` | bilgisayar-laboratuvari.html kalıbı (data-page-type="inner", data-page-name="SLUG", hreflang, modül import LibraryApp) |
+| `data/global/header.json` | navigation[]'a öğe (üst düzey `{id,title,icon,url}` veya dropdown'a `{title,icon,url}`) — kilitliyse atlanır |
+| `data/global/footer.json` | seçilen sütuna link veya yeni sütun — kilitliyse atlanır |
+
+Site tarafında yeni sayfa için **kod gerekmez**: `app.js` `initInnerPage` default dalı `new InnerPage(...)` ile jenerik render eder (`assets/js/pages/inner.js` + `ComponentRenderer`).
+
+### API
+- `GET /api/components` → bileşen kayıt defteri (label/hint/fields)
+- `POST /api/page/create` → payload: `{name{tr,en}, slug, icon, menu{show,parent,position}, footer{show,columnIndex}, sections[{id,components:[{type,variant}]}]}`; yanıt 200 `{path, slug, html, schema, report[], git}`; hata 400 (çakışma/exşama) rollback ile (schema+data+html silinir). Doğrulama: `validation.validate` registry çözümlü şema ile — 0 hata şartı.
+
+### Doğrulama (2026-08-19)
+- Entegrasyon testi: üst düzey menü + yeni footer sütunu + alt menü (dropdown, sıra) + mevcut sütun + slug transliterasyonu + çakışma tespiti → **TÜM TESTLER GEÇTİ**; sayfa verisi `validation` → 0 hata; sonrası temizlik (dosya silindi, menü/footer orijinaline döndü).
+- Canlı sunucu: `GET /api/components` ✓ (23 bileşen), `POST /api/page/create` minimum-veri 400 kontrolü ✓.
+- `python -m py_compile manager/server.py` ✓, `node --check app.js` ✓.
+- Sunucu, yeni uçların yüklenmesi için yeniden başlatıldı (eski PID 17244 → yeni süreç).
+
+### Not
+- Wizard'dan menü/footer seçilirse ilgili JSON kilitliyse işlem atlanır ve `report[]`'da açıklanır (düzenlemeyi engellemez).

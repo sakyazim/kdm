@@ -12,7 +12,7 @@ import { LanguageManager } from '../core/language-manager.js';
 export class ComponentRenderer {
 
   /**
-   * Sayfa verisi (hours-table rozet hesaplamaları için).
+   * Sayfa verisi (Açık/Kapalı rozetinin tatil takvimini okuması için).
    * Sayfa JS'i renderContent öncesi registerPageData ile doldurur.
    */
   static pageData = null;
@@ -61,8 +61,6 @@ export class ComponentRenderer {
         return this.renderStaffList(component);
       case 'content':
         return this.renderContent(component);
-      case 'hours-table':
-        return this.renderHoursTable(component);
       case 'stat-cards':
         return this.renderStatCards(component);
       case 'contact-box':
@@ -595,24 +593,10 @@ export class ComponentRenderer {
   /**
    * 11. STATUS BADGE BİLEŞENİ (Status Badge Component)
    * Açık/Kapalı durumu gösteren dinamik rozet
-   * Variant: auto (otomatik hesaplama), manual (manuel durum),
-   *          from-table (saat tablosundan hesaplama — tek veri kaynağı)
+   * Variant: auto (saat listesinden otomatik hesaplama), manual (manuel durum)
    */
   static renderStatusBadge(component) {
     const { variant, data } = component;
-
-    // from-table: başlık rozeti, aynı sayfadaki hours-table verisinden hesaplanır
-    if (variant === 'from-table') {
-      const tableId = component.tableRef || (data && data.tableRef);
-      if (!tableId) return '';
-      const now = new Date();
-      const table = ComponentRenderer.findTableData(tableId);
-      if (!table) return '';
-      const row = ComponentRenderer.findTodayRow(table, now);
-      if (!row) return '';
-      const state = ComponentRenderer.computeStatusForRow(row, now, ComponentRenderer.allHolidays(table));
-      return ComponentRenderer.statusBadgeHTML(state, data && data.icon);
-    }
 
     const { hours, status, statusText, icon } = data || {};
 
@@ -629,24 +613,33 @@ export class ComponentRenderer {
     if (variant === 'auto' && hasHours) {
       // Otomatik durum hesaplama
       const now = new Date();
-      const currentDay = now.getDay(); // 0 = Pazar, 1 = Pazartesi, ...
-      const currentTime = now.getHours() * 60 + now.getMinutes(); // Dakika cinsinden
 
-      // Bugünkü çalışma saatini bul
-      const todaySchedule = hours.find(h => h.dayNumbers && h.dayNumbers.includes(currentDay));
+      // Tatil kontrolü: sayfa geneli (scheduleConfig.holidays) + rozet bazlı
+      const holidays = ComponentRenderer.allHolidays(data);
+      const isHoliday = Array.isArray(holidays) && holidays.includes(ComponentRenderer.dayKey(now));
 
-      if (todaySchedule && todaySchedule.openTime && todaySchedule.closeTime) {
-        const openTime = ComponentRenderer.timeToMinutes(todaySchedule.openTime);
-        const closeTime = ComponentRenderer.timeToMinutes(todaySchedule.closeTime);
+      if (isHoliday) {
+        displayText = LanguageManager.t('closed');
+      } else {
+        const currentDay = now.getDay(); // 0 = Pazar, 1 = Pazartesi, ...
+        const currentTime = now.getHours() * 60 + now.getMinutes(); // Dakika cinsinden
 
-        if (openTime !== null && closeTime !== null && currentTime >= openTime && currentTime < closeTime) {
-          isOpen = true;
-          displayText = LanguageManager.t('open');
+        // Bugünkü çalışma saatini bul
+        const todaySchedule = hours.find(h => h.dayNumbers && h.dayNumbers.includes(currentDay));
+
+        if (todaySchedule && todaySchedule.openTime && todaySchedule.closeTime) {
+          const openTime = ComponentRenderer.timeToMinutes(todaySchedule.openTime);
+          const closeTime = ComponentRenderer.timeToMinutes(todaySchedule.closeTime);
+
+          if (openTime !== null && closeTime !== null && currentTime >= openTime && currentTime < closeTime) {
+            isOpen = true;
+            displayText = LanguageManager.t('open');
+          } else {
+            displayText = LanguageManager.t('closed');
+          }
         } else {
           displayText = LanguageManager.t('closed');
         }
-      } else {
-        displayText = LanguageManager.t('closed');
       }
     } else if (variant === 'manual') {
       // Manuel durum
@@ -672,7 +665,7 @@ export class ComponentRenderer {
   }
 
   /* -------------------------------------------------------
-   * ÇALIŞMA SAATİ TABLOSU (Hours Table) — dinamik Açık/Kapalı
+   * AÇIK/KAPALI ROZETİ — yardımcılar (auto mod)
    * ------------------------------------------------------- */
 
   /**
@@ -687,16 +680,6 @@ export class ComponentRenderer {
     return h * 60 + (Number.isNaN(m) ? 0 : m);
   }
 
-  /**
-   * Saat gösterimi: TR/veri her zaman 24 saat (08:30) —
-   * site dili İngilizce ise AM/PM (8:30 AM) gösterilir.
-   * Tek kural Utils.localizeClockText'te; veri ve manager 24 saat kalır.
-   */
-  static formatClock(t) {
-    if (!t) return '';
-    return Utils.localizeClockText(String(t));
-  }
-
   /** Bugünün 'YYYY-MM-DD' anahtarı (tatil eşleştirmesi için) */
   static dayKey(now) {
     const y = now.getFullYear();
@@ -705,28 +688,7 @@ export class ComponentRenderer {
     return `${y}-${m}-${d}`;
   }
 
-  /** Sayfa verisinde id'si verilen hours-table bileşenini bulur */
-  static findTableData(tableId) {
-    const pd = ComponentRenderer.pageData;
-    if (!pd || !Array.isArray(pd.content)) return null;
-    for (const sec of pd.content) {
-      for (const comp of (sec.components || [])) {
-        if (comp.type === 'hours-table' && comp.data && comp.data.id === tableId) return comp.data;
-      }
-    }
-    return null;
-  }
-
-  /** Tabloda bugüne denk gelen ilk satırı bulur */
-  static findTodayRow(table, now) {
-    if (!table) return null;
-    const today = now.getDay();
-    return (table.rows || []).find(row =>
-      (row.schedules || []).some(s => (s.days || []).includes(today))
-    ) || null;
-  }
-
-  /** Sayfa geneli (scheduleConfig) + tablo bazlı tatilleri birleştirir */
+  /** Sayfa geneli (scheduleConfig) tatillerini birleştirir */
   static allHolidays(table) {
     const pd = ComponentRenderer.pageData;
     const pageH = (pd && pd.scheduleConfig && pd.scheduleConfig.holidays) || [];
@@ -734,144 +696,6 @@ export class ComponentRenderer {
     return [...pageH, ...tableH];
   }
 
-  /** Bir satırın bugünkü programını bulur */
-  static todaySchedule(row, now) {
-    const today = now.getDay();
-    return (row.schedules || []).find(s => (s.days || []).includes(today)) || null;
-  }
-
-  /** Saat aralıklarına göre durum: 'open' | 'lunch' | 'closed' */
-  static statusFromPeriods(periods, now) {
-    const cur = now.getHours() * 60 + now.getMinutes();
-    const ranges = (periods || [])
-      .map(p => ({ open: ComponentRenderer.timeToMinutes(p.open), close: ComponentRenderer.timeToMinutes(p.close) }))
-      .filter(r => r.open !== null && r.close !== null)
-      .sort((a, b) => a.open - b.open);
-    if (!ranges.length) return 'closed';
-    for (const r of ranges) {
-      if (cur >= r.open && cur < r.close) return 'open';
-    }
-    // Aralıklar arası boşluk (öğle arası): bir aralığın kapanışı ile diğerinin açılışı arası
-    for (let i = 0; i < ranges.length - 1; i++) {
-      if (cur >= ranges[i].close && cur < ranges[i + 1].open) return 'lunch';
-    }
-    return 'closed';
-  }
-
-  /** Satırın bugünkü durumunu hesaplar: tatil, istisna, öğle arası, normal program */
-  static computeStatusForRow(row, now, holidays) {
-    const todayKey = ComponentRenderer.dayKey(now);
-    const isHoliday = Array.isArray(holidays) && holidays.includes(todayKey);
-    const ex = (row.exceptions || []).find(e => e.date === todayKey);
-
-    if (isHoliday) {
-      if (ex && ex.open) {
-        // İstisna: özel saat verildiyse onu, verilmediyse normal programı kullan
-        if (ex.openTime && ex.closeTime) {
-          return ComponentRenderer.statusFromPeriods([{ open: ex.openTime, close: ex.closeTime }], now);
-        }
-        const s = ComponentRenderer.todaySchedule(row, now);
-        if (s && !s.closed && (s.periods || []).length) return ComponentRenderer.statusFromPeriods(s.periods, now);
-      }
-      return 'closed'; // tatil + açık istisnası yok → kapalı
-    }
-
-    const s = ComponentRenderer.todaySchedule(row, now);
-    if (!s || s.closed || !(s.periods || []).length) return 'closed';
-    return ComponentRenderer.statusFromPeriods(s.periods, now);
-  }
-
-  /** Durum rozeti HTML'i — open / lunch / closed */
-  static statusBadgeHTML(state, icon) {
-    const text = state === 'open' ? LanguageManager.t('open')
-      : state === 'lunch' ? LanguageManager.t('lunchBreak')
-      : LanguageManager.t('closed');
-    const iconHTML = icon ? `<i class="${icon}"></i>` : '<i class="bi bi-circle-fill"></i>';
-    return `
-      <div class="component-status-badge ${state}">
-        ${iconHTML}
-        <span>${text}</span>
-      </div>
-    `;
-  }
-
-  /** Programın görünen saat metni (7/24, aralıklar, Kapalı) — dil seçimine göre 24s/AM-PM */
-  static scheduleDisplay(schedule) {
-    if (!schedule || schedule.closed || !(schedule.periods || []).length) {
-      return { tr: 'Kapalı', en: 'Closed' };
-    }
-    const parts = schedule.periods.map(p => {
-      if (p.open === '00:00' && (p.close === '23:59' || p.close === '24:00')) return '7/24';
-      return `${ComponentRenderer.formatClock(p.open)} - ${ComponentRenderer.formatClock(p.close)}`;
-    });
-    const joined = parts.join(' / ');
-    return { tr: joined, en: joined };
-  }
-
-  /**
-   * ÇALIŞMA SAATİ TABLOSU (Hours Table Component)
-   * Görünüm mevcut tabloyla aynı + en sağda canlı Durum kolonu.
-   * Sütunlar: name (satır adı) · schedule (saat — satırın programları sırayla eşleşir) · status (rozet)
-   */
-  static renderHoursTable(component) {
-    const { data } = component;
-    const { id, title, columns, rows, holidays } = data || {};
-
-    const idAttr = id ? `id="${id}"` : '';
-    const localizedTitle = title ? Utils.getLocalizedText(title) : '';
-    const now = new Date();
-    const allHolidays = ComponentRenderer.allHolidays(data);
-
-    // Sütunlar: verilmediyse varsayılan (Gün | Saat | Durum)
-    const cols = Array.isArray(columns) && columns.length ? columns : [
-      { kind: 'name', label: { tr: 'Gün', en: 'Day' } },
-      { kind: 'schedule', label: { tr: 'Saat', en: 'Hours' } },
-      { kind: 'status', label: { tr: 'Durum', en: 'Status' } }
-    ];
-    const scheduleCols = cols.filter(c => c.kind === 'schedule');
-
-    const headersHTML = cols.map(c => {
-      const label = (c.kind === 'name' && !c.label) ? { tr: 'Gün', en: 'Day' }
-        : (c.kind === 'schedule' && !c.label) ? { tr: 'Saat', en: 'Hours' }
-        : (c.kind === 'status' && !c.label) ? { tr: 'Durum', en: 'Status' }
-        : c.label;
-      const cls = c.kind === 'status' ? ' class="status-col"' : '';
-      return `<th${cls}>${Utils.getLocalizedText(label)}</th>`;
-    }).join('');
-
-    const rowsHTML = (rows || []).map(row => {
-      const iconHTML = row.icon ? `<i class="${row.icon}"></i>` : '';
-      const cellsHTML = cols.map(c => {
-        if (c.kind === 'name') {
-          return `<td class="name-col">${iconHTML ? iconHTML + ' ' : ''}${Utils.getLocalizedText(row.name)}</td>`;
-        }
-        if (c.kind === 'status') {
-          const state = ComponentRenderer.computeStatusForRow(row, now, allHolidays);
-          return `<td class="status-col">${ComponentRenderer.statusBadgeHTML(state)}</td>`;
-        }
-        const idx = scheduleCols.indexOf(c);
-        const schedule = (row.schedules || [])[idx];
-        return `<td>${Utils.getLocalizedText(ComponentRenderer.scheduleDisplay(schedule))}</td>`;
-      }).join('');
-      return `<tr>${cellsHTML}</tr>`;
-    }).join('');
-
-    return `
-      <div class="component-table-container component-hours-table" ${idAttr}>
-        ${localizedTitle ? `<h6 class="table-title">${localizedTitle}</h6>` : ''}
-        <div class="table-responsive">
-          <table class="component-table">
-            <thead>
-              <tr>${headersHTML}</tr>
-            </thead>
-            <tbody>
-              ${rowsHTML}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    `;
-  }
 
   /**
    * 12. CONTENT BİLEŞENİ (Content Component)

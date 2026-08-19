@@ -24,6 +24,7 @@ server-v*.log
 # Anasayfa/diger duzeltmeler oncesi klasor yedekleri
 _yedek/
 backups/
+_arsiv/
 
 # Sunucu logları (alternatif isimler)
 server.out.log

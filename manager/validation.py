@@ -166,10 +166,6 @@ def validate_schema(node, schema, errors, loc):
         elif ftype == "boolean":
             if not isinstance(value, bool):
                 errors.append("%s: doğru/yanlış olmalı." % child)
-        elif ftype == "day-multiselect":
-            if (not isinstance(value, list)
-                    or not all(isinstance(n, int) and not isinstance(n, bool) and 0 <= n <= 6 for n in value)):
-                errors.append("%s: gün listesi olmalı (0-6 arası sayılar)." % child)
         elif ftype in TEXT_TYPES:
             if not isinstance(value, str):
                 errors.append("%s: metin olmalı." % child)

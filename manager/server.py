@@ -509,6 +509,424 @@ def api_save_file(payload):
     }
 
 
+# ---------- Yeni Sayfa Sihirbazı ----------
+
+def slugify(text):
+    t = (text or "").strip().lower()
+    for k, v in (("ç", "c"), ("ğ", "g"), ("ı", "i"), ("ö", "o"), ("ş", "s"), ("ü", "u")):
+        t = t.replace(k, v)
+    t = re.sub(r"[^a-z0-9]+", "-", t).strip("-")
+    t = re.sub(r"-{2,}", "-", t)
+    return t[:60] or "sayfa"
+
+
+def _read_json(path, default=None):
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return default
+
+
+def _write_json(path, obj):
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(json.dumps(obj, ensure_ascii=False, indent=2) + "\n")
+
+
+def _component_defaults(fields):
+    data = {}
+    for sf in fields or []:
+        k = sf.get("key")
+        if not k:
+            continue
+        st = sf.get("type", "text")
+        if st == "lang":
+            data[k] = {"tr": "", "en": ""}
+        elif st == "object":
+            data[k] = {}
+        elif st in ("array", "components"):
+            data[k] = []
+        elif st == "number":
+            data[k] = 0
+        elif st == "boolean":
+            data[k] = False
+        else:
+            data[k] = ""
+    return data
+
+
+# Renderer'ın görmesi gereken bileşen-düzeyi varyant varsayılanları.
+# Site tarafı birçok bileşeni component.variant ile sınıflandırır; şema
+# alanlarında yeri olmayanlar için burada varsayılan atanır (heading boş
+# varyantla hiç render edilmez → single-icon site standardıdır, 115/125).
+COMPONENT_DEFAULT_VARIANTS = {"heading": "single-icon"}
+
+
+def _schema_blocks(ref_keys):
+    """bilgisayar-laboratuvari referans şemasından hero/helpSection/meta/lastModified bloklarını kopyalar."""
+    ref_path = os.path.join(SCHEMAS_DIR, "bilgisayar-laboratuvari.json")
+    try:
+        with open(ref_path, encoding="utf-8") as f:
+            ref = json.load(f)
+    except OSError as e:
+        return None, "Referans şema okunamadı: %s" % e
+    by_key = {f.get("key"): f for f in ref.get("fields", []) if f.get("key")}
+    blocks = {}
+    for k in ref_keys:
+        b = by_key.get(k)
+        if b is None:
+            return None, "Referans şemada '%s' bloğu yok." % k
+        blocks[k] = b
+    return blocks, None
+
+
+def _nav_parent_options(header):
+    opts = []
+    for mi in header.get("navigation") or []:
+        mid = str(mi.get("id") or "").strip()
+        if mid and isinstance(mi.get("dropdown"), list):
+            opts.append(mid)
+    return opts
+
+
+def _nav_insert(header, parent, item, position):
+    nav = header.get("navigation")
+    if not isinstance(nav, list):
+        return False
+    pos = None
+    if isinstance(position, int):
+        pos = max(0, min(position - 1 if position >= 1 else 0, len(nav) if not parent else len(nav) - 1))
+    if parent:
+        for mi in nav:
+            if str(mi.get("id") or "").strip() == parent and isinstance(mi.get("dropdown"), list):
+                if pos is None:
+                    mi["dropdown"].append(item)
+                else:
+                    mi["dropdown"].insert(min(pos, len(mi["dropdown"])), item)
+                return True
+        return False
+    if pos is None:
+        nav.append(item)
+    else:
+        nav.insert(pos, item)
+    return True
+
+
+def api_components():
+    _reload_schemas_if_changed()
+    comps = [
+        {"type": t, "label": c.get("label") or t, "hint": c.get("hint", ""), "fields": c.get("fields") or []}
+        for t, c in sorted(GLOBAL_COMPONENTS.items())
+    ]
+    return {"ok": True, "components": comps}
+
+
+# Yeni sayfa HTML şablonu — site mimarisine (%1) bilgisayar-laboratuvari.html ile aynı
+PAGE_HTML_TEMPLATE = """<!DOCTYPE html>
+<html lang="tr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="{desc_esc}">
+  <title>{title_esc} | Anadolu Üniversitesi Kütüphane</title>
+  <link rel="alternate" hreflang="tr" href="https://kdm.anadolu.edu.tr/{slug}.html"/>
+  <link rel="alternate" hreflang="en" href="https://kdm.anadolu.edu.tr/{slug}.html"/>
+  <link rel="alternate" hreflang="x-default" href="https://kdm.anadolu.edu.tr/{slug}.html"/>
+  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/global/variables.css">
+  <link rel="stylesheet" href="assets/css/global/base.css">
+  <link rel="stylesheet" href="assets/css/global/components.css">
+  <link rel="stylesheet" href="assets/css/global/header.css">
+  <link rel="stylesheet" href="assets/css/global/footer.css">
+  <link rel="stylesheet" href="assets/css/global/utilities.css">
+  <link rel="stylesheet" href="assets/css/global/inner-pages.css">
+  <link rel="stylesheet" href="assets/css/components/inner-page-components.css">
+  <link rel="stylesheet" href="assets/css/global/accessibility.css">
+</head>
+<body data-page-type="inner" data-page-name="{slug}">
+  <div id="header-container"></div>
+  <div id="hero-container"></div>
+  <main class="container main-container" id="main-content-container"></main>
+  <div id="help-container"></div>
+  <footer id="footer-container" class="footer"></footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module">
+    import {{ LibraryApp }} from './assets/js/core/app.js';
+    // Uygulamayı başlat
+    window.libraryApp = new LibraryApp();
+  </script>
+</body>
+</html>
+"""
+
+
+def api_page_create(payload):
+    name = payload.get("name") or {}
+    tr = (str(name.get("tr") or "")).strip()
+    en = (str(name.get("en") or "")).strip()
+    if not tr:
+        return 400, {"ok": False, "errors": ["Sayfa adı (TR) zorunlu."]}
+
+    slug = (payload.get("slug") or "").strip().lower()
+    slug = re.sub(r"[^a-z0-9\-]+", "-", slug).strip("-")
+    slug = re.sub(r"-{2,}", "-", slug)[:60]
+    if not slug:
+        slug = slugify(tr)
+    if not re.fullmatch(r"[a-z0-9-]+", slug):
+        return 400, {"ok": False, "errors": ["Geçersiz sayfa kısa adı (slug): %s" % slug]}
+    if os.path.exists(os.path.join(ROOT, slug + ".html")):
+        return 400, {"ok": False, "errors": ["Bu sayfa adı zaten kullanımda: %s" % slug]}
+    if os.path.exists(os.path.join(DATA_DIR, "pages", slug + ".json")):
+        return 400, {"ok": False, "errors": ["Bu sayfa adı zaten kullanımda: %s" % slug]}
+
+    icon = (payload.get("icon") or "").strip()
+    now = (datetime.now(timezone.utc) + timedelta(hours=3)).strftime("%Y-%m-%d %H:%M")
+    _reload_schemas_if_changed()
+
+    blocks, err = _schema_blocks(["hero", "helpSection", "meta", "lastModified"])
+    if err:
+        return 500, {"ok": False, "errors": [err]}
+
+    page_rel = "data/pages/%s.json" % slug
+
+    # ---- Şema ----
+    content_field = {
+        "key": "content",
+        "label": "Sayfa Bölümleri",
+        "type": "array",
+        "hierarchy": "sections",
+        "defaultOpen": True,
+        "itemLabel": "Bölüm",
+        "itemFields": [
+            {"key": "id", "label": "Bölüm Kimliği", "type": "text", "readonly": True, "auto": True,
+             "hint": "🔒 Otomatik — bölüm çapa kimliği"},
+            {"key": "components", "label": "Bileşenler", "type": "components",
+             "soloOpen": True, "registry": "components"},
+        ],
+    }
+    schema = {
+        "file": page_rel,
+        "label": tr[:60],
+        "description": "Yeni sayfa: %s" % tr[:100],
+        "settingsGroup": {
+            "label": "Sayfa Ayarları",
+            "fields": ["hero", "helpSection", "meta", "lastModified"],
+        },
+        "fields": [blocks["hero"], content_field, blocks["helpSection"], blocks["meta"], blocks["lastModified"]],
+    }
+
+    # ---- Bölümler / bileşenler ----
+    sections = payload.get("sections") or []
+    if not isinstance(sections, list) or not sections:
+        sections = [{"id": "bolum", "components": []}]
+    content = []
+    used = set()
+    for i, sec in enumerate(sections):
+        sid = slugify(str((sec or {}).get("id") or "bolum")) or None
+        base = sid if sid else "bolum"
+        if not base:
+            base = "bolum"
+        while base in used:
+            base = (base[:56] + "-2")
+        used.add(base)
+        comps = []
+        for c in (sec.get("components") or []):
+            ctype = (str(c.get("type") or "")).strip()
+            comp_def = GLOBAL_COMPONENTS.get(ctype)
+            if not comp_def:
+                continue
+            data = _component_defaults(comp_def.get("fields") or [])
+            t = data.get("title")
+            if ctype == "heading" and isinstance(t, dict):
+                t["tr"] = tr
+                t["en"] = en or tr
+            item = {"type": ctype, "data": data}
+            variant = str(c.get("variant") or "").strip()
+            if not variant:
+                variant = COMPONENT_DEFAULT_VARIANTS.get(ctype, "")
+            if variant:
+                item["variant"] = variant
+            comps.append(item)
+        content.append({"id": base, "components": comps})
+
+    page_data = {
+        "hero": {
+            "title": {"tr": tr, "en": en or tr},
+            "description": {"tr": "", "en": ""},
+            "showBreadcrumb": True,
+            "breadcrumbMode": "auto",
+            "showIcon": True,
+        },
+        "content": content,
+        "helpSection": {
+            "title": {"tr": "Daha fazla yardıma mı ihtiyacınız var?", "en": "Need more help?"},
+            "description": {
+                "tr": "Bu sayfa hakkında daha detaylı bilgi almak veya özel sorularınızı sormak için bizimle iletişime geçin.",
+                "en": "Contact us for more detailed information about this page or to ask your specific questions.",
+            },
+            "buttons": [
+                {"icon": "fas fa-phone", "text": {"tr": "Hemen Ara", "en": "Call Now"}, "link": "tel:+902223350580"},
+                {"icon": "fas fa-envelope", "text": {"tr": "E-posta Gönder", "en": "Send Email"}, "link": "mailto:library@anadolu.edu.tr"},
+                {"icon": "fas fa-home", "text": {"tr": "Ana Sayfa", "en": "Home"}, "link": "index.html"},
+            ],
+        },
+        "meta": {"title": {"tr": tr, "en": en or tr}, "description": {"tr": "", "en": ""}},
+        "lastModified": now,
+    }
+    if icon:
+        page_data["hero"]["icon"] = icon
+
+    schema_path = os.path.join(SCHEMAS_DIR, slug + ".json")
+    data_path = os.path.join(DATA_DIR, "pages", slug + ".json")
+    html_path = os.path.join(ROOT, slug + ".html")
+
+    def _rollback():
+        for p in (schema_path, data_path, html_path):
+            try:
+                os.remove(p)
+            except OSError:
+                pass
+
+    try:
+        _write_json(schema_path, schema)
+    except OSError as e:
+        return 500, {"ok": False, "errors": ["Şema yazılamadı: %s" % e]}
+
+    # Doğrulama için registry çözümlemeli bir kopya kullan (dosyaya ham hali yazılır)
+    check_schema = json.loads(json.dumps(schema))
+    _resolve_registry(check_schema.get("fields", []))
+    errors = validation.validate(page_data, page_rel, check_schema, ROOT)
+    if errors:
+        _rollback()
+        return 400, {"ok": False, "validated": False, "errors": errors[:12]}
+
+    try:
+        _write_json(data_path, page_data)
+    except OSError as e:
+        _rollback()
+        return 500, {"ok": False, "errors": ["Sayfa verisi yazılamadı: %s" % e]}
+
+    # ---- HTML ----
+    def _esc(s):
+        return (s or "").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    try:
+        with open(html_path, "w", encoding="utf-8") as f:
+            f.write(PAGE_HTML_TEMPLATE.format(
+                slug=slug,
+                title_esc=_esc(tr),
+                desc_esc=_esc(en or tr),
+            ))
+    except OSError as e:
+        _rollback()
+        return 500, {"ok": False, "errors": ["HTML yazılamadı: %s" % e]}
+
+    report = []
+    commits = []
+
+    # ---- Menü (header) ----
+    menu = payload.get("menu") or {}
+    header_rel = "data/global/header.json"
+    header_full = _write_target(header_rel)
+    if menu.get("show"):
+        if is_locked(header_rel):
+            report.append("header.json kilitli — menüye eklenmedi")
+        elif not header_full or not os.path.isfile(header_full):
+            report.append("header.json bulunamadı — menüye eklenmedi")
+        else:
+            header = _read_json(header_full, {})
+            if not isinstance(header, dict) or not isinstance(header.get("navigation"), list):
+                report.append("header.json okunamadı — menüye eklenmedi")
+            else:
+                parent = str(menu.get("parent") or "").strip()
+                position = menu.get("position")
+                try:
+                    position = int(position)
+                except (TypeError, ValueError):
+                    position = None
+                item = {
+                    "title": {"tr": tr[:45], "en": (en or tr)[:45]},
+                    "icon": icon or "bi-file-text",
+                    "url": slug + ".html",
+                }
+                if parent:
+                    if parent not in _nav_parent_options(header):
+                        report.append("menü üst öğesi bulunamadı (%s) — menüye eklenmedi" % parent)
+                    elif _nav_insert(header, parent, item, position):
+                        header["lastModified"] = now
+                        _write_json(header_full, header)
+                        commits.append((header_rel, "Yeni sayfa menüsü: %s (%s altına)" % (slug, parent)))
+                else:
+                    item["id"] = slug
+                    if _nav_insert(header, "", item, position):
+                        header["lastModified"] = now
+                        _write_json(header_full, header)
+                        commits.append((header_rel, "Yeni sayfa menüsü: %s" % slug))
+
+    # ---- Footer ----
+    fter = payload.get("footer") or {}
+    footer_rel = "data/global/footer.json"
+    if fter.get("show"):
+        if is_locked(footer_rel):
+            report.append("footer.json kilitli — footere eklenmedi")
+        else:
+            footer_full = _write_target(footer_rel)
+            if not footer_full or not os.path.isfile(footer_full):
+                report.append("footer.json bulunamadı — footere eklenmedi")
+            else:
+                footer = _read_json(footer_full, {})
+                cols = footer.get("columns")
+                if not isinstance(cols, list):
+                    report.append("footer.json okunamadı — footere eklenmedi")
+                else:
+                    link = {"text": {"tr": tr, "en": en or tr}, "url": slug + ".html"}
+                    ci = fter.get("columnIndex")
+                    try:
+                        ci = int(ci)
+                    except (TypeError, ValueError):
+                        ci = None
+                    if isinstance(ci, int) and 0 <= ci < len(cols):
+                        cols[ci].setdefault("links", []).append(link)
+                        report.append("footer sütunu #%d'ye eklendi" % (ci + 1))
+                    else:
+                        cols.append({
+                            "title": {"tr": tr[:40], "en": (en or tr)[:40]},
+                            "links": [link],
+                        })
+                        report.append("footer'a yeni sütun eklendi")
+                    footer["lastModified"] = now
+                    _write_json(footer_full, footer)
+                    commits.append((footer_rel, "Yeni sayfa footer bağlantısı: %s" % slug))
+
+    # ---- Git commit'leri ----
+    for rel, msg in commits:
+        try:
+            okp, note = gitops.commit(rel, msg)
+            if not okp:
+                report.append("%s commit'i başarısız: %s" % (rel, note))
+        except Exception as e:
+            report.append("%s commit'i başarısız: %s" % (rel, e))
+    for rel, msg in ((page_rel, "Yeni sayfa verisi: %s" % slug),
+                     ("manager/schemas/%s.json" % slug, "Yeni sayfa şeması: %s" % slug),
+                     (slug + ".html", "Yeni sayfa HTML: %s" % slug)):
+        okc, note = gitops.commit(rel, msg)
+        if not okc:
+            report.append("%s commit'i başarısız: %s" % (rel, note))
+
+    return 200, {
+        "ok": True,
+        "path": page_rel,
+        "slug": slug,
+        "html": slug + ".html",
+        "schema": "manager/schemas/%s.json" % slug,
+        "report": report,
+        "git": gitops.status(),
+    }
+
+
 MODALS_PATH = os.path.join(DATA_DIR, "global", "modals.json")
 MODALS_CACHE = None
 MODALS_MTIME = None
@@ -684,6 +1102,8 @@ class Handler(BaseHTTPRequestHandler):
             return self._json(200, api_get_file(qs.get("path", [""])[0]))
         if path == "/api/icons":
             return self._json(200, api_icons())
+        if path == "/api/components":
+            return self._json(200, api_components())
         if path == "/api/images":
             return self._json(200, api_images())
         if path == "/api/locks":
@@ -744,6 +1164,8 @@ class Handler(BaseHTTPRequestHandler):
             return self._json(200, api_modals_get())
         if parsed.path == "/api/modal/transfer":
             return self._json(*api_modal_transfer(payload))
+        if parsed.path == "/api/page/create":
+            return self._json(*api_page_create(payload))
         return self._json(404, {"ok": False, "errors": ["Bilinmeyen API."]})
 
     def log_message(self, fmt, *args):

@@ -181,6 +181,7 @@ function closeTab(i) {
 /* ---------- Komut paleti ---------- */
 
 const PALETTE_COMMANDS = [
+  { icon: "➕", label: "Yeni Sayfa Sihirbazı", hint: "şema+veri+HTML+menü+footer", run: () => wizOpen() },
   { icon: "💾", label: "Kaydet ve Commit Et", hint: "Ctrl+S", run: () => save() },
   { icon: "✅", label: "Doğrula", hint: "aktif dosya", run: () => validate() },
   { icon: "🕘", label: "Sürüm Geçmişi", hint: "aktif dosya", run: () => openHistoryModal() },
@@ -626,14 +627,6 @@ function renderEditor() {
       formArea.appendChild(renderModalBuilder(tab));
       return;
     }
-    if (tab.schema.id === "hours-editor") {
-      rawArea.classList.add("hidden");
-      formArea.classList.remove("hidden");
-      formArea.innerHTML = "";
-      tocBar.classList.add("hidden");
-      formArea.appendChild(renderHoursEditor(tab));
-      return;
-    }
     if (tab.schema.root === "array" && Array.isArray(tab.data)) {
       if (tab.schema.description) {
         const note = document.createElement("div");
@@ -654,10 +647,19 @@ function renderEditor() {
       return;
     }
     const fields = tab.schema.fields || [];
-    const startCollapsed = defaultSectionsCollapsed(fields.length);
-    const secs = fields.map((f) => renderSection(f, tab.data, startCollapsed, "$." + f.key));
+    const sg = tab.schema.settingsGroup;
+    const sKeys = sg && Array.isArray(sg.fields) ? new Set(sg.fields) : new Set();
+    const mainFields = fields.filter((f) => !sKeys.has(f.key));
+    const settingsFields = fields.filter((f) => sKeys.has(f.key));
+    const startCollapsed = defaultSectionsCollapsed(mainFields.length);
+    const secs = mainFields.map((f) => renderSection(f, tab.data, startCollapsed, "$." + f.key));
     secs.forEach((s) => formArea.appendChild(s));
-    renderToc(secs, fields);
+    let sgEl = null;
+    if (sg && settingsFields.length) {
+      sgEl = renderSettingsGroup(sg, settingsFields, tab.data);
+      formArea.appendChild(sgEl);
+    }
+    renderToc(secs, mainFields, sgEl, sg && settingsFields.length ? settingsFields : null);
   } else {
     formArea.classList.add("hidden");
     rawArea.classList.remove("hidden");
@@ -668,6 +670,11 @@ function renderEditor() {
 
 function setAllSections(open) {
   document.querySelectorAll(".form-section").forEach((sec) => {
+    if (sec.classList.contains("settings-group")) {
+      if (open && sec._open) sec._open();
+      else if (!open && sec._close) sec._close();
+      return;
+    }
     sec.classList.toggle("collapsed", !open);
     const head = sec.querySelector(".form-section-head");
     if (head) head.classList.toggle("open", open);
@@ -1424,463 +1431,6 @@ function itemsEditorLang(m, idx, key, specs, addDefault, label, onDataAll) {
   return wrap;
 }
 
-/* ---------- Çalışma Saatleri Görsel Editörü ---------- */
-
-// Hafta içi / Cmt / Paz standart gruplarının gün numaraları (0=Pazar)
-const HOURS_DAY_NAMES = ["Paz", "Pzt", "Sal", "Çar", "Per", "Cum", "Cmt"];
-const HOURS_GROUP_PRESETS = [
-  { label: "Hafta İçi", days: [1, 2, 3, 4, 5] },
-  { label: "Cumartesi", days: [6] },
-  { label: "Pazar", days: [0] },
-];
-
-function hoursTimeInput(value, onchange, placeholder) {
-  // 24 saat zorunlu (AM/PM yok) — native time input yerine metin kontrolü
-  const inp = document.createElement("input");
-  inp.type = "text";
-  inp.inputMode = "numeric";
-  inp.maxLength = 5;
-  inp.placeholder = placeholder || "08:30";
-  inp.value = value || "";
-  const normalize = (raw) => {
-    let d = raw.replace(/\D/g, "").slice(0, 4);
-    if (d.length === 3) return d[0] + ":" + d.slice(1);
-    if (d.length === 4) return d.slice(0, 2) + ":" + d.slice(2);
-    return d;
-  };
-  inp.addEventListener("input", () => {
-    inp.value = normalize(inp.value);
-    onchange(inp.value);
-  });
-  inp.addEventListener("blur", () => {
-    if (inp.value) {
-      const parts = inp.value.split(":");
-      let hh = (parts[0] || "").padStart(2, "0");
-      let mm = (parts[1] || "").padStart(2, "0");
-      hh = String(Math.min(parseInt(hh, 10) || 0, 23)).padStart(2, "0");
-      mm = String(Math.min(parseInt(mm, 10) || 0, 59)).padStart(2, "0");
-      inp.value = hh + ":" + mm;
-      onchange(inp.value);
-    }
-  });
-  return inp;
-}
-
-// Gün çoklu seçim rozetleri
-function hoursDayPicker(schedule, rerender) {
-  const wrap = document.createElement("div");
-  wrap.className = "he-days";
-  if (!Array.isArray(schedule.days)) schedule.days = [];
-  const toggle = (d) => {
-    const i = schedule.days.indexOf(d);
-    if (i >= 0) schedule.days.splice(i, 1);
-    else schedule.days.push(d);
-    schedule.days.sort((a, b) => a - b);
-    markDirty();
-    rerender();
-  };
-  HOURS_DAY_NAMES.forEach((name, d) => {
-    const b = document.createElement("button");
-    b.type = "button";
-    b.className = "he-day" + (schedule.days.includes(d) ? " on" : "");
-    b.textContent = name;
-    b.title = (d === 0 ? "Pazar" : d === 6 ? "Cumartesi" : HOURS_DAY_NAMES[d] + " (gün " + d + ")") + " — tıkla: aç/kapa";
-    b.addEventListener("click", () => toggle(d));
-    wrap.appendChild(b);
-  });
-  // Hızlı ön ayarlar
-  const presets = document.createElement("div");
-  presets.className = "he-day-presets";
-  HOURS_GROUP_PRESETS.forEach((p) => {
-    const b = document.createElement("button");
-    b.type = "button";
-    b.className = "he-day-preset";
-    b.textContent = p.label;
-    const same = p.days.length === schedule.days.length && p.days.every((d) => schedule.days.includes(d));
-    if (same) b.classList.add("on");
-    b.addEventListener("click", () => {
-      schedule.days = p.days.slice();
-      markDirty();
-      rerender();
-    });
-    presets.appendChild(b);
-  });
-  wrap.appendChild(presets);
-  return wrap;
-}
-
-// Bir saat aralığı (period) satırı: açılış - kapanış
-function hoursPeriodRow(period, rerender) {
-  const row = document.createElement("div");
-  row.className = "he-period";
-  const open = hoursTimeInput(period.open, (v) => { period.open = v; markDirty(); }, "08:00");
-  const close = hoursTimeInput(period.close, (v) => { period.close = v; markDirty(); }, "17:00");
-  const dash = document.createElement("span");
-  dash.className = "he-dash";
-  dash.textContent = "–";
-  const rm = document.createElement("button");
-  rm.type = "button";
-  rm.className = "btn tiny danger";
-  rm.textContent = "✕";
-  rm.title = "Bu aralığı sil";
-  rm.addEventListener("click", () => { /* üst katman silmeyi yönetir */ });
-  row.appendChild(open);
-  row.appendChild(dash);
-  row.appendChild(close);
-  row.appendChild(rm);
-  return { row, open, close, rm };
-}
-
-// Bir zaman programı (schedule) kartı
-function hoursScheduleCard(schedule, rerender) {
-  const card = document.createElement("div");
-  card.className = "he-schedule";
-
-  const head = document.createElement("div");
-  head.className = "he-schedule-head";
-  const lbl = document.createElement("span");
-  lbl.className = "he-schedule-label";
-  lbl.textContent = "🕐 Program";
-  head.appendChild(lbl);
-
-  const closedWrap = document.createElement("label");
-  closedWrap.className = "he-closed";
-  const closedChk = document.createElement("input");
-  closedChk.type = "checkbox";
-  closedChk.checked = !!schedule.closed;
-  closedChk.title = "Kapalı (tüm gün)";
-  closedChk.addEventListener("change", () => {
-    schedule.closed = closedChk.checked;
-    if (closedChk.checked) delete schedule.periods;
-    else if (!Array.isArray(schedule.periods)) schedule.periods = [{ open: "08:00", close: "17:00" }];
-    markDirty();
-    rerender();
-  });
-  closedWrap.appendChild(closedChk);
-  const closedTxt = document.createElement("span");
-  closedTxt.textContent = "Kapalı (tüm gün)";
-  closedWrap.appendChild(closedTxt);
-  head.appendChild(closedWrap);
-  card.appendChild(head);
-
-  // Günler
-  card.appendChild(hoursDayPicker(schedule, rerender));
-
-  // Saat aralıkları
-  if (!Array.isArray(schedule.periods)) schedule.periods = [];
-  const periodsBox = document.createElement("div");
-  periodsBox.className = "he-periods";
-  const renderPeriods = () => {
-    periodsBox.innerHTML = "";
-    schedule.periods.forEach((p, pi) => {
-      const pr = hoursPeriodRow(p, rerender);
-      pr.rm.addEventListener("click", () => {
-        schedule.periods.splice(pi, 1);
-        if (!schedule.periods.length) schedule.periods.push({ open: "08:00", close: "17:00" });
-        markDirty();
-        rerender();
-      });
-      periodsBox.appendChild(pr.row);
-    });
-    const add = document.createElement("button");
-    add.type = "button";
-    add.className = "btn tiny";
-    add.textContent = "+ Aralık Ekle (öğle arası için)";
-    add.title = "İki aralık arasındaki boşluk öğle arası sayılır";
-    add.addEventListener("click", () => {
-      schedule.periods.push({ open: "12:00", close: "13:00" });
-      markDirty();
-      rerender();
-    });
-    periodsBox.appendChild(add);
-  };
-  renderPeriods();
-  card.appendChild(periodsBox);
-
-  // 7/24 hızlı buton
-  const q = document.createElement("button");
-  q.type = "button";
-  q.className = "btn tiny he-q24";
-  q.textContent = "7/24";
-  q.title = "00:00 – 23:59 (kesintisiz)";
-  q.addEventListener("click", () => {
-    schedule.closed = false;
-    schedule.periods = [{ open: "00:00", close: "23:59" }];
-    markDirty();
-    rerender();
-  });
-  periodsBox.appendChild(q);
-
-  return card;
-}
-
-// Bir satır (bölüm) kartı — ad + ikon + programlar + tatil istisnaları
-function hoursRowCard(row, rerender) {
-  const card = document.createElement("div");
-  card.className = "he-row";
-
-  const head = document.createElement("div");
-  head.className = "he-row-head";
-  const nameTr = document.createElement("input");
-  nameTr.type = "text";
-  nameTr.className = "he-row-name";
-  nameTr.value = (row.name && row.name.tr) || "";
-  nameTr.placeholder = "Bölüm adı (TR)";
-  nameTr.addEventListener("input", () => { if (!row.name) row.name = {}; row.name.tr = nameTr.value; markDirty(); });
-  const nameEn = document.createElement("input");
-  nameEn.type = "text";
-  nameEn.className = "he-row-name en";
-  nameEn.value = (row.name && row.name.en) || "";
-  nameEn.placeholder = "Name (EN)";
-  nameEn.addEventListener("input", () => { if (!row.name) row.name = {}; row.name.en = nameEn.value; markDirty(); });
-  head.appendChild(nameTr);
-  head.appendChild(nameEn);
-
-  const icon = document.createElement("input");
-  icon.type = "text";
-  icon.className = "he-row-icon";
-  icon.value = row.icon || "";
-  icon.placeholder = "ikon sınıfı (örn. bi bi-book)";
-  icon.title = "Bootstrap ikon sınıfı";
-  icon.addEventListener("input", () => { row.icon = icon.value; markDirty(); });
-  head.appendChild(icon);
-  card.appendChild(head);
-
-  // Programlar
-  if (!Array.isArray(row.schedules)) row.schedules = [];
-  const schedBox = document.createElement("div");
-  schedBox.className = "he-schedules";
-  row.schedules.forEach((s) => schedBox.appendChild(hoursScheduleCard(s, rerender)));
-  const addSched = document.createElement("button");
-  addSched.type = "button";
-  addSched.className = "btn tiny";
-  addSched.textContent = "+ Program Ekle";
-  addSched.addEventListener("click", () => {
-    row.schedules.push({ days: [1, 2, 3, 4, 5], periods: [{ open: "08:00", close: "17:00" }] });
-    markDirty();
-    rerender();
-  });
-  schedBox.appendChild(addSched);
-  card.appendChild(schedBox);
-
-  // Tatil istisnaları
-  if (!Array.isArray(row.exceptions)) row.exceptions = [];
-  const excBox = document.createElement("div");
-  excBox.className = "he-exceptions";
-  const excHead = document.createElement("div");
-  excHead.className = "he-exc-head";
-  excHead.textContent = "🏖 Tatil İstisnaları (resmi tatilde bu bölüm açık kalsın)";
-  excBox.appendChild(excHead);
-  row.exceptions.forEach((ex, xi) => {
-    const er = document.createElement("div");
-    er.className = "he-exc";
-    const date = document.createElement("input");
-    date.type = "date";
-    date.value = ex.date || "";
-    date.addEventListener("change", () => { ex.date = date.value; markDirty(); });
-    const open = document.createElement("label");
-    open.className = "he-closed small";
-    const chk = document.createElement("input");
-    chk.type = "checkbox";
-    chk.checked = ex.open !== false;
-    chk.addEventListener("change", () => { ex.open = chk.checked; markDirty(); });
-    open.appendChild(chk);
-    open.appendChild(document.createTextNode("açık"));
-    const rm = document.createElement("button");
-    rm.type = "button";
-    rm.className = "btn tiny danger";
-    rm.textContent = "✕";
-    rm.addEventListener("click", () => { row.exceptions.splice(xi, 1); markDirty(); rerender(); });
-    er.appendChild(date);
-    er.appendChild(open);
-    er.appendChild(rm);
-    excBox.appendChild(er);
-  });
-  const addExc = document.createElement("button");
-  addExc.type = "button";
-  addExc.className = "btn tiny";
-  addExc.textContent = "+ İstisna Ekle";
-  addExc.addEventListener("click", () => {
-    row.exceptions.push({ date: "2026-01-01", open: true });
-    markDirty();
-    rerender();
-  });
-  excBox.appendChild(addExc);
-  card.appendChild(excBox);
-
-  return card;
-}
-
-// Bir hours-table component'i için kart
-function hoursTableCard(ht, rerender) {
-  const card = document.createElement("div");
-  card.className = "he-table";
-  const d = ht.data || {};
-
-  const head = document.createElement("div");
-  head.className = "he-table-head";
-  const title = document.createElement("input");
-  title.type = "text";
-  title.className = "he-table-title";
-  title.value = (d.title && d.title.tr) || "";
-  title.placeholder = "Tablo başlığı (TR)";
-  title.addEventListener("input", () => { if (!d.title) d.title = {}; d.title.tr = title.value; markDirty(); });
-  const titleEn = document.createElement("input");
-  titleEn.type = "text";
-  titleEn.className = "he-table-title en";
-  titleEn.value = (d.title && d.title.en) || "";
-  titleEn.placeholder = "Table title (EN)";
-  titleEn.addEventListener("input", () => { if (!d.title) d.title = {}; d.title.en = titleEn.value; markDirty(); });
-  head.appendChild(title);
-  head.appendChild(titleEn);
-  card.appendChild(head);
-
-  const hint = document.createElement("p");
-  hint.className = "he-hint";
-  hint.textContent = "Satırlar: bölüm/gün adı + programları. Sütun yapısı (Gün/Saat/Durum) ve sıralama alttaki 'Sütunlar' bölümünde değil, tablo render'ında otomatik belirlenir.";
-  card.appendChild(hint);
-
-  if (!Array.isArray(d.rows)) d.rows = [];
-  const rowsBox = document.createElement("div");
-  rowsBox.className = "he-rows";
-  d.rows.forEach((row) => {
-    const rc = hoursRowCard(row, rerender);
-    const del = document.createElement("button");
-    del.type = "button";
-    del.className = "btn tiny danger he-del-row";
-    del.textContent = "🗑 Satırı Sil";
-    del.addEventListener("click", () => {
-      if (confirm("Bu satır silinsin mi?")) {
-        d.rows.splice(d.rows.indexOf(row), 1);
-        markDirty();
-        rerender();
-      }
-    });
-    rc.appendChild(del);
-    rowsBox.appendChild(rc);
-  });
-  const addRow = document.createElement("button");
-  addRow.type = "button";
-  addRow.className = "btn";
-  addRow.textContent = "+ Satır Ekle";
-  addRow.addEventListener("click", () => {
-    d.rows.push({
-      name: { tr: "Yeni Bölüm", en: "New Section" },
-      icon: "bi bi-building",
-      schedules: [{ days: [1, 2, 3, 4, 5], periods: [{ open: "08:00", close: "17:00" }] }],
-    });
-    markDirty();
-    rerender();
-  });
-  rowsBox.appendChild(addRow);
-  card.appendChild(rowsBox);
-
-  return card;
-}
-
-// Resmi tatiller bölümü (scheduleConfig.holidays)
-function hoursHolidaysCard(holidays, rerender) {
-  const card = document.createElement("div");
-  card.className = "he-table he-holidays";
-  const head = document.createElement("div");
-  head.className = "he-table-head";
-  const t = document.createElement("h4");
-  t.textContent = "🎌 Resmi Tatiller (tüm sayfa)";
-  head.appendChild(t);
-  card.appendChild(head);
-  const hint = document.createElement("p");
-  hint.className = "he-hint";
-  hint.textContent = "Bu tarihlerde tüm tablolar kapalı sayılır; bölüm bazlı 'Tatil İstisnası' eklenen satırlar açık kalır.";
-  card.appendChild(hint);
-  const list = document.createElement("div");
-  list.className = "he-holiday-list";
-  holidays.forEach((h, i) => {
-    const row = document.createElement("div");
-    row.className = "he-holiday";
-    const inp = document.createElement("input");
-    inp.type = "date";
-    inp.value = h;
-    inp.addEventListener("change", () => { holidays[i] = inp.value; markDirty(); });
-    const rm = document.createElement("button");
-    rm.type = "button";
-    rm.className = "btn tiny danger";
-    rm.textContent = "✕";
-    rm.addEventListener("click", () => { holidays.splice(i, 1); markDirty(); rerender(); });
-    row.appendChild(inp);
-    row.appendChild(rm);
-    list.appendChild(row);
-  });
-  const add = document.createElement("button");
-  add.type = "button";
-  add.className = "btn tiny";
-  add.textContent = "+ Tatil Ekle";
-  add.addEventListener("click", () => {
-    holidays.push("2026-01-01");
-    markDirty();
-    rerender();
-  });
-  list.appendChild(add);
-  card.appendChild(list);
-  return card;
-}
-
-function renderHoursEditor(tab) {
-  const root = document.createElement("div");
-  root.className = "hours-editor";
-  const data = tab.data;
-
-  const rerender = () => {
-    const formArea = $("formArea");
-    formArea.innerHTML = "";
-    formArea.appendChild(renderHoursEditor(tab));
-  };
-
-  const head = document.createElement("div");
-  head.className = "he-head";
-  const h = document.createElement("h3");
-  h.textContent = "🗓 Çalışma Saatleri Editörü";
-  const sub = document.createElement("p");
-  sub.className = "he-sub";
-  sub.textContent = "Görsel düzenleyici: bölümleri ve gün gruplarını tablo kartlarıyla yönet. Tüm saatler 24 saat formatında (AM/PM yok). Değişiklikler canlı önizlemeye anında yansır.";
-  head.appendChild(h);
-  head.appendChild(sub);
-  root.appendChild(head);
-
-  // scheduleConfig
-  if (!data.scheduleConfig) data.scheduleConfig = {};
-  if (!Array.isArray(data.scheduleConfig.holidays)) data.scheduleConfig.holidays = [];
-  root.appendChild(hoursHolidaysCard(data.scheduleConfig.holidays, rerender));
-
-  // content içindeki hours-table component'lerini bul
-  let tableCount = 0;
-  const tables = [];
-  (data.content || []).forEach((sec) => {
-    (sec.components || []).forEach((comp) => {
-      if (comp.type === "hours-table") {
-        if (!comp.data) comp.data = {};
-        tables.push(comp.data);
-      }
-    });
-  });
-  if (!tables.length) {
-    const none = document.createElement("p");
-    none.className = "he-hint";
-    none.textContent = "⚠ content içinde hours-table component'i bulunamadı. Ham JSON'dan ekleyebilir veya 'Sayfa Bölümleri' bölümünü kullanabilirsiniz.";
-    root.appendChild(none);
-    return root;
-  }
-  tables.forEach((ht) => {
-    tableCount++;
-    root.appendChild(hoursTableCard({ data: ht }, rerender));
-  });
-  const tnote = document.createElement("p");
-  tnote.className = "he-hint";
-  tnote.textContent = tableCount + " saat tablosu düzenleniyor. Başlıklar, sütunlar ve diğer bölümler (hero, yardım, SEO) için 'Form Görünümü'ne geçebilirsiniz.";
-  root.appendChild(tnote);
-
-  return root;
-}
-
 /* ---------- Modal Üretici ---------- */
 
 function renderModalBuilder(tab) {
@@ -2626,10 +2176,11 @@ function sectionCount(f, obj) {
 }
 
 function renderSection(f, obj, startCollapsed, path) {
+  const collapsed = f.defaultCollapsed === true || (startCollapsed && f.defaultOpen !== true);
   const sec = document.createElement("div");
-  sec.className = "form-section" + (startCollapsed ? " collapsed" : "");
+  sec.className = "form-section" + (collapsed ? " collapsed" : "");
   const head = document.createElement("button");
-  head.className = "form-section-head" + (startCollapsed ? "" : " open");
+  head.className = "form-section-head" + (collapsed ? "" : " open");
   const chev = document.createElement("span");
   chev.className = "chev";
   chev.textContent = "▶";
@@ -2660,10 +2211,53 @@ function renderSection(f, obj, startCollapsed, path) {
   return sec;
 }
 
-function renderToc(secs, fields) {
+/* Nadir düzenlenen standart alanlar için kapalı gelen "Sayfa Ayarları" grubu (şema: settingsGroup). */
+function renderSettingsGroup(sg, fields, obj) {
+  const box = document.createElement("div");
+  box.className = "form-section settings-group collapsed";
+  const head = document.createElement("button");
+  head.className = "form-section-head";
+  const chev = document.createElement("span");
+  chev.className = "chev";
+  chev.textContent = "▶";
+  const label = document.createElement("span");
+  label.className = "form-section-label";
+  label.textContent = sg.label || "Sayfa Ayarları";
+  const count = document.createElement("span");
+  count.className = "form-section-count";
+  count.textContent = fields.length;
+  head.appendChild(chev);
+  head.appendChild(label);
+  head.appendChild(count);
+  const body = document.createElement("div");
+  body.className = "form-section-body";
+  body.hidden = true;
+  box.appendChild(head);
+  box.appendChild(body);
+  box._open = () => {
+    if (!body.childElementCount) {
+      fields.forEach((f) => body.appendChild(renderSection(f, obj, true, "$." + f.key)));
+    }
+    body.hidden = false;
+    box.classList.remove("collapsed");
+    head.classList.add("open");
+  };
+  box._close = () => {
+    body.hidden = true;
+    box.classList.add("collapsed");
+    head.classList.remove("open");
+  };
+  head.addEventListener("click", () => {
+    if (body.hidden) box._open();
+    else box._close();
+  });
+  return box;
+}
+
+function renderToc(secs, fields, sgEl, sgFields) {
   const tocBar = $("tocBar");
   tocBar.innerHTML = "";
-  if (fields.length <= 1) {
+  if (fields.length <= 1 && !sgEl) {
     tocBar.classList.add("hidden");
     return;
   }
@@ -2680,8 +2274,12 @@ function renderToc(secs, fields) {
       s.classList.toggle("collapsed", !open);
       s.querySelector(".form-section-head").classList.toggle("open", open);
     });
+    if (sgEl) {
+      if (open) sgEl._open();
+      else sgEl._close();
+    }
     localStorage.setItem("mgr_sections", open ? "open" : "collapsed");
-    renderToc(secs, fields);
+    renderToc(secs, fields, sgEl, sgFields);
   });
   wrap.appendChild(toggleAll);
   secs.forEach((s, i) => {
@@ -2696,6 +2294,16 @@ function renderToc(secs, fields) {
     });
     wrap.appendChild(chip);
   });
+  if (sgEl && sgFields) {
+    const chip = document.createElement("button");
+    chip.className = "toc-chip settings-chip";
+    chip.textContent = "⚙ " + (sgEl.querySelector(".form-section-label").textContent || "Sayfa Ayarları") + " (" + sgFields.length + ")";
+    chip.addEventListener("click", () => {
+      sgEl._open();
+      sgEl.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    wrap.appendChild(chip);
+  }
   tocBar.appendChild(wrap);
 }
 
@@ -2708,7 +2316,7 @@ function defaultFor(f) {
     case "object": return {};
     case "array":
     case "components":
-    case "day-multiselect": return [];
+      return [];
     case "number": return 0;
     case "boolean": return false;
     default: return "";
@@ -2719,7 +2327,9 @@ function defaultItem(f) {
   if (f.type === "components") {
     const types = Object.keys(f.components || {});
     const first = types[0] || "";
-    return { type: first, data: componentDefaults((f.components || {})[first]) };
+    const item = { type: first, data: componentDefaults((f.components || {})[first]) };
+    if (COMPONENT_DEFAULT_VARIANTS[first]) item.variant = COMPONENT_DEFAULT_VARIANTS[first];
+    return item;
   }
   if (f.itemType) return f.itemType === "number" ? 0 : "";
   if (f.itemFields && f.itemFields.length === 1 && f.itemFields[0].type === "lang") {
@@ -2751,6 +2361,11 @@ function componentDefaults(comp) {
   for (const sf of (comp && comp.fields) || []) d[sf.key] = defaultFor(sf);
   return d;
 }
+
+// Renderer'ın component.variant ile sınıflandırdığı bileşenlerin varsayılanı.
+// Şema alanlarında yeri olmayan varyantlar için (heading gibi) editörde tip
+// seçilince otomatik atanır; boş kalırsa site başlığı hiç göstermez.
+const COMPONENT_DEFAULT_VARIANTS = { heading: "single-icon" };
 
 function ensureDefaults(fields, obj) {
   if (!fields || typeof obj !== "object" || obj === null) return;
@@ -2885,38 +2500,6 @@ function renderField(f, obj, path) {
       const holder = document.createElement("div");
       holder.className = "control";
       holder.appendChild(cb);
-      if (f.hint) {
-        const h = document.createElement("div");
-        h.className = "hint";
-        h.textContent = f.hint;
-        holder.appendChild(h);
-      }
-      wrap.appendChild(holder);
-      break;
-    }
-    case "day-multiselect": {
-      if (!Array.isArray(obj[f.key])) obj[f.key] = [];
-      const holder = document.createElement("div");
-      holder.className = "day-multiselect";
-      const days = [["1", "Pzt"], ["2", "Sal"], ["3", "Çar"], ["4", "Per"], ["5", "Cum"], ["6", "Cmt"], ["0", "Paz"]];
-      for (const [num, label] of days) {
-        const lab = document.createElement("label");
-        lab.className = "day-chip";
-        const cb = document.createElement("input");
-        cb.type = "checkbox";
-        cb.checked = obj[f.key].includes(Number(num));
-        cb.addEventListener("change", () => {
-          const n = Number(num);
-          if (cb.checked) { if (!obj[f.key].includes(n)) obj[f.key].push(n); }
-          else obj[f.key] = obj[f.key].filter((v) => v !== n);
-          markDirty();
-        });
-        const span = document.createElement("span");
-        span.textContent = label;
-        lab.appendChild(cb);
-        lab.appendChild(span);
-        holder.appendChild(lab);
-      }
       if (f.hint) {
         const h = document.createElement("div");
         h.className = "hint";
@@ -3548,9 +3131,18 @@ function renderArray(f, arr, path) {
   holder.className = "array-widget";
   const list = document.createElement("div");
   list.className = "array-list";
+  const openIdx = new Set();
   const renderAll = () => {
     list.innerHTML = "";
-    arr.forEach((item, i) => list.appendChild(renderArrayItem(f, arr, i, renderAll, path)));
+    arr.forEach((item, i) => {
+      const card = renderArrayItem(f, arr, i, renderAll, path, openIdx);
+      if (openIdx.has(i)) {
+        card.classList.remove("collapsed");
+        const bd = card.querySelector(".card-body");
+        if (bd) bd.hidden = false;
+      }
+      list.appendChild(card);
+    });
   };
   renderAll();
   holder.appendChild(list);
@@ -3566,15 +3158,21 @@ function renderArray(f, arr, path) {
   return holder;
 }
 
-function renderArrayItem(f, arr, i, rerender, path) {
+function renderArrayItem(f, arr, i, rerender, path, openIdx) {
+  const solo = f.hierarchy === "sections" || f.soloOpen === true;
   const itemPath = path ? path + "[" + i + "]" : "";
   const card = document.createElement("div");
   card.className = "array-card";
-  card.draggable = true;
+  if (f.hierarchy === "sections") card.classList.add("section-card");
 
   const head = document.createElement("div");
   head.className = "card-head";
   head.title = "Aç/kapat";
+  const grip = document.createElement("span");
+  grip.className = "card-grip";
+  grip.textContent = "⋮⋮";
+  grip.title = "Sürükleyip bırakarak sırala";
+  grip.draggable = true;
   const chev = document.createElement("span");
   chev.className = "card-chev";
   chev.textContent = "▸";
@@ -3589,6 +3187,7 @@ function renderArrayItem(f, arr, i, rerender, path) {
   actions.appendChild(iconBtn("↑", "Yukarı taşı", () => { move(arr, i, -1); rerender(); markDirty(); }));
   actions.appendChild(iconBtn("↓", "Aşağı taşı", () => { move(arr, i, 1); rerender(); markDirty(); }));
   actions.appendChild(iconBtn("✕", "Sil", () => { arr.splice(i, 1); rerender(); markDirty(); }));
+  head.appendChild(grip);
   head.appendChild(chev);
   head.appendChild(idx);
   head.appendChild(title);
@@ -3602,6 +3201,7 @@ function renderArrayItem(f, arr, i, rerender, path) {
   card.appendChild(head);
 
   card.addEventListener("dragstart", (e) => {
+    if (!e.target.closest(".card-grip")) { e.preventDefault(); return; }
     e.dataTransfer.setData("text/plain", String(i));
     e.dataTransfer.effectAllowed = "move";
     card.classList.add("dragging");
@@ -3633,9 +3233,25 @@ function renderArrayItem(f, arr, i, rerender, path) {
   body.hidden = startCollapsed;
   if (startCollapsed) card.classList.add("collapsed");
   head.addEventListener("click", (e) => {
-    if (e.target.closest(".card-actions")) return;
+    if (e.target.closest(".card-actions") || e.target.closest(".card-grip")) return;
+    const opening = body.hidden;
+    if (opening && solo && card.parentNode) {
+      Array.from(card.parentNode.children).forEach((c) => {
+        if (c === card) return;
+        const cb = c.querySelector(".card-body");
+        if (cb) cb.hidden = true;
+        c.classList.add("collapsed");
+        const idxEl = c.querySelector(".card-index");
+        const m = idxEl ? (idxEl.textContent.match(/\d+/) || [])[0] : null;
+        if (openIdx && m) openIdx.delete(Number(m) - 1);
+      });
+    }
     body.hidden = !body.hidden;
     card.classList.toggle("collapsed", body.hidden);
+    if (openIdx) {
+      if (!body.hidden) openIdx.add(i);
+      else openIdx.delete(i);
+    }
   });
 
   if (f.type === "components") {
@@ -3658,6 +3274,9 @@ function renderArrayItem(f, arr, i, rerender, path) {
     sel.addEventListener("change", () => {
       comp.type = sel.value;
       comp.data = componentDefaults(f.components[sel.value]);
+      const dv = COMPONENT_DEFAULT_VARIANTS[sel.value];
+      if (dv) comp.variant = dv;
+      else delete comp.variant;
       rerender();
       markDirty();
     });
@@ -3771,6 +3390,14 @@ function renderArrayItem(f, arr, i, rerender, path) {
   }
 
   card.appendChild(body);
+  if (f.hierarchy === "sections") {
+    const compField = card.querySelector('.field[data-key="components"]');
+    if (compField) {
+      const labelEl = compField.querySelector(".field-label");
+      const n = arr[i] && Array.isArray(arr[i].components) ? arr[i].components.length : 0;
+      if (labelEl) labelEl.textContent = labelEl.textContent.replace(/\s*\(\d+\)/, "") + " (" + n + ")";
+    }
+  }
   return card;
 }
 
@@ -4537,6 +4164,331 @@ async function openHistoryModal() {
 
 /* ---------- Başlatma ---------- */
 
+/* ---------- Yeni Sayfa Sihirbazı ---------- */
+
+function slugifyTR(s) {
+  return String(s || "")
+    .toLowerCase()
+    .replace(/ç/g, "c").replace(/ğ/g, "g").replace(/ı/g, "i")
+    .replace(/ö/g, "o").replace(/ş/g, "s").replace(/ü/g, "u")
+    .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60) || "sayfa";
+}
+
+const WIZ = {
+  step: 0,
+  name: { tr: "", en: "" },
+  slug: "",
+  icon: "",
+  menu: { show: true, parent: "", position: "" },
+  footer: { show: true, columnIndex: -1 },
+  sections: [{ id: "ana-bolum", comps: [{ type: "", variant: "" }] }],
+  comps: [],
+  header: { navigation: [] },
+  footerCols: [],
+};
+const WIZ_STEP_NAMES = ["Bilgiler", "Menü", "Footer", "İçerik", "Özet"];
+
+function wizFinalSlug() {
+  const s = (WIZ.slug || "").trim() || slugifyTR(WIZ.name.tr || WIZ.name.en || "sayfa");
+  return s.replace(/[^a-z0-9-]+/g, "").slice(0, 60) || "sayfa";
+}
+
+function wizRenderSteps() {
+  $("wizSteps").innerHTML = WIZ_STEP_NAMES.map((n, i) =>
+    '<span class="wiz-step ' + (i === WIZ.step ? "active" : i < WIZ.step ? "done" : "") + '">' + (i + 1) + ". " + n + "</span>"
+  ).join("");
+}
+
+async function wizLoadOptions() {
+  if (!WIZ.comps.length) {
+    try {
+      WIZ.comps = ((await api("/api/components")).components || []).sort((a, b) => a.label.localeCompare(b.label, "tr"));
+    } catch { WIZ.comps = []; }
+  }
+  if (!ICONS) {
+    try { ICONS = (await api("/api/icons")).icons || []; } catch { ICONS = []; }
+  }
+  if (!WIZ.header.navigation.length) {
+    try {
+      const r = await api("/api/file?path=" + encodeURIComponent("data/global/header.json"));
+      WIZ.header = r.content || { navigation: [] };
+    } catch { WIZ.header = { navigation: [] }; }
+  }
+  if (!WIZ.footerCols.length) {
+    try {
+      const r = await api("/api/file?path=" + encodeURIComponent("data/global/footer.json"));
+      WIZ.footerCols = ((r.content && r.content.columns) || []).map((c, i) => ({
+        index: i,
+        label: (c.title && (c.title.tr || c.title.en)) || "Sütun " + (i + 1),
+      }));
+    } catch { WIZ.footerCols = []; }
+  }
+}
+
+function wizOpen() {
+  openModal(
+    '<div class="modal-head"><h3>➕ Yeni Sayfa Sihirbazı</h3><button id="wizClose" class="icon-btn" title="Kapat">✕</button></div>' +
+    '<div class="wiz-steps" id="wizSteps"></div>' +
+    '<div class="wiz-body" id="wizBody"></div>' +
+    '<div class="wiz-actions"><button id="wizPrev" class="btn small">← Geri</button><span class="sp"></span><button id="wizNext" class="btn primary">İleri →</button></div>'
+  );
+  $("wizClose").addEventListener("click", closeModal);
+  $("wizPrev").addEventListener("click", () => wizGo(WIZ.step - 1));
+  $("wizNext").addEventListener("click", () => wizNext());
+  // İçerik adımı için tek seferlik delegasyon (yeniden render'da çoğalmaz)
+  $("wizBody").addEventListener("click", (e) => {
+    if (WIZ.step !== 3) return;
+    const b = e.target.closest("button");
+    if (!b) return;
+    const si = Number(b.dataset.si);
+    if (b.classList.contains("wiz-sec-del")) {
+      WIZ.sections.splice(si, 1);
+      if (!WIZ.sections.length) WIZ.sections.push({ id: "bolum", comps: [{ type: "", variant: "" }] });
+      wizStep_content();
+    } else if (b.classList.contains("wiz-comp-add")) {
+      WIZ.sections[si].comps.push({ type: "", variant: "" });
+      wizStep_content();
+    } else if (b.classList.contains("wiz-comp-del")) {
+      WIZ.sections[si].comps.splice(Number(b.dataset.ci), 1);
+      wizStep_content();
+    }
+  });
+  $("wizBody").addEventListener("input", (e) => {
+    if (WIZ.step !== 3) return;
+    const si = Number(e.target.dataset.si);
+    if (e.target.classList.contains("wiz-sec-id")) {
+      WIZ.sections[si].id = e.target.value;
+    } else if (e.target.classList.contains("wiz-comp-variant")) {
+      WIZ.sections[si].comps[Number(e.target.dataset.ci)].variant = e.target.value;
+    }
+  });
+  $("wizBody").addEventListener("change", (e) => {
+    if (WIZ.step !== 3) return;
+    if (e.target.tagName === "SELECT" && e.target.dataset.si !== undefined) {
+      const comp = WIZ.sections[Number(e.target.dataset.si)].comps[Number(e.target.dataset.ci)];
+      comp.type = e.target.value;
+      const dv = COMPONENT_DEFAULT_VARIANTS[comp.type];
+      if (dv) comp.variant = dv;
+      else delete comp.variant;
+      wizStep_content();
+    }
+  });
+  wizLoadOptions().then(() => wizGo(0));
+}
+
+function wizGo(step) {
+  if (step < 0 || step > 4) return;
+  WIZ.step = step;
+  wizRenderSteps();
+  $("wizBody").innerHTML = "";
+  $("wizPrev").disabled = step === 0;
+  $("wizNext").disabled = false;
+  $("wizNext").textContent = step === 4 ? "Oluştur" : "İleri →";
+  $("wizNext").className = "btn primary" + (step === 4 ? "" : "");
+  const views = [wizStep_info, wizStep_menu, wizStep_footer, wizStep_content, wizStep_summary];
+  views[step]();
+}
+
+function wizNext() {
+  if (WIZ.step < 4) { wizGo(WIZ.step + 1); return; }
+  wizCreate();
+}
+
+function wizIconDatalist() {
+  return '<datalist id="wizIconList">' +
+    (ICONS || []).slice(0, 500).map((i) => '<option value="' + escapeHtml(i) + '">').join("") +
+    "</datalist>";
+}
+
+function wizStep_info() {
+  const slug = WIZ.slug || slugifyTR(WIZ.name.tr || WIZ.name.en || "sayfa");
+  $("wizBody").innerHTML =
+    '<div class="wiz-grid">' +
+    '<div class="wiz-row"><label>Ad (TR) *</label><input id="wizNameTr" type="text" placeholder="örn: Kopya Çekme Hizmeti" value="' + escapeHtml(WIZ.name.tr) + '"></div>' +
+    '<div class="wiz-row"><label>Ad (EN)</label><input id="wizNameEn" type="text" placeholder="örn: Document Delivery Service" value="' + escapeHtml(WIZ.name.en) + '"></div>' +
+    '<div class="wiz-row"><label>Kısa ad</label><input id="wizSlug" type="text" placeholder="a-z0-9 (boş bırakılırsa otomatik)" value="' + escapeHtml(slug) + '">' +
+    '<button id="wizSlugAuto" class="btn small" title="Ad (TR)\'den yeniden türet">Otomatik</button></div>' +
+    '<div class="wiz-row"><label>İkon</label><i class="' + escapeHtml(WIZ.icon || "bi-file-text") + ' wiz-icon-pre" id="wizIconPrev"></i>' +
+    '<input id="wizIcon" type="text" list="wizIconList" placeholder="bi- veya fa- sınıfı (örn: bi-camera)" value="' + escapeHtml(WIZ.icon) + '">' +
+    wizIconDatalist() + "</div>" +
+    '<span class="hint">Hero başlığı sayfa adından gelir; ikon menü öğesinde ve hero bölümünde kullanılır.</span>' +
+    "</div>";
+  $("wizNameTr").addEventListener("input", (e) => {
+    WIZ.name.tr = e.target.value;
+    if (!$("wizSlug").dataset.manual) $("wizSlug").value = slugifyTR(WIZ.name.tr || WIZ.name.en);
+  });
+  $("wizNameEn").addEventListener("input", (e) => {
+    WIZ.name.en = e.target.value;
+    if (!$("wizSlug").dataset.manual) $("wizSlug").value = slugifyTR(WIZ.name.tr || WIZ.name.en);
+  });
+  $("wizSlug").addEventListener("input", (e) => { WIZ.slug = e.target.value; $("wizSlug").dataset.manual = "1"; });
+  $("wizSlugAuto").addEventListener("click", () => {
+    $("wizSlug").dataset.manual = "";
+    $("wizSlug").value = slugifyTR(WIZ.name.tr || WIZ.name.en || "sayfa");
+    WIZ.slug = $("wizSlug").value;
+  });
+  $("wizIcon").addEventListener("input", (e) => {
+    WIZ.icon = e.target.value.trim();
+    $("wizIconPrev").className = (WIZ.icon || "bi-file-text") + " wiz-icon-pre";
+  });
+}
+
+function wizStep_menu() {
+  const parents = WIZ.header.navigation.filter((m) => m.id && Array.isArray(m.dropdown));
+  const parentOpts =
+    '<option value="">— Üst düzey menü (yeni öğe) —</option>' +
+    parents.map((m) => {
+      const t = (m.title && (m.title.tr || m.title.en)) || m.id;
+      return '<option value="' + escapeHtml(m.id) + '">' + escapeHtml(t) + " › … (alt menü)</option>";
+    }).join("");
+  $("wizBody").innerHTML =
+    '<div class="wiz-check"><input id="wizMenuShow" type="checkbox" ' + (WIZ.menu.show ? "checked" : "") + '> <label for="wizMenuShow">Sayfayı menüye ekle</label></div>' +
+    '<div class="wiz-grid" id="wizMenuOpts">' +
+    '<div class="wiz-row"><label>Konum</label><select id="wizMenuParent">' + parentOpts + "</select></div>" +
+    '<div class="wiz-row"><label>Sıra</label><input id="wizMenuPos" type="number" min="1" placeholder="boş = sona ekle" value="' + escapeHtml(WIZ.menu.position) + '"></div>' +
+    '<div class="wiz-row"><label>İkon</label><i class="' + escapeHtml(WIZ.icon || "bi-file-text") + ' wiz-icon-pre"></i><span class="hint">Adım 1\'de seçilen ikon kullanılır.</span></div>' +
+    '<span class="hint">Üst düzeyde yeni bir menü öğesi oluşur veya seçili üst menünün alt listesine bağlantı eklenir.</span>' +
+    "</div>";
+  $("wizMenuShow").addEventListener("change", () => {
+    WIZ.menu.show = $("wizMenuShow").checked;
+    $("wizMenuOpts").style.display = WIZ.menu.show ? "" : "none";
+  });
+  $("wizMenuParent").value = WIZ.menu.parent || "";
+  $("wizMenuParent").addEventListener("change", (e) => { WIZ.menu.parent = e.target.value; });
+  $("wizMenuPos").addEventListener("input", (e) => { WIZ.menu.position = e.target.value; });
+  $("wizMenuOpts").style.display = WIZ.menu.show ? "" : "none";
+}
+
+function wizStep_footer() {
+  const colOpts =
+    '<option value="-1">— Yeni sütun oluştur —</option>' +
+    WIZ.footerCols.map((c) => '<option value="' + c.index + '">' + escapeHtml(c.label) + "</option>").join("");
+  $("wizBody").innerHTML =
+    '<div class="wiz-check"><input id="wizFootShow" type="checkbox" ' + (WIZ.footer.show ? "checked" : "") + '> <label for="wizFootShow">Footere bağlantı ekle</label></div>' +
+    '<div class="wiz-grid" id="wizFootOpts">' +
+    '<div class="wiz-row"><label>Sütun</label><select id="wizFootCol">' + colOpts + "</select></div>" +
+    '<span class="hint">Seçilen sütunun bağlantı listesinin sonuna eklenir; “Yeni sütun” seçilirse adı sayfa adından gelir.</span>' +
+    "</div>";
+  const sync = () => {
+    WIZ.footer.show = $("wizFootShow").checked;
+    $("wizFootOpts").style.display = WIZ.footer.show ? "" : "none";
+  };
+  $("wizFootShow").addEventListener("change", sync);
+  $("wizFootCol").value = String(WIZ.footer.columnIndex);
+  $("wizFootCol").addEventListener("change", (e) => {
+    WIZ.footer.columnIndex = parseInt(e.target.value, 10);
+    if (Number.isNaN(WIZ.footer.columnIndex)) WIZ.footer.columnIndex = -1;
+  });
+  sync();
+}
+
+function wizSectionHTML(s, si) {
+  const compRows = s.comps.map((c, ci) =>
+    '<div class="wiz-comp-row">' +
+    '<select data-si="' + si + '" data-ci="' + ci + '">' +
+    '<option value="">— bileşen seç —</option>' +
+    WIZ.comps.map((cc) => '<option value="' + escapeHtml(cc.type) + '"' + (cc.type === c.type ? " selected" : "") + ">" + escapeHtml(cc.label) + "</option>").join("") +
+    "</select>" +
+    '<input class="wiz-comp-variant" data-si="' + si + '" data-ci="' + ci + '" type="text" placeholder="varyant (ops.)" value="' + escapeHtml(c.variant || "") + '">' +
+    '<button class="btn small wiz-comp-del" data-si="' + si + '" data-ci="' + ci + '" title="Bileşeni kaldır">✕</button>' +
+    "</div>"
+  ).join("");
+  return (
+    '<div class="wiz-sec">' +
+    '<div class="wiz-sec-top">' +
+    '<span>Bölüm:</span>' +
+    '<input class="wiz-sec-id" data-si="' + si + '" type="text" value="' + escapeHtml(s.id) + '" placeholder="bölüm kimliği">' +
+    '<button class="btn small wiz-sec-del" data-si="' + si + '" title="Bölümü kaldır">🗑</button>' +
+    "</div>" +
+    compRows +
+    '<button class="btn small wiz-comp-add" data-si="' + si + '">＋ Bileşen Ekle</button>' +
+    "</div>"
+  );
+}
+
+function wizStep_content() {
+  if (!WIZ.comps.length) {
+    $("wizBody").innerHTML = '<div class="hint">Bileşen listesi yükleniyor…</div>';
+    return wizLoadOptions().then(wizStep_content);
+  }
+  $("wizBody").innerHTML =
+    '<div id="wizSecs">' + WIZ.sections.map(wizSectionHTML).join("") + "</div>" +
+    '<button class="btn small" id="wizSecAdd">＋ Bölüm Ekle</button>' +
+    '<span class="hint">Başlık (heading) bileşeni sayfa adını taşır; diğer bileşenler sonradan yönetim arayüzünden doldurulur.</span>';
+  $("wizSecAdd").addEventListener("click", () => {
+    WIZ.sections.push({ id: "bolum", comps: [{ type: "", variant: "" }] });
+    wizStep_content();
+  });
+}
+
+function wizStep_summary() {
+  const slug = wizFinalSlug();
+  const icon = WIZ.icon || "bi-file-text (varsayılan)";
+  const menu = WIZ.menu.show
+    ? '<span class="ok">✓ ' + (WIZ.menu.parent ? "üst menü (“' + WIZ.menu.parent + '”) altına" : "üst düzey menü") +
+      (WIZ.menu.position ? " • sıra " + WIZ.menu.position : " • sona") + "</span>"
+    : '<span class="skip">— menüye eklenmez</span>';
+  const footer = WIZ.footer.show
+    ? '<span class="ok">✓ ' + (WIZ.footer.columnIndex >= 0 ? "footer sütunu “" + escapeHtml((WIZ.footerCols.find((c) => c.index === WIZ.footer.columnIndex) || {}).label || "?") + "”" : "yeni footer sütunu") + "</span>"
+    : '<span class="skip">— footere eklenmez</span>';
+  const secCount = WIZ.sections.reduce((n, s) => n + s.comps.filter((c) => c.type).length, 0);
+  $("wizBody").innerHTML =
+    '<div class="wiz-summary">' +
+    '<div>Sayfa: <b>' + escapeHtml(WIZ.name.tr) + "</b>" + (WIZ.name.en ? " / " + escapeHtml(WIZ.name.en) : "") + "</div>" +
+    '<div>Kısa ad: <b>' + escapeHtml(slug) + "</b></div>" +
+    '<div class="mid">Oluşturulacak dosyalar:</div>' +
+    '<div>• <code>data/pages/' + escapeHtml(slug) + '.json</code> <span class="skip">(sayfa verisi)</span></div>' +
+    '<div>• <code>manager/schemas/' + escapeHtml(slug) + '.json</code> <span class="skip">(düzenleme şeması)</span></div>' +
+    '<div>• <code>' + escapeHtml(slug) + '.html</code> <span class="skip">(site sayfası)</span></div>' +
+    '<div>Menü ikonu: <b>' + escapeHtml(icon) + "</b></div>" +
+    "<div>Menü: " + menu + "</div>" +
+    "<div>Footer: " + footer + "</div>" +
+    "<div>İçerik: <b>" + WIZ.sections.filter((s) => s.comps.some((c) => c.type)).length + " bölüm, " + secCount + " bileşen</b></div>" +
+    "</div>";
+}
+
+async function wizCreate() {
+  const nameTr = (WIZ.name.tr || "").trim();
+  const nameEn = (WIZ.name.en || "").trim();
+  const slug = wizFinalSlug();
+  if (!nameTr) return showBanner("Sayfa adı (TR) zorunlu.");
+  let sections = WIZ.sections
+    .filter((s) => s.comps.some((c) => c.type))
+    .map((s) => ({
+      id: s.id || "bolum",
+      components: s.comps.filter((c) => c.type).map((c) => ({ type: c.type, variant: c.variant || undefined })),
+    }));
+  if (!sections.length) sections = [{ id: "ana-bolum", components: [{ type: "heading" }] }];
+  const payload = {
+    name: { tr: nameTr, en: nameEn },
+    slug,
+    icon: WIZ.icon,
+    menu: {
+      show: WIZ.menu.show,
+      parent: WIZ.menu.parent || "",
+      position: WIZ.menu.position ? Number(WIZ.menu.position) : undefined,
+    },
+    footer: { show: WIZ.footer.show, columnIndex: WIZ.footer.columnIndex },
+    sections,
+  };
+  $("wizNext").disabled = true;
+  try {
+    const res = await api("/api/page/create", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    closeModal();
+    const git = res.git ? " • " + res.git.branch + " • " + res.git.lastCommit.split(" ")[0] : "";
+    showBanner("Sayfa oluşturuldu ✓" + (res.report && res.report.length ? " — " + res.report.join(" — ") : "") + git, "success");
+    await loadFiles();
+    await selectFile(res.path);
+  } catch (e) {
+    showBanner("Oluşturma başarısız: " + ((e && e.errors) || []).join("; ") || "sunucu hatası");
+    $("wizNext").disabled = false;
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initTheme();
   setPreviewLang(previewLang());
@@ -4555,6 +4507,7 @@ document.addEventListener("DOMContentLoaded", () => {
   $("previewToggle").addEventListener("click", togglePreview);
   $("themeToggle").addEventListener("click", toggleTheme);
   $("paletteBtn").addEventListener("click", () => openPalette(""));
+  $("newPageBtn").addEventListener("click", () => wizOpen());
   $("fileSearch").addEventListener("input", onSearch);
   $("rawArea").addEventListener("input", markDirty);
   $("commitMessage").addEventListener("keydown", (e) => {
