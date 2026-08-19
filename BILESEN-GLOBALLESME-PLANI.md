@@ -63,9 +63,10 @@
 - [ ] ✅ Doğrulama: `validation.py` 0 hata + render smoke test
 
 ### AŞAMA 2 — test.json kararları
-- [ ] 2 varyantsız heading → `single-icon`
-- [ ] `statusBadge` auto/manual düzeltmesi (varsa)
-- [ ] ✅ Doğrulama: sayfa tarayıcıda görünüyor + rozet doğru
+- [x] 2 varyantsız heading → `single-icon` (2026-08-19)
+- [x] `statusBadge`'ler kaldırıldı (auto+hours'suz → her daim kırmızı "kapalı" çipi basıyordu; manuel olmadığına göre en temizi kaldırmak)
+- [x] idsiz 3. bölüme `id: "ek-bolum"` eklendi
+- [x] ✅ Doğrulama: JSON valid + validation 0 yeni hata
 
 ### AŞAMA 3 — Legacy Dönüşüm (pilottan genişe, teker teker)
 - [ ] **Pilot:** `kime-sormaliyim.departments` → `staff-list`/`contact-box` + test
