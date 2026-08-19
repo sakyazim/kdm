@@ -669,6 +669,54 @@
   font-size: 0.85rem;
 }
 
+/* ==========================================
+   3D. TAG LIST BİLEŞENİ (Tag List Component)
+   Etiket/rozet rozeti (free, discount, vb.)
+   ========================================== */
+
+.component-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.component-tag {
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: white;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+  background: var(--primary-color);
+}
+
+.component-tag.tag-success {
+  background: #198754;
+}
+
+.component-tag.tag-info {
+  background: #0dcaf0;
+  color: #000;
+}
+
+.component-tag.tag-warning {
+  background: #ffc107;
+  color: #000;
+}
+
+.component-tag.tag-danger {
+  background: #dc3545;
+}
+
+.component-tag.tag-discount {
+  background: var(--primary-color);
+}
+
 /* Grid sütun sayıları */
 .component-icon-list-grid.grid-cols-2 {
   grid-template-columns: repeat(2, 1fr);

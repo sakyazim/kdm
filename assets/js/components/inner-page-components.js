@@ -49,6 +49,8 @@ export class ComponentRenderer {
         return this.renderInfoBox(component);
       case 'resource-links':
         return this.renderResourceLinks(component);
+      case 'tag-list':
+        return this.renderTagList(component);
       case 'search':
         return this.renderSearch(component);
       case 'divider':
@@ -174,6 +176,11 @@ export class ComponentRenderer {
 
     const iconHTML = icon ? `<i class="${icon}"></i>` : '';
 
+    // Başlıkta blok <p> sarmalayıcısını kaldır (inline <strong> içinde blok öğe geçersizdir)
+    const localizedTitleInline = localizedTitle
+      ? Utils.mdToHtml(localizedTitle).replace(/^<p(?:\s[^>]*)?>/, '').replace(/<\/p>\s*$/, '')
+      : '';
+
     let contentHTML = '';
 
     if (style === 'list' && items && items.length > 0) {
@@ -181,14 +188,14 @@ export class ComponentRenderer {
       const listItems = localizedItems.map(item => `<li>${Utils.mdToHtml(item)}</li>`).join('');
       contentHTML = `
         <div class="alert-content">
-          ${localizedTitle ? `<strong>${Utils.mdToHtml(localizedTitle)}</strong>` : ''}
+          ${localizedTitleInline ? `<strong>${localizedTitleInline}</strong>` : ''}
           <ul>${listItems}</ul>
         </div>
       `;
     } else {
       contentHTML = `
         <div class="alert-content">
-          ${localizedTitle ? `<strong>${Utils.mdToHtml(localizedTitle)}</strong>` : ''}
+          ${localizedTitleInline ? `<strong>${localizedTitleInline}</strong>` : ''}
           ${localizedContent}
         </div>
       `;
@@ -251,7 +258,7 @@ export class ComponentRenderer {
         return `
           <div class="list-item">
             <i class="${item.icon}"></i>
-            <span>${Utils.mdToHtml(itemTitle)}</span>
+            <span>${Utils.mdToHtml(itemTitle).replace(/^<p(?:\s[^>]*)?>/, '').replace(/<\/p>\s*$/, '')}</span>
           </div>
         `;
       }
@@ -261,7 +268,7 @@ export class ComponentRenderer {
         <div class="list-item">
           <i class="${item.icon}"></i>
           <div class="list-item-content">
-            <strong>${Utils.mdToHtml(itemTitle)}</strong>
+            <strong>${Utils.mdToHtml(itemTitle).replace(/^<p(?:\s[^>]*)?>/, '').replace(/<\/p>\s*$/, '')}</strong>
             <p>${Utils.mdToHtml(itemDescription)}</p>
           </div>
         </div>
@@ -505,7 +512,29 @@ export class ComponentRenderer {
   }
 
   /**
-   * 8. ARAMA BİLEŞENİ (Search Component)
+   * 7b. TAG LIST BİLEŞENİ (Tag List Component)
+   * Etiket/rozet listesi — tip bazlı renk (free, discount, success, info, warning, danger)
+   */
+  static renderTagList(component) {
+    const { data } = component;
+    const { items } = data;
+
+    if (!items || items.length === 0) {
+      console.warn('Tag list component has no items');
+      return '';
+    }
+
+    const tagsHTML = items.map(tag => {
+      const typeClass = tag.type ? ` tag-${tag.type}` : '';
+      const localizedText = Utils.getLocalizedText(tag.text);
+      return `<span class="component-tag${typeClass}">${localizedText}</span>`;
+    }).join('');
+
+    return `<div class="component-tag-list">${tagsHTML}</div>`;
+  }
+
+  /**
+   * 8. SEARCH BİLEŞENİ (Search Component)
    */
   static renderSearch(component) {
     const { variant, data } = component;

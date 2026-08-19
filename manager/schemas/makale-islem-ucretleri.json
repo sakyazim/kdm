@@ -1,7 +1,7 @@
 {
  "file": "data/pages/makale-islem-ucretleri.json",
  "label": "Makale İşlem Ücretleri (APC)",
- "description": "APC sayfası: hero, içindekiler, genel bilgi, şartlar, yayıncı kartları, iletişim, yardım bölümü ve SEO meta.",
+ "description": "APC sayfası: hero, içindekiler, içerik bölümleri (genel bilgi/şartlar/yayıncılar/iletişim), yardım bölümü ve SEO meta.",
  "settingsGroup": {
   "label": "Sayfa Ayarları",
   "fields": [
@@ -325,357 +325,43 @@
    ]
   },
   {
-   "key": "generalInfo",
-   "label": "Genel Bilgi Bölümü",
-   "type": "object",
-   "fields": [
-    {
-     "key": "id",
-     "label": "Bölüm Kimliği",
-     "type": "text",
-     "readonly": true
-    },
-    {
-     "key": "title",
-     "label": "Başlık",
-     "type": "lang"
-    },
-    {
-     "key": "icon",
-     "label": "İkon",
-     "type": "icon"
-    },
-    {
-     "key": "content",
-     "label": "İçerik",
-     "type": "object",
-     "fields": [
-      {
-       "key": "intro",
-       "label": "Giriş Metni",
-       "type": "lang"
-      },
-      {
-       "key": "infoBoxes",
-       "label": "Bilgi Kutuları",
-       "type": "array",
-       "itemLabel": "Kutu",
-       "itemFields": [
-        {
-         "key": "title",
-         "label": "Başlık",
-         "type": "lang"
-        },
-        {
-         "key": "icon",
-         "label": "İkon",
-         "type": "icon"
-        },
-        {
-         "key": "text",
-         "label": "Metin",
-         "type": "lang"
-        }
-       ]
-      },
-      {
-       "key": "description",
-       "label": "Kapanış Metni",
-       "type": "lang"
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "key": "requirements",
-   "label": "Gerekli Şartlar",
-   "type": "object",
-   "fields": [
-    {
-     "key": "id",
-     "label": "Bölüm Kimliği",
-     "type": "text",
-     "readonly": true
-    },
-    {
-     "key": "title",
-     "label": "Başlık",
-     "type": "lang"
-    },
-    {
-     "key": "icon",
-     "label": "İkon",
-     "type": "icon"
-    },
-    {
-     "key": "intro",
-     "label": "Giriş Metni",
-     "type": "lang"
-    },
-    {
-     "key": "items",
-     "label": "Şartlar",
-     "type": "array",
-     "itemLabel": "Şart",
-     "itemFields": [
-      {
-       "key": "icon",
-       "label": "İkon",
-       "type": "icon"
-      },
-      {
-       "key": "title",
-       "label": "Başlık",
-       "type": "lang"
-      },
-      {
-       "key": "description",
-       "label": "Açıklama",
-       "type": "lang"
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "key": "publishers",
-   "label": "Yayıncı Kartları",
+   "key": "content",
+   "label": "İçerik Bölümleri",
    "type": "array",
-   "itemLabel": "Yayıncı",
+   "hierarchy": "sections",
+   "defaultOpen": true,
+   "itemLabel": "Bölüm",
    "itemFields": [
     {
      "key": "id",
-     "label": "Kimlik",
-     "type": "text",
-     "readonly": true,
-     "hint": "TOC hedefiyle eşleşir (acs, bentham, oxford, sage, springer, wiley)"
-    },
-    {
-     "key": "name",
-     "label": "Yayıncı Adı",
+     "label": "Bölüm ID",
      "type": "text"
     },
     {
-     "key": "emoji",
-     "label": "Emoji",
+     "key": "layout",
+     "label": "Düzen",
+     "type": "select",
+     "options": [
+      "column",
+      "row",
+      "grid-2",
+      "grid-3",
+      "cell"
+     ],
+     "hint": "column: üst üste (varsayılan) · row: yan yana · grid-2/3: sabit sütun · cell: eşit hücre"
+    },
+    {
+     "key": "className",
+     "label": "Ek Sınıf (CSS)",
      "type": "text",
-     "hint": "Kart ve TOC'ta gösterilir (🧪 📚 🎓 ...)"
+     "hint": "İsteğe bağlı özel CSS sınıf adı"
     },
     {
-     "key": "badges",
-     "label": "Rozetler",
-     "type": "array",
-     "itemLabel": "Rozet",
-     "itemFields": [
-      {
-       "key": "type",
-       "label": "Tip",
-       "type": "select",
-       "options": [
-        "free",
-        "discount",
-        "warning"
-       ],
-       "hint": "free: yeşil · discount: mavi/turuncu · warning: kırmızı"
-      },
-      {
-       "key": "text",
-       "label": "Metin",
-       "type": "lang"
-      }
-     ]
-    },
-    {
-     "key": "tokenInfo",
-     "label": "Token / Kota Bilgisi",
-     "type": "object",
-     "fields": [
-      {
-       "key": "label",
-       "label": "Etiket",
-       "type": "lang"
-      },
-      {
-       "key": "count",
-       "label": "Sayı",
-       "type": "number"
-      }
-     ]
-    },
-    {
-     "key": "description",
-     "label": "Açıklama",
-     "type": "lang"
-    },
-    {
-     "key": "warnings",
-     "label": "Uyarı Kutuları",
-     "type": "array",
-     "itemLabel": "Uyarı",
-     "itemFields": [
-      {
-       "key": "title",
-       "label": "Başlık",
-       "type": "lang"
-      },
-      {
-       "key": "icon",
-       "label": "İkon",
-       "type": "icon"
-      },
-      {
-       "key": "items",
-       "label": "Maddeler",
-       "type": "array",
-       "itemLabel": "Madde",
-       "itemFields": [
-        {
-         "key": "tr",
-         "label": "Türkçe",
-         "type": "text"
-        },
-        {
-         "key": "en",
-         "label": "İngilizce",
-         "type": "text"
-        }
-       ]
-      }
-     ]
-    },
-    {
-     "key": "infoBoxes",
-     "label": "Bilgi Kutuları",
-     "type": "array",
-     "itemLabel": "Kutu",
-     "itemFields": [
-      {
-       "key": "title",
-       "label": "Başlık",
-       "type": "lang"
-      },
-      {
-       "key": "icon",
-       "label": "İkon",
-       "type": "icon"
-      },
-      {
-       "key": "text",
-       "label": "Metin",
-       "type": "lang"
-      }
-     ]
-    },
-    {
-     "key": "guidelines",
-     "label": "Kurallar (Numaralı)",
-     "type": "array",
-     "itemLabel": "Kural",
-     "itemFields": [
-      {
-       "key": "number",
-       "label": "Numara",
-       "type": "number",
-       "readonly": true
-      },
-      {
-       "key": "text",
-       "label": "Metin",
-       "type": "lang"
-      }
-     ]
-    },
-    {
-     "key": "resources",
-     "label": "Kaynak Linkleri",
-     "type": "array",
-     "itemLabel": "Kaynak",
-     "itemFields": [
-      {
-       "key": "title",
-       "label": "Başlık",
-       "type": "lang"
-      },
-      {
-       "key": "description",
-       "label": "Açıklama",
-       "type": "lang"
-      },
-      {
-       "key": "icon",
-       "label": "İkon",
-       "type": "icon"
-      },
-      {
-       "key": "url",
-       "label": "Bağlantı",
-       "type": "url",
-       "hint": "https://... (yeni sekmede açılır)"
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "key": "contact",
-   "label": "İletişim Bölümü",
-   "type": "object",
-   "fields": [
-    {
-     "key": "id",
-     "label": "Bölüm Kimliği",
-     "type": "text",
-     "readonly": true
-    },
-    {
-     "key": "title",
-     "label": "Başlık",
-     "type": "lang"
-    },
-    {
-     "key": "icon",
-     "label": "İkon",
-     "type": "icon"
-    },
-    {
-     "key": "description",
-     "label": "Açıklama",
-     "type": "lang"
-    },
-    {
-     "key": "items",
-     "label": "Kişiler",
-     "type": "array",
-     "itemLabel": "Kişi",
-     "itemFields": [
-      {
-       "key": "icon",
-       "label": "İkon",
-       "type": "icon"
-      },
-      {
-       "key": "name",
-       "label": "Ad / Etiket",
-       "type": "text"
-      },
-      {
-       "key": "email",
-       "label": "E-posta",
-       "type": "text"
-      },
-      {
-       "key": "phone",
-       "label": "Telefon",
-       "type": "text"
-      },
-      {
-       "key": "url",
-       "label": "Bağlantı",
-       "type": "url",
-       "hint": "mailto:... veya tel:+90..."
-      }
-     ]
+     "key": "components",
+     "label": "Bileşenler",
+     "type": "components",
+     "soloOpen": true,
+     "registry": "components"
     }
    ]
   },

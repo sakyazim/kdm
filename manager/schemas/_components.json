@@ -1167,6 +1167,38 @@
     }
    ]
   },
+  "tag-list": {
+   "label": "Etiketler (Rozetler)",
+   "fields": [
+    {
+     "key": "items",
+     "label": "Etiketler",
+     "type": "array",
+     "itemLabel": "Etiket",
+     "itemFields": [
+      {
+       "key": "text",
+       "label": "Metin",
+       "type": "lang"
+      },
+      {
+       "key": "type",
+       "label": "Renk Tipi",
+       "type": "select",
+       "options": [
+        "free",
+        "discount",
+        "success",
+        "info",
+        "warning",
+        "danger"
+       ],
+       "hint": "Rozet rengi — free/discount ana vurgu rengini kullanır"
+      }
+     ]
+    }
+   ]
+  },
   "staff-list": {
    "label": "Personel Listesi",
    "fields": [

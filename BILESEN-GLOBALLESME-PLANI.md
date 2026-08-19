@@ -35,8 +35,7 @@
 | `koleksiyon-kat-plani` → `floors` (5) ✅ | kat → bölüm → detay | **`content` + `collapsible-section`** (+ `content` paragraf) — saf içerik sayfası, interaktif nav kaldırıldı | düşük |
 | `mendeley` → `sections` (6) ✅ | `info-card`, `features` | **`content` + `icon-list` + `info-box` + `step-cards` + `alert` + `resource-links` + `contact-buttons`** (2026-08-19 pilot) | düşük |
 | `arastirmaci-profili` → `quickNav` | floating hızlı erişim | `resource-links` / `link-cards` | orta |
-| `makale` → `generalInfo` | metin bloğu | `content` / `info-box` | düşük |
-| `makale` → `publishers` (6) | zengin yayıncı kartı | `icon-list-grid` + `info-box`; yeni bileşen gerekebilir | yüksek |
+| `makale` → `generalInfo` + `requirements` + `publishers` (6) + `contact` ✅ | metin bloğu + şart listesi + zengin yayıncı kartı + iletişim | **`content` + `icon-list` + `info-box` + `tag-list` + `stat-cards` + `alert` + `resource-links` + `staff-list`** (2026-08-19) | yüksek |
 | `home` → `sections` (5) | `dataSource`'lu dinamik bloklar | bileşen değil; dinamik veri kartı / `news-display` adayı | yüksek |
 
 ### 2.3 Yerleşim (rows / flex / cell)
@@ -88,7 +87,13 @@
   - `_components.json` + renderer: `resource-links` bileşenine `disabled`/`note`/`alert` alanları; `contact-buttons` buton metni `Utils.getLocalizedText` ile dil desteği; paylaşılan `component-resource-links` CSS `inner-page-components.css`'e eklendi (organizasyon-semasi de kazanıyor)
   - Özel sayfa JS 385 satırdan 62 satıra: `renderFeatures/InfoBoxes/Steps/CTA/Warnings/Benefits/Resources` deterministik renderer'ları silindi → `ComponentRenderer.buildSectionCards`; 472 satır bespoke sayfa CSS'i silindi (`.page-container`/`.main-content` düzeni `hybrid-toc.css`'ten geliyor)
   - ✅ Doğrulama: node --check temiz, validation 0 yeni hata, render smoke test (6 TOC anchor = 6 section id, çakışma yok, tüm bileşenler render, disabled/note çalışıyor)
-- [ ] `makale-islem-ucretleri` (`generalInfo` + `publishers`) + test
+- [x] `makale-islem-ucretleri` (`generalInfo` + `requirements` + `publishers` + `contact`) (2026-08-19)
+  - 4 blok → 9 standart `content` section'a: (1) genel bilgi → heading `double-icon` + content + info-box×3 + content; (2) şartlar → heading + content + `icon-list` (ikon+başlık+açıklama); (3) 6 yayıncı → her biri bir section (heading `single-plain` emoji ile) + `tag-list` (free/discount rozetleri) + `stat-cards` (token sayacı) + content + `alert` warning list + info-box + `resource-links`; (4) iletişim → heading + content + `staff-list`
+  - `_components.json` + renderer + CSS: yeni **`tag-list`** bileşeni (tip bazlı chip: free/discount/success/info/warning/danger); eski badge CSS'i ortak bileşene taşındı
+  - Şema: özel `generalInfo`/`requirements`/`publishers`/`contact` alanları → standart `content` (hierarchy sections + components registry); `toc` korundu
+  - Özel sayfa JS 446 satırdan 62 satıra (renderFeature/Requirement/Publisher/Contact + adaptive-layout legacy TOC observer + IntersectionObserver animasyonları silindi → `ComponentRenderer.buildSectionCards`); 500 satır bespoke CSS silindi (`.main-content`, `.publisher-card`, `.price-badge`, `.requirements-list`, `.contact-section`… — arastirmaci-profili'nin kendi CSS kopyası korunuyor)
+  - **Ortak renderer düzeltmesi:** `renderAlert` + `renderIconList` başlıklarında `<strong><p>…`/`<span><p>…` geçersiz iç içe blok sarmalayıcı temizlendi (site geneli `<strong><p>` artık yok)
+  - ✅ Doğrulama: node --check temiz, validation 0 yeni hata, render smoke test (9 section, 9 TOC anchor eksiksiz, çakışma yok, tag/stat/staff/alert/resource doğrulandı), site çapı scan'de makale çakışmasız
 - [ ] `arastirmaci-profili.quickNav` → `resource-links`/`link-cards` + test
 - [ ] `home.sections` dinamik blok kararı + test
 - [ ] ✅ Her sayfa için: JSON validation + node --check + tarayıcı render + id/bağlantı korunumu
