@@ -60,7 +60,7 @@
     "iconColor": "#11325d",
     "titleColor": "#11325d",
     "textColor": "#555555",
-    "enabled": false,
+    "enabled": true,
     "boxPaddingTop": "",
     "boxPaddingBottom": "",
     "boxMarginTop": "",
@@ -75,5 +75,5 @@
     "textColor": "",
     "iconColor": ""
   },
-  "lastModified": "2026-08-18 10:41"
+  "lastModified": "2026-08-20 07:57"
 }

@@ -961,10 +961,11 @@
        ],
        "hint": "phone: telefon · email: e-posta · link: harici bağlantı"
       },
-      {
+{
        "key": "text",
        "label": "Metin",
-       "type": "text"
+       "type": "lang",
+       "hint": "Düz metin veya TR/EN çeviri nesnesi (renderer ikisini de destekler)"
       },
       {
        "key": "href",
